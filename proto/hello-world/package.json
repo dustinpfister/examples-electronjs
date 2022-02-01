@@ -1,0 +1,8 @@
+{
+  "name": "hello-world",
+  "version": "0.0.0",
+  "description": "hello world",
+  "main": "main.js",
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0"
+}
