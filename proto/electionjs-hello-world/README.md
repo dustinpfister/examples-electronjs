@@ -1,6 +1,6 @@
-# hello-world
+# electionjs-hello-world
 
-I have to get this one out of the way first, so lets get it over with so we can get to the good stuff. I am following a getting started guide at the electron js website found here: https://www.electronjs.org/docs/v14-x-y/tutorial/quick-start
+At the name suggests yes, this is a hello world example for making an electron.js app. I have to get this one out of the way first, so lets get it over with so we can get to the good stuff. I am following a getting started guide at the electron js website found here: https://www.electronjs.org/docs/v14-x-y/tutorial/quick-start
 
 ## Getting this working
 
