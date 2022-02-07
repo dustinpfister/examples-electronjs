@@ -1,5 +1,27 @@
 // load app and BrowserWindow
-const { app, BrowserWindow } = require('electron')
+const { app, Menu, BrowserWindow } = require('electron')
+
+// Custom Menu
+const isMac = process.platform === 'darwin'
+const MenuTemplate = [
+  // { role: 'fileMenu' }
+  {
+    label: 'File',
+    submenu: [
+      isMac ? { role: 'close' } : { role: 'quit' }
+    ]
+  },
+  // { role: 'viewMenu' }
+  {
+    label: 'View',
+    submenu: [
+      { type: 'separator' },
+      { role: 'togglefullscreen' }
+    ]
+  }
+]
+const menu = Menu.buildFromTemplate(MenuTemplate)
+Menu.setApplicationMenu(menu)
 
 // Create the browser window.
 function createWindow () {
