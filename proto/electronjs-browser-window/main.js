@@ -1,6 +1,20 @@
 // load app and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron')
 
+// Create the browser window.
+function createWindow () {
+  const mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    backgroundColor: '#008888',
+    webPreferences: {}
+  })
+  // and load the index.html of the app.
+  mainWindow.loadFile('index.html')
+  // Open the DevTools for debugging
+  //mainWindow.webContents.openDevTools()
+}
+
 // Custom Menu
 const isMac = process.platform === 'darwin'
 const MenuTemplate = [
@@ -22,19 +36,6 @@ const MenuTemplate = [
 ]
 const menu = Menu.buildFromTemplate(MenuTemplate)
 Menu.setApplicationMenu(menu)
-
-// Create the browser window.
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {}
-  })
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-  // Open the DevTools for debugging
-  //mainWindow.webContents.openDevTools()
-}
 
 // the 'ready' event
 app.whenReady().then(() => {
