@@ -32,40 +32,43 @@ function createMainWindow() {
 };
 
 // Custom Menus
-const isMac = process.platform === 'darwin'
-    // The main menu for the main window
-    const MainMenuTemplate = [{
-            label: 'File',
-            submenu: [
-                isMac ? { role: 'close' }: { role: 'quit' },
-                {
-                    label: 'New Window',
-                    click: function(){
-                        createChildWindow();
-                    }
+const isMac = process.platform === 'darwin';
+// The main menu for the main window
+const MainMenuTemplate = [
+    {
+        label: 'File',
+        submenu: [
+            isMac ? { role: 'close' }: { role: 'quit' },
+            {
+                label: 'New Window',
+                click: function(){
+                    createChildWindow();
                 }
-            ]
-        }, {
-            label: 'View',
-            submenu: [{
-                    type: 'separator'
-                }, {
-                    role: 'togglefullscreen'
-                }
-            ]
-        }
-    ];
+            }
+        ]
+    },
+    {
+        label: 'View',
+        submenu: [
+            {
+                type: 'separator'
+            },
+            {
+                role: 'togglefullscreen'
+            }
+        ]
+    }
+];
 // child window
 const ChildMenuTemplate = [{
-            label: 'View',
-            submenu: [{
-                    type: 'separator'
-                }, {
-                    role: 'togglefullscreen'
-                }
-            ]
+    label: 'View',
+    submenu: [{
+            type: 'separator'
+        }, {
+            role: 'togglefullscreen'
         }
-    ];
+    ]
+}];
  
 // the 'ready' event
 app.whenReady().then(() => {
