@@ -6,9 +6,9 @@ This is another basic getting started type example of electronjs, and is actuall
 
 On top of what I have all ready got working in my hello world example, in this example I would like to work out the following with the browser window class, as well as the Menu Class.
 
-* Create a child window
-* work out some basic example of nodeIntergration
-* have a custom menu for each window
+* Create a child window from the main menu of the main window
+* have a custom menu for each type of window, main and child
+* have more than one index.html file
 
 ## Getting this working
 
