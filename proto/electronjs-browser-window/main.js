@@ -1,28 +1,14 @@
 // load app and BrowserWindow
-const {
-    app,
-    Menu,
-    BrowserWindow
-} = require('electron')
-
-    let mainWin;
+const { app, Menu, BrowserWindow } = require('electron');
 
 function createChildWindow() {
-
-
     const childWindow = new BrowserWindow({
-            //parent: parentWindow,
             width: 320,
             height: 240
         });
-
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
     childWindow.setMenu(menu);
-	
     childWindow.loadFile('index.html');
-	
-	
-	
     return childWindow;
 };
 
@@ -70,7 +56,6 @@ const isMac = process.platform === 'darwin'
         }
     ];
 // child window
-
 const ChildMenuTemplate = [{
             label: 'View',
             submenu: [{
@@ -81,26 +66,17 @@ const ChildMenuTemplate = [{
             ]
         }
     ];
-
+ 
 // the 'ready' event
-
 app.whenReady().then(() => {
-    mainWin = createMainWindow();
+    createMainWindow();
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0){
             createMainWindow()
         }
     })
 });
-
-/*
-app.on('ready', function(){
-	
-	createMainWindow();
-	
-});
-*/
-
+ 
 // the 'window-all-closed' is also a kind of on quit event
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin')
