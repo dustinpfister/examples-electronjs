@@ -4,11 +4,12 @@ const { app, Menu, BrowserWindow } = require('electron');
 function createChildWindow() {
     const childWindow = new BrowserWindow({
             width: 320,
-            height: 240
+            height: 240,
+            backgroundColor: '#008888'
         });
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
     childWindow.setMenu(menu);
-    childWindow.loadFile('html/window_main.html');
+    childWindow.loadFile('html/window_child.html');
     return childWindow;
 };
 
