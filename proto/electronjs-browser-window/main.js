@@ -7,11 +7,11 @@ const {
 
     let mainWin;
 
-function createChildWindow(parentWindow) {
+function createChildWindow() {
 
 
     const childWindow = new BrowserWindow({
-            parent: parentWindow,
+            //parent: parentWindow,
             width: 320,
             height: 240
         });
@@ -33,18 +33,15 @@ function createMainWindow() {
             height: 600,
             backgroundColor: '#008888',
             webPreferences: {}
-        })
-        // and load the index.html of the app.
-        mainWindow.loadFile('index.html')
-        // Open the DevTools for debugging
-        //mainWindow.webContents.openDevTools()
-
-        createChildWindow(mainWindow);
-
+        });
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html')
+    // Open the DevTools for debugging
+    //mainWindow.webContents.openDevTools()
+    // creating a starting child window
+    createChildWindow();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)
-
-
     return mainWindow;
 };
 
@@ -54,11 +51,12 @@ const isMac = process.platform === 'darwin'
     const MainMenuTemplate = [{
             label: 'File',
             submenu: [
-                isMac ? {
-                    role: 'close'
-                }
-                 : {
-                    role: 'quit'
+                isMac ? { role: 'close' }: { role: 'quit' },
+                {
+                    label: 'New Window',
+                    click: function(){
+                        createChildWindow();
+                    }
                 }
             ]
         }, {
@@ -85,7 +83,7 @@ const ChildMenuTemplate = [{
     ];
 
 // the 'ready' event
-/*
+
 app.whenReady().then(() => {
     mainWin = createMainWindow();
     app.on('activate', function () {
@@ -94,13 +92,14 @@ app.whenReady().then(() => {
         }
     })
 });
-*/
 
+/*
 app.on('ready', function(){
 	
 	createMainWindow();
 	
 });
+*/
 
 // the 'window-all-closed' is also a kind of on quit event
 app.on('window-all-closed', function () {
