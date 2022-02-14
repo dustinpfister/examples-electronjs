@@ -1,6 +1,6 @@
 // load app and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron');
-
+// Create A Child Window
 function createChildWindow() {
     const childWindow = new BrowserWindow({
             width: 320,
@@ -12,7 +12,6 @@ function createChildWindow() {
     childWindow.loadFile('html/window_child.html');
     return childWindow;
 };
-
 // Create the Main browser window.
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
@@ -31,7 +30,6 @@ function createMainWindow() {
     mainWindow.setMenu(menu)
     return mainWindow;
 };
-
 // Custom Menus
 const isMac = process.platform === 'darwin';
 // The main menu for the main window
@@ -70,7 +68,6 @@ const ChildMenuTemplate = [{
         }
     ]
 }];
- 
 // the 'ready' event
 app.whenReady().then(() => {
     createMainWindow();
@@ -80,7 +77,6 @@ app.whenReady().then(() => {
         }
     })
 });
- 
 // the 'window-all-closed' is also a kind of on quit event
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin')
