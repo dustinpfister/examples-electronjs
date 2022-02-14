@@ -1,8 +1,10 @@
 // load app and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron')
 
-// Create the browser window.
-function createWindow () {
+let mainWin;
+
+// Create the Main browser window.
+function createMainWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -13,7 +15,15 @@ function createWindow () {
   mainWindow.loadFile('index.html')
   // Open the DevTools for debugging
   //mainWindow.webContents.openDevTools()
-}
+  
+  // creating and showing a child window
+  const child = new BrowserWindow({ parent: mainWindow, width: 320, height: 240 });
+  child.show();
+  mainWindow.show();
+  
+  
+  return mainWindow;
+};
 
 // Custom Menu
 const isMac = process.platform === 'darwin'
@@ -39,7 +49,10 @@ Menu.setApplicationMenu(menu)
 
 // the 'ready' event
 app.whenReady().then(() => {
-  createWindow();
+  mainWin = createMainWindow();
+  //const child = new BrowserWindow({ parent: mainWin });
+  //child.show();
+  //mainWin.show();
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })

@@ -1,3 +1,5 @@
 # electionjs-browser-window todo list
 
-## ( ) - r0 - first release
+## ( ) - r0 - background, child windows, node integration
+* start with the background property
+* try to
