@@ -8,7 +8,7 @@ function createChildWindow() {
         });
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
     childWindow.setMenu(menu);
-    childWindow.loadFile('index.html');
+    childWindow.loadFile('html/window_main.html');
     return childWindow;
 };
 
@@ -20,8 +20,8 @@ function createMainWindow() {
             backgroundColor: '#008888',
             webPreferences: {}
         });
-    // and load the index.html of the app.
-    mainWindow.loadFile('index.html')
+    // load the html file for the main window
+    mainWindow.loadFile('html/window_main.html')
     // Open the DevTools for debugging
     //mainWindow.webContents.openDevTools()
     // creating a starting child window
