@@ -26,11 +26,8 @@ function createMainWindow () {
   
   createChildWindow(mainWindow);
   
-  // creating and showing a child window
-  //const child = new BrowserWindow({ parent: mainWindow, width: 320, height: 240 });
-  //child.show();
-  //mainWindow.show();
-  
+  const menu = Menu.buildFromTemplate(MainMenuTemplate);
+  Menu.setApplicationMenu(menu);
   
   return mainWindow;
 };
@@ -39,7 +36,7 @@ function createMainWindow () {
 
 // Custom Menu
 const isMac = process.platform === 'darwin'
-const MenuTemplate = [
+const MainMenuTemplate = [
   // { role: 'fileMenu' }
   {
     label: 'File',
@@ -56,8 +53,6 @@ const MenuTemplate = [
     ]
   }
 ]
-const menu = Menu.buildFromTemplate(MenuTemplate);
-Menu.setApplicationMenu(menu);
 
 // the 'ready' event
 app.whenReady().then(() => {
