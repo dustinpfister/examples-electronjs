@@ -1,5 +1,7 @@
 # electionjs-browser-window todo list
 
 ## ( ) - r0 - background, child windows, node integration
-* start with the background property
-* try to
+* (done) start with the background property
+* See about creating a child window from a menu option
+* see about having more than one menu for each Window
+* see about nodeIntergration
