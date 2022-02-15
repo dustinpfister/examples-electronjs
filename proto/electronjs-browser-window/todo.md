@@ -1,10 +1,10 @@
 # electionjs-browser-window todo list
 
-## () - r1 - front end javaScript
+## ( done 02/15/2022 ) - r1 - front end javaScript, preload, and contextIsolation
 * (done) use the parent prop for child windows and the BrowserWindow.fromId method
-* have some front end javaScript running
-* have a preload.js file
-* I will also want to get started with the basics at least with ipcMain and ipcRenderer
+* (done) have some front end javaScript running
+* (done) have a preload.js file
+* (done) have a client.js file in the html folder that will be used by the html files
 
 ## ( done 02/14/2022 ) - r0 - background, child windows, More than one Menu
 * (done) start with the background property
