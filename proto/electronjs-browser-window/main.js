@@ -8,8 +8,11 @@ function createChildWindow() {
             height: 240,
             // the parent propery should be used with the main window so that when
             // the main window is closed, all child windows will also close
-            parent: BrowserWindow.fromId(1) ,
-            backgroundColor: '#008888'
+            parent: BrowserWindow.fromId(1),
+            backgroundColor: '#008888',
+            webPreferences: {
+                preload: path.resolve( __dirname, 'preload.js')
+            }
         });
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
     childWindow.setMenu(menu);
@@ -22,14 +25,15 @@ function createMainWindow() {
             width: 800,
             height: 600,
             backgroundColor: '#008888',
-            preload: path.resolve( __dirname, 'preload.js'),
-            webPreferences: {}
+            webPreferences: {
+                preload: path.resolve( __dirname, 'preload.js')
+            }
         });
     // load the html file for the main window
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
     // creating a starting child window
     createChildWindow();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
