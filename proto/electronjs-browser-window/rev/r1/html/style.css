@@ -1,0 +1,10 @@
+body{
+  background: #afafaf;
+  color: #2a2a2a;
+  margin: 0px;
+  padding: 0px;
+  font-family: arial;
+}
+#wrap_main{
+  position: absolute;
+}
