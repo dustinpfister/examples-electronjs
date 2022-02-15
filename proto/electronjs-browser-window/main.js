@@ -2,11 +2,13 @@
 const { app, Menu, BrowserWindow } = require('electron');
 const path = require('path');
 // Create A Child Window
-function createChildWindow(mainWindow) {
+function createChildWindow() {
     const childWindow = new BrowserWindow({
             width: 320,
             height: 240,
-            parent: mainWindow,
+            // the parent propery should be used with the main window so that when
+            // the main window is closed, all child windows will also close
+            parent: BrowserWindow.fromId(1) ,
             backgroundColor: '#008888'
         });
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
@@ -29,7 +31,7 @@ function createMainWindow() {
     // Open the DevTools for debugging
     //mainWindow.webContents.openDevTools()
     // creating a starting child window
-    createChildWindow(mainWindow);
+    createChildWindow();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)
     return mainWindow;
@@ -45,8 +47,8 @@ const MainMenuTemplate = [
             {
                 label: 'New Window',
                 click: function(){
-//createChildWindow( );
-                    createChildWindow(  BrowserWindow.fromId(1) );
+                    // window of id 1 should always be the parent window
+                    createChildWindow();
                 }
             }
         ]

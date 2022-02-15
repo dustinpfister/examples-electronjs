@@ -1,6 +1,7 @@
 # electionjs-browser-window todo list
 
 ## () - r1 - front end javaScript
+* use the parent prop for child windows and the BrowserWindow.fromId method
 * have some front end javaScript running
 * have a preload.js file
 * I will also want to get started with the basics at least with ipcMain and ipcRenderer
