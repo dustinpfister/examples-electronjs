@@ -1,10 +1,12 @@
 // load app and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron');
+const path = require('path');
 // Create A Child Window
-function createChildWindow() {
+function createChildWindow(mainWindow) {
     const childWindow = new BrowserWindow({
             width: 320,
             height: 240,
+            parent: mainWindow,
             backgroundColor: '#008888'
         });
     const menu = Menu.buildFromTemplate(ChildMenuTemplate);
@@ -18,6 +20,7 @@ function createMainWindow() {
             width: 800,
             height: 600,
             backgroundColor: '#008888',
+            preload: path.resolve( __dirname, 'preload.js'),
             webPreferences: {}
         });
     // load the html file for the main window
@@ -25,7 +28,7 @@ function createMainWindow() {
     // Open the DevTools for debugging
     //mainWindow.webContents.openDevTools()
     // creating a starting child window
-    createChildWindow();
+    createChildWindow(mainWindow);
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)
     return mainWindow;
