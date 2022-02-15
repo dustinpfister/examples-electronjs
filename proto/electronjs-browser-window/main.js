@@ -11,6 +11,7 @@ function createChildWindow() {
             parent: BrowserWindow.fromId(1),
             backgroundColor: '#008888',
             webPreferences: {
+                contextIsolation: true,
                 preload: path.resolve( __dirname, 'preload.js')
             }
         });
@@ -26,6 +27,7 @@ function createMainWindow() {
             height: 600,
             backgroundColor: '#008888',
             webPreferences: {
+                contextIsolation: true,
                 preload: path.resolve( __dirname, 'preload.js')
             }
         });
@@ -33,7 +35,8 @@ function createMainWindow() {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
+
     // creating a starting child window
     createChildWindow();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
