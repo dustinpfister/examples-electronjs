@@ -10,6 +10,9 @@ On top of what I have all ready got working in my hello world example, in this e
 * have a custom menu for each type of window, main and child
 * have more than one index.html file
 
+* display current rev number
+* get started with some front end code for the child and main windows
+
 ## Getting this working
 
 with the root of this folder as the current working folder just do an npm install, and then an npm start.

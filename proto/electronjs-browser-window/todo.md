@@ -1,8 +1,9 @@
 # electionjs-browser-window todo list
 
-## () - r1 - 
+## () - r1 - front end javaScript
 * have some front end javaScript running
-* see about nodeIntergration or IPC
+* have a preload.js file
+* I will also want to get started with the basics at least with ipcMain and ipcRenderer
 
 ## ( done 02/14/2022 ) - r0 - background, child windows, More than one Menu
 * (done) start with the background property
