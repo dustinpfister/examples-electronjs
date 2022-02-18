@@ -5,8 +5,8 @@ const path = require('path');
 // Create the Main browser window.
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
-            width: 800,
-            height: 600,
+            width: 900,
+            height: 700,
             backgroundColor: '#008888',
             webPreferences: {
                 contextIsolation: true,

@@ -5,13 +5,15 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Browser Window Demo - Main Window</title>
+    <title>VideoGround</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div id="wrap_main">
-        <h1>Main Window</h1>
-        <textarea id="text_console" rows="10" cols="60"></textarea>
+        <div id="wrap_canvas">
+        </div>
+        
+        <script src="js/threejs/0.135.0/three.min.js"></script>
         <script src="js/client.js"></script>
     </div>
   </body>
