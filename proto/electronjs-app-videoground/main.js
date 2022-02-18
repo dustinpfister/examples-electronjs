@@ -17,7 +17,7 @@ function createMainWindow() {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)

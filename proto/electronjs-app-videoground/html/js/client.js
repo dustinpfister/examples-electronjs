@@ -70,7 +70,9 @@
 
     camera.userData.subject = mesh.position;
 
-    // APP LOOP
+
+
+    // APP LOOP STATE
     var secs = 0,
     methodSecs = 0,
     methodIndex = 0,
@@ -80,13 +82,11 @@
     frame = 0,
     frameMax = 600,
     lt = new Date();
-    var loop = function () {
-        var now = new Date(),
-        secs = (now - lt) / 1000,
-        per = Math.round(frame) / frameMax,
+
+
+    var update = function(secs){
+        var per = Math.round(frame) / frameMax,
         bias = getBias(per);
-        requestAnimationFrame(loop);
-        if(secs > 1 / fps_update){
             methodSecs += secs;
             if(methodSecs >= 5){
                 methodSecs = 0;
@@ -98,12 +98,24 @@
             moveCamera(camera, per, camMoveMethod[methodName]);
             // moving mesh
             mesh.position.x = -2 + 4 * bias;
+    };
+
+
+    var loop = function () {
+        var now = new Date(),
+        secs = (now - lt) / 1000;
+        requestAnimationFrame(loop);
+        if(secs > 1 / fps_update){
+            // call update method
+            update(secs);
+            // render
             renderer.render(scene, camera);
             frame += fps_movement * secs;
             frame %= frameMax;
             lt = now;
         }
     };
+
     loop();
 }
     ());
