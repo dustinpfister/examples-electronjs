@@ -15,7 +15,7 @@
     var renderer = new THREE.WebGLRenderer();
     // append to wrap canvas
     WRAP_CANVAS.appendChild(renderer.domElement);
-    renderer.setSize(640, 480);
+    renderer.setSize(320, 240);
 
     // MESH
     var mesh = new THREE.Mesh(
