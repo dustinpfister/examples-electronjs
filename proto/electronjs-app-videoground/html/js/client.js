@@ -10,7 +10,7 @@
 
     // SCENE
     var scene = new THREE.Scene();
-    scene.add(new THREE.GridHelper(8, 8))
+    //scene.add(new THREE.GridHelper(8, 8));
     // RENDER
     var renderer = new THREE.WebGLRenderer();
     // append to wrap canvas
@@ -18,12 +18,13 @@
     renderer.setSize(320, 240);
 
     // MESH
+/*
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
         new THREE.MeshNormalMaterial());
     mesh.position.set(0, 0, 0);
     scene.add(mesh);
-
+*/
 
     // APP LOOP STATE
     var secs = 0,
