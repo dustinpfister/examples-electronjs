@@ -35,6 +35,7 @@
     fps_movement = 60, // fps rate to move camera
     frame = 0,
     frameMax = 600,
+    loopActive = false,
     lt = new Date();
 
     var getBias = function(per){
@@ -44,23 +45,40 @@
     var update = function(secs){
         var per = Math.round(frame) / frameMax,
         bias = getBias(per);
+
+        var state = {
+            secs: secs,
+            frame: frame,
+            frameMax: frameMax,
+            per: per,
+            bias: bias,
+            scene: scene,
+            camera: camera
+        };
+
+        VIDEO.update(state, scene, camera, secs, per, bias);
     };
 
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
-        requestAnimationFrame(loop);
-        if(secs > 1 / fps_update){
-            // call update method
-            update(secs);
-            // render
-            renderer.render(scene, camera);
-            frame += fps_movement * secs;
-            frame %= frameMax;
-            lt = now;
+        if(loopActive){
+            requestAnimationFrame(loop);
+            if(secs > 1 / fps_update){
+                // call update method
+                update(secs);
+                // render
+                renderer.render(scene, camera);
+                frame += fps_movement * secs;
+                frame %= frameMax;
+                lt = now;
+            }
         }
     };
 
+    // start loop
+    VIDEO.init(scene, camera);
+    loopActive = true;
     loop();
 }
     ());
