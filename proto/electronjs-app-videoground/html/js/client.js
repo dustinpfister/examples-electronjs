@@ -3,6 +3,7 @@
     var WRAP_CANVAS = document.querySelector('#wrap_canvas');
 
 
+/*
     var getBias = function(per){
         return 1 - Math.abs(per - 0.5) / 0.5;
     };
@@ -61,6 +62,7 @@
     // append to wrap canvas
     WRAP_CANVAS.appendChild(renderer.domElement);
     renderer.setSize(640, 480);
+
     // MESH
     var mesh = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
@@ -70,6 +72,28 @@
 
     camera.userData.subject = mesh.position;
 
+*/
+
+// CAMERA
+    var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 100);
+    camera.position.set(10, 10, 10);
+    camera.lookAt(0, 0, 0);
+
+    // SCENE
+    var scene = new THREE.Scene();
+    scene.add(new THREE.GridHelper(8, 8))
+    // RENDER
+    var renderer = new THREE.WebGLRenderer();
+    // append to wrap canvas
+    WRAP_CANVAS.appendChild(renderer.domElement);
+    renderer.setSize(640, 480);
+
+    // MESH
+    var mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshNormalMaterial());
+    mesh.position.set(0, 0, 0);
+    scene.add(mesh);
 
 
     // APP LOOP STATE
@@ -83,10 +107,14 @@
     frameMax = 600,
     lt = new Date();
 
+    var getBias = function(per){
+        return 1 - Math.abs(per - 0.5) / 0.5;
+    };
 
     var update = function(secs){
         var per = Math.round(frame) / frameMax,
         bias = getBias(per);
+/*
             methodSecs += secs;
             if(methodSecs >= 5){
                 methodSecs = 0;
@@ -98,6 +126,7 @@
             moveCamera(camera, per, camMoveMethod[methodName]);
             // moving mesh
             mesh.position.x = -2 + 4 * bias;
+*/
     };
 
 

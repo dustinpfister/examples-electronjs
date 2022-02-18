@@ -14,10 +14,11 @@
 * create an export to images export image that will create a folder of images
 
 ## () - r0 - General starting point working
-* have a \/html\/js folder
-* threejs will need to be part of the client system, go with a late version \( \/html\/js\/0.135.0\/three.min.js \)
-* I am also going to want to add vuejs as I like using that to make user interface controls
-* for now I am thinking I will just need a single browser window, with a mount point for one or more canvas elements
+* (done) have a \/html\/js folder
+* (done) threejs will need to be part of the client system, go with a late version \( \/html\/js\/0.135.0\/three.min.js \)
+* (done) I am also going to want to add vuejs as I like using that to make user interface controls
+* (done) for now I am thinking I will just need a single browser window, with a mount point for one or more canvas elements
+
 * I am going to want to create some kind of system like that of the videoUI system in my test threejs folder
 * start a playback ui
 * playback ui should have a have frame + and - buttons
