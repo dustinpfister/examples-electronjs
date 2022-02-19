@@ -42,12 +42,11 @@
         return 1 - Math.abs(per - 0.5) / 0.5;
     };
 
-    var update = function(secs){
+    var update = function(){
         var per = Math.round(sm.frame) / sm.frameMax,
         bias = getBias(per);
 
         var state = {
-            secs: secs,
             frame: sm.frame,
             frameMax: sm.frameMax,
             per: per,
@@ -66,7 +65,7 @@
             requestAnimationFrame(loop);
             if(secs > 1 / fps_update){
 
-sm.setFrame();
+                sm.setFrame();
 
                 sm.frameFrac += fps_movement * secs;
                 sm.frameFrac %= sm.frameMax;
@@ -90,6 +89,7 @@ sm.setFrame();
     sm.play = function(){
         sm.loopActive = !sm.loopActive;
         if(sm.loopActive){
+            lt = new Date();
             loop();
         }
     };
