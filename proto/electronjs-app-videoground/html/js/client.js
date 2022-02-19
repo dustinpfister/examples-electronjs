@@ -84,7 +84,6 @@
     sm.play = function(){
         sm.loopActive = !sm.loopActive;
         if(sm.loopActive){
-            lt = new Date();
             loop();
         }
     };

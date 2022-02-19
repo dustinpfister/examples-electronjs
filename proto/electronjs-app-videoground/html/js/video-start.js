@@ -12,7 +12,7 @@ VIDEO.init = function(scene, camera){
 };
 
 // update method for the video
-VIDEO.update = function(state, scene, camera, secs, per, bias){
+VIDEO.update = function(state, scene, camera, per, bias){
     let mesh = scene.userData.mesh;
     mesh.position.x = -4 + 8 * bias;
 };
