@@ -8,3 +8,7 @@ body{
 #wrap_canvas{
   height: 300px
 }
+.wrap_ui{
+  padding: 10px;
+  line-height: 25px;
+}

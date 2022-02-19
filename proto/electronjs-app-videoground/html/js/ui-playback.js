@@ -4,8 +4,12 @@
 
    new Vue({
        el: '#wrap_playpack',
-       template: '<div>' +
+       template: '<div class="wrap_ui">' +
            '<input type="button" value="play/pause" v-on:click="play"><br>' +
+
+           '<input type="button" value="frame+" v-on:click="stepFrame(1)">  ' +
+           '<input type="button" value="frame-" v-on:click="stepFrame(-1)"><br>' +
+
            '<input type="text" size="5" v-model="targetFrame"><input type="button" value="set frame" v-on:click="setFrame"><br>' +
            '<span> {{ sm.frame }} / {{ sm.frameMax}} </span>' + 
        '</div>',
@@ -14,15 +18,21 @@
           targetFrame: 0
        },
        methods: {
-           setFrame: function(){
-               var sm = this.$data.sm;
-               //sm.frameFrac = sm.frame;
-
-               sm.frameFrac = parseFloat(this.$data.targetFrame);
+           stepFrame: function(delta){
+               sm.frameFrac += parseInt(delta);
+               sm.frameFrac = sm.frameFrac > sm.frameMax ? 0 : sm.frameFrac;
+               sm.frameFrac = sm.frameFrac < 0 ? sm.frameMax : sm.frameFrac;
                sm.frame = Math.floor(sm.frameFrac);
-
                sm.setFrame();
            },
+           // set a frame
+           setFrame: function(){
+               var sm = this.$data.sm;
+               sm.frameFrac = parseFloat(this.$data.targetFrame);
+               sm.frame = Math.floor(sm.frameFrac);
+               sm.setFrame();
+           },
+           // play or pause
            play: function(){
                var sm = this.$data.sm;
                sm.play();
