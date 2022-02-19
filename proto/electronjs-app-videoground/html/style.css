@@ -5,6 +5,6 @@ body{
   padding: 0px;
   font-family: arial;
 }
-#wrap_main{
-  position: absolute;
+#wrap_canvas{
+  height: 300px
 }

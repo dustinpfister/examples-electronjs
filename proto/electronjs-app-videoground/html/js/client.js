@@ -17,15 +17,6 @@
     WRAP_CANVAS.appendChild(renderer.domElement);
     renderer.setSize(320, 240);
 
-    // MESH
-/*
-    var mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshNormalMaterial());
-    mesh.position.set(0, 0, 0);
-    scene.add(mesh);
-*/
-
     // APP LOOP STATE
     var secs = 0,
     methodSecs = 0,
@@ -80,5 +71,8 @@
     VIDEO.init(scene, camera);
     loopActive = true;
     loop();
+
+
+
 }
     ());

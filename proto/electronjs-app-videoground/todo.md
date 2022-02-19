@@ -1,5 +1,8 @@
 # electionjs-app-video-ground todo list
 
+## Known problems
+* #0 - I have to disable CSP to get vuejs to work in the html files that I use
+
 ## () - rx - load and save
 * I will want to be able to save the current state of a project
 * a project will need to be some kind of archive, or a folder that follows a given format
