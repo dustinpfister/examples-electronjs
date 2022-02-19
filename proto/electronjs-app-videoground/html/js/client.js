@@ -77,10 +77,17 @@
         }
     };
 
-    // start loop
+
     VIDEO.init(scene, camera);
-    sm.loopActive = true;
-    loop();
+
+    // start loop
+    sm.play = function(){
+        sm.loopActive = !sm.loopActive;
+        if(sm.loopActive){
+            lt = new Date();
+            loop();
+        }
+    };
 
 }
     ());
