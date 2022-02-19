@@ -33,7 +33,8 @@
 <!-- VIDEO object mutate ui -->
 * (done) start a video js textarea ui that will be used to mutate the VIDEO object
 
-* the first thing to do is load the video-start.js file by way of eval/ method for running javaScript
+* I am going to want to have a way to load the text from video-start.js into the textarea by way of preload.js api
+* load the video-start.js file by way of eval / method for running javaScript
 * make the video-start.js file the start text for the textarea
 
 * any key down event will stop the current loop if it is all ready playing
