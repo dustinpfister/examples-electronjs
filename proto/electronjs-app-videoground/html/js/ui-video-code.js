@@ -9,6 +9,9 @@
           sm: sm
        },
        methods: {
+           updateVideo : function(){
+
+           }
        }
    });
 

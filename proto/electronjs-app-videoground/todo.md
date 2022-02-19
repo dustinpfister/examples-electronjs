@@ -31,6 +31,10 @@
 * (done) playback ui should have current frame and maxFrame text inputs
 
 <!-- VIDEO object mutate ui -->
-* start a video js textarea ui that will be used to mutate the VIDEO object
+* (done) start a video js textarea ui that will be used to mutate the VIDEO object
+
+* the first thing to do is load the video-start.js file by way of eval/ method for running javaScript
+* make the video-start.js file the start text for the textarea
+
 * any key down event will stop the current loop if it is all ready playing
 * any key up event will cuase the VIDEO object to update with the current value of the text area
