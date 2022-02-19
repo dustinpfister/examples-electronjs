@@ -56,7 +56,7 @@
             camera: camera
         };
 
-        VIDEO.update(state, scene, camera, secs, per, bias);
+        VIDEO.update(state, scene, camera, per, bias);
     };
 
     var loop = function () {
@@ -65,10 +65,9 @@
         if(sm.loopActive){
             requestAnimationFrame(loop);
             if(secs > 1 / fps_update){
-                // call update method
-                update(secs);
-                // render
-                renderer.render(scene, camera);
+
+sm.setFrame();
+
                 sm.frameFrac += fps_movement * secs;
                 sm.frameFrac %= sm.frameMax;
                 sm.frame = Math.floor(sm.frameFrac)
@@ -79,6 +78,13 @@
 
 
     VIDEO.init(scene, camera);
+
+    sm.setFrame = function(){
+        // call update method
+        update(secs);
+        // render
+        renderer.render(scene, camera);
+    };
 
     // start loop
     sm.play = function(){
