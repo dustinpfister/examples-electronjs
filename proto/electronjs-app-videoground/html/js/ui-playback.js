@@ -4,16 +4,13 @@
 
    new Vue({
        el: '#wrap_playpack',
-       template: '<div>{{ mess }}</div>',
-       data: { mess: 'hello world vuejs style'}
+       template: '<div>' + 
+           '<span> {{ sm.frame }} / {{ sm.frameMax}} </span>' + 
+       '</div>',
+       data: {
+          sm: sm
+       }
    });
-
-/*
-var el = document.getElementById('wrap_playpack');
-el.innerText = 'hello world'
-*/
-
-
 
 }
     ());

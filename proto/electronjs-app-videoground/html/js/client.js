@@ -18,6 +18,15 @@
     renderer.setSize(320, 240);
 
     // APP LOOP STATE
+
+    // define the sm object
+    var sm = window.sm = {
+        frame: 0,
+        frameFrac: 0,
+        frameMax: 300,
+        loopActive: false
+    };
+
     var secs = 0,
     methodSecs = 0,
     methodIndex = 0,
@@ -34,13 +43,13 @@
     };
 
     var update = function(secs){
-        var per = Math.round(frame) / frameMax,
+        var per = Math.round(sm.frame) / sm.frameMax,
         bias = getBias(per);
 
         var state = {
             secs: secs,
-            frame: frame,
-            frameMax: frameMax,
+            frame: sm.frame,
+            frameMax: sm.frameMax,
             per: per,
             bias: bias,
             scene: scene,
@@ -53,15 +62,16 @@
     var loop = function () {
         var now = new Date(),
         secs = (now - lt) / 1000;
-        if(loopActive){
+        if(sm.loopActive){
             requestAnimationFrame(loop);
             if(secs > 1 / fps_update){
                 // call update method
                 update(secs);
                 // render
                 renderer.render(scene, camera);
-                frame += fps_movement * secs;
-                frame %= frameMax;
+                sm.frameFrac += fps_movement * secs;
+                sm.frameFrac %= sm.frameMax;
+                sm.frame = Math.floor(sm.frameFrac)
                 lt = now;
             }
         }
@@ -69,10 +79,8 @@
 
     // start loop
     VIDEO.init(scene, camera);
-    loopActive = true;
+    sm.loopActive = true;
     loop();
-
-
 
 }
     ());
