@@ -25,10 +25,10 @@
 * (done) I started a VIDEO object standard for this project that will be the current video project
 
 <!-- playback ui -->
-* start a playback ui
-* playback ui should have a have frame + and - buttons
-* playback ui have a play-pause button
-* playback ui should have current frame and maxFrame text inputs
+* (done) start a playback ui
+* (done) playback ui should have a have frame + and - buttons
+* (done) playback ui have a play-pause button
+* (done) playback ui should have current frame and maxFrame text inputs
 
 <!-- VIDEO object mutate ui -->
 * start a video js textarea ui that will be used to mutate the VIDEO object

@@ -94,7 +94,7 @@
         }
     };
 
-sm.setFrame();
+    sm.setFrame();
 
 }
     ());
