@@ -32,8 +32,11 @@ const MainMenuTemplate = [
         submenu: [
             isMac ? { role: 'close' }: { role: 'quit' },
             {
-                label: 'Custom',
+                label: 'Open',
                 click: function(){
+
+console.log('open a file');
+
                 }
             }
         ]
