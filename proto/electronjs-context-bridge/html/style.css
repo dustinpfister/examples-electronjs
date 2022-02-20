@@ -6,5 +6,5 @@ body{
   font-family: arial;
 }
 #wrap_main{
-  position: absolute;
+  position: relative;
 }
