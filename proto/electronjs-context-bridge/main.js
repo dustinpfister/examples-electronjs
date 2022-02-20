@@ -1,25 +1,7 @@
 // load app and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron');
 const path = require('path');
-// Create A Child Window
-function createChildWindow() {
-    const childWindow = new BrowserWindow({
-            width: 320,
-            height: 240,
-            // the parent propery should be used with the main window so that when
-            // the main window is closed, all child windows will also close
-            parent: BrowserWindow.fromId(1),
-            backgroundColor: '#008888',
-            webPreferences: {
-                contextIsolation: true,
-                preload: path.resolve( __dirname, 'preload.js')
-            }
-        });
-    const menu = Menu.buildFromTemplate(ChildMenuTemplate);
-    childWindow.setMenu(menu);
-    childWindow.loadFile('html/window_child.html');
-    return childWindow;
-};
+
 // Create the Main browser window.
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
@@ -37,8 +19,6 @@ function createMainWindow() {
     // Open the DevTools for debugging
     //mainWindow.webContents.openDevTools()
 
-    // creating a starting child window
-    createChildWindow();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)
     return mainWindow;
@@ -52,10 +32,8 @@ const MainMenuTemplate = [
         submenu: [
             isMac ? { role: 'close' }: { role: 'quit' },
             {
-                label: 'New Window',
+                label: 'Custom',
                 click: function(){
-                    // window of id 1 should always be the parent window
-                    createChildWindow();
                 }
             }
         ]
@@ -72,16 +50,7 @@ const MainMenuTemplate = [
         ]
     }
 ];
-// child window
-const ChildMenuTemplate = [{
-    label: 'View',
-    submenu: [{
-            type: 'separator'
-        }, {
-            role: 'togglefullscreen'
-        }
-    ]
-}];
+
 // the 'ready' event
 app.whenReady().then(() => {
     createMainWindow();
