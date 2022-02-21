@@ -5,7 +5,6 @@ const fs = require('fs')
 
 // the api that will be window.videoAPI in the client side code
 let videoAPI = {
-    filePath: null, //path.join(__dirname, 'html/js/video-start.js')
 };
 
 const EVENT = {};
@@ -15,10 +14,15 @@ EVENT.menuOpenFile = function(callback){
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
         let filePath = result.filePaths[0];
         if(filePath){
-            videoAPI.filePath = filePath;
-            callback(evnt, result);
+            fs.readFile(filePath, 'utf8', (e, text) => {
+                if(e){
+                    ipcRenderer.send('menuError', e);
+                }else{
+                    callback(evnt, text, result);
+                }
+            });
         }else{
-            ipcRenderer.send('menuError', new Error('no file path in the result object.') )
+            ipcRenderer.send('menuError', new Error('no file path in the result object.') );
         }
     });
 };

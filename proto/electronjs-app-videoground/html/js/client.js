@@ -93,8 +93,9 @@
 
     sm.setFrame();
 
-    videoAPI.on('menuOpenFile', function(evnt, result){
-        console.log(evnt, result)
+    videoAPI.on('menuOpenFile', function(evnt, text, result){
+        console.log(evnt, result);
+        console.log(text);
     });
 
     videoAPI.on('menuError', function(evnt, err){
