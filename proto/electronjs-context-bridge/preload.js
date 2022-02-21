@@ -15,21 +15,14 @@ contextBridge.exposeInMainWorld('myAPI', {
     onMenuSaveFile: function(callback){
         ipcRenderer.on('menu-save-file', callback)
     },
+    // save the given text to the given file path
     saveText: function(text, filePath){
-
-        console.log(text);
-        console.log(filePath);
-
         fs.writeFile(filePath, text, 'utf8', (e) => {
-
             if(e){
                 // if error writing file
                 console.log(e.message)
             }
-
         })
-  
-
     }
 });
 

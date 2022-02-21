@@ -59,26 +59,18 @@ const MainMenuTemplate = [
                     })
                 }
             },
+            // SAVE A FILE
             {
                 label: 'Save As',
                 click: () => {
                     const mainWindow = BrowserWindow.fromId(1);
-
                     dialog.showSaveDialog(BrowserWindow.fromId(1), {
                         properties: ['showHiddenFiles']
                     }).then((result) => {
-
-         
                         mainWindow.webContents.send('menu-save-file', result);
-                
-
                     }).catch((err) => {
-
-console.log('okay so there is an error');
-console.log(err)
-
                         // error getting file path
-                    })
+                    });
                 }
             }
 

@@ -1,5 +1,7 @@
 # electionjs-context-bridge
 
+This is a quick example that I put togetaher while reading up on the context bridge class in electron.js
+
 
 ## What the goals are with this example
 
