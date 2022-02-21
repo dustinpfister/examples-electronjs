@@ -1,51 +1,81 @@
 // load app and BrowserWindow
-const { app, Menu, BrowserWindow } = require('electron')
+const { app, dialog, Menu, BrowserWindow, ipcMain} = require('electron');
+const path = require('path');
 
-// Custom Menu
-const isMac = process.platform === 'darwin'
-const MenuTemplate = [
-  // { role: 'fileMenu' }
-  {
-    label: 'File',
-    submenu: [
-      isMac ? { role: 'close' } : { role: 'quit' }
-    ]
-  },
-  // { role: 'viewMenu' }
-  {
-    label: 'View',
-    submenu: [
-      { type: 'separator' },
-      { role: 'togglefullscreen' }
-    ]
-  }
-]
-const menu = Menu.buildFromTemplate(MenuTemplate)
-Menu.setApplicationMenu(menu)
+// Create the Main browser window.
+const createMainWindow = () => {
+    const mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            backgroundColor: '#008888',
+            webPreferences: {
+                contextIsolation: true,
+                preload: path.resolve( __dirname, 'preload.js')
+            }
+        });
+    // load the html file for the main window
+    mainWindow.loadFile('html/window_main.html');
 
-// Create the browser window.
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {}
-  })
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-  // Open the DevTools for debugging
-  mainWindow.webContents.openDevTools()
-}
+    // Open the DevTools for debugging
+    mainWindow.webContents.openDevTools()
+
+    const menu = Menu.buildFromTemplate(MainMenuTemplate);
+    mainWindow.setMenu(menu)
+    return mainWindow;
+};
+
+// Custom Menus
+const isMac = process.platform === 'darwin';
+// The main menu for the main window
+const MainMenuTemplate = [
+    {
+        label: 'File',
+        submenu: [
+            isMac ? { role: 'close' }: { role: 'quit' },
+            // OPEN A FILE
+            {
+                label: 'Open',
+                click: () => {
+                    const mainWindow = BrowserWindow.fromId(1);
+                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                        properties: ['openFile']
+                    }).then((result) => {
+                        mainWindow.webContents.send('menu-open-file', result);
+                    }).catch((err) => {
+                        // error getting file path
+                    })
+                }
+            },
+            // SAVE A FILE
+            {
+                label: 'Save As',
+                click: () => {
+                    const mainWindow = BrowserWindow.fromId(1);
+                    dialog.showSaveDialog(BrowserWindow.fromId(1), {
+                        properties: ['showHiddenFiles']
+                    }).then((result) => {
+                        mainWindow.webContents.send('menu-save-file', result);
+                    }).catch((err) => {
+                        // error getting file path
+                    });
+                }
+            }
+
+        ]
+    }
+];
 
 // the 'ready' event
 app.whenReady().then(() => {
-  createWindow();
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+    createMainWindow();
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0){
+            createMainWindow()
+        }
+    })
 });
-
 // the 'window-all-closed' is also a kind of on quit event
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
+app.on('window-all-closed',  () => {
+    if (process.platform !== 'darwin')
+        app.quit()
 });
-

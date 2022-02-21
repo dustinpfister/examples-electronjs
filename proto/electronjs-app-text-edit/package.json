@@ -1,7 +1,7 @@
 {
-  "name": "hello-world",
+  "name": "electronjs-app-text-edit",
   "version": "0.0.0",
-  "description": "hello world",
+  "description": "electronjs example of a text editior",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
