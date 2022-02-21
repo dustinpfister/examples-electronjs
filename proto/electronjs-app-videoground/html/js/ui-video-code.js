@@ -21,6 +21,10 @@
         console.log(evnt, result);
         console.log(text);
         vm.$data.videoJS = text;
+        // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
+        eval(text);
+
+        sm.setup();
     });
 
     videoAPI.on('menuError', function(evnt, err){

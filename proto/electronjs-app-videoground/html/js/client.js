@@ -72,8 +72,13 @@
         }
     };
 
-
-    VIDEO.init(scene, camera);
+    sm.setup = function(){
+        sm.frame = 0;
+        sm.frameFrac = 0;
+        sm.loopActive = false;
+        VIDEO.init(scene, camera);
+        sm.setFrame();
+    };
 
     sm.setFrame = function(){
         // call update method
@@ -91,7 +96,7 @@
         }
     };
 
-    sm.setFrame();
+    sm.setup();
 
 }
     ());
