@@ -3,7 +3,7 @@ const { app, dialog, Menu, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 
 // Create the Main browser window.
-function createMainWindow() {
+const createMainWindow = () => {
     const mainWindow = new BrowserWindow({
             width: 800,
             height: 600,
@@ -23,6 +23,7 @@ function createMainWindow() {
     mainWindow.setMenu(menu)
     return mainWindow;
 };
+
 // Custom Menus
 const isMac = process.platform === 'darwin';
 // The main menu for the main window
@@ -33,24 +34,14 @@ const MainMenuTemplate = [
             isMac ? { role: 'close' }: { role: 'quit' },
             {
                 label: 'Open',
-                click: function(){
-
-//console.log('open a file');
-//console.log(ipcMain);
-
-dialog.showOpenDialog(BrowserWindow.fromId(1), {
-  properties: ['openFile']
-}).then(result => {
-  //console.log(result.canceled)
-  //console.log(result.filePaths)
-  console.log
-  BrowserWindow.fromId(1).webContents.send('menu-open-file', result.filePaths, result.canceled);
-}).catch(err => {
-  //console.log(err)
-})
-
-
-
+                click: () => {
+                    const mainWindow = BrowserWindow.fromId(1);
+                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                        properties: ['openFile']
+                    }).then((result) => {
+                        mainWindow.webContents.send('menu-open-file', result.filePaths, result.canceled);
+                    }).catch((err) => {
+                    })
                 }
             }
         ]
@@ -71,14 +62,14 @@ dialog.showOpenDialog(BrowserWindow.fromId(1), {
 // the 'ready' event
 app.whenReady().then(() => {
     createMainWindow();
-    app.on('activate', function () {
+    app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0){
             createMainWindow()
         }
     })
 });
 // the 'window-all-closed' is also a kind of on quit event
-app.on('window-all-closed', function () {
+app.on('window-all-closed',  () => {
     if (process.platform !== 'darwin')
         app.quit()
 });
