@@ -1,5 +1,6 @@
 // preload with contextIsolation enabled
 const { contextBridge, ipcRenderer } = require('electron');
+const fs = require('fs');
 
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('myAPI', {
@@ -16,8 +17,18 @@ contextBridge.exposeInMainWorld('myAPI', {
     },
     saveText: function(text, filePath){
 
-    console.log(text);
-    console.log(filePath);  
+        console.log(text);
+        console.log(filePath);
+
+        fs.writeFile(filePath, text, 'utf8', (e) => {
+
+            if(e){
+                // if error writing file
+                console.log(e.message)
+            }
+
+        })
+  
 
     }
 });
