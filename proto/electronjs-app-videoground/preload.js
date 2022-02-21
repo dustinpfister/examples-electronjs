@@ -3,9 +3,9 @@ const { contextBridge, ipcRenderer} = require('electron');
 const path = require('path');
 const fs = require('fs')
 
-
-let api = {
-    videoFilePath: path.join(__dirname, 'html/js/video-start.js')
+// the api that will be window.videoAPI in the client side code
+let videoAPI = {
+    filePath: path.join(__dirname, 'html/js/video-start.js')
 };
 
 const EVENT = {};
@@ -19,13 +19,13 @@ EVENT.menuOpenFile = function(callback){
     });
 };
 
-api.on = function(eventType, callback){
+videoAPI.on = function(eventType, callback){
    EVENT[eventType](callback);
 }
 
 
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('videoAPI', api);
+contextBridge.exposeInMainWorld('videoAPI', videoAPI);
 
 
 console.log('preload');
