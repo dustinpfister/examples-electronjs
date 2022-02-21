@@ -1,13 +1,29 @@
 // preload with contextIsolation enabled
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer} = require('electron');
 const path = require('path');
 
+const EVENT = {};
+
+EVENT.menuOpenFile = function(callback){
+
+    ipcRenderer.on('menuOpenFile', function(evnt, result) {
+
+        callback(evnt, result);
+
+    });
+
+}
+
+
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('api', {
-  videoFilePath: path.join(__dirname, 'html/js/video-start.js'), 
-  func: function(){
-      return 'hello world';
-  }
+contextBridge.exposeInMainWorld('videoAPI', {
+    videoFilePath: path.join(__dirname, 'html/js/video-start.js'), 
+    on: function(eventType, callback){
+
+        EVENT[eventType](callback);
+
+    }
+    
 });
 
 

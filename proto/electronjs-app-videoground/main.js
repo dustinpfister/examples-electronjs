@@ -1,5 +1,5 @@
 // load app and BrowserWindow
-const { app, Menu, BrowserWindow } = require('electron');
+const { app, Menu, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 
 // Create the Main browser window.
@@ -36,6 +36,14 @@ const MainMenuTemplate = [
             {
                 label: 'Open',
                 click: function(){
+                    const mainWindow = BrowserWindow.fromId(1);
+                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                        properties: ['openFile']
+                    }).then((result) => {
+                        mainWindow.webContents.send('menuOpenFile', result);
+                    }).catch((err) => {
+                        // error getting file path
+                    });
                 }
             }
         ]
