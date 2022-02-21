@@ -5,7 +5,7 @@
 * emmit myAPI.onMenuError for errors that might happen when opening a file
 * emmit myAPI.onMenuError for erros that might happen when saving a file
 
-## (  ) - r0 - Context bridge, hello world
+## ( done 02/21/2022 ) - r0 - Context bridge, hello world
 * (done) start with the source code from the browser window example
 * (done) I am going to just want a single winodw for this project
 * (done) remove unused code from html folder
