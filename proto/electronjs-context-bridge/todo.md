@@ -8,10 +8,10 @@
 * (done) start an open option in the file menu
 * (done) I am going to need to use the dialog class in main and or preload
 * (done) using the send method of windowContents in main.js to send text loaded with an open option in the Menu in Main.js
+* (done) start a save As option in the file menu
+* (done) I am going to need a onMenuSaveFile method in myAPI in preload
 
-* start a save option in the file menu
-
-* I am going to need a onMenuSaveFile method in myAPI in preload
+* (done) see about prefroming the open file, filesystem module call in preload.js rather than main.js
 
 * I will also want a myAPI.onMenuError
 * emmit myAPI.onMenuError for errors that might happen when opening a file

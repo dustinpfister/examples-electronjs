@@ -1,6 +1,6 @@
 # electionjs-context-bridge
 
-This is a quick example that I put togetaher while reading up on the context bridge class in electron.js
+This is a quick example that I put togetaher while reading up on the context bridge class in electron.js. The example is the start of a very basic text editor program that I am using to write this read me file actually.
 
 
 ## What the goals are with this example

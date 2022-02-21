@@ -1,7 +1,6 @@
 // load app and BrowserWindow
 const { app, dialog, Menu, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
-const fs = require('fs');
 
 // Create the Main browser window.
 const createMainWindow = () => {
@@ -41,19 +40,7 @@ const MainMenuTemplate = [
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
-
-                        const filePath = result.filePaths[0];
-                        fs.readFile(filePath, 'utf8', (err, text) => {
-
-                            if(err){
-                                // error reading file
-                            }else{
-
-                                mainWindow.webContents.send('menu-open-file', text, result);
-                            }
-
-                        });
-
+                        mainWindow.webContents.send('menu-open-file', result);
                     }).catch((err) => {
                         // error getting file path
                     })
