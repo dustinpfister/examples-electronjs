@@ -1,5 +1,5 @@
 // load app and BrowserWindow
-const { app, dialog, Menu, BrowserWindow } = require('electron');
+const { app, dialog, Menu, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 
 // Create the Main browser window.
@@ -17,7 +17,7 @@ function createMainWindow() {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu)
@@ -35,16 +35,20 @@ const MainMenuTemplate = [
                 label: 'Open',
                 click: function(){
 
-console.log('open a file');
+//console.log('open a file');
+//console.log(ipcMain);
 
 dialog.showOpenDialog(BrowserWindow.fromId(1), {
   properties: ['openFile']
 }).then(result => {
-  console.log(result.canceled)
-  console.log(result.filePaths)
+  //console.log(result.canceled)
+  //console.log(result.filePaths)
+  console.log
+  BrowserWindow.fromId(1).webContents.send('menu-open-file', result.filePaths, result.canceled);
 }).catch(err => {
-  console.log(err)
+  //console.log(err)
 })
+
 
 
                 }
