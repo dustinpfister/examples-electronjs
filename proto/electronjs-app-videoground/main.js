@@ -43,6 +43,7 @@ const MainMenuTemplate = [
                         mainWindow.webContents.send('menuOpenFile', result);
                     }).catch((err) => {
                         // error getting file path
+                        mainWindow.webContents.send('menuError', err);
                     });
                 }
             }
