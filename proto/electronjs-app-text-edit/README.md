@@ -1,6 +1,6 @@
 # electionjs-app-text-edit
 
-The general idea here is to have a simple text editor
+The general idea here is to have a simple text editor based off of what I started with my example on the context bridge class.
 
 ## Getting this working
 
