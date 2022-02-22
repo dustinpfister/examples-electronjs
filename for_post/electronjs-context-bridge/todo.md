@@ -1,6 +1,7 @@
 # electionjs-context-bridge todo list
 
 ## (  ) - r1 - myAPI.onMenuError
+* (done) Looks like I will not be using ipcMain in main.js for this one.
 * I will also want a myAPI.onMenuError
 * emmit myAPI.onMenuError for errors that might happen when opening a file
 * emmit myAPI.onMenuError for erros that might happen when saving a file
