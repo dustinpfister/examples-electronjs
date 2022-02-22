@@ -6,6 +6,7 @@
 * (done) I am going to want to have a status bar div
 * (done) change the html and css so that the text area takes up all of the window aside from a little area for the status bar div
 * (done) status text style
-
-* see about having file name as title text
-* show byte
+* (done) see about having file name as title text
+* (done) show byte count in status bar
+* menu-error event
+* menu-cancle event

@@ -15,9 +15,6 @@ textAPI.onMenuOpenFile = function(callback){
         textAPI.getText(filePath)
         .then((text) => {
             callback(evnt, text, result);
-        })
-        .catch((e) => {
-            ipcRenderer.send('menu-error', e);
         });
     });
 };
@@ -25,25 +22,20 @@ textAPI.onMenuOpenFile = function(callback){
 textAPI.onMenuSaveFile = function(callback){
     ipcRenderer.on('menu-save-file', callback);
 };
-textAPI.getText = function(filePath, callback){
-    return readFile(filePath, 'utf8');
+// get text at the given file path
+textAPI.getText = function(filePath){
+    return readFile(filePath, 'utf8')
+    .catch((e) => {
+        ipcRenderer.send('menu-error', e);
+    });
 };
 // save the given text to the given file path
 textAPI.saveText = function(text, filePath){
-    return writeFile(filePath, text, 'utf8'); 
-/*
-    fs.writeFile(filePath, text, 'utf8', (e) => {
-        if(e){
-            // if error writing file
-            console.log(e.message);
-        }
+    return writeFile(filePath, text, 'utf8')
+    .catch((e) => {
+        ipcRenderer.send('menu-error', e);
     });
-*/
 };
-
 
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('textAPI', textAPI);
-
-
-console.log('preload');
