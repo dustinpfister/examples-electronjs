@@ -3,7 +3,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('myAPI', {
+contextBridge.exposeInMainWorld('textAPI', {
     // CLIENT EVENT for open file option in menu
     onMenuOpenFile: function(callback){
         // should get a result object from main.js

@@ -15,7 +15,7 @@ const updateStatus = (text) => {
     status_area.innerText = statusText;
 };
 
-myAPI.onMenuOpenFile((evnt, text, result) => {
+textAPI.onMenuOpenFile((evnt, text, result) => {
     const filePath = result.filePaths[0];
     // update title
     document.title = APP_NAME + ' - ' + filePath;
@@ -23,8 +23,8 @@ myAPI.onMenuOpenFile((evnt, text, result) => {
     updateStatus(text);
 });
 
-myAPI.onMenuSaveFile((evnt, result) => {
-    myAPI.saveText(text_area.value, result.filePath)
+textAPI.onMenuSaveFile((evnt, result) => {
+    textAPI.saveText(text_area.value, result.filePath)
 });
 
 text_area.addEventListener('keyup', (e) => {
