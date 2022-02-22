@@ -8,5 +8,7 @@
 * (done) status text style
 * (done) see about having file name as title text
 * (done) show byte count in status bar
-* menu-error event
-* menu-cancle event
+* (done) menu-error event
+* (done) menu-cancle event
+
+* 

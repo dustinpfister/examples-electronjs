@@ -27,6 +27,16 @@ textAPI.onMenuSaveFile((evnt, result) => {
     textAPI.saveText(text_area.value, result.filePath)
 });
 
+textAPI.onMenuCanceled((evnt) => {
+    console.log('the user cancled a menu option');
+});
+
+textAPI.onMenuError((evnt, err) => {
+    console.log('Menu Error');
+    console.log(evnt);
+    console.log(err);
+});
+
 text_area.addEventListener('keyup', (e) => {
     updateStatus(e.target.value);
 });

@@ -22,6 +22,12 @@ textAPI.onMenuOpenFile = function(callback){
 textAPI.onMenuSaveFile = function(callback){
     ipcRenderer.on('menu-save-file', callback);
 };
+textAPI.onMenuCanceled = function(callback){
+    ipcRenderer.on('menu-canceled', callback);
+};
+textAPI.onMenuError = function(callback){
+    ipcRenderer.on('menu-error', callback);
+};
 // get text at the given file path
 textAPI.getText = function(filePath){
     return readFile(filePath, 'utf8')
