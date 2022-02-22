@@ -1,7 +1,4 @@
-// load app and BrowserWindow
-//const { app, dialog, Menu, BrowserWindow} = require('electron');
 const { BrowserWindow, dialog } = require('electron');
-const path = require('path');
 
 // Custom Menus
 const isMac = process.platform === 'darwin';
