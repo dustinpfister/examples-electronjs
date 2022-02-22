@@ -1,5 +1,5 @@
 // load app and BrowserWindow
-const { app, dialog, Menu, BrowserWindow, ipcMain} = require('electron');
+const { app, dialog, Menu, BrowserWindow} = require('electron');
 const path = require('path');
 
 // Create the Main browser window.
@@ -17,10 +17,11 @@ const createMainWindow = () => {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
 
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
-    mainWindow.setMenu(menu)
+    mainWindow.setMenu(menu);
+
     return mainWindow;
 };
 
