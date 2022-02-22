@@ -16,11 +16,15 @@ const MainMenuTemplate = [
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
-                        mainWindow.webContents.send('menu-open-file', result);
+                        if(result.canceled){
+                            mainWindow.webContents.send('menu-canceled', result);
+                        }else{
+                            mainWindow.webContents.send('menu-open-file', result);
+                        }
                     }).catch((err) => {
-                        console.log(e.message);
                         // error getting file path
-                    })
+                        mainWindow.webContents.send('menu-error', err);
+                    });
                 }
             },
             // SAVE A FILE
@@ -31,11 +35,14 @@ const MainMenuTemplate = [
                     dialog.showSaveDialog(BrowserWindow.fromId(1), {
                         properties: ['showHiddenFiles']
                     }).then((result) => {
-                        mainWindow.webContents.send('menu-save-file', result);
+                        if(result.canceled){
+                            mainWindow.webContents.send('menu-canceled', result);
+                        }else{
+                            mainWindow.webContents.send('menu-save-file', result);
+                        }
                     }).catch((err) => {
-
-                        console.log(e.message);
                         // error getting file path
+                        mainWindow.webContents.send('menu-error', err);
                     });
                 }
             }
