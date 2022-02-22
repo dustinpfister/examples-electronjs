@@ -1,3 +1,7 @@
+html, body{
+  width: 99%;
+  height: 99%;
+}
 body{
   background: #afafaf;
   color: #2a2a2a;
@@ -8,13 +12,26 @@ body{
 div{
   position: relative;
 }
-#wrap_main{
-
-}
-#wrap_text{
-  background: red;
-}
-#wrap_text>textarea{
+#wrap_main {
+  background: lime;
+  margin: 1%;
   width: 100%;
   height: 100%;
+}
+#wrap_text {
+  z-index: 1;
+  background: red;
+  width: 100%;
+  height: 95%;
+}
+#wrap_status {
+  z-index: 0;
+  background: blue;
+  width: 100%;
+  height: 5%;
+}
+#wrap_text>textarea{
+  resize: none;
+  width: 99%;
+  height: 99%;
 }
