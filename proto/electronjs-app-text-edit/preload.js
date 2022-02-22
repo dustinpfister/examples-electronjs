@@ -1,6 +1,8 @@
 // preload with contextIsolation enabled
 const { contextBridge, ipcRenderer } = require('electron');
-const fs = require('fs');
+const fs = require('fs'),
+promisify = require('util').promisify,
+readFile = promisify(fs.readFile);
 
 const textAPI = {
     // CLIENT EVENT for open file option in menu
@@ -8,8 +10,12 @@ const textAPI = {
         // should get a result object from main.js
         ipcRenderer.on('menu-open-file', function(evnt, result) {
             const filePath = result.filePaths[0];
-            textAPI.getText(filePath, (text)=>{
-                callback(evnt, text, result)
+            textAPI.getText(filePath)
+            .then((text) => {
+                callback(evnt, text, result);
+            })
+            .catch((e) => {
+                ipcRenderer.send('menu-error', e);
             });
         });
     },
@@ -18,14 +24,7 @@ const textAPI = {
         ipcRenderer.on('menu-save-file', callback);
     },
     getText: function(filePath, callback){
-        fs.readFile(filePath, 'utf8', (err, text) => {
-            if(err){
-                // error reading file
-                console.log(e.message);
-            }else{
-                callback(text);
-            }
-        });
+        return readFile(filePath, 'utf8');
     },
     // save the given text to the given file path
     saveText: function(text, filePath){
