@@ -15,11 +15,15 @@ const updateStatus = (text) => {
     status_area.innerText = statusText;
 };
 
+const updateText = (text) => {
+   text_area.value = text;
+};
+
 textAPI.onMenuOpenFile((evnt, text, result) => {
     const filePath = result.filePaths[0];
     // update title
     document.title = APP_NAME + ' - ' + filePath;
-    text_area.value = text;
+    updateText(text);
     updateStatus(text);
 });
 
@@ -38,5 +42,7 @@ textAPI.onMenuError((evnt, err) => {
 });
 
 text_area.addEventListener('keyup', (e) => {
-    updateStatus(e.target.value);
+    let text = e.target.value;
+    updateText(text);
+    updateStatus(text);
 });

@@ -26,6 +26,9 @@ div{
   resize: none;
   width: 99%;
   height: 99%;
+  /*color: transparent;*/
+  background: transparent;
+  caret-color: white; /* Or choose your favorite color */
 }
 #wrap_status {
   z-index: 0;
