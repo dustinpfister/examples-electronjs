@@ -1,10 +1,17 @@
 # electionjs-context-bridge todo list
 
-## (  ) - r1 - myAPI.onMenuError
-* (done) Looks like I will not be using ipcMain in main.js for this one.
+## (  ) - r2 - myAPI.onMenuError
 * I will also want a myAPI.onMenuError
 * emmit myAPI.onMenuError for errors that might happen when opening a file
 * emmit myAPI.onMenuError for erros that might happen when saving a file
+* see about using dialog class to display error info
+
+## (  ) - r1 - improved style, status bar, view menu
+* (done) Looks like I will not be using ipcMain in main.js for this one.
+* create a status bar div in html
+* use the status bar to display Byte size of text, and line count
+* improve the look and style of the app in style.css
+* have a view menu, with a status bar option that will allow for showing and hiding the status bar
 
 ## ( done 02/21/2022 ) - r0 - Context bridge, hello world
 * (done) start with the source code from the browser window example
