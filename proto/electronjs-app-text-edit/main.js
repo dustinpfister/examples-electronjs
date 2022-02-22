@@ -17,7 +17,7 @@ const createMainWindow = () => {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     const menu = Menu.buildFromTemplate( require( path.join(__dirname, 'menu.js')) );
     mainWindow.setMenu(menu);

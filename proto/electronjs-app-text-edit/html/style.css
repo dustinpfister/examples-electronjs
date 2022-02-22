@@ -5,6 +5,16 @@ body{
   padding: 0px;
   font-family: arial;
 }
-#wrap_main{
+div{
   position: relative;
+}
+#wrap_main{
+
+}
+#wrap_text{
+  background: red;
+}
+#wrap_text>textarea{
+  width: 100%;
+  height: 100%;
 }
