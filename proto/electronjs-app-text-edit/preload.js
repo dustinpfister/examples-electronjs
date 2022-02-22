@@ -2,7 +2,8 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs'),
 promisify = require('util').promisify,
-readFile = promisify(fs.readFile);
+readFile = promisify(fs.readFile),
+writeFile = promisify(fs.writeFile);
 
 const textAPI = {};
 
@@ -29,12 +30,15 @@ textAPI.getText = function(filePath, callback){
 };
 // save the given text to the given file path
 textAPI.saveText = function(text, filePath){
+    return writeFile(filePath, text, 'utf8'); 
+/*
     fs.writeFile(filePath, text, 'utf8', (e) => {
         if(e){
             // if error writing file
             console.log(e.message);
         }
     });
+*/
 };
 
 
