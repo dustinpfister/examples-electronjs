@@ -1,5 +1,18 @@
 # electionjs-app-text-edit todo list
 
+## () - rx - right click menu
+
+## () - rx - view menu
+* turn features like status bar on and off
+
+## () - r2 - tabs
+* can have more than one file open and switch between them
+* open more than one file at once
+
+## () - r1 - edit menu
+* have copy, cut, and paste
+* select all
+
 ## () - r0 - first release
 * (done) start with the source code from the context bridge example that is all ready a basic text editor
 * (done) see about using a menu.js file in root to pull that code out of main and into its own file
@@ -11,4 +24,4 @@
 * (done) menu-error event
 * (done) menu-cancle event
 
-* 
+* save option in file menu 
