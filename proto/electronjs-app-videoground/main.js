@@ -19,16 +19,17 @@ function createMainWindow() {
     mainWindow.loadFile('html/window_main.html');
 
     // Open the DevTools for debugging
-    mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools();
 
     const menu = Menu.buildFromTemplate( require( path.join(__dirname, 'menu.js') ) );
-    mainWindow.setMenu(menu)
+    mainWindow.setMenu(menu);
+
     return mainWindow;
 };
 
 // the 'ready' event
 app.whenReady().then(() => {
-    createMainWindow();
+    var mainWindow = createMainWindow();
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0){
             createMainWindow()

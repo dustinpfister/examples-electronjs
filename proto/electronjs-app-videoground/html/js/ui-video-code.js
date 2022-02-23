@@ -28,11 +28,6 @@
         console.log(err);
     });
 
-    videoAPI.on('menuExport', function(evnt, result, imageFolder, mode){
-        console.log('okay so far so good...');
-        console.log(evnt, result, imageFolder, mode);
-
-    });
 
 }
     ());

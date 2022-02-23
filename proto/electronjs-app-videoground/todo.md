@@ -39,3 +39,5 @@
 * I will want to be able to save the video file code
 <!-- help menu -->
 * start a help menu with a about option, in the about option display what the revision number is
+<!-- start up file -->
+* there should be a way to start the program with a video file
