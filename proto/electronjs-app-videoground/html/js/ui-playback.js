@@ -2,7 +2,7 @@
 
 
 
-   new Vue({
+   var vm = new Vue({
        el: '#wrap_playpack',
        template: '<div class="wrap_ui">' +
            '<input type="button" value="play/pause" v-on:click="play"><br>' +
@@ -44,6 +44,8 @@
     videoAPI.on('menuExport', function(evnt, result, imageFolder, mode){
         console.log('okay so far so good...');
         console.log(evnt, result, imageFolder, mode);
+        vm.$data.targetFrame = 0;
+        vm.setFrame();
     });
 
 }
