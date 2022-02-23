@@ -16,13 +16,24 @@
         }
     });
 
-
-    //videoAPI.on('menuOpenFile', function(evnt, text, result){
-    videoAPI.on('menuOpenFile', function(text){
+    var loadText = (text) => {
         vm.$data.videoJS = text;
         // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
         eval(text);
         sm.setup();
+    }
+
+    var startFilePath = '/home/pi/Documents/github_dustinpfister/' +
+        'examples-electronjs/proto/electronjs-app-videoground/html/js/video-start.js';
+
+    videoAPI.loadFile(startFilePath, (text, e)=>{
+        loadText(text);
+    });
+
+
+    //videoAPI.on('menuOpenFile', function(evnt, text, result){
+    videoAPI.on('menuOpenFile', function(text, e){
+        loadText(text);
     });
 
     videoAPI.on('menuError', function(evnt, err){
