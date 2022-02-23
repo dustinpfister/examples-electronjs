@@ -54,22 +54,7 @@
     };
 
     videoAPI.on('menuExport', function(evnt, result, imageFolder, mode){
-
-        writeFrame(imageFolder, 0);
-
-/*
-        var data = vm.$data,
-        sm = data.sm,
-        frameIndex = 0;
-
-        data.targetFrame = frameIndex;
-        vm.setFrame();
-        // write the current frame
-        videoAPI.writeFrame(imageFolder, sm.frame, sm.canvas.toDataURL(), (e) => {
-            console.log('might have wrote a frame');
-        });
-*/
-        
+        writeFrame(imageFolder, 0); 
     });
 
 }
