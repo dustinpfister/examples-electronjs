@@ -25,7 +25,7 @@
         canvas: canvas,
         frame: 0,
         frameFrac: 0,
-        frameMax: 300,
+        frameMax: 30,
         loopActive: false
     };
 
