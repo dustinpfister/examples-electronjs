@@ -40,7 +40,30 @@ const MainMenuTemplate = [
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
-                        mainWindow.webContents.send('menuOpenFile', result);
+                        if(result.canceled){
+                            mainWindow.webContents.send('menuCanceled', result);
+                        }else{
+                            mainWindow.webContents.send('menuOpenFile', result);
+                        }
+                    }).catch((err) => {
+                        // error getting file path
+                        mainWindow.webContents.send('menuError', err);
+                    });
+                }
+            },
+            {
+                label: 'Export to Images',
+                click: function(){
+                    const mainWindow = BrowserWindow.fromId(1);
+                    // dialog will need to be used to select a folder
+                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                        properties: ['openDirectory']
+                    }).then((result) => {
+                        if(result.canceled){
+                            mainWindow.webContents.send('menuCanceled', result);
+                        }else{
+                            mainWindow.webContents.send('menuExport', result, 'images');
+                        }
                     }).catch((err) => {
                         // error getting file path
                         mainWindow.webContents.send('menuError', err);
