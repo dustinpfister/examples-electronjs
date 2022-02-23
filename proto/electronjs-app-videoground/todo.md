@@ -32,8 +32,7 @@
 * (done) I am going to want to pad the output file names with zeros
 * (done) I am going to want a videoAPI.loadFile(path to file) method
 * (done) there should be a way to start the program with a video file
-
-* must be able to adjust max frame count
+* (done) must be able to adjust max frame count
 
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
