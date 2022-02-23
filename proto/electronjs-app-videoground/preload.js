@@ -50,10 +50,10 @@ videoAPI.on = function(eventType, callback){
 };
 
 videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
-    var data = dataURL.split(',')[1];
-console.log(dataURL) 
-    var buf = Buffer.from(data, 'base64'); //.toString('base64');
-    var filePath = path.join(imageFolder, 'frame-' + frameIndex + '.png'); 
+    let data = dataURL.split(',')[1];
+    let buf = Buffer.from(data, 'base64');
+    //let filePath = path.join(imageFolder, 'frame-' + frameIndex + '.png'); 
+    let filePath = path.join(imageFolder, 'frame-' + String(frameIndex).padStart(4, 0) + '.png'); 
     fs.writeFile(filePath, buf, (e) => {
         callback(e);
     });
