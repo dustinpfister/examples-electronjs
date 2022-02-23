@@ -22,18 +22,7 @@ EVENT.menuExport = function(callback){
 EVENT.menuOpenFile = function(callback){
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
         let filePath = result.filePaths[0];
-        if(filePath){
-            // read the file and set it to the client
-            fs.readFile(filePath, 'utf8', (e, text) => {
-                if(e){
-                    ipcRenderer.send('menuError', e);
-                }else{
-                    callback(evnt, text, result);
-                }
-            });
-        }else{
-            ipcRenderer.send('menuError', new Error('no file path in the result object.') );
-        }
+        videoAPI.loadFile(filePath, callback, evnt, result);
     });
 };
 
@@ -49,6 +38,7 @@ videoAPI.on = function(eventType, callback){
    EVENT[eventType](callback);
 };
 
+// write a frame file to the given image folder, and frame index
 videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
     let data = dataURL.split(',')[1];
     let buf = Buffer.from(data, 'base64');
@@ -57,6 +47,21 @@ videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
     fs.writeFile(filePath, buf, (e) => {
         callback(e);
     });
+};
+
+videoAPI.loadFile = (filePath, callback) => {
+    if(filePath){
+        // read the file and set it to the client
+        fs.readFile(filePath, 'utf8', (e, text) => {
+            if(e){
+                ipcRenderer.send('menuError', e);
+            }else{
+                callback(text);
+            }
+        });
+    }else{
+        ipcRenderer.send('menuError', new Error('no file path in the result object.') );
+    }
 };
 
 // create an api for window objects in web pages

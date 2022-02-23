@@ -17,7 +17,8 @@
     });
 
 
-    videoAPI.on('menuOpenFile', function(evnt, text, result){
+    //videoAPI.on('menuOpenFile', function(evnt, text, result){
+    videoAPI.on('menuOpenFile', function(text){
         vm.$data.videoJS = text;
         // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
         eval(text);
