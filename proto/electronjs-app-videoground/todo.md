@@ -13,10 +13,6 @@
 ## () - rx - Can add dae files to a scene
 * I am going to want to be able to load in dea files for a project for sure
 
-## () - rx - export to images
-* have an export menu
-* create an export to images export image that will create a folder of images
-
 ## () - r0 - General starting point working
 * (done) have a \/html\/js folder
 * (done) threejs will need to be part of the client system, go with a late version \( \/html\/js\/0.135.0\/three.min.js \)
@@ -30,7 +26,15 @@
 * (done) start a video js textarea ui that will be used to mutate the VIDEO object
 * (done) I am going to want to have a way to load the text from video-start.js into the textarea by way of preload.js api
 * (done) load the video-start.js file by way of eval / method for running javaScript
-
+<!-- Work out a standard for making a video -->
+* start a new system for making a video based on what I all ready have working for the videos in test threejs
 <!-- VIDEO object mutate ui -->
 * any key down event will stop the current loop if it is all ready playing
 * any key up event will cuase the VIDEO object to update with the current value of the text area
+<!-- export to images -->
+* have an export menu
+* create an export to images export image that will create a folder of images
+<!-- Save file option -->
+* I will want to be able to save the video file code
+<!-- help menu -->
+* start a help menu with a about option, in the about option display what the revision number is
