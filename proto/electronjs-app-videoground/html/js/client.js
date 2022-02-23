@@ -12,15 +12,17 @@
     var scene = new THREE.Scene();
     //scene.add(new THREE.GridHelper(8, 8));
     // RENDER
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer(),
+    canvas = renderer.domElement;
     // append to wrap canvas
-    WRAP_CANVAS.appendChild(renderer.domElement);
+    WRAP_CANVAS.appendChild(canvas);
     renderer.setSize(320, 240);
 
     // APP LOOP STATE
 
     // define the sm object
     var sm = window.sm = {
+        canvas: canvas,
         frame: 0,
         frameFrac: 0,
         frameMax: 300,

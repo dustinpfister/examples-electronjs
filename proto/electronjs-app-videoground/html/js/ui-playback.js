@@ -46,6 +46,9 @@
         console.log(evnt, result, imageFolder, mode);
         vm.$data.targetFrame = 0;
         vm.setFrame();
+        videoAPI.writeFrame(imageFolder, 0, sm.canvas.toDataURL(), (e) => {
+            console.log('might have wrote a frame');
+        })
     });
 
 }

@@ -49,5 +49,14 @@ videoAPI.on = function(eventType, callback){
    EVENT[eventType](callback);
 };
 
+videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
+    var data = dataURL.split(',')[1]; 
+    var buf = Buffer.from(data).toString('base64');
+    var filePath = path.join(imageFolder, 'frame-' + frameIndex + '.png'); 
+    fs.writeFile(filePath, buf, (e) => {
+        callback(e);
+    });
+};
+
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('videoAPI', videoAPI);
