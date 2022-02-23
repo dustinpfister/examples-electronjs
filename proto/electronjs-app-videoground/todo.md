@@ -26,11 +26,9 @@
 * (done) start a video js textarea ui that will be used to mutate the VIDEO object
 * (done) I am going to want to have a way to load the text from video-start.js into the textarea by way of preload.js api
 * (done) load the video-start.js file by way of eval / method for running javaScript
-
-<!-- export to images -->
 * (done) have a videoAPI.writeFrame method that takes a filePath, and canvas dataUrl for the frame
 * (done) start an export to images option in the file menu that will be a folder of images for each frame
-* export all frames
+* (done) export all frames as png files so I can make a video using ffmpeg
 
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
