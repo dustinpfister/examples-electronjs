@@ -28,8 +28,9 @@
 * (done) load the video-start.js file by way of eval / method for running javaScript
 
 <!-- export to images -->
-* have a videoAPI.writeFrame method that takes a filePath, and canvas dataUrl for the frame
-* create an export to images option in the file menu that will be a folder of images for each frame
+* (done) have a videoAPI.writeFrame method that takes a filePath, and canvas dataUrl for the frame
+* (done) start an export to images option in the file menu that will be a folder of images for each frame
+* export all frames
 
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
