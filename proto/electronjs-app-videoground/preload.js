@@ -51,6 +51,12 @@ videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
 
 videoAPI.loadFile = (filePath, callback) => {
     if(filePath){
+        // if path is not absolute
+        if(!path.isAbsolute(filePath)){
+            console.log('realtive path!');
+            filePath = path.join(__dirname, filePath);
+        }
+
         // read the file and set it to the client
         fs.readFile(filePath, 'utf8', (e, text) => {
             if(e){

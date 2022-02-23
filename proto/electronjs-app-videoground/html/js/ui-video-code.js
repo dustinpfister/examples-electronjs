@@ -23,11 +23,14 @@
         sm.setup();
     }
 
-    var startFilePath = '/home/pi/Documents/github_dustinpfister/' +
-        'examples-electronjs/proto/electronjs-app-videoground/html/js/video-start.js';
+    var startFilePath = 'html/js/video-start.js';
 
-    videoAPI.loadFile(startFilePath, (text, e)=>{
-        loadText(text);
+    videoAPI.loadFile(startFilePath, (text, e) => {
+        if(e){
+            console.warn(e.message);
+        }else{
+            loadText(text);
+        }
     });
 
 
