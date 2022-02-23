@@ -30,6 +30,6 @@ https://prismjs.com/
 * (done) see about having file name as title text
 * (done) show byte count in status bar
 * (done) menu-error event
-* (done) menu-cancle event
+* (done) menu-cancel event
 
 * save option in file menu 
