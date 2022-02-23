@@ -2,24 +2,25 @@
 
 ## () - rx - right click menu
 
-## () - rx - view menu
-* turn features like status bar on and off
+## () - rx - document modes 
+
+## () - rx - blank operations
 
 ## () - r2 - tabs
 * can have more than one file open and switch between them
 * open more than one file at once
 
-## () - r1 - edit menu
-* have copy, cut, and paste
-* select all
-
-## () r1 - See about using prism for syntax hylighting
-
+## () - r1 - Syntax highlighting, line numbers, and view menu started
 * see about reproducing this.
 https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/
-* prism
+* So I will want to use prism.js on top of electron.js
 https://github.com/PrismJS/prism
 https://prismjs.com/
+* add line numbers
+* start a view menu
+* turn status bar on and off by way of view menu
+* turn line numbers on and off by way of vew menu
+* turn syntax highlighting on and off by way of view menu
 
 ## () - r0 - first release
 * (done) start with the source code from the context bridge example that is all ready a basic text editor
@@ -32,4 +33,6 @@ https://prismjs.com/
 * (done) menu-error event
 * (done) menu-cancel event
 
+* have copy, cut, and paste
+* select all
 * save option in file menu 
