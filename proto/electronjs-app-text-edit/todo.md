@@ -13,6 +13,14 @@
 * have copy, cut, and paste
 * select all
 
+## () r1 - See about using prism for syntax hylighting
+
+* see about reproducing this.
+https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/
+* prism
+https://github.com/PrismJS/prism
+https://prismjs.com/
+
 ## () - r0 - first release
 * (done) start with the source code from the context bridge example that is all ready a basic text editor
 * (done) see about using a menu.js file in root to pull that code out of main and into its own file
@@ -25,6 +33,3 @@
 * (done) menu-cancle event
 
 * save option in file menu 
-
-* pre code system
-https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/
