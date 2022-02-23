@@ -26,14 +26,15 @@
 * (done) start a video js textarea ui that will be used to mutate the VIDEO object
 * (done) I am going to want to have a way to load the text from video-start.js into the textarea by way of preload.js api
 * (done) load the video-start.js file by way of eval / method for running javaScript
+
+<!-- export to images -->
+* create an export to images option in the file menu that will be a folder of images for each frame
+
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 <!-- VIDEO object mutate ui -->
 * any key down event will stop the current loop if it is all ready playing
 * any key up event will cuase the VIDEO object to update with the current value of the text area
-<!-- export to images -->
-* have an export menu
-* create an export to images export image that will create a folder of images
 <!-- Save file option -->
 * I will want to be able to save the video file code
 <!-- help menu -->
