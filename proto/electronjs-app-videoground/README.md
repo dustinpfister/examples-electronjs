@@ -12,7 +12,7 @@ This is an idea for an electron.js applaction that I am calling videoground whic
 If I have a folder of png files in the range of 'frame-0000.png' to 'frame-9999.png', then using ffmpeg with the -i option should work with the value 'frame-%04d.png'. I will then want to add any addtional options such as setting the framerate, and of course I will want to give an output file
 
 ```
-$ ffmpeg -framerate 20 -i frame-%04d.png output.mp4
+$ ffmpeg -framerate 30 -i frame-%04d.png output.mp4
 ```
 
 ## Getting this working
