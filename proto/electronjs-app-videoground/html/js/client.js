@@ -10,7 +10,6 @@
 
     // SCENE
     var scene = new THREE.Scene();
-    //scene.add(new THREE.GridHelper(8, 8));
     // RENDER
     var renderer = new THREE.WebGLRenderer(),
     canvas = renderer.domElement;
@@ -78,6 +77,7 @@
         sm.frame = 0;
         sm.frameFrac = 0;
         sm.loopActive = false;
+        scene.children = [];
         VIDEO.init(scene, camera);
         sm.setFrame();
     };
