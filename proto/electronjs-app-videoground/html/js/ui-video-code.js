@@ -18,17 +18,20 @@
 
 
     videoAPI.on('menuOpenFile', function(evnt, text, result){
-        console.log(evnt, result);
-        console.log(text);
         vm.$data.videoJS = text;
         // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
         eval(text);
-
         sm.setup();
     });
 
     videoAPI.on('menuError', function(evnt, err){
         console.log(err);
+    });
+
+    videoAPI.on('menuExport', function(evnt, result, imageFolder, mode){
+        console.log('okay so far so good...');
+        console.log(evnt, result, imageFolder, mode);
+
     });
 
 }

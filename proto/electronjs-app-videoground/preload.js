@@ -9,6 +9,15 @@ let videoAPI = {};
 // the events object
 const EVENT = {};
 
+// export to images
+EVENT.menuExport = function(callback){
+    ipcRenderer.on('menuExport', function(evnt, result, mode) {
+        let imageFolder = result.filePaths[0];
+        console.log('we are getting this far at least');
+        callback(evnt, result, imageFolder, mode);
+    });
+};
+
 // when a file is opened with file > open
 EVENT.menuOpenFile = function(callback){
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
