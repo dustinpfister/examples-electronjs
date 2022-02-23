@@ -9,6 +9,8 @@
             '<input type="button" value="frame-" v-on:click="stepFrame(-1)"><br>' +
 
             '<input type="text" size="5" v-model="targetFrame"><input type="button" value="set frame" v-on:click="setFrame"><br>' +
+            '<input type="text" size="5" v-model="sm.frameMax"><input type="button" value="set max frame" v-on:click="setFrame"><br>' +
+
              '<span> {{ sm.frame }} / {{ sm.frameMax}} </span>' + 
         '</div>',
         data: {
@@ -26,6 +28,7 @@
             // set a frame
             setFrame: function(){
                 var sm = this.$data.sm;
+                sm.frameMax = parseInt(sm.frameMax);
                 sm.frameFrac = parseFloat(this.$data.targetFrame);
                 sm.frame = Math.floor(sm.frameFrac);
                 sm.setFrame();
