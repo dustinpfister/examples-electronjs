@@ -1,6 +1,4 @@
 
-VIDEO.foo = 'bar';
-
 // init method for the video
 VIDEO.init = function(scene, camera){
     // GRID HELPER
