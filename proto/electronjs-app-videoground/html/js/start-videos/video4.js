@@ -21,12 +21,13 @@ VIDEO.init = function(scene, camera){
     scene.add(group);
 
     // ADD MESH OBJECTS TO GROUP
-    let i = 0, len = 10, x, y = 0, z, radian;
+    let i = 0, len = 10, x, y = 0, z, radian,
+    colors = ['red', 'lime', 'blue']
     while(i < len){
         let mesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 30, 30),
             new THREE.MeshStandardMaterial({
-                color: 0x00ff00
+                color: new THREE.Color(colors[i % colors.length])
             }));
         radian = Math.PI * 2 / len * i;
         x = Math.cos(radian) * 4;
