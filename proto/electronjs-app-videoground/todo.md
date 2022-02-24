@@ -34,9 +34,7 @@
 * (done) there should be a way to start the program with a video file
 * (done) must be able to adjust max frame count
 * (done) start a help menu with a about option, in the about option display what the revision number is
-<!-- VIDEO object mutate ui -->
-* have just an input event for the textarea element
-
+* (done) use an input event for the textarea element to update the scene 
 <!-- Save file option -->
 * I will want to be able to save the video file code
 <!-- Work out a standard for making a video -->
