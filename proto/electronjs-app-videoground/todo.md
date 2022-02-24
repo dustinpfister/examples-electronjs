@@ -33,14 +33,14 @@
 * (done) I am going to want a videoAPI.loadFile(path to file) method
 * (done) there should be a way to start the program with a video file
 * (done) must be able to adjust max frame count
-
-<!-- Work out a standard for making a video -->
-* start a new system for making a video based on what I all ready have working for the videos in test threejs
+* (done) start a help menu with a about option, in the about option display what the revision number is
 <!-- VIDEO object mutate ui -->
 * any key down event will stop the current loop if it is all ready playing
 * any key up event will cuase the VIDEO object to update with the current value of the text area
 <!-- Save file option -->
 * I will want to be able to save the video file code
-<!-- help menu -->
-* start a help menu with a about option, in the about option display what the revision number is
+<!-- Work out a standard for making a video -->
+* start a new system for making a video based on what I all ready have working for the videos in test threejs
+
+
 

@@ -64,9 +64,9 @@ const MainMenuTemplate = [
                 label: 'About',
                 click: function(){
                     const mainWindow = BrowserWindow.fromId(1);
-dialog.showMessageBox(mainWindow, {
-    message: 'Video Ground version: r0'
-});
+                    dialog.showMessageBox(mainWindow, {
+                        message: 'Video Ground version: r0'
+                    });
                 }
             }
         ]
