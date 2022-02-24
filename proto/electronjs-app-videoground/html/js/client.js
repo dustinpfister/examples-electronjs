@@ -15,7 +15,10 @@
     canvas = renderer.domElement;
     // append to wrap canvas
     WRAP_CANVAS.appendChild(canvas);
-    renderer.setSize(320, 240);
+    renderer.setSize(640, 480);
+
+    canvas.style.width = '320px';
+    canvas.style.height = '240px';
 
     // APP LOOP STATE
 
@@ -43,7 +46,6 @@
     var update = function(){
         var per = Math.round(sm.frame) / sm.frameMax,
         bias = getBias(per);
-
         var state = {
             frame: sm.frame,
             frameMax: sm.frameMax,
@@ -52,7 +54,6 @@
             scene: scene,
             camera: camera
         };
-
         VIDEO.update(state, scene, camera, per, bias);
     };
 
