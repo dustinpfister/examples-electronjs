@@ -36,7 +36,8 @@
 * (done) start a help menu with a about option, in the about option display what the revision number is
 * (done) use an input event for the textarea element to update the scene 
 <!-- Save file option -->
-* I will want to be able to save the video file code
+* (done) start a save as option
+* I will want to be able to save the video file code as a js file
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 

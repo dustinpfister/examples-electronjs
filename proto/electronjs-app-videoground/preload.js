@@ -53,6 +53,13 @@ videoAPI.writeFrame = (imageFolder, frameIndex, dataURL, callback) => {
     });
 };
 
+// write js file text
+videoAPI.writeJSFile = (filePath, text, callback) => {
+    fs.writeFile(filePath, text, 'utf8', (e) => {
+        callback(e);
+    });
+};
+
 videoAPI.loadFile = (filePath, callback) => {
     if(filePath){
         // if path is not absolute

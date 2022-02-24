@@ -45,9 +45,18 @@
         loadText(text);
     });
 
-    videoAPI.on('menuSaveFile', function(a, b){
-        console.log('save file option');
-        console.log(a, b);
+    videoAPI.on('menuSaveFile', function(evnt, result){
+        //console.log('save file option');
+        //console.log(a, b);
+        if(!result.canceled){
+            videoAPI.writeJSFile(result.filePath, vm.$data.videoJS, (e) => {
+                if(e){
+                    console.warn(e.message);
+                }else{
+                    console.log('wrote file: ' + result.filePath);
+                }
+            });
+        }
     });
 
 
