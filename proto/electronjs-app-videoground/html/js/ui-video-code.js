@@ -12,20 +12,22 @@
         methods: {
             updateVideo : function(e){
 
-
-
-loadText(e.target.value);
+                loadText(e.target.value);
 
             }
         }
     });
 
     var loadText = (text) => {
-        vm.$data.videoJS = text;
-        // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
-        eval(text);
-        sm.setup();
-    }
+        try{
+            // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
+            eval(text);
+            vm.$data.videoJS = text;
+            sm.setup();
+        }catch(e){
+            console.log(e.message);
+        }
+    };
 
     var startFilePath = 'html/js/video-start.js';
 
