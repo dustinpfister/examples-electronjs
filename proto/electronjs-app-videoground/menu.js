@@ -4,6 +4,7 @@ const path = require('path');
 
 // Custom Menus
 const isMac = process.platform === 'darwin';
+const pkg = require( path.join(__dirname, 'package.json') );
 // The main menu for the main window
 const MainMenuTemplate = [
     {
@@ -82,8 +83,9 @@ const MainMenuTemplate = [
                 label: 'About',
                 click: function(){
                     const mainWindow = BrowserWindow.fromId(1);
+                    const r = pkg.version.split('.')[1];
                     dialog.showMessageBox(mainWindow, {
-                        message: 'Video Ground version: r0'
+                        message: 'Video Ground version: r' + r
                     });
                 }
             }

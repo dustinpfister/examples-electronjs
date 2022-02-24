@@ -4,13 +4,8 @@
 * #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
 * #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
 
-## () - rx - load and save
-* I will want to be able to save the current state of a project
-* a project will need to be some kind of archive, or a folder that follows a given format
-* a project folder should have a video.js file that is the logic for the video of course
-* I will want a dea folder for all models that need to be loaded for the project
-
-## () - rx - Can add dae files to a scene
+## () - r1 - Can add dae files to a scene
+* set 0.1.0 for version in package.json
 * I am going to want to be able to load in dea files for a project for sure
 
 ## () - r0 - General starting point working
@@ -35,9 +30,10 @@
 * (done) must be able to adjust max frame count
 * (done) start a help menu with a about option, in the about option display what the revision number is
 * (done) use an input event for the textarea element to update the scene 
-<!-- Save file option -->
 * (done) start a save as option
-* I will want to be able to save the video file code as a js file
+* (done) I will want to be able to save the video file code as a js file
+* (done) see about reading package.json and using the minor patch number of verion for the r number in about menu
+
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 
