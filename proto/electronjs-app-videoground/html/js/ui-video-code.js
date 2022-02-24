@@ -20,7 +20,7 @@
 
     var loadText = (text) => {
         try{
-            // USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
+            // !!! - #1 - USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
             sm.setup();

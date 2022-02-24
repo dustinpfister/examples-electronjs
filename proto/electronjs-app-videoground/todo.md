@@ -1,8 +1,8 @@
 # electionjs-app-video-ground todo list
 
 ## Known problems
-* #0 - I have to disable CSP to get vuejs to work in the html files that I use
-* #1 - I am using eval to run javaScript code in the textarea element
+* #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
+* #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
 
 ## () - rx - load and save
 * I will want to be able to save the current state of a project
