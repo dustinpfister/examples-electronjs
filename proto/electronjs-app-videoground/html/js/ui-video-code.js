@@ -29,7 +29,7 @@
         }
     };
 
-    var startFilePath = 'html/js/video-start.js';
+    var startFilePath = 'html/js/start-videos/video3.js';
 
     videoAPI.loadFile(startFilePath, (text, e) => {
         if(e){
