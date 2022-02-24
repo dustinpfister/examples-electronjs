@@ -45,6 +45,12 @@
         loadText(text);
     });
 
+    videoAPI.on('menuSaveFile', function(a, b){
+        console.log('save file option');
+        console.log(a, b);
+    });
+
+
     videoAPI.on('menuError', function(evnt, err){
         console.log(err);
     });

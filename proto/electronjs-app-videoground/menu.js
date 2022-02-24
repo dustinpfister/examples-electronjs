@@ -28,6 +28,25 @@ const MainMenuTemplate = [
                     });
                 }
             },
+            // SAVE A FILE
+            {
+                label: 'Save As',
+                click: () => {
+                    const mainWindow = BrowserWindow.fromId(1);
+                    dialog.showSaveDialog(mainWindow, {
+                        properties: ['showHiddenFiles']
+                    }).then((result) => {
+                        if(result.canceled){
+                            mainWindow.webContents.send('menuCanceled', result);
+                        }else{
+                            mainWindow.webContents.send('menuSaveFile', result);
+                        }
+                    }).catch((err) => {
+                        mainWindow.webContents.send('menuError', err);
+                    });
+                }
+            },
+            // EXPORT TO IMAGES
             {
                 label: 'Export to Images',
                 click: function(){
