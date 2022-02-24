@@ -14,7 +14,7 @@ const MainMenuTemplate = [
                 label: 'Open',
                 click: function(){
                     const mainWindow = BrowserWindow.fromId(1);
-                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                    dialog.showOpenDialog(mainWindow, {
                         properties: ['openFile']
                     }).then((result) => {
                         if(result.canceled){
@@ -33,7 +33,7 @@ const MainMenuTemplate = [
                 click: function(){
                     const mainWindow = BrowserWindow.fromId(1);
                     // dialog will need to be used to select a folder
-                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                    dialog.showOpenDialog(mainWindow, {
                         properties: ['openDirectory']
                     }).then((result) => {
                         if(result.canceled){
@@ -53,10 +53,21 @@ const MainMenuTemplate = [
         label: 'View',
         submenu: [
             {
-                type: 'separator'
-            },
-            {
                 role: 'togglefullscreen'
+            }
+        ]
+    },
+    {
+        label: 'Help',
+        submenu: [
+            {
+                label: 'About',
+                click: function(){
+                    const mainWindow = BrowserWindow.fromId(1);
+dialog.showMessageBox(mainWindow, {
+    message: 'Video Ground version: r0'
+});
+                }
             }
         ]
     }
