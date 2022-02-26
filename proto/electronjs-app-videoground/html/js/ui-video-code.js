@@ -29,9 +29,13 @@
         }
     };
 
-    var startFilePath = 'html/js/start-videos/video3.js';
+    var startFilePath = 'html/js/start-videos/video5.js';
 
-    videoAPI.loadFile(startFilePath, (text, e) => {
+    videoAPI.loadFile(startFilePath, (text, e, filePath) => {
+		
+		console.log('we have a file path here');
+		console.log(filePath)
+		
         if(e){
             console.warn(e.message);
         }else{

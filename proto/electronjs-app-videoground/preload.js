@@ -73,7 +73,7 @@ videoAPI.loadFile = (filePath, callback) => {
             if(e){
                 ipcRenderer.send('menuError', e);
             }else{
-                callback(text, e);
+                callback(text, e, filePath);
             }
         });
     }else{
