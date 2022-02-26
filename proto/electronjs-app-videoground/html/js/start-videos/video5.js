@@ -3,7 +3,7 @@
 // that need to be loaded, relative to the location of this
 // video js file
 VIDEO.daePaths = [
-  './dae/obj.dae'
+  './dae/obj/obj.dae'
 ];
 
 // init method for the video
