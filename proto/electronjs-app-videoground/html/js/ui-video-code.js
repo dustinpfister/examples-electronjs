@@ -24,7 +24,23 @@
             eval(text);
             vm.$data.videoJS = text;
 			
-			console.log(VIDEO.daePaths);
+			
+			// !!! START OF USING THE DAE LOADER, JUST NEED A URL TO SEE IF IT WORKS
+			console.log(vm.$data.filePath)
+            console.log(VIDEO.daePaths);
+			/*
+            var manager = new THREE.LoadingManager();
+            var loader = new THREE.ColladaLoader(manager);
+			
+            loader.load(url,
+                // done
+                function (result) {
+                    resultValue = result;
+                    daeObjects.results.push(result);
+                }
+		    }
+			*/
+			
             sm.setup();
         }catch(e){
             console.log(e.message);
@@ -34,10 +50,9 @@
     var startFilePath = 'html/js/start-videos/video5.js';
 
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
-		console.log('we have a file path here');
-		console.log(filePath);
-		vm.$data.filePath = filePath;
-		
+        console.log('first client side call of videoAPI.loadFile');
+        console.log(filePath);
+        vm.$data.filePath = filePath;
         if(e){
             console.warn(e.message);
         }else{
@@ -45,17 +60,13 @@
         }
     });
 
-
-    //videoAPI.on('menuOpenFile', function(evnt, text, result){
     videoAPI.on('menuOpenFile', function(text, e, filePath){
-		console.log('yes we get this far');
-				vm.$data.filePath = filePath;
+        console.log('Menu open event handler in ui-video-code.js');
+        vm.$data.filePath = filePath;
         loadText(text);
     });
 
     videoAPI.on('menuSaveFile', function(evnt, result){
-        //console.log('save file option');
-        //console.log(a, b);
         if(!result.canceled){
             videoAPI.writeJSFile(result.filePath, vm.$data.videoJS, (e) => {
                 if(e){
