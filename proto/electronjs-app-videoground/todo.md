@@ -5,6 +5,7 @@
 * #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
 
 ## () - r2 - new video API system with sequences
+* set 0.2.0 for package.json
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 
@@ -12,7 +13,7 @@
 * set 0.1.0 for version in package.json
 * I am going to want to be able to load in dea files for a project for sure
 
-## () - r0 - General starting point working
+## ( done 02/26/2022 ) - r0 - General starting point working
 * (done) have a \/html\/js folder
 * (done) threejs will need to be part of the client system, go with a late version \( \/html\/js\/0.135.0\/three.min.js \)
 * (done) I am also going to want to add vuejs as I like using that to make user interface controls
