@@ -4,6 +4,10 @@
 * #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
 * #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
 
+## () - r2 - new video API system with sequences
+<!-- Work out a standard for making a video -->
+* start a new system for making a video based on what I all ready have working for the videos in test threejs
+
 ## () - r1 - Can add dae files to a scene
 * set 0.1.0 for version in package.json
 * I am going to want to be able to load in dea files for a project for sure
@@ -33,9 +37,4 @@
 * (done) start a save as option
 * (done) I will want to be able to save the video file code as a js file
 * (done) see about reading package.json and using the minor patch number of verion for the r number in about menu
-
-<!-- Work out a standard for making a video -->
-* start a new system for making a video based on what I all ready have working for the videos in test threejs
-
-
 
