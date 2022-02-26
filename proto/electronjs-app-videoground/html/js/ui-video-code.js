@@ -25,9 +25,6 @@
             vm.$data.videoJS = text;
 			
 			
-			// !!! GOT THE URL BUT THREE.ColladaLoader is not working
-			//console.log(vm.$data.filePath)
-            //console.log(VIDEO.daePaths);
 			console.log('loading text');
 			var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.daePaths[0]);
 			console.log(url);
