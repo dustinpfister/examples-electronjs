@@ -1,3 +1,11 @@
+
+// I should be able to set a list of dea files
+// that need to be loaded, relative to the location of this
+// video js file
+VIDEO.daePaths = [
+  './dae/obj.dae'
+];
+
 // init method for the video
 VIDEO.init = function(scene, camera){
     // GRID HELPER

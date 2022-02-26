@@ -10,7 +10,7 @@
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 
 ## () - r1 - Can add dae files to a scene
-* set 0.1.0 for version in package.json
+* (done) set 0.1.0 for version in package.json
 * I am going to want to be able to load in dea files for a project for sure
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
