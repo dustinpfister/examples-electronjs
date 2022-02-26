@@ -3,10 +3,12 @@
     var vm = new Vue({
         el: '#wrap_video_code',
         template: '<div class="wrap_ui">' +
+            '<span>{{ filePath }}</span>' +
             '<textarea v-model="videoJS" cols="60" rows="10" v-on:input="updateVideo"></textarea>'+
         '</div>',
         data: {
            sm: sm,
+           filePath: null, // the current path for the video.js file
            videoJS: '\/\/ Video JavaScript goes here'
         },
         methods: {
@@ -20,7 +22,7 @@
 
     var loadText = (text) => {
         try{
-            // !!! - #1 - USING EVEAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
+            // !!! - #1 - USING EVAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
             sm.setup();
@@ -34,7 +36,10 @@
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
 		
 		console.log('we have a file path here');
-		console.log(filePath)
+		console.log(filePath);
+		vm.$data.filePath = filePath;
+		console.log(VIDEO.deaPaths)
+		
 		
         if(e){
             console.warn(e.message);

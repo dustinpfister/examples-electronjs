@@ -3,6 +3,7 @@
 ## Known problems
 * #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
 * #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
+* #2 - when I reload from dev tools some times the video loads other times it does not
 
 ## () - r2 - new video API system with sequences
 * set 0.2.0 for package.json
