@@ -7,6 +7,7 @@ const fs = require('fs')
 let videoAPI = {};
 
 videoAPI.pathJoin = path.join;
+videoAPI.pathDirname = path.dirname;
 
 // the events object
 const EVENT = {};

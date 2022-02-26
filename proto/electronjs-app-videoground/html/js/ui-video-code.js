@@ -53,7 +53,7 @@
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         console.log('first client side call of videoAPI.loadFile');
         console.log(filePath);
-        vm.$data.filePath = filePath;
+        vm.$data.filePath = videoAPI.pathDirname(filePath);
         if(e){
             console.warn(e.message);
         }else{
@@ -63,7 +63,7 @@
 
     videoAPI.on('menuOpenFile', function(text, e, filePath){
         console.log('Menu open event handler in ui-video-code.js');
-        vm.$data.filePath = filePath;
+        vm.$data.filePath = videoAPI.pathDirname(filePath);
         loadText(text);
     });
 
@@ -78,7 +78,6 @@
             });
         }
     });
-
 
     videoAPI.on('menuError', function(evnt, err){
         console.log(err);
