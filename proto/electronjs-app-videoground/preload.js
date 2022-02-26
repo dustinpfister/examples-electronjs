@@ -6,6 +6,8 @@ const fs = require('fs')
 // the api that will be window.videoAPI in the client side code
 let videoAPI = {};
 
+videoAPI.pathJoin = path.join;
+
 // the events object
 const EVENT = {};
 
@@ -20,7 +22,7 @@ EVENT.menuExport = function(callback){
 
 // when a file is opened with file > open
 EVENT.menuOpenFile = function(callback){
-	console.log('okay we are gettting this far');
+    console.log('okay we are gettting this far');
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
         let filePath = result.filePaths[0];
         videoAPI.loadFile(filePath, callback, evnt, result);

@@ -26,21 +26,22 @@
 			
 			
 			// !!! START OF USING THE DAE LOADER, JUST NEED A URL TO SEE IF IT WORKS
-			console.log(vm.$data.filePath)
-            console.log(VIDEO.daePaths);
-			/*
+			//console.log(vm.$data.filePath)
+            //console.log(VIDEO.daePaths);
+			console.log('loading text');
+			console.log(videoAPI.pathJoin(vm.$data.filePath, VIDEO.daePaths[0]));
+
+/*
             var manager = new THREE.LoadingManager();
             var loader = new THREE.ColladaLoader(manager);
-			
             loader.load(url,
                 // done
                 function (result) {
                     resultValue = result;
                     daeObjects.results.push(result);
                 }
-		    }
-			*/
-			
+		    };
+*/
             sm.setup();
         }catch(e){
             console.log(e.message);
