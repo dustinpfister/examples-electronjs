@@ -13,9 +13,7 @@
         },
         methods: {
             updateVideo : function(e){
-
                 loadText(e.target.value);
-
             }
         }
     });
@@ -25,6 +23,8 @@
             // !!! - #1 - USING EVAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
+			
+			console.log(VIDEO.daePaths);
             sm.setup();
         }catch(e){
             console.log(e.message);
@@ -34,12 +34,9 @@
     var startFilePath = 'html/js/start-videos/video5.js';
 
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
-		
 		console.log('we have a file path here');
 		console.log(filePath);
 		vm.$data.filePath = filePath;
-		console.log(VIDEO.deaPaths)
-		
 		
         if(e){
             console.warn(e.message);
@@ -50,7 +47,9 @@
 
 
     //videoAPI.on('menuOpenFile', function(evnt, text, result){
-    videoAPI.on('menuOpenFile', function(text, e){
+    videoAPI.on('menuOpenFile', function(text, e, filePath){
+		console.log('yes we get this far');
+				vm.$data.filePath = filePath;
         loadText(text);
     });
 

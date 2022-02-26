@@ -20,6 +20,7 @@ EVENT.menuExport = function(callback){
 
 // when a file is opened with file > open
 EVENT.menuOpenFile = function(callback){
+	console.log('okay we are gettting this far');
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
         let filePath = result.filePaths[0];
         videoAPI.loadFile(filePath, callback, evnt, result);
@@ -64,7 +65,6 @@ videoAPI.loadFile = (filePath, callback) => {
     if(filePath){
         // if path is not absolute
         if(!path.isAbsolute(filePath)){
-            console.log('realtive path!');
             filePath = path.join(__dirname, filePath);
         }
 
