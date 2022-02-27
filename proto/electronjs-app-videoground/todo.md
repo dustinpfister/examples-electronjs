@@ -21,10 +21,11 @@
 * (done) updating all init methods of all start video examples so that sm is the first argument of a VIDEO.init call
 * (done) make sure dae files with textures load okay
 * (done) start-videos folder location should be off of root rather than in the js folder for the client system
+* (done) see about fixing bug #3
+* (done) can load more than one DAE file
+* (done) start video5 should just have mesh children
 
-* can load more than one DAE file
-* see about fixing bug #3
-
+* I am going to want to have a method that can be used to parse out just the mesh objects from a dae result object
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
 * (done) have a \/html\/js folder
