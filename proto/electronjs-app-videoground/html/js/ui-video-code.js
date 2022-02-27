@@ -31,6 +31,20 @@
 	    if(VIDEO.daePaths){
                 // !!! loading just dae 0 for now, but I am going to want to load more than one
 	        var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.daePaths[0]);
+
+                var manager = new THREE.LoadingManager(function (result) {
+		    console.log('done method of loader manager');
+                    sm.setup();
+                });
+                var loader = new THREE.ColladaLoader(manager);
+                loader.load(url, function (result) {
+		    console.log('dae file loaded:');
+                    console.log(result);
+                    VIDEO.daeResults.push(result);
+                });
+
+
+/*
                 var manager = new THREE.LoadingManager();
                 var loader = new THREE.ColladaLoader(manager);
                 loader.load(url, function (result) {
@@ -38,6 +52,7 @@
                     VIDEO.daeResults.push(result);
                     sm.setup();
                 });
+*/
 
             }else{
 	       // just call setup if there are no *.dae files	
