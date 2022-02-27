@@ -3,7 +3,8 @@
 ## Known problems
 * #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
 * #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
-* #2 - when I reload from dev tools some times the video loads other times it does not
+* #2 - when I reload from dev tools some times the video loads other times it does not in windows
+* #3 - textures for dea files do not show up until frame+ or frame- is clicked
 
 ## () - r2 - new video API system with sequences
 * set 0.2.0 for package.json
@@ -15,12 +16,14 @@
 * (done) load a dea file result
 * (done) use the dae result in a start video
 
-* no state object, just have an sm object and pass that to calls of VIDEO.update in client.js
+* (done) no state object, just have an sm object and pass that to calls of VIDEO.update in client.js
 * the sm object should be there to work with in calls of VIDEO.init also
 * updating all init methods of all start video examples so that sm is the first argument of a VIDEO.init call
 
 * can load more than one DAE file
-* make sure dae files with textures load okay
+* (done) make sure dae files with textures load okay
+
+* see about fixing bug #3
 
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
