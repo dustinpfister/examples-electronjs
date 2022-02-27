@@ -19,53 +19,57 @@
     });
 
     var loadText = (text) => {
+        console.log('loading text...');
         try{
+            // by default no dae files are used
+            VIDEO.daePaths = null;
+            VIDEO.daeResults = [];
             // !!! - #1 - USING EVAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
-			
-			
-			console.log('loading text');
-			var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.daePaths[0]);
-			console.log(url);
+            // if there are dea paths then I will want to load them	
+	    if(VIDEO.daePaths){
+                // !!! loading just dae 0 for now, but I am going to want to load more than one
+	        var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.daePaths[0]);
+                var manager = new THREE.LoadingManager();
+                var loader = new THREE.ColladaLoader(manager);
+                loader.load(url, function (result) {
+		    console.log(result);
+                    VIDEO.daeResults.push(result);
+                    sm.setup();
+                });
 
-
-            var manager = new THREE.LoadingManager();
-            var loader = new THREE.ColladaLoader(manager);
-            loader.load(url,
-                // done
-                function (result) {
-                    //resultValue = result;
-                    //daeObjects.results.push(result);
-					console.log(result)
-                }
-		    );
-			
-            sm.setup();
+            }else{
+	       // just call setup if there are no *.dae files	
+               sm.setup();
+            }
         }catch(e){
             console.log(e.message);
         }
     };
 
+    // ********** **********
+    // LOAD STARTING VIDEO FILE
+    // ********** **********
     var startFilePath = 'html/js/start-videos/video5.js';
-
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         console.log('first client side call of videoAPI.loadFile');
-        console.log(filePath);
         vm.$data.filePath = videoAPI.pathDirname(filePath);
+        
         if(e){
             console.warn(e.message);
         }else{
             loadText(text);
         }
     });
-
+    // ********** **********
+    // LOAD VIDEO FILE FROM MENU
+    // ********** **********
     videoAPI.on('menuOpenFile', function(text, e, filePath){
         console.log('Menu open event handler in ui-video-code.js');
         vm.$data.filePath = videoAPI.pathDirname(filePath);
         loadText(text);
     });
-
     videoAPI.on('menuSaveFile', function(evnt, result){
         if(!result.canceled){
             videoAPI.writeJSFile(result.filePath, vm.$data.videoJS, (e) => {
