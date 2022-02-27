@@ -13,8 +13,10 @@
 ## () - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
 * (done) load a dea file result
-* use the dae result in a start video
+* (done) use the dae result in a start video
+
 * can load more than one DAE file
+* make sure dae files with textures load okay
 
 
 ## ( done 02/26/2022 ) - r0 - General starting point working

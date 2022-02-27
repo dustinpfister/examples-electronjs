@@ -28,6 +28,10 @@
         frame: 0,
         frameFrac: 0,
         frameMax: 180,
+        per: 0,
+        bias: 0,
+        scene: scene,
+        camera: camera,
         loopActive: false
     };
 
@@ -46,6 +50,8 @@
     var update = function(){
         var per = Math.round(sm.frame) / sm.frameMax,
         bias = getBias(per);
+
+
         var state = {
             frame: sm.frame,
             frameMax: sm.frameMax,
@@ -54,6 +60,8 @@
             scene: scene,
             camera: camera
         };
+
+
         VIDEO.update(state, scene, camera, per, bias);
     };
 
