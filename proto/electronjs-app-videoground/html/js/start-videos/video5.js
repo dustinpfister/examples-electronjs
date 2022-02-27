@@ -3,7 +3,7 @@
 // that need to be loaded, relative to the location of this
 // video js file
 VIDEO.daePaths = [
-  './dae/obj/obj.dae'
+  './dae/rpi4/rpi4_start_box.dae'
 ];
 
 // init method for the video
