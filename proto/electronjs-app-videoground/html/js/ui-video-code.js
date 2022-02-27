@@ -42,18 +42,6 @@
                     console.log(result);
                     VIDEO.daeResults.push(result);
                 });
-
-
-/*
-                var manager = new THREE.LoadingManager();
-                var loader = new THREE.ColladaLoader(manager);
-                loader.load(url, function (result) {
-		    console.log(result);
-                    VIDEO.daeResults.push(result);
-                    sm.setup();
-                });
-*/
-
             }else{
 	       // just call setup if there are no *.dae files	
                sm.setup();

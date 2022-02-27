@@ -1,11 +1,11 @@
 # electionjs-app-video-ground todo list
 
 ## Known problems
-* #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
-* #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
-* #2 - WINDOWS: when I reload from dev tools some times the video loads other times it does not in windows
-* #3 - textures for dea files do not show up until frame+ or frame- is clicked
-* #4 - WINDOWS: texture files will not load correcly in windows
+* () - #0 - I have to disable CSP to get vuejs to work in the html files that I use in the html folder
+* () - #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
+* () - #2 - WINDOWS: when I reload from dev tools some times the video loads other times it does not in windows
+* ( fixed in r1 ) - #3 - textures for dea files do not show up until frame+ or frame- is clicked
+* () - #4 - WINDOWS: texture files will not load correcly in windows
 
 ## () - r2 - new video API system with sequences
 * set 0.2.0 for package.json
