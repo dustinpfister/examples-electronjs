@@ -6,6 +6,7 @@ const fs = require('fs')
 // the api that will be window.videoAPI in the client side code
 let videoAPI = {};
 
+videoAPI.dir_root = __dirname;
 videoAPI.pathJoin = path.join;
 videoAPI.pathDirname = path.dirname;
 

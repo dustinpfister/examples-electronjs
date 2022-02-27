@@ -51,7 +51,9 @@
     // ********** **********
     // LOAD STARTING VIDEO FILE
     // ********** **********
-    var startFilePath = 'html/js/start-videos/video5.js';
+    //var startFilePath = 'html/js/start-videos/video5.js';
+    var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video5.js' );
+
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         console.log('first client side call of videoAPI.loadFile');
         vm.$data.filePath = videoAPI.pathDirname(filePath);
