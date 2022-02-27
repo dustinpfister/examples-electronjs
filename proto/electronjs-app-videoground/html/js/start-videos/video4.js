@@ -1,6 +1,6 @@
 
 // init method for the video
-VIDEO.init = function(scene, camera){
+VIDEO.init = function(sm, scene, camera){
     // GRID HELPER
     scene.add(new THREE.GridHelper(8, 4));
 
@@ -40,13 +40,13 @@ VIDEO.init = function(scene, camera){
 };
 
 // update method for the video
-VIDEO.update = function(state, scene, camera, per, bias){
+VIDEO.update = function(sm, scene, camera, per, bias){
     // update mesh
     let group = scene.userData.group,
     len = group.children.length;
-    group.rotation.y = Math.PI * 4 * state.per;
+    group.rotation.y = Math.PI * 4 * sm.per;
     group.children.forEach((mesh, i) => {
-        let per = state.bias + 1 / len * i % 1;
+        let per = sm.bias + 1 / len * i % 1;
         mesh.position.y = -5 + 5 * per;
     });
 };

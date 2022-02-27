@@ -1,5 +1,5 @@
 // init method for the video
-VIDEO.init = function(scene, camera){
+VIDEO.init = function(sm, scene, camera){
     // GRID HELPER
     scene.add(new THREE.GridHelper(8, 8));
     // MESH
@@ -11,9 +11,9 @@ VIDEO.init = function(scene, camera){
 };
 
 // update method for the video
-VIDEO.update = function(state, scene, camera, per, bias){
+VIDEO.update = function(sm, scene, camera, per, bias){
     let sphere = scene.userData.sphere,
-    radian = Math.PI * 2 * state.per;
+    radian = Math.PI * 2 * sm.per;
     sphere.position.x = Math.cos(radian) * 4;
     sphere.position.z = Math.sin(radian) * 4;
 };

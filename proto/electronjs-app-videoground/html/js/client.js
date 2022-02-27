@@ -71,7 +71,7 @@
         sm.frameFrac = 0;
         sm.loopActive = false;
         scene.children = [];
-        VIDEO.init(scene, camera);
+        VIDEO.init(sm, scene, camera);
         sm.setFrame();
     };
     // set frame

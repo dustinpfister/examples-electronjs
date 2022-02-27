@@ -7,7 +7,7 @@ VIDEO.daePaths = [
 ];
 
 // init method for the video
-VIDEO.init = function(scene, camera){
+VIDEO.init = function(sm, scene, camera){
     // GRID HELPER
     scene.add(new THREE.GridHelper(8, 8));
     //scene.add(VIDEO.daeResults[0].scene.children[2])
