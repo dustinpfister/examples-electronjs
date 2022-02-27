@@ -10,9 +10,12 @@
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 
-## () - r1 - Can add dae files to a scene
+## () - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
-* I am going to want to be able to load in dea files for a project for sure
+* (done) load a dea file result
+* use the dae result in a start video
+* can load more than one DAE file
+
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
 * (done) have a \/html\/js folder
