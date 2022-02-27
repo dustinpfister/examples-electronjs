@@ -20,6 +20,7 @@
 * (done) the sm object should be there to work with in calls of VIDEO.init also
 * (done) updating all init methods of all start video examples so that sm is the first argument of a VIDEO.init call
 * (done) make sure dae files with textures load okay
+* (done) start-videos folder location should be off of root rather than in the js folder for the client system
 
 * can load more than one DAE file
 * see about fixing bug #3
