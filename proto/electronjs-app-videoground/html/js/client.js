@@ -48,10 +48,10 @@
     };
 
     var update = function(){
-        var per = Math.round(sm.frame) / sm.frameMax,
-        bias = getBias(per);
+        sm.per = Math.round(sm.frame) / sm.frameMax;
+        sm.bias = getBias(sm.per);
 
-
+/*
         var state = {
             frame: sm.frame,
             frameMax: sm.frameMax,
@@ -60,9 +60,10 @@
             scene: scene,
             camera: camera
         };
+*/
 
 
-        VIDEO.update(state, scene, camera, per, bias);
+        VIDEO.update(sm, scene, camera, sm.per, sm.bias);
     };
 
     var loop = function () {
