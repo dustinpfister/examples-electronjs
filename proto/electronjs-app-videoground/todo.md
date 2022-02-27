@@ -15,14 +15,12 @@
 * (done) set 0.1.0 for version in package.json
 * (done) load a dea file result
 * (done) use the dae result in a start video
-
 * (done) no state object, just have an sm object and pass that to calls of VIDEO.update in client.js
-* the sm object should be there to work with in calls of VIDEO.init also
-* updating all init methods of all start video examples so that sm is the first argument of a VIDEO.init call
-
-* can load more than one DAE file
+* (done) the sm object should be there to work with in calls of VIDEO.init also
+* (done) updating all init methods of all start video examples so that sm is the first argument of a VIDEO.init call
 * (done) make sure dae files with textures load okay
 
+* can load more than one DAE file
 * see about fixing bug #3
 
 
