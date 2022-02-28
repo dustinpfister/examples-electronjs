@@ -1,5 +1,6 @@
 // load app and BrowserWindow
 const { app, BrowserWindow, ipcMain } = require('electron'),
+os = require('os'),
 path = require('path');
 
 // Create the browser window.
@@ -22,7 +23,8 @@ function createWindow () {
     ipcMain.on('info-request', () => {
         mainWindow.webContents.send('info-ready', {
            dir_docs: app.getPath('documents'),
-           dir_app: __dirname
+           dir_app: __dirname,
+           platform: os.platform()
         });
     });
 
