@@ -18,10 +18,11 @@ function createWindow () {
     // Open the DevTools for debugging
     mainWindow.webContents.openDevTools();
 
+    // for an 'info-request' event
     ipcMain.on('info-request', () => {
-        console.log('info request!');
         mainWindow.webContents.send('info-ready', {
-           dir_docs: app.getPath('documents')
+           dir_docs: app.getPath('documents'),
+           dir_app: __dirname
         });
     });
 

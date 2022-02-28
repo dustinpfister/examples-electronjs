@@ -7,12 +7,15 @@ writeFile = promisify(fs.writeFile);
 
 const demoAPI = {};
 
-// when info is ready event hander
-demoAPI.onInfoReady = (callback) => {
-    ipcRenderer.on('info-ready', callback);
+// demoAPI.on method - what to do for an event such as 'info-request'
+//  demoAPI.on('info-ready', function(e, b){
+//      console.log('info is ready: ', b);
+//  });
+demoAPI.on = (type, callback) => {
+    ipcRenderer.on(type, callback);
 };
 
-// get info
+// demoAPI.getInfo method - start a request for info from the main process
 demoAPI.getInfo = () => {
     ipcRenderer.send('info-request');
 };
