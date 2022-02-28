@@ -1,0 +1,14 @@
+{
+  "name": "electronjs-app-add-recent-document",
+  "version": "0.0.0",
+  "description": "simple electronjs example of adding and getting recent documents",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^10.4.7"
+  }
+}

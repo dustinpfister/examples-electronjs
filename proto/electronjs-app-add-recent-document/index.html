@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>App Module Features</title>
+    <style>
+body{}
+#wrap_main{}
+    </style>
+  </head>
+  <body>
+    <div id="wrap_main">
+        <textarea id="out" cols="60" rows="10"></textarea>
+        <script>
+let out = document.querySelector('#out');
+// what to do for an 'info-ready' event
+demoAPI.on('info-ready', function(e, b){
+    console.log('info is ready on client side');
+    console.log(b);
+    out.value = JSON.stringify(b);
+});
+demoAPI.getInfo();
+        </script>
+    </div>
+  </body>
+</html>
