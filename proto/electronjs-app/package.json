@@ -1,6 +1,6 @@
 {
   "name": "electronjs-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "simple electronjs example of app module features",
   "main": "main.js",
   "scripts": {
