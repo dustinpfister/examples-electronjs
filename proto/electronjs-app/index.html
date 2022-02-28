@@ -32,7 +32,18 @@ h1{
   </head>
   <body>
     <div id="wrap_main">
-        <h1>Hello World</h1>
+        <textarea id="out" cols="60" rows="10"></textarea>
+        <script>
+let out = document.querySelector('#out')
+demoAPI.getInfo()
+.then( (infoObj) => {
+    out.value = JSON.stringify(infoObj);
+})
+.catch( (e) => {
+    out.value = e.message;
+});
+
+        </script>
     </div>
   </body>
 </html>
