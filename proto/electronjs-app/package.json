@@ -1,0 +1,14 @@
+{
+  "name": "electronjs-app",
+  "version": "0.0.0",
+  "description": "simple electronjs example of app module features",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^10.4.7"
+  }
+}
