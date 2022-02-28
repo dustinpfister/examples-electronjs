@@ -12,7 +12,7 @@
 <!-- Work out a standard for making a video -->
 * start a new system for making a video based on what I all ready have working for the videos in test threejs
 
-## () - r1 - DAE Files
+## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
 * (done) load a dea file result
 * (done) use the dae result in a start video
@@ -25,7 +25,7 @@
 * (done) can load more than one DAE file
 * (done) start video5 should just have mesh children
 * (done) starting a utils.js file
-* I am going to want to have a method that can be used to parse out just the mesh objects from a dae result object
+* (done) I am going to want to have a method that can be used to parse out just the mesh objects from a dae result object
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
 * (done) have a \/html\/js folder
