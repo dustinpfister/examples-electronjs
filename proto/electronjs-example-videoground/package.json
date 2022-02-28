@@ -1,7 +1,7 @@
 {
-  "name": "browser-window",
+  "name": "electronjs-example-videoground",
   "version": "0.1.0",
-  "description": "Browser window example",
+  "description": "Video Creation Program electronjs example",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
