@@ -1,6 +1,6 @@
 # electronjs-app
 
-Simple examppe of [app module](https://www.electronjs.org/docs/latest/api/app) features in electronjs
+Simple example of [app module](https://www.electronjs.org/docs/latest/api/app) features in electronjs
 
 ## Getting this working
 
@@ -18,3 +18,9 @@ On my old windows 10 system I am using a real old version of nodejs, as such I h
 ```
 npm install electron@10.4.7 --save-dev
 ```
+
+## references
+
+### The official API docs
+
+[doc for latest on app module](https://www.electronjs.org/docs/latest/api/app)
