@@ -1,5 +1,6 @@
 // load app and BrowserWindow
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron'),
+path = require('path');
 
 // Create the browser window.
 function createWindow () {
@@ -15,19 +16,23 @@ function createWindow () {
   mainWindow.loadFile('index.html');
 
   // Open the DevTools for debugging
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 };
 
 // the 'ready' event
 app.whenReady().then(() => {
   createWindow();
-  app.on('activate', function () {
+  app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 });
 
 // the 'window-all-closed' is also a kind of on quit event
-app.on('window-all-closed', function () {
+app.on('window-all-closed',  () => {
   if (process.platform !== 'darwin') app.quit()
+});
+
+ipcMain.on('info-request', () => {
+    console.log('info request!');
 });
 

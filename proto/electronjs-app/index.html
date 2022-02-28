@@ -34,7 +34,16 @@ h1{
     <div id="wrap_main">
         <textarea id="out" cols="60" rows="10"></textarea>
         <script>
-let out = document.querySelector('#out')
+
+let out = document.querySelector('#out');
+
+demoAPI.onInfoReady(function(e){
+    console.log('info ready');
+});
+
+demoAPI.getInfo();
+
+/*
 demoAPI.getInfo()
 .then( (infoObj) => {
     out.value = JSON.stringify(infoObj);
@@ -42,7 +51,7 @@ demoAPI.getInfo()
 .catch( (e) => {
     out.value = e.message;
 });
-
+*/
         </script>
     </div>
   </body>
