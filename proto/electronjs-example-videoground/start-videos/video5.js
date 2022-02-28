@@ -22,14 +22,14 @@ VIDEO.init = function(sm, scene, camera){
     light.position.set(0, 5, -5);
     scene.add(light);
 
-    //scene.add(VIDEO.daeResults[0].scene.children[2])
 
-    let mesh = VIDEO.daeResults[1].scene.children[2];
-    mesh.rotation.set(-1.57,0,0)
-    scene.add(mesh);
-    let obj = VIDEO.daeResults[0].scene.children[2];
+    let obj = utils.DAE.getMesh( VIDEO.daeResults[0] );
     obj.position.set(0,0,5)
     scene.add(obj);
+
+    var mesh = utils.DAE.getMesh( VIDEO.daeResults[1] );
+    mesh.rotation.set(-1.57,0,0)
+    scene.add(mesh);
 
 };
 

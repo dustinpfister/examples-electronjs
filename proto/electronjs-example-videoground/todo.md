@@ -24,7 +24,7 @@
 * (done) see about fixing bug #3
 * (done) can load more than one DAE file
 * (done) start video5 should just have mesh children
-
+* (done) starting a utils.js file
 * I am going to want to have a method that can be used to parse out just the mesh objects from a dae result object
 
 ## ( done 02/26/2022 ) - r0 - General starting point working
