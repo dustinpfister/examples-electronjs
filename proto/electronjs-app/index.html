@@ -4,30 +4,8 @@
     <meta charset="UTF-8">
     <title>App Module Features</title>
     <style>
-body{
-  background: #afafaf;
-  color: #2a2a2a;
-  margin: 0px;
-  padding: 0px;
-}
-h1{
-   font-size: 40pt;
-   font-family: arial;
-}
-#wrap_main{
-  position: absolute;
-  left: 25%;
-  top: 25%;
-  width: 50%;
-  height: 50%;
-  text-align: center; 
-  display: table;
-}
-
-#wrap_main h1 {
-  display:table-cell;
-  vertical-align:middle
-}
+body{}
+#wrap_main{}
     </style>
   </head>
   <body>
@@ -37,8 +15,10 @@ h1{
 
 let out = document.querySelector('#out');
 
-demoAPI.onInfoReady(function(e){
-    console.log('info ready');
+demoAPI.onInfoReady(function(e, b){
+    console.log('info is ready on client side');
+    console.log(b);
+    out.value = JSON.stringify(b);
 });
 
 demoAPI.getInfo();

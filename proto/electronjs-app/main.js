@@ -4,19 +4,27 @@ path = require('path');
 
 // Create the browser window.
 function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-        contextIsolation: true,
-        preload: path.resolve( __dirname, 'preload.js')
-    }
-  })
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+    const mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            contextIsolation: true,
+            preload: path.resolve( __dirname, 'preload.js')
+        }
+    });
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html');
 
-  // Open the DevTools for debugging
-  mainWindow.webContents.openDevTools()
+    // Open the DevTools for debugging
+    mainWindow.webContents.openDevTools();
+
+    ipcMain.on('info-request', () => {
+        console.log('info request!');
+        mainWindow.webContents.send('info-ready', {
+           dir_docs: app.getPath('documents')
+        });
+    });
+
 };
 
 // the 'ready' event
@@ -30,9 +38,5 @@ app.whenReady().then(() => {
 // the 'window-all-closed' is also a kind of on quit event
 app.on('window-all-closed',  () => {
   if (process.platform !== 'darwin') app.quit()
-});
-
-ipcMain.on('info-request', () => {
-    console.log('info request!');
 });
 
