@@ -1,5 +1,5 @@
 (function () {
-
+    // template and vm instance for video code ui
     var vm = new Vue({
         el: '#wrap_video_code',
         template: '<div class="wrap_ui">' +
@@ -17,9 +17,8 @@
             }
         }
     });
-
+    // load text
     var loadText = (text) => {
-        console.log('loading text...');
         try{
             // by default no dae files are used
             VIDEO.daePaths = null;
@@ -29,19 +28,13 @@
             vm.$data.videoJS = text;
             // if there are dea paths then I will want to load them	
 	    if(VIDEO.daePaths){
-                // !!! loading just dae 0 for now, but I am going to want to load more than one
-
-
                 var manager = new THREE.LoadingManager(function (result) {
-		    console.log('done method of loader manager');
                     sm.setup();
                 });
                 var loader = new THREE.ColladaLoader(manager);
                 VIDEO.daePaths.forEach(function(daeRelUrl){
 	            var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
                     loader.load(url, function (result) {
-		        console.log('dae file loaded:');
-                        console.log(result);
                         VIDEO.daeResults.push(result);
                     });
                 });
@@ -50,20 +43,15 @@
                sm.setup();
             }
         }catch(e){
-            console.log(e.message);
+            console.warn(e.message);
         }
     };
-
     // ********** **********
     // LOAD STARTING VIDEO FILE
     // ********** **********
-    //var startFilePath = 'html/js/start-videos/video5.js';
     var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video5.js' );
-
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
-        console.log('first client side call of videoAPI.loadFile');
         vm.$data.filePath = videoAPI.pathDirname(filePath);
-        
         if(e){
             console.warn(e.message);
         }else{
@@ -78,6 +66,7 @@
         vm.$data.filePath = videoAPI.pathDirname(filePath);
         loadText(text);
     });
+    // on save file
     videoAPI.on('menuSaveFile', function(evnt, result){
         if(!result.canceled){
             videoAPI.writeJSFile(result.filePath, vm.$data.videoJS, (e) => {
@@ -89,11 +78,9 @@
             });
         }
     });
-
+    // on menu error
     videoAPI.on('menuError', function(evnt, err){
         console.log(err);
     });
-
-
 }
     ());

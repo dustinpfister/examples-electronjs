@@ -17,14 +17,12 @@ const EVENT = {};
 EVENT.menuExport = function(callback){
     ipcRenderer.on('menuExport', function(evnt, result, mode) {
         let imageFolder = result.filePaths[0];
-        console.log('we are getting this far at least');
         callback(evnt, result, imageFolder, mode);
     });
 };
 
 // when a file is opened with file > open
 EVENT.menuOpenFile = function(callback){
-    console.log('okay we are gettting this far');
     ipcRenderer.on('menuOpenFile', function(evnt, result) {
         let filePath = result.filePaths[0];
         videoAPI.loadFile(filePath, callback, evnt, result);
