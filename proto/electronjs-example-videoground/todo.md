@@ -6,6 +6,7 @@
 * () - #2 - WINDOWS: when I reload from dev tools some times the video loads other times it does not in windows
 * ( fixed in r1 ) - #3 - textures for dea files do not show up until frame+ or frame- is clicked
 * () - #4 - WINDOWS: texture files will not load correcly in windows
+* () - #5 - script tags keep being added each time a video is loaded
 
 ## () - r2 - Sequences, scripts
 * (done) set 0.2.0 for package.json
@@ -18,10 +19,10 @@
 * (done) use guy model in video6.js
 
 * load more than one script
-
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
-
+<!-- misc -->
+* see about fixing bug #5 by removing all script tags that might have been loaded before
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
