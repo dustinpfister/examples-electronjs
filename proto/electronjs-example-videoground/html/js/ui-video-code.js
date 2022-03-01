@@ -52,7 +52,14 @@
                     console.log('we have scripts...');
 
                     var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.scripts[0]);
-console.log(url);
+                    console.log(url);
+                    var script = document.createElement('script');
+                    script.addEventListener('load', (e) => {
+                        console.log('loaded');
+                        sm.setup();
+                    });
+                    script.src = url;
+                    document.body.appendChild(script);
 
                 }else{
 
