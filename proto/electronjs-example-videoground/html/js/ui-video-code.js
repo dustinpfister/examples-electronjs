@@ -49,7 +49,11 @@
             loadDAE( () => {
 
                 if(VIDEO.scripts){
-                    console.log('we have scripts...')
+                    console.log('we have scripts...');
+
+                    var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.scripts[0]);
+console.log(url);
+
                 }else{
 
                     sm.setup();
