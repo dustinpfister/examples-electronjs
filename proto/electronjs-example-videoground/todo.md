@@ -9,9 +9,12 @@
 
 ## () - r2 - Sequences, scripts
 * (done) set 0.2.0 for package.json
+<!-- scripts -->
+* Have a VIDEO.scripts prop that is a collection of relative paths to addtional javaScript files
+* see about using this new system to load my old guy.js module
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
-* start
+
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
