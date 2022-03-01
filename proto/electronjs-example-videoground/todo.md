@@ -7,10 +7,11 @@
 * ( fixed in r1 ) - #3 - textures for dea files do not show up until frame+ or frame- is clicked
 * () - #4 - WINDOWS: texture files will not load correcly in windows
 
-## () - r2 - new video API system with sequences
-* set 0.2.0 for package.json
-<!-- Work out a standard for making a video -->
-* start a new system for making a video based on what I all ready have working for the videos in test threejs
+## () - r2 - Sequences, scripts
+* (done) set 0.2.0 for package.json
+<!-- sequences -->
+* Start a system that involves updating the state of a scene with sequences
+* start
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json

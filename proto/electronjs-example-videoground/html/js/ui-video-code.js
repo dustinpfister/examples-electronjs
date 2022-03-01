@@ -3,7 +3,7 @@
     var vm = new Vue({
         el: '#wrap_video_code',
         template: '<div class="wrap_ui">' +
-            '<span>{{ filePath }}</span>' +
+            '<span>{{ filePath }}</span><br>' +
             '<textarea v-model="videoJS" cols="60" rows="10" v-on:input="updateVideo"></textarea>'+
         '</div>',
         data: {

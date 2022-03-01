@@ -11,7 +11,6 @@ VIDEO.daePaths = [
 VIDEO.init = function(sm, scene, camera){
     // GRID HELPER
     scene.add(new THREE.GridHelper(12, 12));
-
     // LIGHT
     let light = scene.userData.light = new THREE.Mesh(
         new THREE.SphereGeometry(0.25, 20, 20),
@@ -21,16 +20,13 @@ VIDEO.init = function(sm, scene, camera){
     light.add(new THREE.PointLight());
     light.position.set(0, 5, -5);
     scene.add(light);
-
-
+    // adding mesh objects from dae files to scene
     let obj = utils.DAE.getMesh( VIDEO.daeResults[0] );
     obj.position.set(0,0,5)
     scene.add(obj);
-
     var mesh = utils.DAE.getMesh( VIDEO.daeResults[1] );
     mesh.rotation.set(-1.57,0,0)
     scene.add(mesh);
-
 };
 
 // update method for the video
