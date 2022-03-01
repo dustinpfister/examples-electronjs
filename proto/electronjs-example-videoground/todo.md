@@ -15,8 +15,7 @@
 * (done) I will want to have a loadDAE helper function in ui-video-code that will be called first
 * (done) I will then want a load scripts helper also that will be called after loadDAE
 * (done) see about using this new system to load my old guy.js module
-
-* use guy model in video6.js
+* (done) use guy model in video6.js
 
 * load more than one script
 
