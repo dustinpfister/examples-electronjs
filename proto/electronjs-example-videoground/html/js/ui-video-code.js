@@ -17,6 +17,7 @@
             }
         }
     });
+    // load dae
     var loadDAE = function(callback){
         // if there are dea paths then I will want to load them	
 	if(VIDEO.daePaths){
@@ -45,28 +46,10 @@
             eval(text);
             vm.$data.videoJS = text;
 
-loadDAE( () => {
-    sm.setup();
-});
+            loadDAE( () => {
+                sm.setup();
+            });
 
-/*
-            // if there are dea paths then I will want to load them	
-	    if(VIDEO.daePaths){
-                var manager = new THREE.LoadingManager(function (result) {
-                    sm.setup();
-                });
-                var loader = new THREE.ColladaLoader(manager);
-                VIDEO.daePaths.forEach(function(daeRelUrl){
-	            var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
-                    loader.load(url, function (result) {
-                        VIDEO.daeResults.push(result);
-                    });
-                });
-            }else{
-	       // just call setup if there are no *.dae files	
-               sm.setup();
-            }
-*/
 
         }catch(e){
             console.warn(e.message);
