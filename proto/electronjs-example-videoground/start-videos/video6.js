@@ -7,7 +7,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // CAMERA, GRID HELPER
     // ---------- ----------
-    camera.position.set(10, 10, 10);
+    camera.position.set(12, 12, 12);
     camera.lookAt(0, 0, 0);
     scene.add(new THREE.GridHelper(8, 8));
     // ---------- ----------
@@ -16,11 +16,11 @@ VIDEO.init = function(sm, scene, camera){
     var color = new THREE.Color('white'),
     intensity = 1,
     distance = 30,
-    angle = Math.PI * 0.05,
+    angle = Math.PI * 0.12,
     penumbra = 0.25,
     decay = 0.5;
     var spotLight = scene.userData.spotlight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
-    spotLight.position.set(8, 8, 0);
+    spotLight.position.set(7, 12, 0);
     scene.add(spotLight);
     scene.add( new THREE.AmbientLight(0xffffff, 0.1));
     // ---------- ----------
@@ -38,6 +38,7 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
-   guy1.walk(sm.per, 4);
+   guy1.walk(sm.per, 2);
+   guy1.moveHead(0.25 * sm.bias);
 };
 
