@@ -47,7 +47,13 @@
             vm.$data.videoJS = text;
 
             loadDAE( () => {
-                sm.setup();
+
+                if(VIDEO.scripts){
+                    console.log('we have scripts...')
+                }else{
+
+                    sm.setup();
+                }
             });
 
 
