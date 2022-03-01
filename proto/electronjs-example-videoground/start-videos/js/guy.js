@@ -37,13 +37,12 @@ var Guy = (function () {
                 materials_head);
         this.head.position.y = 1.6;
         // set material index
-        this.head.geometry.faces.forEach(function (face) {
+        this.head.geometry.groups.forEach(function (face) {
             // set all to zero by default
             face.materialIndex = 0;
         });
         // one side of face set to face material
-        this.head.geometry.faces[8].materialIndex = 1;
-        this.head.geometry.faces[9].materialIndex = 1;
+        this.head.geometry.groups[4].materialIndex = 1;
         this.head.castShadow = true;
         this.group.add(this.head);
         // BODY
@@ -112,7 +111,7 @@ var Guy = (function () {
         this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
         this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
     };
-    // walk methid
+    // walk
     Guy.prototype.walk = function (per, swings) {
         per = per === undefined ? 0 : per;
         swings = swings === undefined ? 1 : swings;
@@ -121,7 +120,7 @@ var Guy = (function () {
         this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
         this.moveArm('arm_left', .1 - .2 * armPer, 0);
         this.moveLegs(per * swings);
-    };
+    }
     // just return an instance of guy for now
     return Guy;
 }

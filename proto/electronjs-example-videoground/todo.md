@@ -12,11 +12,14 @@
 <!-- scripts -->
 * (done) start a video6 start video that will be the first to use scripts
 * (done) Have a VIDEO.scripts prop in video6 that is a collection of relative paths to addtional javaScript files
-* I will want to have a loadDAE helper function in ui-video-code that will be called first
-* I will then want a load scripts helper also that will be called after loadDAE
+* (done) I will want to have a loadDAE helper function in ui-video-code that will be called first
+* (done) I will then want a load scripts helper also that will be called after loadDAE
+* (done) see about using this new system to load my old guy.js module
 
+* use guy model in video6.js
 
-* see about using this new system to load my old guy.js module
+* load more than one script
+
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
 
