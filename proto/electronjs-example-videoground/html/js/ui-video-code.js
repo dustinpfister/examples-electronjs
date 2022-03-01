@@ -42,6 +42,7 @@
             // by default no dae files are used
             VIDEO.daePaths = null;
             VIDEO.daeResults = [];
+            VIDEO.scripts = undefined;
             // !!! - #1 - USING EVAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
