@@ -1,13 +1,14 @@
+// using guy.js
 VIDEO.scripts = [
   './js/guy.js'
 ];
-
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
-    // CAMERA
+    // ---------- ----------
+    // CAMERA, GRID HELPER
+    // ---------- ----------
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
-    // GRID HELPER
     scene.add(new THREE.GridHelper(8, 8));
     // ---------- ----------
     // SPOTLIGHT
@@ -22,12 +23,13 @@ VIDEO.init = function(sm, scene, camera){
     spotLight.position.set(8, 8, 0);
     scene.add(spotLight);
     scene.add( new THREE.AmbientLight(0xffffff, 0.1));
+    // ---------- ----------
     // GUY
+    // ---------- ----------
     var guy1 = scene.userData.guy1 = new Guy();
     guy1.group.position.set(0,3,0);
     scene.add(guy1.group);
 };
-
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
