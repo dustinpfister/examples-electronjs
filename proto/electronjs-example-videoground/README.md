@@ -5,7 +5,8 @@ This is an idea for an electron.js application that I am calling videoground whi
 ## What the goals are with this project
 
 * ( done in r0 ) export as images so that ffmped can be used to create a video that way
-* ( done in r1) I will want to be able to load dae files, and any supporting assets in terms of textures used
+* ( done in r1 ) I will want to be able to load dae files, and any supporting assets in terms of textures used
+* ( done in r2 ) I will want to be able to load scripts for each video file
 * () I will want an videoAPI system that allows for me to define 'sequences' like that in my test vjs system
 
 
