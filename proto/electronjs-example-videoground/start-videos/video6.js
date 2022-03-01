@@ -24,11 +24,16 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(spotLight);
     scene.add( new THREE.AmbientLight(0xffffff, 0.1));
     // ---------- ----------
-    // GUY
+    // GUY, grass MESH
     // ---------- ----------
     var guy1 = scene.userData.guy1 = new Guy();
-    guy1.group.position.set(0,3,0);
+    guy1.group.position.set(0,4,0);
     scene.add(guy1.group);
+    var grass = new THREE.Mesh(
+        new THREE.BoxGeometry(10, 1, 10),
+        new THREE.MeshStandardMaterial()
+    );
+    scene.add(grass);
 };
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
