@@ -9,7 +9,7 @@ VIDEO.init = function(sm, scene, camera){
     // CAMERA, GRID HELPER
     // ---------- ----------
     camera.position.set(8, 8, 8);
-    scene.add(new THREE.GridHelper(8, 8));
+    scene.background = new THREE.Color('#1a2f2f');
     // ---------- ----------
     // GUY, grass MESH
     // ---------- ----------
