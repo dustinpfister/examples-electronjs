@@ -22,7 +22,7 @@ VIDEO.init = function(sm, scene, camera){
 
     scene.add(guy1.group);
     var grass = new THREE.Mesh(
-        new THREE.BoxGeometry(25, 1, 25),
+        new THREE.BoxGeometry(55, 1, 55),
         new THREE.MeshStandardMaterial({
             color: new THREE.Color('#008800')
         })
