@@ -24,7 +24,9 @@ VIDEO.init = function(sm, scene, camera){
     // add HAT to head of guy1 head
     var hat = new THREE.Mesh(
         new THREE.ConeGeometry(0.80, 1.5),
-        new THREE.MeshStandardMaterial()
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('red')
+        })
     );
     hat.rotation.x = THREE.MathUtils.degToRad(-30);
     hat.position.set(0, 0.83 ,-0.6)
