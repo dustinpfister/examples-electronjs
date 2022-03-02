@@ -8,7 +8,13 @@
 * () - #4 - WINDOWS: texture files will not load correcly in windows
 * () - #5 - script tags keep being added each time a video is loaded
 
-## () - r2 - Sequences, scripts
+## () - r3 - Sequences
+<!-- sequences -->
+* Start a system that involves updating the state of a scene with sequences
+<!-- misc -->
+* see about fixing bug #5 by removing all script tags that might have been loaded before
+
+## () - r2 - Scripts
 * (done) set 0.2.0 for package.json
 <!-- scripts -->
 * (done) start a video6 start video that will be the first to use scripts
@@ -18,11 +24,10 @@
 * (done) see about using this new system to load my old guy.js module
 * (done) use guy model in video6.js
 
-* load more than one script
-<!-- sequences -->
-* Start a system that involves updating the state of a scene with sequences
-<!-- misc -->
-* see about fixing bug #5 by removing all script tags that might have been loaded before
+* start a guy-canvas.js javascript file that will be used to skin a mesh with canvas elements
+* make changes to client so that I can load more than one script
+* use guy.js and guy-canvas.js in video6.js
+
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
