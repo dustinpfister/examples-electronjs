@@ -17,11 +17,28 @@ var GuyCanvas = (function () {
     };
 
     // draw methods
-    var drawMethod = {};
+    var DRAW_METHODS = {};
     // face draw methods
-    drawMethod.face = {};
-    // plain face
-    drawMethod.face.plain = (ctx, canvas, sm, opt) => {
+    DRAW_METHODS.face = {};
+
+    DRAW_METHODS.face.plain = (ctx, canvas, sm, opt) => {
+        // mouth percent option
+        opt.mouthPer = opt.mouthPer === undefined ? 0 : opt.mouthPer;
+        // solid color background
+        drawBackground(ctx, canvas, 'white');
+        // eye and mouth color
+        ctx.fillStyle = 'black';
+        // eyes
+        ctx.fillRect(8, 16, 16, 16);
+        ctx.fillRect(40, 16, 16, 16);
+        // mouth
+        var mw = 25,
+        mh = 8;
+        ctx.fillRect(32 - mw / 2, 40, mw, mh);
+    };
+
+    // talk face
+    DRAW_METHODS.face.talk = (ctx, canvas, sm, opt) => {
         // mouth percent option
         opt.mouthPer = opt.mouthPer === undefined ? 0 : opt.mouthPer;
         // solid color background
@@ -38,8 +55,8 @@ var GuyCanvas = (function () {
     };
 
     // create and return a canvas texture
-    api.createCanvasObject = function (sm, drawFunc) {
-        drawFunc = drawFunc || drawMethod.face.plain;
+    api.createCanvasObject = function (sm, drawMethods) {
+        drawMethods = drawMethods || DRAW_METHODS;
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
         canvas.width = 64;
@@ -53,6 +70,9 @@ var GuyCanvas = (function () {
             sm: sm,
             draw: function(opt){
                 opt = opt || {};
+                opt.drawClass = opt.drawClass || 'face';
+                opt.drawMethod = opt.drawMethod || 'plain';
+                var drawFunc = drawMethods[opt.drawClass][opt.drawMethod];
                 drawFunc.call(sm, ctx, canvas, sm, opt);
                 texture.needsUpdate = true;
             }
@@ -61,8 +81,8 @@ var GuyCanvas = (function () {
         return canvasObj;
     };
 
+    // return public api
     return api;
-
 
 }
     ());
