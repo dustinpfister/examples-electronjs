@@ -31,7 +31,7 @@
 * (done) use guy.js and guy-canvas.js in video6.js
 <!-- video6.js -->
 * (done) I want to have a crude cone hat for the head of the guy
-* good draw eyes helper
+* (done) draw eyes helper
 * red and white stripe pattern for hat
 
 
