@@ -51,7 +51,8 @@
                 // load scripts
                 if(VIDEO.scripts){
                     var loaded = 0,
-                    total = VIDEO.scripts.length; 
+                    total = VIDEO.scripts.length,
+                    scriptDiv = document.getElementById('wrap_video_scripts');
                     // for each relative URL
                     VIDEO.scripts.forEach( (scriptRelURL, i) => {
                         var url = videoAPI.pathJoin(vm.$data.filePath, scriptRelURL);
@@ -59,11 +60,13 @@
                         script.addEventListener('load', (e) => {
                             loaded += 1;
                             if(loaded === total){
+                                // !!! number of script tags keeps going up
+                                console.log( scriptDiv.children );
                                 sm.setup();
                             }
                         });
                         script.src = url;
-                        document.body.appendChild(script);
+                        scriptDiv.appendChild(script);
                     });
                 }else{
                     // no scripts? then just run setup
