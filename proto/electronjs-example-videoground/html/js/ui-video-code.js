@@ -61,9 +61,8 @@
                         var script = document.createElement('script');
                         script.addEventListener('load', (e) => {
                             loaded += 1;
+                            // run setip when all scripts are loaded
                             if(loaded === total){
-                                // !!! number of script tags keeps going up
-                                console.log( scriptDiv.children );
                                 sm.setup();
                             }
                         });

@@ -6,7 +6,7 @@
 * () - #2 - WINDOWS: when I reload from dev tools some times the video loads other times it does not in windows
 * ( fixed in r1 ) - #3 - textures for dea files do not show up until frame+ or frame- is clicked
 * () - #4 - WINDOWS: texture files will not load correcly in windows
-* () - #5 - script tags keep being added each time a video is loaded
+* ( fixed in r2 ) - #5 - script tags keep being added each time a video is loaded
 
 ## () - r3 - Sequences
 <!-- sequences -->
@@ -25,10 +25,10 @@
 * (done) use guy model in video6.js
 * (done) start a guy-canvas.js javascript file that will be used to skin a mesh with canvas elements
 * (done) make changes to client so that I can load more than one script
+* (done) fixed #5 by removeing all child nodes from a container div
 <!-- guy-canvas.js -->
 * guy-canvas should create a canvas that is a sprite sheet of faces
 * use guy.js and guy-canvas.js in video6.js
-
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
