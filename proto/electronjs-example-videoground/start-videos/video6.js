@@ -23,11 +23,11 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(guy1.group);
     // add HAT to head of guy1 head
     var hat = new THREE.Mesh(
-        new THREE.ConeGeometry(0.7, 1.25),
+        new THREE.ConeGeometry(0.80, 1.5),
         new THREE.MeshStandardMaterial()
     );
-    hat.rotation.x = THREE.MathUtils.degToRad(-20);
-    hat.position.y = 1.125;
+    hat.rotation.x = THREE.MathUtils.degToRad(-30);
+    hat.position.set(0, 0.83 ,-0.6)
     guy1.head.add(hat);
     // grass
     var grass = new THREE.Mesh(
