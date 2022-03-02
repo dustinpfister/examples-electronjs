@@ -45,10 +45,10 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
-   guy1.walk(sm.per, 4);
+   guy1.walk(sm.per, 16);
    guy1.moveHead(0.8 + 0.3 * sm.bias);
 
-   guy1.group.position.set(-8 + 16 * sm.per, 4, 0)
+   guy1.group.position.set(-16 + 32 * sm.per, 4, 0)
    guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
 
    camera.lookAt(guy1.group.position);
