@@ -8,7 +8,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // CAMERA, GRID HELPER
     // ---------- ----------
-    camera.position.set(8, 8, 8);
+    camera.position.set(6, 6, 6);
     scene.background = new THREE.Color('#1a2f2f');
     // ---------- ----------
     // MESH OBJECTS
@@ -66,7 +66,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
    });
    guy1.walk(sm.per, 16);
    guy1.moveHead(0.8 + 0.3 * sm.bias);
-   guy1.group.position.set(-8 + 16 * sm.per, 4, 0)
+   guy1.group.position.set(-2 + 8 * sm.per, 4, 0)
    guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
    camera.lookAt(guy1.group.position);
 };

@@ -48,7 +48,11 @@ var GuyCanvas = (function () {
         // eyes
         ctx.fillRect(8, 16, 16, 16);
         ctx.fillRect(40, 16, 16, 16);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(8 + 5, 16 + 5, 6, 6);
+        ctx.fillRect(40 + 5, 16 + 5, 6, 6);
         // mouth
+        ctx.fillStyle = 'black';
         var mw = 25 - 8 * opt.mouthPer,
         mh = 8 + 8 * opt.mouthPer;
         ctx.fillRect(32 - mw / 2, 40, mw, mh);
