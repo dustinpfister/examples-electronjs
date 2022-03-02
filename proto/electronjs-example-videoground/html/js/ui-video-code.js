@@ -53,6 +53,8 @@
                     var loaded = 0,
                     total = VIDEO.scripts.length,
                     scriptDiv = document.getElementById('wrap_video_scripts');
+                    // remove all child nodes of scriptDiv
+                    utils.removeAllChildNodes(scriptDiv);
                     // for each relative URL
                     VIDEO.scripts.forEach( (scriptRelURL, i) => {
                         var url = videoAPI.pathJoin(vm.$data.filePath, scriptRelURL);
