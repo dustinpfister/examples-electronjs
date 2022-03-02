@@ -23,10 +23,13 @@ VIDEO.init = function(sm, scene, camera){
     });
     scene.add(guy1.group);
     // add HAT to head of guy1 head
+    var hat_canvasObj = GuyCanvas.createCanvasObject(sm);
+    hat_canvasObj.draw({drawClass: 'hat', drawMethod: 'stripes'});
     var hat = new THREE.Mesh(
         new THREE.ConeGeometry(0.80, 1.5),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('red')
+            //color: new THREE.Color('red'),
+            map: hat_canvasObj.texture
         })
     );
     hat.rotation.x = THREE.MathUtils.degToRad(-30);

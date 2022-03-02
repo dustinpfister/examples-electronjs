@@ -39,6 +39,26 @@ var GuyCanvas = (function () {
 
     // draw methods
     var DRAW_METHODS = {};
+
+    // hat draw methods
+    DRAW_METHODS.hat = {};
+
+    DRAW_METHODS.hat.stripes = (ctx, canvas, sm, opt) => {
+        drawBackground(ctx, canvas, 'white');
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 6;
+        var i = 0,
+        len = 6, y;
+        while(i < len){
+            y = canvas.height / len * i;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+            i += 1;
+        }
+    };
+
     // face draw methods
     DRAW_METHODS.face = {};
 
