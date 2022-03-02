@@ -32,7 +32,7 @@ var GuyCanvas = (function () {
         ctx.fillRect(8, 16, 16, 16);
         ctx.fillRect(40, 16, 16, 16);
         // mouth
-        var mw = 25,
+        var mw = 25 - 8 * opt.mouthPer,
         mh = 8 + 8 * opt.mouthPer;
         ctx.fillRect(32 - mw / 2, 40, mw, mh);
     };

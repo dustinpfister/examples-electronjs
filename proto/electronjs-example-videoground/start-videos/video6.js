@@ -46,12 +46,11 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
    var guy1_canvasObj = scene.userData.guy1_canvasObj;
-
-
-var mPer = sm.per * 6 % 1;
-guy1_canvasObj.draw({
-    mouthPer: 1 - Math.abs(0.5 - mPer) / 0.5
-});
+   // update face
+   var mPer = sm.per * 6 % 1;
+   guy1_canvasObj.draw({
+       mouthPer: 1 - Math.abs(0.5 - mPer) / 0.5
+   });
 
    guy1.walk(sm.per, 8);
    guy1.moveHead(0.8 + 0.3 * sm.bias);
