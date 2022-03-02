@@ -14,11 +14,14 @@ VIDEO.init = function(sm, scene, camera){
     // GUY, grass MESH
     // ---------- ----------
     var guy1 = scene.userData.guy1 = new Guy();
-    guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
-        color: new THREE.Color('#efefef')
-    })
 
-    console.log(guy1.head.material[1]);
+    var guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
+    guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
+        //color: new THREE.Color('#efefef'),
+        map:  guy1_canvasObj.texture
+    });
+
+    //console.log(guy1.head.material[1]);
 
     scene.add(guy1.group);
     var grass = new THREE.Mesh(
