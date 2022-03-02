@@ -32,7 +32,8 @@
 <!-- video6.js -->
 * (done) I want to have a crude cone hat for the head of the guy
 * (done) draw eyes helper
-* red and white stripe pattern for hat
+* (done) red and white stripe pattern for hat
+* texture for grass
 
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
