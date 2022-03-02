@@ -21,11 +21,17 @@ var GuyCanvas = (function () {
     // face draw methods
     drawMethod.face = {};
     // plain
-    drawMethod.face.plain = (ctx, canvas, sm) => {
+    drawMethod.face.plain = (ctx, canvas, sm, opt) => {
         drawBackground(ctx, canvas, 'white');
-        
+        // eye and mouth color
         ctx.fillStyle = 'black';
-        ctx.fillRect(0, 0, 8, 8);
+        // eyes
+        ctx.fillRect(8, 16, 16, 16);
+        ctx.fillRect(40, 16, 16, 16);
+        // mouth
+        var mw = 25,
+        mh = 8;
+        ctx.fillRect(32 - mw / 2, 45, mw, mh);
     };
 
     // create and return a canvas texture
@@ -33,8 +39,8 @@ var GuyCanvas = (function () {
         drawFunc = drawFunc || drawMethod.face.plain;
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-        canvas.width = 32;
-        canvas.height = 32;
+        canvas.width = 64;
+        canvas.height = 64;
         var texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
         var canvasObj = {
@@ -42,8 +48,9 @@ var GuyCanvas = (function () {
             canvas: canvas,
             ctx: ctx,
             sm: sm,
-            draw: function(){
-                drawFunc.call(sm, ctx, canvas, sm);
+            draw: function(opt){
+                opt = opt || {};
+                drawFunc.call(sm, ctx, canvas, sm, opt);
                 texture.needsUpdate = true;
             }
         };
