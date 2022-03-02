@@ -62,7 +62,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
    // update face
    var mPer = sm.per * 8 % 1,
    mBias = 1 - Math.abs(0.5 - mPer) / 0.5;
+   // update face canvas
    guy1_canvasObj.draw({
+       drawClass: 'face',
        drawMethod: 'talk',
        mouthPer: mBias,
        leftEyeXPer: mBias, rightEyeXPer: 1 - mBias
