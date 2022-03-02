@@ -46,12 +46,10 @@
             // !!! - #1 - USING EVAL FOR NOW UNTIL I FIGURE OUT SOMTHING BETTER
             eval(text);
             vm.$data.videoJS = text;
-
+            // load any and all dae files first
             loadDAE( () => {
-
+                // load scripts
                 if(VIDEO.scripts){
-
-                    console.log('we have scripts...');
                     var loaded = 0,
                     total = VIDEO.scripts.length; 
                     // for each relative URL
@@ -59,7 +57,6 @@
                         var url = videoAPI.pathJoin(vm.$data.filePath, scriptRelURL);
                         var script = document.createElement('script');
                         script.addEventListener('load', (e) => {
-                            console.log('loaded: ' + scriptRelURL);
                             loaded += 1;
                             if(loaded === total){
                                 sm.setup();
@@ -68,14 +65,11 @@
                         script.src = url;
                         document.body.appendChild(script);
                     });
-
                 }else{
-
+                    // no scripts? then just run setup
                     sm.setup();
                 }
             });
-
-
         }catch(e){
             console.warn(e.message);
         }
