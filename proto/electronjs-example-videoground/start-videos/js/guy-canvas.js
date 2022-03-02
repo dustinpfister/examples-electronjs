@@ -16,20 +16,25 @@ var GuyCanvas = (function () {
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
     };
 
-    var drawEye = function(ctx, x, y){
+    var drawEye = function(ctx, x, y, xPer, yPer){
+        xPer = xPer === undefined ? 0.5 : xPer;
+        yPer = yPer === undefined ? 0.5 : yPer;
         ctx.fillStyle = 'black';
         // base eye area
         ctx.fillRect(x, y, 16, 16);
+        var dx = 8 * xPer,
+        dy = 8 * yPer;
+        // eye color
+        ctx.fillStyle = '#00ffff';
+        ctx.fillRect(x + dx, y + dy, 8, 8);
         // pupils
-        ctx.fillStyle = '#884400';
-        ctx.fillRect(x + 5, y + 5, 8, 8);
         ctx.fillStyle = 'black';
-        ctx.fillRect(x + 7, y + 7, 4, 4);
+        ctx.fillRect(x + dx + 2, y + dy + 2, 4, 4);
     };
 
     var drawGuyEyes = function(ctx, canvas, sm, opt){
-        drawEye(ctx, 8, 16);
-        drawEye(ctx, 40, 16);
+        drawEye(ctx, 8, 16, opt.leftEyeXPer, opt.leftEyeYPer);
+        drawEye(ctx, 40, 16, opt.rightEyeXPer, opt.rightEyeYPer);
     };
 
     // draw methods
