@@ -50,17 +50,24 @@
             loadDAE( () => {
 
                 if(VIDEO.scripts){
-                    console.log('we have scripts...');
 
-                    var url = videoAPI.pathJoin(vm.$data.filePath, VIDEO.scripts[0]);
-                    console.log(url);
-                    var script = document.createElement('script');
-                    script.addEventListener('load', (e) => {
-                        console.log('loaded');
-                        sm.setup();
+                    console.log('we have scripts...');
+                    var loaded = 0,
+                    total = VIDEO.scripts.length; 
+                    // for each relative URL
+                    VIDEO.scripts.forEach( (scriptRelURL, i) => {
+                        var url = videoAPI.pathJoin(vm.$data.filePath, scriptRelURL);
+                        var script = document.createElement('script');
+                        script.addEventListener('load', (e) => {
+                            console.log('loaded: ' + scriptRelURL);
+                            loaded += 1;
+                            if(loaded === total){
+                                sm.setup();
+                            }
+                        });
+                        script.src = url;
+                        document.body.appendChild(script);
                     });
-                    script.src = url;
-                    document.body.appendChild(script);
 
                 }else{
 

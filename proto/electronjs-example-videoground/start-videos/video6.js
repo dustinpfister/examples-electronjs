@@ -1,6 +1,7 @@
 // using guy.js
 VIDEO.scripts = [
-  './js/guy.js'
+  './js/guy.js',
+  './js/guy-canvas.js'
 ];
 // init method for the video
 VIDEO.init = function(sm, scene, camera){

@@ -24,7 +24,7 @@
 * (done) see about using this new system to load my old guy.js module
 * (done) use guy model in video6.js
 
-* start a guy-canvas.js javascript file that will be used to skin a mesh with canvas elements
+* (done) start a guy-canvas.js javascript file that will be used to skin a mesh with canvas elements
 * make changes to client so that I can load more than one script
 * use guy.js and guy-canvas.js in video6.js
 
