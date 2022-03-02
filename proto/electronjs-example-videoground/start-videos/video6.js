@@ -25,26 +25,20 @@ VIDEO.init = function(sm, scene, camera){
     // add HAT to head of guy1 head
     var hat_canvasObj = GuyCanvas.createCanvasObject(sm);
     hat_canvasObj.draw({drawClass: 'hat', drawMethod: 'stripes'});
+    var hatMaterial = new THREE.MeshStandardMaterial({
+        map: hat_canvasObj.texture
+    });
     var hat = new THREE.Mesh(
         new THREE.ConeGeometry(0.80, 1.5),
-        new THREE.MeshStandardMaterial({
-            //color: new THREE.Color('red'),
-            map: hat_canvasObj.texture
-        })
+        hatMaterial
     );
     hat.rotation.x = THREE.MathUtils.degToRad(-30);
     hat.position.set(0, 0.83 ,-0.6)
     guy1.head.add(hat);
     // using hat texture for body
-    guy1.body.material = new THREE.MeshStandardMaterial({ 
-        map:  hat_canvasObj.texture
-    });
-    guy1.arm_right.material = new THREE.MeshStandardMaterial({ 
-        map:  hat_canvasObj.texture
-    });
-    guy1.arm_left.material = new THREE.MeshStandardMaterial({ 
-        map:  hat_canvasObj.texture
-    });
+    guy1.body.material = hatMaterial;
+    guy1.arm_right.material = hatMaterial;
+    guy1.arm_left.material = hatMaterial;
     // grass
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
