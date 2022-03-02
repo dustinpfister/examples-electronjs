@@ -14,7 +14,12 @@ VIDEO.init = function(sm, scene, camera){
     // GUY, grass MESH
     // ---------- ----------
     var guy1 = scene.userData.guy1 = new Guy();
-    guy1.group.position.set(0,4,0);
+    guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
+        color: new THREE.Color('#efefef')
+    })
+
+    console.log(guy1.head.material[1]);
+
     scene.add(guy1.group);
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(25, 1, 25),
