@@ -17,12 +17,8 @@ VIDEO.init = function(sm, scene, camera){
 
     var guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
     guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
-        //color: new THREE.Color('#efefef'),
         map:  guy1_canvasObj.texture
     });
-
-    //console.log(guy1.head.material[1]);
-
     scene.add(guy1.group);
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
@@ -50,7 +46,7 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
    guy1.walk(sm.per, 4);
-   guy1.moveHead(0.90 - 0.10 * sm.bias);
+   guy1.moveHead(0.8 + 0.3 * sm.bias);
 
    guy1.group.position.set(-8 + 16 * sm.per, 4, 0)
    guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
