@@ -8,8 +8,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // CAMERA, GRID HELPER
     // ---------- ----------
-    camera.position.set(12, 12, 12);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(8, 8, 8);
     scene.add(new THREE.GridHelper(8, 8));
     // ---------- ----------
     // GUY, grass MESH
@@ -43,6 +42,11 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
    guy1.walk(sm.per, 4);
-   guy1.moveHead(0.25 * sm.bias);
+   guy1.moveHead(1 - 0.125 * sm.bias);
+
+   guy1.group.position.set(-8 + 16 * sm.per, 4, 0)
+   guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
+
+   camera.lookAt(guy1.group.position);
 };
 
