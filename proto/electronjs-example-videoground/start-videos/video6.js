@@ -15,7 +15,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     var guy1 = scene.userData.guy1 = new Guy();
 
-    var guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
+    var guy1_canvasObj = scene.userData.guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
     guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
         map:  guy1_canvasObj.texture
     });
@@ -45,12 +45,18 @@ VIDEO.init = function(sm, scene, camera){
 // update method for the video
 VIDEO.update = function(sm, scene, camera, per, bias){
    var guy1 = scene.userData.guy1;
-   guy1.walk(sm.per, 16);
+   var guy1_canvasObj = scene.userData.guy1_canvasObj;
+
+
+var mPer = sm.per * 6 % 1;
+guy1_canvasObj.draw({
+    mouthPer: 1 - Math.abs(0.5 - mPer) / 0.5
+});
+
+   guy1.walk(sm.per, 8);
    guy1.moveHead(0.8 + 0.3 * sm.bias);
-
-   guy1.group.position.set(-16 + 32 * sm.per, 4, 0)
+   guy1.group.position.set(-4 + 8 * sm.per, 4, 0)
    guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
-
    camera.lookAt(guy1.group.position);
 };
 

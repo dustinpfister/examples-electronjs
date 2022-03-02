@@ -20,8 +20,11 @@ var GuyCanvas = (function () {
     var drawMethod = {};
     // face draw methods
     drawMethod.face = {};
-    // plain
+    // plain face
     drawMethod.face.plain = (ctx, canvas, sm, opt) => {
+        // mouth percent option
+        opt.mouthPer = opt.mouthPer === undefined ? 0 : opt.mouthPer;
+        // solid color background
         drawBackground(ctx, canvas, 'white');
         // eye and mouth color
         ctx.fillStyle = 'black';
@@ -30,8 +33,8 @@ var GuyCanvas = (function () {
         ctx.fillRect(40, 16, 16, 16);
         // mouth
         var mw = 25,
-        mh = 8;
-        ctx.fillRect(32 - mw / 2, 45, mw, mh);
+        mh = 8 + 8 * opt.mouthPer;
+        ctx.fillRect(32 - mw / 2, 40, mw, mh);
     };
 
     // create and return a canvas texture
