@@ -12,8 +12,24 @@ var GuyCanvas = (function () {
     };
     // just draw a solid color background
     var drawBackground = (ctx, canvas, style) => {
-        ctx.fillStyle = style || 'white';
+        ctx.fillStyle = style || 'gray';
         ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
+    };
+
+    var drawEye = function(ctx, x, y){
+        ctx.fillStyle = 'black';
+        // base eye area
+        ctx.fillRect(x, y, 16, 16);
+        // pupils
+        ctx.fillStyle = '#884400';
+        ctx.fillRect(x + 5, y + 5, 8, 8);
+        ctx.fillStyle = 'black';
+        ctx.fillRect(x + 7, y + 7, 4, 4);
+    };
+
+    var drawGuyEyes = function(ctx, canvas, sm, opt){
+        drawEye(ctx, 8, 16);
+        drawEye(ctx, 40, 16);
     };
 
     // draw methods
@@ -26,12 +42,10 @@ var GuyCanvas = (function () {
         opt.mouthPer = opt.mouthPer === undefined ? 0 : opt.mouthPer;
         // solid color background
         drawBackground(ctx, canvas, 'white');
-        // eye and mouth color
-        ctx.fillStyle = 'black';
         // eyes
-        ctx.fillRect(8, 16, 16, 16);
-        ctx.fillRect(40, 16, 16, 16);
+        drawGuyEyes(ctx, canvas, sm, opt);
         // mouth
+        ctx.fillStyle = 'black';
         var mw = 25,
         mh = 8;
         ctx.fillRect(32 - mw / 2, 40, mw, mh);
@@ -44,13 +58,7 @@ var GuyCanvas = (function () {
         // solid color background
         drawBackground(ctx, canvas, 'white');
         // eye and mouth color
-        ctx.fillStyle = 'black';
-        // eyes
-        ctx.fillRect(8, 16, 16, 16);
-        ctx.fillRect(40, 16, 16, 16);
-        ctx.fillStyle = 'red';
-        ctx.fillRect(8 + 5, 16 + 5, 6, 6);
-        ctx.fillRect(40 + 5, 16 + 5, 6, 6);
+        drawGuyEyes(ctx, canvas, sm, opt); 
         // mouth
         ctx.fillStyle = 'black';
         var mw = 25 - 8 * opt.mouthPer,
