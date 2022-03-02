@@ -1,65 +1,56 @@
-var GuyCanvas = (function () {
+// using guy.js
+VIDEO.scripts = [
+  './js/guy.js',
+  './js/guy-canvas.js'
+];
+// init method for the video
+VIDEO.init = function(sm, scene, camera){
+    // ---------- ----------
+    // CAMERA, GRID HELPER
+    // ---------- ----------
+    camera.position.set(8, 8, 8);
+    scene.add(new THREE.GridHelper(8, 8));
+    // ---------- ----------
+    // GUY, grass MESH
+    // ---------- ----------
+    var guy1 = scene.userData.guy1 = new Guy();
 
-    var api = {};
+    var guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
+    guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
+        map:  guy1_canvasObj.texture
+    });
+    scene.add(guy1.group);
+    var grass = new THREE.Mesh(
+        new THREE.BoxGeometry(55, 1, 55),
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('#008800')
+        })
+    );
+    scene.add(grass);
+    // ---------- ----------
+    // SPOTLIGHT
+    // ---------- ----------
+    var color = new THREE.Color('white'),
+    intensity = 1,
+    distance = 30,
+    angle = Math.PI * 0.15,
+    penumbra = 0.5,
+    decay = 0.75;
+    var spotLight = scene.userData.spotlight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
+    spotLight.position.set(10, 10, 0);
+    spotLight.target = guy1.group;
+    scene.add(spotLight);
+    scene.add( new THREE.AmbientLight(0xffffff, 0.1));
+};
+// update method for the video
+VIDEO.update = function(sm, scene, camera, per, bias){
+   var guy1 = scene.userData.guy1;
+   guy1.walk(sm.per, 16);
+   guy1.moveHead(0.8 + 0.3 * sm.bias);
 
-    // a default draw method for a canvas object
-    var DRAW_DEFAULT = function (ctx, canvas, state) {
-        ctx.fillStyle = '#000000';
-        ctx.lineWidth = 1;
-        ctx.fillRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-        ctx.strokeStyle = '#00ff00';
-        ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
-    };
-    // just draw a solid color background
-    var drawBackground = (ctx, canvas, style) => {
-        ctx.fillStyle = style || 'white';
-        ctx.fillRect(-1, -1, canvas.width + 2, canvas.height + 2);
-    };
+   guy1.group.position.set(-16 + 32 * sm.per, 4, 0)
+   guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
 
-    // draw methods
-    var drawMethod = {};
-    // face draw methods
-    drawMethod.face = {};
-    // plain
-    drawMethod.face.plain = (ctx, canvas, sm, opt) => {
-        drawBackground(ctx, canvas, 'white');
-        // eye and mouth color
-        ctx.fillStyle = 'black';
-        // eyes
-        ctx.fillRect(8, 16, 16, 16);
-        ctx.fillRect(40, 16, 16, 16);
-        // mouth
-        var mw = 25,
-        mh = 8;
-        ctx.fillRect(32 - mw / 2, 45, mw, mh);
-    };
+   camera.lookAt(guy1.group.position);
+};
 
-    // create and return a canvas texture
-    api.createCanvasObject = function (sm, drawFunc) {
-        drawFunc = drawFunc || drawMethod.face.plain;
-        var canvas = document.createElement('canvas'),
-        ctx = canvas.getContext('2d');
-        canvas.width = 64;
-        canvas.height = 64;
-        var texture = new THREE.Texture(canvas);
-        texture.needsUpdate = true;
-        var canvasObj = {
-            texture: texture,
-            canvas: canvas,
-            ctx: ctx,
-            sm: sm,
-            draw: function(opt){
-                opt = opt || {};
-                drawFunc.call(sm, ctx, canvas, sm, opt);
-                texture.needsUpdate = true;
-            }
-        };
-        canvasObj.draw();
-        return canvasObj;
-    };
-
-    return api;
-
-
-}
-    ());
