@@ -11,15 +11,25 @@ VIDEO.init = function(sm, scene, camera){
     camera.position.set(8, 8, 8);
     scene.background = new THREE.Color('#1a2f2f');
     // ---------- ----------
-    // GUY, grass MESH
+    // MESH OBJECTS
     // ---------- ----------
+    // guy1 object with all mesh objects
     var guy1 = scene.userData.guy1 = new Guy();
-
+    // guy1 canvas obj
     var guy1_canvasObj = scene.userData.guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
     guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
         map:  guy1_canvasObj.texture
     });
     scene.add(guy1.group);
+    // add HAT to head of guy1 head
+    var hat = new THREE.Mesh(
+        new THREE.ConeGeometry(0.7, 1.25),
+        new THREE.MeshStandardMaterial()
+    );
+    hat.rotation.x = THREE.MathUtils.degToRad(-20);
+    hat.position.y = 1.125;
+    guy1.head.add(hat);
+    // grass
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
         new THREE.MeshStandardMaterial({
