@@ -30,7 +30,8 @@
 * (done) guy-canvas should create a canvas that is a sprite sheet of faces
 * (done) use guy.js and guy-canvas.js in video6.js
 <!-- video6.js -->
-* I want to have a crude cone hat for the head of the guy
+* (done) I want to have a crude cone hat for the head of the guy
+* red and white stripe pattern for hat
 
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
