@@ -100,17 +100,17 @@ VIDEO.update = function(sm, scene, camera, per, bias){
        mouthPer: mBias,
        leftEyeXPer: mBias, rightEyeXPer: 1 - mBias
    });
+   // move legs
    guy1.moveLegs(sm.per, 16);
-   //guy1.walk(sm.per, 16);
-   //guy1.moveArms(sm.per, 8);
-   var swingPer = sm.per * 8 % 1,
+   // move arms
+   var swingPer = sm.per * 4 % 1,
    swingBias = 1 - Math.abs(0.5 - swingPer) / 0.5,
-   swing = 0.125 - 0.25 * swingBias;
-
-   guy1.moveArm('arm_left', swing, 0.5);
-   guy1.moveArm('arm_right', swing, 0.5);
-
+   swing = -0.25 + 0.25 * swingBias;
+   guy1.moveArm('arm_left', swing, 0.75);
+   guy1.moveArm('arm_right', swing, 0.75);
+   // move head
    guy1.moveHead(0.9 + 0.2 * sm.bias);
+   // over all position and heading of guy
    guy1.group.position.set(-8 + 16 * sm.per, 4, 10 * sm.bias);
    guy1.group.lookAt(100, 10 - 80 * sm.bias, 200 * sm.bias);
 
