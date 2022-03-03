@@ -8,8 +8,8 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // CAMERA, GRID HELPER
     // ---------- ----------
-    camera.position.set(50, 50, 50);
-    //camera.position.set(8, 8, 8);
+    //camera.position.set(50, 50, 50);
+    camera.position.set(8, 8, 8);
     scene.background = new THREE.Color('#1a2f2f');
     // ---------- ----------
     // MESH OBJECTS
@@ -45,15 +45,16 @@ VIDEO.init = function(sm, scene, camera){
            random: function(ctx, canvas, sm, opt){
                ctx.fillStyle = 'lime';
                ctx.fillRect(-1, -1, canvas.width, canvas.height);
-               var s = Math.floor(canvas.width / 10), 
-               w = s,
-               h = s,
+               var w = 60,
+               h = 60,
+               pxW = canvas.width / w,
+               pxH = canvas.height / h, 
                i = w * h, x, y;
                while(i--){
                    x = i % w;
                    y = Math.floor(i / w);
-                   ctx.fillStyle = 'rgb(0,' + Math.floor( Math.random() * 255 ) + ',0)';
-                   ctx.fillRect(x * s, y * s, s, s);
+                   ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
+                   ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
                }
            }
        }
