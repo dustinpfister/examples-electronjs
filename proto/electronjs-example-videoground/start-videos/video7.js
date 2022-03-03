@@ -87,7 +87,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
    });
    guy1.walk(sm.per, 16);
    guy1.moveHead(0.9 + 0.2 * sm.bias);
-   guy1.group.position.set(-8 + 16 * sm.per, 4, 0);
+   guy1.group.position.set(-8 + 16 * sm.per, 4, 10 * sm.bias);
    guy1.group.lookAt(100, 10 - 80 * sm.bias, 200 * sm.bias);
 
    var v = new THREE.Vector3();
