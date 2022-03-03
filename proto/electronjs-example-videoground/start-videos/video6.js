@@ -10,7 +10,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     //camera.position.set(50, 50, 50);
     camera.position.set(8, 8, 8);
-    scene.background = new THREE.Color('#1a2f2f');
+    scene.background = new THREE.Color('#008f8f');
     // ---------- ----------
     // MESH OBJECTS
     // ---------- ----------
