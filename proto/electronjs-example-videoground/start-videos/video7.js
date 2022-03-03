@@ -15,7 +15,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     //scene.background = new THREE.Color('#008f8f');
     var bg_canvasObj = CanvasMod.createCanvasObject(sm);
-    bg_canvasObj.draw({drawMethod: 'randomGrid', gRange:[32,64], bRange:[128, 200]})
+    bg_canvasObj.draw({drawMethod: 'randomGrid', gRange:[32,64], bRange:[128, 200]});
     scene.background = bg_canvasObj.texture;
     // ---------- ----------
     // GUY1 OBJECT
@@ -53,6 +53,12 @@ VIDEO.init = function(sm, scene, camera){
     obj.position.set(-18, 11, -6);
     obj.rotation.x = Math.PI * 1.5;
     obj.rotation.z = -2.2;
+    //var obj_canvasObj = CanvasMod.createCanvasObject(sm);
+    //obj_canvasObj.draw({drawMethod: 'randomGrid', gridWidth: 10, gridHeight: 10,rRange:[0, 200], gRange:[0, 0]});
+    obj.material = new THREE.MeshStandardMaterial({
+        //map: obj_canvasObj.texture
+        color: new THREE.Color('#ffaa00')
+    });
     scene.add(obj);
     // ---------- ----------
     // GRASS
