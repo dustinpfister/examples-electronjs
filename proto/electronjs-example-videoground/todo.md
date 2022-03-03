@@ -20,7 +20,7 @@
 <!-- video6 -->
 * update video6 as needed, fixing any code breaking changes
 
-## () - r2 - Scripts
+## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
 <!-- scripts -->
 * (done) start a video6 start video that will be the first to use scripts
@@ -39,8 +39,7 @@
 * (done) I want to have a crude cone hat for the head of the guy
 * (done) draw eyes helper
 * (done) red and white stripe pattern for hat
-* texture for grass
-
+* (done) texture for grass
 
 ## ( done 02/28/2022 ) - r1 - DAE Files
 * (done) set 0.1.0 for version in package.json
