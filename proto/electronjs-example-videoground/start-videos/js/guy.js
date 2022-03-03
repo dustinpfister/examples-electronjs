@@ -51,8 +51,8 @@ var Guy = (function () {
                 new THREE.BoxGeometry(.5, 1.5, .5),
                 material_arm);
         this.arm_right.geometry.translate(0,  - .5, 0);
-        this.arm_right.position.x = 1;
-        this.arm_right.position.y = .75;
+        this.arm_right.position.x = 0.85;
+        this.arm_right.position.y = 0.75;
         this.arm_right.castShadow = true;
         this.group.add(this.arm_right);
         // LEFT ARM
@@ -60,8 +60,8 @@ var Guy = (function () {
                 new THREE.BoxGeometry(.5, 1.5, .5),
                 material_arm);
         this.arm_left.geometry.translate(0,  - .5, 0);
-        this.arm_left.position.x = -1;
-        this.arm_left.position.y = .75;
+        this.arm_left.position.x = -0.85;
+        this.arm_left.position.y = 0.75;
         this.arm_left.castShadow = true;
         this.group.add(this.arm_left);
         // RIGHT LEG
