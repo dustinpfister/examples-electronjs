@@ -9,28 +9,29 @@
 * ( fixed in r2 ) - #5 - script tags keep being added each time a video is loaded
 
 ## () - r3 - Sequences
-<!-- sequences -->
-* Start a system that involves updating the state of a scene with sequences
 <!-- canvas.js -->
 * (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
 * (done) def draw method class built into the module
 * (done) a def.stripes method
 * (done) start a def.randomGrid methiod
-* color chanel range options for def.randomGrid
+* (done) color chanel range options for def.randomGrid
 <!-- guy-canvas.js -->
 * (done) remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
+<!-- video6 -->
+* (done) update video6 as needed, fixing any code breaking changes
+<!-- guy.js -->
+* (done) reduce spacing between arms and body
+* (done) Add a moveArms method and use that in the walk method
 <!-- video7 -->
 * (done) start a new video7 start video that will make use of all features thus far
 * (done) use at least one dae file in video7
 * (done) use guy.js script
 * (done) use guy-canvas.js
 * (done) use canvas.js
-* tweek color range for grass
-<!-- video6 -->
-* update video6 as needed, fixing any code breaking changes
-<!-- guy.js -->
-* (done) reduce spacing between arms and body
-* (done) Add a moveArms method and use that in the walk method
+* (done) tweek color range for grass
+<!-- sequences -->
+* Start a system that involves updating the state of a scene with sequences
+
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
