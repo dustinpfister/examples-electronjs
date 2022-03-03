@@ -57,7 +57,8 @@ VIDEO.init = function(sm, scene, camera){
     var grass_canvasObj = CanvasMod.createCanvasObject(sm);
     grass_canvasObj.draw({
         drawClass: 'def', drawMethod: 'randomGrid',
-        gridWidth: 15, gridHeight: 15
+        gridWidth: 25, gridHeight: 25,
+        gRange: [100, 220], bRange: [32, 100]
     });
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),

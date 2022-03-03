@@ -28,17 +28,26 @@ var CanvasMod = (function () {
             i += 1;
         }
     };
-    // random grid
+    // random color grid
+    var rndRange = function(range){
+        return Math.floor( range[0] + Math.random() * (range[1] - range[0]) );
+    };
     DRAW_METHODS.def.randomGrid = (ctx, canvas, sm, opt) => {
         var w = opt.gridWidth === undefined ? 60 : opt.gridWidth,
         h = w = opt.gridHeight === undefined ? 60 : opt.gridHeight,
         pxW = canvas.width / w,
         pxH = canvas.height / h, 
-        i = w * h, x, y;
+        i = w * h, x, y, r, g, b;
+        opt.rRange = opt.rRange || [0, 0];
+        opt.gRange = opt.gRange || [64, 180];
+        opt.bRange = opt.bRange || [0, 0];
         while(i--){
             x = i % w;
             y = Math.floor(i / w);
-            ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
+            r = rndRange(opt.rRange)
+            g = rndRange(opt.gRange);
+            b = rndRange(opt.bRange);
+            ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
             ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
         }
     };
