@@ -100,11 +100,14 @@ var Guy = (function () {
     };
     // move legs in respect to a walk cycle
     // where per is between 0, and 1.
-    Guy.prototype.moveLegs = function (per) {
+    Guy.prototype.moveLegs = function (per, swings) {
+        per = per === undefined ? 0 : per;
+        swings = swings === undefined ? 1 : swings;
+        per = per * swings;
         per %= 1;
-        var bias = Math.abs(.5 - per) / .5;
-        this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
-        this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
+        var bias = Math.abs(0.5 - per) / 0.5;
+        this.leg_left.rotation.set(0.75 - bias * 1.5, 0, 0);
+        this.leg_right.rotation.set( -0.75 + bias * 1.5, 0, 0);
     };
     // move arms togetaher
     Guy.prototype.moveArms = function (per, swings) {
@@ -121,10 +124,8 @@ var Guy = (function () {
         swings = swings === undefined ? 1 : swings;
         var r = Math.PI * 2 * per;
         var armPer = Math.cos(r * swings) + 1 / 2;
-       // this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
-       // this.moveArm('arm_left', .1 - .2 * armPer, 0);
         this.moveArms(per, swings);
-        this.moveLegs(per * swings);
+        this.moveLegs(per, swings);
     };
     // just return an instance of guy for now
     return Guy;
