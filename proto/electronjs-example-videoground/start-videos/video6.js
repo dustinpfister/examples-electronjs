@@ -6,10 +6,8 @@ VIDEO.scripts = [
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
-    // CAMERA, GRID HELPER
+    // SCENE
     // ---------- ----------
-    //camera.position.set(50, 50, 50);
-    camera.position.set(7, 7, 7);
     scene.background = new THREE.Color('#008f8f');
     // ---------- ----------
     // MESH OBJECTS
@@ -70,25 +68,11 @@ VIDEO.init = function(sm, scene, camera){
     );
     scene.add(grass);
     // ---------- ----------
-    // SPOTLIGHT
+    // LIGHT
     // ---------- ----------
-/*
-    var color = new THREE.Color('white'),
-    intensity = 1,
-    distance = 30,
-    angle = Math.PI * 0.15,
-    penumbra = 0.5,
-    decay = 0.75;
-    var spotLight = scene.userData.spotlight = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
-    spotLight.position.set(10, 10, 0);
-    spotLight.target = guy1.group;
-    scene.add(spotLight);
-*/
     var light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(100,100, 0)
     scene.add(light)
-
-
     scene.add( new THREE.AmbientLight(0xffffff, 0.1));
 };
 // update method for the video
@@ -107,13 +91,11 @@ VIDEO.update = function(sm, scene, camera, per, bias){
    });
    guy1.walk(sm.per, 16);
    guy1.moveHead(0.8 + 0.05 * sm.bias);
-   //guy1.moveHead(sm.per * 2 % 1);
    guy1.group.position.set(-8 + 16 * sm.per, 4, 0);
    guy1.group.rotation.y = 1.57;
-   //guy1.group.rotation.y = 1.57 + 0.75 - 1.5 * sm.bias;
 
 
-   //camera.position.set(8 + 4 * sm.per, 8, 10 - 4 * sm.per);
+   camera.position.set(10 - 25 * sm.per, 8, 10);
    camera.lookAt(guy1.group.position);
 };
 
