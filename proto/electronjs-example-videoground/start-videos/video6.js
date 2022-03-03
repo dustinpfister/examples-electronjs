@@ -9,7 +9,7 @@ VIDEO.init = function(sm, scene, camera){
     // CAMERA, GRID HELPER
     // ---------- ----------
     //camera.position.set(50, 50, 50);
-    camera.position.set(8, 8, 8);
+    camera.position.set(7, 7, 7);
     scene.background = new THREE.Color('#008f8f');
     // ---------- ----------
     // MESH OBJECTS
@@ -72,6 +72,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // SPOTLIGHT
     // ---------- ----------
+/*
     var color = new THREE.Color('white'),
     intensity = 1,
     distance = 30,
@@ -82,6 +83,12 @@ VIDEO.init = function(sm, scene, camera){
     spotLight.position.set(10, 10, 0);
     spotLight.target = guy1.group;
     scene.add(spotLight);
+*/
+    var light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(100,100, 0)
+    scene.add(light)
+
+
     scene.add( new THREE.AmbientLight(0xffffff, 0.1));
 };
 // update method for the video
