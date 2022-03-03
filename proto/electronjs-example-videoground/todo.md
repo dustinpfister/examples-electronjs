@@ -16,7 +16,11 @@
 <!-- guy-canvas.js -->
 * remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
 <!-- video7 -->
-* start a new video7 start video that will make use of these new features
+* (done) start a new video7 start video that will make use of all features thus far
+* (done) use at least one dae file in video7
+* (done) use guy.js script
+* (done) use guy-canvas.js
+* use canvas.js
 <!-- video6 -->
 * update video6 as needed, fixing any code breaking changes
 
