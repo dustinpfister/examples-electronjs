@@ -1,4 +1,8 @@
-// using guy.js
+// one dae file of the box house
+VIDEO.daePaths = [
+  './dae/box-house/box_house1.dae'
+];
+// using guy scripts
 VIDEO.scripts = [
   './js/guy.js',
   './js/guy-canvas.js'
@@ -10,7 +14,7 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     scene.background = new THREE.Color('#008f8f');
     // ---------- ----------
-    // MESH OBJECTS
+    // GUY1 OBJECT
     // ---------- ----------
     // guy1 object with all mesh objects
     var guy1 = scene.userData.guy1 = new Guy();
@@ -37,7 +41,18 @@ VIDEO.init = function(sm, scene, camera){
     guy1.body.material = hatMaterial;
     guy1.arm_right.material = hatMaterial;
     guy1.arm_left.material = hatMaterial;
+    // ---------- ----------
+    // BOX HOUSE
+    // ---------- ----------
+    let obj = utils.DAE.getMesh( VIDEO.daeResults[0] );
+    obj.scale.set(1.5, 1.5, 1.5);
+    obj.position.set(-18, 11, -6);
+    obj.rotation.x = Math.PI * 1.5;
+    obj.rotation.z = -2.2;
+    scene.add(obj);
+    // ---------- ----------
     // GRASS
+    // ---------- ----------
     var grass_canvasObj = GuyCanvas.createCanvasObject(sm, {
        grass: {
            random: function(ctx, canvas, sm, opt){
