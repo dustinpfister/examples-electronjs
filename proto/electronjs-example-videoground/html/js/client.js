@@ -6,7 +6,7 @@
     // SCENE, CAMERA, and RENDERER
     // ********** **********
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 100);
+    var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 1000);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer(),
