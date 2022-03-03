@@ -18,7 +18,7 @@
 * (done) start a def.randomGrid methiod
 * color chanel range options for def.randomGrid
 <!-- guy-canvas.js -->
-* remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
+* (done) remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
 <!-- video7 -->
 * (done) start a new video7 start video that will make use of all features thus far
 * (done) use at least one dae file in video7

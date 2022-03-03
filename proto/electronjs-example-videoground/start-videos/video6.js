@@ -1,5 +1,6 @@
 // using guy.js
 VIDEO.scripts = [
+  './js/canvas.js',
   './js/guy.js',
   './js/guy-canvas.js'
 ];
@@ -15,13 +16,13 @@ VIDEO.init = function(sm, scene, camera){
     // guy1 object with all mesh objects
     var guy1 = scene.userData.guy1 = new Guy();
     // guy1 canvas obj
-    var guy1_canvasObj = scene.userData.guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
+    var guy1_canvasObj = scene.userData.guy1_canvasObj = CanvasMod.createCanvasObject(sm, GuyCanvasMethods);
     guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
         map:  guy1_canvasObj.texture
     });
     scene.add(guy1.group);
     // HAT for head of guy1 head
-    var hat_canvasObj = GuyCanvas.createCanvasObject(sm);
+    var hat_canvasObj = CanvasMod.createCanvasObject(sm, GuyCanvasMethods);
     hat_canvasObj.draw({drawClass: 'hat', drawMethod: 'stripes'});
     var hatMaterial = new THREE.MeshStandardMaterial({
         map: hat_canvasObj.texture
@@ -38,26 +39,8 @@ VIDEO.init = function(sm, scene, camera){
     guy1.arm_right.material = hatMaterial;
     guy1.arm_left.material = hatMaterial;
     // GRASS
-    var grass_canvasObj = GuyCanvas.createCanvasObject(sm, {
-       grass: {
-           random: function(ctx, canvas, sm, opt){
-               ctx.fillStyle = 'lime';
-               ctx.fillRect(-1, -1, canvas.width, canvas.height);
-               var w = 60,
-               h = 60,
-               pxW = canvas.width / w,
-               pxH = canvas.height / h, 
-               i = w * h, x, y;
-               while(i--){
-                   x = i % w;
-                   y = Math.floor(i / w);
-                   ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
-                   ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
-               }
-           }
-       }
-    });
-    grass_canvasObj.draw({drawClass: 'grass', drawMethod: 'random'});
+    var grass_canvasObj = CanvasMod.createCanvasObject(sm);
+    grass_canvasObj.draw({drawClass: 'def', drawMethod: 'randomGrid'});
 
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
