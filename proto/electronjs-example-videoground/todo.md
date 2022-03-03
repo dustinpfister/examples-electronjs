@@ -12,7 +12,11 @@
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
 <!-- canvas.js -->
-* start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
+* (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
+* (done) def draw method class built into the module
+* (done) a def.stripes method
+* (done) start a def.randomGrid methiod
+* color chanel range options for def.randomGrid
 <!-- guy-canvas.js -->
 * remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
 <!-- video7 -->
@@ -20,7 +24,7 @@
 * (done) use at least one dae file in video7
 * (done) use guy.js script
 * (done) use guy-canvas.js
-* use canvas.js
+* (done) use canvas.js
 <!-- video6 -->
 * update video6 as needed, fixing any code breaking changes
 <!-- guy.js -->

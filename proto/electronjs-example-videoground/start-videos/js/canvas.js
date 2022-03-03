@@ -10,10 +10,8 @@ var CanvasMod = (function () {
 
     // draw methods
     var DRAW_METHODS = {};
-
     // hat draw methods
     DRAW_METHODS.def = {};
-
     // scripts default draw method
     DRAW_METHODS.def.stripes = (ctx, canvas, sm, opt) => {
         drawBackground(ctx, canvas, 'white');
@@ -31,17 +29,17 @@ var CanvasMod = (function () {
         }
     };
     DRAW_METHODS.def.randomGrid = (ctx, canvas, sm, opt) => {
-               var w = 60,
-               h = 60,
-               pxW = canvas.width / w,
-               pxH = canvas.height / h, 
-               i = w * h, x, y;
-               while(i--){
-                   x = i % w;
-                   y = Math.floor(i / w);
-                   ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
-                   ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
-               }
+        var w = 60,
+        h = 60,
+        pxW = canvas.width / w,
+        pxH = canvas.height / h, 
+        i = w * h, x, y;
+        while(i--){
+            x = i % w;
+            y = Math.floor(i / w);
+            ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
+            ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
+        }
     };
     // create and return a canvas texture
     api.createCanvasObject = function (sm, drawMethods) {
