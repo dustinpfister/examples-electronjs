@@ -11,8 +11,14 @@
 ## () - r3 - Sequences
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
-<!-- misc -->
-* see about fixing bug #5 by removing all script tags that might have been loaded before
+<!-- canvas.js -->
+* start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
+<!-- guy-canvas.js -->
+* remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
+<!-- video7 -->
+* start a new video7 start video that will make use of these new features
+<!-- video6 -->
+* update video6 as needed, fixing any code breaking changes
 
 ## () - r2 - Scripts
 * (done) set 0.2.0 for package.json
