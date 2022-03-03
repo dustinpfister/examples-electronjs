@@ -81,7 +81,7 @@
     // ********** **********
     // LOAD STARTING VIDEO FILE
     // ********** **********
-    var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video6.js' );
+    var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video7.js' );
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         vm.$data.filePath = videoAPI.pathDirname(filePath);
         if(e){
