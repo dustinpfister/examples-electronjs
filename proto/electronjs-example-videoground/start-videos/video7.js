@@ -20,13 +20,13 @@ VIDEO.init = function(sm, scene, camera){
     // guy1 object with all mesh objects
     var guy1 = scene.userData.guy1 = new Guy();
     // guy1 canvas obj
-    var guy1_canvasObj = scene.userData.guy1_canvasObj = GuyCanvas.createCanvasObject(sm);
+    var guy1_canvasObj = scene.userData.guy1_canvasObj = CanvasMod.createCanvasObject(sm, GuyCanvasMethods);
     guy1.head.material[1] = guy1.head.material[1] = new THREE.MeshStandardMaterial({ 
         map:  guy1_canvasObj.texture
     });
     scene.add(guy1.group);
     // HAT for head of guy1 head
-    var hat_canvasObj = GuyCanvas.createCanvasObject(sm);
+    var hat_canvasObj = CanvasMod.createCanvasObject(sm, GuyCanvasMethods);
     hat_canvasObj.draw({drawClass: 'hat', drawMethod: 'stripes'});
     var hatMaterial = new THREE.MeshStandardMaterial({
         map: hat_canvasObj.texture
