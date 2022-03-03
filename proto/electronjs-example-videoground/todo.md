@@ -25,7 +25,7 @@
 * update video6 as needed, fixing any code breaking changes
 <!-- guy.js -->
 * reduce spacing between arms and body
-* make it so that the walk method will just effect legs
+* Add a moveArms method and use that in the walk method
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json

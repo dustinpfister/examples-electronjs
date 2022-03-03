@@ -106,16 +106,26 @@ var Guy = (function () {
         this.leg_left.rotation.set(.75 - bias * 1.5, 0, 0);
         this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
     };
-    // walk
+    // move arms togetaher
+    Guy.prototype.moveArms = function (per, swings) {
+        per = per === undefined ? 0 : per;
+        swings = swings === undefined ? 1 : swings;
+        var r = Math.PI * 2 * per;
+        var armPer = Math.cos(r * swings) + 1 / 2;
+        this.moveArm('arm_right',  - 0.1 + 0.2 * armPer, 0);
+        this.moveArm('arm_left', 0.1 - 0.2 * armPer, 0);
+    };
+    // walk cycle with movement of legs and arms
     Guy.prototype.walk = function (per, swings) {
         per = per === undefined ? 0 : per;
         swings = swings === undefined ? 1 : swings;
         var r = Math.PI * 2 * per;
         var armPer = Math.cos(r * swings) + 1 / 2;
-        //this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
-        //this.moveArm('arm_left', .1 - .2 * armPer, 0);
+       // this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
+       // this.moveArm('arm_left', .1 - .2 * armPer, 0);
+        this.moveArms(per, swings);
         this.moveLegs(per * swings);
-    }
+    };
     // just return an instance of guy for now
     return Guy;
 }
