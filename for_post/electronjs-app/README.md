@@ -1,6 +1,6 @@
 # electronjs-app
 
-This is the source code of a simple example of [app module](https://www.electronjs.org/docs/latest/api/app) features in electronjs, mainly the whenReady method, and a few other events and methods such as the getPath method of the app module. The aim here is not to create a comprehensive example of the app module mind you, but rather an example that will work okay for a post that will be a kind of gettting started with the app module in electron kind of example.
+This is the source code of a simple example of [app module](https://www.electronjs.org/docs/latest/api/app) features in electronjs, mainly the whenReady method, and a few other events and methods such as the getPath method of the app module. The aim here is not to create a comprehensive example of the app module mind you, but rather an example that will work okay for a post that will be a kind of getting started with the app module in electron kind of example.
 
 So then this example will also make use of a few other features of electronjs such as the BrowserWidnoe module,a d various other modules that are used to create and call events between a main process, and a render process.
 
