@@ -30,6 +30,19 @@ var CanvasMod = (function () {
             i += 1;
         }
     };
+    DRAW_METHODS.def.randomGrid = (ctx, canvas, sm, opt) => {
+               var w = 60,
+               h = 60,
+               pxW = canvas.width / w,
+               pxH = canvas.height / h, 
+               i = w * h, x, y;
+               while(i--){
+                   x = i % w;
+                   y = Math.floor(i / w);
+                   ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
+                   ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
+               }
+    };
     // create and return a canvas texture
     api.createCanvasObject = function (sm, drawMethods) {
         drawMethods = drawMethods || DRAW_METHODS;

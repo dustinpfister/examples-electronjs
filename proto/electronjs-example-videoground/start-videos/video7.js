@@ -54,27 +54,8 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // GRASS
     // ---------- ----------
-/*
-    var grass_canvasObj = CanvasMod.createCanvasObject(sm, {
-       grass: {
-           random: function(ctx, canvas, sm, opt){
-               var w = 60,
-               h = 60,
-               pxW = canvas.width / w,
-               pxH = canvas.height / h, 
-               i = w * h, x, y;
-               while(i--){
-                   x = i % w;
-                   y = Math.floor(i / w);
-                   ctx.fillStyle = 'rgb(0,' + Math.floor( 100 + Math.random() * 150 ) + ',0)';
-                   ctx.fillRect(x * pxW, y * pxH, pxW, pxH);
-               }
-           }
-       }
-    });
-*/
     var grass_canvasObj = CanvasMod.createCanvasObject(sm);
-    grass_canvasObj.draw({drawClass: 'def', drawMethod: 'stripes'});
+    grass_canvasObj.draw({drawClass: 'def', drawMethod: 'randomGrid'});
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
         new THREE.MeshStandardMaterial({
