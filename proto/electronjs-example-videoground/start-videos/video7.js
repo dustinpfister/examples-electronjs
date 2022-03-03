@@ -4,6 +4,7 @@ VIDEO.daePaths = [
 ];
 // using guy scripts
 VIDEO.scripts = [
+  './js/canvas.js',
   './js/guy.js',
   './js/guy-canvas.js'
 ];
@@ -53,7 +54,8 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // GRASS
     // ---------- ----------
-    var grass_canvasObj = GuyCanvas.createCanvasObject(sm, {
+/*
+    var grass_canvasObj = CanvasMod.createCanvasObject(sm, {
        grass: {
            random: function(ctx, canvas, sm, opt){
                var w = 60,
@@ -70,7 +72,9 @@ VIDEO.init = function(sm, scene, camera){
            }
        }
     });
-    grass_canvasObj.draw({drawClass: 'grass', drawMethod: 'random'});
+*/
+    var grass_canvasObj = CanvasMod.createCanvasObject(sm);
+    grass_canvasObj.draw({drawClass: 'def', drawMethod: 'stripes'});
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
         new THREE.MeshStandardMaterial({
