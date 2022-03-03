@@ -13,7 +13,10 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // SCENE
     // ---------- ----------
-    scene.background = new THREE.Color('#008f8f');
+    //scene.background = new THREE.Color('#008f8f');
+    var bg_canvasObj = CanvasMod.createCanvasObject(sm);
+    bg_canvasObj.draw({drawMethod: 'randomGrid', gRange:[32,64], bRange:[128, 200]})
+    scene.background = bg_canvasObj.texture;
     // ---------- ----------
     // GUY1 OBJECT
     // ---------- ----------
