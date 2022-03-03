@@ -114,7 +114,6 @@ var GuyCanvas = (function () {
                 texture.needsUpdate = true;
             }
         };
-        canvasObj.draw();
         return canvasObj;
     };
 

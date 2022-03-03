@@ -8,8 +8,8 @@ VIDEO.init = function(sm, scene, camera){
     // ---------- ----------
     // CAMERA, GRID HELPER
     // ---------- ----------
-    //camera.position.set(0, 4, 2);
-    camera.position.set(8, 8, 8);
+    camera.position.set(50, 50, 50);
+    //camera.position.set(8, 8, 8);
     scene.background = new THREE.Color('#1a2f2f');
     // ---------- ----------
     // MESH OBJECTS
@@ -22,7 +22,7 @@ VIDEO.init = function(sm, scene, camera){
         map:  guy1_canvasObj.texture
     });
     scene.add(guy1.group);
-    // add HAT to head of guy1 head
+    // HAT for head of guy1 head
     var hat_canvasObj = GuyCanvas.createCanvasObject(sm);
     hat_canvasObj.draw({drawClass: 'hat', drawMethod: 'stripes'});
     var hatMaterial = new THREE.MeshStandardMaterial({
@@ -35,15 +35,36 @@ VIDEO.init = function(sm, scene, camera){
     hat.rotation.x = THREE.MathUtils.degToRad(-30);
     hat.position.set(0, 0.83 ,-0.6)
     guy1.head.add(hat);
-    // using hat texture for body
+    // using hat texture for body and arms
     guy1.body.material = hatMaterial;
     guy1.arm_right.material = hatMaterial;
     guy1.arm_left.material = hatMaterial;
-    // grass
+    // GRASS
+    var grass_canvasObj = GuyCanvas.createCanvasObject(sm, {
+       grass: {
+           random: function(ctx, canvas, sm, opt){
+               ctx.fillStyle = 'lime';
+               ctx.fillRect(-1, -1, canvas.width, canvas.height);
+               var s = Math.floor(canvas.width / 10), 
+               w = s,
+               h = s,
+               i = w * h, x, y;
+               while(i--){
+                   x = i % w;
+                   y = Math.floor(i / w);
+                   ctx.fillStyle = 'rgb(0,' + Math.floor( Math.random() * 255 ) + ',0)';
+                   ctx.fillRect(x * s, y * s, s, s);
+               }
+           }
+       }
+    });
+    grass_canvasObj.draw({drawClass: 'grass', drawMethod: 'random'});
+
     var grass = new THREE.Mesh(
         new THREE.BoxGeometry(55, 1, 55),
         new THREE.MeshStandardMaterial({
-            color: new THREE.Color('#008800')
+            //color: new THREE.Color('#008800')
+            map: grass_canvasObj.texture
         })
     );
     scene.add(grass);
