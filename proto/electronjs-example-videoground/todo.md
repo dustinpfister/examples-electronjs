@@ -25,6 +25,7 @@
 * (done) use guy.js script
 * (done) use guy-canvas.js
 * (done) use canvas.js
+* tweek color range for grass
 <!-- video6 -->
 * update video6 as needed, fixing any code breaking changes
 <!-- guy.js -->

@@ -28,9 +28,10 @@ var CanvasMod = (function () {
             i += 1;
         }
     };
+    // random grid
     DRAW_METHODS.def.randomGrid = (ctx, canvas, sm, opt) => {
-        var w = 60,
-        h = 60,
+        var w = opt.gridWidth === undefined ? 60 : opt.gridWidth,
+        h = w = opt.gridHeight === undefined ? 60 : opt.gridHeight,
         pxW = canvas.width / w,
         pxH = canvas.height / h, 
         i = w * h, x, y;
