@@ -104,6 +104,7 @@
         sm.frameFrac = 0;
         sm.loopActive = false;
         scene.children = [];
+        scene.background = new THREE.Color('black');
         VIDEO.init(sm, scene, camera);
         sm.setFrame();
     };

@@ -29,14 +29,12 @@
 * (done) use guy-canvas.js
 * (done) use canvas.js
 * (done) tweek color range for grass
+<!-- misc -->
+* (done) set default scene background color to black
+* (done) have more than one resolution or stick to one of the youtube friendly options with this such as 640x360
+* (done) have a getRatio helper in client.js and use that to set the scaled size of the canvas
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
-<!-- misc -->
-* set default scene background color to black
-* have more than one resolution or stick to one of the youtube friendly options with this such as 640x360
-```
-https://support.google.com/youtube/answer/6375112?hl=en&co=GENIE.Platform%3DDesktop
-```
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
