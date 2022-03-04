@@ -1,27 +1,27 @@
 (function () {
 
-    var WRAP_CANVAS = document.querySelector('#wrap_canvas');
+    const WRAP_CANVAS = document.querySelector('#wrap_canvas');
 
     // Sticking with 'youtube friendly' options when it comes to resolution
     // https://support.google.com/youtube/answer/6375112?hl=en&co=GENIE.Platform%3DDesktop
-    var RESOLUTIONS = [
+    const RESOLUTIONS = [
         {w: 426, h: 240},
         {w: 640, h: 360},
         {w: 854, h: 480},
         {w: 1280, h: 720},
         {w: 1920, h: 1080}
     ];
-    var DEFAULT_RESOLUTION = 2; // defaulting to 480p
+    const DEFAULT_RESOLUTION = 2; // defaulting to 480p
 
     // ********** **********
     // SCENE, CAMERA, and RENDERER
     // ********** **********
-    var res = RESOLUTIONS[DEFAULT_RESOLUTION];
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(40, res.w / res.h, 0.1, 1000);
+    let res = RESOLUTIONS[DEFAULT_RESOLUTION];
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(40, res.w / res.h, 0.1, 1000);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
-    var renderer = new THREE.WebGLRenderer(),
+    let renderer = new THREE.WebGLRenderer(),
     canvas = renderer.domElement;
     // append to wrap canvas
     WRAP_CANVAS.appendChild(canvas);
@@ -32,7 +32,7 @@
     // ********** **********
     // THE STATE MACHINE (sm) object
     // ********** **********
-    var sm = window.sm = {
+    let sm = window.sm = {
         canvas: canvas,
         frame: 0,
         frameFrac: 0,
@@ -43,7 +43,7 @@
         camera: camera,
         loopActive: false
     };
-    var secs = 0,
+    let secs = 0,
     fps_update = 30,   // fps rate to update ( low fps for low CPU use, but choppy video )
     fps_movement = 60, // fps rate to move camera
     frame = 0,
@@ -51,18 +51,18 @@
     loopActive = false,
     lt = new Date();
     // get bias value helper
-    var getBias = function(per){
+    let getBias = function(per){
         return 1 - Math.abs(per - 0.5) / 0.5;
     };
     // update
-    var update = function(){
+    let update = function(){
         sm.per = Math.round(sm.frame) / sm.frameMax;
         sm.bias = getBias(sm.per);
         VIDEO.update(sm, scene, camera, sm.per, sm.bias);
     };
     // app loop
-    var loop = function () {
-        var now = new Date(),
+    let loop = function () {
+        let now = new Date(),
         secs = (now - lt) / 1000;
         if(sm.loopActive){
             requestAnimationFrame(loop);
