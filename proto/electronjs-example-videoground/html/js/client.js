@@ -22,8 +22,17 @@
     // ********** **********
 
     // get bias value helper
-    let getBias = function(per){
+    let getBias = (per) => {
         return 1 - Math.abs(per - 0.5) / 0.5;
+    };
+
+    // get an object like {w: 1, h: 0.75} from an object like { w: 640, h: 480}
+    let getRatio = (res) => {
+       let m = Math.max(res.w, res.h);
+       return {
+           w : res.w / m,
+           h : res.h / m
+       };
     };
 
     // ********** **********
@@ -39,8 +48,11 @@
     // append to wrap canvas
     WRAP_CANVAS.appendChild(canvas);
     renderer.setSize(res.w, res.h);
-    canvas.style.width = Math.floor(res.w / 2) + 'px';
-    canvas.style.height = Math.floor(res.h / 2) + 'px';
+
+    // set scaled size of canvas
+    let ratio = getRatio(res);
+    canvas.style.width = Math.floor(ratio.w * 420) + 'px';
+    canvas.style.height = Math.floor(ratio.h * 420) + 'px';
 
     // ********** **********
     // THE STATE MACHINE (sm) object
