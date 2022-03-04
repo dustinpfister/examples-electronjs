@@ -26,8 +26,8 @@
     // append to wrap canvas
     WRAP_CANVAS.appendChild(canvas);
     renderer.setSize(res.w, res.h);
-    canvas.style.width = '427px';
-    canvas.style.height = '240px';
+    canvas.style.width = Math.floor(res.w / 2) + 'px';
+    canvas.style.height = Math.floor(res.h / 2) + 'px';
 
     // ********** **********
     // THE STATE MACHINE (sm) object
