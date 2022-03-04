@@ -31,7 +31,8 @@
 * (done) tweek color range for grass
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
-
+<!-- misc -->
+* se default scene background color to black
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
