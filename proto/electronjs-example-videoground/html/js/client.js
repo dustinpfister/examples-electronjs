@@ -2,19 +2,31 @@
 
     var WRAP_CANVAS = document.querySelector('#wrap_canvas');
 
+    // Sticking with 'youtube friendly' options when it comes to resolution
+    // https://support.google.com/youtube/answer/6375112?hl=en&co=GENIE.Platform%3DDesktop
+    var RESOLUTIONS = [
+        {w: 426, h: 240},
+        {w: 640, h: 360},
+        {w: 854, h: 480},
+        {w: 1280, h: 720},
+        {w: 1920, h: 1080}
+    ];
+    var DEFAULT_RESOLUTION = 2; // defaulting to 480p
+
     // ********** **********
     // SCENE, CAMERA, and RENDERER
     // ********** **********
+    var res = RESOLUTIONS[DEFAULT_RESOLUTION];
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(40, 640 / 480, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(40, res.w / res.h, 0.1, 1000);
     camera.position.set(10, 10, 10);
     camera.lookAt(0, 0, 0);
     var renderer = new THREE.WebGLRenderer(),
     canvas = renderer.domElement;
     // append to wrap canvas
     WRAP_CANVAS.appendChild(canvas);
-    renderer.setSize(640, 480);
-    canvas.style.width = '320px';
+    renderer.setSize(res.w, res.h);
+    canvas.style.width = '427px';
     canvas.style.height = '240px';
 
     // ********** **********
