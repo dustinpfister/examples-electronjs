@@ -1,5 +1,9 @@
 (function () {
 
+    // ********** **********
+    // HARD CODED SETTINGS
+    // ********** **********
+
     const WRAP_CANVAS = document.querySelector('#wrap_canvas');
 
     // Sticking with 'youtube friendly' options when it comes to resolution
@@ -11,7 +15,16 @@
         {w: 1280, h: 720},
         {w: 1920, h: 1080}
     ];
-    const DEFAULT_RESOLUTION = 2; // defaulting to 480p
+    const DEFAULT_RESOLUTION = 2; // going with 480p as a default for this
+
+    // ********** **********
+    // HELPER FUNCTIONS
+    // ********** **********
+
+    // get bias value helper
+    let getBias = function(per){
+        return 1 - Math.abs(per - 0.5) / 0.5;
+    };
 
     // ********** **********
     // SCENE, CAMERA, and RENDERER
@@ -50,10 +63,6 @@
     frameMax = 600,
     loopActive = false,
     lt = new Date();
-    // get bias value helper
-    let getBias = function(per){
-        return 1 - Math.abs(per - 0.5) / 0.5;
-    };
     // update
     let update = function(){
         sm.per = Math.round(sm.frame) / sm.frameMax;
