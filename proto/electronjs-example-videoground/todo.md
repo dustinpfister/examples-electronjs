@@ -8,6 +8,18 @@
 * () - #4 - WINDOWS: texture files will not load correcly in windows
 * ( fixed in r2 ) - #5 - script tags keep being added each time a video is loaded
 
+<!-- possible features  -->
+
+
+## () - rx -- ffmpeg bin as part of package
+* I can add ffmpeg binaries as part of the over all end product and then write scripts to automate work
+```
+https://johnvansickle.com/ffmpeg/
+```
+
+<!-- CORE IDEA  -->
+
+
 ## () - r3 - Sequences
 <!-- canvas.js -->
 * (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
