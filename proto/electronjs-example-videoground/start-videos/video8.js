@@ -10,7 +10,9 @@ VIDEO.init = function(sm, scene, camera){
     // WORLD OBJECT
     let world = scene.userData.world = new THREE.Mesh(
         new THREE.SphereGeometry(3, 20, 20),
-        new THREE.MeshNormalMaterial());
+        new THREE.MeshNormalMaterial({
+            wireframe: true
+        }));
     world.userData.world = true;
     scene.add(world);
 
@@ -32,19 +34,28 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     unit.position.set(0, 0, 5);
 
-    unit.position.setFromSphericalCoords(4, Math.PI * 1.5, Math.PI * 0);
+    var toTheta = Math.PI * 2 * sm.per;
 
+    unit.position.setFromSphericalCoords(5, Math.PI * 0.5, toTheta);
+    unit.lookAt(0,0,0);
 
     // origin
-    let ori = new THREE.Vector3(0, 0, 5);
+    let ori = unit.position.clone();
 
     // direction
     let dir = new THREE.Vector3();
-
-    let phi = THREE.MathUtils.degToRad( 270 ),
-    theta = THREE.MathUtils.degToRad( 0 );
+    let phi = THREE.MathUtils.degToRad( 90 ),
+    theta = toTheta + Math.PI; // THREE.MathUtils.degToRad( 180 );
     dir.setFromSphericalCoords(1, phi, theta);
     
+    // try
+    //let dir = unit.position.clone();
+    //dir.set(unit.rotation);
+
+console.log(dir)
+    
+    
+
     // normalize dir
     dir.normalize();
 
@@ -58,19 +69,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let resObj = result[0];
 
     if(resObj){
-        console.log(resObj)
-        console.log(resObj.point)
         unit.position.copy(resObj.point);
     }
-/*
-    result.forEach((resObj) => {
-        var obj = resObj.object;
-        console.log(obj.type);
-        if(obj.type === 'Mesh'){
-            console.log(obj.userData.world)
-        }
-    });
-*/
+
 
 };
 
