@@ -19,8 +19,11 @@ https://johnvansickle.com/ffmpeg/
 
 <!-- CORE IDEA  -->
 
+## () - r4 - Sequences
+<!-- sequences -->
+* Start a system that involves updating the state of a scene with sequences
 
-## () - r3 - Sequences
+## () - r3 - resolution modes, video7, video8
 <!-- canvas.js -->
 * (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
 * (done) def draw method class built into the module
@@ -45,8 +48,8 @@ https://johnvansickle.com/ffmpeg/
 * (done) set default scene background color to black
 * (done) have more than one resolution or stick to one of the youtube friendly options with this such as 640x360
 * (done) have a getRatio helper in client.js and use that to set the scaled size of the canvas
-<!-- sequences -->
-* Start a system that involves updating the state of a scene with sequences
+<!-- video 8 -->
+* start video8.js in which I am making use of raycaster to get the position on the surface of a gemorty of a mesh
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
