@@ -31,32 +31,21 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let unit = scene.userData.unit,
     world = scene.userData.world;
 
-
-    unit.position.set(0, 0, 5);
-
-    var toPhi = THREE.MathUtils.degToRad( 90 ); //Math.PI * 0.6;
+    var toPhi = THREE.MathUtils.degToRad( 90 );
     var toTheta = Math.PI * 2 * sm.per;
 
-    unit.position.setFromSphericalCoords(5, toPhi, toTheta);
+    unit.position.setFromSphericalCoords(5, toPhi, toTheta );
     unit.lookAt(0,0,0);
 
     // origin
     let ori = unit.position.clone();
 
-    // direction
-    let dir = new THREE.Vector3();
-    let phi = toPhi, //THREE.MathUtils.degToRad( 90 ),
-    theta = toTheta + Math.PI; // THREE.MathUtils.degToRad( 180 );
-    dir.setFromSphericalCoords(1, phi, theta);
+    // direction (can not just subtract or add pi to do it this way)
+    let dir = new THREE.Vector3(0,0,-1);
+    //let phi = toPhi, //THREE.MathUtils.degToRad( 90 ),
+    //theta = toTheta + Math.PI; // THREE.MathUtils.degToRad( 180 );
+    //dir.setFromSphericalCoords(1, toPhi, toTheta + Math.PI);
     
-    // try
-    //let dir = unit.position.clone();
-    //dir.set(unit.rotation);
-
-console.log(dir)
-    
-    
-
     // normalize dir
     dir.normalize();
 
