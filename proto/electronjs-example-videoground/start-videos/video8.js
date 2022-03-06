@@ -20,6 +20,7 @@ VIDEO.init = function(sm, scene, camera){
         new THREE.MeshNormalMaterial());
     unit.userData.world = false;
     scene.add(unit);
+
 };
 
 // update method for the video
@@ -28,15 +29,21 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let unit = scene.userData.unit,
     world = scene.userData.world;
 
-    unit.position.set(0, 0, 0);
+
+    unit.position.set(0, 0, 5);
+
+    unit.position.setFromSphericalCoords(4, Math.PI * 1.5, Math.PI * 0);
 
 
     // origin
-    let ori = new THREE.Vector3(0, 4, 2);
+    let ori = new THREE.Vector3(0, 0, 5);
 
     // direction
     let dir = new THREE.Vector3();
-    dir.setFromSphericalCoords(1, Math.PI, 0); 
+
+    let phi = THREE.MathUtils.degToRad( 270 ),
+    theta = THREE.MathUtils.degToRad( 0 );
+    dir.setFromSphericalCoords(1, phi, theta);
     
     // normalize dir
     dir.normalize();
@@ -50,11 +57,11 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let result = raycaster.intersectObject( world );
     let resObj = result[0];
 
-    console.log(resObj)
-    console.log(resObj.point)
-
-    unit.position.copy(resObj.point);
-
+    if(resObj){
+        console.log(resObj)
+        console.log(resObj.point)
+        unit.position.copy(resObj.point);
+    }
 /*
     result.forEach((resObj) => {
         var obj = resObj.object;
