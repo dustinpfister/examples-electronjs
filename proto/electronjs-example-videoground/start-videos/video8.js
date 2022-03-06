@@ -34,9 +34,10 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     unit.position.set(0, 0, 5);
 
+    var toPhi = THREE.MathUtils.degToRad( 90 ); //Math.PI * 0.6;
     var toTheta = Math.PI * 2 * sm.per;
 
-    unit.position.setFromSphericalCoords(5, Math.PI * 0.5, toTheta);
+    unit.position.setFromSphericalCoords(5, toPhi, toTheta);
     unit.lookAt(0,0,0);
 
     // origin
@@ -44,7 +45,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     // direction
     let dir = new THREE.Vector3();
-    let phi = THREE.MathUtils.degToRad( 90 ),
+    let phi = toPhi, //THREE.MathUtils.degToRad( 90 ),
     theta = toTheta + Math.PI; // THREE.MathUtils.degToRad( 180 );
     dir.setFromSphericalCoords(1, phi, theta);
     
