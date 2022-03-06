@@ -27,15 +27,18 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     let unit = scene.userData.unit,
     world = scene.userData.world;
-    unit.position.set(4, 0, 0);
+
+    unit.position.set(0, 0, 0);
 
 
     // origin
-    let ori = new THREE.Vector3(0, 4, 0);
+    let ori = new THREE.Vector3(0, 4, 2);
 
     // direction
     let dir = new THREE.Vector3();
-    dir.setFromSphericalCoords(3, Math.PI, 0); 
+    dir.setFromSphericalCoords(1, Math.PI, 0); 
+    
+    // normalize dir
     dir.normalize();
 
     // create and set raycaster
@@ -44,10 +47,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
 
     // result
-    let result = raycaster.intersectObjects( [ world ] );
-    console.log(dir)
-    console.log(result);
+    let result = raycaster.intersectObject( world );
+    let resObj = result[0];
 
+    console.log(resObj)
+    console.log(resObj.point)
+
+    unit.position.copy(resObj.point);
+
+/*
     result.forEach((resObj) => {
         var obj = resObj.object;
         console.log(obj.type);
@@ -55,6 +63,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
             console.log(obj.userData.world)
         }
     });
+*/
 
 };
 
