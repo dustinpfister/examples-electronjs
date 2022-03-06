@@ -31,8 +31,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let unit = scene.userData.unit,
     world = scene.userData.world;
 
-    var toPhi = THREE.MathUtils.degToRad( 90 );
-    var toTheta = Math.PI * 2 * sm.per;
+    var toPhi = THREE.MathUtils.degToRad( 0 );
+    var toTheta = THREE.MathUtils.degToRad( 90 ); //Math.PI * 2 * sm.per;
 
     unit.position.setFromSphericalCoords(5, toPhi, toTheta );
     unit.lookAt(0,0,0);
@@ -40,8 +40,19 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // origin
     let ori = unit.position.clone();
 
+    // direction (now this is werid) and trying multiply scalar
+    // and for some weird reason this does not work, but a literal with the same values does!??
+ 
+    let dir = new THREE.Vector3(0, -1, 0);
+    //let dir = ori.normalize().multiplyScalar(-1);
+    //dir.x  = 0; dir.y = -1; dir.z = 0;
+    console.log(dir);
+
+    // direction (can not get apply euler to work)
+    //let dir = new THREE.Vector3(0.1,0.1,0.1);
+    //dir.applyEuler(unit.rotation)
+
     // direction (can not just subtract or add pi to do it this way)
-    let dir = new THREE.Vector3(0,0,-1);
     //let phi = toPhi, //THREE.MathUtils.degToRad( 90 ),
     //theta = toTheta + Math.PI; // THREE.MathUtils.degToRad( 180 );
     //dir.setFromSphericalCoords(1, toPhi, toTheta + Math.PI);
