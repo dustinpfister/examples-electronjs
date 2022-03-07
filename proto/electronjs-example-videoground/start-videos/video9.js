@@ -8,14 +8,14 @@ VIDEO.daePaths = [
 // init 
 VIDEO.init = function(sm, scene, camera){
     // static camera
-    camera.position.set(8, 8, 8);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(5.8, 5.7, 5.5);
+    camera.lookAt(0, 0.25, 0);
     // WORLD OBJECT
 
     let world2 = scene.userData.world = utils.DAE.getMesh( VIDEO.daeResults[0] );
-    world2.material = new THREE.MeshBasicMaterial({
-            color: new THREE.Color('lime'),
-            wireframe: true
+    world2.material = new THREE.MeshNormalMaterial({
+            //color: new THREE.Color('lime'),
+            //wireframe: true
         });
     scene.add(world2);
     console.log(world2);
@@ -32,7 +32,7 @@ VIDEO.init = function(sm, scene, camera){
 
     // UNIT OBJECT
     let unit = scene.userData.unit = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.BoxGeometry(0.5, 0.5, 1),
         new THREE.MeshNormalMaterial({
             //color: new THREE.Color('red'),
             //wireframe: true
@@ -47,7 +47,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // phi and theta for steting start position
     var toPhi = THREE.MathUtils.degToRad( 20 + 140 * sm.bias );
     var toTheta = THREE.MathUtils.degToRad( 360 * sm.per ); //Math.PI * 2 * sm.per;
-    unit.position.setFromSphericalCoords(5, toPhi, toTheta );
+    unit.position.setFromSphericalCoords(10, toPhi, toTheta );
     unit.lookAt(0, 0, 0);
     // origin
     let ori1 = unit.position.clone();
