@@ -8,7 +8,7 @@ VIDEO.daePaths = [
 // init 
 VIDEO.init = function(sm, scene, camera){
     // static camera
-    camera.position.set(6.0, 7.0, 7.0);
+    camera.position.set(0.0, 0.0, 7.0);
     camera.lookAt(0, 0.25, 0);
     // WORLD OBJECT
     let world2 = scene.userData.world = utils.DAE.getMesh( VIDEO.daeResults[0] );
@@ -52,5 +52,6 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     if(resObj){
         unit.position.copy(resObj.point);
     }
+    camera.lookAt(unit.position);
 };
 
