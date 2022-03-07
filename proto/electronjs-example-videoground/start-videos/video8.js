@@ -31,8 +31,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     let unit = scene.userData.unit,
     world = scene.userData.world;
 
-    var toPhi = THREE.MathUtils.degToRad( 20 + 160 * sm.bias );
-    var toTheta = THREE.MathUtils.degToRad( 360 * sm.per ); //Math.PI * 2 * sm.per;
+    var toPhi = THREE.MathUtils.degToRad( 90 );
+    var toTheta = THREE.MathUtils.degToRad( 250 - 250 * sm.bias );
 
     unit.position.setFromSphericalCoords(5, toPhi, toTheta );
     unit.lookAt(0,0,0);
