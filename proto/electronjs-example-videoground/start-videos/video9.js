@@ -12,20 +12,26 @@ VIDEO.init = function(sm, scene, camera){
     camera.lookAt(0, 0.25, 0);
     // WORLD OBJECT
     let world2 = scene.userData.world = utils.DAE.getMesh( VIDEO.daeResults[0] );
-    world2.material = new THREE.MeshNormalMaterial({
-            //color: new THREE.Color('lime'),
-            //wireframe: true
+    world2.material = new THREE.MeshStandardMaterial({
+            color: new THREE.Color('lime'),
+            emissive: new THREE.Color('green'),
+            emissiveIntensity: 0.4
         });
     scene.add(world2);
     console.log(world2);
     // UNIT OBJECT
     let unit = scene.userData.unit = new THREE.Mesh(
         new THREE.BoxGeometry(0.5, 0.5, 0.5),
-        new THREE.MeshNormalMaterial({
-            //color: new THREE.Color('red'),
-            //wireframe: true
+        new THREE.MeshStandardMaterial({
+            color: new THREE.Color('red'),
+            emissive: new THREE.Color('red'),
+            emissiveIntensity: 0.4
         }));
     scene.add(unit);
+    // LIGHT
+    let light = new THREE.DirectionalLight(0xffffff, 0.5);
+    light.position.set(1,1,1);
+    scene.add(light);
 };
 
 // update 
