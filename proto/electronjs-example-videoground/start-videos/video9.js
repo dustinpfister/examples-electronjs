@@ -2,20 +2,34 @@
  *         Also making use of a new javaScript file in which I am creating code that has to do with
  *        positionong of groups and mesh objects
  */
+VIDEO.daePaths = [
+  './dae/world/world.dae'
+];
 // init 
 VIDEO.init = function(sm, scene, camera){
     // static camera
     camera.position.set(8, 8, 8);
     camera.lookAt(0, 0, 0);
     // WORLD OBJECT
+
+    let world2 = scene.userData.world = utils.DAE.getMesh( VIDEO.daeResults[0] );
+    world2.material = new THREE.MeshBasicMaterial({
+            color: new THREE.Color('lime'),
+            wireframe: true
+        });
+    scene.add(world2);
+    console.log(world2);
+
+/*
     let world = scene.userData.world = new THREE.Mesh(
         new THREE.SphereGeometry(3, 20, 20),
         new THREE.MeshBasicMaterial({
             color: new THREE.Color('lime'),
             wireframe: true
         }));
-    world.userData.world = true;
-    scene.add(world);
+*/
+    //scene.add(world);
+
     // UNIT OBJECT
     let unit = scene.userData.unit = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
@@ -23,7 +37,6 @@ VIDEO.init = function(sm, scene, camera){
             color: new THREE.Color('red'),
             wireframe: true
         }));
-    unit.userData.world = false;
     scene.add(unit);
 };
 
