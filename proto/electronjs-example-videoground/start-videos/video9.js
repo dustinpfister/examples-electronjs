@@ -33,9 +33,9 @@ VIDEO.init = function(sm, scene, camera){
     // UNIT OBJECT
     let unit = scene.userData.unit = new THREE.Mesh(
         new THREE.BoxGeometry(1, 1, 1),
-        new THREE.MeshBasicMaterial({
-            color: new THREE.Color('red'),
-            wireframe: true
+        new THREE.MeshNormalMaterial({
+            //color: new THREE.Color('red'),
+            //wireframe: true
         }));
     scene.add(unit);
 };
