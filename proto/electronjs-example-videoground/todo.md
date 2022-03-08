@@ -23,41 +23,37 @@ https://johnvansickle.com/ffmpeg/
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
 
-## () - r3 - resolution modes, video7, video8, world-positon.js and video9
-<!-- canvas.js -->
+## () - r3 - resolution modes, video7, video8, video9, world-positon.js
 * (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
 * (done) def draw method class built into the module
 * (done) a def.stripes method
 * (done) start a def.randomGrid methiod
 * (done) color chanel range options for def.randomGrid
-<!-- guy-canvas.js -->
 * (done) remove createCanvasObject method and make this file about the custom canvas textures to use with guys.js
-<!-- video6 -->
 * (done) update video6 as needed, fixing any code breaking changes
-<!-- guy.js -->
 * (done) reduce spacing between arms and body
 * (done) Add a moveArms method and use that in the walk method
-<!-- video7 -->
 * (done) start a new video7 start video that will make use of all features thus far
 * (done) use at least one dae file in video7
 * (done) use guy.js script
 * (done) use guy-canvas.js
 * (done) use canvas.js
 * (done) tweek color range for grass
-<!-- misc -->
 * (done) set default scene background color to black
 * (done) have more than one resolution or stick to one of the youtube friendly options with this such as 640x360
 * (done) have a getRatio helper in client.js and use that to set the scaled size of the canvas
-<!-- video 8 -->
 * (done) start video8.js in which I am making use of raycaster to get the position on the surface of a geometry of a mesh
 * (done) For this video the mesh I will have a mesh with a sphere geometry and a mesh with the box geometry
 * (done) I should be able to find a way to use raycaster as a way to set the position of the box mesh to the surface of the sphere
-<!-- video9 and world-position.js -->
-* start a world.dae file that will be a sphere like object but with mountains and vallies
+* (done) start a world.dae file that will be a sphere like object but with mountains and vallies
+* (done) start a video9 file that will be just like video8 only I will be using world.dae, and world-position.js
+<!-- world-position.js -->
 * start a world-posiiton.js file in which I will be pulling logic that I worked out in video8.js into this file
-* start a video9 file that will be just like video8 only I will be using world.dae, and world-position.js
 * I will want a worldPosition.setToLand method that will set the position of a mesh to the surface of the world object
 * I will want a worldPosition.setToWater method that will se position of a mesh realtive to a sea level value
+<!-- misc -->
+* display current file name in title
+* do way with file path display in ui
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json
