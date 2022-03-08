@@ -87,6 +87,7 @@
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         vm.$data.filePath = videoAPI.pathDirname(filePath);
         vm.$data.fileName = videoAPI.pathBasename(filePath);
+        document.title = 'VideoGround - ' + vm.$data.fileName;
         if(e){
             console.warn(e.message);
         }else{
@@ -100,6 +101,7 @@
         console.log('Menu open event handler in ui-video-code.js');
         vm.$data.filePath = videoAPI.pathDirname(filePath);
         vm.$data.fileName = videoAPI.pathBasename(filePath);
+        document.title = 'VideoGround - ' + vm.$data.fileName;
         loadText(text);
     });
     // on save file
