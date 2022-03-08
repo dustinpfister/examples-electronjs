@@ -3,11 +3,13 @@
     var vm = new Vue({
         el: '#wrap_video_code',
         template: '<div class="wrap_ui">' +
-            '<span>{{ filePath }}</span><br>' +
+            '<span>{{ fileName }}</span><br><br>' +
+            //'<span>{{ filePath }}</span><br>' +
             '<textarea v-model="videoJS" cols="60" rows="10" v-on:input="updateVideo"></textarea>'+
         '</div>',
         data: {
            sm: sm,
+           fileName: null,
            filePath: null, // the current path for the video.js file
            videoJS: '\/\/ Video JavaScript goes here'
         },
@@ -84,6 +86,7 @@
     var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video9.js' );
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
         vm.$data.filePath = videoAPI.pathDirname(filePath);
+        vm.$data.fileName = videoAPI.pathBasename(filePath);
         if(e){
             console.warn(e.message);
         }else{
@@ -96,6 +99,7 @@
     videoAPI.on('menuOpenFile', function(text, e, filePath){
         console.log('Menu open event handler in ui-video-code.js');
         vm.$data.filePath = videoAPI.pathDirname(filePath);
+        vm.$data.fileName = videoAPI.pathBasename(filePath);
         loadText(text);
     });
     // on save file

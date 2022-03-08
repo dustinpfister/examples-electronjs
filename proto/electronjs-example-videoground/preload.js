@@ -8,6 +8,7 @@ let videoAPI = {};
 
 videoAPI.dir_root = __dirname;
 videoAPI.pathJoin = path.join;
+videoAPI.pathBasename = path.basename;
 videoAPI.pathDirname = path.dirname;
 
 // the events object
