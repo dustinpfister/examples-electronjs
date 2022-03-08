@@ -52,8 +52,10 @@ https://johnvansickle.com/ffmpeg/
 * I will want a worldPosition.setToLand method that will set the position of a mesh to the surface of the world object
 * I will want a worldPosition.setToWater method that will se position of a mesh realtive to a sea level value
 <!-- misc -->
-* display current file name in title
-* do way with file path display in ui
+* (done) display current file name in title
+* (done) do way with file path display in ui
+* I will want vm.$data.filePath, vm.$data.fileDir, and vm.$data.fileName to help address some confusion
+
 
 ## ( done 03/03/2022 ) - r2 - Scripts
 * (done) set 0.2.0 for package.json

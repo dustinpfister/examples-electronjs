@@ -91,10 +91,6 @@
     // ********** **********
     var startFilePath = videoAPI.pathJoin( videoAPI.dir_root, 'start-videos/video9.js' );
     videoAPI.loadFile(startFilePath, (text, e, filePath) => {
-
-        //vm.$data.filePath = videoAPI.pathDirname(filePath);
-        //vm.$data.fileName = videoAPI.pathBasename(filePath);
-        //document.title = 'VideoGround - ' + vm.$data.fileName;
         setFilePath(filePath);
         if(e){
             console.warn(e.message);
@@ -107,9 +103,6 @@
     // ********** **********
     videoAPI.on('menuOpenFile', function(text, e, filePath){
         console.log('Menu open event handler in ui-video-code.js');
-        //vm.$data.filePath = videoAPI.pathDirname(filePath);
-        //vm.$data.fileName = videoAPI.pathBasename(filePath);
-        //document.title = 'VideoGround - ' + vm.$data.fileName;
         setFilePath(filePath);
         loadText(text);
     });
