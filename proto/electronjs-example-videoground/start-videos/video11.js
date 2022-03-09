@@ -37,6 +37,10 @@ VIDEO.init = function(sm, scene, camera){
     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
     // this will create a normals attribute at least seems to work okay most of the time
     geometry.computeVertexNormals();
+    // ADDING GROUPS TO GEO
+    geometry.addGroup(0, 3, 0);
+    geometry.addGroup(3, 3, 1);
+    geometry.addGroup(6, 3, 0);
     
     // LIGHT
     var light = new THREE.DirectionalLight(0xffffff);
@@ -45,7 +49,7 @@ VIDEO.init = function(sm, scene, camera){
     scene.add( new THREE.AmbientLight(0xffffff, 0.2) );
 
     // MATERIAL
-/*
+
     var material = [
         new THREE.MeshNormalMaterial({ 
             side: THREE.DoubleSide
@@ -54,11 +58,12 @@ VIDEO.init = function(sm, scene, camera){
             side: THREE.DoubleSide
         }),
     ];
-*/
+/*
 var material = new THREE.MeshStandardMaterial({
             color: 0xff0000,
             side: THREE.DoubleSide
         });
+*/
 
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
