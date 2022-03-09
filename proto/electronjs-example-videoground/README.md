@@ -5,11 +5,30 @@ This is an idea for an electron.js application that I am calling videoground, wh
 
 ## What the goals are with this project
 
+When it comes to what the goals are in terms of adding features there is only so much that I might want to add. If I do keep working on this I am going to end up completaing the core set of features that I want. Once that is done I am going to want to be a little more reserved about adding features, choosing to move forward with features that I only really truly want and need.
+
 * ( done in r0 ) export as images so that ffmpeg can be used to create a video that way
 * ( done in r1 ) I will want to be able to load dae files, and any supporting assets in terms of textures used
 * ( done in r2 ) I will want to be able to load scripts for each video file
-* () I will want an videoAPI system that allows for me to define 'sequences' like that in my test vjs system
+* ( done in r3 ) I should go with just one 'youtube friendly' resolution
 
+## Official js files
+
+On top of the core of what videoground is I should also have a number of official javaScript files that are to be used with video javaScript files.
+
+* ( done in r3 ) canvas.js - to create and update canvas textures to use in materials
+* ( done in r3 ) guy.js - My old guy model that I made a while back
+* ( done in r3 ) guy-canvas.js - canvas draw methods to use with guy.js
+* ( done in r3 ) helper-vertex-normals.js - the threejs file for this to help show what is going on with the normal attribute of geometry
+
+* () I will want a module that can be used to define 'sequences' like that in my test vjs system that I was using to make videos
+* () world-posiiton.js file from beta-world
+* () add tree.js
+* () add biplane.js
+
+## Official start-videos
+
+In the start-videos folder I have a number of video files that are intended to be starting points for projects, but are also used to just demenstrate features of videoground itself, as well as official addtional features such as the canvas.js file to create canvas textures.
 
 ## Creating a video from frame images with ffmpeg
 
