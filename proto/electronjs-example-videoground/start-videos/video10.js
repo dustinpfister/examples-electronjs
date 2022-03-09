@@ -27,9 +27,9 @@ VIDEO.init = function(sm, scene, camera){
 	 1.0, -1.0,  -1.0,
 	 1.0,  1.0,  1.0,
 
+	-1.0, -1.0,  1.0,
 	 1.0,  1.0,  1.0,
 	-1.0,  1.0,  -1.0,
-	-1.0, -1.0,  1.0,
 
 	 -1.0,  -1.0,  1.0,
 	 1.0,  -1.0,  -1.0,
@@ -37,7 +37,7 @@ VIDEO.init = function(sm, scene, camera){
     ]);
 
     var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.05,20, 20));
-    sphere.position.set(-1, 1, -1);
+    sphere.position.set(-1, -1, 1);
 
 
     // must have at least a position attribute, there are 3 values per vertex
@@ -66,10 +66,18 @@ VIDEO.init = function(sm, scene, camera){
 VIDEO.update = function(sm, scene, camera, per, bias){
     var mesh = scene.userData.mesh,
     geo = scene.userData.geo;
-    mesh.rotation.y = Math.PI * 2 * sm.per;
+
+    // rotate mesh
+    //mesh.rotation.y = Math.PI * 0.125 * sm.bias;
 
     // mutation of position over time
     var pos = geo.attributes.position;
+
+    // mutation of one point
+    var x = -4 + 4 * sm.bias;
+    pos.array[0] = x;
+    pos.array[9] = x;
+    pos.array[18] = x;
 
     //pos.array[0] = -1 + 1 * sm.bias;
     //pos.array[3] = 1 + 1 * sm.bias;
