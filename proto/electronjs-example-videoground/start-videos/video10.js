@@ -30,8 +30,15 @@ VIDEO.init = function(sm, scene, camera){
     ]);
     // must have at least a position attribute, there are 3 values per vertex
     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+    // this will create a normals attribute at least, but it might not always work they way
+    // on might exspect
+    geometry.computeVertexNormals();
+    
+
     // Material - going with basic for this one
-    var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
+    //var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
+    var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide } );
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
         geometry,
