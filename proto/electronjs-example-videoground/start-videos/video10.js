@@ -21,9 +21,10 @@ VIDEO.init = function(sm, scene, camera){
 	-1.0,  1.0,  1.0,
 	-1.0, -1.0,  1.0
     ]);
-// itemSize = 3 because there are 3 values (components) per vertex
-geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
+    // must have at least a position attribute, there are 3 values per vertex
+    geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+    // Material - going with basic for this one
+    var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
         geometry,
@@ -33,6 +34,6 @@ var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.Doubl
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
     var mesh = scene.userData.mesh;
-    mesh.rotation.y = Math.PI * 2 * sm.per;
+    //mesh.rotation.y = Math.PI * 2 * sm.per;
 };
 
