@@ -39,8 +39,11 @@ VIDEO.init = function(sm, scene, camera){
     geometry.computeVertexNormals();
     // ADDING GROUPS TO GEO
     geometry.addGroup(0, 3, 0);
-    geometry.addGroup(3, 3, 1);
+    geometry.addGroup(3, 3, 0);
     geometry.addGroup(6, 3, 0);
+    geometry.addGroup(0, 3, 1);
+    geometry.addGroup(3, 3, 1);
+    geometry.addGroup(6, 3, 1);
     
     // LIGHT
     var light = new THREE.DirectionalLight(0xffffff);
@@ -48,22 +51,17 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(light);
     scene.add( new THREE.AmbientLight(0xffffff, 0.2) );
 
-    // MATERIAL
-
+    // MATERIALS - using an array of them now
     var material = [
-        new THREE.MeshNormalMaterial({ 
-            side: THREE.DoubleSide
+        new THREE.MeshStandardMaterial({
+            color: 0x00ff00,
+            side: THREE.FrontSide
         }),
-        new THREE.MeshStandardMaterial({ 
-            side: THREE.DoubleSide
+        new THREE.MeshStandardMaterial({
+            color: 0x2a2a2a, 
+            side: THREE.BackSide
         }),
     ];
-/*
-var material = new THREE.MeshStandardMaterial({
-            color: 0xff0000,
-            side: THREE.DoubleSide
-        });
-*/
 
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
