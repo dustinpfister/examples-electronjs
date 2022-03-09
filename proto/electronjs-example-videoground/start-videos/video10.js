@@ -1,7 +1,7 @@
 /*     video10 - Custom Geometry starting out with the example at threejs.org
  *       found here: https://threejs.org/docs/#api/en/core/BufferGeometry
  *       The first step with this is just having the position attribute which is
- *       the main focus of this video
+ *       the main focus of this video.
  */
 VIDEO.init = function(sm, scene, camera){
     // CAMERA
@@ -10,7 +10,7 @@ VIDEO.init = function(sm, scene, camera){
     // GRID HELPER
     scene.add(new THREE.GridHelper(8, 8));
     // GEOMETRY
-    var geometry = new THREE.BufferGeometry();
+    var geometry =  scene.userData.geo = new THREE.BufferGeometry();
     // create a simple square shape. 
     var vertices = new Float32Array( [
 	-1.0, -1.0,  1.0,
@@ -33,7 +33,19 @@ VIDEO.init = function(sm, scene, camera){
     scene.add(mesh);
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
-    var mesh = scene.userData.mesh;
+    var mesh = scene.userData.mesh,
+    geo = scene.userData.geo;
     //mesh.rotation.y = Math.PI * 2 * sm.per;
+
+    // mutation of position over time
+    var pos = geo.attributes.position;
+    pos.array[0] = -1 * sm.bias;
+    pos.needsUpdate = true;
+
+    geo.computeBoundingBox();
+    geo.computeBoundingSphere();
+
+
+    console.log();
 };
 
