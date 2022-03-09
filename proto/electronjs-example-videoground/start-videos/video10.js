@@ -10,6 +10,9 @@
  *       The first step with this is just having the position attribute which is
  *       the main focus of this video.
  */
+VIDEO.scripts = [
+  './js/helper-vertex-normals.js'
+];
 VIDEO.init = function(sm, scene, camera){
     // CAMERA
     camera.position.set(4, 4, 4);
@@ -31,11 +34,9 @@ VIDEO.init = function(sm, scene, camera){
     // must have at least a position attribute, there are 3 values per vertex
     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
-    // this will create a normals attribute at least, but it might not always work they way
-    // on might exspect
+    // this will create a normals attribute at least seems to work okay most of the time
     geometry.computeVertexNormals();
     
-
     // Material - going with basic for this one
     //var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
     var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide } );
@@ -44,6 +45,12 @@ VIDEO.init = function(sm, scene, camera){
         geometry,
         material);
     mesh.position.set(0, 0, 0);
+
+    // using vertext helper
+    var helper = new THREE.VertexNormalsHelper( mesh, 2, 0x00ff00, 1 );
+    mesh.userData.vertexNormalsHelper = helper;
+    mesh.add(helper);
+
     scene.add(mesh);
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
@@ -58,10 +65,14 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     pos.array[6] = 1 + 1 * sm.bias;
     pos.needsUpdate = true;
 
+    // bounding box and sphere
     geo.computeBoundingBox();
     geo.computeBoundingSphere();
 
+    // update vertex normals and helper
+    geo.computeVertexNormals();
+    var helper = mesh.userData.vertexNormalsHelper;
+    helper.update();
 
-    console.log();
 };
 
