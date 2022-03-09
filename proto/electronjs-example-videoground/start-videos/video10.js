@@ -3,9 +3,10 @@
  *       https://threejs.org/docs/#api/en/core/BufferGeometry
  *
  *       There is also the needs update bool of the position prop that is of interest
- *       and it is also a good idea to read of the BufferGeometry docs:
+ *       and it is also a good idea to read of the BufferGeometry, and BufferAttribute docs:
  *       https://threejs.org/docs/#manual/en/introduction/How-to-update-things
  *       https://threejs.org/docs/#api/en/core/BufferGeometry
+ *       https://threejs.org/docs/#api/en/core/BufferAttribute
  *
  *       The first step with this is just having the position attribute which is
  *       the main focus of this video.
