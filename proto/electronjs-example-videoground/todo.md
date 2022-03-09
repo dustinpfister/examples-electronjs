@@ -61,7 +61,8 @@ https://johnvansickle.com/ffmpeg/
 <!-- video 10 -->
 * (done) start video10.js start video that will be on custom geometry
 * (done) create a geometry of just 6 Vertices in terms of position values, that will be two trianges then
-* change the position values over time
+* (done) change the position values over time
+* see about adding normals, and uing the normal/depth materials
 <!-- video 11 -->
 * start a new video 11 based off of video 10
 * this will be the same thing only now I will want to see about setting up groups for each face
