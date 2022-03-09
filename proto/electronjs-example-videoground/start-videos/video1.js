@@ -1,3 +1,7 @@
+/*     video1 - The first very simple video that I started with in which
+ *       I am just moving a cube back and forth
+ *       
+ */
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     // static camera

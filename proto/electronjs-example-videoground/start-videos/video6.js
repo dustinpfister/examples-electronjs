@@ -1,3 +1,7 @@
+/*    video6.js - Testing out my scripts feature
+ *      
+ *      
+ */
 // using guy.js
 VIDEO.scripts = [
   './js/canvas.js',

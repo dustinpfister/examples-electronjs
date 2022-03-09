@@ -1,3 +1,8 @@
+/*    video7.js - Making sure that scripts and dae files are working as they should be
+ *      
+ *      
+ */
+
 // one dae file of the box house
 VIDEO.daePaths = [
   './dae/box-house/box_house1.dae'

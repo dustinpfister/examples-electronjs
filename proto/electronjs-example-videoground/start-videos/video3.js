@@ -1,4 +1,7 @@
-
+/*     video3 - Point light example
+ *       
+ *       
+ */
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     // static camera

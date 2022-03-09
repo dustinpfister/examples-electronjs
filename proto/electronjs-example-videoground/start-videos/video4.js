@@ -1,4 +1,7 @@
-
+/*     video4 - Another point light example
+ *       
+ *       
+ */
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     // static camera

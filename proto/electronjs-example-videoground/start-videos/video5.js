@@ -1,4 +1,7 @@
-
+/*     video5 - I am going to want to import dea files. This is the first test video in
+ *       which I am teting out that doing so works as it should with this.
+ *       
+ */
 // I should be able to set a list of dea files
 // that need to be loaded, relative to the location of this
 // video js file

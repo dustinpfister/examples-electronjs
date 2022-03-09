@@ -1,3 +1,7 @@
+/*    video8.js - playing with setFromSphericalCoords an raycaster to position an object on
+ *      A mesh such as a sphere. This is the first step to a system that is used to positon
+ *      an object 'from land' rather than from 'sea level'.
+ */
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
 

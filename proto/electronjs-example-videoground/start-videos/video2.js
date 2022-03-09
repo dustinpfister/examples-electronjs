@@ -1,3 +1,7 @@
+/*     video2 - Just another simple hello world example that I started out with
+ *       
+ *       
+ */
 // init method for the video
 VIDEO.init = function(sm, scene, camera){
     // static camera
