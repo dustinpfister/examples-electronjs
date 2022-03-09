@@ -3,7 +3,9 @@
  *       https://threejs.org/docs/#api/en/core/BufferGeometry
  *
  *       There is also the needs update bool of the position prop that is of interest
+ *       and it is also a good idea to read of the BufferGeometry docs:
  *       https://threejs.org/docs/#manual/en/introduction/How-to-update-things
+ *       https://threejs.org/docs/#api/en/core/BufferGeometry
  *
  *       The first step with this is just having the position attribute which is
  *       the main focus of this video.
@@ -44,7 +46,9 @@ VIDEO.update = function(sm, scene, camera, per, bias){
 
     // mutation of position over time
     var pos = geo.attributes.position;
-    pos.array[0] = -1 * sm.bias;
+    pos.array[0] = -1 + 1 * sm.bias;
+    pos.array[3] = 1 + 1 * sm.bias;
+    pos.array[6] = 1 + 1 * sm.bias;
     pos.needsUpdate = true;
 
     geo.computeBoundingBox();
