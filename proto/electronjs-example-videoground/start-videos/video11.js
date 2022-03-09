@@ -6,14 +6,17 @@ VIDEO.scripts = [
   './js/helper-vertex-normals.js'
 ];
 VIDEO.init = function(sm, scene, camera){
+
     // CAMERA
     camera.position.set(4, 4, 4);
     camera.lookAt(0, 0, 0);
+
     // GRID HELPER
     scene.add(new THREE.GridHelper(8, 8));
+
     // GEOMETRY
     var geometry =  scene.userData.geo = new THREE.BufferGeometry();
-    // create a simple square shape. 
+    // create a simple shape
     var vertices = new Float32Array( [
 	-1.0, -1.0,  1.0,
 	 1.0, -1.0,  -1.0,
@@ -36,7 +39,9 @@ VIDEO.init = function(sm, scene, camera){
     geometry.computeVertexNormals();
     
     // MATERIAL
-    var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide, transparent: true, opacity:0.25 } );
+    var material = new THREE.MeshNormalMaterial( { 
+        side: THREE.DoubleSide, transparent: true, opacity:0.25
+    });
 
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
@@ -44,24 +49,25 @@ VIDEO.init = function(sm, scene, camera){
         material);
     mesh.position.set(0, 0, 0);
 
-    // using vertext helper
+    // VERTEX HELPER
     var helper = new THREE.VertexNormalsHelper( mesh, 2, 0x00ff00, 1 );
     mesh.userData.vertexNormalsHelper = helper;
     scene.add(helper);
 
+    // ADD MESH AND HELPER SPHERE
     scene.add(mesh);
     mesh.add(sphere);
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
+
     var mesh = scene.userData.mesh,
     geo = scene.userData.geo;
 
     // rotate mesh
     //mesh.rotation.y = Math.PI * 2 * sm.bias;
 
-    // mutation of position over time
+    // UPDATE POSITION OVER TIME
     var pos = geo.attributes.position;
-
     // mutation of one point
     var x = -4 + 3 * sm.bias,
     y = 0 + 0 * sm.bias,
@@ -71,7 +77,6 @@ VIDEO.update = function(sm, scene, camera, per, bias){
          pos.array[index * 3 + 1] = y;
          pos.array[index * 3 + 2] = z;
     });
-
     var x = 0.25 + 2.5 * sm.bias,
     y = 1 + 1 * sm.bias,
     z = 0.5 + 1 * sm.bias;
@@ -80,26 +85,11 @@ VIDEO.update = function(sm, scene, camera, per, bias){
          pos.array[index * 3 + 1] = y;
          pos.array[index * 3 + 2] = z;
     });
-
-    //pos.array[0] = x;
-    //pos.array[1] = y;
-    //pos.array[2] = z;
-
-    //pos.array[9] = x;
-    //pos.array[10] = y;
-    //pos.array[11] = z;
-
-    //pos.array[18] = x;
-    //pos.array[19] = y;
-    //pos.array[20] = z;
-
     // must do this!
     pos.needsUpdate = true;
-
     // bounding box and sphere
     geo.computeBoundingBox();
     geo.computeBoundingSphere();
-
     // update vertex normals and helper
     geo.computeVertexNormals();
     var helper = mesh.userData.vertexNormalsHelper;
