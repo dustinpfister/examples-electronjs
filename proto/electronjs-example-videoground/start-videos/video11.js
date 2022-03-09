@@ -89,8 +89,8 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     // UPDATE POSITION OVER TIME
     var pos = geo.attributes.position;
     // mutation of one point
-/*
-    var x = -4 + 3 * sm.bias,
+
+    var x = -2 + 4 * sm.bias,
     y = 0 + 0 * sm.bias,
     z = 2 - 1 * sm.bias;
     [0, 3, 6].forEach(function(index){
@@ -98,7 +98,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
          pos.array[index * 3 + 1] = y;
          pos.array[index * 3 + 2] = z;
     });
-*/
+
     //var x = 0.25 + 2.5 * sm.bias,
     //y = 1 + 1 * sm.bias,
     //z = 0.5 + 1 * sm.bias;
