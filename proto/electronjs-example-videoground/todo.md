@@ -32,7 +32,7 @@ https://johnvansickle.com/ffmpeg/
 <!-- sequences -->
 * Start a system that involves updating the state of a scene with sequences
 
-## () - r3 - resolution modes, video7, video8, video9, world-positon.js
+## () - r3 - Resolution modes, video7-13 world-positon.js
 * (done) start a new canvas.js file that will contain the createCanvasObject method from guy-canvas.js
 * (done) def draw method class built into the module
 * (done) a def.stripes method
@@ -58,12 +58,27 @@ https://johnvansickle.com/ffmpeg/
 * (done) start a video9 file that will be just like video8 only I will be using world.dae, and world-position.js
 * (done) display current file name in title
 * (done) do way with file path display in ui
-
+<!-- video 10 -->
+* start video10.js start video that will be on custom geometry
+* create a geometry of just 8 Vertices in terms of position values
+* change the position values over time
+<!-- video 11 -->
+* start a new video 11 based off of video 10
+* this will be the same thing only now I will want to see about setting up groups for each face
+* use an array of materials and set a unigue material index for each face
+* change position, and material index over time
+<!-- video 12 -->
+* yet another videom this one based off of video 11
+* this will be the same thing as video 11, but now I am loking into creating uvs for the gemetry
+* Use canvas textures for the materials
+* see about changing uvs over time on top of positon and material index
+<!-- video 13 -->
+* world.dae with texture
+* apply what was learned with videos10-12 to create a new video in which I am applying textures to a world.dae file
 <!-- ./html/js-ui-video-code.js -->
 * I will want vm.$data.filePath, vm.$data.fileDir, and vm.$data.fileName to help address some confusion
 * make it so that the the state is not updated with each key press, have a 'run' button
 * start another text area that will be used as a means to display what is wrong, rtaher than using the javaScript console
-
 <!-- world-position.js -->
 * finish the world-position.js file in videoground-betaworld and make that part of the js folder hear also
 
