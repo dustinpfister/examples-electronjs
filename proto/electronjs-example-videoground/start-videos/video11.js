@@ -38,10 +38,27 @@ VIDEO.init = function(sm, scene, camera){
     // this will create a normals attribute at least seems to work okay most of the time
     geometry.computeVertexNormals();
     
+    // LIGHT
+    var light = new THREE.DirectionalLight(0xffffff);
+    light.position.set(1, 1, 0);
+    scene.add(light);
+    scene.add( new THREE.AmbientLight(0xffffff, 0.2) );
+
     // MATERIAL
-    var material = new THREE.MeshNormalMaterial( { 
-        side: THREE.DoubleSide, transparent: true, opacity:0.25
-    });
+/*
+    var material = [
+        new THREE.MeshNormalMaterial({ 
+            side: THREE.DoubleSide
+        }),
+        new THREE.MeshStandardMaterial({ 
+            side: THREE.DoubleSide
+        }),
+    ];
+*/
+var material = new THREE.MeshStandardMaterial({
+            color: 0xff0000,
+            side: THREE.DoubleSide
+        });
 
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
@@ -64,11 +81,12 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     geo = scene.userData.geo;
 
     // rotate mesh
-    //mesh.rotation.y = Math.PI * 2 * sm.bias;
+    mesh.rotation.y = Math.PI * 2 * sm.bias;
 
     // UPDATE POSITION OVER TIME
     var pos = geo.attributes.position;
     // mutation of one point
+/*
     var x = -4 + 3 * sm.bias,
     y = 0 + 0 * sm.bias,
     z = 2 - 1 * sm.bias;
@@ -77,14 +95,15 @@ VIDEO.update = function(sm, scene, camera, per, bias){
          pos.array[index * 3 + 1] = y;
          pos.array[index * 3 + 2] = z;
     });
-    var x = 0.25 + 2.5 * sm.bias,
-    y = 1 + 1 * sm.bias,
-    z = 0.5 + 1 * sm.bias;
-    [2, 4].forEach(function(index){
-         pos.array[index * 3 + 0] = x;
-         pos.array[index * 3 + 1] = y;
-         pos.array[index * 3 + 2] = z;
-    });
+*/
+    //var x = 0.25 + 2.5 * sm.bias,
+    //y = 1 + 1 * sm.bias,
+    //z = 0.5 + 1 * sm.bias;
+    //[2, 4].forEach(function(index){
+    //     pos.array[index * 3 + 0] = x;
+    //     pos.array[index * 3 + 1] = y;
+    //     pos.array[index * 3 + 2] = z;
+    //});
     // must do this!
     pos.needsUpdate = true;
     // bounding box and sphere
