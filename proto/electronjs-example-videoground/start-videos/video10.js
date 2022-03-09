@@ -33,11 +33,11 @@ VIDEO.init = function(sm, scene, camera){
 
 	 -1.0,  -1.0,  1.0,
 	 1.0,  -1.0,  -1.0,
-	 -1.0, -1.0,  -1.0
+	 -1.0, 1.0,  -1.0
     ]);
 
     var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.05,20, 20));
-    sphere.position.set(1, -1, -1);
+    sphere.position.set(-1, 1, -1);
 
 
     // must have at least a position attribute, there are 3 values per vertex
