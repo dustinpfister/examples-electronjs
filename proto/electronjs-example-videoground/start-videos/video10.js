@@ -24,13 +24,22 @@ VIDEO.init = function(sm, scene, camera){
     // create a simple square shape. 
     var vertices = new Float32Array( [
 	-1.0, -1.0,  1.0,
-	 1.0, -1.0,  1.0,
+	 1.0, -1.0,  -1.0,
 	 1.0,  1.0,  1.0,
 
 	 1.0,  1.0,  1.0,
-	-1.0,  1.0,  1.0,
-	-1.0, -1.0,  1.0
+	-1.0,  1.0,  -1.0,
+	-1.0, -1.0,  1.0,
+
+	 -1.0,  -1.0,  1.0,
+	 1.0,  -1.0,  -1.0,
+	 -1.0, -1.0,  -1.0
     ]);
+
+    var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.05,20, 20));
+    sphere.position.set(1, -1, -1);
+
+
     // must have at least a position attribute, there are 3 values per vertex
     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
 
@@ -49,20 +58,23 @@ VIDEO.init = function(sm, scene, camera){
     // using vertext helper
     var helper = new THREE.VertexNormalsHelper( mesh, 2, 0x00ff00, 1 );
     mesh.userData.vertexNormalsHelper = helper;
-    mesh.add(helper);
+    scene.add(helper);
 
     scene.add(mesh);
+    mesh.add(sphere);
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
     var mesh = scene.userData.mesh,
     geo = scene.userData.geo;
-    //mesh.rotation.y = Math.PI * 2 * sm.per;
+    mesh.rotation.y = Math.PI * 2 * sm.per;
 
     // mutation of position over time
     var pos = geo.attributes.position;
-    pos.array[0] = -1 + 1 * sm.bias;
-    pos.array[3] = 1 + 1 * sm.bias;
-    pos.array[6] = 1 + 1 * sm.bias;
+
+    //pos.array[0] = -1 + 1 * sm.bias;
+    //pos.array[3] = 1 + 1 * sm.bias;
+    //pos.array[6] = 1 + 1 * sm.bias;
+
     pos.needsUpdate = true;
 
     // bounding box and sphere
