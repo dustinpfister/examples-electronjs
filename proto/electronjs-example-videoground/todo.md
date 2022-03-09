@@ -59,8 +59,8 @@ https://johnvansickle.com/ffmpeg/
 * (done) display current file name in title
 * (done) do way with file path display in ui
 <!-- video 10 -->
-* start video10.js start video that will be on custom geometry
-* create a geometry of just 8 Vertices in terms of position values
+* (done) start video10.js start video that will be on custom geometry
+* (done) create a geometry of just 6 Vertices in terms of position values, that will be two trianges then
 * change the position values over time
 <!-- video 11 -->
 * start a new video 11 based off of video 10
