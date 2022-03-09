@@ -66,15 +66,13 @@ https://johnvansickle.com/ffmpeg/
 * (done) see about adding one more face
 * (done) move more that one point
 <!-- video 11 -->
-* start a new video 11 based off of video 10
-* this will be the same thing only now I will want to see about setting up groups for each face
-* use an array of materials and set a unigue material index for each face
-* change position, and material index over time
+* (done) start a new video 11 based off of video 10
+* (done) this will be the same thing only now I will want to see about setting up groups for each face
+* (done) use an array of materials and set a unigue material index for each face
 <!-- video 12 -->
-* yet another videom this one based off of video 11
-* this will be the same thing as video 11, but now I am loking into creating uvs for the gemetry
-* Use canvas textures for the materials
-* see about changing uvs over time on top of positon and material index
+* (done) start yet another video this one based off of video 11
+* (done) this will be the same thing as video 11, but now I am loking into creating uvs for the geometry
+* (done) Use canvas textures for the materials
 <!-- video 13 -->
 * world.dae with texture
 * apply what was learned with videos10-12 to create a new video in which I am applying textures to a world.dae file
