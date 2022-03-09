@@ -1,5 +1,10 @@
 /*     video10 - Custom Geometry starting out with the example at threejs.org
- *       found here: https://threejs.org/docs/#api/en/core/BufferGeometry
+ *       found here: 
+ *       https://threejs.org/docs/#api/en/core/BufferGeometry
+ *
+ *       There is also the needs update bool of the position prop that is of interest
+ *       https://threejs.org/docs/#manual/en/introduction/How-to-update-things
+ *
  *       The first step with this is just having the position attribute which is
  *       the main focus of this video.
  */
