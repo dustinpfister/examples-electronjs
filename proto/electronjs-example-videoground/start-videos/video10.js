@@ -44,7 +44,7 @@ VIDEO.init = function(sm, scene, camera){
     geometry.computeVertexNormals();
     
     // MATERIAL
-    var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide } );
+    var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide, transparent: true, opacity:0.25 } );
 
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
@@ -81,14 +81,13 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     });
 
     var x = 0.25 + 2.5 * sm.bias,
-    y = 1,
-    z = 0.5 + 2 * sm.bias;
+    y = 1 + 1 * sm.bias,
+    z = 0.5 + 1 * sm.bias;
     [2, 4].forEach(function(index){
          pos.array[index * 3 + 0] = x;
          pos.array[index * 3 + 1] = y;
          pos.array[index * 3 + 2] = z;
     });
-
 
     //pos.array[0] = x;
     //pos.array[1] = y;
