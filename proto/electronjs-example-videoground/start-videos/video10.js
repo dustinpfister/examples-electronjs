@@ -71,20 +71,36 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     var pos = geo.attributes.position;
 
     // mutation of one point
-    var x = -4 + 5 * sm.bias,
+    var x = -4 + 3 * sm.bias,
     y = 0 + 0 * sm.bias,
     z = 2 - 1 * sm.bias;
-    pos.array[0] = x;
-    pos.array[1] = y;
-    pos.array[2] = z;
+    [0, 3, 6].forEach(function(index){
+         pos.array[index * 3 + 0] = x;
+         pos.array[index * 3 + 1] = y;
+         pos.array[index * 3 + 2] = z;
+    });
 
-    pos.array[9] = x;
-    pos.array[10] = y;
-    pos.array[11] = z;
+    var x = 0.25 + 2.5 * sm.bias,
+    y = 1,
+    z = 0.5 + 2 * sm.bias;
+    [2, 4].forEach(function(index){
+         pos.array[index * 3 + 0] = x;
+         pos.array[index * 3 + 1] = y;
+         pos.array[index * 3 + 2] = z;
+    });
 
-    pos.array[18] = x;
-    pos.array[19] = y;
-    pos.array[20] = z;
+
+    //pos.array[0] = x;
+    //pos.array[1] = y;
+    //pos.array[2] = z;
+
+    //pos.array[9] = x;
+    //pos.array[10] = y;
+    //pos.array[11] = z;
+
+    //pos.array[18] = x;
+    //pos.array[19] = y;
+    //pos.array[20] = z;
 
     // must do this!
     pos.needsUpdate = true;
