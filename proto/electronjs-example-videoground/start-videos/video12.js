@@ -45,6 +45,21 @@ VIDEO.init = function(sm, scene, camera){
     geometry.addGroup(0, 3, 1);
     geometry.addGroup(3, 3, 1);
     geometry.addGroup(6, 3, 1);
+    // ADDING UV ATTRIBUTE
+    var uv = new Float32Array( [
+	 0.0, 1.0,
+	 1.0, 0.0,
+	 1.0, 1.0,
+
+	 0.0, 1.0,
+	 1.0, 0.0,
+	 1.0, 1.0,
+
+	 0.0, 1.0,
+	 1.0, 0.0,
+	 1.0, 1.0
+    ]);
+   geometry.setAttribute( 'uv', new THREE.BufferAttribute( uv, 2 ) );
     
     // LIGHT
     var light = new THREE.DirectionalLight(0xffffff);
@@ -57,7 +72,6 @@ VIDEO.init = function(sm, scene, camera){
     canvasObj.draw({drawMethod:'randomGrid', gRange:[0,0], rRange:[128, 200]})
     var material = [
         new THREE.MeshStandardMaterial({
-            //color: 0x00ff00,
             map: canvasObj.texture,
             side: THREE.FrontSide
         }),
@@ -81,6 +95,12 @@ VIDEO.init = function(sm, scene, camera){
     // ADD MESH AND HELPER SPHERE
     scene.add(mesh);
     mesh.add(sphere);
+
+    // uv
+    //console.log(geometry.getAttribute('position'));
+    //console.log(geometry.getAttribute('normal'));
+    //console.log(geometry.getAttribute('uv'));
+
 };
 VIDEO.update = function(sm, scene, camera, per, bias){
 
@@ -88,7 +108,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     geo = scene.userData.geo;
 
     // rotate mesh
-    mesh.rotation.x = Math.PI / 180 * 40 * sm.bias;
+    mesh.rotation.y = Math.PI / 180 * 460 * sm.bias;
 
     // UPDATE POSITION OVER TIME
     var pos = geo.attributes.position;
