@@ -56,14 +56,18 @@ https://johnvansickle.com/ffmpeg/
 * (done) I should be able to find a way to use raycaster as a way to set the position of the box mesh to the surface of the sphere
 * (done) start a world.dae file that will be a sphere like object but with mountains and vallies
 * (done) start a video9 file that will be just like video8 only I will be using world.dae, and world-position.js
-<!-- world-position.js -->
-* start a world-posiiton.js file in which I will be pulling logic that I worked out in video8.js into this file
-* I will want a worldPosition.setToLand method that will set the position of a mesh to the surface of the world object
-* I will want a worldPosition.setToWater method that will se position of a mesh realtive to a sea level value
-<!-- misc -->
 * (done) display current file name in title
 * (done) do way with file path display in ui
+
+<!-- ./html/js-ui-video-code.js -->
 * I will want vm.$data.filePath, vm.$data.fileDir, and vm.$data.fileName to help address some confusion
+* make it so that the the state is not updated with each key press, have a 'run' button
+* start another text area that will be used as a means to display what is wrong, rtaher than using the javaScript console
+
+<!-- world-position.js -->
+* finish the world-position.js file in videoground-betaworld and make that part of the js folder hear also
+
+
 
 
 ## ( done 03/03/2022 ) - r2 - Scripts
