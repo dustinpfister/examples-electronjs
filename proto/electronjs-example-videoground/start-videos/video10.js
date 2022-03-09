@@ -35,20 +35,17 @@ VIDEO.init = function(sm, scene, camera){
 	 -1.0, 1.0,  -1.0,
 	 1.0,  -1.0,  -1.0,
     ]);
-
+    // helper sphere
     var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.05,20, 20));
     sphere.position.set(-1, -1, 1);
-
-
     // must have at least a position attribute, there are 3 values per vertex
     geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-
     // this will create a normals attribute at least seems to work okay most of the time
     geometry.computeVertexNormals();
     
-    // Material - going with basic for this one
-    //var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
+    // MATERIAL
     var material = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide } );
+
     // MESH
     var mesh = scene.userData.mesh = new THREE.Mesh(
         geometry,
@@ -68,7 +65,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     geo = scene.userData.geo;
 
     // rotate mesh
-    mesh.rotation.y = Math.PI * 2 * sm.bias;
+    //mesh.rotation.y = Math.PI * 2 * sm.bias;
 
     // mutation of position over time
     var pos = geo.attributes.position;
@@ -79,10 +76,7 @@ VIDEO.update = function(sm, scene, camera, per, bias){
     pos.array[9] = x;
     pos.array[18] = x;
 
-    //pos.array[0] = -1 + 1 * sm.bias;
-    //pos.array[3] = 1 + 1 * sm.bias;
-    //pos.array[6] = 1 + 1 * sm.bias;
-
+    // must do this!
     pos.needsUpdate = true;
 
     // bounding box and sphere
