@@ -1,6 +1,6 @@
-/*     video9 - testing out positon of object to dae file world rather than sphere gemetry
+/*     video9 - testing out positon of object to dae file world rather than sphere geometry
  *       Also making use of a new javaScript file in which I am creating code that has to do with
- *       positionong of groups and mesh objects
+ *       positioning of groups and mesh objects
  */
 VIDEO.daePaths = [
   './dae/world/world.dae'
