@@ -52,12 +52,13 @@ var CanvasMod = (function () {
         }
     };
     // create and return a canvas texture
-    api.createCanvasObject = function (sm, drawMethods) {
+    api.createCanvasObject = function (sm, drawMethods, opt) {
+        opt = opt || {};
         drawMethods = drawMethods || DRAW_METHODS;
         var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-        canvas.width = 64;
-        canvas.height = 64;
+        canvas.width = opt.width === undefined ? 64 : opt.width;
+        canvas.height = opt.height === undefined ? 64 : opt.height;
         var texture = new THREE.Texture(canvas);
         texture.needsUpdate = true;
         var canvasObj = {
