@@ -1,5 +1,5 @@
 // load app and BrowserWindow
-const { app, Menu, BrowserWindow, dialog } = require('electron');
+const { app, Menu, BrowserWindow, clipboard} = require('electron');
 const path = require('path');
 
 // Custom Menus
@@ -14,14 +14,11 @@ const MainMenuTemplate = [
             {
                 label: 'Paste',
                 click: function(){
-
-// ref to window
-const mainWindow = BrowserWindow.fromId(1);
-
-// send
-mainWindow.webContents.send('actionPaste', 'foo');                
-
-    
+                    // ref to window
+                    const mainWindow = BrowserWindow.fromId(1);
+                    // send text
+                    const text = clipboard.readText();
+                    mainWindow.webContents.send('actionPaste', text);
                 }
             }
         ]
