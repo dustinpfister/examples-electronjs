@@ -14,10 +14,10 @@ function createMainWindow() {
             }
         });
     // load the html file for the main window
-    mainWindow.loadFile('html/window_main.html');
+    mainWindow.loadFile('html/index.html');
 
     // Open the DevTools for debugging
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // menu
     const menu = Menu.buildFromTemplate( require( path.join(__dirname, 'menu.js') ) );

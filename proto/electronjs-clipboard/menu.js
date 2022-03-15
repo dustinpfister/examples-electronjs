@@ -14,7 +14,14 @@ const MainMenuTemplate = [
             {
                 label: 'Paste',
                 click: function(){
-                    
+
+// ref to window
+const mainWindow = BrowserWindow.fromId(1);
+
+// send
+mainWindow.webContents.send('actionPaste', 'foo');                
+
+    
                 }
             }
         ]
