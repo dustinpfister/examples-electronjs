@@ -6,12 +6,32 @@
   </head>
   <body>
       <div>
+        <textarea cols="60" rows="20"></textarea>
       </div>
       <script>
+
+let text = document.querySelector('textarea');
+
+const getCaretPosition = (ctrl) => {
+    if (ctrl.selectionStart || ctrl.selectionStart == '0') {
+        return {
+            'start': ctrl.selectionStart,
+            'end': ctrl.selectionEnd
+        };
+    } else {
+        return {
+            'start': 0,
+            'end': 0
+        };
+    }
+}
 
 // attach and event for 'actionPaste event'
 cbDemoAPI.on('actionPaste', (a, b) => {
 
+    let pos = getCaretPosition(text);
+
+    console.log(pos);
     console.log('yeah');
     console.log(a);
     console.log(b);
