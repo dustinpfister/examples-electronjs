@@ -9,9 +9,7 @@
         <textarea cols="60" rows="20"></textarea>
       </div>
       <script>
-
 let text = document.querySelector('textarea');
-
 // https://www.vishalon.net/blog/javascript-getting-and-setting-caret-position-in-textarea/
 const getCaretPosition = (ctrl) => {
     if (ctrl.selectionStart || ctrl.selectionStart == '0') {
@@ -25,23 +23,15 @@ const getCaretPosition = (ctrl) => {
             'end': 0
         };
     }
-}
-
+};
 // attach and event for 'actionPaste event'
 cbDemoAPI.on('actionPaste', (evnt, content) => {
-
     let pos = getCaretPosition(text);
-	
-	console.log(  );
-	console.log(  )
-	
-	let a = text.value.slice(0, pos.start),
-	b = text.value.slice(pos.end, text.value.length);
+    let a = text.value.slice(0, pos.start),
+    b = text.value.slice(pos.end, text.value.length);
     let str = a + content + b;
-	text.value = str;
-
+    text.value = str;
 });
-
       </script>
   </body>
 </html>
