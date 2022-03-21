@@ -15,7 +15,8 @@ EVENT.infoOS = function(callback){
     ipcRenderer.on('infoOS', function(evnt) {
         let osInfo = {
             platform: process.platform,
-            dir_home: os.homedir()
+            dir_home: os.homedir(),
+            dir_app_root: __dirname
         };
         callback(evnt, osInfo);
     });
