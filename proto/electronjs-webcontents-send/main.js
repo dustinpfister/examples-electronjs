@@ -1,24 +1,26 @@
 // load app and BrowserWindow
-const { app, Menu, BrowserWindow } = require('electron')
+const { app, Menu, BrowserWindow } = require('electron');
+const path = require('path');
 
 // Custom Menu
 const isMac = process.platform === 'darwin'
 const MenuTemplate = [
-  // { role: 'fileMenu' }
-  {
-    label: 'File',
-    submenu: [
-      isMac ? { role: 'close' } : { role: 'quit' }
-    ]
-  },
-  // { role: 'viewMenu' }
-  {
-    label: 'View',
-    submenu: [
-      { type: 'separator' },
-      { role: 'togglefullscreen' }
-    ]
-  }
+    {
+        label: 'Info',
+        submenu: [
+            {
+                label: 'Package Info',
+                click: () => {
+                    // get ref to browser window one way or another
+                    const mainWindow = BrowserWindow.fromId(1);
+                    
+                    // send for event
+                    mainWindow.webContents.send('infoPkg', result);
+                    
+                }
+            }
+        ]
+    }
 ]
 const menu = Menu.buildFromTemplate(MenuTemplate)
 Menu.setApplicationMenu(menu)
@@ -37,6 +39,10 @@ function createWindow () {
   mainWindow.loadFile('index.html')
   // Open the DevTools for debugging
   //mainWindow.webContents.openDevTools()
+
+  const menu = Menu.buildFromTemplate(MainMenuTemplate);
+  mainWindow.setMenu(menu)
+
 }
 
 // the 'ready' event

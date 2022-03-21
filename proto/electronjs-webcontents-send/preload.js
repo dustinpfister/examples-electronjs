@@ -2,8 +2,8 @@ const { contextBridge, ipcRenderer} = require('electron');
 const API = {};
 const EVENT = {};
  
-EVENT.actionPaste = function(callback){
-    ipcRenderer.on('actionPaste', function(evnt, text) {
+EVENT.infoPkg = function(callback){
+    ipcRenderer.on('infoPkg', function(evnt, text) {
         callback(evnt, text);
     });
 };
