@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer} = require('electron');
 const path = require('path');
+const os = require('os');
 const API = {};
 const EVENT = {};
  
@@ -13,7 +14,8 @@ EVENT.infoPkg = function(callback){
 EVENT.infoOS = function(callback){
     ipcRenderer.on('infoOS', function(evnt) {
         let osInfo = {
-            platform: process.platform
+            platform: process.platform,
+            dir_home: os.homedir()
         };
         callback(evnt, osInfo);
     });
