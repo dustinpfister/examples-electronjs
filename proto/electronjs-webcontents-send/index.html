@@ -15,28 +15,24 @@ h1{
    font-family: arial;
 }
 #wrap_main{
-  position: absolute;
-  left: 25%;
-  top: 25%;
-  width: 50%;
-  height: 50%;
-  text-align: center; 
-  display: table;
+
 }
 #wrap_main h1 {
-  display:table-cell;
-  vertical-align:middle
+
 }
     </style>
   </head>
   <body>
     <div id="wrap_main">
         <h1>Send Demo</h1>
+        <p>use info menu wot get info using send method of webContents</p>
+        <textarea cols="60" rows="10"></textarea>
     </div>
     <script>
-API.on('infoPkg', (event, info) => {
-    console.log(event);
-    console.log(info)
+let textArea = document.querySelector('textarea')
+API.on('infoPkg', (event, pkgObj) => {
+    console.log(pkgObj);
+    textArea.value = JSON.stringify(pkgObj, 2)
 });
     </script>
   </body>
