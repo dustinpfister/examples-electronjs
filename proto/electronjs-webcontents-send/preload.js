@@ -9,6 +9,15 @@ EVENT.infoPkg = function(callback){
         callback(evnt, pkgObj);
     });
 };
+
+EVENT.infoOS = function(callback){
+    ipcRenderer.on('infoOS', function(evnt) {
+        let osInfo = {
+            platform: process.platform
+        };
+        callback(evnt, osInfo);
+    });
+};
  
 API.on = function(eventType, callback){
    EVENT[eventType](callback);

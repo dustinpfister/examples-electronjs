@@ -18,6 +18,17 @@ const MenuTemplate = [
                     mainWindow.webContents.send('infoPkg');
                     
                 }
+            },
+            {
+                label: 'OS Info',
+                click: () => {
+                    // get ref to browser window one way or another
+                    const mainWindow = BrowserWindow.fromId(1);
+                    
+                    // send for event
+                    mainWindow.webContents.send('infoOS');
+                    
+                }
             }
         ]
     }
