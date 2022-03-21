@@ -2,15 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="style.css">
+    <title>WebContents send method example</title>
+    <style>
+body{
+  background: #afafaf;
+  color: #2a2a2a;
+  margin: 0px;
+  padding: 0px;
+}
+h1{
+   font-size: 40pt;
+   font-family: arial;
+}
+#wrap_main{
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  text-align: center; 
+  display: table;
+}
+#wrap_main h1 {
+  display:table-cell;
+  vertical-align:middle
+}
+    </style>
   </head>
   <body>
     <div id="wrap_main">
-        <h1>Hello World</h1>
+        <h1>Send Demo</h1>
     </div>
   </body>
 </html>
