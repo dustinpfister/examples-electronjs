@@ -26,13 +26,13 @@ h1{
     <div id="wrap_main">
         <h1>Send Demo</h1>
         <p>use info menu wot get info using send method of webContents</p>
-        <textarea cols="60" rows="10"></textarea>
+        <textarea cols="65" rows="20"></textarea>
     </div>
     <script>
 let textArea = document.querySelector('textarea')
 API.on('infoPkg', (event, pkgObj) => {
     console.log(pkgObj);
-    textArea.value = JSON.stringify(pkgObj, 2)
+    textArea.value = JSON.stringify(pkgObj, null, 2)
 });
     </script>
   </body>
