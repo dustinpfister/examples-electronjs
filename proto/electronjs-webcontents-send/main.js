@@ -15,7 +15,7 @@ const MenuTemplate = [
                     const mainWindow = BrowserWindow.fromId(1);
                     
                     // send for event
-                    mainWindow.webContents.send('infoPkg', result);
+                    mainWindow.webContents.send('infoPkg');
                     
                 }
             }
@@ -38,7 +38,7 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
   // Open the DevTools for debugging
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   const menu = Menu.buildFromTemplate(MainMenuTemplate);
   mainWindow.setMenu(menu)
