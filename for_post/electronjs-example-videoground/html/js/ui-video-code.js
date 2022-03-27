@@ -22,29 +22,21 @@
     // load dae
     var loadDAE = function(callback){
         // if there are dea paths then I will want to load them	
-	if(VIDEO.daePaths){
+        if(VIDEO.daePaths){
             var manager = new THREE.LoadingManager(function (result) {
                 callback();
             });
             var loader = new THREE.ColladaLoader(manager);
             VIDEO.daePaths.forEach(function(daeRelUrl){
-
-            var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
-
-// set resource path
-console.log('okay...');
-console.log('url' + url);
-console.log( videoAPI.pathDirname( url ) );
-
-
-loader.setResourcePath( videoAPI.pathDirname( url )  + '/' );
-
-                loader.load(url, function (result) {
-                    VIDEO.daeResults.push(result);
-                });
+                var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
+                // USING setResourcePath seems to have fixed bug #3 in windows
+                loader.setResourcePath( videoAPI.pathDirname( url )  + '/' );
+                    loader.load(url, function (result) {
+                        VIDEO.daeResults.push(result);
+                    });
             });
         }else{
-	   // just call setup if there are no *.dae files	
+           // just call setup if there are no *.dae files	
            callback();
         }
     };
