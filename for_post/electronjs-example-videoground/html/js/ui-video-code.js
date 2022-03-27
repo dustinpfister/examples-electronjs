@@ -28,7 +28,17 @@
             });
             var loader = new THREE.ColladaLoader(manager);
             VIDEO.daePaths.forEach(function(daeRelUrl){
-	        var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
+
+            var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
+
+// set resource path
+console.log('okay...');
+console.log('url' + url);
+console.log( videoAPI.pathDirname( url ) );
+
+
+loader.setResourcePath( videoAPI.pathDirname( url )  + '/' );
+
                 loader.load(url, function (result) {
                     VIDEO.daeResults.push(result);
                 });

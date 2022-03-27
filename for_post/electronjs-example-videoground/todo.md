@@ -5,7 +5,7 @@
 * () - #1 - I am using eval to run javaScript code in the textarea element in html/js/client.js
 * () - #2 - WINDOWS: when I reload from dev tools some times the video loads other times it does not in windows
 * ( fixed in r1 ) - #3 - textures for dea files do not show up until frame+ or frame- is clicked
-* () - #4 - WINDOWS: texture files will not load correcly in windows
+* ( fixed in r3 ) - #4 - WINDOWS: texture files will not load correctly in windows
 * ( fixed in r2 ) - #5 - script tags keep being added each time a video is loaded
 
 <!-- possible features  -->
@@ -73,9 +73,7 @@ https://johnvansickle.com/ffmpeg/
 * (done) start yet another video this one based off of video 11
 * (done) this will be the same thing as video 11, but now I am loking into creating uvs for the geometry
 * (done) Use canvas textures for the materials
-<!-- video 13 -->
-* world.dae with texture
-* apply what was learned with videos10-12 to create a new video in which I am applying textures to a world.dae file
+* (done) fixed bug #3
 <!-- ./html/js-ui-video-code.js -->
 * I will want vm.$data.filePath, vm.$data.fileDir, and vm.$data.fileName to help address some confusion
 * make it so that the the state is not updated with each key press, have a 'run' button
