@@ -22,7 +22,7 @@ const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
 function createWindowsEventHandler (eventType, forWindow) {
-    return () => {
+    return function() {
       // get a collection of all windows
       var windows = BrowserWindow.getAllWindows();
       // create custom object with relevant info for each window such as id
@@ -33,9 +33,10 @@ function createWindowsEventHandler (eventType, forWindow) {
       });
       // for each window object
       windows.forEach((win, i) => {
-          win.webContents.send(eventType, {
+          let fwObj = {
               id: forWindow.id
-          }, windowObjects[i], windowObjects);
+          };
+          win.webContents.send(eventType, fwObj, windowObjects[i], windowObjects);
       });
   };
 };
@@ -53,7 +54,7 @@ function createWindow () {
   // and load the index.html of the app.
   newWindow.loadFile('index.html');
   // Open the DevTools for debugging
-  newWindow.webContents.openDevTools();
+  //newWindow.webContents.openDevTools();
   
   // on ready to show event call windowCreate method for all windows
   newWindow.on('ready-to-show', createWindowsEventHandler('windowCreate', newWindow) );
