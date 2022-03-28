@@ -17,7 +17,7 @@ Menu.setApplicationMenu(menu);
 
 // Create the browser window.
 function createWindow () {
-  const mainWindow = new BrowserWindow({
+  const newWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -26,10 +26,29 @@ function createWindow () {
     }
   });
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  newWindow.loadFile('index.html');
   // Open the DevTools for debugging
-  mainWindow.webContents.openDevTools()
-}
+  newWindow.webContents.openDevTools();
+  
+  // on ready to show event call windowCreate method for all windows
+  newWindow.on('ready-to-show', ()=>{
+	  // get a collection of all windows
+      var windows = BrowserWindow.getAllWindows();
+	  // create custom object with relevant info for each window such as id
+      var windowObjects = windows.map((win)=>{
+		  return {
+			  id: win.id
+		  };
+	  });
+	  // for each window object
+      windows.forEach((win, i) => {
+          win.webContents.send('windowCreate', {
+			  id: newWindow.id
+		  }, windowObjects[i], windowObjects);
+      });
+  });
+  
+};
 
 // the 'ready' event
 app.whenReady().then(() => {

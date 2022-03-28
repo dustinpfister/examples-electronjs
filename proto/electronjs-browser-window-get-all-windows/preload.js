@@ -7,14 +7,14 @@ let API = {};
 const EVENT = {};
 
 EVENT.windowCreate = function(callback){
-    ipcRenderer.on('windowCreate', function(evnt, windowObj, windows) {
-        callback(evnt, windowObj, windows);
+    ipcRenderer.on('windowCreate', function(evnt, newWindow, thisWindow, windows) {
+        callback(evnt, newWindow, thisWindow, windows);
     });
 };
 
 EVENT.windowClose = function(callback){
-    ipcRenderer.on('windowClose', function(evnt, windowObj, windows) {
-        callback(evnt, windowObj, windows);
+    ipcRenderer.on('windowClose', function(evnt, closedWindow, thisWindow, windows) {
+        callback(evnt, closedWindow, thisWindow, windows);
     });
 };
 

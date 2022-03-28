@@ -7,6 +7,14 @@
   <body>
     <div id="wrap_main">
         <h1>This is a Window.</h1>
+        <textarea id="out" rows="15" cols="40"></textarea>
     </div>
+    <script>
+API.on('windowCreate', (evnt, newWindow, thisWindow, windows) => {
+
+console.log(evnt, newWindow, thisWindow, windows);
+
+});
+    </script>
   </body>
 </html>
