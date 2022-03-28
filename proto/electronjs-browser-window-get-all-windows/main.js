@@ -20,9 +20,9 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {}
-  })
+  });
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('index.html');
   // Open the DevTools for debugging
   //mainWindow.webContents.openDevTools()
 }
