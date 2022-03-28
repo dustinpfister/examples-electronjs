@@ -53,30 +53,13 @@ function createWindow () {
   });
   // and load the index.html of the app.
   newWindow.loadFile('index.html');
+  
   // Open the DevTools for debugging
-  //newWindow.webContents.openDevTools();
+  newWindow.webContents.openDevTools();
   
   // on ready to show event call windowCreate method for all windows
   newWindow.on('ready-to-show', createWindowsEventHandler('windowCreate', newWindow) );
-  newWindow.on('close', createWindowsEventHandler('windowClose', newWindow) );
-  /*
-  newWindow.on('ready-to-show', ()=>{
-      // get a collection of all windows
-      var windows = BrowserWindow.getAllWindows();
-      // create custom object with relevant info for each window such as id
-      var windowObjects = windows.map((win)=>{
-          return {
-              id: win.id
-          };
-      });
-      // for each window object
-      windows.forEach((win, i) => {
-          win.webContents.send('windowCreate', {
-              id: newWindow.id
-          }, windowObjects[i], windowObjects);
-      });
-  });
-  */
+  newWindow.on('close', createWindowsEventHandler('windowCreate', newWindow) );
   
 };
 
