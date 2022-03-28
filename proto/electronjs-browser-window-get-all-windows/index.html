@@ -13,13 +13,17 @@
 API.on('windowCreate', (evnt, newWindow, thisWindow, windows) => {
     console.log('');
     console.log('windowCreate event: ');
-    console.log(evnt, newWindow, thisWindow, windows);
+    console.log(newWindow);
+    console.log(thisWindow);
+    console.log(windows);
     console.log('');
 });
-API.on('windowClose', (evnt, newWindow, thisWindow, windows) => {
+API.on('windowClose', (evnt, closedWindow, thisWindow, windows) => {
     console.log('');
     console.log('windowClose event: ');
-    console.log(evnt, newWindow, thisWindow, windows);
+    console.log(closedWindow);
+    console.log(thisWindow);
+    console.log(windows);
     console.log('');
 });
     </script>
