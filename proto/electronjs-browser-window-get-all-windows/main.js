@@ -25,15 +25,13 @@ function createWindowsEventHandler (eventType, forWindow) {
     return function() {
       // get a collection of all windows
       var windows = BrowserWindow.getAllWindows();
-	  
-if(eventType === 'windowClose'){
-	
-	windows = windows.filter((win)=>{
-		return win.id != forWindow.id;
-	});
-	
-}
-	  
+  
+    if(eventType === 'windowClose'){
+        windows = windows.filter((win) => {
+            return win.id != forWindow.id;
+        });
+    }
+  
       // create custom object with relevant info for each window such as id
       var windowObjects = windows.map((win)=>{
           return {
