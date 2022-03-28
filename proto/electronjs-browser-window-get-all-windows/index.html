@@ -12,7 +12,13 @@
     <script>
 API.on('windowCreate', (evnt, newWindow, thisWindow, windows) => {
     console.log('');
-    console.log('wndowCreate event: ');
+    console.log('windowCreate event: ');
+    console.log(evnt, newWindow, thisWindow, windows);
+    console.log('');
+});
+API.on('windowClose', (evnt, newWindow, thisWindow, windows) => {
+    console.log('');
+    console.log('windowClose event: ');
     console.log(evnt, newWindow, thisWindow, windows);
     console.log('');
 });

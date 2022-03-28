@@ -8,7 +8,13 @@ const template = [
   {
     label: 'File',
     submenu: [
-      isMac ? { role: 'close' } : { role: 'quit' }
+      isMac ? { role: 'close' } : { role: 'quit' },
+      {
+          label: 'New Window',
+          click: function(){
+  createWindow();
+          }
+       }
     ]
   }
 ];
