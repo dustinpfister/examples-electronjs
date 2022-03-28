@@ -15,6 +15,25 @@ const template = [
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
 
+function createWindowsEventHandler (eventType, forWindow) {
+    return () => {
+      // get a collection of all windows
+      var windows = BrowserWindow.getAllWindows();
+      // create custom object with relevant info for each window such as id
+      var windowObjects = windows.map((win)=>{
+          return {
+              id: win.id
+          };
+      });
+      // for each window object
+      windows.forEach((win, i) => {
+          win.webContents.send(eventType, {
+              id: forWindow.id
+          }, windowObjects[i], windowObjects);
+      });
+  };
+};
+
 // Create the browser window.
 function createWindow () {
   const newWindow = new BrowserWindow({
@@ -31,22 +50,26 @@ function createWindow () {
   newWindow.webContents.openDevTools();
   
   // on ready to show event call windowCreate method for all windows
+  newWindow.on('ready-to-show', createWindowsEventHandler('windowCreate', newWindow) );
+  newWindow.on('close', createWindowsEventHandler('windowClose', newWindow) );
+  /*
   newWindow.on('ready-to-show', ()=>{
-	  // get a collection of all windows
+      // get a collection of all windows
       var windows = BrowserWindow.getAllWindows();
-	  // create custom object with relevant info for each window such as id
+      // create custom object with relevant info for each window such as id
       var windowObjects = windows.map((win)=>{
-		  return {
-			  id: win.id
-		  };
-	  });
-	  // for each window object
+          return {
+              id: win.id
+          };
+      });
+      // for each window object
       windows.forEach((win, i) => {
           win.webContents.send('windowCreate', {
-			  id: newWindow.id
-		  }, windowObjects[i], windowObjects);
+              id: newWindow.id
+          }, windowObjects[i], windowObjects);
       });
   });
+  */
   
 };
 
