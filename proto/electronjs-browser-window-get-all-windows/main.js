@@ -1,5 +1,6 @@
 // load app, Menu, and BrowserWindow
 const { app, Menu, BrowserWindow } = require('electron');
+const path = require('path');
 
 // custom menu
 const isMac = process.platform === 'darwin'
@@ -19,12 +20,15 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {}
+    webPreferences: {
+        contextIsolation: true,
+        preload: path.resolve( __dirname, 'preload.js')
+    }
   });
   // and load the index.html of the app.
   mainWindow.loadFile('index.html');
   // Open the DevTools for debugging
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // the 'ready' event

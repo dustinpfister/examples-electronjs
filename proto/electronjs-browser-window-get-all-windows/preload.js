@@ -1,9 +1,7 @@
 const { contextBridge, ipcRenderer} = require('electron');
 
-
 // the API to be used in client side code
-let oAPI = {};
-
+let API = {};
 
 // the events object
 const EVENT = {};
