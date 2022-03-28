@@ -1,0 +1,14 @@
+{
+  "name": "electronjs-browser-window-get-all-windows",
+  "version": "0.0.0",
+  "description": "simple example of the get all windows static method of the BrowserWindow class",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^10.4.7"
+  }
+}
