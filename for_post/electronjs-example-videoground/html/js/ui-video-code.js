@@ -29,11 +29,14 @@
             var loader = new THREE.ColladaLoader(manager);
             VIDEO.daePaths.forEach(function(daeRelUrl){
                 var url = videoAPI.pathJoin(vm.$data.filePath, daeRelUrl);
+
+                // LOOKS LIKE THIS CAUSES A NEW PROBLEM WHEN LOADING MORE THAN ONE DAE
                 // USING setResourcePath seems to have fixed bug #3 in windows
-                loader.setResourcePath( videoAPI.pathDirname( url )  + '/' );
-                    loader.load(url, function (result) {
-                        VIDEO.daeResults.push(result);
-                    });
+
+                //loader.setResourcePath( videoAPI.pathDirname( url )  + '/' );
+                loader.load(url, function (result) {
+                    VIDEO.daeResults.push(result);
+                });
             });
         }else{
            // just call setup if there are no *.dae files	
