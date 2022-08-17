@@ -2,11 +2,9 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 
-// create an api for window objects in web pages
-contextBridge.exposeInMainWorld('myAPI', {
-    func: function(){
-        return 'hello world';
-    },
+
+var UserDataApp = {
+/*
     // CLIENT EVENT for open file option in menu
     onMenuOpenFile: function(callback){
         // should get a result object from main.js
@@ -35,7 +33,11 @@ contextBridge.exposeInMainWorld('myAPI', {
             }
         })
     }
-});
+*/
+};
 
-
-console.log('preload');
+//******** **********
+// EXPOSE API
+//******** **********
+// create an api for window objects in web pages
+contextBridge.exposeInMainWorld('UserDataApp', );

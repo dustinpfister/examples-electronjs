@@ -1,7 +1,7 @@
 {
-  "name": "browser-window",
+  "name": "electron-example-user-data-file",
   "version": "0.0.0",
-  "description": "Browser window example",
+  "description": "User data file example",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -9,6 +9,6 @@
   "author": "Dustin Pfister",
   "license": "GPL-3.0",
   "devDependencies": {
-    "electron": "^10.4.7"
+    "electron": "^13.6.9"
   }
 }
