@@ -40,4 +40,4 @@ var UserDataApp = {
 // EXPOSE API
 //******** **********
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('UserDataApp', );
+contextBridge.exposeInMainWorld('UserDataApp', UserDataApp);
