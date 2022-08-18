@@ -12,6 +12,7 @@ const writeFile = promisify(fs.writeFile);
 // dirs
 const dir_home = os.homedir();
 const dir_userdata = path.join(dir_home, '.userDataApp');
+const uri_data = path.join(dir_userdata, 'data.json');
 // create the user data folder if it is not there
 const createUserDataFolder = function(){
     return new Promise((resolve, reject) => {
@@ -31,7 +32,6 @@ const data_default = {
 };
 // create the data file if it is not there
 const createUserDataFile = function(){
-    let uri_data = path.join(dir_userdata, 'data.json');
     console.log(uri_data);
     return readFile(uri_data, 'utf8')
     .then(()=>{
