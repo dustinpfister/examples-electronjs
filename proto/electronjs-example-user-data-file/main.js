@@ -119,6 +119,7 @@ const MainMenuTemplate = [
 app.whenReady().then(() => {
     // create the user data folder if it is not there to begin with
     createUserDataFolder()
+    // create the user data file if it is not there
     createUserDataFile()
     // if all goes well with user data folder
     .then(()=>{
