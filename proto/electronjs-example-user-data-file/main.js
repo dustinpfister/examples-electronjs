@@ -3,20 +3,50 @@ const { app, dialog, Menu, BrowserWindow} = require('electron');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const promisify = require('util').promisify;
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 //******** **********
-// CREATE USER DATA FOLDER
+// CREATE USER DATA FOLDER AND FILE HELPERS
 //******** **********
+// dirs
+const dir_home = os.homedir();
+const dir_userdata = path.join(dir_home, '.userDataApp');
+// create the user data folder if it is not there
 const createUserDataFolder = function(){
-    let dir_home = os.homedir();
-    let dir_userdata = path.join(dir_home, '.userDataApp');
     return new Promise((resolve, reject) => {
         fs.mkdir(dir_userdata, { recursive: true }, (err) => {
             if (err){
-                reject(err)
+                reject(err);
             }else{
+                console.log('user data folder check went well');
                 resolve();
             }
         });
+    });
+};
+// hard coded default data file state
+const data_default = {
+    dir_open_start: dir_home // dir to look for files when doing an open for the first time
+};
+// create the data file if it is not there
+const createUserDataFile = function(){
+    let uri_data = path.join(dir_userdata, 'data.json');
+    console.log(uri_data);
+    return readFile(uri_data, 'utf8')
+    .then(()=>{
+        console.log('looks like we have a user data file, so no need to create a new one');
+        return Promise.resolve();
+    })
+    // error reading file
+    .catch((e)=>{
+        console.log('error reading user data file, maybe it is not there...');
+        if(e.code === 'ENOENT'){
+            console.log('error code is ENOENT, so wrting a new one from hard coded data.');
+            return writeFile(uri_data, JSON.stringify(data_default), 'utf8' )
+        }
+        // some other error happened that has not been handled here
+        return Promise.reject(e);
     });
 };
 //******** **********
@@ -89,9 +119,10 @@ const MainMenuTemplate = [
 app.whenReady().then(() => {
     // create the user data folder if it is not there to begin with
     createUserDataFolder()
+    createUserDataFile()
     // if all goes well with user data folder
     .then(()=>{
-        console.log('user data folder was created, or existed all ready.');
+        console.log('ready to create the main window now, and start the rest of the app.');
         createMainWindow();
         app.on('activate', () => {
             if (BrowserWindow.getAllWindows().length === 0){
