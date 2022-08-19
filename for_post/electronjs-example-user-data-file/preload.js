@@ -5,6 +5,7 @@ const path = require('path');
 const userData = require(path.join(__dirname, 'user-data.js'));
 
 var UserDataApp = {};
+// get and set user data helpers
 UserDataApp.getUserData = userData.get;
 UserDataApp.setUserData = userData.set;
 

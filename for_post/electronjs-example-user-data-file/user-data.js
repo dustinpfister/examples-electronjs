@@ -13,7 +13,8 @@ const uri_data = path.join(dir_userdata, 'data.json');
 
 // hard coded default data file state
 const data_default = {
-    dir_open_start: dir_home // dir to look for files when doing an open for the first time
+    dir_open_start: dir_home, // dir to look for files when doing an open for the first time
+    file_name: null            // no file by default
 };
 
 // create user data folder
@@ -82,5 +83,17 @@ api.set = (key, value) => {
         // update key and write new data
         obj[key] = value;
         return writeFile(uri_data, JSON.stringify(obj));
+    });
+};
+
+// read file current file based on user data
+api.readFile = () => {
+    return api.get()
+    .then((obj)=>{
+       if(obj.file_name){
+          return readFile( path.join(obj.dir_open_start, obj.file_name) );
+       }else{
+          return Promise.reject( new Error('file name is null') )
+       }
     });
 };

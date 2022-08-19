@@ -24,6 +24,6 @@ getUserData();
 
 // EVENTS
 UserDataApp.on('fileOpen', function(evnt, result){
-        logger('File open event:');
-        getUserData();
+    logger('File open event:');
+    getUserData();
 });
