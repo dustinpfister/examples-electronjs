@@ -25,9 +25,14 @@ UserDataApp.getUserData = () => {
     });
 };
 
-UserDataApp.setUserData = () => {
-    
-    
+UserDataApp.setUserData = (key, value) => {
+    // first get curent set of data
+    return UserDataApp.getUserData()
+    .then((obj)=>{
+        // update key and write new data
+        obj[key] = value;
+        return writeFile(uri_data, JSON.stringify(obj));
+    });
 };
 
 //******** **********
@@ -37,12 +42,15 @@ UserDataApp.setUserData = () => {
 var EVENTS = {};
 
 EVENTS.fileOpen = function(callback){
-	
     ipcRenderer.on('fileOpen', function(evnt, result) {
         const filePath = result.filePaths[0];
-		console.log(filePath);
-		callback(evnt, result)
-	});
+        // UPDATE STATE ON EACH FILE OPEN
+        UserDataApp.setUserData('dir_open_start', path.dirname(filePath) )
+        .then(()=>{
+            console.log(filePath);
+            callback(evnt, result)
+        });
+    });
 };
 
 EVENTS.fileSave = function(callback){
