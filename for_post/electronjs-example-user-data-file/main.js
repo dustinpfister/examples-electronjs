@@ -84,21 +84,6 @@ const MainMenuTemplate = [
                         // error
                         console.warn(err.message);
                     });
-
-
-/*
-                    dialog.showSaveDialog(BrowserWindow.fromId(1), {
-                        properties: ['showHiddenFiles']
-                    }).then((result) => {
-                        // only fire fileSave event for renderer if not canceled
-                        if(!result.canceled){
-                            mainWindow.webContents.send('fileSave', result);
-                        }
-                    }).catch((err) => {
-                        // error getting file path
-                    });
-*/
-
                 }
             }
         ]
