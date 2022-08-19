@@ -3,9 +3,11 @@
 ## () - menu items
 
 ## () - UserDataApp.setUserData, file open
-* () have a UserDataApp.setUserData method in preload.js
+* (done) have a UserDataApp.setUserData method in preload.js
+* () have a user-data.js file for common methods to use between main.js and preload.js
+
 * () have another textarea in which to place text content that will be opened
-* () use dialog to open a file, and when doing so use UserDataApp.setUserData to set a new state for dir_open_start
+* () use dialog to open a file, and when doing so use UserDataApp.setUserData to set a new state for dir\_open\_start
 
 ## ( done 08/18/2022 ) - basic idea working
 * (done) start with the menu example

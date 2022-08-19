@@ -1,6 +1,10 @@
 // load app and BrowserWindow
 const { app, dialog, Menu, BrowserWindow} = require('electron');
 const path = require('path');
+
+const userData = require(path.join(__dirname, 'user-data.js'));
+
+
 const os = require('os');
 const fs = require('fs');
 const promisify = require('util').promisify;
@@ -85,7 +89,31 @@ const MainMenuTemplate = [
             {
                 label: 'Open',
                 click: () => {
+
                     const mainWindow = BrowserWindow.fromId(1);
+
+
+
+userData.get()
+.then((obj)=>{
+   console.log('yeah new mod is working');
+    console.log(obj.dir_open_start)
+
+                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
+defaultPath: obj.dir_open_start,
+                        properties: ['openFile']
+                    }).then((result) => {
+                        // only fire fileOpen event for renderer if not canceled
+                        if(!result.canceled){
+                           mainWindow.webContents.send('fileOpen', result);
+                        }
+                    }).catch((err) => {
+                        // error getting file path
+                    });
+
+});
+
+/*
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
@@ -95,7 +123,11 @@ const MainMenuTemplate = [
                         }
                     }).catch((err) => {
                         // error getting file path
-                    })
+                    });
+*/
+
+
+
                 }
             },
             // SAVE A FILE
