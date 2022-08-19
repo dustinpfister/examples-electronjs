@@ -1,39 +1,12 @@
 // preload with contextIsolation enabled
 const { contextBridge, ipcRenderer } = require('electron');
 const path = require('path');
-const os = require('os');
-const fs = require('fs');
-const promisify = require('util').promisify;
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
-
-// dirs
-const dir_home = os.homedir();
-const dir_userdata = path.join(dir_home, '.userDataApp');
-const uri_data = path.join(dir_userdata, 'data.json');
+// using user-data.js module for main.js and preload.js
+const userData = require(path.join(__dirname, 'user-data.js'));
 
 var UserDataApp = {};
-
-UserDataApp.getUserData = () => {
-    return readFile(uri_data, 'utf8')
-    .then((jText)=>{
-        try{
-            return JSON.parse(jText);
-        }catch(e){
-            return Promise.reject(e);
-        }
-    });
-};
-
-UserDataApp.setUserData = (key, value) => {
-    // first get curent set of data
-    return UserDataApp.getUserData()
-    .then((obj)=>{
-        // update key and write new data
-        obj[key] = value;
-        return writeFile(uri_data, JSON.stringify(obj));
-    });
-};
+UserDataApp.getUserData = userData.get;
+UserDataApp.setUserData = userData.set;
 
 //******** **********
 // EVENTS

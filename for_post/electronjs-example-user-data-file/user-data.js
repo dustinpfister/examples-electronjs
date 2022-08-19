@@ -76,7 +76,7 @@ api.get = () => {
 // set a user data key
 api.set = (key, value) => {
     // first get curent set of data
-    return api.getUserData()
+    return api.get()
     .then((obj)=>{
         // update key and write new data
         obj[key] = value;
