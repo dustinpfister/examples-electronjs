@@ -8,6 +8,7 @@ var UserDataApp = {};
 // get and set user data helpers
 UserDataApp.getUserData = userData.get;
 UserDataApp.setUserData = userData.set;
+UserDataApp.readFile = userData.readFile;
 
 //******** **********
 // EVENTS
@@ -20,6 +21,9 @@ EVENTS.fileOpen = function(callback){
         const filePath = result.filePaths[0];
         // UPDATE STATE ON EACH FILE OPEN
         UserDataApp.setUserData('dir_open_start', path.dirname(filePath) )
+        .then(()=>{
+            return UserDataApp.setUserData('file_name', path.basename(filePath) )
+         })
         .then(()=>{
             // call front end callback with result
             callback(evnt, result)

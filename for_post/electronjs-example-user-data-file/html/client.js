@@ -13,6 +13,8 @@ var getUserData = function(){
     .then((dataObj) => {
         logger('Got User Data: ');
         logger('dir_open_start: ' + dataObj.dir_open_start);
+        logger('file_name: ' + dataObj.file_name);
+        logger('');
     })
     .catch((e) => {
         logger('Err: ' + e.message);
