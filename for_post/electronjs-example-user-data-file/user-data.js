@@ -97,3 +97,16 @@ api.readFile = () => {
        }
     });
 };
+
+// save given text to file with current settings
+api.saveFile = (text) => {
+    text = text || '';
+    return api.get()
+    .then((obj)=>{
+       if(obj.file_name){
+          return writeFile( path.join(obj.dir_open_start, obj.file_name), text, 'utf8' );
+       }else{
+          return Promise.reject( new Error('file name is null') )
+       }
+    });
+};
