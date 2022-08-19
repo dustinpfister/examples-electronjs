@@ -1,9 +1,9 @@
 var con = document.querySelector('#text_console');
 
 con.value += 'App Start \n';
-
+// get user data
 var getUserData = function(){
-    UserDataApp.getUserData()
+    return UserDataApp.getUserData()
     .then((dataObj) => {
         console.log(dataObj);
         con.value += 'dir_open_start: ' + dataObj.dir_open_start + '\n';
@@ -14,13 +14,11 @@ var getUserData = function(){
     });
 };
 
+// get user data for the first time
 getUserData();
 
 // EVENTS
 UserDataApp.on('fileOpen', function(evnt, result){
-	
-	console.log(evnt, result.filePaths[0]);
-getUserData();
-	
-})
-
+        console.log(result.filePaths[0]);
+        getUserData();
+});

@@ -20,7 +20,7 @@ EVENTS.fileOpen = function(callback){
         // UPDATE STATE ON EACH FILE OPEN
         UserDataApp.setUserData('dir_open_start', path.dirname(filePath) )
         .then(()=>{
-            console.log(filePath);
+            // call front end callback with result
             callback(evnt, result)
         });
     });

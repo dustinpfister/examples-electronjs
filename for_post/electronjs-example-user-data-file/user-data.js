@@ -50,6 +50,7 @@ const createUserDataFile = function(){
     });
 };
 
+// public api
 var api = module.exports = {};
 
 // create any missinbg user data files and folders, shuld be called each time main.js starts
