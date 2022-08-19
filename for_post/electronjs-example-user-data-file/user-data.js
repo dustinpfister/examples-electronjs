@@ -91,7 +91,7 @@ api.readFile = () => {
     return api.get()
     .then((obj)=>{
        if(obj.file_name){
-          return readFile( path.join(obj.dir_open_start, obj.file_name) );
+          return readFile( path.join(obj.dir_open_start, obj.file_name), 'utf8' );
        }else{
           return Promise.reject( new Error('file name is null') )
        }
