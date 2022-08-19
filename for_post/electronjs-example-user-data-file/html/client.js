@@ -1,16 +1,21 @@
 var con = document.querySelector('#text_console');
+var con2 = document.querySelector('#text_content');
 
-con.value += 'App Start \n';
+// logger
+var logger = function(mess){
+    con.value += mess + '\n';
+};
+
+logger('App Start: ');
 // get user data
 var getUserData = function(){
     return UserDataApp.getUserData()
     .then((dataObj) => {
-        console.log(dataObj);
-        con.value += 'dir_open_start: ' + dataObj.dir_open_start + '\n';
+        logger('Got User Data: ');
+        logger('dir_open_start: ' + dataObj.dir_open_start);
     })
     .catch((e) => {
-        console.warn(e.message);
-        con.value += 'err: ' + e.message + '\n';
+        logger('Err: ' + e.message);
     });
 };
 
@@ -19,6 +24,6 @@ getUserData();
 
 // EVENTS
 UserDataApp.on('fileOpen', function(evnt, result){
-        console.log(result.filePaths[0]);
+        logger('File open event:');
         getUserData();
 });
