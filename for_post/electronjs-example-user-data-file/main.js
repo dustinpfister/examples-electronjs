@@ -67,6 +67,26 @@ const MainMenuTemplate = [
                 label: 'Save As',
                 click: () => {
                     const mainWindow = BrowserWindow.fromId(1);
+
+                    userData.get()
+                    .then((uDat)=>{
+                        return dialog.showSaveDialog(BrowserWindow.fromId(1), {
+                            defaultPath: uDat.dir_open_start,
+                            properties: ['showHiddenFiles']
+                        })
+                    })
+                   .then((result) => {
+                        // only fire fileSave event for renderer if not canceled
+                        if(!result.canceled){
+                            mainWindow.webContents.send('fileSave', result);
+                        }
+                    }).catch((err) => {
+                        // error
+                        console.warn(err.message);
+                    });
+
+
+/*
                     dialog.showSaveDialog(BrowserWindow.fromId(1), {
                         properties: ['showHiddenFiles']
                     }).then((result) => {
@@ -77,6 +97,8 @@ const MainMenuTemplate = [
                     }).catch((err) => {
                         // error getting file path
                     });
+*/
+
                 }
             }
         ]

@@ -15,7 +15,6 @@ var getUserData = function(){
         logger('Got User Data: ');
         logger('dir_open_start: ' + dataObj.dir_open_start);
         logger('file_name: ' + dataObj.file_name);
-        logger('');
     })
     .then((uDat)=>{
         return UserDataApp.readFile();
@@ -37,3 +36,15 @@ UserDataApp.on('fileOpen', function(evnt, result){
     logger('File open event:');
     getUserData();
 });
+
+UserDataApp.on('fileSave', function(evnt, result){
+    logger('File Save event:');
+    UserDataApp.saveFile(con2.value)
+    .then(()=>{
+        logger('looks like save worked.');
+    })
+    .catch((e) => {
+        logger('Err: ' + e.message);
+    });
+});
+

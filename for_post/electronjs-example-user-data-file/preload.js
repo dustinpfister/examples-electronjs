@@ -9,6 +9,7 @@ var UserDataApp = {};
 UserDataApp.getUserData = userData.get;
 UserDataApp.setUserData = userData.set;
 UserDataApp.readFile = userData.readFile;
+UserDataApp.saveFile = userData.saveFile;
 
 //******** **********
 // EVENTS
@@ -32,8 +33,19 @@ EVENTS.fileOpen = function(callback){
 };
 
 EVENTS.fileSave = function(callback){
-	
-	
+    ipcRenderer.on('fileSave', function(evnt, result) {
+console.log(result)
+        const filePath = result.filePath;
+        // UPDATE STATE ON EACH FILE OPEN
+        UserDataApp.setUserData('dir_open_start', path.dirname(filePath) )
+        .then(()=>{
+            return UserDataApp.setUserData('file_name', path.basename(filePath) )
+         })
+        .then(()=>{
+            // call front end callback with result
+            callback(evnt, result)
+        });
+    });
 };
 
 UserDataApp.on = function(eventName, callback){
