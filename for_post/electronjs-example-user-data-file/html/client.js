@@ -10,4 +10,12 @@ UserDataApp.getUserData()
 .catch((e) => {
     console.warn(e.message);
     con.value += 'err: ' + e.message + '\n';
+});
+
+// EVENTS
+UserDataApp.on('fileOpen', function(evnt, result){
+	
+	console.log(evnt, result.filePaths[0])
+	
 })
+

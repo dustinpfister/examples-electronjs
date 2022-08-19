@@ -89,7 +89,7 @@ const MainMenuTemplate = [
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
-                        mainWindow.webContents.send('menu-open-file', result);
+                        mainWindow.webContents.send('fileOpen', result);
                     }).catch((err) => {
                         // error getting file path
                     })
@@ -103,7 +103,7 @@ const MainMenuTemplate = [
                     dialog.showSaveDialog(BrowserWindow.fromId(1), {
                         properties: ['showHiddenFiles']
                     }).then((result) => {
-                        mainWindow.webContents.send('menu-save-file', result);
+                        mainWindow.webContents.send('fileSave', result);
                     }).catch((err) => {
                         // error getting file path
                     });
