@@ -91,27 +91,23 @@ const MainMenuTemplate = [
                 click: () => {
 
                     const mainWindow = BrowserWindow.fromId(1);
-
-
-
-userData.get()
-.then((obj)=>{
-   console.log('yeah new mod is working');
-    console.log(obj.dir_open_start)
-
-                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
-defaultPath: obj.dir_open_start,
-                        properties: ['openFile']
-                    }).then((result) => {
-                        // only fire fileOpen event for renderer if not canceled
-                        if(!result.canceled){
-                           mainWindow.webContents.send('fileOpen', result);
-                        }
-                    }).catch((err) => {
-                        // error getting file path
-                    });
-
-});
+                    // get user data, and use current value for
+                    // dir_open_start as defaultPath for showOpenDialog
+                    userData.get()
+                    .then((uDat)=>{
+                        return dialog.showOpenDialog(BrowserWindow.fromId(1), {
+                            defaultPath: uDat.dir_open_start,
+                            properties: ['openFile']
+                        })
+                    })
+.then((result) => {
+                            // only fire fileOpen event for renderer if not canceled
+                            if(!result.canceled){
+                                mainWindow.webContents.send('fileOpen', result);
+                            }
+                        }).catch((err) => {
+                            // error getting file path
+                        });
 
 /*
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
