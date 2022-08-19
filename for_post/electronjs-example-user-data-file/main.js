@@ -89,7 +89,6 @@ const MainMenuTemplate = [
             {
                 label: 'Open',
                 click: () => {
-
                     const mainWindow = BrowserWindow.fromId(1);
                     // get user data, and use current value for
                     // dir_open_start as defaultPath for showOpenDialog
@@ -100,30 +99,15 @@ const MainMenuTemplate = [
                             properties: ['openFile']
                         })
                     })
-.then((result) => {
-                            // only fire fileOpen event for renderer if not canceled
-                            if(!result.canceled){
-                                mainWindow.webContents.send('fileOpen', result);
-                            }
-                        }).catch((err) => {
-                            // error getting file path
-                        });
-
-/*
-                    dialog.showOpenDialog(BrowserWindow.fromId(1), {
-                        properties: ['openFile']
-                    }).then((result) => {
+                   .then((result) => {
                         // only fire fileOpen event for renderer if not canceled
                         if(!result.canceled){
-                           mainWindow.webContents.send('fileOpen', result);
+                            mainWindow.webContents.send('fileOpen', result);
                         }
                     }).catch((err) => {
-                        // error getting file path
+                        // error
+                        console.warn(err.message);
                     });
-*/
-
-
-
                 }
             },
             // SAVE A FILE
