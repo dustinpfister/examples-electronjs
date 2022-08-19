@@ -89,7 +89,10 @@ const MainMenuTemplate = [
                     dialog.showOpenDialog(BrowserWindow.fromId(1), {
                         properties: ['openFile']
                     }).then((result) => {
-                        mainWindow.webContents.send('fileOpen', result);
+                        // only fire fileOpen event for renderer if not canceled
+                        if(!result.canceled){
+                           mainWindow.webContents.send('fileOpen', result);
+                        }
                     }).catch((err) => {
                         // error getting file path
                     })
@@ -103,7 +106,10 @@ const MainMenuTemplate = [
                     dialog.showSaveDialog(BrowserWindow.fromId(1), {
                         properties: ['showHiddenFiles']
                     }).then((result) => {
-                        mainWindow.webContents.send('fileSave', result);
+                        // only fire fileSave event for renderer if not canceled
+                        if(!result.canceled){
+                            mainWindow.webContents.send('fileSave', result);
+                        }
                     }).catch((err) => {
                         // error getting file path
                     });
