@@ -89,6 +89,7 @@ const MainMenuTemplate = [
             {
                 label: 'Open',
                 click: () => {
+
                     const mainWindow = BrowserWindow.fromId(1);
                     // get user data, and use current value for
                     // dir_open_start as defaultPath for showOpenDialog
@@ -108,6 +109,7 @@ const MainMenuTemplate = [
                         // error
                         console.warn(err.message);
                     });
+
                 }
             },
             // SAVE A FILE
@@ -136,10 +138,11 @@ const MainMenuTemplate = [
 // the 'ready' event
 app.whenReady().then(() => {
     // create the user data folder if it is not there to begin with
-    createUserDataFolder()
+    //createUserDataFolder()
     // create the user data file if it is not there
-    createUserDataFile()
+    //createUserDataFile()
     // if all goes well with user data folder
+    userData.create()
     .then(()=>{
         console.log('ready to create the main window now, and start the rest of the app.');
         createMainWindow();
