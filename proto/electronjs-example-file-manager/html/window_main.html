@@ -24,10 +24,11 @@
 //-------- ----------
 // update contents with given files array
 const createListContents = (files, el) => {
-    const items = files.map( (fileName) => {
+    // for each file
+    const items = files.map( (itemData) => {
         const div = document.createElement('p');
         div.className = 'contents_item';
-        div.innerText = fileName;
+        div.innerText = itemData[0];
         return div;
     });
     el.replaceChildren(...items);
@@ -43,9 +44,7 @@ state.el_contents_pwd = document.getElementById('contents_pwd')
 fm.readdir(state.pwd)
 .then((files)=>{
     console.log(files);
-
     createListContents(files, state.el_contents_pwd);
-
 });
 
 
