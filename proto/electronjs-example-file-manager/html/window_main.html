@@ -9,7 +9,8 @@
     <div id="wrap_main">
 
         <br><br>
-        <input id="input_pwd" type="text">
+        <input id="input_pwd" type="text" size="60"><br><br>
+        <input id="input_runterm" type="button" value="Terminal">
 
         <br></br>
         <div id="contents_pwd">
@@ -23,16 +24,9 @@
 // HELPERS
 //-------- ----------
 const createFolderClickHandler = (state, itemData) => {
-
     return (e) => {
-
-console.log('folder item click');
-console.log(itemData)
-
-setPWD(state, itemData[2]);
-
+        setPWD(state, itemData[2]);
     };
-
 };
 // update contents with given files array
 const createListContents = (state, files, el) => {
@@ -68,6 +62,7 @@ const state = {};
 state.pwd = "/";
 state.el_contents_pwd = document.getElementById('contents_pwd');
 state.el_input_pwd = document.getElementById('input_pwd');
+state.el_runterm = document.getElementById('input_runterm');
 //-------- ----------
 // SETUP
 //-------- ----------
@@ -78,6 +73,16 @@ setPWD(state, state.pwd);
 state.el_input_pwd.addEventListener('change', (e)=> {
     setPWD(state, e.target.value);
 });
+
+state.el_runterm.addEventListener('click', (e)=> {
+
+const opt1 = '--working-directory=\"' + state.pwd +'\"';
+
+console.log( opt1 );
+
+    fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
+});
+
     </script>
   </body>
 </html>

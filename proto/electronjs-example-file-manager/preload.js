@@ -7,9 +7,14 @@ const promisify = require('util').promisify;
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
 
+const exec = require('child_process').exec;
+
 // main file manager api
 const fm = {};
-
+// run a command
+fm.run = ( bin) => {
+    const com = exec(bin);
+};
 fm.readdir = ( uri ) => {
     // read files array
     return readdir(uri)
