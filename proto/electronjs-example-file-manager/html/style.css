@@ -1,10 +1,16 @@
 body{
   background: #afafaf;
   color: #2a2a2a;
-  margin: 0px;
-  padding: 0px;
+  margin: 10px;
+  padding: 10px;
   font-family: arial;
 }
 #wrap_main{
   position: relative;
+}
+
+.contents_item {
+  background: #cfcfcf;
+  padding: 2px;
+  margin: 1px;
 }

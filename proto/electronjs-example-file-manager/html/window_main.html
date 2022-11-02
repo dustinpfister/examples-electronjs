@@ -7,11 +7,48 @@
   </head>
   <body>
     <div id="wrap_main">
+
+        <br><br>
+        <input id="input_pwd" type="text">
+
+        <br></br>
+        <div id="contents_pwd">
+        </div>
+
+
     </div>
 
-<script>
+    <script>
+//-------- ----------
+// HELPERS
+//-------- ----------
+// update contents with given files array
+const createListContents = (files, el) => {
+    const items = files.map( (fileName) => {
+        const div = document.createElement('p');
+        div.className = 'contents_item';
+        div.innerText = fileName;
+        return div;
+    });
+    el.replaceChildren(...items);
+};
 
-</script>
+const state = {};
 
+// start at root for now
+state.pwd = "/";
+state.el_contents_pwd = document.getElementById('contents_pwd')
+
+// get contents of current value of state.pwd
+fm.readdir(state.pwd)
+.then((files)=>{
+    console.log(files);
+
+    createListContents(files, state.el_contents_pwd);
+
+});
+
+
+    </script>
   </body>
 </html>
