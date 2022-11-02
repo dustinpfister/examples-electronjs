@@ -8,6 +8,14 @@ body{
 #wrap_main{
   position: relative;
 }
+#toolbar{
+  position: fixed;
+  left:0px;
+  top: 0px;
+  width:100%;
+  background: rgba(200, 200, 200, 0.8);
+  padding:10px;
+}
 #contents_pwd{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

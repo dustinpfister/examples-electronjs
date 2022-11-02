@@ -8,9 +8,12 @@
 
 ## () - rx - cut, copy, paste
 
-## () - r1 - sort items
+## () - r1 - sort items, grid
 * (done) sort the list of files so that folders come up on top
+* (done) not selecting text of items
 * (done) using grid for css
+* (done) using realpath to convert ~ to /homr/currentuser
+* (done) fixed position for new toolbar div
 * () media queries for grid
 
 ## ( done 11/02/2022 ) - r0 - New window, nav folders, open terminal
