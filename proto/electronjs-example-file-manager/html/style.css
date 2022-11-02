@@ -8,11 +8,16 @@ body{
 #wrap_main{
   position: relative;
 }
+#contents_pwd{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(auto, 100px);
+}
 .contents_item {
   user-select: none;
   background: #cfcfcf;
-  padding: 2px;
-  margin: 1px;
+  padding: 10px;
 }
 .contents_item_folder {
   background: #ffaa00;
