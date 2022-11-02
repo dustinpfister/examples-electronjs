@@ -1,5 +1,5 @@
 {
-  "name": "electronjs-file-manager",
+  "name": "electronjs-example-file-manager",
   "version": "0.0.0",
   "description": "Simple File Manager",
   "main": "main.js",
