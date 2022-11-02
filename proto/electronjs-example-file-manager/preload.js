@@ -15,13 +15,17 @@ fm.readdir = ( uri ) => {
     return readdir(uri)
     // create an array of arrays such as [ [folder, true], [file, false] ]
     .then( (files) => {
-        return Promise.all(files.map( (fileName) => {
+        // unshift in '..' for non root folders
+        if(uri != '/'){
+            files.unshift('..');
+        }
+        return Promise.all( files.map( (fileName) => {
             const uri_item = path.join(uri, fileName);
             return stat( uri_item )
             .then((fStat)=>{
                  return [fileName, fStat.isDirectory(), uri_item];
              })
-        }));
+        }) );
     });
 };
 
