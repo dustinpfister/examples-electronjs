@@ -33,21 +33,38 @@ const createListContents = (files, el) => {
     });
     el.replaceChildren(...items);
 };
-
+//-------- ----------
+// STATE OBJECT
+//-------- ----------
 const state = {};
-
 // start at root for now
 state.pwd = "/";
-state.el_contents_pwd = document.getElementById('contents_pwd')
-
+state.el_contents_pwd = document.getElementById('contents_pwd');
+state.el_input_pwd = document.getElementById('input_pwd');
+//-------- ----------
+// SETUP
+//-------- ----------
 // get contents of current value of state.pwd
 fm.readdir(state.pwd)
 .then((files)=>{
-    console.log(files);
     createListContents(files, state.el_contents_pwd);
+    state.el_input_pwd.value = state.pwd;
 });
+//-------- ----------
+// INPUT_PWD
+//-------- ----------
+state.el_input_pwd.addEventListener('change', (e)=> {
 
+console.log('yes');
+    state.pwd = e.target.value;
 
+    fm.readdir(state.pwd)
+    .then((files)=>{
+        createListContents(files, state.el_contents_pwd);
+        state.el_input_pwd.value = state.pwd;
+    });
+
+});
     </script>
   </body>
 </html>
