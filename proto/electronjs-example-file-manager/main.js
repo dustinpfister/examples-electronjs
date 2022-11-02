@@ -29,18 +29,14 @@ const MainMenuTemplate = [
     {
         label: 'File',
         submenu: [
-            isMac ? { role: 'close' }: { role: 'quit' },
-            // OPEN A FILE
+            // Open a new window
             {
                 label: 'New Window',
                 click: () => {
-                    //const window = BrowserWindow.fromId(1);
-                    //window.webContents.send('menu_file_new', {});
-
                     createWindow();
-
                 }
-            }
+            },
+            isMac ? { label: 'Close', role: 'close' }: { label: 'Close', role: 'quit' },
         ]
     }
 ];
