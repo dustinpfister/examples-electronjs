@@ -22,12 +22,30 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+const createFolderClickHandler = (state, itemData) => {
+
+    return (e) => {
+
+console.log('folder item click');
+console.log(itemData)
+
+setPWD(state, itemData[2]);
+
+    };
+
+};
 // update contents with given files array
-const createListContents = (files, el) => {
+const createListContents = (state, files, el) => {
     // for each file
     const items = files.map( (itemData) => {
         const div = document.createElement('p');
         div.className = 'contents_item';
+        // if folder
+        if(itemData[1]){
+             div.className = 'contents_item contents_item_folder';
+             
+             div.addEventListener('pointerup', createFolderClickHandler(state, itemData ) );
+        }
         div.innerText = itemData[0];
         return div;
     });
@@ -38,7 +56,7 @@ const setPWD = (state, pwd) => {
    state.pwd = pwd;
    return fm.readdir(state.pwd)
    .then((files)=>{
-        createListContents(files, state.el_contents_pwd);
+        createListContents(state, files, state.el_contents_pwd);
         state.el_input_pwd.value = state.pwd;
    });
 };

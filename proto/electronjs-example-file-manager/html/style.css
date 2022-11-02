@@ -8,9 +8,11 @@ body{
 #wrap_main{
   position: relative;
 }
-
 .contents_item {
   background: #cfcfcf;
   padding: 2px;
   margin: 1px;
+}
+.contents_item_folder {
+  background: #ffaa00;
 }
