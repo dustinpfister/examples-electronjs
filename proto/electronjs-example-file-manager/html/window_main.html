@@ -33,6 +33,15 @@ const createListContents = (files, el) => {
     });
     el.replaceChildren(...items);
 };
+// set the current pwd
+const setPWD = (state, pwd) => {
+   state.pwd = pwd;
+   return fm.readdir(state.pwd)
+   .then((files)=>{
+        createListContents(files, state.el_contents_pwd);
+        state.el_input_pwd.value = state.pwd;
+   });
+};
 //-------- ----------
 // STATE OBJECT
 //-------- ----------
@@ -44,26 +53,12 @@ state.el_input_pwd = document.getElementById('input_pwd');
 //-------- ----------
 // SETUP
 //-------- ----------
-// get contents of current value of state.pwd
-fm.readdir(state.pwd)
-.then((files)=>{
-    createListContents(files, state.el_contents_pwd);
-    state.el_input_pwd.value = state.pwd;
-});
+setPWD(state, state.pwd);
 //-------- ----------
 // INPUT_PWD
 //-------- ----------
 state.el_input_pwd.addEventListener('change', (e)=> {
-
-console.log('yes');
-    state.pwd = e.target.value;
-
-    fm.readdir(state.pwd)
-    .then((files)=>{
-        createListContents(files, state.el_contents_pwd);
-        state.el_input_pwd.value = state.pwd;
-    });
-
+    setPWD(state, e.target.value);
 });
     </script>
   </body>
