@@ -9,6 +9,7 @@ body{
   position: relative;
 }
 .contents_item {
+  user-select: none;
   background: #cfcfcf;
   padding: 2px;
   margin: 1px;
