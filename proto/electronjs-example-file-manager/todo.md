@@ -10,6 +10,8 @@
 
 ## () - r1 - sort items
 * (done) sort the list of files so that folders come up on top
+* (done) using grid for css
+* () media queries for grid
 
 ## ( done 11/02/2022 ) - r0 - New window, nav folders, open terminal
 * (done) The file menu should just have a new window, and close option for now
