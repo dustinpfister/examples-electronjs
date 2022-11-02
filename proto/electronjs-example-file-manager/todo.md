@@ -8,12 +8,20 @@
 
 ## () - rx - cut, copy, paste
 
-## () - r1 - sort items, grid
+## () - rx - rename
+
+## () - r1 - sort items, css, select items
 * (done) sort the list of files so that folders come up on top
 * (done) not selecting text of items
 * (done) using grid for css
 * (done) using realpath to convert ~ to /homr/currentuser
 * (done) fixed position for new toolbar div
+
+* () a current collection of files array should be part of the state object
+* () A single click of a folder will select that folder by adding the state.files index to a state.selected array
+* () if just one item is selected, and it is a folder, a second click of it will cuase a setPWD
+* () can select more than one file or folder
+
 * () media queries for grid
 
 ## ( done 11/02/2022 ) - r0 - New window, nav folders, open terminal
