@@ -7,18 +7,13 @@
   </head>
   <body>
     <div id="wrap_main">
-
         <br><br>
         <input id="input_pwd" type="text" size="60"><br><br>
         <input id="input_runterm" type="button" value="Terminal">
-
         <br></br>
         <div id="contents_pwd">
         </div>
-
-
     </div>
-
     <script>
 //-------- ----------
 // HELPERS
@@ -48,8 +43,17 @@ const createListContents = (state, files, el) => {
 // set the current pwd
 const setPWD = (state, pwd) => {
    state.pwd = pwd;
+   // get files array from fm api
    return fm.readdir(state.pwd)
    .then((files)=>{
+        // SORT FOLDERS ABOVE FILES
+        files.sort(function(itemA, itemB){
+            if(itemA[1] && !itemB[1]){
+                return -1;
+            }
+            return 1;
+        });
+        // create the list and update value
         createListContents(state, files, state.el_contents_pwd);
         state.el_input_pwd.value = state.pwd;
    });
@@ -73,16 +77,12 @@ setPWD(state, state.pwd);
 state.el_input_pwd.addEventListener('change', (e)=> {
     setPWD(state, e.target.value);
 });
-
+//-------- ----------
+// INPUT_RUNTERM
+//-------- ----------
 state.el_runterm.addEventListener('click', (e)=> {
-
-const opt1 = '--working-directory=\"' + state.pwd +'\"';
-
-console.log( opt1 );
-
     fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
 });
-
     </script>
   </body>
 </html>

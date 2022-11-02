@@ -8,6 +8,9 @@
 
 ## () - rx - cut, copy, paste
 
+## () - r1 - sort items
+* (done) sort the list of files so that folders come up on top
+
 ## ( done 11/02/2022 ) - r0 - New window, nav folders, open terminal
 * (done) The file menu should just have a new window, and close option for now
 * (done) I can just use plain old html and css for creating lists of files and folders
