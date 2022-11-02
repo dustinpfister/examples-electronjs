@@ -10,13 +10,13 @@ body{
 }
 #contents_pwd{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    grid-auto-rows: minmax(auto, 100px);
 }
 .contents_item {
   user-select: none;
   background: #cfcfcf;
+  min-height:50px;
   padding: 10px;
 }
 .contents_item_folder {

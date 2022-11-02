@@ -42,9 +42,14 @@ const createListContents = (state, files, el) => {
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
-   state.pwd = pwd;
-   // get files array from fm api
-   return fm.readdir(state.pwd)
+    state.pwd = pwd;
+    // using realpath to convert ~ to /home/currentuser
+    return fm.run('realpath ' + state.pwd)
+    .then((result)=>{
+        state.pwd = result.trim();
+        return fm.readdir(state.pwd);
+    })
+    // get files array from fm api
    .then((files)=>{
         // SORT FOLDERS ABOVE FILES
         files.sort(function(itemA, itemB){
@@ -63,7 +68,7 @@ const setPWD = (state, pwd) => {
 //-------- ----------
 const state = {};
 // start at root for now
-state.pwd = "/";
+state.pwd = "~/Documents";
 state.el_contents_pwd = document.getElementById('contents_pwd');
 state.el_input_pwd = document.getElementById('input_pwd');
 state.el_runterm = document.getElementById('input_runterm');

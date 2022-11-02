@@ -14,6 +14,18 @@ const fm = {};
 // run a command
 fm.run = ( bin) => {
     const com = exec(bin);
+    // out
+    return new Promise( (resolve, reject) => {
+        com.stdout.on('data', (data) => {
+            resolve(`${data}`);
+        });
+        com.stderr.on('data', (data) => {
+            reject(`${data}`);
+        });
+        //com.on('close', (code) => {
+        //    console.log(`child process exited with code ${code}`);
+        //});
+    });
 };
 fm.readdir = ( uri ) => {
     // read files array
