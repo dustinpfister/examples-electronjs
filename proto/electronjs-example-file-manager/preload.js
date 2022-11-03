@@ -36,11 +36,11 @@ fm.readdir = ( uri ) => {
         if(uri != '/'){
             files.unshift('..');
         }
-        return Promise.all( files.map( (fileName) => {
+        return Promise.all( files.map( (fileName, i) => {
             const uri_item = path.join(uri, fileName);
             return stat( uri_item )
             .then((fStat)=>{
-                 return [fileName, fStat.isDirectory(), uri_item];
+                 return [fileName, fStat.isDirectory(), uri_item, i];
              })
         }) );
     });

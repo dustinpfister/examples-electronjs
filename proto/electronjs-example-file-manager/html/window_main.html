@@ -20,7 +20,8 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
-const createFolderClickHandler = (state, itemData) => {
+// event hander for items
+const createItemClickHandler = (state, itemData) => {
     return (e) => {
         setPWD(state, itemData[2]);
     };
@@ -34,13 +35,15 @@ const createListContents = (state, files, el) => {
         // if folder
         if(itemData[1]){
              div.className = 'contents_item contents_item_folder';
-             
-             div.addEventListener('pointerup', createFolderClickHandler(state, itemData ) );
+             div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
         }
         div.innerText = itemData[0];
         return div;
     });
     el.replaceChildren(...items);
+
+console.log(state.files);
+
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
@@ -51,29 +54,37 @@ const setPWD = (state, pwd) => {
         state.pwd = result.trim();
         return fm.readdir(state.pwd);
     })
-    // get files array from fm api
+    // get files array from fm api and update state.files
    .then((files)=>{
+        state.files = files;
         // SORT FOLDERS ABOVE FILES
-        files.sort(function(itemA, itemB){
+        state.files.sort(function(itemA, itemB){
             if(itemA[1] && !itemB[1]){
                 return -1;
             }
             return 1;
         });
-        // create the list and update value
-        createListContents(state, files, state.el_contents_pwd);
+        // UPDATE INDEX VALUES AS THEY HAVE BEEN SORTED
+        state.files = state.files.map((item, i)=>{
+             item[3] = i;
+             return item;
+        });
+        // create the list with the whole contents of state.files
+        createListContents(state, state.files, state.el_contents_pwd);
         state.el_input_pwd.value = state.pwd;
    });
 };
 //-------- ----------
 // STATE OBJECT
 //-------- ----------
-const state = {};
-// start at root for now
-state.pwd = "~/Documents";
-state.el_contents_pwd = document.getElementById('contents_pwd');
-state.el_input_pwd = document.getElementById('input_pwd');
-state.el_runterm = document.getElementById('input_runterm');
+const state = {
+    pwd: '~/Documents',
+    files: [],
+    files_selected_indices: [], // an array of currentlt selected index values of items in state.files
+    el_contents_pwd : document.getElementById('contents_pwd'),
+    el_input_pwd : document.getElementById('input_pwd'),
+    el_runterm : document.getElementById('input_runterm')
+};
 //-------- ----------
 // SETUP
 //-------- ----------

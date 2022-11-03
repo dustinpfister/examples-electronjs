@@ -1,16 +1,19 @@
 # electionjs-file-manager
 
-## () - rx - Create file, delete file
+## () - Improved CSS
+* () media queries for grid
 
-## () - rx - Create folder, Delete folder
+## () - Create file, delete file
 
-## () - rx - file types, and open with
+## () - Create folder, Delete folder
 
-## () - rx - cut, copy, paste
+## () - file types, and open with
 
-## () - rx - rename
+## () - cut, copy, paste
 
-## () - r1 - sort items, css, select items
+## () - rename files
+
+## () - Sort items, css, select items
 * (done) sort the list of files so that folders come up on top
 * (done) not selecting text of items
 * (done) using grid for css
@@ -22,9 +25,9 @@
 * () if just one item is selected, and it is a folder, a second click of it will cuase a setPWD
 * () can select more than one file or folder
 
-* () media queries for grid
 
-## ( done 11/02/2022 ) - r0 - New window, nav folders, open terminal
+
+## ( done 11/02/2022 ) - New window, nav folders, open terminal
 * (done) The file menu should just have a new window, and close option for now
 * (done) I can just use plain old html and css for creating lists of files and folders
 * (done) clicking a folder link will change the current working dir to that folder
