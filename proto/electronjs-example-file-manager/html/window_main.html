@@ -20,22 +20,60 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+// set style of a single div
+const setDivStyle = (state, itemData, selectedState, div) => {
+    // get div and update style
+    div = div || document.getElementById('item_' + itemData[3]);
+    // if folder
+    if(itemData[1] && selectedState){
+        div.className = 'contents_item contents_item_folder_selected';
+    }
+    // if file
+    if(!itemData[1] && selectedState){
+        div.className = 'contents_item contents_item_file_selected';
+    }
+    // if folder
+    if(itemData[1] && !selectedState){
+        div.className = 'contents_item contents_item_folder';
+    }
+    // if file
+    if(!itemData[1] && !selectedState){
+        div.className = 'contents_item contents_item_file';
+    }
+};
+// set style for all selcted divs
+const setSelectedDivStyle = (state, selectedState ) => {
+
+    state.selected.forEach( ( itemIndex ) => {
+        const itemData = state.files[itemIndex];
+        setDivStyle(state, itemData, selectedState);
+    });
+
+};
+
 // event hander for items
 const createItemClickHandler = (state, itemData) => {
     return (e) => {
         const i = itemData[3];
         // if NOT CTRL, AND state.selcted.length is one, AND current item is selected item
         if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
-            setPWD(state, itemData[2]);
+            // if selected item is a folder
+            if(itemData[1]){
+                setPWD(state, itemData[2]);
+            }
+            setSelectedDivStyle(state, false);
             state.selected = [];
             return;
         }
         // if NOT CTRL, result selected array at this point
         if(!state.CTRL){
+            setSelectedDivStyle(state, false);
             state.selected = [];
         }
         // push index to selcted array
         state.selected.push(i);
+        setDivStyle(state, itemData, true);
+
         console.log(state.selected);
     };
 };
@@ -46,21 +84,23 @@ const createListContents = (state, files, el) => {
         const div = document.createElement('p');
         div.className = 'contents_item';
         div.id = 'item_' + itemData[3];
-        // if folder
-        if(itemData[1]){
-             div.className = 'contents_item contents_item_folder';
-             div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
-        }
-        // if file
-        if(!itemData[1]){
-             div.className = 'contents_item contents_item_file';
+        div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
 
-             //div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
-        }
+        setDivStyle(state, itemData, false, div);
+
+        // if folder
+        //if(itemData[1]){
+        //     div.className = 'contents_item contents_item_folder';
+        //}
+        // if file
+        //if(!itemData[1]){
+        //     div.className = 'contents_item contents_item_file';
+        //}
         div.innerText = itemData[0];
         return div;
     });
     el.replaceChildren(...items);
+    // all not selected for starters
 };
 // set the current pwd
 const setPWD = (state, pwd) => {

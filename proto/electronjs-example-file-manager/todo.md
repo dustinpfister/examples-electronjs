@@ -24,6 +24,8 @@
 * (done) index values will need to be updated when sorting state.files
 * (done) A single click of a folder will select that folder by adding the state.files index to a state.selected array
 * (done) if just one item is selected, and it is a folder, a second click of it will cuase a setPWD
+* (done) can select files and folders
+* (done) item click handler called for all items
 
 * () css for selcted files
 
