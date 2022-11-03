@@ -29,3 +29,14 @@ StartupNotify=true
 ```
 
 be surce to adjust the --prefix path to the location of the file manager project folder.
+
+## Linux file command, cut command, and default applactions or actions for items
+
+The file command can be used with the -i option to get mime type info. This can then be piped to the linux cut command to get the desired end result. This mime type info can then be used to lanuch an applaction that is set for that mime type such as text/html.
+
+```
+$ file -i text.txt | cut -d " " -f 2
+text/html;
+```
+
+There is also working out a pure javaScript solutin for this, but at this time I am not interested in getting this to work on Windows.

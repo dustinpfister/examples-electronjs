@@ -28,6 +28,10 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
+## () - default applactions/actions based on mime type
+* () work out some code that uses the file command with the cut command to get a mime tyoe for a file
+* () if there is a default command for the mime type langue that command for the file
+
 ## ( done 11/03/2022 ) - Sort items, css, select items
 * (done) sort the list of files so that folders come up on top
 * (done) not selecting text of items
