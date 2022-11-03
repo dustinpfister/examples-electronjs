@@ -30,9 +30,11 @@ const perfromMimeAction = (state, itemData) => {
         console.log('mime type is: ' + mime);
         if(mime === 'text/plain'){
             console.log('we have a plain text file!');
+            return fm.run('mousepad ' + itemData[2]);
         }
         if(mime === 'text/html'){
             console.log('we have an html file!');
+            return fm.run('mousepad ' + itemData[2]);
         }
     })
 };
@@ -141,7 +143,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/Documents/github/blog_posts',
+    pwd: '~/Documents/github/examples-electronjs',
     files: [],
     CTRL: false,
     selected: [], // an array of currentlt selected index values of items in state.files
