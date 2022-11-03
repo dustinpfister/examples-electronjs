@@ -23,7 +23,19 @@
 // event hander for items
 const createItemClickHandler = (state, itemData) => {
     return (e) => {
-        setPWD(state, itemData[2]);
+        const i = itemData[3];
+        // if NOT CTRL, AND state.selcted.length is one, AND current item is selected item
+        if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
+            setPWD(state, itemData[2]);
+            state.selected = [];
+            return;
+        }
+        // if NOT CTRL, result selected array at this point
+        if(!state.CTRL){
+            state.selected = [];
+        }
+        // push index to selcted array
+        state.selected.push(i);
     };
 };
 // update contents with given files array
@@ -41,9 +53,6 @@ const createListContents = (state, files, el) => {
         return div;
     });
     el.replaceChildren(...items);
-
-console.log(state.files);
-
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
@@ -80,7 +89,8 @@ const setPWD = (state, pwd) => {
 const state = {
     pwd: '~/Documents',
     files: [],
-    files_selected_indices: [], // an array of currentlt selected index values of items in state.files
+    CTRL: false,
+    selected: [], // an array of currentlt selected index values of items in state.files
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),
     el_runterm : document.getElementById('input_runterm')
