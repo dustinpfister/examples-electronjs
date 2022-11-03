@@ -19,11 +19,16 @@
 * (done) using grid for css
 * (done) using realpath to convert ~ to /homr/currentuser
 * (done) fixed position for new toolbar div
+* (done) a current collection of files array should be part of the state object as state.files
+* (done) have index values for each item in state.files
+* (done) index values will need to be updated when sorting state.files
+* (done) A single click of a folder will select that folder by adding the state.files index to a state.selected array
+* (done) if just one item is selected, and it is a folder, a second click of it will cuase a setPWD
 
-* () a current collection of files array should be part of the state object
-* () A single click of a folder will select that folder by adding the state.files index to a state.selected array
-* () if just one item is selected, and it is a folder, a second click of it will cuase a setPWD
-* () can select more than one file or folder
+* () css for selcted files
+
+
+* () can select more than one file or folder by holding down CTRL
 
 
 

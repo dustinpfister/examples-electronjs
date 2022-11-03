@@ -36,6 +36,7 @@ const createItemClickHandler = (state, itemData) => {
         }
         // push index to selcted array
         state.selected.push(i);
+        console.log(state.selected);
     };
 };
 // update contents with given files array
@@ -44,10 +45,17 @@ const createListContents = (state, files, el) => {
     const items = files.map( (itemData) => {
         const div = document.createElement('p');
         div.className = 'contents_item';
+        div.id = 'item_' + itemData[3];
         // if folder
         if(itemData[1]){
              div.className = 'contents_item contents_item_folder';
              div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
+        }
+        // if file
+        if(!itemData[1]){
+             div.className = 'contents_item contents_item_file';
+
+             //div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
         }
         div.innerText = itemData[0];
         return div;

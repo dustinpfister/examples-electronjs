@@ -21,12 +21,21 @@ body{
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
 }
+
 .contents_item {
   user-select: none;
-  background: #cfcfcf;
   min-height:50px;
   padding: 10px;
 }
 .contents_item_folder {
   background: #ffaa00;
+}
+.contents_item_file {
+  background: #cfcfcf;
+}
+.contents_item_folder_selected {
+  background: #994400;
+}
+.contents_item_file_selected {
+  background: #444444;
 }
