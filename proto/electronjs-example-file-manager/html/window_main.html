@@ -20,6 +20,22 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+// prefrom an action for the given item based on its mime type
+const perfromMimeAction = (state, itemData) => {
+    console.log('perfroming Mime Action');
+    console.log(itemData);
+    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+    .then((result) => {
+        const mime = result.replace(';', '').trim();
+        console.log('mime type is: ' + mime);
+        if(mime === 'text/plain'){
+            console.log('we have a plain text file!');
+        }
+        if(mime === 'text/html'){
+            console.log('we have an html file!');
+        }
+    })
+};
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
     // get div and update style
@@ -43,14 +59,11 @@ const setDivStyle = (state, itemData, selectedState, div) => {
 };
 // set style for all selcted divs
 const setSelectedDivStyle = (state, selectedState ) => {
-
     state.selected.forEach( ( itemIndex ) => {
         const itemData = state.files[itemIndex];
         setDivStyle(state, itemData, selectedState);
     });
-
 };
-
 // event hander for items
 const createItemClickHandler = (state, itemData) => {
     return (e) => {
@@ -59,7 +72,12 @@ const createItemClickHandler = (state, itemData) => {
         if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
             // if selected item is a folder
             if(itemData[1]){
+                console.log('Folder Action');
                 setPWD(state, itemData[2]);
+            }
+            if(!itemData[1]){
+                console.log('File Action');
+                perfromMimeAction(state, itemData);
             }
             setSelectedDivStyle(state, false);
             state.selected = [];
@@ -73,8 +91,6 @@ const createItemClickHandler = (state, itemData) => {
         // push index to selcted array
         state.selected.push(i);
         setDivStyle(state, itemData, true);
-
-        console.log(state.selected);
     };
 };
 // update contents with given files array
@@ -85,22 +101,12 @@ const createListContents = (state, files, el) => {
         div.className = 'contents_item';
         div.id = 'item_' + itemData[3];
         div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
-
-        setDivStyle(state, itemData, false, div);
-
-        // if folder
-        //if(itemData[1]){
-        //     div.className = 'contents_item contents_item_folder';
-        //}
-        // if file
-        //if(!itemData[1]){
-        //     div.className = 'contents_item contents_item_file';
-        //}
         div.innerText = itemData[0];
+        // set the div style
+        setDivStyle(state, itemData, false, div);
         return div;
     });
     el.replaceChildren(...items);
-    // all not selected for starters
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
@@ -135,7 +141,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/Documents',
+    pwd: '~/Documents/github/blog_posts',
     files: [],
     CTRL: false,
     selected: [], // an array of currentlt selected index values of items in state.files
