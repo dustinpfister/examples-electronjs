@@ -28,6 +28,11 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
+## () exec files
+* () test if a file is executable and if so display it with a differing style
+* () use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
+* () can click twice to run the file
+
 ## ( done 11/03/2022 ) - default applactions/actions based on mime type
 * (done) work out some code that uses the file command with the cut command to get a mime tyoe for a file
 * (done) if there is a default command for the mime type langue that command for the file
