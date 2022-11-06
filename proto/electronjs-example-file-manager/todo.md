@@ -13,7 +13,7 @@
 * () can select more than one file or folder by holding down CTRL
 
 ## () - Rename files
-* () can rename a file by clciking it and then clicking it again after say 200ms of whatever I set for double click speed
+* () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
 * () can also rename from item menu
 
 
@@ -28,7 +28,8 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
-## () exec files
+## () run exec files
+* (done) have an if for 'text/x-shellscript' mime
 * () test if a file is executable and if so display it with a differing style
 * () use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
 * () can click twice to run the file

@@ -24,7 +24,7 @@
 const perfromMimeAction = (state, itemData) => {
     console.log('perfroming Mime Action');
     console.log(itemData);
-    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+    return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
     .then((result) => {
         const mime = result.replace(';', '').trim();
         console.log('mime type is: ' + mime);
@@ -36,7 +36,22 @@ const perfromMimeAction = (state, itemData) => {
             console.log('we have an html file!');
             return fm.run('mousepad ' + itemData[2]);
         }
+        if(mime === 'text/x-shellscript'){
+            console.log('we have a shellscript');
+        }
+
+
     })
+};
+
+const preformExecFileCheckAction = (state, itemData) => {
+    return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
+    .then((result) => {
+        console.log('exec check')
+        console.log(result);
+        return Promise.resolve(result);
+
+    });
 };
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
@@ -77,8 +92,10 @@ const createItemClickHandler = (state, itemData) => {
                 console.log('Folder Action');
                 setPWD(state, itemData[2]);
             }
+            // if selected item is a file
             if(!itemData[1]){
                 console.log('File Action');
+                //preformExecFileCheckAction(state, itemData)
                 perfromMimeAction(state, itemData);
             }
             setSelectedDivStyle(state, false);
