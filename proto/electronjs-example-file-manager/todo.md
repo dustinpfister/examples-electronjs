@@ -1,16 +1,9 @@
 # electionjs-file-manager
 
-## () - Improved CSS
+## () - css media queries
 * () media queries for grid
 
-## () - Create file, delete file
-
-## () - Create folder, Delete folder
-
 ## () - file types, and open with
-
-## () - cut, copy, paste
-* () can select more than one file or folder by holding down CTRL
 
 ## () - Rename files
 * () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
@@ -27,6 +20,14 @@
 * () have a lime green style for files only if it is a chmod 777 deal
 * () have a base style for .js and .sh
 * () remove old css classes that are not used to set background color
+
+## () - EDIT MENU, cut, copy, paste, create new
+* () start an edit menu
+* () copy
+* () paste
+* () create new file
+* () create new folder
+* () can select more than one file or folder by holding down CTRL
 
 ## ( done 11/08/2022 ) - up one button
 * (done) add an up one button button to the tool bar
