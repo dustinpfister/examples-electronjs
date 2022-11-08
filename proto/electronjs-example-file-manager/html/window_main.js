@@ -98,25 +98,15 @@ const createListItem = (state, itemData) => {
     return div;
 };
 // update contents with given files array
-const createListContents = (state, files, el) => {
-    // for each file
-    const items = files.map( (itemData) => {
-        const div = createListItem(state, itemData);
 
-/*
-        const div = document.createElement('div');
-        div.className = 'contents_item';
-        div.id = 'item_' + itemData[3];
-        div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
-        div.innerText = itemData[0];
-        // set the div style
-        setDivStyle(state, itemData, false, div);
-*/
-        return div;
+const createListContents = (state, files) => {
+    const el = state.el_contents_pwd;
+   state.el_contents_pwd.innerHTML = '';
+   files.forEach( (itemData) => {
+       const div = createListItem(state, itemData);
+       state.el_contents_pwd.appendChild(div);
     });
-    el.replaceChildren(...items);
 };
-
 // set the current pwd
 const setPWD = (state, pwd) => {
     state.pwd = pwd;
@@ -169,13 +159,29 @@ const setPWD = (state, pwd) => {
              return item;
         });
         // create the list with the whole contents of state.files
-        createListContents(state, state.files, state.el_contents_pwd);
+        //createListContents(state, state.files, state.el_contents_pwd);
+
+//createListContents(state, state.files, state.el_contents_pwd);
+
         state.el_input_pwd.value = state.pwd;
 
+        createListContents(state, state.files);
 
-console.log(files.map((itemData)=>{
-    return itemData[4];
-}))
+/*
+        state.el_contents_pwd.innerHTML = '';
+
+        files.forEach( (itemData) => {
+
+            const div = createListItem(state, itemData);
+            state.el_contents_pwd.appendChild(div);
+
+        });
+*/
+
+
+        //console.log(files.map((itemData)=>{
+        //    return itemData[4];
+        //}))
 
 
    });
