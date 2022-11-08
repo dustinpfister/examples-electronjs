@@ -29,24 +29,21 @@
 * () - can click any area in main pwd div that is not an item to unselected all
 
 ## () itemData mime type element, run exec files
+* () mime type should be an element of the itemData array
+* () update createItemClickHandler to use itemData\[4\].mime
+* () if a file is executable display it with a differing style from other files
+* () use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
+* () can click twice to run the file
+
+## ( done 11/08/2022 ) itemLoop
 * (done) have an if for 'text/x-shellscript' mime
 * (done) pull all javascript code into a js file called window_main.js for now
 * (done) see about getting CSP working with this
 * (done) stat object as itemData\[4\]
-<!-- mime type as item data object -->
 * (done) ext prop part of fileInfo object
 * (done) see about making the creation of list contents an item by item basis in setPWD
-
-* () looks like I will need something like an app loop, but for updating mime type
+* (done) looks like I will need something like an app loop, but for updating mime type
 * () have a progress bar for mime type update
-
-* () mime type should be an element of the itemData array
-* () update createItemClickHandler to use itemData\[4\].mime
-
-
-* () if a file is executable display it with a differing style from other files
-* () use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
-* () can click twice to run the file
 
 ## ( done 11/03/2022 ) - default applactions/actions based on mime type
 * (done) work out some code that uses the file command with the cut command to get a mime tyoe for a file
