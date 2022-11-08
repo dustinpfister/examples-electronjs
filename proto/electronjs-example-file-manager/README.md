@@ -32,9 +32,7 @@ be surce to adjust the --prefix path to the location of the file manager project
 
 ## Spawn detached!
 
-```
-https://stackoverflow.com/questions/61322273/how-can-keep-child-process-alive-even-if-parent-process-is-terminated
-```
+had a hard time getting my shart.sh files to work but I was able to get it working by making a detached span and what as really getting in the way was not setting the cwd option of the spawn
 
 
 ## Linux file command, cut command, and default applactions or actions for items
