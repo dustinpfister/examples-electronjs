@@ -40,51 +40,43 @@ const preformExecFileCheckAction = (state, itemData) => {
         console.log( 'result of find command call for shell script' );
         console.log(result)
         if(result){
-
-            //console.log( itemData[2] );
-            //fm.runFile( 'bash', [ '-c', itemData[2] ] );
             fm.runFile( state.pwd , itemData[2] );
-
-/*
-            fm.run('bash ' + itemData[2] + '')
-            .then(()=>{
-
-console.log('okay so it ran');
-
-             })
-            .catch(()=>{
-
-console.log('somehting no good');
-
-             })
-*/
-            //fm.run(itemData[2]);
         }
     });
 };
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
     const mime = itemData[4].mime;
+    const ext = itemData[4].ext;
     console.log('Mime Action Started for ' + mime );
     // FOR FOLDERS
     if(mime === 'inode/directory'){
         setPWD(state, itemData[2]);
     }
+    // mime types
     if(mime === 'text/plain'){
         console.log('we have a plain text file!');
         fm.run('mousepad ' + itemData[2]);
+        return;
     }
     if(mime === 'text/html'){
         console.log('we have an html file!');
         fm.run('mousepad ' + itemData[2]);
+        return;
     }
     if(mime === 'text/x-shellscript'){
         console.log('We have a shellscript');
         preformExecFileCheckAction(state, itemData);
+        return;
     }
     if(mime === 'application/javascript'){
         console.log('We have a js file!');
         preformExecFileCheckAction(state, itemData);
+        return;
+    }
+    // ext if there is nothing for the mime
+    if(ext === 'md' || ext === 'txt' || ext === 'sh' || ext === "html" || ext === 'js'){
+        fm.run('mousepad ' + itemData[2]);
     }
 };
 // set style of a single div
@@ -100,12 +92,23 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     if(mime === 'text/plain'){
         r = 1; g = 1; b = 1;
     }
+    // some of my *.md files show up as this such as linux-gcc.md
+    if(mime === 'text/x-c'){
+        r = 0.9; g = 0.9; b = 0.9;
+    }
+    // some of my *.md files show up as this such as python-class.md
+    if(mime === 'text/x-python'){
+        r = 0.9; g = 0.9; b = 0.9;
+    }
     if(mime === 'text/html'){
         r = 0; g = 0.8; b = 1;
     }
     if(mime === 'text/x-shellscript' || mime === 'application/javascript'){
         r = 0; g = 1; b = 0;
     }
+
+
+
     const st = selectedState ? 0.5 : 1;
     const rc = (r * st) * 255;
     const gc = (g * st) * 255;
