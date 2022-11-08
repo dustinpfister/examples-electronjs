@@ -10,7 +10,8 @@ body{
   background: black;
   margin: 0px;
   padding: 10px;
-  min-height:100vh;
+  min-height:92vh;
+  padding: 30px 20px 20px 20px;
 }
 #toolbar{
   position: fixed;
