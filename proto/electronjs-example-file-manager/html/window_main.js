@@ -53,7 +53,7 @@ const perfromMimeAction = (state, itemData) => {
     const ext = itemData[4].ext;
     console.log('Mime Action Started for ' + mime );
     // FOR FOLDERS
-    if(mime === 'inode/directory'){
+    if(mime === 'inode/directory' || mime ===  'inode/symlink'){
         setPWD(state, itemData[2]);
     }
     // mime types
@@ -89,7 +89,7 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     let r = 0.5, g = 0.5, b = 0.5;
     const mime = itemData[4].mime;
     // folder color
-    if(mime === 'inode/directory'){
+    if(mime === 'inode/directory' || mime ===  'inode/symlink'){
         r = 1; g = 0.7; b = 0;
     }
     if(mime === 'text/plain'){
