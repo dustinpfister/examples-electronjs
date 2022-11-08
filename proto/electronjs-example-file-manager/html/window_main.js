@@ -32,12 +32,9 @@ const preformExecFileCheckAction = (state, itemData) => {
     .then((result) => {
         console.log( 'result of find command call for shell script' );
         console.log(result)
-
         if(result){
             fm.run('bash -c ' + itemData[2] + '');
         }
-
-        //return Promise.resolve(result);
     });
 };
 // prefrom an action for the given item based on its mime type
@@ -60,31 +57,7 @@ const perfromMimeAction = (state, itemData) => {
         console.log('We have a shellscript');
         preformExecFileCheckAction(state, itemData);
     }
-
-
-
-/*
-    return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
-    .then((result) => {
-        const mime = result.replace(';', '').trim();
-        console.log('mime type is: ' + mime);
-        if(mime === 'text/plain'){
-            console.log('we have a plain text file!');
-            return fm.run('mousepad ' + itemData[2]);
-        }
-        if(mime === 'text/html'){
-            console.log('we have an html file!');
-            return fm.run('mousepad ' + itemData[2]);
-        }
-        if(mime === 'text/x-shellscript'){
-            console.log('We have a shellscript');
-        }
-    })
-*/
 };
-/*
-
-*/
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
     // get div and update style
@@ -119,16 +92,6 @@ const createItemClickHandler = (state, itemData) => {
         const i = itemData[3];
         // if NOT CTRL, AND state.selcted.length is one, AND current item is selected item
         if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
-            // if selected item is a folder
-            if(itemData[1]){
-                console.log('Folder Action');
-
-            }
-            // if selected item is a file
-            if(!itemData[1]){
-                console.log('File Action');
-
-            }
             perfromMimeAction(state, itemData);
             setSelectedDivStyle(state, false);
             state.selected = [];
@@ -156,7 +119,6 @@ const createListItem = (state, itemData) => {
     return div;
 };
 // update contents with given files array
-
 const createListContents = (state, files) => {
     const el = state.el_contents_pwd;
    state.el_contents_pwd.innerHTML = '';
@@ -164,17 +126,6 @@ const createListContents = (state, files) => {
        const div = createListItem(state, itemData);
        state.el_contents_pwd.appendChild(div);
    });
-
-/*
-    DOING THIS HERE DOES NOT WORK SO GREAT
-    state.files.forEach( (itemData) => {
-    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
-       .then( (result) => {
-           itemData[4].mime = result.replace(';', '').trim();
-           console.log(itemData[4].mime);
-    });
-    });
-*/
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
@@ -207,10 +158,8 @@ const setPWD = (state, pwd) => {
         state.el_input_pwd.value = state.pwd;
         // create the list contents
         createListContents(state, state.files);
-
         // start the infoLoop
         itemLoop(state);
-
    });
 };
 //-------- ----------
