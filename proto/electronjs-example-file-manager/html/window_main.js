@@ -7,9 +7,10 @@ const itemLoop = function(state){
     const len = state.files.length;
     const el_progress = state.el_progress;
     el_progress.style.width = '0%';
+    clearTimeout(state.t);
     const loop = function(){
         if(state.itemIndex < ( len - 1 ) ){
-            setTimeout(loop, 0);
+            state.t = setTimeout(loop, 0);
         }
         (function(itemData, i){
             fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
@@ -195,6 +196,7 @@ const state = {
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
+    t: null,      // use to clear out any loop in progress when starting a new loop
     selected: [], // an array of currentlt selected index values of items in state.files
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),
