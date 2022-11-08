@@ -5,11 +5,8 @@
 const itemLoop = function(state){
     state.itemIndex = 0;
     const len = state.files.length;
-
     const el_progress = state.el_progress;
-
     el_progress.style.width = '0%';
-
     const loop = function(){
         if(state.itemIndex < ( len - 1 ) ){
             setTimeout(loop, 0);
@@ -30,8 +27,43 @@ const itemLoop = function(state){
     };
     loop();
 };
+const preformExecFileCheckAction = (state, itemData) => {
+    return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
+    .then((result) => {
+        console.log( 'result of find command call for shell script' );
+        console.log(result)
+
+        if(result){
+            fm.run('bash -c ' + itemData[2] + '');
+        }
+
+        //return Promise.resolve(result);
+    });
+};
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
+    const mime = itemData[4].mime;
+    console.log('Mime Action Started for ' + mime );
+    // FOR FOLDERS
+    if(mime === 'inode/directory'){
+        setPWD(state, itemData[2]);
+    }
+    if(mime === 'text/plain'){
+        console.log('we have a plain text file!');
+        fm.run('mousepad ' + itemData[2]);
+    }
+    if(mime === 'text/html'){
+        console.log('we have an html file!');
+        fm.run('mousepad ' + itemData[2]);
+    }
+    if(mime === 'text/x-shellscript'){
+        console.log('We have a shellscript');
+        preformExecFileCheckAction(state, itemData);
+    }
+
+
+
+/*
     return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
     .then((result) => {
         const mime = result.replace(';', '').trim();
@@ -48,14 +80,10 @@ const perfromMimeAction = (state, itemData) => {
             console.log('We have a shellscript');
         }
     })
+*/
 };
 /*
-const preformExecFileCheckAction = (state, itemData) => {
-    return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
-    .then((result) => {
-        return Promise.resolve(result);
-    });
-};
+
 */
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
@@ -94,13 +122,14 @@ const createItemClickHandler = (state, itemData) => {
             // if selected item is a folder
             if(itemData[1]){
                 console.log('Folder Action');
-                setPWD(state, itemData[2]);
+
             }
             // if selected item is a file
             if(!itemData[1]){
                 console.log('File Action');
-                perfromMimeAction(state, itemData);
+
             }
+            perfromMimeAction(state, itemData);
             setSelectedDivStyle(state, false);
             state.selected = [];
             return;
@@ -188,7 +217,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/Documents/github/examples-electronjs',
+    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
