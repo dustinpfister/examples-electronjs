@@ -41,15 +41,16 @@ fm.runFile = ( uri_sh, argu ) => {
     const child = spawn(uri_sh, argu, {
         shell: '/bin/bash',
         detached: true,
+        stdio: 'ignore'
     });
 
-    child.stdout.on('data', (data) => {
+    //child.stdout.on('data', (data) => {
         //resolve(`${data}`);
-        console.log(`${data}`);
-    });
-    child.stderr.on('data', (data) => {
-        console.warn(`${data}`);
-    });
+    //    console.log(`${data}`);
+    //});
+    //child.stderr.on('data', (data) => {
+    //    console.warn(`${data}`);
+    //});
 
     child.on('close', (code) => {
         console.log(`detached script ${uri_sh} exited with code ${code}`);

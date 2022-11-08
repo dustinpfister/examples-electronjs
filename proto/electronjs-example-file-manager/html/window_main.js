@@ -35,7 +35,7 @@ const preformExecFileCheckAction = (state, itemData) => {
         console.log(result)
         if(result){
 
-            console.log( itemData[2] );
+            //console.log( itemData[2] );
             //fm.runFile( 'bash', [ '-c', itemData[2] ] );
             fm.runFile( itemData[2] );
 
