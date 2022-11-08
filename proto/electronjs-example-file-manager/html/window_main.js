@@ -15,12 +15,12 @@ const itemLoop = function(state){
             fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
-               //console.log(i);
                const per = i / (len - 1);
                el_progress.style.width = Math.round(per * 100 ) + '%';
                if(per >= 1){
                    el_progress.style.width = '0%';
                }
+               setDivStyle(state, itemData, false);
             });
         }(state.files[ state.itemIndex ], state.itemIndex));
         state.itemIndex += 1;
@@ -62,22 +62,47 @@ const perfromMimeAction = (state, itemData) => {
 const setDivStyle = (state, itemData, selectedState, div) => {
     // get div and update style
     div = div || document.getElementById('item_' + itemData[3]);
+
+    let r = 0.5, g = 0.5, b = 0.5;
+
+    const mime = itemData[4].mime;
+    // folder color
+    if(mime === 'inode/directory'){
+        r = 1; g = 0.7; b = 0;
+    }
+    if(mime === 'text/plain'){
+        r = 1; g = 1; b = 1;
+    }
+    if(mime === 'text/html'){
+        r = 0; g = 0.8; b = 1;
+    }
+    if(mime === 'text/x-shellscript'){
+        r = 0; g = 1; b = 0;
+    }
+
+    const st = selectedState ? 0.5 : 1;
+    const rc = (r * st) * 255;
+    const gc = (g * st) * 255;
+    const bc = (b * st) * 255;
+    const bgColor = 'rgb( ' + rc + ', ' + gc + ', ' + bc +')';
+    div.style.backgroundColor = bgColor;
+
     // if folder
-    if(itemData[1] && selectedState){
-        div.className = 'contents_item contents_item_folder_selected';
-    }
+    //if(itemData[1] && selectedState){
+        //div.className = 'contents_item contents_item_folder_selected';
+    //}
     // if file
-    if(!itemData[1] && selectedState){
-        div.className = 'contents_item contents_item_file_selected';
-    }
+    //if(!itemData[1] && selectedState){
+        //div.className = 'contents_item contents_item_file_selected';
+    //}
     // if folder
-    if(itemData[1] && !selectedState){
-        div.className = 'contents_item contents_item_folder';
-    }
+    //if(itemData[1] && !selectedState){
+        //div.className = 'contents_item contents_item_folder';
+    //}
     // if file
-    if(!itemData[1] && !selectedState){
-        div.className = 'contents_item contents_item_file';
-    }
+    //if(!itemData[1] && !selectedState){
+        //div.className = 'contents_item contents_item_file';
+    //}
 };
 // set style for all selcted divs
 const setSelectedDivStyle = (state, selectedState ) => {
