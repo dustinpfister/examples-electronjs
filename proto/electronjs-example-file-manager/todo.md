@@ -16,11 +16,6 @@
 * () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
 * () can also rename from item menu
 
-
-## () - Executable Files
-* () see about having custom style for executable files such as my sh files
-* () double clicking a executable file will run that file
-
 ## () - Item Menu, double click
 * () - Clicking a single selected item will brink up an item menu
 * () - For folders there is an open option
@@ -28,11 +23,18 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
-## () itemData mime type element, run exec files
+## () - more tool bar buttons
+* () have a lanuch other fm here button in the tool bar
+* () have an up one button
+
+## () - mime type style
+* () I will want to set style by mime type
+* () if a file is executable display it with a differing style from other files
+
+## ( done 11/08/2022 ) itemData mime type element, run exec files
 * (done) update createItemClickHandler to use itemData\[4\].mime
 * (done) use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
 * (done) can click twice to run the file
-* () if a file is executable display it with a differing style from other files
 
 ## ( done 11/08/2022 ) itemLoop
 * (done) have an if for 'text/x-shellscript' mime
