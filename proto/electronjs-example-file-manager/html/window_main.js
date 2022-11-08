@@ -1,6 +1,12 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+// parse an itemData uri to work with file -i [filePath] | cut -d " " -f 2
+// I first noticed that i need to to this for a markdown file that has a '$' in the file name
+// I may need to expand this as i find more problems like this as needed
+const parseItemDataURI = (itemData) => {
+    return '\"' + itemData[2].replace('$', '\\$') + '\"';
+};
 // item update loop
 const itemLoop = function(state){
     state.itemIndex = 0;
@@ -13,7 +19,7 @@ const itemLoop = function(state){
             state.t = setTimeout(loop, 0);
         }
         (function(itemData, i){
-            fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+            fm.run('file -i ' + parseItemDataURI(itemData) + ' | cut -d " " -f 2')
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
                const per = i / (len - 1);
