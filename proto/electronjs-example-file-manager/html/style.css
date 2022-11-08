@@ -1,12 +1,16 @@
 body{
   background: #afafaf;
   color: #2a2a2a;
-  margin: 10px;
-  padding: 10px;
   font-family: arial;
+  margin: 0px;
+  padding: 0px;
 }
 #wrap_main{
   position: relative;
+  background: black;
+  margin: 0px;
+  padding: 10px;
+  min-height:100vh;
 }
 #toolbar{
   position: fixed;

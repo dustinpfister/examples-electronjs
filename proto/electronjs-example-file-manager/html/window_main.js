@@ -237,3 +237,19 @@ state.el_runterm.addEventListener('click', (e)=> {
 state.el_runalt.addEventListener('click', (e)=> {
     fm.run('pcmanfm \"'+ state.pwd +'\"');
 });
+
+window.addEventListener('pointerup', (e) => {
+
+    const tar = e.target;
+    // if not an item, clear selected and create list contents again
+    if( !(tar.className.trim() === 'contents_item') ){
+
+console.log(tar.nodeName)
+
+        // clear selected
+        state.selected = [];
+        createListContents(state, state.files);
+    }
+
+});
+
