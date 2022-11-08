@@ -13,6 +13,12 @@ const spawn = require('child_process').spawn;
 
 // main file manager api
 const fm = {};
+
+// get up one uri
+fm.getUpOne = (uri) => {
+    return path.join(uri, '..');
+};
+
 // run a command
 fm.run = ( bin) => {
     const com = exec(bin, { shell: '/bin/bash' });

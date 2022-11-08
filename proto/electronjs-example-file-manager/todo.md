@@ -29,6 +29,8 @@
 * () remove old css classes that are not used to set background color
 
 ## () - up one button
+* () add an up one button button to the tool bar
+* () I am going to need a new fm method for this I think
 
 ## ( done 11/08/2022 ) - select none
 * (done) can click on any area that is not an item to select none

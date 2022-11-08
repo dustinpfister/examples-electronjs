@@ -222,6 +222,10 @@ const state = {
 // SETUP
 //-------- ----------
 setPWD(state, state.pwd);
+
+console.log( state.pwd );
+console.log( fm.getUpOne(state.pwd) );
+
 //-------- ----------
 // INPUT_PWD
 //-------- ----------
