@@ -23,14 +23,14 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
-## () - more tool bar buttons
-* () have a lanuch other fm here button in the tool bar
-* () have an up one button
-
 ## () exec file style for exec files only
 * () have a lime green style for files only if it is a chmod 777 deal
 * () have a base style for .js and .sh
 * () remove old css classes that are not used to set background color
+
+## () - more tool bar buttons
+* () have a lanuch other fm here button in the tool bar
+* () have an up one button
 
 ## ( done 11/08/2022 ) - get fm.runFile to work with start.sh files
 * (done) I can not get my start.sh files to work see about fixing this
