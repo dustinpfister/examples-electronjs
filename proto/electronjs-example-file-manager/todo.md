@@ -28,12 +28,18 @@
 * () - Can double click a folder to open fast
 * () - can click any area in main pwd div that is not an item to unselected all
 
-## () run exec files
+## () itemData mime type element, run exec files
 * (done) have an if for 'text/x-shellscript' mime
 * (done) pull all javascript code into a js file called window_main.js for now
 * (done) see about getting CSP working with this
+* (done) stat object as itemData\[4\]
+<!-- mime type as item data object -->
+* (done) ext prop part of fileInfo object
 
-* () mime type should be an element of the itemData array itemData in createItemClickHandler
+* () see about making the creation of list contents an item by item basis in setPWD
+
+* () mime type should be an element of the itemData array
+* () update createItemClickHandler to use itemData\[4\].mime
 
 
 * () if a file is executable display it with a differing style from other files

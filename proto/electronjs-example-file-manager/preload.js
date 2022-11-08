@@ -45,7 +45,10 @@ fm.readdir = ( uri ) => {
             .then((fStat)=>{
                  // when we have the stat object return an array of values
                  // for the item
-                 return [fileName, fStat.isDirectory(), uri_item, i, fStat];
+                 const fileInfo = Object.assign({}, fStat, {
+                     ext: path.extname(fileName).replace('.', '')
+                 });
+                 return [fileName, fStat.isDirectory(), uri_item, i, fileInfo];
              })
         }) );
     });

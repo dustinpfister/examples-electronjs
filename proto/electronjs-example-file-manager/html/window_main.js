@@ -86,21 +86,37 @@ const createItemClickHandler = (state, itemData) => {
         setDivStyle(state, itemData, true);
     };
 };
+// create a single div element for an itemData object
+const createListItem = (state, itemData) => {
+    const div = document.createElement('div');
+    div.className = 'contents_item';
+    div.id = 'item_' + itemData[3];
+    div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
+    div.innerText = itemData[0];
+    // set the div style
+    setDivStyle(state, itemData, false, div);
+    return div;
+};
 // update contents with given files array
 const createListContents = (state, files, el) => {
     // for each file
     const items = files.map( (itemData) => {
-        const div = document.createElement('p');
+        const div = createListItem(state, itemData);
+
+/*
+        const div = document.createElement('div');
         div.className = 'contents_item';
         div.id = 'item_' + itemData[3];
         div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
         div.innerText = itemData[0];
         // set the div style
         setDivStyle(state, itemData, false, div);
+*/
         return div;
     });
     el.replaceChildren(...items);
 };
+
 // set the current pwd
 const setPWD = (state, pwd) => {
     state.pwd = pwd;
@@ -158,7 +174,7 @@ const setPWD = (state, pwd) => {
 
 
 console.log(files.map((itemData)=>{
-    return itemData[5];
+    return itemData[4];
 }))
 
 
