@@ -27,6 +27,9 @@
 * () have a lanuch other fm here button in the tool bar
 * () have an up one button
 
+## () - get fm.runFile to work with start.sh files
+* () I can not get my start.sh files to work
+
 ## ( done 11/08/2022 ) - mime type style
 * (done) I will want to set style by mime type
 * (done) if a file is executable display it with a differing style from other files

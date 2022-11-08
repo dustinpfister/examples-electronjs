@@ -34,7 +34,25 @@ const preformExecFileCheckAction = (state, itemData) => {
         console.log( 'result of find command call for shell script' );
         console.log(result)
         if(result){
-            fm.run('bash -c ' + itemData[2] + '');
+
+            console.log( itemData[2] );
+            //fm.runFile( 'bash', [ '-c', itemData[2] ] );
+            fm.runFile( itemData[2] );
+
+/*
+            fm.run('bash ' + itemData[2] + '')
+            .then(()=>{
+
+console.log('okay so it ran');
+
+             })
+            .catch(()=>{
+
+console.log('somehting no good');
+
+             })
+*/
+            //fm.run(itemData[2]);
         }
     });
 };
@@ -63,9 +81,7 @@ const perfromMimeAction = (state, itemData) => {
 const setDivStyle = (state, itemData, selectedState, div) => {
     // get div and update style
     div = div || document.getElementById('item_' + itemData[3]);
-
     let r = 0.5, g = 0.5, b = 0.5;
-
     const mime = itemData[4].mime;
     // folder color
     if(mime === 'inode/directory'){
@@ -80,7 +96,6 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     if(mime === 'text/x-shellscript'){
         r = 0; g = 1; b = 0;
     }
-
     const st = selectedState ? 0.5 : 1;
     const rc = (r * st) * 255;
     const gc = (g * st) * 255;
@@ -192,7 +207,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/Documents/github',
+    pwd: '/home/pi/Documents/github/test_threejs',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index

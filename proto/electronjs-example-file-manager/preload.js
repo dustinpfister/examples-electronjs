@@ -8,25 +8,56 @@ const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
 
 const exec = require('child_process').exec;
+//const execFile = require('child_process').execFile;
+const spawn = require('child_process').spawn;
 
 // main file manager api
 const fm = {};
 // run a command
 fm.run = ( bin) => {
-    const com = exec(bin);
+    const com = exec(bin, { shell: '/bin/bash', timeout: 1000 });
     // out
     return new Promise( (resolve, reject) => {
+        let text = '';
         com.stdout.on('data', (data) => {
-            resolve(`${data}`);
+            //resolve(`${data}`);
+            text += `${data}`;
         });
         com.stderr.on('data', (data) => {
             reject(`${data}`);
         });
-        //com.on('close', (code) => {
-        //    console.log(`child process exited with code ${code}`);
-        //});
+        com.on('close', (code) => {
+            //console.log(`child process ${bin} with code ${code}`);
+            resolve(text);
+        });
     });
 };
+
+fm.runFile = ( uri_sh, argu ) => {
+    //execFile( uri_sh, { shell: '/bin/bash', timeout: 60000 }, function (error, stdout, stderr) {
+    //    console.log(error, stdout, stderr);
+    //});
+    argu = argu || [];
+    const child = spawn(uri_sh, argu, {
+        shell: '/bin/bash',
+        detached: true,
+    });
+
+    child.stdout.on('data', (data) => {
+        //resolve(`${data}`);
+        console.log(`${data}`);
+    });
+    child.stderr.on('data', (data) => {
+        console.warn(`${data}`);
+    });
+
+    child.on('close', (code) => {
+        console.log(`detached script ${uri_sh} exited with code ${code}`);
+    });
+
+    child.unref();
+};
+
 // read a dir and get itemData objects
 fm.readdir = ( uri ) => {
     // read files array
