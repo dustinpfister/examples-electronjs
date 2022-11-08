@@ -216,6 +216,7 @@ const state = {
     el_input_pwd : document.getElementById('input_pwd'),
     el_runterm : document.getElementById('input_runterm'),
     el_runalt : document.getElementById('input_runalt'),
+    el_runup : document.getElementById('input_runup'),
     el_progress : document.getElementById('progressbar')
 };
 //-------- ----------
@@ -240,6 +241,10 @@ state.el_runterm.addEventListener('click', (e)=> {
 });
 state.el_runalt.addEventListener('click', (e)=> {
     fm.run('pcmanfm \"'+ state.pwd +'\"');
+});
+state.el_runup.addEventListener('click', (e)=> {
+    //fm.run('pcmanfm \"'+ state.pwd +'\"');
+    setPWD(state, fm.getUpOne(state.pwd));
 });
 
 window.addEventListener('pointerup', (e) => {
