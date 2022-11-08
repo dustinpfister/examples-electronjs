@@ -27,9 +27,10 @@
 * () have a lanuch other fm here button in the tool bar
 * () have an up one button
 
-## () - mime type style
-* () I will want to set style by mime type
-* () if a file is executable display it with a differing style from other files
+## ( done 11/08/2022 ) - mime type style
+* (done) I will want to set style by mime type
+* (done) if a file is executable display it with a differing style from other files
+* (done) fixed a bug where the item loop was continuing after a set pwd call
 
 ## ( done 11/08/2022 ) itemData mime type element, run exec files
 * (done) update createItemClickHandler to use itemData\[4\].mime
