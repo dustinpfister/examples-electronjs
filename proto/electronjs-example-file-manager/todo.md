@@ -32,6 +32,9 @@
 * () have a lanuch other fm here button in the tool bar
 * () have an up one button
 
+## ( done 11/08/2022 ) - run alt button
+* (done) have a Alt FM button that will start another File manager app at the current location
+
 ## ( done 11/08/2022 ) - get fm.runFile to work with start.sh files
 * (done) I can not get my start.sh files to work see about fixing this
 * (done) it was becuase of the cwd option!

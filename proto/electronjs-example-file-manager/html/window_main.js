@@ -215,6 +215,7 @@ const state = {
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),
     el_runterm : document.getElementById('input_runterm'),
+    el_runalt : document.getElementById('input_runalt'),
     el_progress : document.getElementById('progressbar')
 };
 //-------- ----------
@@ -228,8 +229,11 @@ state.el_input_pwd.addEventListener('change', (e)=> {
     setPWD(state, e.target.value);
 });
 //-------- ----------
-// INPUT_RUNTERM
+// BUTTONS
 //-------- ----------
 state.el_runterm.addEventListener('click', (e)=> {
     fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
+});
+state.el_runalt.addEventListener('click', (e)=> {
+    fm.run('pcmanfm \"'+ state.pwd +'\"');
 });
