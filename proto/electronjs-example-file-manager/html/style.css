@@ -35,15 +35,3 @@ body{
   min-height:50px;
   padding: 10px;
 }
-.contents_item_folder {
-  background-color: #ffaa00;
-}
-.contents_item_file {
-  background-color: #cfcfcf;
-}
-.contents_item_folder_selected {
-  background-color: #994400;
-}
-.contents_item_file_selected {
-  background-color: #444444;
-}

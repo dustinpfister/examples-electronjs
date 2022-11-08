@@ -109,35 +109,15 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     if(mime === 'text/x-shellscript' || mime === 'application/javascript'){
         r = 0; g = 1; b = 0;
     }
-
-
-
+    // set the style
     const st = selectedState ? 0.5 : 1;
     const rc = (r * st) * 255;
     const gc = (g * st) * 255;
     const bc = (b * st) * 255;
     const bgColor = 'rgb( ' + rc + ', ' + gc + ', ' + bc +')';
-
     if(div){
         div.style.backgroundColor = bgColor;
     }
-
-    // if folder
-    //if(itemData[1] && selectedState){
-        //div.className = 'contents_item contents_item_folder_selected';
-    //}
-    // if file
-    //if(!itemData[1] && selectedState){
-        //div.className = 'contents_item contents_item_file_selected';
-    //}
-    // if folder
-    //if(itemData[1] && !selectedState){
-        //div.className = 'contents_item contents_item_folder';
-    //}
-    // if file
-    //if(!itemData[1] && !selectedState){
-        //div.className = 'contents_item contents_item_file';
-    //}
 };
 // set style for all selcted divs
 const setSelectedDivStyle = (state, selectedState ) => {
