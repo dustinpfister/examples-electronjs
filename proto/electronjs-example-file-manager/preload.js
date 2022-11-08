@@ -15,7 +15,7 @@ const spawn = require('child_process').spawn;
 const fm = {};
 // run a command
 fm.run = ( bin) => {
-    const com = exec(bin, { shell: '/bin/bash', timeout: 1000 });
+    const com = exec(bin, { shell: '/bin/bash' });
     // out
     return new Promise( (resolve, reject) => {
         let text = '';
