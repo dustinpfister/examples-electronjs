@@ -27,7 +27,10 @@ const itemLoop = function(state){
                if(per >= 1){
                    el_progress.style.width = '0%';
                }
-               setDivStyle(state, itemData, false);
+               // check that it is still the same object before calling setDivStyle
+               if(state.files[i] === itemData){
+                   setDivStyle(state, itemData, false);
+               }
             });
         }(state.files[ state.itemIndex ], state.itemIndex));
         state.itemIndex += 1;
@@ -114,7 +117,10 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     const gc = (g * st) * 255;
     const bc = (b * st) * 255;
     const bgColor = 'rgb( ' + rc + ', ' + gc + ', ' + bc +')';
-    div.style.backgroundColor = bgColor;
+
+    if(div){
+        div.style.backgroundColor = bgColor;
+    }
 
     // if folder
     //if(itemData[1] && selectedState){
