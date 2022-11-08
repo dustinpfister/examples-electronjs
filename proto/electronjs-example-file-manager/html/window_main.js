@@ -239,17 +239,14 @@ state.el_runalt.addEventListener('click', (e)=> {
 });
 
 window.addEventListener('pointerup', (e) => {
-
     const tar = e.target;
     // if not an item, clear selected and create list contents again
     if( !(tar.className.trim() === 'contents_item') ){
-
-console.log(tar.nodeName)
-
-        // clear selected
-        state.selected = [];
-        createListContents(state, state.files);
+        // clear selected if wrap main clicked
+        if(tar.id === 'wrap_main'){
+            state.selected = [];
+            createListContents(state, state.files);
+        }
     }
-
 });
 
