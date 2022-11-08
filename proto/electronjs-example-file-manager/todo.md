@@ -30,6 +30,10 @@
 
 ## () run exec files
 * (done) have an if for 'text/x-shellscript' mime
+
+* () pull all javascript code into a js file called window_main.js for now
+* () see about getting CSP working with this
+
 * () I will want to always get what the mime type is for itemData in createItemClickHandler
 
 
