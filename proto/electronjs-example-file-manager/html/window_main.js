@@ -192,7 +192,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    pwd: '~/Documents/github',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
