@@ -20,13 +20,14 @@ const perfromMimeAction = (state, itemData) => {
         }
     })
 };
-
+/*
 const preformExecFileCheckAction = (state, itemData) => {
     return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
     .then((result) => {
         return Promise.resolve(result);
     });
 };
+*/
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
     // get div and update style
@@ -110,8 +111,34 @@ const setPWD = (state, pwd) => {
         // using fm.readdir
         return fm.readdir(state.pwd);
     })
+    // add addtional element for each item data that will contain info like mime type
+    .then((filesRaw) => {
+
+       return filesRaw;
+
+       // format of filesRaw as as follows
+       //[ fileName, isDir, uri_item, i, fStat ]
+       // push an itemData[5] that will be mime type
+/*
+       return Promise.all(filesRaw.map( (itemData) => {
+           return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+           .then((result) => {
+               const mime = result.replace(';', '').trim();
+
+               itemData.push({
+                   mime: mime,
+                   ext: ''
+               });
+               return itemData;
+           })
+       }));
+*/
+    })
     // get files array from fm api and update state.files
    .then((files)=>{
+       // format of files as as follows
+       //[ fileName, isDir, uri_item, i, fStat, mimeObj ]
+
         state.files = files;
         // SORT FOLDERS ABOVE FILES
         state.files.sort(function(itemA, itemB){
@@ -128,6 +155,13 @@ const setPWD = (state, pwd) => {
         // create the list with the whole contents of state.files
         createListContents(state, state.files, state.el_contents_pwd);
         state.el_input_pwd.value = state.pwd;
+
+
+console.log(files.map((itemData)=>{
+    return itemData[5];
+}))
+
+
    });
 };
 //-------- ----------

@@ -30,11 +30,10 @@
 
 ## () run exec files
 * (done) have an if for 'text/x-shellscript' mime
+* (done) pull all javascript code into a js file called window_main.js for now
+* (done) see about getting CSP working with this
 
-* () pull all javascript code into a js file called window_main.js for now
-* () see about getting CSP working with this
-
-* () I will want to always get what the mime type is for itemData in createItemClickHandler
+* () mime type should be an element of the itemData array itemData in createItemClickHandler
 
 
 * () if a file is executable display it with a differing style from other files
