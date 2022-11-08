@@ -27,8 +27,9 @@
 * () have a lanuch other fm here button in the tool bar
 * () have an up one button
 
-## () - get fm.runFile to work with start.sh files
-* () I can not get my start.sh files to work
+## ( done 11/08/2022 ) - get fm.runFile to work with start.sh files
+* (done) I can not get my start.sh files to work see about fixing this
+* (done) it was becuase of the cwd option!
 
 ## ( done 11/08/2022 ) - mime type style
 * (done) I will want to set style by mime type

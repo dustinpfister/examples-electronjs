@@ -37,7 +37,7 @@ const preformExecFileCheckAction = (state, itemData) => {
 
             //console.log( itemData[2] );
             //fm.runFile( 'bash', [ '-c', itemData[2] ] );
-            fm.runFile( itemData[2] );
+            fm.runFile( state.pwd , itemData[2] );
 
 /*
             fm.run('bash ' + itemData[2] + '')
@@ -76,6 +76,10 @@ const perfromMimeAction = (state, itemData) => {
         console.log('We have a shellscript');
         preformExecFileCheckAction(state, itemData);
     }
+    if(mime === 'application/javascript'){
+        console.log('We have a js file!');
+        preformExecFileCheckAction(state, itemData);
+    }
 };
 // set style of a single div
 const setDivStyle = (state, itemData, selectedState, div) => {
@@ -93,7 +97,7 @@ const setDivStyle = (state, itemData, selectedState, div) => {
     if(mime === 'text/html'){
         r = 0; g = 0.8; b = 1;
     }
-    if(mime === 'text/x-shellscript'){
+    if(mime === 'text/x-shellscript' || mime === 'application/javascript'){
         r = 0; g = 1; b = 0;
     }
     const st = selectedState ? 0.5 : 1;

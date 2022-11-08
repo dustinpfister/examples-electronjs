@@ -33,12 +33,13 @@ fm.run = ( bin) => {
     });
 };
 
-fm.runFile = ( uri_sh, argu ) => {
+fm.runFile = ( cwd, uri_sh, argu ) => {
     //execFile( uri_sh, { shell: '/bin/bash', timeout: 60000 }, function (error, stdout, stderr) {
     //    console.log(error, stdout, stderr);
     //});
     argu = argu || [];
     const child = spawn(uri_sh, argu, {
+        cwd: cwd,
         shell: '/bin/bash',
         detached: true,
         stdio: 'ignore'
