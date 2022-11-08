@@ -1,36 +1,35 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+// item update loop
 const itemLoop = function(state){
-
     state.itemIndex = 0;
     const len = state.files.length;
+
+    const el_progress = state.el_progress;
+
+    el_progress.style.width = '0%';
+
     const loop = function(){
         if(state.itemIndex < ( len - 1 ) ){
             setTimeout(loop, 0);
         }
-
-
-    const itemData = state.files[ state.itemIndex ];
-
-//console.log(state.itemIndex, state.files[ state.itemIndex][2] )
-
-
-    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
-       .then( (result) => {
-           itemData[4].mime = result.replace(';', '').trim();
-           console.log(itemData[4].mime);
-    });
-
-
+        (function(itemData, i){
+            fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+           .then( (result) => {
+               itemData[4].mime = result.replace(';', '').trim();
+               //console.log(i);
+               const per = i / (len - 1);
+               el_progress.style.width = Math.round(per * 100 ) + '%';
+               if(per >= 1){
+                   el_progress.style.width = '0%';
+               }
+            });
+        }(state.files[ state.itemIndex ], state.itemIndex));
         state.itemIndex += 1;
-
     };
     loop();
-
 };
-
-
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
     return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
@@ -196,7 +195,8 @@ const state = {
     selected: [], // an array of currentlt selected index values of items in state.files
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),
-    el_runterm : document.getElementById('input_runterm')
+    el_runterm : document.getElementById('input_runterm'),
+    el_progress : document.getElementById('progressbar')
 };
 //-------- ----------
 // SETUP

@@ -16,12 +16,20 @@ body{
   background: rgba(200, 200, 200, 0.8);
   padding:10px;
 }
+#progressbar{
+  /*position: fixed;*/
+  position: absolute;
+  left:0px;
+  bottom: 0px;
+  height:10px;
+  background: rgba(0, 200, 0, 0.8);
+  padding:0px;
+}
 #contents_pwd{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
 }
-
 .contents_item {
   user-select: none;
   min-height:50px;
