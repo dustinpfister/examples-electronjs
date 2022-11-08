@@ -30,7 +30,10 @@
 
 ## () run exec files
 * (done) have an if for 'text/x-shellscript' mime
-* () test if a file is executable and if so display it with a differing style
+* () I will want to always get what the mime type is for itemData in createItemClickHandler
+
+
+* () if a file is executable display it with a differing style from other files
 * () use ( $ find ./index.js -maxdepth 1 -type f -executable ) to find out if a file is executable
 * () can click twice to run the file
 

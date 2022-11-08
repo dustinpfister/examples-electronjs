@@ -27,6 +27,7 @@ fm.run = ( bin) => {
         //});
     });
 };
+// read a dir and get itemData objects
 fm.readdir = ( uri ) => {
     // read files array
     return readdir(uri)
@@ -36,10 +37,14 @@ fm.readdir = ( uri ) => {
         if(uri != '/'){
             files.unshift('..');
         }
+        // return a promise, using Promise.all for all items in uri to do so
         return Promise.all( files.map( (fileName, i) => {
             const uri_item = path.join(uri, fileName);
+            // get stat for each item
             return stat( uri_item )
             .then((fStat)=>{
+                 // when we have the stat object return an array of values
+                 // for the item
                  return [fileName, fStat.isDirectory(), uri_item, i];
              })
         }) );

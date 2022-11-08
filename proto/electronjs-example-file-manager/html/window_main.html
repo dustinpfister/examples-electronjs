@@ -22,8 +22,6 @@
 //-------- ----------
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
-    console.log('perfroming Mime Action');
-    console.log(itemData);
     return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
     .then((result) => {
         const mime = result.replace(';', '').trim();
@@ -37,20 +35,15 @@ const perfromMimeAction = (state, itemData) => {
             return fm.run('mousepad ' + itemData[2]);
         }
         if(mime === 'text/x-shellscript'){
-            console.log('we have a shellscript');
+            console.log('We have a shellscript');
         }
-
-
     })
 };
 
 const preformExecFileCheckAction = (state, itemData) => {
     return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
     .then((result) => {
-        console.log('exec check')
-        console.log(result);
         return Promise.resolve(result);
-
     });
 };
 // set style of a single div
@@ -95,7 +88,6 @@ const createItemClickHandler = (state, itemData) => {
             // if selected item is a file
             if(!itemData[1]){
                 console.log('File Action');
-                //preformExecFileCheckAction(state, itemData)
                 perfromMimeAction(state, itemData);
             }
             setSelectedDivStyle(state, false);
@@ -134,6 +126,7 @@ const setPWD = (state, pwd) => {
     return fm.run('realpath ' + state.pwd)
     .then((result)=>{
         state.pwd = result.trim();
+        // using fm.readdir
         return fm.readdir(state.pwd);
     })
     // get files array from fm api and update state.files
