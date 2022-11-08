@@ -206,7 +206,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '/home/pi/Documents/github/test_threejs',
+    pwd: '/home/pi/Documents/github',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
