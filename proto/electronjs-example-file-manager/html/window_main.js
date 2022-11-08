@@ -1,6 +1,36 @@
 //-------- ----------
 // HELPERS
 //-------- ----------
+const itemLoop = function(state){
+
+    state.itemIndex = 0;
+    const len = state.files.length;
+    const loop = function(){
+        if(state.itemIndex < ( len - 1 ) ){
+            setTimeout(loop, 0);
+        }
+
+
+    const itemData = state.files[ state.itemIndex ];
+
+//console.log(state.itemIndex, state.files[ state.itemIndex][2] )
+
+
+    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+       .then( (result) => {
+           itemData[4].mime = result.replace(';', '').trim();
+           console.log(itemData[4].mime);
+    });
+
+
+        state.itemIndex += 1;
+
+    };
+    loop();
+
+};
+
+
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
     return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
@@ -105,7 +135,18 @@ const createListContents = (state, files) => {
    files.forEach( (itemData) => {
        const div = createListItem(state, itemData);
        state.el_contents_pwd.appendChild(div);
+   });
+
+/*
+    DOING THIS HERE DOES NOT WORK SO GREAT
+    state.files.forEach( (itemData) => {
+    fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
+       .then( (result) => {
+           itemData[4].mime = result.replace(';', '').trim();
+           console.log(itemData[4].mime);
     });
+    });
+*/
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
@@ -117,34 +158,10 @@ const setPWD = (state, pwd) => {
         // using fm.readdir
         return fm.readdir(state.pwd);
     })
-    // add addtional element for each item data that will contain info like mime type
-    .then((filesRaw) => {
-
-       return filesRaw;
-
-       // format of filesRaw as as follows
-       //[ fileName, isDir, uri_item, i, fStat ]
-       // push an itemData[5] that will be mime type
-/*
-       return Promise.all(filesRaw.map( (itemData) => {
-           return fm.run('file -i ' + itemData[2] + ' | cut -d " " -f 2')
-           .then((result) => {
-               const mime = result.replace(';', '').trim();
-
-               itemData.push({
-                   mime: mime,
-                   ext: ''
-               });
-               return itemData;
-           })
-       }));
-*/
-    })
     // get files array from fm api and update state.files
    .then((files)=>{
        // format of files as as follows
        //[ fileName, isDir, uri_item, i, fStat, mimeObj ]
-
         state.files = files;
         // SORT FOLDERS ABOVE FILES
         state.files.sort(function(itemA, itemB){
@@ -158,31 +175,13 @@ const setPWD = (state, pwd) => {
              item[3] = i;
              return item;
         });
-        // create the list with the whole contents of state.files
-        //createListContents(state, state.files, state.el_contents_pwd);
-
-//createListContents(state, state.files, state.el_contents_pwd);
-
+        // upadte value of input pwd
         state.el_input_pwd.value = state.pwd;
-
+        // create the list contents
         createListContents(state, state.files);
 
-/*
-        state.el_contents_pwd.innerHTML = '';
-
-        files.forEach( (itemData) => {
-
-            const div = createListItem(state, itemData);
-            state.el_contents_pwd.appendChild(div);
-
-        });
-*/
-
-
-        //console.log(files.map((itemData)=>{
-        //    return itemData[4];
-        //}))
-
+        // start the infoLoop
+        itemLoop(state);
 
    });
 };
@@ -193,6 +192,7 @@ const state = {
     pwd: '~/Documents/github/examples-electronjs',
     files: [],
     CTRL: false,
+    itemIndex: 0, // item loop index
     selected: [], // an array of currentlt selected index values of items in state.files
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),

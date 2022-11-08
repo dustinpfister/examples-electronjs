@@ -35,8 +35,10 @@
 * (done) stat object as itemData\[4\]
 <!-- mime type as item data object -->
 * (done) ext prop part of fileInfo object
+* (done) see about making the creation of list contents an item by item basis in setPWD
 
-* () see about making the creation of list contents an item by item basis in setPWD
+* () looks like I will need something like an app loop, but for updating mime type
+* () have a progress bar for mime type update
 
 * () mime type should be an element of the itemData array
 * () update createItemClickHandler to use itemData\[4\].mime
