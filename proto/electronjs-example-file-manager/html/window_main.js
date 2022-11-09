@@ -9,31 +9,34 @@ const parseItemDataURI = (itemData) => {
 };
 // item update loop
 const itemLoop = function(state){
-    state.itemIndex = 0;
+    state.loop.i = 0;
+    state.loop.pwd = state.pwd;
     const len = state.files.length;
     const el_progress = state.el_progress;
     el_progress.style.width = '0%';
-    clearTimeout(state.t);
     const loop = function(){
-        if(state.itemIndex < ( len - 1 ) ){
-            state.t = setTimeout(loop, 0);
-        }
-        (function(itemData, i){
+        (function(itemData, i, loopPwd ){
             fm.run('file -i ' + parseItemDataURI(itemData) + ' | cut -d " " -f 2')
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
                const per = i / (len - 1);
                el_progress.style.width = Math.round(per * 100 ) + '%';
-               if(per >= 1){
-                   el_progress.style.width = '0%';
-               }
                // check that it is still the same object before calling setDivStyle
                if(state.files[i] === itemData){
                    setDivStyle(state, itemData, false);
                }
+               // keep looping or stop
+               if(per >= 1){
+                   el_progress.style.width = '0%';
+               }else{
+                   // if the loop folder is still the current folder keep looping
+                   if(loopPwd === state.pwd){
+                       loop();
+                   }
+               }
             });
-        }(state.files[ state.itemIndex ], state.itemIndex));
-        state.itemIndex += 1;
+        }(state.files[ state.loop.i ], state.loop.i, state.loop.pwd));
+        state.loop.i += 1;
     };
     loop();
 };
@@ -209,8 +212,10 @@ const state = {
     pwd: '/home/pi/.edit-menu-test',
     files: [],
     CTRL: false,
-    itemIndex: 0, // item loop index
-    t: null,      // use to clear out any loop in progress when starting a new loop
+    loop: {
+       i: 0,   // item loop index
+       pwd: '' // compare to state.pwd to find out if looping should continue
+    },
     selected: [], // an array of currentlt selected index values of items in state.files
     copy: [],     // to store copy urls
     el_contents_pwd : document.getElementById('contents_pwd'),
