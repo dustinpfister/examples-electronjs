@@ -206,7 +206,7 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~',
+    pwd: '/home/pi/.edit-menu-test',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
@@ -274,18 +274,27 @@ fm.on_edit_copy( (evnt) => {
 });
 
 fm.on_edit_paste( (evnt) => {
-    const itemData = state.copy[0];
-    const source = itemData[2];
-    const dest = fm.pathJoin( state.pwd, itemData[0] );
     console.log('PASTE!');
-    console.log( source, dest );
-
-    fm.run('cp ' + source + ' ' + dest)
-    .then(()=>{
-        console.log('copy done');
-        state.copy = [];
-        setPWD(state, state.pwd);
-    });
-
+    if(state.copy.length >= 1){
+        const itemData = state.copy[0];
+        // get source and dist
+        const source = itemData[2];
+        let dest = fm.path_join( state.pwd, itemData[0] );
+        // update dist if same
+        if(source === dest){
+            const ext = '.' + itemData[4].ext;
+            dest = fm.path_join(
+                state.pwd,
+                fm.path_basename(itemData[0], ext) + '_copy_1' + ext
+            );
+        }
+        // run cp with source and dist
+        fm.run('cp -r ' + source + ' ' + dest)
+        .then(()=>{
+            console.log('copy done');
+            state.copy = [];
+            setPWD(state, state.pwd);
+        });
+    }
 });
 

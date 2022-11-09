@@ -14,8 +14,8 @@ const spawn = require('child_process').spawn;
 // main file manager api
 const fm = {};
 
-fm.baseName = path.baseName;
-fm.pathJoin = path.join;
+fm.path_basename = path.basename;
+fm.path_join = path.join;
 
 // get up one uri
 fm.getUpOne = (uri) => {
