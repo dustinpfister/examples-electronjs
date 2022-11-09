@@ -14,6 +14,9 @@ const spawn = require('child_process').spawn;
 // main file manager api
 const fm = {};
 
+fm.baseName = path.baseName;
+fm.pathJoin = path.join;
+
 // get up one uri
 fm.getUpOne = (uri) => {
     return path.join(uri, '..');
@@ -100,11 +103,11 @@ fm.on_edit_copy = (cb) => {
     });
 };
 
-ipcRenderer.on('edit_paste', (evnt) => {
-
-    console.log('paste');
-
-});
+fm.on_edit_paste = (cb) => {
+    ipcRenderer.on('edit_paste', (evnt) => {
+        cb(evnt);
+    });
+};
 
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('fm', fm);

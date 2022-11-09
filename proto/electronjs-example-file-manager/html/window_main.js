@@ -206,12 +206,13 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '/home/pi/Documents/github',
+    pwd: '~',
     files: [],
     CTRL: false,
     itemIndex: 0, // item loop index
     t: null,      // use to clear out any loop in progress when starting a new loop
     selected: [], // an array of currentlt selected index values of items in state.files
+    copy: [],     // to store copy urls
     el_contents_pwd : document.getElementById('contents_pwd'),
     el_input_pwd : document.getElementById('input_pwd'),
     el_runterm : document.getElementById('input_runterm'),
@@ -265,8 +266,26 @@ window.addEventListener('pointerup', (e) => {
 //-------- ----------
 
 fm.on_edit_copy( (evnt) => {
+    state.copy = state.selected.map( (i) => {
+        return state.files[i];
+    });
+    console.log('COPY!');
+    console.log(state.copy);
+});
 
-    console.log('COPY!')
+fm.on_edit_paste( (evnt) => {
+    const itemData = state.copy[0];
+    const source = itemData[2];
+    const dest = fm.pathJoin( state.pwd, itemData[0] );
+    console.log('PASTE!');
+    console.log( source, dest );
 
-})
+    fm.run('cp ' + source + ' ' + dest)
+    .then(()=>{
+        console.log('copy done');
+        state.copy = [];
+        setPWD(state, state.pwd);
+    });
+
+});
 

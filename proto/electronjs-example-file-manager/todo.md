@@ -4,6 +4,7 @@
 * () media queries for grid
 
 ## () - file types, and open with
+* open with options
 
 ## () - Rename files
 * () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
@@ -24,14 +25,20 @@
 ## () - select more than one file
 * () can select more than one file or folder by holding down CTRL
 
+## () - recursive folder copy
+* () copy one or more selected folders recursivly
+
 ## () - create new 
 * () create new file
 * () create new folder
 
-## () - EDIT MENU, cut, copy, paste, create new
-* () start an edit menu
-* () copy one file at a time
-* () paste one file at a time
+## () Delete Selected
+* () delete a single selected file
+
+## ( done 11/08/2022 ) - EDIT MENU, cut, paste single file
+* (done) start an edit menu
+* (done) copy one file at a time
+* (done) paste one file at a time
 
 ## ( done 11/08/2022 ) - up one button
 * (done) add an up one button button to the tool bar
