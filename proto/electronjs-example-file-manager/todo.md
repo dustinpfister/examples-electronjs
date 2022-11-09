@@ -35,6 +35,10 @@
 ## () Delete Selected
 * () delete a single selected file
 
+## ( done 11/09/2022 ) - new item loop method
+* (done) new item loop method that does not uset set time out
+* (done) so far this seems to have fixed a bug with the progress bar that was the result of a race condition
+
 ## ( done 11/08/2022 ) - EDIT MENU, cut, paste single file
 * (done) start an edit menu
 * (done) copy one file at a time
