@@ -40,6 +40,23 @@ const MainMenuTemplate = [
         ]
     },
     {
+        label: 'Edit',
+        submenu: [
+            { 
+                label: 'Copy',
+                click: (evnt, window) => {
+                    window.webContents.send('edit_copy');
+                }
+            },
+           { 
+                label: 'Paste',
+                click: (evnt, window) => {
+                    window.webContents.send('edit_paste');
+                }
+            }
+        ]
+    },
+    {
         label: 'View',
         submenu: [
             { role: 'reload' },

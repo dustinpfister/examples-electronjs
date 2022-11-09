@@ -246,7 +246,9 @@ state.el_runup.addEventListener('click', (e)=> {
     //fm.run('pcmanfm \"'+ state.pwd +'\"');
     setPWD(state, fm.getUpOne(state.pwd));
 });
-
+//-------- ----------
+// GLOBAL CLICK OF WINDOW
+//-------- ----------
 window.addEventListener('pointerup', (e) => {
     const tar = e.target;
     // if not an item, clear selected and create list contents again
@@ -258,4 +260,13 @@ window.addEventListener('pointerup', (e) => {
         }
     }
 });
+//-------- ----------
+// MENU BAR EVENTS
+//-------- ----------
+
+fm.on_edit_copy( (evnt) => {
+
+    console.log('COPY!')
+
+})
 

@@ -21,13 +21,17 @@
 * () have a base style for .js and .sh
 * () remove old css classes that are not used to set background color
 
-## () - EDIT MENU, cut, copy, paste, create new
-* () start an edit menu
-* () copy
-* () paste
+## () - select more than one file
+* () can select more than one file or folder by holding down CTRL
+
+## () - create new 
 * () create new file
 * () create new folder
-* () can select more than one file or folder by holding down CTRL
+
+## () - EDIT MENU, cut, copy, paste, create new
+* () start an edit menu
+* () copy one file at a time
+* () paste one file at a time
 
 ## ( done 11/08/2022 ) - up one button
 * (done) add an up one button button to the tool bar

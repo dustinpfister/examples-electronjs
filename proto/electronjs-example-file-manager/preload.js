@@ -94,5 +94,17 @@ fm.readdir = ( uri ) => {
     });
 };
 
+fm.on_edit_copy = (cb) => {
+    ipcRenderer.on('edit_copy', (evnt) => {
+        cb(evnt);
+    });
+};
+
+ipcRenderer.on('edit_paste', (evnt) => {
+
+    console.log('paste');
+
+});
+
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('fm', fm);
