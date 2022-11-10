@@ -36,6 +36,8 @@
 * (done) css see about limiting text content length in an item div
 * (done) progress bar wrap
 * (done) setting title value for item divs so I can mouse over to get full name
+* (done) work out better values for padding and margins for css
+* (done) background color change
 
 * () create new folder button in toolbar
 
