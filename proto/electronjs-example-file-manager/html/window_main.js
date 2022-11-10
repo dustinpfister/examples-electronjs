@@ -275,6 +275,20 @@ window.addEventListener('pointerup', (e) => {
 fm.on_edit_delete( (evnt) => {
     
     console.log('Delete!');
+
+    if(state.selected.length >= 1){
+        const itemData = state.files[state.selected[0]];
+        //const delcom = 'rm -frd ' + itemData[2]
+        //console.log(delCom);
+        fm.run('rm -frd ' + itemData[2])
+        .then(()=>{
+            console.log('Delete of file done');
+            state.selected = [];
+            setPWD(state, state.pwd);
+        });
+    }else{
+        console.log('nothing selected to delete');
+    }
 });
 
 
