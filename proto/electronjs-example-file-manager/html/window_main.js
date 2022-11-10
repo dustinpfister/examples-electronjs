@@ -158,6 +158,7 @@ const createListItem = (state, itemData) => {
     div.id = 'item_' + itemData[3];
     div.addEventListener('pointerup', createItemClickHandler(state, itemData ) );
     div.innerText = itemData[0];
+    div.title = itemData[0];
     // set the div style
     setDivStyle(state, itemData, false, div);
     return div;
