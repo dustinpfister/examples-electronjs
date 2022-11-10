@@ -226,6 +226,10 @@ const state = {
     el_runterm : document.getElementById('input_runterm'),
     el_runalt : document.getElementById('input_runalt'),
     el_runup : document.getElementById('input_runup'),
+
+    el_run_new_folder : document.getElementById('input_newfolder'),
+    el_run_new_file : document.getElementById('input_newfile'),
+
     el_progress : document.getElementById('progressbar')
 };
 //-------- ----------
@@ -245,6 +249,19 @@ state.el_input_pwd.addEventListener('change', (e)=> {
 //-------- ----------
 // BUTTONS
 //-------- ----------
+
+state.el_run_new_folder.addEventListener('click', (e)=> {
+    console.log('new folder')
+});
+
+state.el_run_new_file.addEventListener('click', (e)=> {
+    console.log('new file')
+});
+
+
+//echo -n "" > new.txt
+
+
 state.el_runterm.addEventListener('click', (e)=> {
     fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
 });
