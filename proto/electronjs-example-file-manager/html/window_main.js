@@ -211,8 +211,8 @@ const setPWD = (state, pwd) => {
 //-------- ----------
 const state = {
     //pwd: '~',
-    pwd: '~/Documents/github/',
-    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    //pwd: '~/Documents/github/',
+    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
     CTRL: false,
     loop: {
@@ -226,20 +226,14 @@ const state = {
     el_runterm : document.getElementById('input_runterm'),
     el_runalt : document.getElementById('input_runalt'),
     el_runup : document.getElementById('input_runup'),
-
     el_run_new_folder : document.getElementById('input_newfolder'),
     el_run_new_file : document.getElementById('input_newfile'),
-
     el_progress : document.getElementById('progressbar')
 };
 //-------- ----------
 // SETUP
 //-------- ----------
 setPWD(state, state.pwd);
-
-console.log( state.pwd );
-console.log( fm.getUpOne(state.pwd) );
-
 //-------- ----------
 // INPUT_PWD
 //-------- ----------
@@ -249,11 +243,9 @@ state.el_input_pwd.addEventListener('change', (e)=> {
 //-------- ----------
 // BUTTONS
 //-------- ----------
-
 state.el_run_new_folder.addEventListener('click', (e)=> {
     console.log('new folder')
 });
-
 state.el_run_new_file.addEventListener('click', (e)=> {
     console.log('new file');
     fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt')
@@ -263,11 +255,6 @@ state.el_run_new_file.addEventListener('click', (e)=> {
         setPWD(state, state.pwd);
     });
 });
-
-
-//echo -n "" > new.txt
-
-
 state.el_runterm.addEventListener('click', (e)=> {
     fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
 });
@@ -295,12 +282,10 @@ window.addEventListener('pointerup', (e) => {
 //-------- ----------
 // MENU BAR EVENTS
 //-------- ----------
-
+// delete the current slected item
 fm.on_edit_delete( (evnt) => {
     if(state.selected.length >= 1){
         const itemData = state.files[state.selected[0]];
-        //const delcom = 'rm -frd ' + itemData[2]
-        //console.log(delCom);
         fm.run('rm -frd ' + itemData[2])
         .then(()=>{
             console.log('Delete of file done');
@@ -311,8 +296,7 @@ fm.on_edit_delete( (evnt) => {
         console.log('nothing selected to delete');
     }
 });
-
-
+// copy edit event
 fm.on_edit_copy( (evnt) => {
     console.log('COPY!');
     state.copy = state.selected.map( (i) => {
@@ -320,7 +304,7 @@ fm.on_edit_copy( (evnt) => {
     });
     console.log(state.copy);
 });
-
+// paste edit event
 fm.on_edit_paste( (evnt) => {
     console.log('PASTE!');
     if(state.copy.length >= 1){
@@ -345,4 +329,3 @@ fm.on_edit_paste( (evnt) => {
         });
     }
 });
-
