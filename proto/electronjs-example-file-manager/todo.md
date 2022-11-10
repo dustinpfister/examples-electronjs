@@ -1,7 +1,7 @@
 # electionjs-file-manager
 
 ## () - css media queries
-* () media queries for grid
+
 
 ## () - file types, and open with
 * open with options
@@ -32,8 +32,12 @@
 * () can rename a section of files by way of the edit menu
 
 ## () - Create new file and folder buttons
+* (done) fix bug where deselect will not work when clicking contents pwd div
 * (done) create new file button in toolbar
+
 * () create new folder button in toolbar
+
+* () media queries for grid
 
 ## ( done 11/10/2022 ) Delete Selected single file
 * (done) fixed empty folder bug

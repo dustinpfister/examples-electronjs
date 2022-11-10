@@ -273,7 +273,7 @@ window.addEventListener('pointerup', (e) => {
     // if not an item, clear selected and create list contents again
     if( !(tar.className.trim() === 'contents_item') ){
         // clear selected if wrap main clicked
-        if(tar.id === 'wrap_main'){
+        if(tar.id === 'wrap_main' || tar.id === 'contents_pwd'){
             state.selected = [];
             createListContents(state, state.files);
         }
