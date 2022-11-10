@@ -109,5 +109,11 @@ fm.on_edit_paste = (cb) => {
     });
 };
 
+fm.on_edit_delete = (cb) => {
+    ipcRenderer.on('edit_delete', (evnt) => {
+        cb(evnt);
+    });
+};
+
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('fm', fm);

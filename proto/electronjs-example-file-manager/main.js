@@ -48,10 +48,16 @@ const MainMenuTemplate = [
                     window.webContents.send('edit_copy');
                 }
             },
-           { 
+            { 
                 label: 'Paste',
                 click: (evnt, window) => {
                     window.webContents.send('edit_paste');
+                }
+            },
+            { 
+                label: 'Delete',
+                click: (evnt, window) => {
+                    window.webContents.send('edit_delete');
                 }
             }
         ]

@@ -272,6 +272,12 @@ window.addEventListener('pointerup', (e) => {
 // MENU BAR EVENTS
 //-------- ----------
 
+fm.on_edit_delete( (evnt) => {
+    
+    console.log('Delete!');
+});
+
+
 fm.on_edit_copy( (evnt) => {
     state.copy = state.selected.map( (i) => {
         return state.files[i];
