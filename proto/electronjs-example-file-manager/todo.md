@@ -35,6 +35,7 @@
 * () create new folder
 
 ## () Delete Selected
+* (done) fixed empty folder bug
 * () delete a single selected file
 
 ## ( done 11/09/2022 ) - new item loop method

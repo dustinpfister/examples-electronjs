@@ -25,8 +25,9 @@ const itemLoop = function(state){
                if(state.files[i] === itemData){
                    setDivStyle(state, itemData, false);
                }
-               // keep looping or stop
-               if(per >= 1){
+               // keep looping or stop, using i >= len - 1 over per === 1,
+               // becuase of 0 / 0 bug when state.files.length is 1 ( empty folder )
+               if(i >= len - 1){
                    el_progress.style.width = '0%';
                }else{
                    // if the loop folder is still the current folder keep looping
