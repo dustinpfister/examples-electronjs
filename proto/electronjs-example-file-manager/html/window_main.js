@@ -245,14 +245,21 @@ state.el_input_pwd.addEventListener('change', (e)=> {
 // BUTTONS
 //-------- ----------
 state.el_run_new_folder.addEventListener('click', (e)=> {
-    console.log('new folder')
+    console.log('new folder');
+    fm.run('mkdir ' + state.pwd + '/new_folder')
+    .then((result)=>{
+        console.log('made the new folder okay');
+        setPWD(state, state.pwd);
+    })
+    .catch((e)=>{
+        console.log('there was an error making new new folder');
+        console.log(e);
+    });
 });
 state.el_run_new_file.addEventListener('click', (e)=> {
     console.log('new file');
     fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt')
     .then((result)=>{
-        console.log('yes this is good so far');
-        console.log(result)
         setPWD(state, state.pwd);
     });
 });
