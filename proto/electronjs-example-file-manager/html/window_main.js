@@ -13,7 +13,7 @@ const itemLoop = function(state){
     state.loop.pwd = state.pwd;
     const len = state.files.length;
     const el_progress = state.el_progress;
-    el_progress.style.width = '0%';
+    el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
             fm.run('file -i ' + parseItemDataURI(itemData) + ' | cut -d " " -f 2')
