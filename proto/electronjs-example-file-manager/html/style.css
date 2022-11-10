@@ -6,12 +6,13 @@ body{
   padding: 0px;
 }
 #wrap_main{
-  position: relative;
-  background: black;
+  position: absolute;
+  top:0px;
+  background: red;
   margin: 0px;
-  padding: 10px;
-  min-height:92vh;
-  padding: 30px 20px 20px 20px;
+  padding: 0px;
+  min-height:100%;
+  width: 100%;
 }
 #toolbar{
   position: fixed;
@@ -43,7 +44,9 @@ body{
 }
 /* CONTENTS PWD MAIN DIV */
 #contents_pwd{
-    margin-top:20px;
+    margin: 40px 20px 20px 20px;
+    padding: 10px;
+    background:lime;
     display: grid;
     gap: 5px;
 }
