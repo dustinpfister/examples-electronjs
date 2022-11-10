@@ -11,9 +11,7 @@
 * () This might just only need to happen WHEN IT IS THE SAME FILE, otherwise I might want to overwrite
 * () It would be best to have a prompt for this and other simular conditions
 
-## () - Rename files
-* () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
-* () can also rename from item menu
+
 
 ## () - Item Menu, double click
 * () - Clicking a single selected item will brink up an item menu
@@ -30,9 +28,12 @@
 ## () - select more than one file
 * () can select more than one file or folder by holding down CTRL
 
-## () - create new 
-* () create new file
-* () create new folder
+## () - Rename files Edit menu
+* () can rename a section of files by way of the edit menu
+
+## () - Create new 
+* () create new file button in toolbar
+* () create new folder button in toolbar
 
 ## ( done 11/10/2022 ) Delete Selected single file
 * (done) fixed empty folder bug
