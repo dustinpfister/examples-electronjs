@@ -211,7 +211,8 @@ const setPWD = (state, pwd) => {
 //-------- ----------
 const state = {
     //pwd: '~',
-    pwd: '/home/pi/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    pwd: '~/Documents/github/',
+    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
     CTRL: false,
     loop: {
@@ -273,9 +274,6 @@ window.addEventListener('pointerup', (e) => {
 //-------- ----------
 
 fm.on_edit_delete( (evnt) => {
-    
-    console.log('Delete!');
-
     if(state.selected.length >= 1){
         const itemData = state.files[state.selected[0]];
         //const delcom = 'rm -frd ' + itemData[2]
@@ -293,10 +291,10 @@ fm.on_edit_delete( (evnt) => {
 
 
 fm.on_edit_copy( (evnt) => {
+    console.log('COPY!');
     state.copy = state.selected.map( (i) => {
         return state.files[i];
     });
-    console.log('COPY!');
     console.log(state.copy);
 });
 

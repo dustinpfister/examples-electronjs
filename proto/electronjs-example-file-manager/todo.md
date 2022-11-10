@@ -34,9 +34,9 @@
 * () create new file
 * () create new folder
 
-## () Delete Selected
+## ( done 11/10/2022 ) Delete Selected single file
 * (done) fixed empty folder bug
-* () delete a single selected file
+* (done) delete a single selected file
 
 ## ( done 11/09/2022 ) - new item loop method
 * (done) new item loop method that does not uset set time out
