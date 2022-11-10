@@ -28,8 +28,7 @@
 ## () - Rename files Edit menu
 * () can rename a section of files by way of the edit menu
 
-
-## () - Create new file and folder buttons
+## ( done 11/10/2022 ) - Create new file and folder buttons
 * (done) fix bug where deselect will not work when clicking contents pwd div
 * (done) create new file button in toolbar
 * (done) media queries for grid used in contents pwd
@@ -38,9 +37,7 @@
 * (done) setting title value for item divs so I can mouse over to get full name
 * (done) work out better values for padding and margins for css
 * (done) background color change
-
-* () create new folder button in toolbar
-
+* (done) create new folder button in toolbar
 
 ## ( done 11/10/2022 ) Delete Selected single file
 * (done) fixed empty folder bug
