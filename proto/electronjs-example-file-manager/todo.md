@@ -6,6 +6,11 @@
 ## () - file types, and open with
 * open with options
 
+## () - copyN, diolog
+* () have it so I can make more than one copy of an item in the same folder as the item
+* () This might just only need to happen WHEN IT IS THE SAME FILE, otherwise I might want to overwrite
+* () It would be best to have a prompt for this and other simular conditions
+
 ## () - Rename files
 * () can rename a file by clicking it and then clicking it again after say 200ms of whatever I set for double click speed
 * () can also rename from item menu
@@ -24,9 +29,6 @@
 
 ## () - select more than one file
 * () can select more than one file or folder by holding down CTRL
-
-## () - recursive folder copy
-* () copy one or more selected folders recursivly
 
 ## () - create new 
 * () create new file

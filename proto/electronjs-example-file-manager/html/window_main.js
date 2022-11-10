@@ -209,7 +209,8 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '/home/pi/.edit-menu-test',
+    //pwd: '~',
+    pwd: '/home/pi/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
     CTRL: false,
     loop: {
