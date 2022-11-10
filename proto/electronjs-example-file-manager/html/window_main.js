@@ -255,7 +255,13 @@ state.el_run_new_folder.addEventListener('click', (e)=> {
 });
 
 state.el_run_new_file.addEventListener('click', (e)=> {
-    console.log('new file')
+    console.log('new file');
+    fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt')
+    .then((result)=>{
+        console.log('yes this is good so far');
+        console.log(result)
+        setPWD(state, state.pwd);
+    });
 });
 
 
