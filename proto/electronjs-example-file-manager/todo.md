@@ -31,8 +31,8 @@
 ## () - Rename files Edit menu
 * () can rename a section of files by way of the edit menu
 
-## () - Create new 
-* () create new file button in toolbar
+## () - Create new file and folder buttons
+* (done) create new file button in toolbar
 * () create new folder button in toolbar
 
 ## ( done 11/10/2022 ) Delete Selected single file
