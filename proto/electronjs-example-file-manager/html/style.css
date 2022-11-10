@@ -30,26 +30,12 @@ body{
   background: rgba(0, 200, 0, 0.8);
   padding:0px;
 }
-/* CONTENTS PWD GRID */
+/* CONTENTS PWD MAIN DIV */
 #contents_pwd{
     display: grid;
     gap: 5px;
 }
-@media (max-width: 399px) {
-  #contents_pwd{
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-@media (min-width: 400px) and (max-width: 799px) {
-  #contents_pwd{
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 800px){
-  #contents_pwd{
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
+/* CONTENTS ITEM CLASS FOR ALL ITEM DIVS */
 .contents_item {
   white-space: nowrap;
   overflow: hidden;
@@ -58,4 +44,15 @@ body{
   user-select: none;
   min-height:50px;
   padding: 10px;
+}
+/* MEDIA CALLS FOR CONTENTS DIV AND ITEMS CLASS */
+@media (max-width: 399px) {
+  #contents_pwd{ grid-template-columns: repeat(1, 1fr); }
+  .contents_item { max-width: 320px; }
+}
+@media (min-width: 400px) and (max-width: 799px) {
+  #contents_pwd{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 800px){
+  #contents_pwd{ grid-template-columns: repeat(6, 1fr); }
 }
