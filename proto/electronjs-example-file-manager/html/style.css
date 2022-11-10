@@ -38,7 +38,6 @@ body{
 @media (max-width: 399px) {
   #contents_pwd{
     grid-template-columns: repeat(1, 1fr);
-
   }
 }
 @media (min-width: 400px) and (max-width: 799px) {
@@ -52,6 +51,10 @@ body{
   }
 }
 .contents_item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
   user-select: none;
   min-height:50px;
   padding: 10px;

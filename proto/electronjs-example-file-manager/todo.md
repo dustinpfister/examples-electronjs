@@ -33,10 +33,10 @@
 * (done) fix bug where deselect will not work when clicking contents pwd div
 * (done) create new file button in toolbar
 * (done) media queries for grid used in contents pwd
+* (done) css see about limiting text content length in an item div
 
 * () create new folder button in toolbar
 
-* () css see about limiting text content length in an item div
 
 ## ( done 11/10/2022 ) Delete Selected single file
 * (done) fixed empty folder bug
