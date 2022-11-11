@@ -51,10 +51,13 @@ body{
 }
 /* CONTENTS ITEM CLASS FOR ALL ITEM DIVS */
 .contents_item {
-  white-space: nowrap;
+  font-size: 14px;
+
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  white-space: normal;
+
+  max-width: 250px;
   user-select: none;
   min-height:50px;
   padding: 10px;
