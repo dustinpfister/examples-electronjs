@@ -26,6 +26,8 @@
 * () can select more than one file or folder by holding down CTRL
 
 ## () - Rename files Edit menu
+* (done) changed style when it comes to item divs
+* (done) fixed bug that had to do with how I get mime types
 * () can rename a section of files by way of the edit menu
 
 ## ( done 11/10/2022 ) - Create new file and folder buttons

@@ -16,7 +16,7 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-            fm.run('file -i ' + parseItemDataURI(itemData) + ' | cut -d " " -f 2')
+            fm.run('file -ib ' + parseItemDataURI(itemData) + ' | cut -d ";" -f 1')
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
                const per = i / (len - 1);
