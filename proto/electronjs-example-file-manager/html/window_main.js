@@ -4,9 +4,24 @@
 // parse an itemData uri to work with file -i [filePath] | cut -d " " -f 2
 // I first noticed that i need to to this for a markdown file that has a '$' in the file name
 // I may need to expand this as i find more problems like this as needed
-const parseItemDataURI = (itemData) => {
-    return '\"' + itemData[2].replace('$', '\\$') + '\"';
+
+//const parseItemDataURI = (itemData) => {
+//    return '\"' + itemData[2].replace('$', '\\$') + '\"';
+//};
+var parseURI = (uri) => {
+    let a = uri.replace(/\$/g, '\\$');
+    let b = a.split('/').map((item) => {
+        if(item.split(' ').length > 1){
+            return '\"' + item + '\"';
+        }
+        return item;
+    }).join('/');
+    return b;
 };
+console.log( parseURI('/home/foo/This$isnotgood$') );
+console.log( parseURI('/home/foo/This Has Spaces') );
+
+
 // item update loop
 const itemLoop = function(state){
     state.loop.i = 0;
@@ -16,7 +31,7 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-            fm.run('file -ib ' + parseItemDataURI(itemData) + ' | cut -d ";" -f 1')
+            fm.run('file -ib ' + parseURI(itemData[2]) + ' | cut -d ";" -f 1')
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
                const per = i / (len - 1);
@@ -58,7 +73,7 @@ const perfromMimeAction = (state, itemData) => {
     console.log('Mime Action Started for ' + mime );
     // FOR FOLDERS
     if(mime === 'inode/directory' || mime ===  'inode/symlink'){
-        setPWD(state, itemData[2]);
+        setPWD(state, itemData[2] );
     }
     // mime types
     if(mime === 'text/plain'){
@@ -174,7 +189,13 @@ const createListContents = (state, files) => {
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
-    state.pwd = pwd;
+
+    // always placing itemData[2] between "" becuase of folders that have spaces in them
+    //state.pwd = '\"' + pwd + '\"';
+    //state.pwd = pwd;
+
+    state.pwd = parseURI(pwd);
+
     // using realpath to convert ~ to /home/currentuser
     return fm.run('realpath ' + state.pwd)
     .then((result)=>{

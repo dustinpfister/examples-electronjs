@@ -81,7 +81,7 @@ fm.readdir = ( uri ) => {
         }
         // return a promise, using Promise.all for all items in uri to do so
         return Promise.all( files.map( (fileName, i) => {
-            const uri_item = path.join(uri, fileName);
+            let uri_item = path.join(uri, fileName);
             // get stat for each item
             return stat( uri_item )
             .then((fStat)=>{
