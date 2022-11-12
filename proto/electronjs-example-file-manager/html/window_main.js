@@ -16,10 +16,22 @@ var parseURI = (uri) => {
         }
         return item;
     }).join('/');
+	
+	// do we have a '~' at the start of the URI?
+	let c = b;
+	if(c[0] === '~'){
+		if(c.split('/').length >= 1){
+		    c = fm.path_join( fm.getHomeDir(),  );
+		}else{
+		    c = fm.getHomeDir();
+		}
+		
+	}
+	
+	console.log(c)
+	
     return b;
 };
-console.log( parseURI('/home/foo/This$isnotgood$') );
-console.log( parseURI('/home/foo/This Has Spaces') );
 
 
 // item update loop
@@ -238,7 +250,8 @@ console.log(state);
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~',
+    //pwd: '~',
+	pwd: '~/Documents',
     //pwd: '~/Documents/github/',
     //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],

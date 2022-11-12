@@ -1,6 +1,7 @@
 // preload with contextIsolation enabled
 const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const promisify = require('util').promisify;
 
@@ -20,6 +21,10 @@ fm.path_join = path.join;
 // get up one uri
 fm.getUpOne = (uri) => {
     return path.join(uri, '..');
+};
+
+fm.getHomeDir = () => {
+    return os.homedir();
 };
 
 // run a command
