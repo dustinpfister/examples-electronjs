@@ -23,7 +23,7 @@ fm.getUpOne = (uri) => {
     return path.join(uri, '..');
 };
 
-fm.getHomeDir = () => {
+fm.get_home_dir = () => {
     return os.homedir();
 };
 

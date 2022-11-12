@@ -17,15 +17,13 @@ var parseURI = (uri) => {
     // do we have a '~' at the start of the URI?
     let c = b;
     if(c[0] === '~'){
-        if(c.split('/').length >= 1){
-            c = fm.getHomeDir(); //fm.path_join( fm.getHomeDir(),  );
-        }else{
-            c = fm.getHomeDir();
-         }
+        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
+        const from_home = c.replace(/~\//, '').replace(/~/, '');
+        c = fm.path_join( fm.get_home_dir(), from_home );
     }
-    console.log('b = ' + b);
-    console.log('c = ' + c);
-    return b;
+    //console.log('b = ' + b);
+    //console.log('c = ' + c);
+    return c;
 };
 
 
@@ -209,12 +207,14 @@ console.log(state);
     state.pwd = parseURI(pwd);
 
     // using realpath to convert ~ to /home/currentuser
-    return fm.run('realpath ' + state.pwd)
-    .then((result)=>{
-        state.pwd = result.trim();
-        // using fm.readdir
-        return fm.readdir(state.pwd);
-    })
+    //return fm.run('realpath ' + state.pwd)
+    //.then((result)=>{
+    //    state.pwd = result.trim();
+    //    // using fm.readdir
+    //    return fm.readdir(state.pwd);
+    //})
+
+    fm.readdir(state.pwd)
     // get files array from fm api and update state.files
    .then((files)=>{
        // format of files as as follows
@@ -245,8 +245,8 @@ console.log(state);
 // STATE OBJECT
 //-------- ----------
 const state = {
-    //pwd: '~',
-	pwd: '~/Documents',
+    //pwd: '~/',
+    pwd: '~/Documents',
     //pwd: '~/Documents/github/',
     //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
