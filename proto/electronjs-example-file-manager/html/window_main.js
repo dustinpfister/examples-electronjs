@@ -21,8 +21,6 @@ var parseURI = (uri) => {
         const from_home = c.replace(/~\//, '').replace(/~/, '');
         c = fm.path_join( fm.get_home_dir(), from_home );
     }
-    //console.log('b = ' + b);
-    //console.log('c = ' + c);
     return c;
 };
 
@@ -36,7 +34,6 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-            //fm.run('file -ib ' + parseURI(itemData[2]) + ' | cut -d ";" -f 1')
            fm.run('file -b --mime-type ' + parseURI(itemData[2]) )
            .then( (result) => {
                itemData[4].mime = result.replace(';', '').trim();
@@ -195,18 +192,9 @@ const createListContents = (state, files) => {
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
-
     // using parseURI each time for any given pwd string
     state.pwd = parseURI(pwd);
-
-    // WAS USING! realpath to convert ~ to /home/currentuser parseURI is better get get this working on non linux though
-    //return fm.run('realpath ' + state.pwd)
-    //.then((result)=>{
-    //    state.pwd = result.trim();
-    //    // using fm.readdir
-    //    return fm.readdir(state.pwd);
-    //})
-
+    // read the current state.pwd path
     fm.readdir(state.pwd)
     // get files array from fm api and update state.files
    .then((files)=>{
@@ -232,7 +220,6 @@ const setPWD = (state, pwd) => {
         // start the infoLoop
         itemLoop(state);
    });
-   
 };
 //-------- ----------
 // STATE OBJECT
