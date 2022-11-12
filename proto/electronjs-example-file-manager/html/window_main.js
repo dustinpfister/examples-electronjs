@@ -210,7 +210,7 @@ console.log(state);
     // always placing itemData[2] between "" becuase of folders that have spaces in them
     //state.pwd = '\"' + pwd + '\"';
     //state.pwd = pwd;
-/*
+
     state.pwd = parseURI(pwd);
 
     // using realpath to convert ~ to /home/currentuser
@@ -244,7 +244,7 @@ console.log(state);
         // start the infoLoop
         itemLoop(state);
    });
-   */
+   
 };
 //-------- ----------
 // STATE OBJECT
