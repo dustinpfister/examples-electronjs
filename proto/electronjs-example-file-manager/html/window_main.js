@@ -285,7 +285,6 @@ state.el_runalt.addEventListener('click', (e)=> {
     fm.run('pcmanfm \"'+ state.pwd +'\"');
 });
 state.el_runup.addEventListener('click', (e)=> {
-    //fm.run('pcmanfm \"'+ state.pwd +'\"');
     setPWD(state, fm.getUpOne(state.pwd));
 });
 //-------- ----------
