@@ -34,9 +34,10 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
+
            fm.run('file -b --mime-type ' + parseURI(itemData[2]) )
-           .then( (result) => {
-               itemData[4].mime = result.replace(';', '').trim();
+           .then( ( result ) => {
+               itemData[4].mime = result.trim();
                const per = i / (len - 1);
                el_progress.style.width = Math.round(per * 100 ) + '%';
                // check that it is still the same object before calling setDivStyle
