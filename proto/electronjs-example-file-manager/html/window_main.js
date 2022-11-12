@@ -190,10 +190,15 @@ const createListContents = (state, files) => {
 // set the current pwd
 const setPWD = (state, pwd) => {
 
+state.pwd = parseURI(pwd);
+
+console.log(state);
+
+
     // always placing itemData[2] between "" becuase of folders that have spaces in them
     //state.pwd = '\"' + pwd + '\"';
     //state.pwd = pwd;
-
+/*
     state.pwd = parseURI(pwd);
 
     // using realpath to convert ~ to /home/currentuser
@@ -227,14 +232,15 @@ const setPWD = (state, pwd) => {
         // start the infoLoop
         itemLoop(state);
    });
+   */
 };
 //-------- ----------
 // STATE OBJECT
 //-------- ----------
 const state = {
-    //pwd: '~',
+    pwd: '~',
     //pwd: '~/Documents/github/',
-    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
     CTRL: false,
     loop: {
