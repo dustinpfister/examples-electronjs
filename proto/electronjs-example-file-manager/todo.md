@@ -29,10 +29,10 @@
 * () can rename a section of files by way of the edit menu
 
 ## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
-* () I want to start pulling the calling of Linux only commands into an external javaScript file
-* () use the os.platform method to find out if I am using 'linux'
-* () assume actions\_linux\_rasp.js for linux
-* () use a actions\_js\_only.js file for any os that is not known
+* () start an actions.js file that will be the main module for prefroming file system actions
+* () have a built in set of actions that will be the hard coded default to use if the OS is not known
+* () have a way to load an additional action file for raspberry pi os
+* () start using actions.js in place of fm.run calls in window\_main.js
 
 ## ( done 11/12/2022 ) - use os.homedir in place of calling realpath
 * (done) changed style when it comes to item divs
