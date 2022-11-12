@@ -28,11 +28,18 @@
 ## () - Rename files Edit menu
 * () can rename a section of files by way of the edit menu
 
-## () - use os.homedir in place of calling realpath
+## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
+* () I want to start pulling the calling of Linux only commands into an external javaScript file
+* () use the os.platform method to find out if I am using 'linux'
+* () assume actions\_linux\_rasp.js for linux
+* () use a actions\_js\_only.js file for any os that is not known
+
+## ( done 11/12/2022 ) - use os.homedir in place of calling realpath
 * (done) changed style when it comes to item divs
 * (done) fixed bug that had to do with how I get mime types
 * (done) fixed bug that had to do with spaces in paths
-
+* (done) have a fm.get\_home\_dir preload api method
+* (done) update parseURI method to replace the exec call of linux realpath command
 
 ## ( done 11/10/2022 ) - Create new file and folder buttons
 * (done) fix bug where deselect will not work when clicking contents pwd div

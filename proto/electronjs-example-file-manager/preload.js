@@ -22,11 +22,10 @@ fm.path_join = path.join;
 fm.getUpOne = (uri) => {
     return path.join(uri, '..');
 };
-
+// get the home path
 fm.get_home_dir = () => {
     return os.homedir();
 };
-
 // run a command
 fm.run = ( bin) => {
     const com = exec(bin, { shell: '/bin/bash' });

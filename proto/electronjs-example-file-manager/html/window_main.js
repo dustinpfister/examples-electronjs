@@ -195,18 +195,10 @@ const createListContents = (state, files) => {
 // set the current pwd
 const setPWD = (state, pwd) => {
 
-state.pwd = parseURI(pwd);
-
-console.log(state);
-
-
-    // always placing itemData[2] between "" becuase of folders that have spaces in them
-    //state.pwd = '\"' + pwd + '\"';
-    //state.pwd = pwd;
-
+    // using parseURI each time for any given pwd string
     state.pwd = parseURI(pwd);
 
-    // using realpath to convert ~ to /home/currentuser
+    // WAS USING! realpath to convert ~ to /home/currentuser parseURI is better get get this working on non linux though
     //return fm.run('realpath ' + state.pwd)
     //.then((result)=>{
     //    state.pwd = result.trim();
@@ -245,8 +237,8 @@ console.log(state);
 // STATE OBJECT
 //-------- ----------
 const state = {
-    //pwd: '~/',
-    pwd: '~/Documents',
+    pwd: '~/',
+    //pwd: '~/Documents',
     //pwd: '~/Documents/github/',
     //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
     files: [],
