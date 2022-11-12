@@ -4,32 +4,27 @@
 // parse an itemData uri to work with file -i [filePath] | cut -d " " -f 2
 // I first noticed that i need to to this for a markdown file that has a '$' in the file name
 // I may need to expand this as i find more problems like this as needed
-
-//const parseItemDataURI = (itemData) => {
-//    return '\"' + itemData[2].replace('$', '\\$') + '\"';
-//};
 var parseURI = (uri) => {
+    // replace $ with \$
     let a = uri.replace(/\$/g, '\\$');
+    // convert paths like /foo/bar baz to /foo/"bar baz"
     let b = a.split('/').map((item) => {
         if(item.split(' ').length > 1){
             return '\"' + item + '\"';
         }
         return item;
     }).join('/');
-	
-	// do we have a '~' at the start of the URI?
-	let c = b;
-	if(c[0] === '~'){
-		if(c.split('/').length >= 1){
-		    c = fm.path_join( fm.getHomeDir(),  );
-		}else{
-		    c = fm.getHomeDir();
-		}
-		
-	}
-	
-	console.log(c)
-	
+    // do we have a '~' at the start of the URI?
+    let c = b;
+    if(c[0] === '~'){
+        if(c.split('/').length >= 1){
+            c = fm.getHomeDir(); //fm.path_join( fm.getHomeDir(),  );
+        }else{
+            c = fm.getHomeDir();
+         }
+    }
+    console.log('b = ' + b);
+    console.log('c = ' + c);
     return b;
 };
 
