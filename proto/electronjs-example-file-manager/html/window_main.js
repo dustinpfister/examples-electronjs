@@ -58,6 +58,40 @@ Actions.linux.copy_item = (state, itemData) => {
     return fm.run('cp -r ' + source + ' ' + dest)
 };
 //-------- ----------
+// WIN32 ACTIONS
+//-------- ----------
+Actions.win32 = {};
+// get mime type of the given itemData object
+Actions.win32.get_mime_type = (state, itemData) => {
+    return Promise.resolve('unkown');
+};
+// exec file action
+Actions.win32.exec_file = (state, itemData) => {
+
+};
+// text edit action
+Actions.win32.text_edit = (state, itemData) => {
+
+};
+// open a terminal window at current pwd
+Actions.win32.terminal = (state) => {
+};
+// start the alternate file manager as pwd
+Actions.win32.alt_fm = (state) => {
+};
+// new folder
+Actions.win32.new_folder = (state) => {
+
+};
+// new file
+Actions.win32.new_file = (state) => {
+
+};
+// copy a single given item
+Actions.win32.copy_item = (state, itemData) => {
+
+};
+//-------- ----------
 // MAIN RUN ACTION METHOD
 //-------- ----------
 // Main run action method
@@ -318,6 +352,7 @@ const state = {
     //pwd: '~/Documents/github/',
     pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
 
+    //actionMod: 'win32',
     actionMod: 'linux',
 
     files: [],
