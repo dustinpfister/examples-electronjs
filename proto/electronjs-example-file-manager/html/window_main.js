@@ -6,33 +6,25 @@
 // I may need to expand this as i find more problems like this as needed
 var parseURI = (uri) => {
     // replace $ with \$
-    let a = uri.replace(/\$/g, '\\$');
-
-
+    let a = uri.replace(/\$/g, '\\$'); //.replace(/\'/g, '\\\'');
     let b = a;
     if(b[0] === '~'){
         // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
         const from_home = b.replace(/~\//, '').replace(/~/, '');
         b = fm.path_join( fm.get_home_dir(), from_home );
     }
-
-
-
     // convert paths like /foo/bar baz to /foo/"bar baz"
+/*
     let c = b.split('/').map((item) => {
         if(item.split(' ').length > 1){
             return '\"' + item + '\"';
         }
         return item;
     }).join('/');
+*/
     // do we have a '~' at the start of the URI?
-
-
-
-    return c;
+    return b;
 };
-
-
 // item update loop
 const itemLoop = function(state){
     state.loop.i = 0;
@@ -42,8 +34,7 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-
-           fm.run('file -b --mime-type ' + parseURI(itemData[2]) )
+           fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
            .then( ( result ) => {
                itemData[4].mime = result.trim();
                const per = i / (len - 1);
@@ -62,7 +53,11 @@ const itemLoop = function(state){
                        loop();
                    }
                }
-            });
+            })
+           .catch((e) => {
+               console.log('ERROR while getting mime types');
+               console.log(e)
+           })
         }(state.files[ state.loop.i ], state.loop.i, state.loop.pwd));
         state.loop.i += 1;
     };
@@ -82,7 +77,6 @@ const preformExecFileCheckAction = (state, itemData) => {
 const perfromMimeAction = (state, itemData) => {
     const mime = itemData[4].mime;
     const ext = itemData[4].ext;
-    console.log('Mime Action Started for ' + mime );
     // FOR FOLDERS
     if(mime === 'inode/directory' || mime ===  'inode/symlink'){
         setPWD(state, itemData[2] );
@@ -203,8 +197,17 @@ const createListContents = (state, files) => {
 const setPWD = (state, pwd) => {
     // using parseURI each time for any given pwd string
     state.pwd = parseURI(pwd);
+    // using realpath to convert ~ to /home/currentuser
+/*
+    return fm.run('realpath ' + state.pwd)
+    .then((result)=>{
+        state.pwd = result.trim();
+        // using fm.readdir
+        return fm.readdir(state.pwd)
+    })
+*/
     // read the current state.pwd path
-    fm.readdir(state.pwd)
+    return fm.readdir(state.pwd.replace(/\"/g, ''))
     // get files array from fm api and update state.files
    .then((files)=>{
        // format of files as as follows
@@ -263,6 +266,18 @@ const state = {
 // SETUP
 //-------- ----------
 setPWD(state, state.pwd);
+
+
+///home/pi/gPodder/Downloads
+
+/*
+fm.readdir('/home/pi/gPodder/Downloads/Ken\'s Last Ever Radio Extravaganza _ WFMU')
+.then((files)=>{
+    console.log('okay');
+    console.log(files)
+})
+*/
+
 //-------- ----------
 // INPUT_PWD
 //-------- ----------
