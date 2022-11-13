@@ -29,6 +29,9 @@
 * () can rename a section of files by way of the edit menu
 
 ## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
+
+* () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
+
 * () start an actions.js file that will be the main module for prefroming file system actions
 * () have a built in set of actions that will be the hard coded default to use if the OS is not known
 * () have a way to load an additional action file for raspberry pi os
