@@ -3,16 +3,30 @@
 //-------- ----------
 
 const Actions = {};
-
-Actions.linux = { }
-
-Actions.linux.getMimeType = (state, itemData) => {
-
+//-------- ----------
+// LINUX ACTIONS
+//-------- ----------
+Actions.linux = {};
+// get mime type of the given itemData object
+Actions.linux.get_mime_type = (state, itemData) => {
     return fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' );
-
-
 };
-
+// exec file action
+Actions.linux.exec_file = (state, itemData) => {
+   console.log('run an exec file action!');
+    return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
+    .then((result) => {
+        console.log( 'result of find command call for shell script' );
+        console.log(result)
+        if(result){
+            fm.runFile( state.pwd , itemData[2] );
+        }
+    });
+};
+// Main run action method
+Actions.run = (state, action, itemData ) => {
+    return Actions[state.actionMod][action](state, itemData);
+};
 
 //-------- ----------
 // HELPERS
@@ -54,8 +68,7 @@ const itemLoop = function(state){
            //fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
 
            // using new Actions object
-           Actions[ state.actionMod ].getMimeType(state, itemData)
-
+           Actions.run(state, 'get_mime_type', itemData)
 
            .then( ( result ) => {
                itemData[4].mime = result.trim();
@@ -85,6 +98,7 @@ const itemLoop = function(state){
     };
     loop();
 };
+/*
 const preformExecFileCheckAction = (state, itemData) => {
     return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
     .then((result) => {
@@ -95,6 +109,7 @@ const preformExecFileCheckAction = (state, itemData) => {
         }
     });
 };
+*/
 // prefrom an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
     const mime = itemData[4].mime;
@@ -116,12 +131,14 @@ const perfromMimeAction = (state, itemData) => {
     }
     if(mime === 'text/x-shellscript'){
         console.log('We have a shellscript');
-        preformExecFileCheckAction(state, itemData);
+        //preformExecFileCheckAction(state, itemData);
+        Actions.run(state, 'exec_file', itemData);
         return;
     }
     if(mime === 'application/javascript'){
         console.log('We have a js file!');
-        preformExecFileCheckAction(state, itemData);
+        //preformExecFileCheckAction(state, itemData);
+        Actions.run(state, 'exec_file', itemData);
         return;
     }
     // ext if there is nothing for the mime
