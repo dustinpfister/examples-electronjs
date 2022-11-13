@@ -35,6 +35,22 @@ Actions.linux.new_folder = (state) => {
 Actions.linux.new_file = (state) => {
    return fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt');
 };
+// copy a single given item
+Actions.linux.copy_item = (state, itemData) => {
+    const source = itemData[2];
+    let dest = fm.path_join( state.pwd, itemData[0] );
+    // update dist if same
+    if(source === dest){
+        const ext = '.' + itemData[4].ext;
+        dest = fm.path_join(
+            state.pwd,
+            fm.path_basename(itemData[0], ext) + '_copy_1' + ext
+        );
+    }
+    // run cp with source and dist
+    return fm.run('cp -r ' + source + ' ' + dest)
+};
+
 // Main run action method
 Actions.run = (state, action, itemData ) => {
     return Actions[state.actionMod][action](state, itemData);
@@ -401,6 +417,17 @@ fm.on_edit_copy( (evnt) => {
 fm.on_edit_paste( (evnt) => {
     console.log('PASTE!');
     if(state.copy.length >= 1){
+
+        const itemData = state.copy[0];
+
+        Actions.run(state, 'copy_item', itemData)
+        .then(()=>{
+            console.log('copy done');
+            state.copy = [];
+            setPWD(state, state.pwd);
+        });
+
+/*
         const itemData = state.copy[0];
         // get source and dist
         const source = itemData[2];
@@ -420,5 +447,6 @@ fm.on_edit_paste( (evnt) => {
             state.copy = [];
             setPWD(state, state.pwd);
         });
+*/
     }
 });
