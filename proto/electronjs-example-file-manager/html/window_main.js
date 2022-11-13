@@ -23,6 +23,10 @@ Actions.linux.exec_file = (state, itemData) => {
         }
     });
 };
+// text edit action
+Actions.linux.text_edit = (state, itemData) => {
+    return fm.run('mousepad ' + itemData[2]);
+};
 // Main run action method
 Actions.run = (state, action, itemData ) => {
     return Actions[state.actionMod][action](state, itemData);
@@ -121,12 +125,14 @@ const perfromMimeAction = (state, itemData) => {
     // mime types
     if(mime === 'text/plain'){
         console.log('we have a plain text file!');
-        fm.run('mousepad ' + itemData[2]);
+        //fm.run('mousepad ' + itemData[2]);
+        Actions.run(state, 'text_edit', itemData);
         return;
     }
     if(mime === 'text/html'){
         console.log('we have an html file!');
-        fm.run('mousepad ' + itemData[2]);
+        //fm.run('mousepad ' + itemData[2]);
+        Actions.run(state, 'text_edit', itemData);
         return;
     }
     if(mime === 'text/x-shellscript'){
@@ -143,7 +149,8 @@ const perfromMimeAction = (state, itemData) => {
     }
     // ext if there is nothing for the mime
     if(ext === 'md' || ext === 'txt' || ext === 'sh' || ext === "html" || ext === 'js'){
-        fm.run('mousepad ' + itemData[2]);
+        //fm.run('mousepad ' + itemData[2]);
+        Actions.run(state, 'text_edit', itemData);
     }
 };
 // set style of a single div
