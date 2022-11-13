@@ -197,17 +197,10 @@ const createListContents = (state, files) => {
 const setPWD = (state, pwd) => {
     // using parseURI each time for any given pwd string
     state.pwd = parseURI(pwd);
-    // using realpath to convert ~ to /home/currentuser
-/*
-    return fm.run('realpath ' + state.pwd)
-    .then((result)=>{
-        state.pwd = result.trim();
-        // using fm.readdir
-        return fm.readdir(state.pwd)
-    })
-*/
+
     // read the current state.pwd path
-    return fm.readdir(state.pwd.replace(/\"/g, ''))
+    //return fm.readdir(state.pwd.replace(/\"/g, ''))
+    return fm.readdir(state.pwd)
     // get files array from fm api and update state.files
    .then((files)=>{
        // format of files as as follows
@@ -266,18 +259,6 @@ const state = {
 // SETUP
 //-------- ----------
 setPWD(state, state.pwd);
-
-
-///home/pi/gPodder/Downloads
-
-/*
-fm.readdir('/home/pi/gPodder/Downloads/Ken\'s Last Ever Radio Extravaganza _ WFMU')
-.then((files)=>{
-    console.log('okay');
-    console.log(files)
-})
-*/
-
 //-------- ----------
 // INPUT_PWD
 //-------- ----------
