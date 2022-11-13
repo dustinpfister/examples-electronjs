@@ -27,6 +27,14 @@ Actions.linux.exec_file = (state, itemData) => {
 Actions.linux.text_edit = (state, itemData) => {
     return fm.run('mousepad ' + itemData[2]);
 };
+// new folder
+Actions.linux.new_folder = (state) => {
+   return fm.run('mkdir ' + state.pwd + '/new_folder');
+};
+// new file
+Actions.linux.new_file = (state) => {
+   return fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt');
+};
 // Main run action method
 Actions.run = (state, action, itemData ) => {
     return Actions[state.actionMod][action](state, itemData);
@@ -280,10 +288,10 @@ const setPWD = (state, pwd) => {
 // STATE OBJECT
 //-------- ----------
 const state = {
-    pwd: '~/',
+    //pwd: '~/',
     //pwd: '~/Documents',
     //pwd: '~/Documents/github/',
-    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
 
     actionMod: 'linux',
 
@@ -319,7 +327,11 @@ state.el_input_pwd.addEventListener('change', (e)=> {
 //-------- ----------
 state.el_run_new_folder.addEventListener('click', (e)=> {
     console.log('new folder');
-    fm.run('mkdir ' + state.pwd + '/new_folder')
+
+    //fm.run('mkdir ' + state.pwd + '/new_folder')
+
+    Actions.run(state, 'new_folder')
+
     .then((result)=>{
         console.log('made the new folder okay');
         setPWD(state, state.pwd);
@@ -331,7 +343,8 @@ state.el_run_new_folder.addEventListener('click', (e)=> {
 });
 state.el_run_new_file.addEventListener('click', (e)=> {
     console.log('new file');
-    fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt')
+    //fm.run('echo -n \"Hello World\" > ' + state.pwd + '/new.txt')
+    Actions.run(state, 'new_file')
     .then((result)=>{
         setPWD(state, state.pwd);
     });
