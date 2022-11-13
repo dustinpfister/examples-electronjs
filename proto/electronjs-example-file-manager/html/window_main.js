@@ -7,20 +7,28 @@
 var parseURI = (uri) => {
     // replace $ with \$
     let a = uri.replace(/\$/g, '\\$');
+
+
+    let b = a;
+    if(b[0] === '~'){
+        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
+        const from_home = b.replace(/~\//, '').replace(/~/, '');
+        b = fm.path_join( fm.get_home_dir(), from_home );
+    }
+
+
+
     // convert paths like /foo/bar baz to /foo/"bar baz"
-    let b = a.split('/').map((item) => {
+    let c = b.split('/').map((item) => {
         if(item.split(' ').length > 1){
             return '\"' + item + '\"';
         }
         return item;
     }).join('/');
     // do we have a '~' at the start of the URI?
-    let c = b;
-    if(c[0] === '~'){
-        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
-        const from_home = c.replace(/~\//, '').replace(/~/, '');
-        c = fm.path_join( fm.get_home_dir(), from_home );
-    }
+
+
+
     return c;
 };
 
@@ -220,7 +228,11 @@ const setPWD = (state, pwd) => {
         createListContents(state, state.files);
         // start the infoLoop
         itemLoop(state);
-   });
+    })
+    .catch((e) => {
+        console.log(e)
+
+    })
 };
 //-------- ----------
 // STATE OBJECT
