@@ -1,4 +1,5 @@
 (function(api){
+
     console.log('Actions.js loaded.');
 
     api.actionSets = {};
@@ -8,4 +9,4 @@
 
     
 
-}( this['Actions'] = {} ))
+}( this['Actions'] = {} ) )

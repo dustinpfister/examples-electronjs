@@ -1,4 +1,20 @@
 //-------- ----------
+// ACTIONS OBJECT
+//-------- ----------
+
+const Actions = {};
+
+Actions.linux = { }
+
+Actions.linux.getMimeType = (state, itemData) => {
+
+    return fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' );
+
+
+};
+
+
+//-------- ----------
 // HELPERS
 //-------- ----------
 // parse an itemData uri to work with file -i [filePath] | cut -d " " -f 2
@@ -34,7 +50,13 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-           fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
+
+           //fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
+
+           // using new Actions object
+           Actions[ state.actionMod ].getMimeType(state, itemData)
+
+
            .then( ( result ) => {
                itemData[4].mime = result.trim();
                const per = i / (len - 1);
@@ -226,9 +248,9 @@ const setPWD = (state, pwd) => {
         itemLoop(state);
     })
     .catch((e) => {
-        console.log(e)
-
-    })
+        console.log('Error While calling setPWD for : ' + state.pwd);
+        console.log(e);
+    });
 };
 //-------- ----------
 // STATE OBJECT
@@ -238,6 +260,9 @@ const state = {
     //pwd: '~/Documents',
     //pwd: '~/Documents/github/',
     //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+
+    actionMod: 'linux',
+
     files: [],
     CTRL: false,
     loop: {
