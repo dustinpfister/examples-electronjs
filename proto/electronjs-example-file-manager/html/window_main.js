@@ -1,7 +1,6 @@
 //-------- ----------
 // ACTIONS OBJECT
 //-------- ----------
-
 const Actions = {};
 //-------- ----------
 // LINUX ACTIONS
@@ -27,6 +26,14 @@ Actions.linux.exec_file = (state, itemData) => {
 Actions.linux.text_edit = (state, itemData) => {
     return fm.run('mousepad ' + itemData[2]);
 };
+// open a terminal window at current pwd
+Actions.linux.terminal = (state) => {
+    return fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
+};
+// start the alternate file manager as pwd
+Actions.linux.alt_fm = (state) => {
+    return fm.run('pcmanfm \"'+ state.pwd +'\"');
+};
 // new folder
 Actions.linux.new_folder = (state) => {
    return fm.run('mkdir ' + state.pwd + '/new_folder');
@@ -50,7 +57,9 @@ Actions.linux.copy_item = (state, itemData) => {
     // run cp with source and dist
     return fm.run('cp -r ' + source + ' ' + dest)
 };
-
+//-------- ----------
+// MAIN RUN ACTION METHOD
+//-------- ----------
 // Main run action method
 Actions.run = (state, action, itemData ) => {
     return Actions[state.actionMod][action](state, itemData);
@@ -366,10 +375,12 @@ state.el_run_new_file.addEventListener('click', (e)=> {
     });
 });
 state.el_runterm.addEventListener('click', (e)=> {
-    fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
+    //fm.run('lxterminal --working-directory=\"'+ state.pwd +'\"');
+    Actions.run(state, 'terminal');
 });
 state.el_runalt.addEventListener('click', (e)=> {
-    fm.run('pcmanfm \"'+ state.pwd +'\"');
+    //fm.run('pcmanfm \"'+ state.pwd +'\"');
+    Actions.run(state, 'alt_fm');
 });
 state.el_runup.addEventListener('click', (e)=> {
     setPWD(state, fm.getUpOne(state.pwd));
