@@ -267,6 +267,10 @@ const setSelectedDivStyle = (state, selectedState ) => {
 // event hander for items
 const createItemClickHandler = (state, itemData) => {
     return (e) => {
+        //!!! WEIRD BUG found that thus far I do not know how to reproduce
+        // so I am doing a try cath here for now
+        try{
+
         const i = itemData[3];
         // if NOT CTRL, AND state.selcted.length is one, AND current item is selected item
         if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
@@ -283,6 +287,16 @@ const createItemClickHandler = (state, itemData) => {
         // push index to selcted array
         state.selected.push(i);
         setDivStyle(state, itemData, true);
+
+        }catch(e){
+            console.log('**********');
+            console.log('Error while clicking item');
+            console.log('itemData: ', itemData);
+            console.log('state: ', state);
+            console.log('error', e);
+            console.log('**********');
+        }
+
     };
 };
 // create a single div element for an itemData object
