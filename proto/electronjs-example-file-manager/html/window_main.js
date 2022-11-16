@@ -314,17 +314,18 @@ const createListItem = (state, itemData) => {
 // update contents with given files array
 const createListContents = (state, files) => {
     const el = state.el_contents_pwd;
-   state.el_contents_pwd.innerHTML = '';
-   files.forEach( (itemData) => {
-       const div = createListItem(state, itemData);
-       state.el_contents_pwd.appendChild(div);
-   });
+    state.selected = [];
+    state.el_contents_pwd.innerHTML = '';
+    files.forEach( (itemData) => {
+        const div = createListItem(state, itemData);
+        state.el_contents_pwd.appendChild(div);
+    });
 };
 // set the current pwd
 const setPWD = (state, pwd) => {
     // using parseURI each time for any given pwd string
     state.pwd = parseURI(pwd);
-
+    state.selected = [];
     // read the current state.pwd path
     //return fm.readdir(state.pwd.replace(/\"/g, ''))
     return fm.readdir(state.pwd)
