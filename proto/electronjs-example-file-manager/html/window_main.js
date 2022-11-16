@@ -24,7 +24,11 @@ Actions.linux.exec_file = (state, itemData) => {
 };
 // text edit action
 Actions.linux.text_edit = (state, itemData) => {
-    return fm.run('mousepad ' + itemData[2]);
+    return fm.run('mousepad ' + itemData[2])
+    .catch((e) => {
+        console.log(e);
+        return Promise.resolve('mousepad bin called but with errors');
+    });
 };
 // open a terminal window at current pwd
 Actions.linux.terminal = (state) => {
