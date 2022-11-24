@@ -26,6 +26,10 @@ fm.getUpOne = (uri) => {
 fm.get_home_dir = () => {
     return os.homedir();
 };
+// get platform
+fm.get_platform = () => {
+    return os.platform();
+};
 // run a command
 fm.run = ( bin) => {
     const com = exec(bin, { shell: '/bin/bash' });

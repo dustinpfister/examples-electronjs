@@ -31,6 +31,7 @@
 ## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
 * (done) fixed bug where the selected array was not being cleared in setPwd 
 * (done) catching errors when calling mousepad for linux text edit action
+* (done) using os.platform to get actionMod string
 
 * () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
 * () start an actions.js file that will be the main module for prefroming file system actions

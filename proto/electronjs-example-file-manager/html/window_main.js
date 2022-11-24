@@ -365,14 +365,18 @@ const setPWD = (state, pwd) => {
 //-------- ----------
 // STATE OBJECT
 //-------- ----------
+
 const state = {
-    //pwd: '~/',
+    // set action mod string by using os.platform nodejs method
+    actionMod: fm.get_platform(),
+    pwd: '~/',
+
     //pwd: '~/Documents',
     //pwd: '~/Documents/github/',
-    pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
+    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
 
-    //actionMod: 'win32',
-    actionMod: 'linux',
+
+    //actionMod: 'linux',
 
     files: [],
     CTRL: false,
