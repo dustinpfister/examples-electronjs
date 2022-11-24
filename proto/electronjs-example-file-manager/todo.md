@@ -32,6 +32,9 @@
 * (done) fixed bug where the selected array was not being cleared in setPwd 
 * (done) catching errors when calling mousepad for linux text edit action
 * (done) using os.platform to get actionMod string
+* (done) can start Explorer and cmd and state.pwd in win32
+
+* () once again I can not open folders with spaces in win32 now
 
 * () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
 * () start an actions.js file that will be the main module for prefroming file system actions
