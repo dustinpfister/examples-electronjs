@@ -74,31 +74,19 @@ Actions.win32.get_mime_type = (state, itemData) => {
     return Promise.resolve('unkown');
 };
 // exec file action
-Actions.win32.exec_file = (state, itemData) => {
-
-};
+Actions.win32.exec_file = (state, itemData) => {};
 // text edit action
-Actions.win32.text_edit = (state, itemData) => {
-
-};
+Actions.win32.text_edit = (state, itemData) => {};
 // open a terminal window at current pwd
-Actions.win32.terminal = (state) => {
-};
+Actions.win32.terminal = (state) => {};
 // start the alternate file manager as pwd
-Actions.win32.alt_fm = (state) => {
-};
+Actions.win32.alt_fm = (state) => {};
 // new folder
-Actions.win32.new_folder = (state) => {
-
-};
+Actions.win32.new_folder = (state) => {};
 // new file
-Actions.win32.new_file = (state) => {
-
-};
+Actions.win32.new_file = (state) => {};
 // copy a single given item
-Actions.win32.copy_item = (state, itemData) => {
-
-};
+Actions.win32.copy_item = (state, itemData) => {};
 //-------- ----------
 // MAIN RUN ACTION METHOD
 //-------- ----------
@@ -106,11 +94,10 @@ Actions.win32.copy_item = (state, itemData) => {
 Actions.run = (state, action, itemData ) => {
     return Actions[state.actionMod][action](state, itemData);
 };
-
 //-------- ----------
 // HELPERS
 //-------- ----------
-// parse an itemData uri to work with file -i [filePath] | cut -d " " -f 2
+// parse an itemData URI to work with file -i [filePath] | cut -d " " -f 2
 // I first noticed that i need to to this for a markdown file that has a '$' in the file name
 // I may need to expand this as i find more problems like this as needed
 var parseURI = (uri) => {
@@ -123,14 +110,6 @@ var parseURI = (uri) => {
         b = fm.path_join( fm.get_home_dir(), from_home );
     }
     // convert paths like /foo/bar baz to /foo/"bar baz"
-/*
-    let c = b.split('/').map((item) => {
-        if(item.split(' ').length > 1){
-            return '\"' + item + '\"';
-        }
-        return item;
-    }).join('/');
-*/
     // do we have a '~' at the start of the URI?
     return b;
 };
@@ -143,7 +122,6 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-           //fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
            // using new Actions object
            Actions.run(state, 'get_mime_type', itemData)
            .then( ( result ) => {
@@ -155,7 +133,7 @@ const itemLoop = function(state){
                    setDivStyle(state, itemData, false);
                }
                // keep looping or stop, using i >= len - 1 over per === 1,
-               // becuase of 0 / 0 bug when state.files.length is 1 ( empty folder )
+               // because of 0 / 0 bug when state.files.length is 1 ( empty folder )
                if(i >= len - 1){
                    el_progress.style.width = '0%';
                }else{
@@ -174,19 +152,7 @@ const itemLoop = function(state){
     };
     loop();
 };
-/*
-const preformExecFileCheckAction = (state, itemData) => {
-    return fm.run('find ' + itemData[2] + ' -maxdepth 1 -type f -executable')
-    .then((result) => {
-        console.log( 'result of find command call for shell script' );
-        console.log(result)
-        if(result){
-            fm.runFile( state.pwd , itemData[2] );
-        }
-    });
-};
-*/
-// prefrom an action for the given item based on its mime type
+// preform an action for the given item based on its mime type
 const perfromMimeAction = (state, itemData) => {
     const mime = itemData[4].mime;
     const ext = itemData[4].ext;
@@ -262,7 +228,7 @@ const setDivStyle = (state, itemData, selectedState, div) => {
         div.style.backgroundColor = bgColor;
     }
 };
-// set style for all selcted divs
+// set style for all selected divs
 const setSelectedDivStyle = (state, selectedState ) => {
     state.selected.forEach( ( itemIndex ) => {
         const itemData = state.files[itemIndex];
@@ -275,7 +241,6 @@ const createItemClickHandler = (state, itemData) => {
         //!!! WEIRD BUG found that thus far I do not know how to reproduce
         // so I am doing a try cath here for now
         try{
-
         const i = itemData[3];
         // if NOT CTRL, AND state.selcted.length is one, AND current item is selected item
         if(!state.CTRL && state.selected.length === 1 && state.files[ state.selected[0] ][3] === i ){
@@ -292,7 +257,6 @@ const createItemClickHandler = (state, itemData) => {
         // push index to selcted array
         state.selected.push(i);
         setDivStyle(state, itemData, true);
-
         }catch(e){
             console.log('**********');
             console.log('Error while clicking item');
@@ -301,7 +265,6 @@ const createItemClickHandler = (state, itemData) => {
             console.log('error', e);
             console.log('**********');
         }
-
     };
 };
 // create a single div element for an itemData object
@@ -332,7 +295,6 @@ const setPWD = (state, pwd) => {
     state.pwd = parseURI(pwd);
     state.selected = [];
     // read the current state.pwd path
-    //return fm.readdir(state.pwd.replace(/\"/g, ''))
     return fm.readdir(state.pwd)
     // get files array from fm api and update state.files
    .then((files)=>{
@@ -371,14 +333,6 @@ const state = {
     // set action mod string by using os.platform nodejs method
     actionMod: fm.get_platform(),
     pwd: '~/',
-
-    //pwd: '~/Documents',
-    //pwd: '~/Documents/github/',
-    //pwd: '~/Documents/github/examples-electronjs/proto/electronjs-example-file-manager',
-
-
-    //actionMod: 'linux',
-
     files: [],
     CTRL: false,
     loop: {
@@ -411,11 +365,7 @@ state.el_input_pwd.addEventListener('change', (e)=> {
 //-------- ----------
 state.el_run_new_folder.addEventListener('click', (e)=> {
     console.log('new folder');
-
-    //fm.run('mkdir ' + state.pwd + '/new_folder')
-
     Actions.run(state, 'new_folder')
-
     .then((result)=>{
         console.log('made the new folder okay');
         setPWD(state, state.pwd);
@@ -487,36 +437,12 @@ fm.on_edit_copy( (evnt) => {
 fm.on_edit_paste( (evnt) => {
     console.log('PASTE!');
     if(state.copy.length >= 1){
-
         const itemData = state.copy[0];
-
         Actions.run(state, 'copy_item', itemData)
         .then(()=>{
             console.log('copy done');
             state.copy = [];
             setPWD(state, state.pwd);
         });
-
-/*
-        const itemData = state.copy[0];
-        // get source and dist
-        const source = itemData[2];
-        let dest = fm.path_join( state.pwd, itemData[0] );
-        // update dist if same
-        if(source === dest){
-            const ext = '.' + itemData[4].ext;
-            dest = fm.path_join(
-                state.pwd,
-                fm.path_basename(itemData[0], ext) + '_copy_1' + ext
-            );
-        }
-        // run cp with source and dist
-        fm.run('cp -r ' + source + ' ' + dest)
-        .then(()=>{
-            console.log('copy done');
-            state.copy = [];
-            setPWD(state, state.pwd);
-        });
-*/
     }
 });
