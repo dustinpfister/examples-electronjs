@@ -71,6 +71,11 @@ Actions.win32.get_mime_type = (state, itemData) => {
     if(itemData[1]){
         return Promise.resolve('inode/directory');
     }
+    // no native 'file' program in windows, but if there is an extension we can use that
+    const info = itemData[4];
+    if(info.ext === 'md'){
+        Promise.resolve('text/html');
+    }
     return Promise.resolve('unkown');
 };
 // exec file action
@@ -313,7 +318,7 @@ const setPWD = (state, pwd) => {
              item[3] = i;
              return item;
         });
-        // upadte value of input pwd
+        // update value of input pwd
         state.el_input_pwd.value = state.pwd;
         // create the list contents
         createListContents(state, state.files);
