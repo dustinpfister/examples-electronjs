@@ -67,6 +67,10 @@ Actions.linux.copy_item = (state, itemData) => {
 Actions.win32 = {};
 // get mime type of the given itemData object
 Actions.win32.get_mime_type = (state, itemData) => {
+    // if folder return 'inode/directory'
+    if(itemData[1]){
+        return Promise.resolve('inode/directory');
+    }
     return Promise.resolve('unkown');
 };
 // exec file action
@@ -139,12 +143,9 @@ const itemLoop = function(state){
     el_progress.style.width = '100%';
     const loop = function(){
         (function(itemData, i, loopPwd ){
-
            //fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' )
-
            // using new Actions object
            Actions.run(state, 'get_mime_type', itemData)
-
            .then( ( result ) => {
                itemData[4].mime = result.trim();
                const per = i / (len - 1);
