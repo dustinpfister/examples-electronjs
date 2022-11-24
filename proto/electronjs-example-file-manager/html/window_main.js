@@ -83,7 +83,9 @@ Actions.win32.exec_file = (state, itemData) => {};
 // text edit action
 Actions.win32.text_edit = (state, itemData) => {};
 // open a terminal window at current pwd
-Actions.win32.terminal = (state) => {};
+Actions.win32.terminal = (state) => {
+    return fm.run('start cmd /k "pushd ' +  state.pwd + '"');
+};
 // start the alternate file manager as pwd
 Actions.win32.alt_fm = (state) => {
     return fm.run('Explorer \"'+ state.pwd +'\"');
