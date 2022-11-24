@@ -32,7 +32,8 @@ fm.get_platform = () => {
 };
 // run a command
 fm.run = ( bin) => {
-    const com = exec(bin, { shell: '/bin/bash' });
+    //const com = exec(bin, { shell: '/bin/bash' });
+    const com = exec(bin);
     // out
     return new Promise( (resolve, reject) => {
         let text = '';

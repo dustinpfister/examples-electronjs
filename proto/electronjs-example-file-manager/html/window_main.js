@@ -85,7 +85,9 @@ Actions.win32.text_edit = (state, itemData) => {};
 // open a terminal window at current pwd
 Actions.win32.terminal = (state) => {};
 // start the alternate file manager as pwd
-Actions.win32.alt_fm = (state) => {};
+Actions.win32.alt_fm = (state) => {
+    return fm.run('Explorer \"'+ state.pwd +'\"');
+};
 // new folder
 Actions.win32.new_folder = (state) => {};
 // new file
