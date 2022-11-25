@@ -336,6 +336,21 @@ const setPWD = (state, pwd) => {
         console.log(e);
     });
 };
+
+
+let testPath = '';
+testPath = 'C:\\Users\\Dustin\\Applaction\ Data';
+fm.readdir(testPath)
+.then((files)=>{
+	
+	console.log('Okay so that works.');
+	console.log(files);
+})
+.catch((e) => {
+	console.log('nope');
+	console.log(e.message);
+})
+
 //-------- ----------
 // STATE OBJECT
 //-------- ----------
