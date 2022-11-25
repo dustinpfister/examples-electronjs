@@ -339,8 +339,14 @@ const setPWD = (state, pwd) => {
 
 
 let testPath = '';
-//testPath = 'C:\\Users\\Dustin\\My Documents'; // <== does not work
-testPath = 'C:\\Users\\Dustin\\My\ Documents'; // <== does not work
+//testPath = 'C:\\Users\\Dustin\\My Documents'; // <== does not work ( not permitted )
+//testPath = '\"C:\\Users\\Dustin\\My\ Documents\\\"'; // <== does not work ( no such file dir)
+//testPath = 'C:\\Users\\Dustin\\My\ Documents'; // <== does not work ( not permitted )
+//testPath = 'C:/Users/Dustin/My Documents'; // <== does not work ( not permitted )
+//testPath = 'C:/Users/Dustin/My\ Documents'; // <== does not work ( not permitted )
+// https://stackoverflow.com/questions/17974446/escape-spaces-in-file-path
+//testPath = "'C://Users//Dustin//My/ Documents'"; // <== does not work ( no such file dir)
+//testPath = "\"C:/Users/Dustin/My Documents\""; // <== does not work ( no such file dir)
 
 // tried this regex pattern that I found here, but it does not work
 // as it results in a no such file or dit error
@@ -349,6 +355,9 @@ testPath = 'C:\\Users\\Dustin\\My\ Documents'; // <== does not work
 
 // tried path resolve method but does not work, resulting in an operation nor permitted error (STILL)
 //testPath = fm.path_resolve(testPath);
+
+// so this looks like something that just does not work in windows
+testPath = 'C:\\Users\\Dustin\\My Documents'; 
 
 fm.readdir(testPath)
 .then((files)=>{
