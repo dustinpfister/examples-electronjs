@@ -349,7 +349,7 @@ let testPath = '';
 //testPath = "\"C:/Users/Dustin/My Documents\""; // <== does not work ( no such file dir)
 
 // tried this regex pattern that I found here, but it does not work
-// as it results in a no such file or dit error
+// as it results in a no such file or folder error
 // https://stackoverflow.com/questions/44738314/escape-a-space-in-a-file-path-in-node-js
 //testPath = testPath.replace(/(\s+)/g, '\\$1'); // <== does not work
 
