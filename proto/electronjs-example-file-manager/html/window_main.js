@@ -339,10 +339,19 @@ const setPWD = (state, pwd) => {
 
 
 let testPath = '';
-testPath = 'C:\\Users\\Dustin\\Applaction\ Data';
+//testPath = 'C:\\Users\\Dustin\\My Documents'; // <== does not work
+testPath = 'C:\\Users\\Dustin\\My\ Documents'; // <== does not work
+
+// tried this regex pattern that I found here, but it does not work
+// as it results in a no such file or dit error
+// https://stackoverflow.com/questions/44738314/escape-a-space-in-a-file-path-in-node-js
+//testPath = testPath.replace(/(\s+)/g, '\\$1'); // <== does not work
+
+// tried path resolve method but does not work, resulting in an operation nor permitted error (STILL)
+//testPath = fm.path_resolve(testPath);
+
 fm.readdir(testPath)
 .then((files)=>{
-	
 	console.log('Okay so that works.');
 	console.log(files);
 })

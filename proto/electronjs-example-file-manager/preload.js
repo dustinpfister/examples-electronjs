@@ -17,6 +17,7 @@ const fm = {};
 
 fm.path_basename = path.basename;
 fm.path_join = path.join;
+fm.path_resolve = path.resolve;
 
 // get up one uri
 fm.getUpOne = (uri) => {
