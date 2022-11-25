@@ -112,7 +112,9 @@ Actions.run = (state, action, itemData ) => {
 var parseURI = (uri) => {
     // replace $ with \$
     let a = uri.replace(/\$/g, '\\$'); //.replace(/\'/g, '\\\'');
+    // space
     let b = a;
+    //let b = a.replace(/(\s+)/g, '\\$1');
     if(b[0] === '~'){
         // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
         const from_home = b.replace(/~\//, '').replace(/~/, '');
