@@ -359,15 +359,16 @@ let testPath = '';
 // so this looks like something that just does not work in windows
 testPath = 'C:\\Users\\Dustin\\My Documents'; 
 
-fm.readdir(testPath)
+//fm.readdir(testPath)
+fm.read_folder(testPath)
 .then((files)=>{
-	console.log('Okay so that works.');
-	console.log(files);
+    console.log('Okay so that works.');
+    console.log(files);
 })
 .catch((e) => {
-	console.log('nope');
-	console.log(e.message);
-})
+    console.log('nope');
+    console.log(e.message);
+});
 
 //-------- ----------
 // STATE OBJECT

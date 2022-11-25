@@ -79,6 +79,11 @@ fm.runFile = ( cwd, uri_sh, argu ) => {
     child.unref();
 };
 
+// clean read folder method that DOES NOT also use stat
+fm.read_folder = (uri) => {
+    return readdir(uri);
+};
+
 // read a dir and get itemData objects
 fm.readdir = ( uri ) => {
     // read files array
