@@ -1,6 +1,6 @@
 # electionjs-file-manager
 
-The goal here is to just make a simple file manager that works the way that I like it. Also I am making this becuase it seems that all file managers crash often in raspberry pi os.
+The goal here is to just make a simple file manager that works the way that I like it. Also I am making this because it seems that all file managers crash often in raspberry pi os.
 
 ## Install
 
@@ -9,7 +9,11 @@ $ npm install
 $ npm start
 ```
 
-## Setting up the lanucher in Raspberry PI OS
+## Giving up on windows support ( for now )
+
+I have to give up with Windows support for now because of a major time consuming problem trying to read the contents of folders that have spaces in windows. I thought that I was running into a problem with
+
+## Setting up the launcher in Raspberry PI OS
 
 Create a file called fm.desktop at: /home/pi/.local/share/applications where 'pi' is the current username
 
@@ -28,11 +32,11 @@ Categories=Utility;System;
 StartupNotify=true
 ```
 
-be surce to adjust the --prefix path to the location of the file manager project folder.
+be sure to adjust the --prefix path to the location of the file manager project folder.
 
 ## Spawn detached!
 
-had a hard time getting my shart.sh files to work but I was able to get it working by making a detached span and what as really getting in the way was not setting the cwd option of the spawn
+had a hard time getting my start.sh files to work but I was able to get it working by making a detached span and what as really getting in the way was not setting the cwd option of the spawn
 
 
 ## Linux file command, cut command, and default applactions or actions for items
