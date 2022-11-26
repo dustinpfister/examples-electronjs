@@ -34,16 +34,15 @@
 ## () - better mime type support
 * () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
 
-## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
+## ( done 11/26/2022 ) - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
 * (done) fixed bug where the selected array was not being cleared in setPwd 
 * (done) catching errors when calling mousepad for linux text edit action
 * (done) using os.platform to get actionMod string
 * (done) can start Explorer and cmd and state.pwd in win32
 * (done) Have a spaces.js and a spaces\_dir.js in which I get folders with spaces working
 * (done) looks like a parse URI function is something that will need to be a part of my actions objects
-
-* () start an actions.js file that will be the main module for preforming file system actions
-* () start using actions.js in place of fm.run calls in window\_main.js
+* (done) start an actions.js file that will be the main module for preforming file system actions
+* (done) start using actions.js in place of fm.run calls in window\_main.js
 
 ## ( done 11/12/2022 ) - use os.homedir in place of calling realpath
 * (done) changed style when it comes to item divs
