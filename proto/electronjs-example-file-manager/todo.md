@@ -33,8 +33,9 @@
 * (done) catching errors when calling mousepad for linux text edit action
 * (done) using os.platform to get actionMod string
 * (done) can start Explorer and cmd and state.pwd in win32
+* (done) Have a spaces.js and a spaces\_dir.js in which I get folders with spaces working
 
-* () once again I can not open folders with spaces in win32 now
+* () looks like a parse URI funciton is somehting that will need to be a part of my actions objects
 
 * () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
 * () start an actions.js file that will be the main module for prefroming file system actions
