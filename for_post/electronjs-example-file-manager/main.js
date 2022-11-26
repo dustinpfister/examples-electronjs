@@ -1,5 +1,5 @@
 // load app and BrowserWindow
-const { app, dialog, Menu, BrowserWindow} = require('electron');
+const { app, Menu, BrowserWindow} = require('electron');
 const path = require('path');
 // Create the Main browser window.
 const createWindow = () => {
