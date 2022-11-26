@@ -9,7 +9,6 @@ const readdir = promisify(fs.readdir);
 const lstat = promisify(fs.lstat);
 
 const exec = require('child_process').exec;
-//const execFile = require('child_process').execFile;
 const spawn = require('child_process').spawn;
 
 // main file manager api
@@ -32,30 +31,24 @@ fm.get_platform = () => {
     return os.platform();
 };
 // run a command
-fm.run = ( bin) => {
-    //const com = exec(bin, { shell: '/bin/bash' });
+fm.run = ( bin ) => {
     const com = exec(bin);
     // out
     return new Promise( (resolve, reject) => {
         let text = '';
         com.stdout.on('data', (data) => {
-            //resolve(`${data}`);
             text += `${data}`;
         });
         com.stderr.on('data', (data) => {
             reject(`${data}`);
         });
         com.on('close', (code) => {
-            //console.log(`child process ${bin} with code ${code}`);
             resolve(text);
         });
     });
 };
-
+// run a file
 fm.runFile = ( cwd, uri_sh, argu ) => {
-    //execFile( uri_sh, { shell: '/bin/bash', timeout: 60000 }, function (error, stdout, stderr) {
-    //    console.log(error, stdout, stderr);
-    //});
     argu = argu || [];
     const child = spawn(uri_sh, argu, {
         cwd: cwd,
@@ -63,27 +56,15 @@ fm.runFile = ( cwd, uri_sh, argu ) => {
         detached: true,
         stdio: 'ignore'
     });
-
-    //child.stdout.on('data', (data) => {
-        //resolve(`${data}`);
-    //    console.log(`${data}`);
-    //});
-    //child.stderr.on('data', (data) => {
-    //    console.warn(`${data}`);
-    //});
-
     child.on('close', (code) => {
         console.log(`detached script ${uri_sh} exited with code ${code}`);
     });
-
     child.unref();
 };
-
 // clean read folder method that DOES NOT also use stat
 fm.read_folder = (uri) => {
     return readdir(uri);
 };
-
 // read a dir and get itemData objects
 fm.readdir = ( uri ) => {
     // read files array
@@ -112,24 +93,21 @@ fm.readdir = ( uri ) => {
         }) );
     });
 };
-
+// edit copy ect
 fm.on_edit_copy = (cb) => {
     ipcRenderer.on('edit_copy', (evnt) => {
         cb(evnt);
     });
 };
-
 fm.on_edit_paste = (cb) => {
     ipcRenderer.on('edit_paste', (evnt) => {
         cb(evnt);
     });
 };
-
 fm.on_edit_delete = (cb) => {
     ipcRenderer.on('edit_delete', (evnt) => {
         cb(evnt);
     });
 };
-
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('fm', fm);

@@ -1,5 +1,8 @@
 # electionjs-file-manager
 
+## () - mime type windows
+* () get win32 get\_mime\_type to return folder mime type only for folders and not junctions
+
 ## () - file types, and open with
 * open with options
 
@@ -28,6 +31,9 @@
 ## () - Rename files Edit menu
 * () can rename a section of files by way of the edit menu
 
+## () - better mime type support
+* () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
+
 ## () - start an actions\_js\_only.js, and actions\_linux\_rasp.js files
 * (done) fixed bug where the selected array was not being cleared in setPwd 
 * (done) catching errors when calling mousepad for linux text edit action
@@ -36,12 +42,7 @@
 * (done) Have a spaces.js and a spaces\_dir.js in which I get folders with spaces working
 * (done) looks like a parse URI function is something that will need to be a part of my actions objects
 
-* () get win32 get\_mime\_type to return folder mime type only for folders and not junctions
-
-* () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
-* () start an actions.js file that will be the main module for prefroming file system actions
-* () have a built in set of actions that will be the hard coded default to use if the OS is not known
-* () have a way to load an additional action file for raspberry pi os
+* () start an actions.js file that will be the main module for preforming file system actions
 * () start using actions.js in place of fm.run calls in window\_main.js
 
 ## ( done 11/12/2022 ) - use os.homedir in place of calling realpath
