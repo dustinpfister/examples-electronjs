@@ -1,7 +1,6 @@
 // load app and BrowserWindow
 const { app, dialog, Menu, BrowserWindow} = require('electron');
 const path = require('path');
-
 // Create the Main browser window.
 const createWindow = () => {
     const window = new BrowserWindow({
@@ -21,7 +20,6 @@ const createWindow = () => {
     window.setMenu(menu);
     return window;
 };
-
 // Custom Menus
 const isMac = process.platform === 'darwin';
 // The main menu for the main window
@@ -77,7 +75,6 @@ const MainMenuTemplate = [
         ]
     }
 ];
-
 // the 'ready' event
 app.whenReady().then(() => {
     createWindow();
