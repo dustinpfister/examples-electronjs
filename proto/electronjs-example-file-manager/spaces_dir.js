@@ -1,13 +1,11 @@
-//const fs = require('fs');
-//const path = require('path');
 const exec = require('child_process').exec;
 
-//const promisify = require('util').promisify;
-
+let dir = '';
+dir = 'C:\\Program Files'; // <== WORKS
+//dir = 'C:\\Users\\Dustin\\Documents\\Sound recordings';
 // run a command
 const run = ( bin ) => {
-    //const com = exec(bin, { shell: '/bin/bash' });
-    const com = exec(bin, {cwd: 'C:/Users/Dustin/Documnets/Sound recordings' });
+    const com = exec(bin, {cwd: dir });
     // out
     return new Promise( (resolve, reject) => {
         let text = '';
