@@ -6,9 +6,22 @@ const Actions = {};
 // LINUX ACTIONS
 //-------- ----------
 Actions.linux = {};
+// parse a URI to a folder, file, link, ect
+Actions.linux.parseURI = (uri) => {
+    // replace $ with \$
+    let a = uri.replace(/\$/g, '\\$');
+    // space
+    let b = a;
+    if(b[0] === '~'){
+        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
+        const from_home = b.replace(/~\//, '').replace(/~/, '');
+        b = fm.path_join( fm.get_home_dir(), from_home );
+    }
+    return b;
+};
 // get mime type of the given itemData object
 Actions.linux.get_mime_type = (state, itemData) => {
-    return fm.run('file -b --mime-type \"' + parseURI(itemData[2]) + '\"' );
+    return fm.run('file -b --mime-type \"' + Actions.linux.parseURI(itemData[2]) + '\"' );
 };
 // exec file action
 Actions.linux.exec_file = (state, itemData) => {
@@ -65,6 +78,20 @@ Actions.linux.copy_item = (state, itemData) => {
 // WIN32 ACTIONS
 //-------- ----------
 Actions.win32 = {};
+
+Actions.win32.parseURI = (uri) => {
+    // replace $ with \$
+    let a = uri.replace(/\$/g, '\\$');
+    // space
+    let b = a;
+    if(b[0] === '~'){
+        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
+        const from_home = b.replace(/~\//, '').replace(/~/, '');
+        b = fm.path_join( fm.get_home_dir(), from_home );
+    }
+    return b;
+};
+
 // get mime type of the given itemData object
 Actions.win32.get_mime_type = (state, itemData) => {
     // if folder return 'inode/directory'
@@ -106,9 +133,9 @@ Actions.run = (state, action, itemData ) => {
 //-------- ----------
 // HELPERS
 //-------- ----------
-// parse an itemData URI to work with file -i [filePath] | cut -d " " -f 2
-// I first noticed that i need to to this for a markdown file that has a '$' in the file name
-// I may need to expand this as i find more problems like this as needed
+// parse an URI to a folder or file to work to preform any actions that need to be done
+// like escaping chars and so forth
+/*
 var parseURI = (uri) => {
     // replace $ with \$
     let a = uri.replace(/\$/g, '\\$'); //.replace(/\'/g, '\\\'');
@@ -124,6 +151,7 @@ var parseURI = (uri) => {
     // do we have a '~' at the start of the URI?
     return b;
 };
+*/
 // item update loop
 const itemLoop = function(state){
     state.loop.i = 0;
@@ -303,7 +331,7 @@ const createListContents = (state, files) => {
 // set the current pwd
 const setPWD = (state, pwd) => {
     // using parseURI each time for any given pwd string
-    state.pwd = parseURI(pwd);
+    state.pwd = Actions[state.actionMod].parseURI(pwd);
     state.selected = [];
     // read the current state.pwd path
     return fm.readdir(state.pwd)

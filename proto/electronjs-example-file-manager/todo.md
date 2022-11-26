@@ -35,7 +35,7 @@
 * (done) can start Explorer and cmd and state.pwd in win32
 * (done) Have a spaces.js and a spaces\_dir.js in which I get folders with spaces working
 
-* () looks like a parse URI funciton is somehting that will need to be a part of my actions objects
+* () looks like a parse URI function is something that will need to be a part of my actions objects
 
 * () look into ( https://github.com/jshttp/mime-types ) for a javascript solution for getting mine type
 * () start an actions.js file that will be the main module for prefroming file system actions
