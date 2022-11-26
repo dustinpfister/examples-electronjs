@@ -4,7 +4,9 @@ const promisify = require('util').promisify;
 const readdir = promisify(fs.readdir);
 // can not read a path that has spaces in windows
 
-let dir = 'C:\\Program Files'; // <== WORKS
+let dir = '';
+//dir = 'C:\\Program Files'; // <== WORKS
+dir = 'C:\\Users\\Dustin\\Documents\\Sound recordings';
 readdir(dir)
 .then( ( files) => {
     console.log('works okay.');

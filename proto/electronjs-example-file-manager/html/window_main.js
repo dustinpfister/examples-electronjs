@@ -95,7 +95,8 @@ Actions.win32.parseURI = (uri) => {
 // get mime type of the given itemData object
 Actions.win32.get_mime_type = (state, itemData) => {
     // if folder return 'inode/directory'
-    if(itemData[1]){
+    // USE dir /a:h TO SEE WHAT THE DEAL IS WITH JUNCTIONS
+    if(itemData[1]){ // <== NOT A GOOD WAY TO DO THIS BECUASE OF JUNCTIONS
         return Promise.resolve('inode/directory');
     }
     // no native 'file' program in windows, but if there is an extension we can use that
@@ -133,25 +134,6 @@ Actions.run = (state, action, itemData ) => {
 //-------- ----------
 // HELPERS
 //-------- ----------
-// parse an URI to a folder or file to work to preform any actions that need to be done
-// like escaping chars and so forth
-/*
-var parseURI = (uri) => {
-    // replace $ with \$
-    let a = uri.replace(/\$/g, '\\$'); //.replace(/\'/g, '\\\'');
-    // space
-    let b = a;
-    //let b = a.replace(/(\s+)/g, '\\$1');
-    if(b[0] === '~'){
-        // I want "Documents/foo" from "~/Documents/foo" and "" from "~"
-        const from_home = b.replace(/~\//, '').replace(/~/, '');
-        b = fm.path_join( fm.get_home_dir(), from_home );
-    }
-    // convert paths like /foo/bar baz to /foo/"bar baz"
-    // do we have a '~' at the start of the URI?
-    return b;
-};
-*/
 // item update loop
 const itemLoop = function(state){
     state.loop.i = 0;
@@ -202,31 +184,26 @@ const perfromMimeAction = (state, itemData) => {
     // mime types
     if(mime === 'text/plain'){
         console.log('we have a plain text file!');
-        //fm.run('mousepad ' + itemData[2]);
         Actions.run(state, 'text_edit', itemData);
         return;
     }
     if(mime === 'text/html'){
         console.log('we have an html file!');
-        //fm.run('mousepad ' + itemData[2]);
         Actions.run(state, 'text_edit', itemData);
         return;
     }
     if(mime === 'text/x-shellscript'){
         console.log('We have a shellscript');
-        //preformExecFileCheckAction(state, itemData);
         Actions.run(state, 'exec_file', itemData);
         return;
     }
     if(mime === 'application/javascript'){
         console.log('We have a js file!');
-        //preformExecFileCheckAction(state, itemData);
         Actions.run(state, 'exec_file', itemData);
         return;
     }
     // ext if there is nothing for the mime
     if(ext === 'md' || ext === 'txt' || ext === 'sh' || ext === "html" || ext === 'js'){
-        //fm.run('mousepad ' + itemData[2]);
         Actions.run(state, 'text_edit', itemData);
     }
 };
@@ -367,25 +344,7 @@ const setPWD = (state, pwd) => {
 
 
 let testPath = '';
-//testPath = 'C:\\Users\\Dustin\\My Documents'; // <== does not work ( not permitted )
-//testPath = '\"C:\\Users\\Dustin\\My\ Documents\\\"'; // <== does not work ( no such file dir)
-//testPath = 'C:\\Users\\Dustin\\My\ Documents'; // <== does not work ( not permitted )
-//testPath = 'C:/Users/Dustin/My Documents'; // <== does not work ( not permitted )
-//testPath = 'C:/Users/Dustin/My\ Documents'; // <== does not work ( not permitted )
-// https://stackoverflow.com/questions/17974446/escape-spaces-in-file-path
-//testPath = "'C://Users//Dustin//My/ Documents'"; // <== does not work ( no such file dir)
-//testPath = "\"C:/Users/Dustin/My Documents\""; // <== does not work ( no such file dir)
-
-// tried this regex pattern that I found here, but it does not work
-// as it results in a no such file or folder error
-// https://stackoverflow.com/questions/44738314/escape-a-space-in-a-file-path-in-node-js
-//testPath = testPath.replace(/(\s+)/g, '\\$1'); // <== does not work
-
-// tried path resolve method but does not work, resulting in an operation nor permitted error (STILL)
-//testPath = fm.path_resolve(testPath);
-
-// so this looks like something that just does not work in windows
-testPath = 'C:\\Users\\Dustin\\My Documents'; 
+testPath = 'C:\\Users\\Dustin\\Documents\\Sound recordings'; 
 
 //fm.readdir(testPath)
 fm.read_folder(testPath)
