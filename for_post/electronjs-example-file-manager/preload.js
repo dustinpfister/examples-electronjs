@@ -1,23 +1,21 @@
 // preload with contextIsolation enabled
 const { contextBridge, ipcRenderer } = require('electron');
-const fs = require('fs');
+// os and path modules
 const os = require('os');
 const path = require('path');
+// file system module
+const fs = require('fs');
 const promisify = require('util').promisify;
-
 const readdir = promisify(fs.readdir);
 const lstat = promisify(fs.lstat);
-
+// child process
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-
 // main file manager api
 const fm = {};
-
 fm.path_basename = path.basename;
 fm.path_join = path.join;
 fm.path_resolve = path.resolve;
-
 // get up one uri
 fm.getUpOne = (uri) => {
     return path.join(uri, '..');
