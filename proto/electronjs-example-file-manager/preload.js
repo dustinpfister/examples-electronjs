@@ -6,7 +6,6 @@ const path = require('path');
 const promisify = require('util').promisify;
 
 const readdir = promisify(fs.readdir);
-//const stat = promisify(fs.stat);
 const lstat = promisify(fs.lstat);
 
 const exec = require('child_process').exec;
@@ -105,7 +104,8 @@ fm.readdir = ( uri ) => {
                  // for the item
                  const fileInfo = Object.assign({}, fStat, {
                      ext: path.extname(fileName).replace('.', ''),
-                     mime: ''
+                     mime: '',
+                     isLink: fStat.isSymbolicLink()
                  });
                  return [fileName, fStat.isDirectory(), uri_item, i, fileInfo];
              })

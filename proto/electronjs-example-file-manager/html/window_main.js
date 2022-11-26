@@ -97,6 +97,9 @@ Actions.win32.get_mime_type = (state, itemData) => {
     // if folder return 'inode/directory'
     // USE dir /a:h TO SEE WHAT THE DEAL IS WITH JUNCTIONS
     if(itemData[1]){ // <== NOT A GOOD WAY TO DO THIS BECUASE OF JUNCTIONS
+
+        console.log(itemData[4].isLink);
+
         return Promise.resolve('inode/directory');
     }
     // no native 'file' program in windows, but if there is an extension we can use that

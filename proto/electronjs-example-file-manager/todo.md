@@ -34,7 +34,6 @@
 * (done) using os.platform to get actionMod string
 * (done) can start Explorer and cmd and state.pwd in win32
 * (done) Have a spaces.js and a spaces\_dir.js in which I get folders with spaces working
-
 * (done) looks like a parse URI function is something that will need to be a part of my actions objects
 
 * () get win32 get\_mime\_type to return folder mime type only for folders and not junctions
