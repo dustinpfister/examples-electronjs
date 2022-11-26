@@ -78,7 +78,7 @@ Actions.linux.copy_item = (state, itemData) => {
 // WIN32 ACTIONS
 //-------- ----------
 Actions.win32 = {};
-
+// parse a URI
 Actions.win32.parseURI = (uri) => {
     // replace $ with \$
     let a = uri.replace(/\$/g, '\\$');
@@ -97,9 +97,8 @@ Actions.win32.get_mime_type = (state, itemData) => {
     // if folder return 'inode/directory'
     // USE dir /a:h TO SEE WHAT THE DEAL IS WITH JUNCTIONS
     if(itemData[1]){ // <== NOT A GOOD WAY TO DO THIS BECUASE OF JUNCTIONS
-
-        console.log(itemData[4].isLink);
-
+        // for now I am using lstat in place of stat that seems to help with junctions
+        // However a better way of figure out the mime type should be used
         return Promise.resolve('inode/directory');
     }
     // no native 'file' program in windows, but if there is an extension we can use that
@@ -344,26 +343,9 @@ const setPWD = (state, pwd) => {
         console.log(e);
     });
 };
-
-
-let testPath = '';
-testPath = 'C:\\Users\\Dustin\\Documents\\Sound recordings'; 
-
-//fm.readdir(testPath)
-fm.read_folder(testPath)
-.then((files)=>{
-    console.log('Okay so that works.');
-    console.log(files);
-})
-.catch((e) => {
-    console.log('nope');
-    console.log(e.message);
-});
-
-//-------- ----------
+//------ ----------
 // STATE OBJECT
 //-------- ----------
-
 const state = {
     // set action mod string by using os.platform nodejs method
     actionMod: fm.get_platform(),
