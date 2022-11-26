@@ -6,7 +6,8 @@ const path = require('path');
 const promisify = require('util').promisify;
 
 const readdir = promisify(fs.readdir);
-const stat = promisify(fs.stat);
+//const stat = promisify(fs.stat);
+const lstat = promisify(fs.lstat);
 
 const exec = require('child_process').exec;
 //const execFile = require('child_process').execFile;
@@ -98,7 +99,7 @@ fm.readdir = ( uri ) => {
         return Promise.all( files.map( (fileName, i) => {
             let uri_item = path.join(uri, fileName);
             // get stat for each item
-            return stat( uri_item )
+            return lstat( uri_item )
             .then((fStat)=>{
                  // when we have the stat object return an array of values
                  // for the item
