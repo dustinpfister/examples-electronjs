@@ -1,5 +1,11 @@
 # electionjs-file-manager
 
+## () - drag and drop
+* () add drag and drop support
+```
+https://www.electronjs.org/docs/latest/tutorial/native-file-drag-drop
+```
+
 ## () - mime type windows
 * () get win32 get\_mime\_type to return folder mime type only for folders and not junctions
 
@@ -10,8 +16,6 @@
 * () have it so I can make more than one copy of an item in the same folder as the item
 * () This might just only need to happen WHEN IT IS THE SAME FILE, otherwise I might want to overwrite
 * () It would be best to have a prompt for this and other simular conditions
-
-
 
 ## () - Item Menu, double click
 * () - Clicking a single selected item will brink up an item menu
