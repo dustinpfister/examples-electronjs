@@ -36,12 +36,37 @@ sm.setState = function(key, opt) {
 sm.states.init = {
     data: {},
     start: (sm, opt) => {
-       sm.game = gameMod.create();
+       const cx = sm.canvas.width / 2;
+       const cy = sm.canvas.height / 2;
+       sm.game = gameMod.create({
+          cx: cx, cy: cy, x: cx, y: cy
+       });
+       sm.setState('world', {});
     },
     update: (sm, secs) => {},
     render: (sm, ctx, canvas) => {
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
+    }
+};
+//-------- ----------
+// world state
+//-------- ----------
+sm.states.world = {
+    data: {},
+    start: (sm, opt) => {},
+    update: (sm, secs) => {
+
+    },
+    render: (sm, ctx, canvas) => {
+        const sun = sm.game.sun;
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        // sun
+        ctx.fillStyle = 'yellow';
+        ctx.beginPath();
+        ctx.arc(sun.x, sun.y, 16, 0, Math.PI * 2);
+        ctx.fill();
     }
 };
 //-------- ----------
