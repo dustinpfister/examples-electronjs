@@ -1,11 +1,37 @@
 // game.js - r0 - for electionjs-example-mrsun
 // create and update a game state object
 (function(gameMod){
+    //-------- ----------
+    // CONST
+    //-------- ----------
     const DEFAULT_CREATE_OPTIONS = {
         cx: 100, cy: 100, x:100, y: 100, mana: 1
     };
     const MAX_SUN_DIST = 150;
     const LAND_OBJECT_COUNT = 12;
+    const BLOCK_GRID_WIDTH = 10;
+    const BLOCK_GRID_HEIGHT = 8;
+    const BLOCK_GRID_LEN = BLOCK_GRID_WIDTH * BLOCK_GRID_HEIGHT;
+    //-------- ----------
+    // HELPERS
+    //-------- ----------
+    const createBlockGrid = () => {
+        let i = 0;
+        const blocks = [];
+        while(i < BLOCK_GRID_LEN){
+            blocks.push({
+                type: 'blank',
+                mana_base: 0,
+                mana_temp: 0,
+                mana_delta: 0
+            });
+            i += 1;
+        }
+        return blocks;
+    };
+    //-------- ----------
+    // PUBLIC API
+    //-------- ----------
     // create a new game state object
     gameMod.create = (opt) => {
         opt = opt || {};
@@ -29,12 +55,16 @@
                i: i,
                x: game.sun.cx + Math.cos(a) * ( MAX_SUN_DIST + r ),
                y: game.sun.cy + Math.sin(a) * ( MAX_SUN_DIST + r ),
-               r: r
+               r: r,
+               blocks: createBlockGrid()
            };
            game.lands.push(land);
            i += 1;
         }
         game.MAX_SUN_DIST = MAX_SUN_DIST;
+        game.BLOCK_GRID_LEN = BLOCK_GRID_LEN;
+        game.BLOCK_GRID_WIDTH = BLOCK_GRID_WIDTH;
+        game.BLOCK_GRID_HEIGHT = BLOCK_GRID_HEIGHT;
         return game;
     };
     // set the sun position

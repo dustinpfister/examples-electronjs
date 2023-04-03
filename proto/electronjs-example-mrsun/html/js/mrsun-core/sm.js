@@ -113,7 +113,11 @@ sm.states.world = {
 //-------- ----------
 sm.states.land = {
     data: {
-        button_back : {  x: 600, y: 38, r: 32 }
+        button_back : {  x: 600, y: 38, r: 32 },
+        grid_sx: 320 - 50 * 5,
+        grid_sy: 100,
+        block_width: 50,
+        block_height: 35
     },
     start: (sm, opt) => {},
     update: (sm, secs, data) => {
@@ -121,6 +125,7 @@ sm.states.land = {
     },
     render: (sm, ctx, canvas, data) => {
         const sun = sm.game.sun;
+        const land = sm.game.lands[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // back button
@@ -129,6 +134,18 @@ sm.states.land = {
         ctx.beginPath();
         ctx.arc(bb.x, bb.y, bb.r, 0, Math.PI * 2);
         ctx.fill();
+        // render blocks
+        let i = 0;
+        const sx = data.grid_sx, sy = data.grid_sy;
+        while(i < sm.game.BLOCK_GRID_LEN){
+            const bx = i % sm.game.BLOCK_GRID_WIDTH;
+            const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
+            ctx.fillStyle = 'black';
+            ctx.strokeStyle = 'white';
+            ctx.rect(sx + data.block_width * bx, sy + data.block_height * by, data.block_width, data.block_height);
+            ctx.stroke();
+            i += 1;
+        }
         // disp
         ctx.fillStyle = 'white';
         ctx.font = '15px arial';
@@ -137,7 +154,7 @@ sm.states.land = {
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
-            console.log('land state pointer down event');
+            // back button
             const bb = data.button_back;
             if( utils.distance(bb.x, bb.y, x, y) <= bb.r ){
                 sm.setState('world', {});
