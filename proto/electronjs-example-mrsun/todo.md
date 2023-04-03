@@ -12,10 +12,8 @@
 * (done) have a max distance const in game.js
 * (done) a game state object will contain the number of land objects
 * (done) have a gameMod.getLandByPos method that will return a land object at a given pos if it is there else false
-<!-- land state -->
-
-* () have a 'land' state in which I can view a single land section in detail
-* () have a back button that will return the user to 'world' state
+* (done) have a 'land' state in which I can view a single land section in detail
+* (done) have a back button that will return the user to 'world' state
 
 <!-- blocks and mana -->
 * () have a game.mana value at a given start value of say 1
@@ -23,6 +21,12 @@
 * () first block costs 1 mana
 * () once there is a block in a land section it will start to generate mana over time
 * () the cost of the mana blocks goes up with each block
+
+<!-- save state -->
+* () start with a local storage solution for saving and loading save state
+
+<!-- land state - switch object buttons -->
+* () have switch state object + and - buttons in land state
 
 <!-- move sun method -->
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'

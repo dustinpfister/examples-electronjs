@@ -5,7 +5,7 @@
         cx: 100, cy: 100, x:100, y: 100
     };
     const MAX_SUN_DIST = 150;
-    const LAND_OBJECT_COUNT = 8;
+    const LAND_OBJECT_COUNT = 12;
     // create a new game state object
     gameMod.create = (opt) => {
         opt = opt || {};
@@ -20,7 +20,7 @@
         // land objects
         game.lands = [];
         let i = 0;
-        const r = 32;
+        const r = 40;
         while(i < LAND_OBJECT_COUNT){
            const a = Math.PI * 2 * ( i / LAND_OBJECT_COUNT);
            const land = {

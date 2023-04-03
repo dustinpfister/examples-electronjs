@@ -20,6 +20,7 @@ const sm = {
    now: null,
    secs: 0,
    x:0, y:0,
+   landIndex: 0,
    lt: new Date()
 };
 //-------- ----------
@@ -92,10 +93,14 @@ sm.states.world = {
                 return;
             }
             // clicked land object?
-            
-            console.log('out of sun area');
             const land = gameMod.getLandByPos(sm.game, x, y);
-            console.log(land)
+            if(land){
+                sm.landIndex = land.i;
+                sm.setState('land', {});
+                return;
+            }
+
+            console.log('Whole lot of nothing here');
         }
     }
 };
@@ -103,24 +108,31 @@ sm.states.world = {
 // land state
 //-------- ----------
 sm.states.land = {
-    data: {},
+    data: {
+        button_back : {  x: 38, y: 38, r: 32 }
+    },
     start: (sm, opt) => {},
-    update: (sm, secs) => {
+    update: (sm, secs, data) => {
 
     },
-    render: (sm, ctx, canvas) => {
+    render: (sm, ctx, canvas, data) => {
         const sun = sm.game.sun;
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // back button
+        const bb = data.button_back;
         ctx.fillStyle = 'red';
         ctx.beginPath();
-        ctx.arc(32, 32, 32, 0, Math.PI * 2);
+        ctx.arc(bb.x, bb.y, bb.r, 0, Math.PI * 2);
         ctx.fill();
     },
     events: {
-        pointerdown : (sm, x, y, e) => {
+        pointerdown : (sm, x, y, e, data) => {
             console.log('land state pointer down event');
+            const bb = data.button_back;
+            if( utils.distance(bb.x, bb.y, x, y) <= bb.r ){
+                sm.setState('world', {});
+            }
         }
     }
 };
@@ -141,7 +153,7 @@ const commonPointerAction = (sm, type, e) => {
     const events = sm.currentState.events;
     if(events){
         if(events[type]){
-            events[type](sm, sm.x, sm.y, e);
+            events[type](sm, sm.x, sm.y, e, sm.currentState.data);
         }
     }
 }
@@ -164,8 +176,9 @@ sm.loop = () => {
     requestAnimationFrame(sm.loop);
     if(sm.secs > 1 / sm.fps_target){
        const state = sm.currentState;
-       state.update(sm, sm.secs);
-       state.render(sm, sm.ctx, sm.canvas);
+       const data = state.data;
+       state.update(sm, sm.secs, data);
+       state.render(sm, sm.ctx, sm.canvas, data);
        sm.lt = sm.now;
     }
 };
