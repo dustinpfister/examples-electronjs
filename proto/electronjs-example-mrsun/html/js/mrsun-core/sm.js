@@ -82,6 +82,11 @@ sm.states.world = {
             ctx.arc(land.x, land.y, land.r, 0, Math.PI * 2);
             ctx.fill();
         });
+        // disp
+        ctx.fillStyle = 'white';
+        ctx.font = '15px arial';
+        ctx.textBaseline = 'top';
+        ctx.fillText('mana: ' + sm.game.mana, 10, 10);
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -99,7 +104,6 @@ sm.states.world = {
                 sm.setState('land', {});
                 return;
             }
-
             console.log('Whole lot of nothing here');
         }
     }
@@ -109,7 +113,7 @@ sm.states.world = {
 //-------- ----------
 sm.states.land = {
     data: {
-        button_back : {  x: 38, y: 38, r: 32 }
+        button_back : {  x: 600, y: 38, r: 32 }
     },
     start: (sm, opt) => {},
     update: (sm, secs, data) => {
@@ -125,6 +129,11 @@ sm.states.land = {
         ctx.beginPath();
         ctx.arc(bb.x, bb.y, bb.r, 0, Math.PI * 2);
         ctx.fill();
+        // disp
+        ctx.fillStyle = 'white';
+        ctx.font = '15px arial';
+        ctx.textBaseline = 'top';
+        ctx.fillText('mana: ' + sm.game.mana, 10, 10);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {

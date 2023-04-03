@@ -2,7 +2,7 @@
 // create and update a game state object
 (function(gameMod){
     const DEFAULT_CREATE_OPTIONS = {
-        cx: 100, cy: 100, x:100, y: 100
+        cx: 100, cy: 100, x:100, y: 100, mana: 1
     };
     const MAX_SUN_DIST = 150;
     const LAND_OBJECT_COUNT = 12;
@@ -10,7 +10,9 @@
     gameMod.create = (opt) => {
         opt = opt || {};
         opt = Object.assign({}, DEFAULT_CREATE_OPTIONS, opt);
-        const game = {};
+        const game = {
+           mana: opt.mana
+        };
         // create sun object
         game.sun = {
             cx: opt.cx, cy: opt.cy,
