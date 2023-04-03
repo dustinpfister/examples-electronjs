@@ -145,9 +145,14 @@ sm.states.land = {
         while(i < sm.game.BLOCK_GRID_LEN){
             const bx = i % sm.game.BLOCK_GRID_WIDTH;
             const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
-            ctx.fillStyle = 'black';
+            const i_block = by * sm.game.BLOCK_GRID_WIDTH + bx;
+            const block = land.blocks[i_block];
+
+            ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
             ctx.strokeStyle = 'white';
+            ctx.beginPath();
             ctx.rect(sx + data.block_width * bx, sy + data.block_height * by, data.block_width, data.block_height);
+            ctx.fill();
             ctx.stroke();
             i += 1;
         }
