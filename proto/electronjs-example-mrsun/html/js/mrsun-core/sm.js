@@ -94,6 +94,33 @@ sm.states.world = {
             // clicked land object?
             
             console.log('out of sun area');
+            const land = gameMod.getLandByPos(sm.game, x, y);
+            console.log(land)
+        }
+    }
+};
+//-------- ----------
+// land state
+//-------- ----------
+sm.states.land = {
+    data: {},
+    start: (sm, opt) => {},
+    update: (sm, secs) => {
+
+    },
+    render: (sm, ctx, canvas) => {
+        const sun = sm.game.sun;
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        // back button
+        ctx.fillStyle = 'red';
+        ctx.beginPath();
+        ctx.arc(32, 32, 32, 0, Math.PI * 2);
+        ctx.fill();
+    },
+    events: {
+        pointerdown : (sm, x, y, e) => {
+            console.log('land state pointer down event');
         }
     }
 };

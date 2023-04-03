@@ -11,9 +11,9 @@
 * (done) I will want a utils.js javascript file to place distance method, anything else that comes up
 * (done) have a max distance const in game.js
 * (done) a game state object will contain the number of land objects
-
+* (done) have a gameMod.getLandByPos method that will return a land object at a given pos if it is there else false
 <!-- land state -->
-* () have a gameMod.getLandByPos method that will return a land object at a given pos if it is there else false
+
 * () have a 'land' state in which I can view a single land section in detail
 * () have a back button that will return the user to 'world' state
 
