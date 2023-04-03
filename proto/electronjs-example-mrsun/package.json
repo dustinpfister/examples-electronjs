@@ -1,0 +1,14 @@
+{
+  "name": "electionjs-example-mrsun",
+  "version": "0.0.0",
+  "description": "Browser window example",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Dustin Pfister",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron": "^14.2.9"
+  }
+}
