@@ -30,7 +30,7 @@ sm.setState = function(key, opt) {
     opt = opt || {};
     sm.currentStateKey = key;
     const state = sm.currentState = sm.states[sm.currentStateKey];
-    state.start(sm, opt);
+    state.start(sm, opt, state.data);
 };
 //-------- ----------
 // init state
@@ -116,12 +116,17 @@ sm.states.land = {
         button_back : {  x: 600, y: 38, r: 32 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
+        gw: 32, gh:32,
         block_width: 50,
         block_height: 35
     },
-    start: (sm, opt) => {},
+    start: (sm, opt, data) => {
+        data.gw = data.block_width * sm.game.BLOCK_GRID_WIDTH;
+        data.gh = data.block_height * sm.game.BLOCK_GRID_HEIGHT;
+        console.log(data.gw, data.gh);
+    },
     update: (sm, secs, data) => {
-
+    
     },
     render: (sm, ctx, canvas, data) => {
         const sun = sm.game.sun;
@@ -154,10 +159,29 @@ sm.states.land = {
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
+            const land = sm.game.lands[sm.landIndex];
             // back button
             const bb = data.button_back;
             if( utils.distance(bb.x, bb.y, x, y) <= bb.r ){
                 sm.setState('world', {});
+            }
+            // grid clicked?
+            if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
+                const bx = Math.floor( ( x - data.grid_sx) / data.block_width );
+                const by = Math.floor( ( y - data.grid_sy) / data.block_height );
+                const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
+                const block = land.blocks[i];
+                console.log(i, bx, by);
+                console.log(block);
+                if(block.type === 'blank'){
+                   if(sm.game.mana >= 1){
+                       sm.game.mana -= 1;
+                       block.type = 'rock';
+                       block.mana_base = 1;
+                       block.mana_temp = 4;
+                       block.mana_delta = 1;
+                   }
+                }
             }
         }
     }

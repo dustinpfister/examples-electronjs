@@ -18,12 +18,11 @@
 * (done) display current mana in world and land states
 * (done) each land object can contain zero of more blocks up to a max number of blocks per land section
 * (done) I am thinking 10 by 8 so that means up to 80 blocks per land object, or slots for blocks at least
+* (done) add bounding box to utils
+* (done) can click on the grid and get a block index in land state
+* (done) 'blank', and 'rock' block types
+* (done) first block costs 1 mana
 <!-- blocks and mana -->
-* () add bounding box to utils
-* () can click on the grid and get a block index in land state
-
-* () 'blank', and 'rock' block types
-* () first block costs 1 mana
 * () once there is a block in a land section it will start to generate mana over time
 * () have a base amount of 1 mana per block
 * () have a temp bonus of up to 4 more mana per block based on land object distance to sun
