@@ -16,9 +16,10 @@ const sm = {
    currentStateKey: '',
    currentState: null,
    states: {},
-   fps_target: 1,
+   fps_target: 30,
    now: null,
    secs: 0,
+   x:0, y:0,
    lt: new Date()
 };
 //-------- ----------
@@ -62,13 +63,59 @@ sm.states.world = {
         const sun = sm.game.sun;
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
+        // max dist circle
+        const md = sm.game.MAX_SUN_DIST;
+        ctx.fillStyle = 'cyan';
+        ctx.beginPath();
+        ctx.arc(sun.cx, sun.cy, md, 0, Math.PI * 2);
+        ctx.fill();
         // sun
         ctx.fillStyle = 'yellow';
         ctx.beginPath();
-        ctx.arc(sun.x, sun.y, 16, 0, Math.PI * 2);
+        ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
+    },
+    events: {
+        pointerdown : (sm, x, y, e) => {
+            console.log('world');
+            const sun = sm.game.sun;
+            //const d = utils.distance(x, y, sun.x, sun.y);
+            //sun.x = x;
+            //sun.y = y;
+            gameMod.setSunPos(sm.game, x, y);
+        }
     }
 };
+//-------- ----------
+// POINTER EVENTS
+//-------- ----------
+const getPointerPos = (e) => {
+    const bx = e.target.getBoundingClientRect();
+    return {
+        x: e.clientX - bx.left,
+        y: e.clientY - bx.top
+    };
+};
+const commonPointerAction = (sm, type, e) => {
+    const pos = getPointerPos(e);
+    sm.x = pos.x;
+    sm.y = pos.y;
+    const events = sm.currentState.events;
+    if(events){
+        if(events[type]){
+            events[type](sm, sm.x, sm.y, e);
+        }
+    }
+}
+sm.canvas.addEventListener('pointerdown', (e) => {
+    commonPointerAction(sm, 'pointerdown', e);
+});
+sm.canvas.addEventListener('pointermove', (e) => {
+    commonPointerAction(sm, 'pointermove', e);
+});
+sm.canvas.addEventListener('pointerup', (e) => {
+    commonPointerAction(sm, 'pointerup', e);
+});
 //-------- ----------
 // MAIN APP LOOP
 //-------- ----------
