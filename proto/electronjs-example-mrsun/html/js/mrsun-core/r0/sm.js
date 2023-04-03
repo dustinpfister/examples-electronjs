@@ -74,6 +74,13 @@ sm.states.world = {
         ctx.beginPath();
         ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
+        // land objects
+        ctx.fillStyle = 'brown';
+        sm.game.lands.forEach((land) => {
+            ctx.beginPath();
+            ctx.arc(land.x, land.y, land.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
     },
     events: {
         pointerdown : (sm, x, y, e) => {
