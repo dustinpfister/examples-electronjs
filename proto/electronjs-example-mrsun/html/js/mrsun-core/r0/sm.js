@@ -77,12 +77,14 @@ sm.states.world = {
     },
     events: {
         pointerdown : (sm, x, y, e) => {
-            console.log('world');
             const sun = sm.game.sun;
-            //const d = utils.distance(x, y, sun.x, sun.y);
-            //sun.x = x;
-            //sun.y = y;
-            gameMod.setSunPos(sm.game, x, y);
+            const d = utils.distance(x, y, sun.cx, sun.cy);
+            // clicked in the sun area?
+            if(d < sm.game.MAX_SUN_DIST){
+                gameMod.setSunPos(sm.game, x, y);
+                return;
+            }
+            console.log('out of sun area');
         }
     }
 };
