@@ -91,6 +91,8 @@ sm.states.world = {
                 gameMod.setSunPos(sm.game, x, y);
                 return;
             }
+            // clicked land object?
+            
             console.log('out of sun area');
         }
     }
