@@ -159,6 +159,7 @@ sm.states.land = {
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
         ctx.fillText('temp: ' + land.temp, 10, 40);
+        ctx.fillText('rocks: ' + land.rock_count, 10, 55);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {

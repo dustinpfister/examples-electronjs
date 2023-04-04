@@ -28,15 +28,6 @@
         n = n > MANA_MAX ? MANA_MAX : n;
         return n;
     };
-
-console.log( getNextBlockCost(0) )
-console.log( getNextBlockCost(1) )
-console.log( getNextBlockCost(2) )
-console.log( getNextBlockCost(3) )
-console.log( getNextBlockCost(4) )
-console.log( getNextBlockCost(5) )
-console.log( getNextBlockCost(40) )
-
     // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
@@ -53,17 +44,17 @@ console.log( getNextBlockCost(40) )
         return blocks;
     };
     // for each land block helper
-    const forEachLandBlock = (game, forEachBlock, forEachLand) => {
+    const forEachLandBlock = (game, forEachLand, forEachBlock) => {
         let i_land = 0;
         while(i_land < LAND_OBJECT_COUNT){
             const land = game.lands[i_land];
             let i_block = 0;
+            forEachLand(land, game);
             while(i_block < BLOCK_GRID_LEN){
                 const block = land.blocks[i_block];
                 forEachBlock(land, block, game);
                 i_block += 1;
             }
-            forEachLand(land, game);
             i_land += 1;
         };
     };
@@ -77,16 +68,18 @@ console.log( getNextBlockCost(40) )
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1){
             game.mana_per_tick = 0;
-            forEachLandBlock(game, 
-                (land, block, game) => {
-                     const a_temp = land.temp / TEMP_MAX;
-                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
-                },
+            forEachLandBlock(game,
                 (land, game) => {
                      const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
                      const d_adjusted = d_sun - land.r - game.sun.r;
                      land.d_alpha = 1 - d_adjusted / SUN_DMAX;
                      land.temp = Math.round( TEMP_MAX * land.d_alpha );
+                     land.rock_count = 0;
+                },
+                (land, block, game) => {
+                     const a_temp = land.temp / TEMP_MAX;
+                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
+                     land.rock_count += block.type === 'rock' ? 1 : 0;
                 }
             );
             game.mana += game.mana_per_tick;
