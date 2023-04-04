@@ -160,6 +160,7 @@ sm.states.land = {
         utils.drawCommonDisp(sm, ctx, canvas);
         ctx.fillText('temp: ' + land.temp, 10, 40);
         ctx.fillText('rocks: ' + land.rock_count, 10, 55);
+        ctx.fillText('block cost: ' + land.rock_cost, 10, 70);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
@@ -171,8 +172,8 @@ sm.states.land = {
             }
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
-                const bx = Math.floor( ( x - data.grid_sx) / data.block_width );
-                const by = Math.floor( ( y - data.grid_sy) / data.block_height );
+                const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
+                const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
                 const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
                 const block = land.blocks[i];
                 gameMod.buyBlock(sm.game, sm.landIndex, i);

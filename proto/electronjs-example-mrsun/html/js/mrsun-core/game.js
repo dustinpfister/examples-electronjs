@@ -80,6 +80,7 @@
                      const a_temp = land.temp / TEMP_MAX;
                      game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
                      land.rock_count += block.type === 'rock' ? 1 : 0;
+                     land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
             game.mana += game.mana_per_tick;
@@ -115,7 +116,9 @@
                r: LAND_RADIUS,
                blocks: createBlockGrid(),
                d_alpha: 0,
-               temp: 0
+               temp: 0,
+               rock_count: 0,
+               rock_cost: getNextBlockCost(0)
            };
            game.lands.push(land);
            i += 1;
@@ -157,13 +160,14 @@
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
         if(block.type === 'blank'){
-           if(game.mana >= 1){
-               game.mana -= 1;
+           if(game.mana >= land.rock_cost){
+               game.mana -= land.rock_cost;
                block.type = 'rock';
                block.mana_base = 1;
                block.mana_temp = 4;
                block.mana_delta = 1;
            }
+           land.rock_cost = getNextBlockCost(land.rock_count + 1);
         }
     };
 }(this['gameMod'] = {} ));
