@@ -26,11 +26,12 @@
 * (done) have a game.updateByTickDelta method
 * (done) I will need a helper that will update a main game.mana\_per\_tick value based on the state of the blocks
 * (done) update main mana by mana per tick value
+* (done) have a base amount of 1 mana per block that is not blank
+* (done) once there is a block in a land section that is not blank it will start to generate mana over time
 <!-- blocks and mana -->
-* () once there is a block in a land section it will start to generate mana over time
-* () have a base amount of 1 mana per block
 * () have a temp bonus of up to 4 more mana per block based on land object distance to sun
 * () the cost of the mana blocks goes up with each block
+* () have a data base of rock types in game.js and NOT in sm.js
 <!-- block gravity -->
 * () a block placed in the grid will drop down to the floor
 <!-- save state -->
@@ -41,5 +42,7 @@
 <!-- move sun method -->
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
-
-
+<!-- always_1 and always_3 state objects -->
+* () have always state objects that will always fire each time regardelss of what the current state object is
+* () have a new system for the state keys where I can add a number after the key name to define what the prioriy should be
+* () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
