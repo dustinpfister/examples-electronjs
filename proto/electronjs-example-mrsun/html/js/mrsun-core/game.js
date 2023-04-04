@@ -153,4 +153,17 @@
         }
         return false;
     };
+    gameMod.buyBlock = (game, i_land, i_block) => {
+        const land = game.lands[i_land];
+        const block = land.blocks[i_block];
+        if(block.type === 'blank'){
+           if(game.mana >= 1){
+               game.mana -= 1;
+               block.type = 'rock';
+               block.mana_base = 1;
+               block.mana_temp = 4;
+               block.mana_delta = 1;
+           }
+        }
+    };
 }(this['gameMod'] = {} ));

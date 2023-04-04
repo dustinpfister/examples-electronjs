@@ -175,17 +175,7 @@ sm.states.land = {
                 const by = Math.floor( ( y - data.grid_sy) / data.block_height );
                 const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
                 const block = land.blocks[i];
-                console.log(i, bx, by);
-                console.log(block);
-                if(block.type === 'blank'){
-                   if(sm.game.mana >= 1){
-                       sm.game.mana -= 1;
-                       block.type = 'rock';
-                       block.mana_base = 1;
-                       block.mana_temp = 4;
-                       block.mana_delta = 1;
-                   }
-                }
+                gameMod.buyBlock(sm.game, sm.landIndex, i);
             }
         }
     }

@@ -45,10 +45,11 @@
 * (done) display land.temp for each land object in world state
 * (done) have a temp bonus of up to 4 more mana per block based on land object distance to sun'
 * (done) display land.temp value for the current land object in land state
+* (done) have a MANA\_MAX const
+* (done) have a gameMod.buyBlock public method
 <!-- blocks and mana -->
-* () have a MANA\_MAX const
-* () the cost of the mana blocks goes up with each block
 * () have a database of rock types in game.js and NOT in sm.js
+* () the cost of the mana blocks goes up with each block
 * () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
 <!-- block state -->
 * () in land state clicking a given block in the block grid that is not blank will select that block location
