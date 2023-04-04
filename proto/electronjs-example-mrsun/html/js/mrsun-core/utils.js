@@ -23,6 +23,7 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillStyle = 'white';
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
     ctx.fillText('mana: ' + sm.game.mana, 10, 10);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
 };

@@ -7,7 +7,10 @@
     const DEFAULT_CREATE_OPTIONS = {
         cx: 100, cy: 100, x:100, y: 100, mana: 1
     };
+    const SUN_RADIUS = 20;
+    const LAND_RADIUS = 40;
     const MAX_SUN_DIST = 150;
+    const SUN_DMAX = MAX_SUN_DIST * 2 - SUN_RADIUS * 2;
     const LAND_OBJECT_COUNT = 12;
     const BLOCK_GRID_WIDTH = 10;
     const BLOCK_GRID_HEIGHT = 8;
@@ -31,16 +34,17 @@
         return blocks;
     };
     // for each land block helper
-    const forEachLandBlock = (game, forEach) => {
+    const forEachLandBlock = (game, forEachBlock, forEachLand) => {
         let i_land = 0;
         while(i_land < LAND_OBJECT_COUNT){
             const land = game.lands[i_land];
             let i_block = 0;
             while(i_block < BLOCK_GRID_LEN){
                 const block = land.blocks[i_block];
-                forEach(land, block, game);
+                forEachBlock(land, block, game);
                 i_block += 1;
             }
+            forEachLand(land, game);
             i_land += 1;
         };
     };
@@ -62,20 +66,20 @@
         game.sun = {
             cx: opt.cx, cy: opt.cy,
             x: opt.x, y: opt.y,
-            r: 32
+            r: SUN_RADIUS
         };
         // land objects
         game.lands = [];
         let i = 0;
-        const r = 40;
         while(i < LAND_OBJECT_COUNT){
            const a = Math.PI * 2 * ( i / LAND_OBJECT_COUNT);
            const land = {
                i: i,
-               x: game.sun.cx + Math.cos(a) * ( MAX_SUN_DIST + r ),
-               y: game.sun.cy + Math.sin(a) * ( MAX_SUN_DIST + r ),
-               r: r,
-               blocks: createBlockGrid()
+               x: game.sun.cx + Math.cos(a) * ( MAX_SUN_DIST + LAND_RADIUS ),
+               y: game.sun.cy + Math.sin(a) * ( MAX_SUN_DIST + LAND_RADIUS ),
+               r: LAND_RADIUS,
+               blocks: createBlockGrid(),
+               temp: 0
            };
            game.lands.push(land);
            i += 1;
@@ -92,13 +96,18 @@
         game.tick = Math.floor(game.tick_frac);
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1){
-            console.log('tick_delta: ' + tick_delta);
-            //game.mana_per_tick = getManaPerTick(game);
-            //game.mana += game.mana_per_tick;
             game.mana_per_tick = 0;
-            forEachLandBlock(game, (land, block) => {
-                 game.mana_per_tick += block.mana_base;
-            });
+            forEachLandBlock(game, 
+                (land, block, game) => {
+                     game.mana_per_tick += block.mana_base;
+                },
+                (land, game) => {
+                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
+                     const d_adjusted = d_sun - land.r - game.sun.r;
+                     const d_alpha = d_adjusted / SUN_DMAX;
+                     land.temp = parseFloat( d_alpha.toFixed(6) );
+                }
+            );
             game.mana += game.mana_per_tick;
         }
     };

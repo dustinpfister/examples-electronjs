@@ -49,6 +49,7 @@
 * () have a temp bonus of up to 4 more mana per block based on land object distance to sun
 * () the cost of the mana blocks goes up with each block
 * () have a database of rock types in game.js and NOT in sm.js
+* () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
 <!-- block state -->
 * () in land state clicking a given block in the block grid that is not blank will select that block location
 * () the block state will then start with the current land and block index
