@@ -15,9 +15,28 @@
     const BLOCK_GRID_WIDTH = 10;
     const BLOCK_GRID_HEIGHT = 8;
     const BLOCK_GRID_LEN = BLOCK_GRID_WIDTH * BLOCK_GRID_HEIGHT;
+    const BLOCK_LAND_MAX = Math.round(BLOCK_GRID_LEN * 0.5);
+    const MANA_MAX = 10000000;
+    const TEMP_MAX = 999;
+    const MAX_BLOCK_POW = Math.log(MANA_MAX) / Math.log(2);
     //-------- ----------
     // HELPERS
     //-------- ----------
+    const getNextBlockCost = (i) => {
+        let n = Math.pow(2, MAX_BLOCK_POW * (i / BLOCK_LAND_MAX));
+        n = Math.ceil(n);
+        n = n > MANA_MAX ? MANA_MAX : n;
+        return n;
+    };
+
+console.log( getNextBlockCost(0) )
+console.log( getNextBlockCost(1) )
+console.log( getNextBlockCost(2) )
+console.log( getNextBlockCost(3) )
+console.log( getNextBlockCost(4) )
+console.log( getNextBlockCost(5) )
+console.log( getNextBlockCost(40) )
+
     // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
@@ -60,16 +79,18 @@
             game.mana_per_tick = 0;
             forEachLandBlock(game, 
                 (land, block, game) => {
-                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * land.temp);
+                     const a_temp = land.temp / TEMP_MAX;
+                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
                 },
                 (land, game) => {
                      const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
                      const d_adjusted = d_sun - land.r - game.sun.r;
                      land.d_alpha = 1 - d_adjusted / SUN_DMAX;
-                     land.temp = Math.round( 999 * land.d_alpha );
+                     land.temp = Math.round( TEMP_MAX * land.d_alpha );
                 }
             );
             game.mana += game.mana_per_tick;
+            game.mana = game.mana > MANA_MAX ? MANA_MAX : game.mana;
         }
     };
     // create a new game state object

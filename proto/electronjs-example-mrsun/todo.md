@@ -43,9 +43,10 @@
 * (done) use new forEachLandBlock helper in updateByTickDelta to update mana.
 * (done) have a land.temp value that is effected by land.sun\_d
 * (done) display land.temp for each land object in world state
-* (done) have a temp bonus of up to 4 more mana per block based on land object distance to sun
+* (done) have a temp bonus of up to 4 more mana per block based on land object distance to sun'
+* (done) display land.temp value for the current land object in land state
 <!-- blocks and mana -->
-* () display land.temp value for the current land object in land state
+* () have a MANA\_MAX const
 * () the cost of the mana blocks goes up with each block
 * () have a database of rock types in game.js and NOT in sm.js
 * () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
