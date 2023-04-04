@@ -51,6 +51,27 @@
     //-------- ----------
     // PUBLIC API
     //-------- ----------
+    gameMod.updateByTickDelta = (game, tickDelta) => {
+        game.tick_last = game.tick;
+        game.tick_frac += tickDelta;
+        game.tick = Math.floor(game.tick_frac);
+        const tick_delta = game.tick - game.tick_last;
+        if(tick_delta >= 1){
+            game.mana_per_tick = 0;
+            forEachLandBlock(game, 
+                (land, block, game) => {
+                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * land.temp);
+                },
+                (land, game) => {
+                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
+                     const d_adjusted = d_sun - land.r - game.sun.r;
+                     land.d_alpha = 1 - d_adjusted / SUN_DMAX;
+                     land.temp = Math.round( 999 * land.d_alpha );
+                }
+            );
+            game.mana += game.mana_per_tick;
+        }
+    };
     // create a new game state object
     gameMod.create = (opt) => {
         opt = opt || {};
@@ -79,6 +100,7 @@
                y: game.sun.cy + Math.sin(a) * ( MAX_SUN_DIST + LAND_RADIUS ),
                r: LAND_RADIUS,
                blocks: createBlockGrid(),
+               d_alpha: 0,
                temp: 0
            };
            game.lands.push(land);
@@ -88,28 +110,8 @@
         game.BLOCK_GRID_LEN = BLOCK_GRID_LEN;
         game.BLOCK_GRID_WIDTH = BLOCK_GRID_WIDTH;
         game.BLOCK_GRID_HEIGHT = BLOCK_GRID_HEIGHT;
+        gameMod.updateByTickDelta(game, 1);
         return game;
-    };
-    gameMod.updateByTickDelta = (game, tickDelta) => {
-        game.tick_last = game.tick;
-        game.tick_frac += tickDelta;
-        game.tick = Math.floor(game.tick_frac);
-        const tick_delta = game.tick - game.tick_last;
-        if(tick_delta >= 1){
-            game.mana_per_tick = 0;
-            forEachLandBlock(game, 
-                (land, block, game) => {
-                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * land.temp);
-                },
-                (land, game) => {
-                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
-                     const d_adjusted = d_sun - land.r - game.sun.r;
-                     const d_alpha = 1 - d_adjusted / SUN_DMAX;
-                     land.temp = parseFloat( d_alpha.toFixed(6) );
-                }
-            );
-            game.mana += game.mana_per_tick;
-        }
     };
     // set the sun position
     gameMod.setSunPos = (game, x, y) => {

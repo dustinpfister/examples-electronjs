@@ -158,6 +158,7 @@ sm.states.land = {
         }
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
+        ctx.fillText('temp: ' + land.temp, 10, 40);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
