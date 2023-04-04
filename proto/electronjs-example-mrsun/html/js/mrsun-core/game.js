@@ -83,7 +83,7 @@
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
-            game.mana += game.mana_per_tick;
+            game.mana += game.mana_per_tick * tickDelta;
             game.mana = game.mana > MANA_MAX ? MANA_MAX : game.mana;
         }
     };
@@ -159,7 +159,7 @@
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
-        if(block.type === 'blank'){
+        if(block.type === 'blank' && land.rock_count < BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
                game.mana -= land.rock_cost;
                block.type = 'rock';
