@@ -30,25 +30,19 @@
         }
         return blocks;
     };
-    // get mana per tick
-    const getManaPerTick = (game) => {
-        let mana_per_tick = 0;
-        // loop land objects
+    // for each land block helper
+    const forEachLandBlock = (game, forEach) => {
         let i_land = 0;
         while(i_land < LAND_OBJECT_COUNT){
             const land = game.lands[i_land];
-            let mana_delta = 0;
-            // loop blocks
             let i_block = 0;
             while(i_block < BLOCK_GRID_LEN){
                 const block = land.blocks[i_block];
-                mana_delta += block.mana_base;
+                forEach(land, block, game);
                 i_block += 1;
             }
             i_land += 1;
-            mana_per_tick += mana_delta;
         };
-        return mana_per_tick;
     };
     //-------- ----------
     // PUBLIC API
@@ -99,7 +93,12 @@
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1){
             console.log('tick_delta: ' + tick_delta);
-            game.mana_per_tick = getManaPerTick(game);
+            //game.mana_per_tick = getManaPerTick(game);
+            //game.mana += game.mana_per_tick;
+            game.mana_per_tick = 0;
+            forEachLandBlock(game, (land, block) => {
+                 game.mana_per_tick += block.mana_base;
+            });
             game.mana += game.mana_per_tick;
         }
     };
