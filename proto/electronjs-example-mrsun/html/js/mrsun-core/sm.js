@@ -18,9 +18,10 @@ const sm = {
    states: {},
    fps_target: 30,
    now: null,
-   secs: 0,
    x:0, y:0,
    landIndex: 0,
+   ticksPerSec: 1,    // game speed is soemthing that I think should be set here
+   secs: 0,           // secs and lt are just used as a way to update game.tick count
    lt: new Date()
 };
 //-------- ----------
@@ -58,7 +59,7 @@ sm.states.world = {
     data: {},
     start: (sm, opt) => {},
     update: (sm, secs) => {
-
+       gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
     render: (sm, ctx, canvas) => {
         const sun = sm.game.sun;
@@ -83,10 +84,7 @@ sm.states.world = {
             ctx.fill();
         });
         // disp
-        ctx.fillStyle = 'white';
-        ctx.font = '15px arial';
-        ctx.textBaseline = 'top';
-        ctx.fillText('mana: ' + sm.game.mana, 10, 10);
+        utils.drawCommonDisp(sm, ctx, canvas);
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -123,10 +121,9 @@ sm.states.land = {
     start: (sm, opt, data) => {
         data.gw = data.block_width * sm.game.BLOCK_GRID_WIDTH;
         data.gh = data.block_height * sm.game.BLOCK_GRID_HEIGHT;
-        console.log(data.gw, data.gh);
     },
     update: (sm, secs, data) => {
-    
+        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
     render: (sm, ctx, canvas, data) => {
         const sun = sm.game.sun;
@@ -147,7 +144,6 @@ sm.states.land = {
             const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
             const i_block = by * sm.game.BLOCK_GRID_WIDTH + bx;
             const block = land.blocks[i_block];
-
             ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
             ctx.strokeStyle = 'white';
             ctx.beginPath();
@@ -157,10 +153,7 @@ sm.states.land = {
             i += 1;
         }
         // disp
-        ctx.fillStyle = 'white';
-        ctx.font = '15px arial';
-        ctx.textBaseline = 'top';
-        ctx.fillText('mana: ' + sm.game.mana, 10, 10);
+        utils.drawCommonDisp(sm, ctx, canvas);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {

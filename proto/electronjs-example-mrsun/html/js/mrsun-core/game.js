@@ -15,6 +15,7 @@
     //-------- ----------
     // HELPERS
     //-------- ----------
+    // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
         const blocks = [];
@@ -29,6 +30,26 @@
         }
         return blocks;
     };
+    // get mana per tick
+    const getManaPerTick = (game) => {
+        let mana_per_tick = 0;
+        // loop land objects
+        let i_land = 0;
+        while(i_land < LAND_OBJECT_COUNT){
+            const land = game.lands[i_land];
+            let mana_delta = 0;
+            // loop blocks
+            let i_block = 0;
+            while(i_block < BLOCK_GRID_LEN){
+                const block = land.blocks[i_block];
+                mana_delta += block.mana_base;
+                i_block += 1;
+            }
+            i_land += 1;
+            mana_per_tick += mana_delta;
+        };
+        return mana_per_tick;
+    };
     //-------- ----------
     // PUBLIC API
     //-------- ----------
@@ -37,7 +58,11 @@
         opt = opt || {};
         opt = Object.assign({}, DEFAULT_CREATE_OPTIONS, opt);
         const game = {
-           mana: opt.mana
+           mana: opt.mana,
+           mana_per_tick: 0,
+           tick_frac: 0,
+           tick: 0,          // game should update by a main tick count
+           tick_last: 0      // last tick can be subtracted from tick to get a tick delta
         };
         // create sun object
         game.sun = {
@@ -66,6 +91,17 @@
         game.BLOCK_GRID_WIDTH = BLOCK_GRID_WIDTH;
         game.BLOCK_GRID_HEIGHT = BLOCK_GRID_HEIGHT;
         return game;
+    };
+    gameMod.updateByTickDelta = (game, tickDelta) => {
+        game.tick_last = game.tick;
+        game.tick_frac += tickDelta;
+        game.tick = Math.floor(game.tick_frac);
+        const tick_delta = game.tick - game.tick_last;
+        if(tick_delta >= 1){
+            console.log('tick_delta: ' + tick_delta);
+            game.mana_per_tick = getManaPerTick(game);
+            game.mana += game.mana_per_tick;
+        }
     };
     // set the sun position
     gameMod.setSunPos = (game, x, y) => {

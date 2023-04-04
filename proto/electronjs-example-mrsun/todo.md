@@ -22,22 +22,24 @@
 * (done) can click on the grid and get a block index in land state
 * (done) 'blank', and 'rock' block types
 * (done) first block costs 1 mana
+* (done) have a game.tick, and game.tick\_last
+* (done) have a game.updateByTickDelta method
+* (done) I will need a helper that will update a main game.mana\_per\_tick value based on the state of the blocks
+* (done) update main mana by mana per tick value
 <!-- blocks and mana -->
 * () once there is a block in a land section it will start to generate mana over time
 * () have a base amount of 1 mana per block
 * () have a temp bonus of up to 4 more mana per block based on land object distance to sun
 * () the cost of the mana blocks goes up with each block
-
 <!-- block gravity -->
 * () a block placed in the grid will drop down to the floor
-
 <!-- save state -->
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
-
 <!-- land state - switch object buttons -->
 * () have switch state object + and - buttons in land state
-
 <!-- move sun method -->
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
+
+
