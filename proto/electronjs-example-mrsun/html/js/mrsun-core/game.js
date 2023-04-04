@@ -83,7 +83,7 @@
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
-            game.mana += game.mana_per_tick * tickDelta;
+            game.mana += Math.ceil(game.mana_per_tick * tickDelta);
             game.mana = game.mana > MANA_MAX ? MANA_MAX : game.mana;
         }
     };
