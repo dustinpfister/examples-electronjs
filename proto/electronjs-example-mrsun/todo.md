@@ -41,12 +41,11 @@
 * (done) once there is a block in a land section that is not blank it will start to generate mana over time
 * (done) replace getManaPerTick helper with new forEachLandBlock helper function
 * (done) use new forEachLandBlock helper in updateByTickDelta to update mana.
+* (done) have a land.temp value that is effected by land.sun\_d
+* (done) display land.temp for each land object in world state
+* (done) have a temp bonus of up to 4 more mana per block based on land object distance to sun
 <!-- blocks and mana -->
-* () have a land.sun\_d prop for each land object
-* () have a land.temp value that is effected by land.sun\_d
-* () display land.temp for each land object in world state
 * () display land.temp value for the current land object in land state
-* () have a temp bonus of up to 4 more mana per block based on land object distance to sun
 * () the cost of the mana blocks goes up with each block
 * () have a database of rock types in game.js and NOT in sm.js
 * () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS

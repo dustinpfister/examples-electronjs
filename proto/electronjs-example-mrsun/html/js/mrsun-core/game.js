@@ -99,12 +99,12 @@
             game.mana_per_tick = 0;
             forEachLandBlock(game, 
                 (land, block, game) => {
-                     game.mana_per_tick += block.mana_base;
+                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * land.temp);
                 },
                 (land, game) => {
                      const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
                      const d_adjusted = d_sun - land.r - game.sun.r;
-                     const d_alpha = d_adjusted / SUN_DMAX;
+                     const d_alpha = 1 - d_adjusted / SUN_DMAX;
                      land.temp = parseFloat( d_alpha.toFixed(6) );
                 }
             );
