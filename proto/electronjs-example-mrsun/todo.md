@@ -49,8 +49,7 @@
 * (done) have a gameMod.buyBlock public method
 * (done) have a database of rock types in game.js and NOT in sm.js
 * (done) the cost of the mana blocks goes up with each block
-<!-- blocks and mana -->
-* () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
+* (done) rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
 <!-- block state -->
 * () in land state clicking a given block in the block grid that is not blank will select that block location
 * () the block state will then start with the current land and block index

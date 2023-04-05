@@ -9,8 +9,8 @@
     };
     const SUN_RADIUS = 20;
     const LAND_RADIUS = 40;
-    const MAX_SUN_DIST = 150;
-    const SUN_DMAX = MAX_SUN_DIST * 2 - SUN_RADIUS * 2;
+    const SUNAREA_RADIUS = 150;
+    const SUN_DMAX = SUNAREA_RADIUS * 2 - SUN_RADIUS * 2;
     const LAND_OBJECT_COUNT = 12;
     const BLOCK_GRID_WIDTH = 10;
     const BLOCK_GRID_HEIGHT = 8;
@@ -120,8 +120,8 @@
            const a = Math.PI * 2 * ( i / LAND_OBJECT_COUNT);
            const land = {
                i: i,
-               x: game.sun.cx + Math.cos(a) * ( MAX_SUN_DIST + LAND_RADIUS ),
-               y: game.sun.cy + Math.sin(a) * ( MAX_SUN_DIST + LAND_RADIUS ),
+               x: game.sun.cx + Math.cos(a) * ( SUNAREA_RADIUS + LAND_RADIUS ),
+               y: game.sun.cy + Math.sin(a) * ( SUNAREA_RADIUS + LAND_RADIUS ),
                r: LAND_RADIUS,
                blocks: createBlockGrid(),
                d_alpha: 0,
@@ -132,7 +132,7 @@
            game.lands.push(land);
            i += 1;
         }
-        game.MAX_SUN_DIST = MAX_SUN_DIST;
+        game.SUNAREA_RADIUS = SUNAREA_RADIUS;
         game.BLOCK_GRID_LEN = BLOCK_GRID_LEN;
         game.BLOCK_GRID_WIDTH = BLOCK_GRID_WIDTH;
         game.BLOCK_GRID_HEIGHT = BLOCK_GRID_HEIGHT;
@@ -145,7 +145,7 @@
         sun.x = x;
         sun.y = y;
         const d = utils.distance(x, y, sun.cx, sun.cy);
-        const md = MAX_SUN_DIST - sun.r;
+        const md = SUNAREA_RADIUS - sun.r;
         if(d >= md){
             const a = Math.atan2(sun.y - sun.cy, sun.x - sun.cx);
             sun.x = sun.cx + Math.cos(a) * md;

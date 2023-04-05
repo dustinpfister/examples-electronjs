@@ -66,7 +66,7 @@ sm.states.world = {
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // max dist circle
-        const md = sm.game.MAX_SUN_DIST;
+        const md = sm.game.SUNAREA_RADIUS;
         ctx.fillStyle = 'cyan';
         ctx.beginPath();
         ctx.arc(sun.cx, sun.cy, md, 0, Math.PI * 2);
@@ -95,7 +95,7 @@ sm.states.world = {
             const sun = sm.game.sun;
             const d = utils.distance(x, y, sun.cx, sun.cy);
             // clicked in the sun area?
-            if(d < sm.game.MAX_SUN_DIST){
+            if(d < sm.game.SUNAREA_RADIUS){
                 gameMod.setSunPos(sm.game, x, y);
                 return;
             }
