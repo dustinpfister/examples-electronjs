@@ -6,7 +6,7 @@
     //-------- ----------
     const constant = {};
     constant.DEFAULT_CREATE_OPTIONS = {
-        cx: 100, cy: 100, x:100, y: 100, mana: 1
+        cx: 100, cy: 100, x:100, y: 100, mana: '1'
     };
     constant.SUN_RADIUS = 20;
     constant.LAND_RADIUS = 40;
@@ -17,7 +17,10 @@
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
-    constant.MANA_MAX = 10000000;
+    //constant.MANA_MAX = 10000000;
+
+    constant.MANA_MAX = new Decimal('10000000');
+
     constant.TEMP_MAX = 999;
     constant.MAX_BLOCK_POW = Math.log(constant.MANA_MAX) / Math.log(2);
     //-------- ----------
@@ -93,8 +96,11 @@
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
-            game.mana += Math.ceil(game.mana_per_tick * tick_delta);
-            game.mana = game.mana > constant.MANA_MAX ? constant.MANA_MAX : game.mana;
+            //game.mana += Math.ceil(game.mana_per_tick * tick_delta);
+            //game.mana = game.mana > constant.MANA_MAX ? constant.MANA_MAX : game.mana;
+            game.mana = game.mana.add( Math.ceil(game.mana_per_tick * tick_delta) );
+            game.mana = game.mana.gt(constant.MANA_MAX) ?  new Decimal( constant.MANA_MAX ) : game.mana;
+
         }
     };
     // create a new game state object
@@ -102,7 +108,10 @@
         opt = opt || {};
         opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
         const game = {
-           mana: opt.mana,
+
+           //mana: opt.mana,
+           mana: new Decimal(opt.mana),
+
            mana_per_tick: 0,
            tick_frac: 0,
            tick: 0,          // game should update by a main tick count
@@ -134,12 +143,6 @@
            i += 1;
         }
         Object.assign(game, constant);
-        //game.SUNAREA_RADIUS = constant.SUNAREA_RADIUS;
-        //game.BLOCK_GRID_LEN = constant.BLOCK_GRID_LEN;
-        //game.BLOCK_GRID_WIDTH = constant.BLOCK_GRID_WIDTH;
-        //game.BLOCK_GRID_HEIGHT = constant.BLOCK_GRID_HEIGHT;
-        //game.MANA_MAX = constant.MANA_MAX;
-        //gameMod.updateByTickDelta(game, 1);
         return game;
     };
     // set the sun position
@@ -173,7 +176,8 @@
         const block = land.blocks[i_block];
         if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
-               game.mana -= land.rock_cost;
+               //game.mana -= land.rock_cost;
+               game.mana.sub(land.rock_cost)
                Object.assign(block, constant.BLOCKS.rock)
            }
            land.rock_cost = getNextBlockCost(land.rock_count + 1);

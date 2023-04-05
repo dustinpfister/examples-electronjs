@@ -33,8 +33,11 @@
 * () a block placed in the grid will drop down to the floor
 
 ## (  ) - Big Numbers and Mana
-* () see about using BigInit or a lib such as decimal.js for break-infinity.js
-* () use big numbers for everything mana realted
+* (done) start using decimal.js for big numbers
+* (done) use Decimal for game.mana value
+
+* () use Decimal for game.mana\_per\_tick
+
 * () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
 * () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
 
