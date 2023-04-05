@@ -7,8 +7,8 @@
 <!-- block gravity -->
 * () a block placed in the grid will drop down to the floor
 <!-- always_1 and always_3 state objects -->
-* () have always state objects that will always fire each time regardelss of what the current state object is
-* () have a new system for the state keys where I can add a number after the key name to define what the prioriy should be
+* () have always state objects that will always fire each time regardless of what the current state object is
+* () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
 ## (  ) - r0 - Prototype
@@ -47,9 +47,9 @@
 * (done) display land.temp value for the current land object in land state
 * (done) have a MANA\_MAX const
 * (done) have a gameMod.buyBlock public method
+* (done) have a database of rock types in game.js and NOT in sm.js
+* (done) the cost of the mana blocks goes up with each block
 <!-- blocks and mana -->
-* () have a database of rock types in game.js and NOT in sm.js
-* () the cost of the mana blocks goes up with each block
 * () rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
 <!-- block state -->
 * () in land state clicking a given block in the block grid that is not blank will select that block location

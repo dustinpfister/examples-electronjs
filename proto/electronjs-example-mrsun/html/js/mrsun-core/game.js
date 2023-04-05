@@ -20,6 +20,20 @@
     const TEMP_MAX = 999;
     const MAX_BLOCK_POW = Math.log(MANA_MAX) / Math.log(2);
     //-------- ----------
+    // BLOCK TYPES
+    //-------- ----------
+    const BLOCKS = {};
+    BLOCKS.blank = {
+        type: 'blank',
+        mana_base: 0,
+        mana_temp: 0
+    };
+    BLOCKS.rock = {
+        type: 'rock',
+        mana_base: 1,
+        mana_temp: 4
+    };
+    //-------- ----------
     // HELPERS
     //-------- ----------
     const getNextBlockCost = (i) => {
@@ -33,12 +47,7 @@
         let i = 0;
         const blocks = [];
         while(i < BLOCK_GRID_LEN){
-            blocks.push({
-                type: 'blank',
-                mana_base: 0,
-                mana_temp: 0,
-                mana_delta: 0
-            });
+            blocks.push(  Object.assign({}, BLOCKS.blank) );
             i += 1;
         }
         return blocks;
@@ -162,10 +171,7 @@
         if(block.type === 'blank' && land.rock_count < BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
                game.mana -= land.rock_cost;
-               block.type = 'rock';
-               block.mana_base = 1;
-               block.mana_temp = 4;
-               block.mana_delta = 1;
+               Object.assign(block, BLOCKS.rock)
            }
            land.rock_cost = getNextBlockCost(land.rock_count + 1);
         }
