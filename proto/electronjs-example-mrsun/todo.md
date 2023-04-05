@@ -37,9 +37,9 @@
 * (done) use utils.drawButton method for back button in land state
 * (done) have switch state object + and - buttons in land state
 * (done) have the canvas take up 100 percent of browser window
-* () display current mana delta values for each land object in world state
+* (done) display mana per tick
+* (done) constant object in game.js
 * () display a mana bar
-* () displat mana per tick
 
 ## ( done 05/04/2023 ) - Basic idea working
 * (done) use a canvas element for the whole game

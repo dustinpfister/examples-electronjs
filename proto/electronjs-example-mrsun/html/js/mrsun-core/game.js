@@ -4,31 +4,32 @@
     //-------- ----------
     // CONST
     //-------- ----------
-    const DEFAULT_CREATE_OPTIONS = {
+    const constant = {};
+    constant.DEFAULT_CREATE_OPTIONS = {
         cx: 100, cy: 100, x:100, y: 100, mana: 1
     };
-    const SUN_RADIUS = 20;
-    const LAND_RADIUS = 40;
-    const SUNAREA_RADIUS = 150;
-    const SUN_DMAX = SUNAREA_RADIUS * 2 - SUN_RADIUS * 2;
-    const LAND_OBJECT_COUNT = 12;
-    const BLOCK_GRID_WIDTH = 10;
-    const BLOCK_GRID_HEIGHT = 8;
-    const BLOCK_GRID_LEN = BLOCK_GRID_WIDTH * BLOCK_GRID_HEIGHT;
-    const BLOCK_LAND_MAX = Math.round(BLOCK_GRID_LEN * 0.5);
-    const MANA_MAX = 10000000;
-    const TEMP_MAX = 999;
-    const MAX_BLOCK_POW = Math.log(MANA_MAX) / Math.log(2);
+    constant.SUN_RADIUS = 20;
+    constant.LAND_RADIUS = 40;
+    constant.SUNAREA_RADIUS = 150;
+    constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
+    constant.LAND_OBJECT_COUNT = 12;
+    constant.BLOCK_GRID_WIDTH = 10;
+    constant.BLOCK_GRID_HEIGHT = 8;
+    constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
+    constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
+    constant.MANA_MAX = 10000000;
+    constant.TEMP_MAX = 999;
+    constant.MAX_BLOCK_POW = Math.log(constant.MANA_MAX) / Math.log(2);
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
-    const BLOCKS = {};
-    BLOCKS.blank = {
+    constant.BLOCKS = {};
+    constant.BLOCKS.blank = {
         type: 'blank',
         mana_base: 0,
         mana_temp: 0
     };
-    BLOCKS.rock = {
+    constant.BLOCKS.rock = {
         type: 'rock',
         mana_base: 1,
         mana_temp: 4
@@ -37,17 +38,17 @@
     // HELPERS
     //-------- ----------
     const getNextBlockCost = (i) => {
-        let n = Math.pow(2, MAX_BLOCK_POW * (i / BLOCK_LAND_MAX));
+        let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
         n = Math.ceil(n);
-        n = n > MANA_MAX ? MANA_MAX : n;
+        n = n > constant.MANA_MAX ? constant.MANA_MAX : n;
         return n;
     };
     // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
         const blocks = [];
-        while(i < BLOCK_GRID_LEN){
-            blocks.push(  Object.assign({}, BLOCKS.blank) );
+        while(i < constant.BLOCK_GRID_LEN){
+            blocks.push(  Object.assign({}, constant.BLOCKS.blank) );
             i += 1;
         }
         return blocks;
@@ -55,11 +56,11 @@
     // for each land block helper
     const forEachLandBlock = (game, forEachLand, forEachBlock) => {
         let i_land = 0;
-        while(i_land < LAND_OBJECT_COUNT){
+        while(i_land < constant.LAND_OBJECT_COUNT){
             const land = game.lands[i_land];
             let i_block = 0;
             forEachLand(land, game);
-            while(i_block < BLOCK_GRID_LEN){
+            while(i_block < constant.BLOCK_GRID_LEN){
                 const block = land.blocks[i_block];
                 forEachBlock(land, block, game);
                 i_block += 1;
@@ -81,25 +82,25 @@
                 (land, game) => {
                      const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
                      const d_adjusted = d_sun - land.r - game.sun.r;
-                     land.d_alpha = 1 - d_adjusted / SUN_DMAX;
-                     land.temp = Math.round( TEMP_MAX * land.d_alpha );
+                     land.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
+                     land.temp = Math.round( constant.TEMP_MAX * land.d_alpha );
                      land.rock_count = 0;
                 },
                 (land, block, game) => {
-                     const a_temp = land.temp / TEMP_MAX;
+                     const a_temp = land.temp / constant.TEMP_MAX;
                      game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
                      land.rock_count += block.type === 'rock' ? 1 : 0;
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
             game.mana += Math.ceil(game.mana_per_tick * tick_delta);
-            game.mana = game.mana > MANA_MAX ? MANA_MAX : game.mana;
+            game.mana = game.mana > constant.MANA_MAX ? constant.MANA_MAX : game.mana;
         }
     };
     // create a new game state object
     gameMod.create = (opt) => {
         opt = opt || {};
-        opt = Object.assign({}, DEFAULT_CREATE_OPTIONS, opt);
+        opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
         const game = {
            mana: opt.mana,
            mana_per_tick: 0,
@@ -111,18 +112,18 @@
         game.sun = {
             cx: opt.cx, cy: opt.cy,
             x: opt.x, y: opt.y,
-            r: SUN_RADIUS
+            r: constant.SUN_RADIUS
         };
         // land objects
         game.lands = [];
         let i = 0;
-        while(i < LAND_OBJECT_COUNT){
-           const a = Math.PI * 2 * ( i / LAND_OBJECT_COUNT);
+        while(i < constant.LAND_OBJECT_COUNT){
+           const a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
            const land = {
                i: i,
-               x: game.sun.cx + Math.cos(a) * ( SUNAREA_RADIUS + LAND_RADIUS ),
-               y: game.sun.cy + Math.sin(a) * ( SUNAREA_RADIUS + LAND_RADIUS ),
-               r: LAND_RADIUS,
+               x: game.sun.cx + Math.cos(a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
+               y: game.sun.cy + Math.sin(a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
+               r: constant.LAND_RADIUS,
                blocks: createBlockGrid(),
                d_alpha: 0,
                temp: 0,
@@ -132,11 +133,13 @@
            game.lands.push(land);
            i += 1;
         }
-        game.SUNAREA_RADIUS = SUNAREA_RADIUS;
-        game.BLOCK_GRID_LEN = BLOCK_GRID_LEN;
-        game.BLOCK_GRID_WIDTH = BLOCK_GRID_WIDTH;
-        game.BLOCK_GRID_HEIGHT = BLOCK_GRID_HEIGHT;
-        gameMod.updateByTickDelta(game, 1);
+        Object.assign(game, constant);
+        //game.SUNAREA_RADIUS = constant.SUNAREA_RADIUS;
+        //game.BLOCK_GRID_LEN = constant.BLOCK_GRID_LEN;
+        //game.BLOCK_GRID_WIDTH = constant.BLOCK_GRID_WIDTH;
+        //game.BLOCK_GRID_HEIGHT = constant.BLOCK_GRID_HEIGHT;
+        //game.MANA_MAX = constant.MANA_MAX;
+        //gameMod.updateByTickDelta(game, 1);
         return game;
     };
     // set the sun position
@@ -145,7 +148,7 @@
         sun.x = x;
         sun.y = y;
         const d = utils.distance(x, y, sun.cx, sun.cy);
-        const md = SUNAREA_RADIUS - sun.r;
+        const md = constant.SUNAREA_RADIUS - sun.r;
         if(d >= md){
             const a = Math.atan2(sun.y - sun.cy, sun.x - sun.cx);
             sun.x = sun.cx + Math.cos(a) * md;
@@ -155,7 +158,7 @@
     // get land object by x, y pos or false if nothing there
     gameMod.getLandByPos = (game, x, y) => {
         let i = 0;
-        while(i < LAND_OBJECT_COUNT){
+        while(i < constant.LAND_OBJECT_COUNT){
            const land = game.lands[i];
            const d = utils.distance(x, y, land.x, land.y);
            if(d < land.r){
@@ -168,10 +171,10 @@
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
-        if(block.type === 'blank' && land.rock_count < BLOCK_LAND_MAX){
+        if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
                game.mana -= land.rock_cost;
-               Object.assign(block, BLOCKS.rock)
+               Object.assign(block, constant.BLOCKS.rock)
            }
            land.rock_cost = getNextBlockCost(land.rock_count + 1);
         }
