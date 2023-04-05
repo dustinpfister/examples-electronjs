@@ -1,11 +1,5 @@
 # electionjs-example-mrsun
 
-## (  ) - Block state?
-* () in land state clicking a given block in the block grid that is not blank will select that block location
-* () the block state will then start with the current land and block index
-* () from this state I can then sell the block to get the mana value if I want
-* () detailed state info about the block can also be viewed here
-
 ## (  ) - Move Sun Method?
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
@@ -19,18 +13,23 @@
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
+## (  ) - Better display of land objects in world state
+* () I would like to see a small grid for each land object in world state
+* () toggle dev tools menu option
+
+## () - Water level
+* () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
+
 ## (  ) - Big Numbers and Mana
 * () see about using BigInit or a lib such as decimal.js for break-infinity.js
 * () use big numbers for everything mana realted
 * () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
 * () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
 
+## (  ) - 
+
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
-
-## (  ) - Better display of land objects in world state
-* () I would like to see a small grid for each land object in world state
-* () toggle dev tools menu option
 
 ## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
 * (done) utils.drawButton method
