@@ -27,3 +27,11 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillText('mana: ' + sm.game.mana, 10, 10);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
 };
+utils.drawButton = (sm, button, ctx, canvas) => {
+    ctx.fillStyle = '#888888';
+    ctx.strokeStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(button.x, button.y, button.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+};

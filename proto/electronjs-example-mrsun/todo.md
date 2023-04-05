@@ -1,17 +1,46 @@
 # electionjs-example-mrsun
 
-## (  ) - rx
-<!-- move sun method -->
+## (  ) - Block state?
+* () in land state clicking a given block in the block grid that is not blank will select that block location
+* () the block state will then start with the current land and block index
+* () from this state I can then sell the block to get the mana value if I want
+* () detailed state info about the block can also be viewed here
+
+## (  ) - Move Sun Method?
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
-<!-- block gravity -->
-* () a block placed in the grid will drop down to the floor
-<!-- always_1 and always_3 state objects -->
+
+## (  ) - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
-## (  ) - r0 - Prototype
+## () Save and Load state
+* () I will need a preload.js solution for saving and loading
+* () just save and load a json file in the home folder
+
+## (  ) - Big Numbers and Mana
+* () see about using BigInit or a lib such as decimal.js for break-infinity.js
+* () use big numbers for everything mana realted
+* () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
+* () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
+
+## (  ) - Block Gravity
+* () a block placed in the grid will drop down to the floor
+
+## (  ) - Land state switch buttons, improved display of status
+* (done) utils.drawButton method
+* (done) use utils.drawButton method for back button in land state
+
+* () have switch state object + and - buttons in land state
+
+* () have the canvas take up 100 percent of browser window
+* () I would like to see a small grid for each land object in world state
+* () display current mana delta values for each land object in world state
+* () toggle dev tools menu option
+* () display a mana bar
+
+## ( done 05/04/2023 ) - Basic idea working
 * (done) use a canvas element for the whole game
 * (done) start a game.js file that will be used to create, and update a game state object
 * (done) have a state machine in a sm.js file
@@ -50,17 +79,3 @@
 * (done) have a database of rock types in game.js and NOT in sm.js
 * (done) the cost of the mana blocks goes up with each block
 * (done) rename MAX\_SUN\_DIST to SUNAREA\_RADIUS
-<!-- block state -->
-* () in land state clicking a given block in the block grid that is not blank will select that block location
-* () the block state will then start with the current land and block index
-* () from this state I can then sell the block to get the mana value if I want
-* () detailed state info about the block can also be viewed here
-<!-- world state - show small grid for each land object -->
-* () I would like to see a small grid for each land object in world state
-* () display current mana delta values for each land object
-<!-- save state -->
-* () I will need a preload.js solution for saving and loading
-* () just save and load a json file in the home folder
-<!-- land state - switch object buttons -->
-* () have switch state object + and - buttons in land state
-

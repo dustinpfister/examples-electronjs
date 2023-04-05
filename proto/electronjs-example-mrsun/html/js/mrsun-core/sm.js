@@ -116,6 +116,8 @@ sm.states.world = {
 sm.states.land = {
     data: {
         button_back : {  x: 600, y: 38, r: 32 },
+        button_next : {  x: 606, y: 240, r: 24 },
+        button_last : {  x: 34, y: 240, r: 24 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -134,12 +136,10 @@ sm.states.land = {
         const land = sm.game.lands[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
-        // back button
-        const bb = data.button_back;
-        ctx.fillStyle = 'red';
-        ctx.beginPath();
-        ctx.arc(bb.x, bb.y, bb.r, 0, Math.PI * 2);
-        ctx.fill();
+        // buttons
+        utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_last, sm.ctx, sm.canvas);
         // render blocks
         let i = 0;
         const sx = data.grid_sx, sy = data.grid_sy;
@@ -166,9 +166,23 @@ sm.states.land = {
         pointerdown : (sm, x, y, e, data) => {
             const land = sm.game.lands[sm.landIndex];
             // back button
-            const bb = data.button_back;
-            if( utils.distance(bb.x, bb.y, x, y) <= bb.r ){
+            let button = data.button_back;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
                 sm.setState('world', {});
+            }
+            // next and last buttons
+            button = data.button_next;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                console.log('next');
+                sm.landIndex = (sm.landIndex + 1) % 12;
+                console.log(sm.landIndex);
+            }
+            button = data.button_last;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                let n = sm.landIndex - 1;
+                n = n < 0 ? 11 : n;
+                sm.landIndex = n;
+                console.log('last');
             }
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
