@@ -32,8 +32,7 @@
 * (done) utils.drawButton method
 * (done) use utils.drawButton method for back button in land state
 * (done) have switch state object + and - buttons in land state
-
-* () have the canvas take up 100 percent of browser window
+* (done) have the canvas take up 100 percent of browser window
 
 * () I would like to see a small grid for each land object in world state
 * () display current mana delta values for each land object in world state

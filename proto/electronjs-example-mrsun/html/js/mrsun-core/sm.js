@@ -9,10 +9,6 @@ const container = document.getElementById('wrap_main') || document.body;
 container.appendChild(canvas);
 canvas.width =  640;
 canvas.height = 480;
-
-//canvas.style.width = '100%';
-//canvas.style.height = '100%';
-
 const sm = {
    canvas: canvas,
    ctx: ctx,
@@ -232,6 +228,25 @@ sm.canvas.addEventListener('pointermove', (e) => {
 });
 sm.canvas.addEventListener('pointerup', (e) => {
     commonPointerAction(sm, 'pointerup', e);
+});
+//-------- ----------
+// RESIZE EVENT
+//-------- ----------
+const setCanvasScale = () => {
+   const w = window.innerWidth;
+   const h = window.innerHeight;
+   if(w / 4 < h / 3){
+      canvas.style.width = w + 'px';
+      canvas.style.height = Math.floor(3 * w / 4) + 'px';
+   }
+   if(w / 4 > h / 3){
+      canvas.style.width = Math.floor(h / 3 * 4) + 'px';
+      canvas.style.height = h + 'px';
+   }
+};
+setCanvasScale();
+window.addEventListener('resize', (e) => {
+   setCanvasScale();
 });
 //-------- ----------
 // MAIN APP LOOP
