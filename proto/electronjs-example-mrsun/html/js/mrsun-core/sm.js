@@ -106,7 +106,6 @@ sm.states.world = {
                 sm.setState('land', {});
                 return;
             }
-            console.log('Whole lot of nothing here');
         }
     }
 };
@@ -173,16 +172,13 @@ sm.states.land = {
             // next and last buttons
             button = data.button_next;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                console.log('next');
                 sm.landIndex = (sm.landIndex + 1) % 12;
-                console.log(sm.landIndex);
             }
             button = data.button_last;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
                 let n = sm.landIndex - 1;
                 n = n < 0 ? 11 : n;
                 sm.landIndex = n;
-                console.log('last');
             }
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
