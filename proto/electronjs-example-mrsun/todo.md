@@ -35,11 +35,14 @@
 ## (  ) - Big Numbers and Mana
 * (done) start using decimal.js for big numbers
 * (done) use Decimal for game.mana value
+* (done) use Decimal for game.mana\_per\_tick
 
-* () use Decimal for game.mana\_per\_tick
+* () see about having a nice format option for these decimal objects in utils.drawCommonDisp
 
 * () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
 * () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
+
+* () use Decimal for next block cost
 
 ## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
 * (done) utils.drawButton method

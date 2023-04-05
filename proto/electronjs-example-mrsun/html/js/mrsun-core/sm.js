@@ -20,7 +20,7 @@ const sm = {
    now: null,
    x:0, y:0,
    landIndex: 0,
-   ticksPerSec: 100000,    // game speed is soemthing that I think should be set here
+   ticksPerSec: 1,    // game speed is soemthing that I think should be set here
    secs: 0,           // secs and lt are just used as a way to update game.tick count
    lt: new Date()
 };

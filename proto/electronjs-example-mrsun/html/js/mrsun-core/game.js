@@ -2,6 +2,14 @@
 // create and update a game state object
 (function(gameMod){
     //-------- ----------
+    // Decimal
+    //-------- ----------
+    Decimal.set({ 
+        precision: 40,
+        maxE: 30,
+        minE: -30
+    });
+    //-------- ----------
     // CONST
     //-------- ----------
     const constant = {};
@@ -17,12 +25,9 @@
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
-    //constant.MANA_MAX = 10000000;
-
-    constant.MANA_MAX = new Decimal('10000000');
-
+    constant.MANA_MAX = new Decimal('1e22');
     constant.TEMP_MAX = 999;
-    constant.MAX_BLOCK_POW = Math.log(constant.MANA_MAX) / Math.log(2);
+    constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
@@ -80,7 +85,7 @@
         game.tick = Math.floor(game.tick_frac);
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1){
-            game.mana_per_tick = 0;
+            game.mana_per_tick = new Decimal(0);
             forEachLandBlock(game,
                 (land, game) => {
                      const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
@@ -91,16 +96,13 @@
                 },
                 (land, block, game) => {
                      const a_temp = land.temp / constant.TEMP_MAX;
-                     game.mana_per_tick += Math.round(block.mana_base + block.mana_temp * a_temp);
+                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                      land.rock_count += block.type === 'rock' ? 1 : 0;
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
-            //game.mana += Math.ceil(game.mana_per_tick * tick_delta);
-            //game.mana = game.mana > constant.MANA_MAX ? constant.MANA_MAX : game.mana;
-            game.mana = game.mana.add( Math.ceil(game.mana_per_tick * tick_delta) );
+            game.mana = game.mana.add( Decimal.mul(game.mana_per_tick, tick_delta) );
             game.mana = game.mana.gt(constant.MANA_MAX) ?  new Decimal( constant.MANA_MAX ) : game.mana;
-
         }
     };
     // create a new game state object
@@ -108,11 +110,8 @@
         opt = opt || {};
         opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
         const game = {
-
-           //mana: opt.mana,
            mana: new Decimal(opt.mana),
-
-           mana_per_tick: 0,
+           mana_per_tick: new Decimal(0),
            tick_frac: 0,
            tick: 0,          // game should update by a main tick count
            tick_last: 0      // last tick can be subtracted from tick to get a tick delta

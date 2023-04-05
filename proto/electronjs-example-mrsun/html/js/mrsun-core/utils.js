@@ -25,13 +25,12 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillStyle = '#0000aa';
     const a_mana = sm.game.mana / sm.game.MANA_MAX;
     ctx.fillRect(10, 4, 200 * a_mana, 17);
-
-
+    // text
     ctx.fillStyle = 'white';
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.fillText('mana: ' + sm.game.mana + ' (+' + sm.game.mana_per_tick + ') ', 15, 5);
+    ctx.fillText('mana: ' + sm.game.mana.toString() + ' (+' + sm.game.mana_per_tick.toString() + ') ', 15, 5);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
     
 };
