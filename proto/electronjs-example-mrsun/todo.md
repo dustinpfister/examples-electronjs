@@ -17,19 +17,26 @@
 * () I would like to see a small grid for each land object in world state
 * () toggle dev tools menu option
 
-## () - Water level
+## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
+
+## (  ) - Block Type Counts
+* () block type counts for each block type
+* () counts for each type in each land object
+* () global total counts in game object
+* () use global rock count over that of land for setting next block price 
+
+## (  ) - Block Rock Type Upgrades
+* () 
+
+## (  ) - Block Gravity
+* () a block placed in the grid will drop down to the floor
 
 ## (  ) - Big Numbers and Mana
 * () see about using BigInit or a lib such as decimal.js for break-infinity.js
 * () use big numbers for everything mana realted
 * () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
 * () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
-
-## (  ) - 
-
-## (  ) - Block Gravity
-* () a block placed in the grid will drop down to the floor
 
 ## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
 * (done) utils.drawButton method

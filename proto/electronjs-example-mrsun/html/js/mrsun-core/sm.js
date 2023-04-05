@@ -24,6 +24,11 @@ const sm = {
    secs: 0,           // secs and lt are just used as a way to update game.tick count
    lt: new Date()
 };
+
+const x = new Decimal('123456');
+console.log(x)
+console.log(x.e);
+
 //-------- ----------
 // Methods
 //-------- ----------
