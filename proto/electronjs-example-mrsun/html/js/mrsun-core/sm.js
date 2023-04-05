@@ -9,6 +9,10 @@ const container = document.getElementById('wrap_main') || document.body;
 container.appendChild(canvas);
 canvas.width =  640;
 canvas.height = 480;
+
+//canvas.style.width = '100%';
+//canvas.style.height = '100%';
+
 const sm = {
    canvas: canvas,
    ctx: ctx,
@@ -199,11 +203,15 @@ sm.states.land = {
 // POINTER EVENTS
 //-------- ----------
 const getPointerPos = (e) => {
-    const bx = e.target.getBoundingClientRect();
-    return {
+    const canvas = e.target;
+    const bx = canvas.getBoundingClientRect();
+    const pos = {
         x: e.clientX - bx.left,
         y: e.clientY - bx.top
     };
+    pos.x = Math.floor((pos.x / canvas.scrollWidth) * canvas.width);
+    pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
+    return pos
 };
 const commonPointerAction = (sm, type, e) => {
     const pos = getPointerPos(e);
