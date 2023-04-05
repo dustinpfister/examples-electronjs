@@ -32,16 +32,16 @@
 * () I would like to see a small grid for each land object in world state
 * () toggle dev tools menu option
 
-## (  ) - Land state switch buttons, improved display of status
+## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
 * (done) utils.drawButton method
 * (done) use utils.drawButton method for back button in land state
 * (done) have switch state object + and - buttons in land state
 * (done) have the canvas take up 100 percent of browser window
 * (done) display mana per tick
 * (done) constant object in game.js
-* () display a mana bar
+* (done) display a mana bar
 
-## ( done 05/04/2023 ) - Basic idea working
+## ( done 04/05/2023 ) - Basic idea working
 * (done) use a canvas element for the whole game
 * (done) start a game.js file that will be used to create, and update a game state object
 * (done) have a state machine in a sm.js file
