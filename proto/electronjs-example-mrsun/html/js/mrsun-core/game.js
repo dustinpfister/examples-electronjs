@@ -83,6 +83,7 @@
         const blocks = [];
         while(i < constant.BLOCK_GRID_LEN){
             const block = Object.assign({}, constant.BLOCKS.blank);
+            block.level = 1;
             block.mana_value = createManaValue(0);
             blocks.push( block );
             i += 1;

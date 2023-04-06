@@ -143,6 +143,9 @@ sm.states.land = {
         // render blocks
         let i = 0;
         const sx = data.grid_sx, sy = data.grid_sy;
+        ctx.font = '10px arial';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
         while(i < sm.game.BLOCK_GRID_LEN){
             const bx = i % sm.game.BLOCK_GRID_WIDTH;
             const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
@@ -151,9 +154,15 @@ sm.states.land = {
             ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
             ctx.strokeStyle = 'white';
             ctx.beginPath();
-            ctx.rect(sx + data.block_width * bx, sy + data.block_height * by, data.block_width, data.block_height);
+            const x = sx + data.block_width * bx;
+            const y = sy + data.block_height * by;
+            ctx.rect(x, y, data.block_width, data.block_height);
             ctx.fill();
             ctx.stroke();
+            if(block.type === 'rock'){
+                ctx.fillStyle = 'white';
+                ctx.fillText(block.level, x + 5, y + 5);
+            }
             i += 1;
         }
         // buttons
