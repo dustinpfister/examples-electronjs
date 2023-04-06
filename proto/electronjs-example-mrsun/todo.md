@@ -20,29 +20,45 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
+
+
+## (  ) - Next block cost
+* () use global rock count over that of land for setting next block price 
+* () use Decimal for next block cost value
+* () use the format utils method for next block cost
+
 ## (  ) - Block Type Counts
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object
-* () use global rock count over that of land for setting next block price 
-
-## (  ) - Block Rock Type Upgrades
-* () 
 
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
 
-## (  ) - Big Numbers and Mana
+## (  ) - Block Rock Type Upgrades
+* () start an 'upgrade' mode that will upgrade a block when clicked
+
+## (  ) - Blocks Modes, create and absorb
+* () have a state.data.block\_mode property with a default setting of 'create'
+* () the action that I all ready have when clicking a grid area can be this create mode
+* () start an 'absorb' mode that will remove a block when clicked
+* () have create and absorbe buttons to the left side
+* () move the next and last buttons down
+* () a mana value of the block will be added to game.mana when the block is absorbed
+
+## (  ) - Mana Level, Mana cap
+* (done) have a game.mana\_level that will be used to define the current mana cap value
+* (done) have a game.mana\_cap that will automacity bump forward up to the true max each time it is reached \( Like in Gemcraft \)
+* (done) in gameMod.updateByTickDelta each time game.mana > game.mana\_cap bump up mana level and update cap
+* (done) use mana\_cap over MANA MAX in utils.drawCommonDisp
+* () display current cap in mana bar
+
+## ( done 04/05/2023 ) - Big Numbers and Mana
 * (done) start using decimal.js for big numbers
 * (done) use Decimal for game.mana value
 * (done) use Decimal for game.mana\_per\_tick
-
-* () see about having a nice format option for these decimal objects in utils.drawCommonDisp
-
-* () still have a true max mana, but have it be a very large value based on whatever the limits are for what is being used
-* () have a game max mana that will automacity bump forward to the true max each time it is reached \( Like in Gemcraft \)
-
-* () use Decimal for next block cost
+* (done) see about having a nice format option for these decimal objects in utils.drawCommonDisp
+* (done) still have a true max mana, but have it be a very large value based on what a very large limit should be for the game
 
 ## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
 * (done) utils.drawButton method

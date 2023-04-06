@@ -18,7 +18,7 @@ utils.boundingBox = function (x1, y1, w1, h1, x2, y2, w2, h2) {
 // format a decimal object
 utils.formatDecimal = (function(){
     const NAMES = [
-       'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'
+       'K',   'M', 'B',   'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'
     ]
     return (n) => {
         if(n.e < 3){
@@ -41,7 +41,8 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillStyle = '#888888';
     ctx.fillRect(10, 4, 200, 17);
     ctx.fillStyle = '#0000aa';
-    const a_mana = sm.game.mana / sm.game.MANA_MAX;
+    //const a_mana = sm.game.mana / sm.game.MANA_MAX;
+    const a_mana = sm.game.mana.div(sm.game.mana_cap);
     ctx.fillRect(10, 4, 200 * a_mana, 17);
     // text
     ctx.fillStyle = 'white';
