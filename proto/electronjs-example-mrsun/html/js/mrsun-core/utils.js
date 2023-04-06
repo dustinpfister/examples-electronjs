@@ -19,16 +19,19 @@ utils.boundingBox = function (x1, y1, w1, h1, x2, y2, w2, h2) {
 utils.formatDecimal = (function(){
     const NAMES = [
        'K',   'M', 'B',   'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'
-    ]
-    return (n) => {
+    ];
+    return (n, dp) => {
+        dp = dp === undefined ? 2 : dp;
         if(n.e < 3){
             return n;
         }
-        let er = n.e % 3;
-        let i_name = Math.floor(n.e / 3) - 1;
-        let a = parseFloat(n.toExponential(2).split('e')[0]);
+        const er = n.e % 3;
+        const i_name = Math.floor( n.e / 3 ) - 1;
+        const a = parseFloat( n.toExponential(2).split('e')[0] );
         if(i_name < NAMES.length){
-            return (a * Math.pow(10, er)).toFixed(2 - er) + ' ' + NAMES[i_name];
+            let dp2 = dp - er;
+            dp2 = dp2 < 0 ? 0: dp2;
+            return (a * Math.pow( 10, er ) ).toFixed( dp2 ) + ' ' + NAMES[i_name];
         }
         return n.toExponential(2);
     };
@@ -39,17 +42,18 @@ utils.formatDecimal = (function(){
 // draw a common display that you would want to have over all states
 utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillStyle = '#888888';
-    ctx.fillRect(10, 4, 200, 17);
+    ctx.fillRect(10, 4, 250, 17);
     ctx.fillStyle = '#0000aa';
-    //const a_mana = sm.game.mana / sm.game.MANA_MAX;
     const a_mana = sm.game.mana.div(sm.game.mana_cap);
-    ctx.fillRect(10, 4, 200 * a_mana, 17);
+    ctx.fillRect(10, 4, 250 * a_mana, 17);
     // text
     ctx.fillStyle = 'white';
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' (+' + sm.game.mana_per_tick + ') ', 15, 5);
+    ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' / ' +
+         utils.formatDecimal(sm.game.mana_cap, 0) + 
+         ' (+' + sm.game.mana_per_tick + ') ', 15, 5);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
     
 };

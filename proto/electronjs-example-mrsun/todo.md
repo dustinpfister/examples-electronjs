@@ -51,7 +51,8 @@
 * (done) have a game.mana\_cap that will automacity bump forward up to the true max each time it is reached \( Like in Gemcraft \)
 * (done) in gameMod.updateByTickDelta each time game.mana > game.mana\_cap bump up mana level and update cap
 * (done) use mana\_cap over MANA MAX in utils.drawCommonDisp
-* () display current cap in mana bar
+* (done) display current cap in mana bar
+* (done) update utils.formatDecimal method to allow for setting max decimal places
 
 ## ( done 04/05/2023 ) - Big Numbers and Mana
 * (done) start using decimal.js for big numbers

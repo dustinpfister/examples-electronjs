@@ -32,7 +32,7 @@
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
-    constant.MANA_MAX = new Decimal('1e9');
+    constant.MANA_MAX = new Decimal('1e30');
     constant.TEMP_MAX = 999;
     constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
     //-------- ----------
