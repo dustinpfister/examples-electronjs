@@ -44,9 +44,10 @@
 * () a block placed in the grid will drop down to the floor
 
 ## (  ) - Block Rock Type Upgrades
-* () Start an 'upgrade' mode that will upgrade a block when clicked if it is a rock type
-* () So then each block should be given a level prop when created for the first time
-* () display level number for each block in land state
+* (done) So then each block should be given a level prop when created for the first time
+* (done) display level number for each block in land state
+* (done) Start an 'upgrade' mode that will upgrade a block when clicked if it is a rock type
+* () I will want an upgradeBlock game mod method
 * () the cost for an upgrade should go up each time just as with blocks
 * () base and temp mana should go up with each level
 

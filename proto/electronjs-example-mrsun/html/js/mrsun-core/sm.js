@@ -121,7 +121,8 @@ sm.states.land = {
         button_last : {  x: 60, y: 430, r: 30 },
         button_bm_create : {  x: 35, y: 125, r: 25 },
         button_bm_absorb : {  x: 35, y: 185, r: 25 },
-        button_bm_info : {  x: 35, y: 245, r: 25 },
+        button_bm_upgrade : {  x: 35, y: 245, r: 25 },
+        button_bm_info : {  x: 35, y: 305, r: 25 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -171,6 +172,7 @@ sm.states.land = {
         utils.drawButton(sm, data.button_last, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_bm_create, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_bm_absorb, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_bm_upgrade, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_bm_info, sm.ctx, sm.canvas);
         // common disp
         utils.drawCommonDisp(sm, ctx, canvas);
@@ -216,6 +218,10 @@ sm.states.land = {
             button = data.button_bm_absorb;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
                 data.block_mode = 'absorb';
+            }
+            button = data.button_bm_upgrade;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data.block_mode = 'upgrade';
             }
             button = data.button_bm_info;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
