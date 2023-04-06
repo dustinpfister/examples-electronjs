@@ -240,6 +240,9 @@ sm.states.land = {
                 if(data.block_mode === 'absorb'){
                     gameMod.absorbBlock(sm.game, sm.landIndex, i);
                 }
+                if(data.block_mode === 'upgrade'){
+                    gameMod.upgradeBlock(sm.game, sm.landIndex, i);
+                }
                 if(data.block_mode === 'info'){
                     console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
                     console.log(block);
