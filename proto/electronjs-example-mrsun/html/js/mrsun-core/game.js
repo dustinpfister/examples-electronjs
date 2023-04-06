@@ -6,8 +6,8 @@
     //-------- ----------
     Decimal.set({ 
         precision: 40,
-        maxE: 30,
-        minE: -30
+        maxE: 100,
+        minE: -100
     });
     //-------- ----------
     // CONST
@@ -21,6 +21,7 @@
     constant.SUNAREA_RADIUS = 150;
     constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
     constant.LAND_OBJECT_COUNT = 12;
+    constant.BLOCK_MAX_LEVEL = 99;
     constant.BLOCK_GRID_WIDTH = 10;
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
@@ -244,7 +245,7 @@
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
         console.log('upgrade block at: ' + i_land + ', ' + i_block);
-        if(block.type = 'rock'){
+        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL ){
             block.level += 1;
             const rData = constant.BLOCKS.rock;
             block.mana_base = rData.mana_base * block.level;
