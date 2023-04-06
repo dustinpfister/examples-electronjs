@@ -15,6 +15,24 @@ utils.boundingBox = function (x1, y1, w1, h1, x2, y2, w2, h2) {
         (x1 + w1) < x2 ||
         x1 > (x2 + w2));
 };
+// format a decimal object
+utils.formatDecimal = (function(){
+    const NAMES = [
+       'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'
+    ]
+    return (n) => {
+        if(n.e < 3){
+            return n;
+        }
+        let er = n.e % 3;
+        let i_name = Math.floor(n.e / 3) - 1;
+        let a = parseFloat(n.toExponential(2).split('e')[0]);
+        if(i_name < NAMES.length){
+            return (a * Math.pow(10, er)).toFixed(2 - er) + ' ' + NAMES[i_name];
+        }
+        return n.toExponential(2);
+    };
+}());
 //-------- ----------
 // RENDER UTILIES
 //-------- ----------
@@ -30,7 +48,7 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.fillText('mana: ' + sm.game.mana.toString() + ' (+' + sm.game.mana_per_tick.toString() + ') ', 15, 5);
+    ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' (+' + sm.game.mana_per_tick + ') ', 15, 5);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
     
 };
