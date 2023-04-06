@@ -116,13 +116,13 @@ sm.states.world = {
 sm.states.land = {
     data: {
         block_mode: 'create',  // 'create', and 'absorb' modes
-        button_back : {  x: 600, y: 38, r: 32 },
-        button_next : {  x: 640 - 60, y: 430, r: 30 },
-        button_last : {  x: 60, y: 430, r: 30 },
-        button_bm_create : {  x: 35, y: 125, r: 25 },
-        button_bm_absorb : {  x: 35, y: 185, r: 25 },
-        button_bm_upgrade : {  x: 35, y: 245, r: 25 },
-        button_bm_info : {  x: 35, y: 305, r: 25 },
+        button_back : {  desc: 'Back', x: 600, y: 38, r: 32 },
+        button_next : {  desc: 'Next', x: 640 - 60, y: 430, r: 30 },
+        button_last : {  desc: 'Last', x: 60, y: 430, r: 30 },
+        button_bm_create : {  desc: 'Create', x: 35, y: 125, r: 28 },
+        button_bm_absorb : {  desc: 'Absorb', x: 35, y: 185, r: 28 },
+        button_bm_upgrade : {  desc: 'Upgrade', x: 35, y: 245, r: 28 },
+        button_bm_info : {  desc: 'Info', x: 35, y: 305, r: 28 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,

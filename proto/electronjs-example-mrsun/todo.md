@@ -20,8 +20,6 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
-
-
 ## (  ) - Next block cost
 * () use global rock count over that of land for setting next block price 
 * () use Decimal for next block cost value
@@ -32,16 +30,16 @@
 * () counts for each type in each land object
 * () global total counts in game object
 
-## (  ) - Info Block Mode in land state
+## (  ) - Display block info
 * () have an actual display that shows up when a block is clicked rather than just logging to the console
 * () click anywhere to make the display go away
 
-## (  ) - Button Style
-* () all buttons should have lables
-* () toggle buttons should have clear on and off style
-
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
+
+## (  ) - Button Style
+* (done) all buttons should have lables
+* () toggle buttons should have clear on and off style
 
 ## (  ) - Block Rock Type Upgrades
 * (done) So then each block should be given a level prop when created for the first time

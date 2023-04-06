@@ -64,4 +64,10 @@ utils.drawButton = (sm, button, ctx, canvas) => {
     ctx.arc(button.x, button.y, button.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+    // desc
+    ctx.fillStyle = 'white';
+    ctx.font = '12px arial';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.fillText(button.desc || 'foo', button.x, button.y);
 };
