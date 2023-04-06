@@ -46,10 +46,9 @@
 * (done) have a state.data.block\_mode property with a default setting of 'create' for the land state
 * (done) the action that I all ready have when clicking a grid area can be this create mode
 * (done) start an 'absorb' mode that will remove a block when clicked
+* (done) display what the current block mode is
 
-* () display what the current block mode is
 * () have create and absorb buttons to the left side
-
 
 * () move the next and last buttons down
 * () I will then want to start a gameMod.absorbBlock method

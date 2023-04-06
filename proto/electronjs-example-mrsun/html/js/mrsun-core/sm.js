@@ -62,6 +62,7 @@ sm.states.world = {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
     render: (sm, ctx, canvas) => {
+        ctx.font = '15px arial';
         const sun = sm.game.sun;
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
@@ -116,8 +117,8 @@ sm.states.land = {
     data: {
         block_mode: 'create',  // 'create', and 'absorb' modes
         button_back : {  x: 600, y: 38, r: 32 },
-        button_next : {  x: 606, y: 240, r: 24 },
-        button_last : {  x: 34, y: 240, r: 24 },
+        button_next : {  x: 640 - 60, y: 430, r: 30 },
+        button_last : {  x: 60, y: 430, r: 30 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -156,13 +157,22 @@ sm.states.land = {
             ctx.stroke();
             i += 1;
         }
-        // disp
+        // common disp
         utils.drawCommonDisp(sm, ctx, canvas);
+        // land disp
         ctx.font = '10px arial';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
         ctx.fillText('temp: ' + land.temp, 15, 40);
         ctx.fillText('rocks: ' + land.rock_count, 15, 50);
         ctx.fillText('block cost: ' + land.rock_cost, 15, 60);
         ctx.fillText('block mode: ' + data.block_mode, 15, 70);
+        // current land index
+        ctx.font = '50px arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('LAND ' + sm.landIndex, 320, 430);
+        
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {

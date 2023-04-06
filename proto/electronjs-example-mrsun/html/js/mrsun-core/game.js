@@ -59,7 +59,6 @@
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
     };
-
     // get a cost of the next block
     const getNextBlockCost = (i) => {
         let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
