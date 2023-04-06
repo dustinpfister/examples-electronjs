@@ -1,4 +1,4 @@
-// sm.js - r0 - for electionjs-example-mrsun
+// sm.js - for electionjs-example-mrsun
 // Main state machine
 //-------- ----------
 // CREATE MAIN sm OBJECT
@@ -114,6 +114,7 @@ sm.states.world = {
 //-------- ----------
 sm.states.land = {
     data: {
+        block_mode: 'create',  // 'create', and 'absorb' modes
         button_back : {  x: 600, y: 38, r: 32 },
         button_next : {  x: 606, y: 240, r: 24 },
         button_last : {  x: 34, y: 240, r: 24 },
@@ -157,9 +158,11 @@ sm.states.land = {
         }
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
-        ctx.fillText('temp: ' + land.temp, 10, 40);
-        ctx.fillText('rocks: ' + land.rock_count, 10, 55);
-        ctx.fillText('block cost: ' + land.rock_cost, 10, 70);
+        ctx.font = '10px arial';
+        ctx.fillText('temp: ' + land.temp, 15, 40);
+        ctx.fillText('rocks: ' + land.rock_count, 15, 50);
+        ctx.fillText('block cost: ' + land.rock_cost, 15, 60);
+        ctx.fillText('block mode: ' + data.block_mode, 15, 70);
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
@@ -186,7 +189,13 @@ sm.states.land = {
                 const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
                 const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
                 const block = land.blocks[i];
-                gameMod.buyBlock(sm.game, sm.landIndex, i);
+                // action will differ based on block mode
+                if(data.block_mode === 'create'){
+                    gameMod.buyBlock(sm.game, sm.landIndex, i);
+                }
+                if(data.block_mode === 'absorb'){
+                    console.log('absorb mode!');
+                }
             }
         }
     }

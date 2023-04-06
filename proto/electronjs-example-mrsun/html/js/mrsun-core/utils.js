@@ -1,4 +1,4 @@
-// utils.js - r0 - for electionjs-example-mrsun
+// utils.js - for electionjs-example-mrsun
 const utils = {};
 //-------- ----------
 // MATH UTILIES

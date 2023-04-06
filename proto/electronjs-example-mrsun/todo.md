@@ -32,6 +32,10 @@
 * () counts for each type in each land object
 * () global total counts in game object
 
+## (  ) - Button Style
+* () all buttons should have lables
+* () toggle buttons should have clear on and off style
+
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
 
@@ -39,14 +43,19 @@
 * () start an 'upgrade' mode that will upgrade a block when clicked
 
 ## (  ) - Blocks Modes, create and absorb
-* () have a state.data.block\_mode property with a default setting of 'create'
-* () the action that I all ready have when clicking a grid area can be this create mode
-* () start an 'absorb' mode that will remove a block when clicked
-* () have create and absorbe buttons to the left side
+* (done) have a state.data.block\_mode property with a default setting of 'create' for the land state
+* (done) the action that I all ready have when clicking a grid area can be this create mode
+* (done) start an 'absorb' mode that will remove a block when clicked
+
+* () display what the current block mode is
+* () have create and absorb buttons to the left side
+
+
 * () move the next and last buttons down
+* () I will then want to start a gameMod.absorbBlock method
 * () a mana value of the block will be added to game.mana when the block is absorbed
 
-## (  ) - Mana Level, Mana cap
+## ( done 04/06/2023 ) - Mana Level, Mana cap
 * (done) have a game.mana\_level that will be used to define the current mana cap value
 * (done) have a game.mana\_cap that will automacity bump forward up to the true max each time it is reached \( Like in Gemcraft \)
 * (done) in gameMod.updateByTickDelta each time game.mana > game.mana\_cap bump up mana level and update cap

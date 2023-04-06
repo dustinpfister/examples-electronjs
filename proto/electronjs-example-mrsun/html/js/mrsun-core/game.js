@@ -1,4 +1,4 @@
-// game.js - r0 - for electionjs-example-mrsun
+// game.js - for electionjs-example-mrsun
 // create and update a game state object
 (function(gameMod){
     //-------- ----------
@@ -9,13 +9,6 @@
         maxE: 30,
         minE: -30
     });
-
-//const ml = 6;
-//const n = Decimal.pow(10, 3 + (ml - 1) );
-
-//console.log( parseFloat(n.valueOf()) )
-
-
     //-------- ----------
     // CONST
     //-------- ----------
