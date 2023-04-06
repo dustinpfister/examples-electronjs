@@ -47,10 +47,9 @@
 * (done) the action that I all ready have when clicking a grid area can be this create mode
 * (done) start an 'absorb' mode that will remove a block when clicked
 * (done) display what the current block mode is
+* (done) have create and absorb buttons to the left side
+* (done) move the next and last buttons down
 
-* () have create and absorb buttons to the left side
-
-* () move the next and last buttons down
 * () I will then want to start a gameMod.absorbBlock method
 * () a mana value of the block will be added to game.mana when the block is absorbed
 

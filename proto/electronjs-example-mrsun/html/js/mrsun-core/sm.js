@@ -119,6 +119,8 @@ sm.states.land = {
         button_back : {  x: 600, y: 38, r: 32 },
         button_next : {  x: 640 - 60, y: 430, r: 30 },
         button_last : {  x: 60, y: 430, r: 30 },
+        button_bm_create : {  x: 35, y: 125, r: 25 },
+        button_bm_absorb : {  x: 35, y: 185, r: 25 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -137,10 +139,6 @@ sm.states.land = {
         const land = sm.game.lands[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
-        // buttons
-        utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
-        utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
-        utils.drawButton(sm, data.button_last, sm.ctx, sm.canvas);
         // render blocks
         let i = 0;
         const sx = data.grid_sx, sy = data.grid_sy;
@@ -157,6 +155,12 @@ sm.states.land = {
             ctx.stroke();
             i += 1;
         }
+        // buttons
+        utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_last, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_bm_create, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_bm_absorb, sm.ctx, sm.canvas);
         // common disp
         utils.drawCommonDisp(sm, ctx, canvas);
         // land disp
@@ -192,6 +196,17 @@ sm.states.land = {
                 let n = sm.landIndex - 1;
                 n = n < 0 ? 11 : n;
                 sm.landIndex = n;
+            }
+            // button mode switch?
+            button = data.button_bm_create;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                console.log('set create mode.');
+                data.block_mode = 'create';
+            }
+            button = data.button_bm_absorb;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                console.log('set absorb mode.');
+                data.block_mode = 'absorb';
             }
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
