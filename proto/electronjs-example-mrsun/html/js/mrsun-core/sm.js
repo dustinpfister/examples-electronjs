@@ -121,6 +121,7 @@ sm.states.land = {
         button_last : {  x: 60, y: 430, r: 30 },
         button_bm_create : {  x: 35, y: 125, r: 25 },
         button_bm_absorb : {  x: 35, y: 185, r: 25 },
+        button_bm_info : {  x: 35, y: 245, r: 25 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -161,6 +162,7 @@ sm.states.land = {
         utils.drawButton(sm, data.button_last, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_bm_create, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_bm_absorb, sm.ctx, sm.canvas);
+        utils.drawButton(sm, data.button_bm_info, sm.ctx, sm.canvas);
         // common disp
         utils.drawCommonDisp(sm, ctx, canvas);
         // land disp
@@ -200,13 +202,15 @@ sm.states.land = {
             // button mode switch?
             button = data.button_bm_create;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                console.log('set create mode.');
                 data.block_mode = 'create';
             }
             button = data.button_bm_absorb;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                console.log('set absorb mode.');
                 data.block_mode = 'absorb';
+            }
+            button = data.button_bm_info;
+            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data.block_mode = 'info';
             }
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
@@ -219,7 +223,11 @@ sm.states.land = {
                     gameMod.buyBlock(sm.game, sm.landIndex, i);
                 }
                 if(data.block_mode === 'absorb'){
-                    console.log('absorb mode!');
+                    gameMod.absorbBlock(sm.game, sm.landIndex, i);
+                }
+                if(data.block_mode === 'info'){
+                    console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
+                    console.log(block);
                 }
             }
         }

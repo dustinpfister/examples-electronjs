@@ -32,6 +32,10 @@
 * () counts for each type in each land object
 * () global total counts in game object
 
+## (  ) - Info Block Mode in land state
+* () have an actual display that shows up when a block is clicked rather than just logging to the console
+* () click anywhere to make the display go away
+
 ## (  ) - Button Style
 * () all buttons should have lables
 * () toggle buttons should have clear on and off style
@@ -42,16 +46,22 @@
 ## (  ) - Block Rock Type Upgrades
 * () start an 'upgrade' mode that will upgrade a block when clicked
 
-## (  ) - Blocks Modes, create and absorb
+## ( done 04/06/2023 ) - Block value
+* (done) started an 'info' block mode, just logging to the console for now with that
+* (done) I think I should have a helper that creates a block value object
+* (done) this block value object is created for the first time in the createBlockGrid helper
+* (done) update the value object each time is block is bought or absorbed
+* (done) use the block value object to find the amount of mana to give when a block is absorbed
+
+## ( done 04/06/2023 ) - Blocks Modes, create and absorb
 * (done) have a state.data.block\_mode property with a default setting of 'create' for the land state
 * (done) the action that I all ready have when clicking a grid area can be this create mode
 * (done) start an 'absorb' mode that will remove a block when clicked
 * (done) display what the current block mode is
 * (done) have create and absorb buttons to the left side
 * (done) move the next and last buttons down
-
-* () I will then want to start a gameMod.absorbBlock method
-* () a mana value of the block will be added to game.mana when the block is absorbed
+* (done) I will then want to start a gameMod.absorbBlock method
+* (done) a mana value of the block will be added to game.mana when the block is absorbed
 
 ## ( done 04/06/2023 ) - Mana Level, Mana cap
 * (done) have a game.mana\_level that will be used to define the current mana cap value

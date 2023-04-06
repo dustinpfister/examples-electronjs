@@ -66,12 +66,25 @@
         n = n > constant.MANA_MAX ? constant.MANA_MAX : n;
         return n;
     };
+    // create a mana value object
+    const createManaValue = (block_cost) => {
+        block_cost = block_cost || 0;
+        const mana_value = {
+            mana_block_cost: new Decimal(block_cost),
+            valueOf: function(){
+                return this.mana_block_cost;
+            }
+        };
+        return mana_value;
+    };
     // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
         const blocks = [];
         while(i < constant.BLOCK_GRID_LEN){
-            blocks.push(  Object.assign({}, constant.BLOCKS.blank) );
+            const block = Object.assign({}, constant.BLOCKS.blank);
+            block.mana_value = createManaValue(0);
+            blocks.push( block );
             i += 1;
         }
         return blocks;
@@ -90,6 +103,20 @@
             }
             i_land += 1;
         };
+    };
+    // credit a mana delta to game.mana, upgrade mana level if cap is 
+    // reached as long as then next cap is below MAX MANA const
+    const manaCredit = (game, mana_delta ) => {
+        game.mana = game.mana.add( mana_delta );
+        if( game.mana.gte(game.mana_cap) ){
+            const new_level = game.mana_level + 1;
+            const new_cap = getManaCap( new_level );
+            if( new_cap.lt( constant.MANA_MAX ) ){
+                game.mana_level = new_level;
+                game.mana_cap = new_cap;
+            }
+        }
+        game.mana = game.mana.gt(game.mana_cap) ?  new Decimal( game.mana_cap ) : game.mana;
     };
     //-------- ----------
     // PUBLIC API
@@ -116,19 +143,8 @@
                      land.rock_cost = getNextBlockCost(land.rock_count);
                 }
             );
-            game.mana = game.mana.add( Decimal.mul(game.mana_per_tick, tick_delta) );
-            //game.mana = game.mana.gt(constant.MANA_MAX) ?  new Decimal( constant.MANA_MAX ) : game.mana;
-            if( game.mana.gte(game.mana_cap) ){
-                const new_level = game.mana_level + 1;
-                const new_cap = getManaCap( new_level );
-
-                if(new_cap.lt(constant.MANA_MAX) ){
-
-                    game.mana_level = new_level;
-                    game.mana_cap = new_cap;
-                }
-            }
-            game.mana = game.mana.gt(game.mana_cap) ?  new Decimal( game.mana_cap ) : game.mana;
+            const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
+            manaCredit(game, mana_delta);
         }
     };
     // create a new game state object
@@ -199,16 +215,27 @@
         }
         return false;
     };
+    // buy a block for the given land and block index
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
         if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
-               //game.mana -= land.rock_cost;
-               game.mana = game.mana.sub(land.rock_cost)
-               Object.assign(block, constant.BLOCKS.rock)
+               game.mana = game.mana.sub(land.rock_cost);
+               Object.assign(block, constant.BLOCKS.rock);
+               block.mana_value = createManaValue(land.rock_cost);
            }
            land.rock_cost = getNextBlockCost(land.rock_count + 1);
         }
+    };
+    // set the given land and block index back to blank, and absorb the mana value to game.mana
+    gameMod.absorbBlock = (game, i_land, i_block) => {
+        const land = game.lands[i_land];
+        const block = land.blocks[i_block];
+        if(block.type != 'blank'){
+            manaCredit(game, block.mana_value.valueOf());
+        }
+        Object.assign(block, constant.BLOCKS.blank);
+        block.mana_value = createManaValue(0);
     };
 }(this['gameMod'] = {} ));
