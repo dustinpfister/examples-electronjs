@@ -53,11 +53,11 @@
 * () I will need a dropDownBlocks helper that will drop down blocks
 * () this method will need to be called when a block is absorbed
 
-## (  ) - r9 - getNextBlankBlock helper - Block Gravity
+## ( done 04/07/2023 ) - r9 - getNextBlankBlock helper - Block Gravity
 * (done) I should have a getBlockXY helper that will get an x,y pos from an index
-* () I will need a getNextBlankBlock helper funciton in gameMod
-* () this getNextBlankBlock will start from the bottom of a col and loop up until it finds a blank block
-* () getNextBlankBlock will return false if no blank block is found, else it will return a ref to the block
+* (done) I will need a getNextBlankBlock helper funciton in gameMod
+* (done) this getNextBlankBlock will start from the bottom of a col and loop up until it finds a blank block
+* (done) getNextBlankBlock will return false if no blank block is found, else it will return a ref to the block
 
 ## ( done 04/07/2023 ) - r8 - Display block info
 * (done) have an actual display that shows up when a block is clicked rather than just logging to the console

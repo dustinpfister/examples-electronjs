@@ -227,18 +227,36 @@
             x: blockIndex % constant.BLOCK_GRID_WIDTH,
             y: Math.floor(blockIndex / constant.BLOCK_GRID_WIDTH)
         };
-    }
+    };
+    const getBlockIndex = (x, y) => {
+        return y * constant.BLOCK_GRID_WIDTH + x;
+    };
+
 
     const getNextBlankBlock = (game, i_land, i_block) => {
+        const land = game.lands[i_land];
         const pos_block = getBlockXY(i_block);
-        console.log(pos_block);
+        let y = constant.BLOCK_GRID_HEIGHT;
+        while(y--){
+            const i_colblock = getBlockIndex(pos_block.x, y);
+            const block = land.blocks[i_colblock];
+            if(block.type === 'blank'){
+                return block;
+            }
+        }
+        return false;
     }
     // buy a block for the given land and block index
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
-        const block = land.blocks[i_block];
+        //const block = land.blocks[i_block];
 
-        getNextBlankBlock(game, i_land, i_block);
+        //const block_blank = getNextBlankBlock(game, i_land, i_block);
+        //console.log(block_blank);
+
+const block = getNextBlankBlock(game, i_land, i_block);
+
+if(block){
 
         if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
@@ -250,6 +268,9 @@
                land.rock_cost = getNextBlockCost(land.rock_count + 1);
            }
         }
+
+}
+
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
     gameMod.absorbBlock = (game, i_land, i_block) => {
