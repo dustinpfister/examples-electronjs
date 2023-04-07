@@ -33,6 +33,12 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
+## (  ) - Land Section unlock, Block Slot Unlock
+* () have land section unlocking be a thing
+* () first land section should be free, and go up in cost after that
+* () do the same thing with unlocking when it comes to blocks slots in each land section
+* () make it so that it is just the upgrade cost that is of concern when cretaing and upgrading blocks
+
 ## (  ) - Next block cost
 * () use global rock count over that of land for setting next block price 
 * () use Decimal for next block cost value
@@ -43,18 +49,21 @@
 * () counts for each type in each land object
 * () global total counts in game object
 
-## (  ) - Display block info
-* () have an actual display that shows up when a block is clicked rather than just logging to the console
-* () click anywhere to make the display go away
-
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
 
-## (  ) - Button Style
+## ( done 04/07/2023 ) - Display block info
+* (done) have an actual display that shows up when a block is clicked rather than just logging to the console
+* (done) click anywhere to make the display go away
+* (done) display type
+* (done) display mana value
+* (done) display mana base and temp
+
+## ( done 04/07/2023 ) - Button Style
 * (done) all buttons should have lables
 * (done) toggle buttons should have clear on and off style
 * (done) button check helper
-* () use button check helper for all buttons in land state
+* (done) use button check helper for all buttons in land state
 
 ## ( done 04/06/2023 ) - Block Rock Type Upgrades
 * (done) So then each block should be given a level prop when created for the first time

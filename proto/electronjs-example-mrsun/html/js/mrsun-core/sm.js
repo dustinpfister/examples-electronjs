@@ -130,7 +130,9 @@ const button_check_blockmode = (data, new_block_mode, x, y) => {
 };
 sm.states.land = {
     data: {
-        block_mode: 'create',  // 'create', and 'absorb' modes
+        block_mode: 'create',    // 'create', 'absorb', 'upgrade', and 'info' modes
+        block_info_disp: false,  // display block info or not?
+        block: null,
         button_back : {  desc: 'Back', x: 600, y: 38, r: 32 },
         button_next : {  desc: 'Next', x: 640 - 60, y: 430, r: 30 },
         button_last : {  desc: 'Last', x: 60, y: 430, r: 30 },
@@ -205,48 +207,67 @@ sm.states.land = {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('LAND ' + sm.landIndex, 320, 430);
-        
+        if(data.block_info_disp){
+            const sx = 320 - 150, sy = 240 - 100;
+            const block = data.block;
+            ctx.fillStyle = 'rgba(0,0,0, 0.5)';
+            ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white'; //(0,0, canvas.width, canvas.height);
+            ctx.fillRect(sx, sy, 300, 200)
+            ctx.font = '20px arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'black';
+            ctx.fillText('type: ' + block.type, 320, sy + 20);
+            ctx.fillText('mana_value: ' + utils.formatDecimal(block.mana_value.valueOf(), 4), 320, sy + 40   );
+            ctx.fillText('mana_base: ' + block.mana_base, 320, sy + 60   );
+            ctx.fillText('mana_temp: ' + block.mana_temp, 320, sy + 80   );
+        }
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
             const land = sm.game.lands[sm.landIndex];
-            // back button
-            button_check(data, 'button_back', x, y, () => {
-                sm.setState('world', {});
-            });
-            // next and last buttons
-            button_check(data, 'button_next', x, y, () => {
-                sm.landIndex = (sm.landIndex + 1) % 12;
-            });
-            button_check(data, 'button_last', x, y, () => {
-                let n = sm.landIndex - 1;
-                n = n < 0 ? 11 : n;
-                sm.landIndex = n;
-            });
-            // button mode switch?
-            button_check_blockmode(data, 'create', x, y);
-            button_check_blockmode(data, 'absorb', x, y);
-            button_check_blockmode(data, 'upgrade', x, y);
-            button_check_blockmode(data, 'info', x, y);
-            // grid clicked?
-            if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
-                const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
-                const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
-                const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
-                const block = land.blocks[i];
-                // action will differ based on block mode
-                if(data.block_mode === 'create'){
-                    gameMod.buyBlock(sm.game, sm.landIndex, i);
-                }
-                if(data.block_mode === 'absorb'){
-                    gameMod.absorbBlock(sm.game, sm.landIndex, i);
-                }
-                if(data.block_mode === 'upgrade'){
-                    gameMod.upgradeBlock(sm.game, sm.landIndex, i);
-                }
-                if(data.block_mode === 'info'){
-                    console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
-                    console.log(block);
+            if(data.block_info_disp){
+                data.block_info_disp = false;
+            }else{
+                // check buttons
+                button_check(data, 'button_back', x, y, () => {
+                    sm.setState('world', {});
+                });
+                button_check(data, 'button_next', x, y, () => {
+                    sm.landIndex = (sm.landIndex + 1) % 12;
+                });
+                button_check(data, 'button_last', x, y, () => {
+                    let n = sm.landIndex - 1;
+                    n = n < 0 ? 11 : n;
+                    sm.landIndex = n;
+                });
+                button_check_blockmode(data, 'create', x, y);
+                button_check_blockmode(data, 'absorb', x, y);
+                button_check_blockmode(data, 'upgrade', x, y);
+                button_check_blockmode(data, 'info', x, y);
+                // grid clicked?
+                if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
+                    const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
+                    const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
+                    const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
+                    const block = land.blocks[i];
+                    // action will differ based on block mode
+                    if(data.block_mode === 'create'){
+                        gameMod.buyBlock(sm.game, sm.landIndex, i);
+                    }
+                    if(data.block_mode === 'absorb'){
+                        gameMod.absorbBlock(sm.game, sm.landIndex, i);
+                    }
+                    if(data.block_mode === 'upgrade'){
+                        gameMod.upgradeBlock(sm.game, sm.landIndex, i);
+                    }
+                    if(data.block_mode === 'info'){
+                        console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
+                        console.log(block);
+                        data.block_info_disp = true;
+                        data.block = block;
+                    }
                 }
             }
         }
