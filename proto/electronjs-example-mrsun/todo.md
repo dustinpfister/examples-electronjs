@@ -49,9 +49,9 @@
 * () counts for each type in each land object
 * () global total counts in game object
 
-## (  ) - r10 - dropDownBlcok helper - Block Gravity
-* () I will need a dropDownBlocks helper that will drop down blocks
-* () this method will need to be called when a block is absorbed
+## ( done 04/07/2023 ) - r10 - dropDownBlock helper - Block Gravity
+* (done) I will need a dropDownBlocks helper that will drop down blocks
+* (done) this method will need to be called when a block is absorbed
 
 ## ( done 04/07/2023 ) - r9 - getNextBlankBlock helper - Block Gravity
 * (done) I should have a getBlockXY helper that will get an x,y pos from an index

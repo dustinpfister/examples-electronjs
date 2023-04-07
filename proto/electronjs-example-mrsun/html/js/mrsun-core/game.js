@@ -77,6 +77,7 @@
         const blocks = [];
         while(i < constant.BLOCK_GRID_LEN){
             const block = Object.assign({}, constant.BLOCKS.blank);
+            block.i = i;
             block.level = 1;
             block.mana_value = createManaValue(0);
             blocks.push( block );
@@ -260,17 +261,44 @@
             }
         }
     };
+
+    const dropDownBlocks = (game, i_land, i_block) => {
+        const land = game.lands[i_land];
+        const pos_block = getBlockXY(i_block);
+        // get non blank blocks
+        let y = pos_block.y;
+        while(y >= 1){
+            const block_current = land.blocks[ getBlockIndex(pos_block.x, y) ];
+            const block_up = land.blocks[ getBlockIndex(pos_block.x, y - 1) ];
+            if(block_up.type != 'blank'){
+                console.log(block_up);
+                block_current.type = block_up.type;
+                block_current.level = block_up.level;
+                block_current.mana_base = block_up.mana_base;
+                block_current.mana_temp = block_up.mana_temp;
+                block_current.mana_value = block_up.mana_value;
+                block_up.type = 'blank';
+block_up.mana_base = 0;
+block_up.mana_temp = 0;
+
+            }
+            y -= 1;
+        }
+    };
+
     // set the given land and block index back to blank, and absorb the mana value to game.mana
     gameMod.absorbBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
         if(block.type != 'blank'){
             manaCredit(game, block.mana_value.valueOf());
+
+            Object.assign(block, constant.BLOCKS.blank);
+            block.mana_value = createManaValue(0);
+            block.level = 1;
+            block.upgradeCost = getBlockUpgradeCost(block);
+            dropDownBlocks(game, i_land, i_block);
         }
-        Object.assign(block, constant.BLOCKS.blank);
-        block.mana_value = createManaValue(0);
-        block.level = 1;
-        block.upgradeCost = getBlockUpgradeCost(block);
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_land, i_block) => {
