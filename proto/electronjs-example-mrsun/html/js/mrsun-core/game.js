@@ -60,17 +60,6 @@
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
     };
-    // get block upgrade cost
-    const getBlockUpgradeCost = (block) => {
-        return Decimal.pow(10, block.level);
-    };
-    // get a cost of the next block
-    const getNextBlockCost = (i) => {
-        let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
-        n = Math.ceil(n);
-        n = n > constant.MANA_MAX ? constant.MANA_MAX : n;
-        return n;
-    };
     // create a mana value object
     const createManaValue = (block_cost) => {
         block_cost = block_cost || 0;
@@ -94,6 +83,39 @@
             i += 1;
         }
         return blocks;
+    };
+    // get block upgrade cost
+    const getBlockUpgradeCost = (block) => {
+        return Decimal.pow(10, block.level);
+    };
+    // get a cost of the next block
+    const getNextBlockCost = (i) => {
+        let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
+        n = Math.ceil(n);
+        n = n > constant.MANA_MAX ? constant.MANA_MAX : n;
+        return n;
+    };
+    const getBlockXY = (blockIndex) => {
+        return {
+            x: blockIndex % constant.BLOCK_GRID_WIDTH,
+            y: Math.floor(blockIndex / constant.BLOCK_GRID_WIDTH)
+        };
+    };
+    const getBlockIndex = (x, y) => {
+        return y * constant.BLOCK_GRID_WIDTH + x;
+    };
+    const getNextBlankBlock = (game, i_land, i_block) => {
+        const land = game.lands[i_land];
+        const pos_block = getBlockXY(i_block);
+        let y = constant.BLOCK_GRID_HEIGHT;
+        while(y--){
+            const i_colblock = getBlockIndex(pos_block.x, y);
+            const block = land.blocks[i_colblock];
+            if(block.type === 'blank'){
+                return block;
+            }
+        }
+        return false;
     };
     // for each land block helper
     const forEachLandBlock = (game, forEachLand, forEachBlock) => {
@@ -221,56 +243,22 @@
         }
         return false;
     };
-
-    const getBlockXY = (blockIndex) => {
-        return {
-            x: blockIndex % constant.BLOCK_GRID_WIDTH,
-            y: Math.floor(blockIndex / constant.BLOCK_GRID_WIDTH)
-        };
-    };
-    const getBlockIndex = (x, y) => {
-        return y * constant.BLOCK_GRID_WIDTH + x;
-    };
-
-
-    const getNextBlankBlock = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const pos_block = getBlockXY(i_block);
-        let y = constant.BLOCK_GRID_HEIGHT;
-        while(y--){
-            const i_colblock = getBlockIndex(pos_block.x, y);
-            const block = land.blocks[i_colblock];
-            if(block.type === 'blank'){
-                return block;
-            }
-        }
-        return false;
-    }
     // buy a block for the given land and block index
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
-        //const block = land.blocks[i_block];
-
-        //const block_blank = getNextBlankBlock(game, i_land, i_block);
-        //console.log(block_blank);
-
-const block = getNextBlankBlock(game, i_land, i_block);
-
-if(block){
-
-        if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
-           if(game.mana >= land.rock_cost){
-               game.mana = game.mana.sub(land.rock_cost);
-               Object.assign(block, constant.BLOCKS.rock);
-               block.mana_value = createManaValue(land.rock_cost);
-               block.level = 1;
-               block.upgradeCost = getBlockUpgradeCost(block);
-               land.rock_cost = getNextBlockCost(land.rock_count + 1);
-           }
+        const block = getNextBlankBlock(game, i_land, i_block);
+        if(block){
+            if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
+                if(game.mana >= land.rock_cost){
+                    game.mana = game.mana.sub(land.rock_cost);
+                    Object.assign(block, constant.BLOCKS.rock);
+                    block.mana_value = createManaValue(land.rock_cost);
+                    block.level = 1;
+                    block.upgradeCost = getBlockUpgradeCost(block);
+                    land.rock_cost = getNextBlockCost(land.rock_count + 1);
+                }
+            }
         }
-
-}
-
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
     gameMod.absorbBlock = (game, i_land, i_block) => {
