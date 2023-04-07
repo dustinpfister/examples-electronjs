@@ -9,6 +9,19 @@
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
+## () - objpool-blocks module
+* () object pool module for blocks in land state
+* () can also use this to help draw land in world state
+
+## () - objpool-world module
+* () world object pool module for sun, land sections
+
+## () - object pool module
+* () have a main object pool module based on what I all ready made
+
+## () - objpool-button module
+* () object pool for buttons
+
 ## () Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
@@ -41,13 +54,13 @@
 * (done) all buttons should have lables
 * () toggle buttons should have clear on and off style
 
-## (  ) - Block Rock Type Upgrades
+## ( done 04/06/2023 ) - Block Rock Type Upgrades
 * (done) So then each block should be given a level prop when created for the first time
 * (done) display level number for each block in land state
 * (done) Start an 'upgrade' mode that will upgrade a block when clicked if it is a rock type
 * (done) I will want an upgradeBlock game mod method
 * (done) base and temp mana should go up with each level
-* () the cost for an upgrade should go up each time just as with blocks
+* (done) the cost for an upgrade should go up each time just as with blocks
 
 ## ( done 04/06/2023 ) - Block value
 * (done) started an 'info' block mode, just logging to the console for now with that
