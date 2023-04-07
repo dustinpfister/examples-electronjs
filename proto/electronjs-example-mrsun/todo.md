@@ -45,6 +45,8 @@
 * () use the format utils method for next block cost
 
 ## (  ) - r12 - Block Type Counts
+* (done) using utils.formatDecimal for display of mana delta value
+* (done) fix decimal points bug in utils.formatDecimal
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object

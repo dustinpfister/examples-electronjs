@@ -25,7 +25,7 @@ utils.formatDecimal = (function(){
         }
         const er = n.e % 3;
         const i_name = Math.floor( n.e / 3 ) - 1;
-        const a = parseFloat( n.toExponential(2).split('e')[0] );
+        const a = parseFloat( n.toExponential(dp).split('e')[0] );
         if(i_name < NAMES.length){
             let dp2 = dp - er;
             dp2 = dp2 < 0 ? 0: dp2;
