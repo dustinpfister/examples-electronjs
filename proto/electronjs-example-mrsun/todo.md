@@ -39,15 +39,18 @@
 * () do the same thing with unlocking when it comes to blocks slots in each land section
 * () make it so that it is just the upgrade cost that is of concern when cretaing and upgrading blocks
 
-## (  ) - r12 - Next block cost
+## (  ) - r13 - Next block cost
 * () use global rock count over that of land for setting next block price 
 * () use Decimal for next block cost value
 * () use the format utils method for next block cost
 
-## (  ) - r11 - Block Type Counts
+## (  ) - r12 - Block Type Counts
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object
+
+## () - r11 - max block count bug fix
+* () see about fixing the max block count bug where I can go over 40 blocks if I click fast enough
 
 ## ( done 04/07/2023 ) - r10 - dropDownBlock helper - Block Gravity
 * (done) I will need a dropDownBlocks helper that will drop down blocks
