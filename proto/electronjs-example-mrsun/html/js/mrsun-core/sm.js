@@ -117,8 +117,16 @@ sm.states.world = {
 const button_check = (data, key, x, y, onClick) => {
     const button = data[key];
     if( utils.distance(button.x, button.y, x, y) <= button.r ){
-        onClick();
+        onClick(button, data, key, x, y);
     }
+};
+const button_check_blockmode = (data, new_block_mode, x, y) => {
+    const key = 'button_bm_' + new_block_mode;
+    button_check(data, key, x, y, (button) => {
+        data['button_bm_' + data.block_mode].active = false;
+        button.active = true;
+        data.block_mode = new_block_mode;
+    });
 };
 sm.states.land = {
     data: {
@@ -203,45 +211,23 @@ sm.states.land = {
         pointerdown : (sm, x, y, e, data) => {
             const land = sm.game.lands[sm.landIndex];
             // back button
-button_check(data, 'button_back', x, y, () => {
-    sm.setState('world', {});
-});
+            button_check(data, 'button_back', x, y, () => {
+                sm.setState('world', {});
+            });
             // next and last buttons
-            button = data.button_next;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+            button_check(data, 'button_next', x, y, () => {
                 sm.landIndex = (sm.landIndex + 1) % 12;
-            }
-            button = data.button_last;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
+            });
+            button_check(data, 'button_last', x, y, () => {
                 let n = sm.landIndex - 1;
                 n = n < 0 ? 11 : n;
                 sm.landIndex = n;
-            }
+            });
             // button mode switch?
-            button = data.button_bm_create;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                data['button_bm_' + data.block_mode].active = false;
-                button.active = true;
-                data.block_mode = 'create';
-            }
-            button = data.button_bm_absorb;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                data['button_bm_' + data.block_mode].active = false;
-                button.active = true;
-                data.block_mode = 'absorb';
-            }
-            button = data.button_bm_upgrade;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                data['button_bm_' + data.block_mode].active = false;
-                button.active = true;
-                data.block_mode = 'upgrade';
-            }
-            button = data.button_bm_info;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                data['button_bm_' + data.block_mode].active = false;
-                button.active = true;
-                data.block_mode = 'info';
-            }
+            button_check_blockmode(data, 'create', x, y);
+            button_check_blockmode(data, 'absorb', x, y);
+            button_check_blockmode(data, 'upgrade', x, y);
+            button_check_blockmode(data, 'info', x, y);
             // grid clicked?
             if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
                 const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
