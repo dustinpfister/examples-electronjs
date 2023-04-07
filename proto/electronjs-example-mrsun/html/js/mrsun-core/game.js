@@ -221,10 +221,25 @@
         }
         return false;
     };
+
+    const getBlockXY = (blockIndex) => {
+        return {
+            x: blockIndex % constant.BLOCK_GRID_WIDTH,
+            y: Math.floor(blockIndex / constant.BLOCK_GRID_WIDTH)
+        };
+    }
+
+    const getNextBlankBlock = (game, i_land, i_block) => {
+        const pos_block = getBlockXY(i_block);
+        console.log(pos_block);
+    }
     // buy a block for the given land and block index
     gameMod.buyBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
+
+        getNextBlankBlock(game, i_land, i_block);
+
         if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
            if(game.mana >= land.rock_cost){
                game.mana = game.mana.sub(land.rock_cost);

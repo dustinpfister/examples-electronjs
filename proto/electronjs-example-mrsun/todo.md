@@ -39,18 +39,25 @@
 * () do the same thing with unlocking when it comes to blocks slots in each land section
 * () make it so that it is just the upgrade cost that is of concern when cretaing and upgrading blocks
 
-## (  ) - Next block cost
+## (  ) - r12 - Next block cost
 * () use global rock count over that of land for setting next block price 
 * () use Decimal for next block cost value
 * () use the format utils method for next block cost
 
-## (  ) - Block Type Counts
+## (  ) - r11 - Block Type Counts
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object
 
-## (  ) - Block Gravity
-* () a block placed in the grid will drop down to the floor
+## (  ) - r10 - dropDownBlcok helper - Block Gravity
+* () I will need a dropDownBlocks helper that will drop down blocks
+* () this method will need to be called when a block is absorbed
+
+## (  ) - r9 - getNextBlankBlock helper - Block Gravity
+* (done) I should have a getBlockXY helper that will get an x,y pos from an index
+* () I will need a getNextBlankBlock helper funciton in gameMod
+* () this getNextBlankBlock will start from the bottom of a col and loop up until it finds a blank block
+* () getNextBlankBlock will return false if no blank block is found, else it will return a ref to the block
 
 ## ( done 04/07/2023 ) - r8 - Display block info
 * (done) have an actual display that shows up when a block is clicked rather than just logging to the console
