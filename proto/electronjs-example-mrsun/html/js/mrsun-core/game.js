@@ -226,8 +226,10 @@
                game.mana = game.mana.sub(land.rock_cost);
                Object.assign(block, constant.BLOCKS.rock);
                block.mana_value = createManaValue(land.rock_cost);
+               block.level = 1;
+               land.rock_cost = getNextBlockCost(land.rock_count + 1);
            }
-           land.rock_cost = getNextBlockCost(land.rock_count + 1);
+
         }
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -239,6 +241,7 @@
         }
         Object.assign(block, constant.BLOCKS.blank);
         block.mana_value = createManaValue(0);
+        block.level = 1;
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_land, i_block) => {
