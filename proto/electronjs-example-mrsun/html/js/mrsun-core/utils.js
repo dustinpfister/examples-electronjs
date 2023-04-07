@@ -51,7 +51,7 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.textAlign = 'left';
     ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' / ' +
          utils.formatDecimal(sm.game.mana_cap, 0) + 
-         ' (+' + sm.game.mana_per_tick + ') ', 15, 5);
+         ' (+' + utils.formatDecimal(sm.game.mana_per_tick, 4) + ') ', 15, 5);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
     
 };
