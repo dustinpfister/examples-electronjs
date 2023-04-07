@@ -60,6 +60,10 @@
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
     };
+    // get block upgrade cost
+    const getBlockUpgradeCost = (block) => {
+        return Decimal.pow(10, block.level);
+    };
     // get a cost of the next block
     const getNextBlockCost = (i) => {
         let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
@@ -227,9 +231,9 @@
                Object.assign(block, constant.BLOCKS.rock);
                block.mana_value = createManaValue(land.rock_cost);
                block.level = 1;
+               block.upgradeCost = getBlockUpgradeCost(block);
                land.rock_cost = getNextBlockCost(land.rock_count + 1);
            }
-
         }
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -242,18 +246,20 @@
         Object.assign(block, constant.BLOCKS.blank);
         block.mana_value = createManaValue(0);
         block.level = 1;
+        block.upgradeCost = getBlockUpgradeCost(block);
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
         console.log('upgrade block at: ' + i_land + ', ' + i_block);
-        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL ){
+        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
+            game.mana = game.mana.sub(block.upgradeCost);
             block.level += 1;
             const rData = constant.BLOCKS.rock;
             block.mana_base = rData.mana_base * block.level;
             block.mana_temp = Math.pow(rData.mana_temp, block.level);
-
+            block.upgradeCost = getBlockUpgradeCost(block);
         }
         console.log('block level: ' + block.level);
         console.log('mana_base: ' + block.mana_base);
