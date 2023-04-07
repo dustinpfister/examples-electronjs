@@ -52,7 +52,10 @@
 
 ## (  ) - Button Style
 * (done) all buttons should have lables
-* () toggle buttons should have clear on and off style
+* (done) toggle buttons should have clear on and off style
+* (done) button check helper
+* () use button check helper for all buttons in land state
+* () make the buttun check helper a utils method
 
 ## ( done 04/06/2023 ) - Block Rock Type Upgrades
 * (done) So then each block should be given a level prop when created for the first time

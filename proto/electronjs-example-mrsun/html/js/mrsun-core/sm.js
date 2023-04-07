@@ -62,6 +62,7 @@ sm.states.world = {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
     render: (sm, ctx, canvas) => {
+        ctx.lineWidth = 1;
         ctx.font = '15px arial';
         const sun = sm.game.sun;
         ctx.fillStyle = 'black';
@@ -113,16 +114,22 @@ sm.states.world = {
 //-------- ----------
 // land state
 //-------- ----------
+const button_check = (data, key, x, y, onClick) => {
+    const button = data[key];
+    if( utils.distance(button.x, button.y, x, y) <= button.r ){
+        onClick();
+    }
+};
 sm.states.land = {
     data: {
         block_mode: 'create',  // 'create', and 'absorb' modes
         button_back : {  desc: 'Back', x: 600, y: 38, r: 32 },
         button_next : {  desc: 'Next', x: 640 - 60, y: 430, r: 30 },
         button_last : {  desc: 'Last', x: 60, y: 430, r: 30 },
-        button_bm_create : {  desc: 'Create', x: 35, y: 125, r: 28 },
-        button_bm_absorb : {  desc: 'Absorb', x: 35, y: 185, r: 28 },
-        button_bm_upgrade : {  desc: 'Upgrade', x: 35, y: 245, r: 28 },
-        button_bm_info : {  desc: 'Info', x: 35, y: 305, r: 28 },
+        button_bm_create :  {  active: true, desc: 'Create', x: 35, y: 125, r: 28 },
+        button_bm_absorb :  {  active: false, desc: 'Absorb', x: 35, y: 185, r: 28 },
+        button_bm_upgrade : {  active: false, desc: 'Upgrade', x: 35, y: 245, r: 28 },
+        button_bm_info :    {  active: false, desc: 'Info', x: 35, y: 305, r: 28 },
         grid_sx: 320 - 50 * 5,
         grid_sy: 100,
         gw: 32, gh:32,
@@ -137,6 +144,7 @@ sm.states.land = {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
     render: (sm, ctx, canvas, data) => {
+        ctx.lineWidth = 1;
         const sun = sm.game.sun;
         const land = sm.game.lands[sm.landIndex];
         ctx.fillStyle = 'black';
@@ -195,10 +203,9 @@ sm.states.land = {
         pointerdown : (sm, x, y, e, data) => {
             const land = sm.game.lands[sm.landIndex];
             // back button
-            let button = data.button_back;
-            if( utils.distance(button.x, button.y, x, y) <= button.r ){
-                sm.setState('world', {});
-            }
+button_check(data, 'button_back', x, y, () => {
+    sm.setState('world', {});
+});
             // next and last buttons
             button = data.button_next;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
@@ -213,18 +220,26 @@ sm.states.land = {
             // button mode switch?
             button = data.button_bm_create;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data['button_bm_' + data.block_mode].active = false;
+                button.active = true;
                 data.block_mode = 'create';
             }
             button = data.button_bm_absorb;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data['button_bm_' + data.block_mode].active = false;
+                button.active = true;
                 data.block_mode = 'absorb';
             }
             button = data.button_bm_upgrade;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data['button_bm_' + data.block_mode].active = false;
+                button.active = true;
                 data.block_mode = 'upgrade';
             }
             button = data.button_bm_info;
             if( utils.distance(button.x, button.y, x, y) <= button.r ){
+                data['button_bm_' + data.block_mode].active = false;
+                button.active = true;
                 data.block_mode = 'info';
             }
             // grid clicked?

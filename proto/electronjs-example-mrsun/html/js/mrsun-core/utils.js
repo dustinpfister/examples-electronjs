@@ -58,8 +58,11 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     
 };
 utils.drawButton = (sm, button, ctx, canvas) => {
-    ctx.fillStyle = '#888888';
+
+    ctx.fillStyle = button.active ? '#004400' : '#444444';
+
     ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(button.x, button.y, button.r, 0, Math.PI * 2);
     ctx.fill();
