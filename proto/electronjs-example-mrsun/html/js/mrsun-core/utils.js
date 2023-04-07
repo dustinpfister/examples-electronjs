@@ -17,9 +17,7 @@ utils.boundingBox = function (x1, y1, w1, h1, x2, y2, w2, h2) {
 };
 // format a decimal object
 utils.formatDecimal = (function(){
-    const NAMES = [
-       'K',   'M', 'B',   'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc'
-    ];
+    const NAMES = [ 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc' ];
     return (n, dp) => {
         dp = dp === undefined ? 2 : dp;
         if(n.e < 3){

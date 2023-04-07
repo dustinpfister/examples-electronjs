@@ -252,7 +252,6 @@
     gameMod.upgradeBlock = (game, i_land, i_block) => {
         const land = game.lands[i_land];
         const block = land.blocks[i_block];
-        console.log('upgrade block at: ' + i_land + ', ' + i_block);
         if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
             game.mana = game.mana.sub(block.upgradeCost);
             block.level += 1;
@@ -261,8 +260,5 @@
             block.mana_temp = Math.pow(rData.mana_temp, block.level);
             block.upgradeCost = getBlockUpgradeCost(block);
         }
-        console.log('block level: ' + block.level);
-        console.log('mana_base: ' + block.mana_base);
-        console.log('mana_temp: ' + block.mana_temp);
     };
-}(this['gameMod'] = {} ));
+}( this['gameMod'] = {} ));

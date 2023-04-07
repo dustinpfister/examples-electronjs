@@ -52,20 +52,20 @@
 ## (  ) - Block Gravity
 * () a block placed in the grid will drop down to the floor
 
-## ( done 04/07/2023 ) - Display block info
+## ( done 04/07/2023 ) - r8 - Display block info
 * (done) have an actual display that shows up when a block is clicked rather than just logging to the console
 * (done) click anywhere to make the display go away
 * (done) display type
 * (done) display mana value
 * (done) display mana base and temp
 
-## ( done 04/07/2023 ) - Button Style
+## ( done 04/07/2023 ) - r7 - Button Style
 * (done) all buttons should have lables
 * (done) toggle buttons should have clear on and off style
 * (done) button check helper
 * (done) use button check helper for all buttons in land state
 
-## ( done 04/06/2023 ) - Block Rock Type Upgrades
+## ( done 04/06/2023 ) - r6 - Block Rock Type Upgrades
 * (done) So then each block should be given a level prop when created for the first time
 * (done) display level number for each block in land state
 * (done) Start an 'upgrade' mode that will upgrade a block when clicked if it is a rock type
@@ -73,14 +73,14 @@
 * (done) base and temp mana should go up with each level
 * (done) the cost for an upgrade should go up each time just as with blocks
 
-## ( done 04/06/2023 ) - Block value
+## ( done 04/06/2023 ) - r5 - Block value
 * (done) started an 'info' block mode, just logging to the console for now with that
 * (done) I think I should have a helper that creates a block value object
 * (done) this block value object is created for the first time in the createBlockGrid helper
 * (done) update the value object each time is block is bought or absorbed
 * (done) use the block value object to find the amount of mana to give when a block is absorbed
 
-## ( done 04/06/2023 ) - Blocks Modes, create and absorb
+## ( done 04/06/2023 ) - r4 - Blocks Modes, create and absorb
 * (done) have a state.data.block\_mode property with a default setting of 'create' for the land state
 * (done) the action that I all ready have when clicking a grid area can be this create mode
 * (done) start an 'absorb' mode that will remove a block when clicked
@@ -90,7 +90,7 @@
 * (done) I will then want to start a gameMod.absorbBlock method
 * (done) a mana value of the block will be added to game.mana when the block is absorbed
 
-## ( done 04/06/2023 ) - Mana Level, Mana cap
+## ( done 04/06/2023 ) - r3 - Mana Level, Mana cap
 * (done) have a game.mana\_level that will be used to define the current mana cap value
 * (done) have a game.mana\_cap that will automacity bump forward up to the true max each time it is reached \( Like in Gemcraft \)
 * (done) in gameMod.updateByTickDelta each time game.mana > game.mana\_cap bump up mana level and update cap
@@ -98,14 +98,14 @@
 * (done) display current cap in mana bar
 * (done) update utils.formatDecimal method to allow for setting max decimal places
 
-## ( done 04/05/2023 ) - Big Numbers and Mana
+## ( done 04/05/2023 ) - r2 - Big Numbers and Mana
 * (done) start using decimal.js for big numbers
 * (done) use Decimal for game.mana value
 * (done) use Decimal for game.mana\_per\_tick
 * (done) see about having a nice format option for these decimal objects in utils.drawCommonDisp
 * (done) still have a true max mana, but have it be a very large value based on what a very large limit should be for the game
 
-## ( done 04/05/2023 ) - Land state switch buttons, improved display of status
+## ( done 04/05/2023 ) - r1 - Land state switch buttons, improved display of status
 * (done) utils.drawButton method
 * (done) use utils.drawButton method for back button in land state
 * (done) have switch state object + and - buttons in land state
@@ -114,7 +114,7 @@
 * (done) constant object in game.js
 * (done) display a mana bar
 
-## ( done 04/05/2023 ) - Basic idea working
+## ( done 04/05/2023 ) - r0 - Basic idea working
 * (done) use a canvas element for the whole game
 * (done) start a game.js file that will be used to create, and update a game state object
 * (done) have a state machine in a sm.js file
