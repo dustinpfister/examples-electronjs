@@ -57,9 +57,10 @@
         constructor(opt) {
             opt || opt || {};
             this.type = opt.type || 'blank';
+            const TYPE_DEF = constant.BLOCKS[this.type];
             this.level = 1;
-            this.mana_temp = 0;
-            this.mana_base = 0;
+            this.mana_temp = TYPE_DEF.mana_temp;
+            this.mana_base = TYPE_DEF.mana_base;
             this.mana_value = null;
             this.setManaValue(0);
         }
@@ -291,6 +292,15 @@
                 const d_adjusted = d_sun - section.r - game.sun.r;
                 section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
                 section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
+
+                section.forEachSlot( (slot ) => {
+                    const a_temp = section.temp / constant.TEMP_MAX;
+                    const block = slot.block;
+                    if(block.type != 'blank'){
+                        game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
+                    }
+                })
+
             });
 
 /*
