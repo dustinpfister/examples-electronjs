@@ -73,14 +73,14 @@
             this.level = level === undefined ? 1 : parseInt(level);
             this.type = type || this.type;
             const TYPE_DEF = constant.BLOCKS[this.type];
-            //this.mana_temp = TYPE_DEF.mana_temp;
-            //this.mana_base = TYPE_DEF.mana_base;
-
             this.mana_base = TYPE_DEF.mana_base * this.level;
             this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
-
             this.mana_value = null;
             this.setManaValue(0);
+        }
+        // clear a block to blank type
+        clear () {
+            this.setLevel(1, 'blank');
         }
     };
     //-------- ----------
@@ -308,24 +308,6 @@
                     }
                 })
             });
-
-/*
-            forEachLandBlock(game,
-                (land, game) => {
-                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
-                     const d_adjusted = d_sun - land.r - game.sun.r;
-                     land.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
-                     land.temp = Math.round( constant.TEMP_MAX * land.d_alpha );
-                     land.rock_count = 0;
-                },
-                (land, block, game) => {
-                     const a_temp = land.temp / constant.TEMP_MAX;
-                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
-                     land.rock_count += block.type === 'rock' ? 1 : 0;
-                     land.rock_cost = getNextBlockCost(land.rock_count);
-                }
-            );
-*/
             const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
             manaCredit(game, mana_delta);
         }
