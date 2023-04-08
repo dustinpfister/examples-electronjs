@@ -96,13 +96,11 @@
             this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
             this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
             this.r = constant.LAND_RADIUS;
-                    //blocks: createBlockGrid(),
             this.slots = [];
             this.d_alpha = 0;
             this.temp = 0;
             this.rock_count = 0;
             this.rock_cost = 0;
-            //this.setNextBlockCost(0)
             this.createSlotGrid();
         }
         // get a slot i, x, y object when just i is known
@@ -286,21 +284,20 @@
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1 || force){
             game.mana_per_tick = new Decimal(0);
-
             game.lands.forEachSection( (section) => {
                 const d_sun = utils.distance(section.x, section.y, game.sun.x, game.sun.y);
                 const d_adjusted = d_sun - section.r - game.sun.r;
                 section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
                 section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
-
+                section.rock_count = 0;
                 section.forEachSlot( (slot ) => {
                     const a_temp = section.temp / constant.TEMP_MAX;
                     const block = slot.block;
                     if(block.type != 'blank'){
+                        section.rock_count += 1;
                         game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                     }
                 })
-
             });
 
 /*
@@ -382,37 +379,17 @@
     };
     // buy a block for the given land section and slot indices
     gameMod.buyBlock = (game, i_section, i_slot, level) => {
-        //const land = game.lands[i_land];
-        //const block = getNextBlankBlock(game, i_land, i_block);
-        //if(block){
         const section = game.lands.sections[i_section];
         const slot = section.slots[i_slot];
         const block = slot.block;
         const blockCost = 1 * level;
-
         gameMod.updateByTickDelta(game, 0, true);
         if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
             if(game.mana >= blockCost){
-
-console.log('so far so good');
-game.mana = game.mana.sub(blockCost);
-
-slot.block = new Block({type: 'rock', level: level})
-
-//section.rock_cost = getNextBlockCost(land.rock_count + 1);
-
-/*
-                game.mana = game.mana.sub(land.rock_cost);
-
-                Object.assign(block, constant.BLOCKS.rock);
-                block.setManaValue(land.rock_cost);
-                block.level = 1;
-                block.upgradeCost = getBlockUpgradeCost(block);
-                land.rock_cost = getNextBlockCost(land.rock_count + 1);
-*/
+                 game.mana = game.mana.sub(blockCost);
+                 slot.block = new Block({type: 'rock', level: level})
             }
         }
-        //}
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
     gameMod.absorbBlock = (game, i_land, i_block) => {
