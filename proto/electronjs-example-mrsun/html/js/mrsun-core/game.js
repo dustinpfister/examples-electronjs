@@ -285,6 +285,14 @@
         const tick_delta = game.tick - game.tick_last;
         if(tick_delta >= 1 || force){
             game.mana_per_tick = new Decimal(0);
+
+            game.lands.forEachSection( (section) => {
+                const d_sun = utils.distance(section.x, section.y, game.sun.x, game.sun.y);
+                const d_adjusted = d_sun - section.r - game.sun.r;
+                section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
+                section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
+            });
+
 /*
             forEachLandBlock(game,
                 (land, game) => {

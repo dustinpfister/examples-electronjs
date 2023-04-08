@@ -42,10 +42,9 @@
 * (done) the slot class should have a block property that by default has a blank type block
 * (done) values like i, x, and y should be slot class values, not block class values
 * (done) drawing slots in land state in sm.js
+* (done) get pointer events to work again, but with new slot system in sm.js
 
-* () get pointer events to work again, but with new slot system in sm.js
-
-* () getNextBlockCost should be a Slot class Feature not a block class feature
+* () get mana and temp update working again
 
 * () Block Class: have a setBlockUpgradeCost Block class method
 * () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
