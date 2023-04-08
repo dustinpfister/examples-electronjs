@@ -25,22 +25,23 @@
 
 ## (  ) - r17 - Slot Class, Locked slot feature
 
+## () - rx - new mana value
+* () new mana value based on upgrade cost
 
 ## (  ) - rx - Block Type Counts
+* () make it so that when buying blocks they will start from the ground up
+
 * () counts for each block type in each land object by just adding up Sections
-
-## (  ) - r14 -  More Work with new Classes
-* (done) get rock count to work again
-* (done) have a Block.setLevel method
-* (done) get upgrades working again with new classes
-
-* () get Block Gravity fetaure working again with new LandSections class
-
 * () block type counts for each block type in this section
-
 * () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
 * () remove old code that is not used any more in game.js
 * () rmeove old code that is not used any more in sm.js
+
+## ( done 04/08/2023 ) - r14 -  More Work with new Classes
+* (done) get rock count to work again
+* (done) have a Block.setLevel method
+* (done) get upgrades working again with new classes
+* (done) get block drop down fetaure working again with new LandSections class
 
 ## ( done 04/08/2023 ) - r13 - new class started
 * (done) start the Slot Class

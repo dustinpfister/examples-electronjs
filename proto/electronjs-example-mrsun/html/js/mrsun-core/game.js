@@ -22,20 +22,13 @@
     constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
     constant.LAND_OBJECT_COUNT = 12;
     constant.BLOCK_MAX_LEVEL = 99;
-
-
-
     constant.MANA_MAX = new Decimal('1e100');
     constant.TEMP_MAX = 999;
     constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
-
-
     constant.BLOCK_GRID_WIDTH = 10;
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
-
-
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
@@ -77,7 +70,11 @@
             this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
             this.mana_value = null;
             this.upgradeCost = Decimal.pow(10, this.level);
-            this.setManaValue(0);
+            this.setManaValue(1);
+        }
+        // copy some other block to this block
+        copy (block) {
+            this.setLevel(block.level, block.type);
         }
         // clear a block to blank type
         clear () {
@@ -113,6 +110,10 @@
             this.rock_cost = 0;
             this.createSlotGrid();
         }
+        // get a slot index if x and y are known
+        getSlotIndex(x, y){
+            return y * constant.BLOCK_GRID_WIDTH + x;
+        }
         // get a slot i, x, y object when just i is known
         getSlotXY (i) {
             return {
@@ -136,11 +137,22 @@
             let i_slot = 0;
             this.slots = [];
             while(i_slot < constant.BLOCK_GRID_LEN){
-                //const block = new Block({ i: i, type: 'blank' });
-                //blocks.push( block );
                 const slot = new Slot( this.getSlotXY(i_slot) );
                 this.slots.push(slot);
                 i_slot += 1;
+            }
+        }
+        // drop down blocks at a given slot
+        dropDownBlocks(slot) {
+            let y = slot.y;
+            while(y >= 1){
+                const slot_current = this.slots[ this.getSlotIndex( slot.x, y ) ];
+                const slot_up = this.slots[ this.getSlotIndex( slot.x, y - 1 ) ];
+                if(slot_up.block.type != 'blank'){
+                    slot_current.block.copy(slot_up.block);
+                    slot_up.block.clear();
+                }
+                y -= 1;
             }
         }
     };
@@ -184,54 +196,6 @@
            mana_level = a.round();
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
-    };
-    // get the x and y pos if the index is known
-    const getBlockXY = (blockIndex) => {
-        return {
-            x: blockIndex % constant.BLOCK_GRID_WIDTH,
-            y: Math.floor(blockIndex / constant.BLOCK_GRID_WIDTH)
-        };
-    };
-    // get the block index of the x and y pos is known
-    const getBlockIndex = (x, y) => {
-        return y * constant.BLOCK_GRID_WIDTH + x;
-    };
-    // get the next blank block in a col
-    const getNextBlankBlock = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const pos_block = getBlockXY(i_block);
-        let y = constant.BLOCK_GRID_HEIGHT;
-        while(y--){
-            const i_colblock = getBlockIndex(pos_block.x, y);
-            const block = land.blocks[i_colblock];
-            if(block.type === 'blank'){
-                return block;
-            }
-        }
-        return false;
-    };
-    // drop down blocks after an absorb event
-    const dropDownBlocks = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const pos_block = getBlockXY(i_block);
-        // get non blank blocks
-        let y = pos_block.y;
-        while(y >= 1){
-            const block_current = land.blocks[ getBlockIndex(pos_block.x, y) ];
-            const block_up = land.blocks[ getBlockIndex(pos_block.x, y - 1) ];
-            if(block_up.type != 'blank'){
-                console.log(block_up);
-                block_current.type = block_up.type;
-                block_current.level = block_up.level;
-                block_current.mana_base = block_up.mana_base;
-                block_current.mana_temp = block_up.mana_temp;
-                block_current.mana_value = block_up.mana_value;
-                block_up.type = 'blank';
-                block_up.mana_base = 0;
-                block_up.mana_temp = 0;
-            }
-            y -= 1;
-        }
     };
     // credit a mana delta to game.mana, upgrade mana level if cap is 
     // reached as long as then next cap is below MAX MANA const
@@ -344,8 +308,15 @@
         }
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
-    gameMod.absorbBlock = (game, i_land, i_block) => {
-        
+    gameMod.absorbBlock = (game, i_section, i_slot) => {
+        const section = game.lands.sections[i_section];
+        const slot = section.slots[i_slot];
+        const block = slot.block;
+        if(block.type != 'blank'){
+            manaCredit(game, block.mana_value.valueOf());
+            block.clear();
+            section.dropDownBlocks(slot);
+        }
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_section, i_slot) => {
@@ -358,147 +329,4 @@
             block.setLevel(newLevel, 'rock');
         }
     };
-
-
-/*
-    gameMod.updateByTickDelta = (game, tickDelta, force) => {
-        game.tick_last = game.tick;
-        game.tick_frac += tickDelta;
-        game.tick = Math.floor(game.tick_frac);
-        const tick_delta = game.tick - game.tick_last;
-        if(tick_delta >= 1 || force){
-            game.mana_per_tick = new Decimal(0);
-            forEachLandBlock(game,
-                (land, game) => {
-                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
-                     const d_adjusted = d_sun - land.r - game.sun.r;
-                     land.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
-                     land.temp = Math.round( constant.TEMP_MAX * land.d_alpha );
-                     land.rock_count = 0;
-                },
-                (land, block, game) => {
-                     const a_temp = land.temp / constant.TEMP_MAX;
-                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
-                     land.rock_count += block.type === 'rock' ? 1 : 0;
-                     land.rock_cost = getNextBlockCost(land.rock_count);
-                }
-            );
-            const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
-            manaCredit(game, mana_delta);
-        }
-    };
-    // create a new game state object
-    gameMod.create = (opt) => {
-        opt = opt || {};
-        opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
-        const game = {
-           mana: new Decimal(opt.mana),
-           mana_level: opt.mana_level,
-           mana_cap: 0,      // set by calling getManaCap Helper
-           mana_per_tick: new Decimal(0),
-           tick_frac: 0,
-           tick: 0,          // game should update by a main tick count
-           tick_last: 0      // last tick can be subtracted from tick to get a tick delta
-        };
-        // create sun object
-        game.sun = {
-            cx: opt.cx, cy: opt.cy,
-            x: opt.x, y: opt.y,
-            r: constant.SUN_RADIUS
-        };
-        // land objects
-        game.lands = [];
-        let i = 0;
-        while(i < constant.LAND_OBJECT_COUNT){
-           const a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
-           const land = {
-               i: i,
-               x: game.sun.cx + Math.cos(a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
-               y: game.sun.cy + Math.sin(a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
-               r: constant.LAND_RADIUS,
-               blocks: createBlockGrid(),
-               d_alpha: 0,
-               temp: 0,
-               rock_count: 0,
-               rock_cost: getNextBlockCost(0)
-           };
-           game.lands.push(land);
-           i += 1;
-        }
-        Object.assign(game, constant);
-        game.mana_cap = getManaCap(game);
-        gameMod.updateByTickDelta(game, 0, true);
-        return game;
-    };
-    // set the sun position
-    gameMod.setSunPos = (game, x, y) => {
-        const sun = game.sun;
-        sun.x = x;
-        sun.y = y;
-        const d = utils.distance(x, y, sun.cx, sun.cy);
-        const md = constant.SUNAREA_RADIUS - sun.r;
-        if(d >= md){
-            const a = Math.atan2(sun.y - sun.cy, sun.x - sun.cx);
-            sun.x = sun.cx + Math.cos(a) * md;
-            sun.y = sun.cy + Math.sin(a) * md;
-        }
-    };
-    // get land object by x, y pos or false if nothing there
-    gameMod.getLandByPos = (game, x, y) => {
-        let i = 0;
-        while(i < constant.LAND_OBJECT_COUNT){
-           const land = game.lands[i];
-           const d = utils.distance(x, y, land.x, land.y);
-           if(d < land.r){
-              return land;
-           }
-           i += 1;
-        }
-        return false;
-    };
-    // buy a block for the given land and block index
-    gameMod.buyBlock = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const block = getNextBlankBlock(game, i_land, i_block);
-        if(block){
-            gameMod.updateByTickDelta(game, 0, true);
-            if(block.type === 'blank' && land.rock_count < constant.BLOCK_LAND_MAX){
-                if(game.mana >= land.rock_cost){
-                    game.mana = game.mana.sub(land.rock_cost);
-                    Object.assign(block, constant.BLOCKS.rock);
-                    block.setManaValue(land.rock_cost);
-                    block.level = 1;
-                    block.upgradeCost = getBlockUpgradeCost(block);
-                    land.rock_cost = getNextBlockCost(land.rock_count + 1);
-                }
-            }
-        }
-    };
-    // set the given land and block index back to blank, and absorb the mana value to game.mana
-    gameMod.absorbBlock = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const block = land.blocks[i_block];
-        if(block.type != 'blank'){
-            manaCredit(game, block.mana_value.valueOf());
-            Object.assign(block, constant.BLOCKS.blank);
-            block.setManaValue(0);
-            block.level = 1;
-            block.upgradeCost = getBlockUpgradeCost(block);
-            dropDownBlocks(game, i_land, i_block);
-        }
-    };
-    // upgrade block
-    gameMod.upgradeBlock = (game, i_land, i_block) => {
-        const land = game.lands[i_land];
-        const block = land.blocks[i_block];
-        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
-            game.mana = game.mana.sub(block.upgradeCost);
-            block.level += 1;
-            const rData = constant.BLOCKS.rock;
-            block.mana_base = rData.mana_base * block.level;
-            block.mana_temp = Math.pow(rData.mana_temp, block.level);
-            block.upgradeCost = getBlockUpgradeCost(block);
-        }
-    };
-*/
 }( this['gameMod'] = {} ));
