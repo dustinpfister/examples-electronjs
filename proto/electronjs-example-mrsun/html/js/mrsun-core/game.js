@@ -58,7 +58,7 @@
             opt || opt || {};
             this.type = opt.type || 'blank';
             const TYPE_DEF = constant.BLOCKS[this.type];
-            this.level = 1;
+            this.level = opt.level === undefined ? 1 : parseInt(opt.level);
             this.mana_temp = TYPE_DEF.mana_temp;
             this.mana_base = TYPE_DEF.mana_base;
             this.mana_value = null;
@@ -381,22 +381,23 @@
         return false;
     };
     // buy a block for the given land section and slot indices
-    gameMod.buyBlock = (game, i_section, i_slot) => {
+    gameMod.buyBlock = (game, i_section, i_slot, level) => {
         //const land = game.lands[i_land];
         //const block = getNextBlankBlock(game, i_land, i_block);
         //if(block){
         const section = game.lands.sections[i_section];
         const slot = section.slots[i_slot];
         const block = slot.block;
+        const blockCost = 1 * level;
 
         gameMod.updateByTickDelta(game, 0, true);
         if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
-            if(game.mana >= section.rock_cost){
+            if(game.mana >= blockCost){
 
 console.log('so far so good');
-game.mana = game.mana.sub(section.rock_cost);
+game.mana = game.mana.sub(blockCost);
 
-slot.block = new Block({type: 'rock'})
+slot.block = new Block({type: 'rock', level: level})
 
 //section.rock_cost = getNextBlockCost(land.rock_count + 1);
 

@@ -29,11 +29,16 @@
 ## (  ) - rx - Block Type Counts
 * () counts for each block type in each land object by just adding up Sections
 
-## (  ) - rx -  class
+## (  ) - r14 -  More Work with new Classes
 * () Block Gravity fetaure should be done with this class
 * () block type counts for each block type in this section
+* () Block Class: have a setBlockUpgradeCost Block class method
+* () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
+* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
+* () remove old code that is not used any more in game.js
+* () rmeove old code that is not used any more in sm.js
 
-## (  ) - r13 - new class started
+## ( done 04/08/2023 ) - r13 - new class started
 * (done) start the Slot Class
 * (done) have a LandSection class that is used for all data that has to do with a single one of the land areas
 * (done) have a Lands class that is a collection of LandSection objects
@@ -44,16 +49,7 @@
 * (done) drawing slots in land state in sm.js
 * (done) get pointer events to work again, but with new slot system in sm.js
 * (done) get mana and temp update working again
-
-* () Block Cost should just go by level
-
-* () Block Class: have a setBlockUpgradeCost Block class method
-* () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
-
-
-* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
-* () remove old code that is not used any more in game.js
-* () rmeove old code that is not used any more in sm.js
+* (done) Block Cost should just go by level
 
 ## ( done 04/08/2023 ) - r12 - Block class
 * (done) using utils.formatDecimal for display of mana delta value

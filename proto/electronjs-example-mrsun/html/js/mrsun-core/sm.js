@@ -272,7 +272,7 @@ sm.states.land = {
                     //const block = land.blocks[i];
                     // action will differ based on block mode
                     if(data.block_mode === 'create'){
-                        gameMod.buyBlock(sm.game, sm.landIndex, i);
+                        gameMod.buyBlock(sm.game, sm.landIndex, i, 1);
                     }
                     if(data.block_mode === 'absorb'){
                         gameMod.absorbBlock(sm.game, sm.landIndex, i);
