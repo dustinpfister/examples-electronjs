@@ -20,10 +20,15 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
-## (  ) - r16 - Slot Class, Disabled Slot feature 
+## (  ) - r18 - Slot Class, Disabled Slot feature 
 * () a slot object will have a disbaled property which means that it can not be used at all
 
-## (  ) - r15 - have a lands class
+## (  ) - r17 - Slot Class, Locked slot feature
+
+## (  ) - r16 - Use new Clases with gameMod methods
+* () update gameMod.create to use Lands class
+
+## (  ) - r15 - have a Lands class
 * () have a Lands class that is a collection of LandSection objects
 * () counts for each block type in each land object by just adding up Sections
 
@@ -32,11 +37,11 @@
 * () Block Gravity fetaure should be done with this class
 * () block type counts for each block type in this section
 
-## (  ) - r13 - Slot class, Locked slot feature
+## (  ) - r13 - Slot class started
+* () start the Slot Class
+* () the slot class should have a block property that by default has a blank type block
 * () values like i, x, and y should be slot class values, not block class values
 * () I might want to have a ref to the slot in a block
-* () have a Slot class that is a Single slot in a grid
-* () a Slot can be locked, and mana can be used to unlock it.
 * () getNextBlockCost should be a Slot class Feature not a block class feature
 * () Block Class: have a setBlockUpgradeCost Block class method
 * () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
