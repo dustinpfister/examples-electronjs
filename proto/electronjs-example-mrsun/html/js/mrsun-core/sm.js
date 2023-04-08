@@ -78,19 +78,7 @@ sm.states.world = {
         ctx.beginPath();
         ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
-        // land objects
-/*
-        sm.game.lands.forEach((land) => {
-            ctx.fillStyle = 'brown';
-            ctx.beginPath();
-            ctx.arc(land.x, land.y, land.r, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = 'white';
-            ctx.textBaseline = 'middle';
-            ctx.textAlign = 'center';
-            ctx.fillText(land.temp, land.x, land.y);
-        });
-*/
+        // land section objects
         sm.game.lands.sections.forEach((section) => {
             ctx.fillStyle = 'brown';
             ctx.beginPath();
@@ -101,8 +89,6 @@ sm.states.world = {
             ctx.textAlign = 'center';
             ctx.fillText(section.temp, section.x, section.y);
         });
-
-
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
     },

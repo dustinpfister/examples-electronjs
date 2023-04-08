@@ -34,11 +34,10 @@
 * (done) have a Block.setLevel method
 * (done) get upgrades working again with new classes
 
+* () get Block Gravity fetaure working again with new LandSections class
 
-* () Block Gravity fetaure should be done with this class
 * () block type counts for each block type in this section
-* () Block Class: have a setBlockUpgradeCost Block class method
-* () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
+
 * () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
 * () remove old code that is not used any more in game.js
 * () rmeove old code that is not used any more in sm.js
