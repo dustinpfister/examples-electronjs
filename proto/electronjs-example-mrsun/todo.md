@@ -30,9 +30,10 @@
 * () counts for each block type in each land object by just adding up Sections
 
 ## (  ) - r14 -  More Work with new Classes
+* (done) get rock count to work again
+* (done) have a Block.setLevel method
 * () get upgrades working again with new classes
 
-* () get rock count to work again
 
 * () Block Gravity fetaure should be done with this class
 * () block type counts for each block type in this section

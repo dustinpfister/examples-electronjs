@@ -57,12 +57,7 @@
         constructor(opt) {
             opt || opt || {};
             this.type = opt.type || 'blank';
-            const TYPE_DEF = constant.BLOCKS[this.type];
-            this.level = opt.level === undefined ? 1 : parseInt(opt.level);
-            this.mana_temp = TYPE_DEF.mana_temp;
-            this.mana_base = TYPE_DEF.mana_base;
-            this.mana_value = null;
-            this.setManaValue(0);
+            this.setLevel(opt.level, this.type);
         }
         // set the mana value object for this block
         setManaValue (block_cost) {
@@ -72,6 +67,20 @@
                    return this.mana_block_cost;
                 }
             };
+        }
+        // set the current level of the block, can also change type
+        setLevel (level, type) {
+            this.level = level === undefined ? 1 : parseInt(level);
+            this.type = type || this.type;
+            const TYPE_DEF = constant.BLOCKS[this.type];
+            //this.mana_temp = TYPE_DEF.mana_temp;
+            //this.mana_base = TYPE_DEF.mana_base;
+
+            this.mana_base = TYPE_DEF.mana_base * this.level;
+            this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
+
+            this.mana_value = null;
+            this.setManaValue(0);
         }
     };
     //-------- ----------
@@ -387,7 +396,7 @@
         if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
             if(game.mana >= blockCost){
                  game.mana = game.mana.sub(blockCost);
-                 slot.block = new Block({type: 'rock', level: level})
+                 slot.block = new Block({type: 'rock', level: level + 10})
             }
         }
     };
@@ -397,7 +406,18 @@
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_land, i_block) => {
-        
+/*
+        const land = game.lands[i_land];
+        const block = land.blocks[i_block];
+        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
+            game.mana = game.mana.sub(block.upgradeCost);
+            block.level += 1;
+            const rData = constant.BLOCKS.rock;
+            block.mana_base = rData.mana_base * block.level;
+            block.mana_temp = Math.pow(rData.mana_temp, block.level);
+            block.upgradeCost = getBlockUpgradeCost(block);
+        }
+*/
     };
 
 
