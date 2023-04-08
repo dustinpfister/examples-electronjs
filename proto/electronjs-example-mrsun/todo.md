@@ -37,15 +37,15 @@
 * (done) start the Slot Class
 * (done) have a LandSection class that is used for all data that has to do with a single one of the land areas
 * (done) have a Lands class that is a collection of LandSection objects
-
 * (done) I will want a Lands.forEachSection method
-* () I will want a LandSections.createSlotGrid method
+* (done) I will want a LandSections.createSlotGrid method
+* (done) the slot class should have a block property that by default has a blank type block
+* (done) values like i, x, and y should be slot class values, not block class values
 
-
-* () the slot class should have a block property that by default has a blank type block
-* () values like i, x, and y should be slot class values, not block class values
 * () I might want to have a ref to the slot in a block
 * () getNextBlockCost should be a Slot class Feature not a block class feature
+
+* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
 
 * () Block Class: have a setBlockUpgradeCost Block class method
 * () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper

@@ -22,13 +22,20 @@
     constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
     constant.LAND_OBJECT_COUNT = 12;
     constant.BLOCK_MAX_LEVEL = 99;
+
+
+
+    constant.MANA_MAX = new Decimal('1e100');
+    constant.TEMP_MAX = 999;
+    constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
+
+
     constant.BLOCK_GRID_WIDTH = 10;
     constant.BLOCK_GRID_HEIGHT = 8;
     constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
-    constant.MANA_MAX = new Decimal('1e100');
-    constant.TEMP_MAX = 999;
-    constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
+
+
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
@@ -48,9 +55,8 @@
     //-------- ----------
     class Block {
         constructor(opt) {
-            opt = opt || {};
+            opt || opt || {};
             this.type = opt.type || 'Blank';
-            this.i = opt.i === undefined ? 0 : opt.i;
             this.level = 1;
             this.mana_temp = 0;
             this.mana_base = 0;
@@ -74,8 +80,9 @@
         constructor(opt) {
             opt = opt || {};
             this.i = opt.i === undefined ? 0 : opt.i;
-            this.x = 0;
-            this.y = 0;
+            this.x = opt.x === undefined ? 0 : opt.x;
+            this.y = opt.y === undefined ? 0 : opt.y;
+            this.block = new Block('blank')
         }
     };
     //-------- ----------
@@ -95,8 +102,17 @@
             this.rock_count = 0;
             this.rock_cost = 0;
             //this.setNextBlockCost(0)
-            
+            this.createSlotGrid();
         }
+        // get a slot i, x, y object when just i is known
+        getSlotXY (i) {
+            return {
+                i: i,
+                x: i % constant.BLOCK_GRID_WIDTH,
+                y: Math.floor(i / constant.BLOCK_GRID_WIDTH)
+            }
+        }
+        // for each slot
         forEachSlot(func) {
             let i_slot = 0;
             const len = this.slots.length;
@@ -106,23 +122,32 @@
                 i_slot += 1;
             }
         }
+        // create the Slot Grid
+        createSlotGrid() {
+            let i_slot = 0;
+            this.slots = [];
+            while(i_slot < constant.BLOCK_GRID_LEN){
+                //const block = new Block({ i: i, type: 'blank' });
+                //blocks.push( block );
+                const slot = new Slot( this.getSlotXY(i_slot) );
+                this.slots.push(slot);
+                i_slot += 1;
+            }
+        }
     };
     //-------- ----------
-    // Land Section
+    // Lands Class
     //-------- ----------
     class Lands {
         constructor(game) {
             this.sections = [];
             let i = 0;
             while(i < constant.LAND_OBJECT_COUNT){
-
                 const section = new LandSection(i, game.sun.cx, game.sun.cy);
-
                 this.sections.push(section);
                 i += 1;
             }
         }
-
         // call a function for each slot, of each land Section
         forEachSection (func) {
             let si = 0;
@@ -133,7 +158,6 @@
                 si += 1;
             }
         }
-
     };
     //-------- ----------
     // HELPERS
