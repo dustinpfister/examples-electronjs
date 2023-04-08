@@ -76,6 +76,7 @@
             this.mana_base = TYPE_DEF.mana_base * this.level;
             this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
             this.mana_value = null;
+            this.upgradeCost = Decimal.pow(10, this.level);
             this.setManaValue(0);
         }
         // clear a block to blank type
@@ -378,7 +379,7 @@
         if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
             if(game.mana >= blockCost){
                  game.mana = game.mana.sub(blockCost);
-                 slot.block = new Block({type: 'rock', level: level + 10})
+                 slot.block = new Block({type: 'rock', level: level})
             }
         }
     };
@@ -387,7 +388,16 @@
         
     };
     // upgrade block
-    gameMod.upgradeBlock = (game, i_land, i_block) => {
+    gameMod.upgradeBlock = (game, i_section, i_slot) => {
+        const section = game.lands.sections[i_section];
+        const slot = section.slots[i_slot];
+        const block = slot.block;
+        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
+            game.mana = game.mana.sub(block.upgradeCost);
+            const newLevel = block.level + 1;
+            block.setLevel(newLevel, 'rock');
+        }
+
 /*
         const land = game.lands[i_land];
         const block = land.blocks[i_block];

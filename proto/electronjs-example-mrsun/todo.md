@@ -32,7 +32,7 @@
 ## (  ) - r14 -  More Work with new Classes
 * (done) get rock count to work again
 * (done) have a Block.setLevel method
-* () get upgrades working again with new classes
+* (done) get upgrades working again with new classes
 
 
 * () Block Gravity fetaure should be done with this class
