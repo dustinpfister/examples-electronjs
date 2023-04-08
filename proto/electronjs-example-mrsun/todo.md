@@ -20,26 +20,34 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
-## (  ) - r16 - Slot Class Locked slot feature
-* () a Slot can be locked, and mana can be used to unlock it.
+## (  ) - r16 - Slot Class, Disabled Slot feature 
+* () a slot object will have a disbaled property which means that it can not be used at all
 
 ## (  ) - r15 - have a lands class
 * () have a Lands class that is a collection of LandSection objects
+* () counts for each block type in each land object by just adding up Sections
 
 ## (  ) - r14 - LandSection class
 * () have a LandSection class that is used for all data that has to do with a single one of the land areas
-* () block type counts for each block type
-* () counts for each type in each land object
-* () global total counts in game object
+* () Block Gravity fetaure should be done with this class
+* () block type counts for each block type in this section
 
-## (  ) - r13 - Slot class, Disabled Slot feature
+## (  ) - r13 - Slot class, Locked slot feature
+* () values like i, x, and y should be slot class values, not block class values
+* () I might want to have a ref to the slot in a block
 * () have a Slot class that is a Single slot in a grid
-* () a slot object will have a disbaled property which means that it can not be used at all
+* () a Slot can be locked, and mana can be used to unlock it.
+* () getNextBlockCost should be a Slot class Feature not a block class feature
+* () Block Class: have a setBlockUpgradeCost Block class method
+* () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
 
-## (  ) - r12 - Block class
+## ( done 04/08/2023 ) - r12 - Block class
 * (done) using utils.formatDecimal for display of mana delta value
 * (done) fix decimal points bug in utils.formatDecimal
-* () have a Block class that will be a single block object such as a 'rock'
+* (done) have a Block class that will be a single block object such as a 'rock'
+* (done) have a setManaValue method
+* (done) use setManaValue in place of createManaValue helper
+* (done) remove createManaValue helper
 
 ## ( done 04/07/2023 ) - r11 - max block count bug fix
 * (done) see about fixing the max block count bug where I can go over 40 blocks if I click fast enough

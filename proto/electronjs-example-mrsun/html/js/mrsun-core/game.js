@@ -68,10 +68,6 @@
             };
         }
     };
-
-console.log( new Block({i: 1, type: 'rock'}) );
-
-
     //-------- ----------
     // HELPERS
     //-------- ----------
@@ -89,34 +85,15 @@ console.log( new Block({i: 1, type: 'rock'}) );
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
     };
-    // create a mana value object
-    const createManaValue = (block_cost) => {
-        block_cost = block_cost || 0;
-        const mana_value = {
-            mana_block_cost: new Decimal(block_cost),
-            valueOf: function(){
-                return this.mana_block_cost;
-            }
-        };
-        return mana_value;
-    };
     // create a new block grid object
     const createBlockGrid = () => {
         let i = 0;
         const blocks = [];
         while(i < constant.BLOCK_GRID_LEN){
-
-            const block = Object.assign({}, constant.BLOCKS.blank);
-
-            block.i = i;
-            block.level = 1;
-            block.mana_value = createManaValue(0);
+            const block = new Block({ i: i, type: 'blank' });
             blocks.push( block );
             i += 1;
         }
-
-//console.log(blocks)
-
         return blocks;
     };
     // get block upgrade cost
@@ -315,7 +292,7 @@ console.log( new Block({i: 1, type: 'rock'}) );
                 if(game.mana >= land.rock_cost){
                     game.mana = game.mana.sub(land.rock_cost);
                     Object.assign(block, constant.BLOCKS.rock);
-                    block.mana_value = createManaValue(land.rock_cost);
+                    block.setManaValue(land.rock_cost);
                     block.level = 1;
                     block.upgradeCost = getBlockUpgradeCost(block);
                     land.rock_cost = getNextBlockCost(land.rock_count + 1);
@@ -330,7 +307,7 @@ console.log( new Block({i: 1, type: 'rock'}) );
         if(block.type != 'blank'){
             manaCredit(game, block.mana_value.valueOf());
             Object.assign(block, constant.BLOCKS.blank);
-            block.mana_value = createManaValue(0);
+            block.setManaValue(0);
             block.level = 1;
             block.upgradeCost = getBlockUpgradeCost(block);
             dropDownBlocks(game, i_land, i_block);
