@@ -39,14 +39,12 @@
 * () do the same thing with unlocking when it comes to blocks slots in each land section
 * () make it so that it is just the upgrade cost that is of concern when cretaing and upgrading blocks
 
-## (  ) - r13 - Next block cost
-* () use global rock count over that of land for setting next block price 
-* () use Decimal for next block cost value
-* () use the format utils method for next block cost
-
-## (  ) - r12 - Block Type Counts
+## (  ) - r12 - Grid, Slot, Block classes
 * (done) using utils.formatDecimal for display of mana delta value
 * (done) fix decimal points bug in utils.formatDecimal
+
+* () have a Grid class, Slot class, and Block class
+
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object
