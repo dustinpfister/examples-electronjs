@@ -38,7 +38,9 @@
 * (done) have a LandSection class that is used for all data that has to do with a single one of the land areas
 * (done) have a Lands class that is a collection of LandSection objects
 
-* () I will want a Lands.forEachSectionSlot method
+* (done) I will want a Lands.forEachSection method
+* () I will want a LandSections.createSlotGrid method
+
 
 * () the slot class should have a block property that by default has a blank type block
 * () values like i, x, and y should be slot class values, not block class values

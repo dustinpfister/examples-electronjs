@@ -97,6 +97,15 @@
             //this.setNextBlockCost(0)
             
         }
+        forEachSlot(func) {
+            let i_slot = 0;
+            const len = this.slots.length;
+            while(i_slot < len){
+                const slot = this.slots[i_slot];
+                func.call(this, slot, i_slot, this);
+                i_slot += 1;
+            }
+        }
     };
     //-------- ----------
     // Land Section
@@ -116,8 +125,13 @@
 
         // call a function for each slot, of each land Section
         forEachSection (func) {
-
-
+            let si = 0;
+            const len = this.sections.length;
+            while(si < len){
+                const section = this.sections[si];
+                func.call(this, section, si, this);
+                si += 1;
+            }
         }
 
     };
@@ -291,6 +305,12 @@
 
         game.lands = new Lands(game);
         console.log(game.lands)
+
+        game.lands.forEachSection( (section) => {
+
+console.log(section)
+
+        });
 
         Object.assign(game, constant);
         game.mana_cap = getManaCap(game);
