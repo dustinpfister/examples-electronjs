@@ -9,19 +9,6 @@
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
-## () - objpool-blocks module
-* () object pool module for blocks in land state
-* () can also use this to help draw land in world state
-
-## () - objpool-world module
-* () world object pool module for sun, land sections
-
-## () - object pool module
-* () have a main object pool module based on what I all ready made
-
-## () - objpool-button module
-* () object pool for buttons
-
 ## () Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
@@ -33,21 +20,26 @@
 ## () - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
-## (  ) - Land Section unlock, Block Slot Unlock
-* () have land section unlocking be a thing
-* () first land section should be free, and go up in cost after that
-* () do the same thing with unlocking when it comes to blocks slots in each land section
-* () make it so that it is just the upgrade cost that is of concern when cretaing and upgrading blocks
+## (  ) - r16 - Slot Class Locked slot feature
+* () a Slot can be locked, and mana can be used to unlock it.
 
-## (  ) - r12 - Grid, Slot, Block classes
-* (done) using utils.formatDecimal for display of mana delta value
-* (done) fix decimal points bug in utils.formatDecimal
+## (  ) - r15 - have a lands class
+* () have a Lands class that is a collection of LandSection objects
 
-* () have a Grid class, Slot class, and Block class
-
+## (  ) - r14 - LandSection class
+* () have a LandSection class that is used for all data that has to do with a single one of the land areas
 * () block type counts for each block type
 * () counts for each type in each land object
 * () global total counts in game object
+
+## (  ) - r13 - Slot class, Disabled Slot feature
+* () have a Slot class that is a Single slot in a grid
+* () a slot object will have a disbaled property which means that it can not be used at all
+
+## (  ) - r12 - Block class
+* (done) using utils.formatDecimal for display of mana delta value
+* (done) fix decimal points bug in utils.formatDecimal
+* () have a Block class that will be a single block object such as a 'rock'
 
 ## ( done 04/07/2023 ) - r11 - max block count bug fix
 * (done) see about fixing the max block count bug where I can go over 40 blocks if I click fast enough

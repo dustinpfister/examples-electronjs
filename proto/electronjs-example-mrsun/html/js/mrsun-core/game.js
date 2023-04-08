@@ -44,6 +44,35 @@
         mana_temp: 4
     };
     //-------- ----------
+    // BLOCK CLASS
+    //-------- ----------
+    class Block {
+        // create an instance of 'Block'
+        constructor(opt) {
+            opt = opt || {};
+            this.type = opt.type || 'Blank';
+            this.i = opt.i === undefined ? 0 : opt.i;
+            this.level = 1;
+            this.mana_temp = 0;
+            this.mana_base = 0;
+            this.mana_value = null;
+            this.setManaValue(0);
+        }
+        // set the mana value object for this block
+        setManaValue (block_cost) {
+            this.mana_value = {
+               mana_block_cost: new Decimal(block_cost),
+               valueOf: function(){
+                   return this.mana_block_cost;
+                }
+            };
+        }
+    };
+
+console.log( new Block({i: 1, type: 'rock'}) );
+
+
+    //-------- ----------
     // HELPERS
     //-------- ----------
     // get the current mana cap value for a game object, or a cap value for the given level
@@ -76,13 +105,18 @@
         let i = 0;
         const blocks = [];
         while(i < constant.BLOCK_GRID_LEN){
+
             const block = Object.assign({}, constant.BLOCKS.blank);
+
             block.i = i;
             block.level = 1;
             block.mana_value = createManaValue(0);
             blocks.push( block );
             i += 1;
         }
+
+//console.log(blocks)
+
         return blocks;
     };
     // get block upgrade cost
