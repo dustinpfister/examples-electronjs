@@ -43,12 +43,17 @@
 * (done) values like i, x, and y should be slot class values, not block class values
 * (done) drawing slots in land state in sm.js
 
-* () getNextBlockCost should be a Slot class Feature not a block class feature
+* () get pointer events to work again, but with new slot system in sm.js
 
-* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
+* () getNextBlockCost should be a Slot class Feature not a block class feature
 
 * () Block Class: have a setBlockUpgradeCost Block class method
 * () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
+
+
+* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
+* () remove old code that is not used any more in game.js
+* () rmeove old code that is not used any more in sm.js
 
 ## ( done 04/08/2023 ) - r12 - Block class
 * (done) using utils.formatDecimal for display of mana delta value

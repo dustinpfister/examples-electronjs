@@ -330,11 +330,6 @@
         game.lands = new Lands(game);
         console.log(game.lands)
 
-        game.lands.forEachSection( (section) => {
-
-console.log(section)
-
-        });
 
         Object.assign(game, constant);
         game.mana_cap = getManaCap(game);
@@ -367,9 +362,38 @@ console.log(section)
         }
         return false;
     };
-    // buy a block for the given land and block index
-    gameMod.buyBlock = (game, i_land, i_block) => {
-        
+    // buy a block for the given land section and slot indices
+    gameMod.buyBlock = (game, i_section, i_slot) => {
+        //const land = game.lands[i_land];
+        //const block = getNextBlankBlock(game, i_land, i_block);
+        //if(block){
+        const section = game.lands.sections[i_section];
+        const slot = section.slots[i_slot];
+        const block = slot.block;
+
+        gameMod.updateByTickDelta(game, 0, true);
+        if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
+            if(game.mana >= section.rock_cost){
+
+console.log('so far so good');
+game.mana = game.mana.sub(section.rock_cost);
+
+slot.block = new Block({type: 'rock'})
+
+//section.rock_cost = getNextBlockCost(land.rock_count + 1);
+
+/*
+                game.mana = game.mana.sub(land.rock_cost);
+
+                Object.assign(block, constant.BLOCKS.rock);
+                block.setManaValue(land.rock_cost);
+                block.level = 1;
+                block.upgradeCost = getBlockUpgradeCost(block);
+                land.rock_cost = getNextBlockCost(land.rock_count + 1);
+*/
+            }
+        }
+        //}
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
     gameMod.absorbBlock = (game, i_land, i_block) => {

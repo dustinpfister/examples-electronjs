@@ -263,12 +263,13 @@ sm.states.land = {
                 button_check_blockmode(data, 'upgrade', x, y);
                 button_check_blockmode(data, 'info', x, y);
                 // grid clicked?
-/*
                 if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
                     const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
                     const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
                     const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
-                    const block = land.blocks[i];
+                    const slot = section.slots[i];
+                    const block = slot.block;
+                    //const block = land.blocks[i];
                     // action will differ based on block mode
                     if(data.block_mode === 'create'){
                         gameMod.buyBlock(sm.game, sm.landIndex, i);
@@ -280,13 +281,12 @@ sm.states.land = {
                         gameMod.upgradeBlock(sm.game, sm.landIndex, i);
                     }
                     if(data.block_mode === 'info'){
-                        console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
-                        console.log(block);
+                        //console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
+                        //console.log(block);
                         data.block_info_disp = true;
                         data.block = block;
                     }
                 }
-*/
             }
         }
     }
