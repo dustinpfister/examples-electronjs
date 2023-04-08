@@ -29,8 +29,7 @@
 * () new mana value based on upgrade cost
 
 ## (  ) - rx - Block Type Counts
-* () make it so that when buying blocks they will start from the ground up
-
+* (done) make it so that when buying blocks they will start from the ground up
 * () counts for each block type in each land object by just adding up Sections
 * () block type counts for each block type in this section
 * () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH

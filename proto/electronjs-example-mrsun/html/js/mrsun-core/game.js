@@ -110,6 +110,13 @@
             this.rock_cost = 0;
             this.createSlotGrid();
         }
+        getSlot(xi, y){
+            let i = xi;
+            if(y != undefined){
+                i = this.getSlotIndex(xi, y);
+            }
+            return this.slots[i];
+        }
         // get a slot index if x and y are known
         getSlotIndex(x, y){
             return y * constant.BLOCK_GRID_WIDTH + x;
@@ -296,14 +303,22 @@
     // buy a block for the given land section and slot indices
     gameMod.buyBlock = (game, i_section, i_slot, level) => {
         const section = game.lands.sections[i_section];
-        const slot = section.slots[i_slot];
-        const block = slot.block;
-        const blockCost = 1 * level;
-        gameMod.updateByTickDelta(game, 0, true);
-        if(block.type === 'blank' && section.rock_count < constant.BLOCK_LAND_MAX){
-            if(game.mana >= blockCost){
-                 game.mana = game.mana.sub(blockCost);
-                 slot.block = new Block({type: 'rock', level: level})
+        const slot_clicked = section.slots[i_slot];
+        const x = slot_clicked.x;
+        let y = constant.BLOCK_GRID_HEIGHT;
+        while(y--){
+            const slot = section.getSlot(x, y);
+            if(slot.block.type === 'blank'){
+                const block = slot.block;
+                const blockCost = 1 * level;
+                gameMod.updateByTickDelta(game, 0, true);
+                if(section.rock_count < constant.BLOCK_LAND_MAX){
+                    if(game.mana >= blockCost){
+                        game.mana = game.mana.sub(blockCost);
+                        slot.block = new Block({type: 'rock', level: level})
+                    }
+                }
+                break;
             }
         }
     };
