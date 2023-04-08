@@ -79,6 +79,7 @@ sm.states.world = {
         ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
         // land objects
+/*
         sm.game.lands.forEach((land) => {
             ctx.fillStyle = 'brown';
             ctx.beginPath();
@@ -89,6 +90,19 @@ sm.states.world = {
             ctx.textAlign = 'center';
             ctx.fillText(land.temp, land.x, land.y);
         });
+*/
+        sm.game.lands.sections.forEach((section) => {
+            ctx.fillStyle = 'brown';
+            ctx.beginPath();
+            ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'center';
+            ctx.fillText(section.temp, section.x, section.y);
+        });
+
+
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
     },
@@ -102,7 +116,7 @@ sm.states.world = {
                 return;
             }
             // clicked land object?
-            const land = gameMod.getLandByPos(sm.game, x, y);
+            const land = gameMod.getSectionByPos(sm.game, x, y);
             if(land){
                 sm.landIndex = land.i;
                 sm.setState('land', {});
@@ -156,7 +170,8 @@ sm.states.land = {
     render: (sm, ctx, canvas, data) => {
         ctx.lineWidth = 1;
         const sun = sm.game.sun;
-        const land = sm.game.lands[sm.landIndex];
+        //const land = sm.game.lands[sm.landIndex];
+        const section = sm.game.lands.sections[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // render blocks
@@ -165,6 +180,7 @@ sm.states.land = {
         ctx.font = '10px arial';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
+/*
         while(i < sm.game.BLOCK_GRID_LEN){
             const bx = i % sm.game.BLOCK_GRID_WIDTH;
             const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
@@ -184,6 +200,7 @@ sm.states.land = {
             }
             i += 1;
         }
+*/
         // buttons
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
@@ -198,9 +215,9 @@ sm.states.land = {
         ctx.font = '10px arial';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillText('temp: ' + land.temp, 15, 40);
-        ctx.fillText('rocks: ' + land.rock_count, 15, 50);
-        ctx.fillText('block cost: ' + land.rock_cost, 15, 60);
+        ctx.fillText('temp: ' + section.temp, 15, 40);
+        ctx.fillText('rocks: ' + section.rock_count, 15, 50);
+        ctx.fillText('block cost: ' + section.rock_cost, 15, 60);
         ctx.fillText('block mode: ' + data.block_mode, 15, 70);
         // current land index
         ctx.font = '50px arial';
@@ -226,7 +243,8 @@ sm.states.land = {
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
-            const land = sm.game.lands[sm.landIndex];
+            //const land = sm.game.lands[sm.landIndex];
+            const section = sm.game.lands.sections[sm.landIndex];
             if(data.block_info_disp){
                 data.block_info_disp = false;
             }else{
@@ -247,6 +265,7 @@ sm.states.land = {
                 button_check_blockmode(data, 'upgrade', x, y);
                 button_check_blockmode(data, 'info', x, y);
                 // grid clicked?
+/*
                 if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
                     const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
                     const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
@@ -269,6 +288,7 @@ sm.states.land = {
                         data.block = block;
                     }
                 }
+*/
             }
         }
     }

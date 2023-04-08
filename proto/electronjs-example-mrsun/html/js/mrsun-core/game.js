@@ -47,7 +47,6 @@
     // BLOCK CLASS
     //-------- ----------
     class Block {
-        // create an instance of 'Block'
         constructor(opt) {
             opt = opt || {};
             this.type = opt.type || 'Blank';
@@ -67,6 +66,60 @@
                 }
             };
         }
+    };
+    //-------- ----------
+    // SLOT CLASS
+    //-------- ----------
+    class Slot {
+        constructor(opt) {
+            opt = opt || {};
+            this.i = opt.i === undefined ? 0 : opt.i;
+            this.x = 0;
+            this.y = 0;
+        }
+    };
+    //-------- ----------
+    // Land Section
+    //-------- ----------
+    class LandSection {
+        constructor(i, cx, cy) {
+            this.i = i;
+            this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
+            this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
+            this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
+            this.r = constant.LAND_RADIUS;
+                    //blocks: createBlockGrid(),
+            this.slots = [];
+            this.d_alpha = 0;
+            this.temp = 0;
+            this.rock_count = 0;
+            this.rock_cost = 0;
+            //this.setNextBlockCost(0)
+            
+        }
+    };
+    //-------- ----------
+    // Land Section
+    //-------- ----------
+    class Lands {
+        constructor(game) {
+            this.sections = [];
+            let i = 0;
+            while(i < constant.LAND_OBJECT_COUNT){
+
+                const section = new LandSection(i, game.sun.cx, game.sun.cy);
+
+                this.sections.push(section);
+                i += 1;
+            }
+        }
+
+        // call a function for each slot, of each land Section
+        forEachSection (func) {
+
+
+        }
+
     };
     //-------- ----------
     // HELPERS
@@ -187,6 +240,104 @@
     //-------- ----------
     // PUBLIC API
     //-------- ----------
+    gameMod.updateByTickDelta = (game, tickDelta, force) => {
+        game.tick_last = game.tick;
+        game.tick_frac += tickDelta;
+        game.tick = Math.floor(game.tick_frac);
+        const tick_delta = game.tick - game.tick_last;
+        if(tick_delta >= 1 || force){
+            game.mana_per_tick = new Decimal(0);
+/*
+            forEachLandBlock(game,
+                (land, game) => {
+                     const d_sun = utils.distance(land.x, land.y, game.sun.x, game.sun.y);
+                     const d_adjusted = d_sun - land.r - game.sun.r;
+                     land.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
+                     land.temp = Math.round( constant.TEMP_MAX * land.d_alpha );
+                     land.rock_count = 0;
+                },
+                (land, block, game) => {
+                     const a_temp = land.temp / constant.TEMP_MAX;
+                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
+                     land.rock_count += block.type === 'rock' ? 1 : 0;
+                     land.rock_cost = getNextBlockCost(land.rock_count);
+                }
+            );
+*/
+            const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
+            manaCredit(game, mana_delta);
+        }
+    };
+    // create a new game state object
+    gameMod.create = (opt) => {
+        opt = opt || {};
+        opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
+        const game = {
+           mana: new Decimal(opt.mana),
+           mana_level: opt.mana_level,
+           mana_cap: 0,      // set by calling getManaCap Helper
+           mana_per_tick: new Decimal(0),
+           tick_frac: 0,
+           tick: 0,          // game should update by a main tick count
+           tick_last: 0      // last tick can be subtracted from tick to get a tick delta
+        };
+        // create sun object
+        game.sun = {
+            cx: opt.cx, cy: opt.cy,
+            x: opt.x, y: opt.y,
+            r: constant.SUN_RADIUS
+        };
+        // land objects
+
+        game.lands = new Lands(game);
+        console.log(game.lands)
+
+        Object.assign(game, constant);
+        game.mana_cap = getManaCap(game);
+        gameMod.updateByTickDelta(game, 0, true);
+        return game;
+    };
+    // set the sun position
+    gameMod.setSunPos = (game, x, y) => {
+        const sun = game.sun;
+        sun.x = x;
+        sun.y = y;
+        const d = utils.distance(x, y, sun.cx, sun.cy);
+        const md = constant.SUNAREA_RADIUS - sun.r;
+        if(d >= md){
+            const a = Math.atan2(sun.y - sun.cy, sun.x - sun.cx);
+            sun.x = sun.cx + Math.cos(a) * md;
+            sun.y = sun.cy + Math.sin(a) * md;
+        }
+    };
+    // get land object by x, y pos or false if nothing there
+    gameMod.getSectionByPos = (game, x, y) => {
+        let i = 0;
+        while(i < constant.LAND_OBJECT_COUNT){
+           const section = game.lands.sections[i];
+           const d = utils.distance(x, y, section.x, section.y);
+           if(d < section.r){
+              return section;
+           }
+           i += 1;
+        }
+        return false;
+    };
+    // buy a block for the given land and block index
+    gameMod.buyBlock = (game, i_land, i_block) => {
+        
+    };
+    // set the given land and block index back to blank, and absorb the mana value to game.mana
+    gameMod.absorbBlock = (game, i_land, i_block) => {
+        
+    };
+    // upgrade block
+    gameMod.upgradeBlock = (game, i_land, i_block) => {
+        
+    };
+
+
+/*
     gameMod.updateByTickDelta = (game, tickDelta, force) => {
         game.tick_last = game.tick;
         game.tick_frac += tickDelta;
@@ -326,4 +477,5 @@
             block.upgradeCost = getBlockUpgradeCost(block);
         }
     };
+*/
 }( this['gameMod'] = {} ));

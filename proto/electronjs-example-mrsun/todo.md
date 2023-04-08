@@ -25,24 +25,26 @@
 
 ## (  ) - r17 - Slot Class, Locked slot feature
 
-## (  ) - r16 - Use new Clases with gameMod methods
-* () update gameMod.create to use Lands class
 
-## (  ) - r15 - have a Lands class
-* () have a Lands class that is a collection of LandSection objects
+## (  ) - rx - Block Type Counts
 * () counts for each block type in each land object by just adding up Sections
 
-## (  ) - r14 - LandSection class
-* () have a LandSection class that is used for all data that has to do with a single one of the land areas
+## (  ) - rx -  class
 * () Block Gravity fetaure should be done with this class
 * () block type counts for each block type in this section
 
-## (  ) - r13 - Slot class started
-* () start the Slot Class
+## (  ) - r13 - new class started
+* (done) start the Slot Class
+* (done) have a LandSection class that is used for all data that has to do with a single one of the land areas
+* (done) have a Lands class that is a collection of LandSection objects
+
+* () I will want a Lands.forEachSectionSlot method
+
 * () the slot class should have a block property that by default has a blank type block
 * () values like i, x, and y should be slot class values, not block class values
 * () I might want to have a ref to the slot in a block
 * () getNextBlockCost should be a Slot class Feature not a block class feature
+
 * () Block Class: have a setBlockUpgradeCost Block class method
 * () Block Class: use the setBlockUpgradeCost method in place of the getBlockUpgradeCost Helper
 
