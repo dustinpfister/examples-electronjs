@@ -185,28 +185,6 @@
         }
         return Decimal.pow(10, 3 + (mana_level - 1) );
     };
-    // create a new block grid object
-    const createBlockGrid = () => {
-        let i = 0;
-        const blocks = [];
-        while(i < constant.BLOCK_GRID_LEN){
-            const block = new Block({ i: i, type: 'blank' });
-            blocks.push( block );
-            i += 1;
-        }
-        return blocks;
-    };
-    // get block upgrade cost
-    const getBlockUpgradeCost = (block) => {
-        return Decimal.pow(10, block.level);
-    };
-    // get a cost of the next block
-    const getNextBlockCost = (i) => {
-        let n = Math.pow(2, constant.MAX_BLOCK_POW * (i / constant.BLOCK_LAND_MAX));
-        n = Math.ceil(n);
-        n = n > constant.MANA_MAX ? constant.MANA_MAX : n;
-        return n;
-    };
     // get the x and y pos if the index is known
     const getBlockXY = (blockIndex) => {
         return {
@@ -254,21 +232,6 @@
             }
             y -= 1;
         }
-    };
-    // for each land block helper
-    const forEachLandBlock = (game, forEachLand, forEachBlock) => {
-        let i_land = 0;
-        while(i_land < constant.LAND_OBJECT_COUNT){
-            const land = game.lands[i_land];
-            let i_block = 0;
-            forEachLand(land, game);
-            while(i_block < constant.BLOCK_GRID_LEN){
-                const block = land.blocks[i_block];
-                forEachBlock(land, block, game);
-                i_block += 1;
-            }
-            i_land += 1;
-        };
     };
     // credit a mana delta to game.mana, upgrade mana level if cap is 
     // reached as long as then next cap is below MAX MANA const
@@ -333,11 +296,8 @@
             r: constant.SUN_RADIUS
         };
         // land objects
-
         game.lands = new Lands(game);
-        console.log(game.lands)
-
-
+        // const
         Object.assign(game, constant);
         game.mana_cap = getManaCap(game);
         gameMod.updateByTickDelta(game, 0, true);
@@ -397,19 +357,6 @@
             const newLevel = block.level + 1;
             block.setLevel(newLevel, 'rock');
         }
-
-/*
-        const land = game.lands[i_land];
-        const block = land.blocks[i_block];
-        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
-            game.mana = game.mana.sub(block.upgradeCost);
-            block.level += 1;
-            const rData = constant.BLOCKS.rock;
-            block.mana_base = rData.mana_base * block.level;
-            block.mana_temp = Math.pow(rData.mana_temp, block.level);
-            block.upgradeCost = getBlockUpgradeCost(block);
-        }
-*/
     };
 
 
