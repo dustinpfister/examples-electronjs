@@ -170,7 +170,6 @@ sm.states.land = {
     render: (sm, ctx, canvas, data) => {
         ctx.lineWidth = 1;
         const sun = sm.game.sun;
-        //const land = sm.game.lands[sm.landIndex];
         const section = sm.game.lands.sections[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
@@ -180,12 +179,12 @@ sm.states.land = {
         ctx.font = '10px arial';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-/*
         while(i < sm.game.BLOCK_GRID_LEN){
             const bx = i % sm.game.BLOCK_GRID_WIDTH;
             const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
-            const i_block = by * sm.game.BLOCK_GRID_WIDTH + bx;
-            const block = land.blocks[i_block];
+            const i_slot = by * sm.game.BLOCK_GRID_WIDTH + bx;
+            const slot = section.slots[i_slot];
+            const block = slot.block;
             ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
             ctx.strokeStyle = 'white';
             ctx.beginPath();
@@ -200,7 +199,6 @@ sm.states.land = {
             }
             i += 1;
         }
-*/
         // buttons
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);

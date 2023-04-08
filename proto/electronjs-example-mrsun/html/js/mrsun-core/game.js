@@ -56,7 +56,7 @@
     class Block {
         constructor(opt) {
             opt || opt || {};
-            this.type = opt.type || 'Blank';
+            this.type = opt.type || 'blank';
             this.level = 1;
             this.mana_temp = 0;
             this.mana_base = 0;

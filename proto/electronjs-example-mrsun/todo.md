@@ -41,8 +41,8 @@
 * (done) I will want a LandSections.createSlotGrid method
 * (done) the slot class should have a block property that by default has a blank type block
 * (done) values like i, x, and y should be slot class values, not block class values
+* (done) drawing slots in land state in sm.js
 
-* () I might want to have a ref to the slot in a block
 * () getNextBlockCost should be a Slot class Feature not a block class feature
 
 * () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
