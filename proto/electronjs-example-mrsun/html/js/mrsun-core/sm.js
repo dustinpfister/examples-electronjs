@@ -91,6 +91,12 @@ sm.states.world = {
         });
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
+        // world disp
+        ctx.font = '10px arial';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
+
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -199,9 +205,8 @@ sm.states.land = {
         ctx.font = '10px arial';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillText('temp: ' + section.temp, 15, 40);
-        ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 50);
-        ctx.fillText('block mode: ' + data.block_mode, 15, 70);
+        ctx.fillText('temp: ' + section.temp, 15, 45);
+        ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 55);
         // current land index
         ctx.font = '50px arial';
         ctx.textAlign = 'center';

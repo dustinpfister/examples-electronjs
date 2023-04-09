@@ -106,16 +106,11 @@
             this.slots = [];
             // counts_of_block_types/next_cost_of_somehting.
             this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
-            //this.rock_count = 0;
-            //this.rock_cost = 0;
             // temp
             this.d_alpha = 0;
             this.temp = 0;
             this.createSlotGrid();
             this.setBlockTypeCounts();
-
-console.log(this.bt_counts);
-
         }
         // get a slot object by index or grid position
         getSlot(xi, y){
@@ -188,12 +183,14 @@ console.log(this.bt_counts);
     class Lands {
         constructor(game) {
             this.sections = [];
+            this.bt_counts = {}; // block type grand total counts
             let i = 0;
             while(i < constant.LAND_OBJECT_COUNT){
                 const section = new LandSection(i, game.sun.cx, game.sun.cy);
                 this.sections.push(section);
                 i += 1;
             }
+            this.setBlockTypeCounts();
         }
         // call a function for each slot, of each land Section
         forEachSection (func) {
@@ -204,6 +201,18 @@ console.log(this.bt_counts);
                 func.call(this, section, si, this);
                 si += 1;
             }
+        }
+        setBlockTypeCounts() {
+            const bt_counts = this.bt_counts = Object.keys(constant.BLOCKS).reduce( (acc, typeKey) => {
+                acc[typeKey] = 0;
+                return acc;
+            }, {});
+            this.forEachSection( (section) => {
+                section.setBlockTypeCounts();
+                Object.keys(constant.BLOCKS).forEach((typeKey)=>{
+                    bt_counts[typeKey] += section.bt_counts[typeKey];
+                });
+            });
         }
     };
     //-------- ----------
@@ -333,8 +342,8 @@ console.log(this.bt_counts);
                     if(game.mana >= blockCost){
                         game.mana = game.mana.sub(blockCost);
                         slot.block.setLevel(level, 'rock');
-                        section.setBlockTypeCounts();
-console.log(section.bt_counts);
+                        //section.setBlockTypeCounts();
+                        game.lands.setBlockTypeCounts();
                     }
                 }
                 break;
@@ -350,10 +359,9 @@ console.log(section.bt_counts);
             manaCredit(game, block.mana_value.valueOf());
             block.clear();
             section.dropDownBlocks(slot);
-            section.setBlockTypeCounts();
-
-console.log(section.bt_counts);
-
+            //section.setBlockTypeCounts();
+            game.lands.setBlockTypeCounts();
+            
         }
     };
     // upgrade block

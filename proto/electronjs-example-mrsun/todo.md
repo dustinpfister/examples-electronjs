@@ -27,8 +27,8 @@
 * () new mana value based on upgrade cost
 
 ## (  ) - r16 - Slot Class, Locked slot feature
-* () block type total counts in lands object by adding up section counts
-* () display totals in world state in sm.js
+* (done) block type total counts in lands object by adding up section counts
+* (done) display totals in world state in sm.js
 * () a slot object should have a locked boolean
 * () make the fill style of a locked slot be cyan for now
 * () check for locked status when updating, a locked slot should not have any effect to beging with
