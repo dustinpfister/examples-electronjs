@@ -30,11 +30,9 @@
 
 ## (  ) - rx - Block Type Counts
 * (done) make it so that when buying blocks they will start from the ground up
+* (done) rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
 * () counts for each block type in each land object by just adding up Sections
 * () block type counts for each block type in this section
-* () rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
-* () remove old code that is not used any more in game.js
-* () rmeove old code that is not used any more in sm.js
 
 ## ( done 04/08/2023 ) - r14 -  More Work with new Classes
 * (done) get rock count to work again

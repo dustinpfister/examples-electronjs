@@ -147,8 +147,8 @@ sm.states.land = {
         block_height: 35
     },
     start: (sm, opt, data) => {
-        data.gw = data.block_width * sm.game.BLOCK_GRID_WIDTH;
-        data.gh = data.block_height * sm.game.BLOCK_GRID_HEIGHT;
+        data.gw = data.block_width * sm.game.SLOT_GRID_WIDTH;
+        data.gh = data.block_height * sm.game.SLOT_GRID_HEIGHT;
     },
     update: (sm, secs, data) => {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
@@ -165,10 +165,10 @@ sm.states.land = {
         ctx.font = '10px arial';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        while(i < sm.game.BLOCK_GRID_LEN){
-            const bx = i % sm.game.BLOCK_GRID_WIDTH;
-            const by = Math.floor(i / sm.game.BLOCK_GRID_WIDTH);
-            const i_slot = by * sm.game.BLOCK_GRID_WIDTH + bx;
+        while(i < sm.game.SLOT_GRID_LEN){
+            const bx = i % sm.game.SLOT_GRID_WIDTH;
+            const by = Math.floor(i / sm.game.SLOT_GRID_WIDTH);
+            const i_slot = by * sm.game.SLOT_GRID_WIDTH + bx;
             const slot = section.slots[i_slot];
             const block = slot.block;
             ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
@@ -252,7 +252,7 @@ sm.states.land = {
                 if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
                     const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
                     const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
-                    const i = by * sm.game.BLOCK_GRID_WIDTH + bx;
+                    const i = by * sm.game.SLOT_GRID_WIDTH + bx;
                     const slot = section.slots[i];
                     const block = slot.block;
                     //const block = land.blocks[i];

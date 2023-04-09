@@ -25,10 +25,10 @@
     constant.MANA_MAX = new Decimal('1e100');
     constant.TEMP_MAX = 999;
     constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
-    constant.BLOCK_GRID_WIDTH = 10;
-    constant.BLOCK_GRID_HEIGHT = 8;
-    constant.BLOCK_GRID_LEN = constant.BLOCK_GRID_WIDTH * constant.BLOCK_GRID_HEIGHT;
-    constant.BLOCK_LAND_MAX = Math.round(constant.BLOCK_GRID_LEN * 0.5);
+    constant.SLOT_GRID_WIDTH = 10;
+    constant.SLOT_GRID_HEIGHT = 8;
+    constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
+    constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN * 0.5);
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
@@ -119,14 +119,14 @@
         }
         // get a slot index if x and y are known
         getSlotIndex(x, y){
-            return y * constant.BLOCK_GRID_WIDTH + x;
+            return y * constant.SLOT_GRID_WIDTH + x;
         }
         // get a slot i, x, y object when just i is known
         getSlotXY (i) {
             return {
                 i: i,
-                x: i % constant.BLOCK_GRID_WIDTH,
-                y: Math.floor(i / constant.BLOCK_GRID_WIDTH)
+                x: i % constant.SLOT_GRID_WIDTH,
+                y: Math.floor(i / constant.SLOT_GRID_WIDTH)
             }
         }
         // for each slot
@@ -143,7 +143,7 @@
         createSlotGrid() {
             let i_slot = 0;
             this.slots = [];
-            while(i_slot < constant.BLOCK_GRID_LEN){
+            while(i_slot < constant.SLOT_GRID_LEN){
                 const slot = new Slot( this.getSlotXY(i_slot) );
                 this.slots.push(slot);
                 i_slot += 1;
@@ -305,7 +305,7 @@
         const section = game.lands.sections[i_section];
         const slot_clicked = section.slots[i_slot];
         const x = slot_clicked.x;
-        let y = constant.BLOCK_GRID_HEIGHT;
+        let y = constant.SLOT_GRID_HEIGHT;
         while(y--){
             const slot = section.getSlot(x, y);
             if(slot.block.type === 'blank'){
