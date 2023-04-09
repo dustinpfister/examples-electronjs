@@ -331,7 +331,12 @@ console.log(this.bt_counts);
                 if(section.rock_count < constant.BLOCK_LAND_MAX){
                     if(game.mana >= blockCost){
                         game.mana = game.mana.sub(blockCost);
-                        slot.block = new Block({type: 'rock', level: level})
+                        //slot.block = new Block({type: 'rock', level: level});
+                        slot.block.setLevel(level, 'rock');
+                        section.setBlockTypeCounts();
+
+console.log(section.bt_counts);
+
                     }
                 }
                 break;
@@ -347,6 +352,10 @@ console.log(this.bt_counts);
             manaCredit(game, block.mana_value.valueOf());
             block.clear();
             section.dropDownBlocks(slot);
+            section.setBlockTypeCounts();
+
+console.log(section.bt_counts);
+
         }
     };
     // upgrade block

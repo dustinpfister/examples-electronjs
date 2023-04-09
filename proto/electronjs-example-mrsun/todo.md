@@ -39,8 +39,13 @@
 * (done) make it so that when buying blocks they will start from the ground up
 * (done) rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
 * (done) block type counts for each section object by just adding up Slots
+* (done) update counts each time a block is created or absorbed
+
 * () block type total counts in lands object by adding up section counts
 * () display totals in land and world states in sm.js
+
+* () use new bt_count object in place of old LandSeciton.rock\_count
+* () remove old LandSection.rockCount
 
 ## ( done 04/08/2023 ) - r14 -  More Work with new Classes
 * (done) get rock count to work again
