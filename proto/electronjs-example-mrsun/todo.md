@@ -24,7 +24,9 @@
 * () a slot object will have a disbaled property which means that it can not be used at all
 
 ## () - rx - new mana value
-* () new mana value based on upgrade cost
+* () new mana value based on upgrade cost of a block
+* () total mana value should be the cost of the current level + all lower levels
+* () for now you just get back all the mana that was spent
 
 ## (  ) - r16 - Slot Class, Locked slot feature
 * (done) block type total counts in lands object by adding up section counts
