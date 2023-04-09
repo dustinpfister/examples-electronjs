@@ -104,12 +104,20 @@
             this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
             this.r = constant.LAND_RADIUS;
             this.slots = [];
-            this.d_alpha = 0;
-            this.temp = 0;
+            // counts_of_block_types/next_cost_of_somehting.
+            this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
             this.rock_count = 0;
             this.rock_cost = 0;
+            // temp
+            this.d_alpha = 0;
+            this.temp = 0;
             this.createSlotGrid();
+            this.setBlockTypeCounts();
+
+console.log(this.bt_counts);
+
         }
+        // get a slot object by index or grid position
         getSlot(xi, y){
             let i = xi;
             if(y != undefined){
@@ -117,7 +125,7 @@
             }
             return this.slots[i];
         }
-        // get a slot index if x and y are known
+        // get a slot index number if x and y are known
         getSlotIndex(x, y){
             return y * constant.SLOT_GRID_WIDTH + x;
         }
@@ -138,6 +146,14 @@
                 func.call(this, slot, i_slot, this);
                 i_slot += 1;
             }
+        }
+        // set block type counts
+        setBlockTypeCounts() {
+            const bt_counts = this.bt_counts = {};
+            this.forEachSlot( (slot) => {
+                const ct = bt_counts[ slot.block.type ];
+                bt_counts[ slot.block.type ] = ct === undefined ? 1 : ct + 1;
+            });
         }
         // create the Slot Grid
         createSlotGrid() {

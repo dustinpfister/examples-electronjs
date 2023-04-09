@@ -23,16 +23,24 @@
 ## (  ) - r18 - Slot Class, Disabled Slot feature 
 * () a slot object will have a disbaled property which means that it can not be used at all
 
-## (  ) - r17 - Slot Class, Locked slot feature
-
 ## () - rx - new mana value
 * () new mana value based on upgrade cost
 
-## (  ) - rx - Block Type Counts
+## (  ) - r16 - Slot Class, Locked slot feature
+* () a slot object should have a locked boolean
+* () make the fill style of a locked slot be cyan for now
+* () check for locked status when updating, a locked slot should not have any effect to beging with
+* () The cost of the first slot should be free
+* () I will want a lands total for over all slots
+* () I will want a lands object total for total unlocked slots
+* () have the cost for each slot unlock go up each time one is unlocked going by lands totals
+
+## (  ) - r15 - Block Type Counts
 * (done) make it so that when buying blocks they will start from the ground up
 * (done) rename consts like BLOCK GRID WIDTH to SLOT GIRD WIDTH
-* () counts for each block type in each land object by just adding up Sections
-* () block type counts for each block type in this section
+* (done) block type counts for each section object by just adding up Slots
+* () block type total counts in lands object by adding up section counts
+* () display totals in land and world states in sm.js
 
 ## ( done 04/08/2023 ) - r14 -  More Work with new Classes
 * (done) get rock count to work again
