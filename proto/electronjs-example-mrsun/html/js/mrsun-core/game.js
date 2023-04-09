@@ -106,8 +106,8 @@
             this.slots = [];
             // counts_of_block_types/next_cost_of_somehting.
             this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
-            this.rock_count = 0;
-            this.rock_cost = 0;
+            //this.rock_count = 0;
+            //this.rock_cost = 0;
             // temp
             this.d_alpha = 0;
             this.temp = 0;
@@ -149,7 +149,10 @@ console.log(this.bt_counts);
         }
         // set block type counts
         setBlockTypeCounts() {
-            const bt_counts = this.bt_counts = {};
+            const bt_counts = this.bt_counts = Object.keys(constant.BLOCKS).reduce( (acc, typeKey) => {
+                acc[typeKey] = 0;
+                return acc;
+            }, {});
             this.forEachSlot( (slot) => {
                 const ct = bt_counts[ slot.block.type ];
                 bt_counts[ slot.block.type ] = ct === undefined ? 1 : ct + 1;
@@ -249,12 +252,10 @@ console.log(this.bt_counts);
                 const d_adjusted = d_sun - section.r - game.sun.r;
                 section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
                 section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
-                section.rock_count = 0;
                 section.forEachSlot( (slot ) => {
                     const a_temp = section.temp / constant.TEMP_MAX;
                     const block = slot.block;
                     if(block.type != 'blank'){
-                        section.rock_count += 1;
                         game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                     }
                 })
@@ -328,15 +329,12 @@ console.log(this.bt_counts);
                 const block = slot.block;
                 const blockCost = 1 * level;
                 gameMod.updateByTickDelta(game, 0, true);
-                if(section.rock_count < constant.BLOCK_LAND_MAX){
+                if(section.bt_counts.rock < constant.BLOCK_LAND_MAX){
                     if(game.mana >= blockCost){
                         game.mana = game.mana.sub(blockCost);
-                        //slot.block = new Block({type: 'rock', level: level});
                         slot.block.setLevel(level, 'rock');
                         section.setBlockTypeCounts();
-
 console.log(section.bt_counts);
-
                     }
                 }
                 break;

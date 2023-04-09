@@ -200,8 +200,7 @@ sm.states.land = {
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
         ctx.fillText('temp: ' + section.temp, 15, 40);
-        ctx.fillText('rocks: ' + section.rock_count, 15, 50);
-        ctx.fillText('block cost: ' + section.rock_cost, 15, 60);
+        ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 50);
         ctx.fillText('block mode: ' + data.block_mode, 15, 70);
         // current land index
         ctx.font = '50px arial';
