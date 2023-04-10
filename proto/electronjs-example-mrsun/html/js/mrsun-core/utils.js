@@ -73,8 +73,11 @@ utils.drawButton = (sm, button, ctx, canvas) => {
 // draw the state of a given LandSection object
 utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
     opt = opt || {};
-    const sx = opt.grid_cx - opt.gw / 2;
-    const sy = opt.grid_cy - opt.gh /2;
+    ctx.save();
+    ctx.translate(opt.grid_cx , opt.grid_cy);
+    ctx.rotate(opt.grid_radian);
+    const sx = opt.grid_w / 2 * -1;
+    const sy = opt.grid_h / 2 * -1;
     let i = 0;
     ctx.font = '10px arial';
     ctx.textAlign = 'left';
@@ -104,4 +107,7 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
         }
         i += 1;
     }
+
+    ctx.restore();
+
 };

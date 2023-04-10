@@ -148,13 +148,14 @@ sm.states.land = {
         button_bm_info :    {  active: false, desc: 'Info', x: 35, y: 305, r: 28 },
         grid_cx: 320,
         grid_cy: 240,
-        gw: 0, gh:0,
+        grid_w: 0, grid_h:0,
         block_width: 50,
-        block_height: 35
+        block_height: 35,
+        grid_radian: 0
     },
     start: (sm, opt, data) => {
-        data.gw = data.block_width * sm.game.SLOT_GRID_WIDTH;
-        data.gh = data.block_height * sm.game.SLOT_GRID_HEIGHT;
+        data.grid_w = data.block_width * sm.game.SLOT_GRID_WIDTH;
+        data.grid_h = data.block_height * sm.game.SLOT_GRID_HEIGHT;
     },
     update: (sm, secs, data) => {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
@@ -230,9 +231,9 @@ sm.states.land = {
                 button_check_blockmode(data, 'upgrade', x, y);
                 button_check_blockmode(data, 'info', x, y);
                 // grid clicked?
-                const sx = data.grid_cx - data.gw / 2;
-                const sy = data.grid_cy - data.gh / 2;
-                if( utils.boundingBox(x, y, 1, 1, sx, sy, data.gw, data.gh) ){
+                const sx = data.grid_cx - data.grid_w / 2;
+                const sy = data.grid_cy - data.grid_h / 2;
+                if( utils.boundingBox(x, y, 1, 1, sx, sy, data.grid_w, data.grid_h) ){
                     const bx = Math.floor( ( x - sx - 0.01) / data.block_width );
                     const by = Math.floor( ( y - sy - 0.01) / data.block_height );
                     const i = by * sm.game.SLOT_GRID_WIDTH + bx;
