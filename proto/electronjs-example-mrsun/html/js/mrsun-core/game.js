@@ -228,7 +228,10 @@
             // update slot unlock cost
             const n = this.slot_unlock_count;
             const d = this.slot_total;
-            this.slot_unlock_cost = Math.ceil( Math.pow(10, 30 * (n / d ) ) ) - 1;
+            //this.slot_unlock_cost = Math.ceil( Math.pow(10, 30 * (n / d ) ) ) - 1;
+
+this.slot_unlock_cost = Decimal.pow(10, 30 * ( n / d ) ).ceil().sub(1);
+
         }
     };
     //-------- ----------
