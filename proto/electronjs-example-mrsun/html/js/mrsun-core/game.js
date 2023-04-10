@@ -106,7 +106,6 @@
             this.r = constant.LAND_RADIUS;
             this.slots = [];
             this.slot_unlock_count = 0;
-            this.slot_unlock_cost = 0;
             // counts_of_block_types/next_cost_of_somehting.
             this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
             // temp
@@ -190,6 +189,7 @@
         constructor(game) {
             this.sections = [];
             this.bt_counts = {}; // block type grand total counts
+            this.slot_unlock_cost = 0;
             let i = 0;
             while(i < constant.LAND_OBJECT_COUNT){
                 const section = new LandSection(i, game.sun.cx, game.sun.cy);
@@ -343,8 +343,8 @@
             // is the block locked?
             if(slot.locked){
                 console.log('we have a locked slot here');
-                if( game.mana.gte( section.slot_unlock_cost ) ){
-                    game.mana = game.mana.sub( section.slot_unlock_cost );
+                if( game.mana.gte( game.lands.slot_unlock_cost ) ){
+                    game.mana = game.mana.sub( game.lands.slot_unlock_cost );
                     slot.locked = false;
                 }else{
                     break;
@@ -373,6 +373,9 @@
         const section = game.lands.sections[i_section];
         const slot = section.slots[i_slot];
         const block = slot.block;
+        if(slot.locked){
+            return;
+        }
         if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
             game.mana = game.mana.sub(block.upgradeCost);
             const newLevel = block.level + 1;
@@ -384,6 +387,9 @@
         const section = game.lands.sections[i_section];
         const slot = section.slots[i_slot];
         const block = slot.block;
+        if(slot.locked){
+            return;
+        }
         if(block.type != 'blank'){
             manaCredit(game, block.mana_value.valueOf());
             block.clear();

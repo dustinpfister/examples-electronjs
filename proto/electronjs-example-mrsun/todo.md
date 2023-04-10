@@ -33,11 +33,11 @@
 * (done) display totals in world state in sm.js
 * (done) a slot object should have a locked boolean
 * (done) make the fill style of a locked slot be cyan for now
+* (done) check for locked status when creating, absorbing, and upgrading
+* (done) The cost of the first slot should be free
 
 * () check for locked status when updating, a locked slot should not have any effect to beging with
-* () check for locked status when creating, absorbing, and upgrading
 
-* () The cost of the first slot should be free
 * () I will want a lands total for over all slots
 * () I will want a lands object total for total unlocked slots
 * () have the cost for each slot unlock go up each time one is unlocked going by lands totals
