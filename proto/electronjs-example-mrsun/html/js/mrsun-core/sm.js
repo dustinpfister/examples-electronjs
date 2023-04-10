@@ -79,8 +79,15 @@ sm.states.world = {
         ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
         // land section objects
-        sm.game.lands.sections.forEach((section) => {
-            ctx.fillStyle = 'brown';
+        sm.game.lands.sections.forEach((section, i) => {
+            utils.drawLandSection(sm, ctx, canvas, section, {
+                grid_cx: section.x,
+                grid_cy: section.y,
+                grid_w: 80, grid_h:50,
+                block_width: 80 / 10,
+                block_height: 50 / 8,
+                grid_radian: Math.PI * 2 / 12 * i + Math.PI * 0.5});
+            ctx.fillStyle = 'rgba(255,0,0,0.5)';
             ctx.beginPath();
             ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
             ctx.fill();

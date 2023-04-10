@@ -9,11 +9,13 @@
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
-## (  ) - rx - Water level, water block type
+## (  ) - Water level, water block type
 * () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
 
-## (  ) - rx - Slot Class, Disabled Slot feature 
+## (  ) - Slot Class, Disabled Slot feature 
 * () a slot object will have a disbaled property which means that it can not be used at all
+
+<!-- PROTOTYPE -->
 
 ## (  ) - rx - Save and Load state
 * () I will need a preload.js solution for saving and loading
@@ -24,9 +26,9 @@
 * () total mana value should be the cost of the current level + all lower levels
 * () for now you just get back all the mana that was spent
 
-## (  ) - r18 - Better display of land objects in world state
+## ( done 04/10/2023 ) - r18 - Better display of land objects in world state
 * (done) have a utils.drawLandSection method that does what I am doing in the lands state
-* () I would like to see a small grid for each land object in world state
+* (done) I would like to see a small grid for each land object in world state
 
 ## ( done 04/10/2023 ) - r17 - slots unlock bug
 * (done) make lands slot unlock cost a decimal and format the output in lands state 

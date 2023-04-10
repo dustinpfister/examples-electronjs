@@ -107,7 +107,5 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
         }
         i += 1;
     }
-
     ctx.restore();
-
 };
