@@ -146,9 +146,9 @@ sm.states.land = {
         button_bm_absorb :  {  active: false, desc: 'Absorb', x: 35, y: 185, r: 28 },
         button_bm_upgrade : {  active: false, desc: 'Upgrade', x: 35, y: 245, r: 28 },
         button_bm_info :    {  active: false, desc: 'Info', x: 35, y: 305, r: 28 },
-        grid_sx: 320 - 50 * 5,
-        grid_sy: 100,
-        gw: 32, gh:32,
+        grid_cx: 320,
+        grid_cy: 240,
+        gw: 0, gh:0,
         block_width: 50,
         block_height: 35
     },
@@ -166,36 +166,7 @@ sm.states.land = {
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // render blocks
-        let i = 0;
-        const sx = data.grid_sx, sy = data.grid_sy;
-        ctx.font = '10px arial';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        while(i < sm.game.SLOT_GRID_LEN){
-            const bx = i % sm.game.SLOT_GRID_WIDTH;
-            const by = Math.floor(i / sm.game.SLOT_GRID_WIDTH);
-            const i_slot = by * sm.game.SLOT_GRID_WIDTH + bx;
-            const slot = section.slots[i_slot];
-            const block = slot.block;
-            ctx.fillStyle = 'cyan';
-            if(!slot.locked){
-                ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
-            }
-            // render a block
-            ctx.strokeStyle = 'white';
-            ctx.beginPath();
-            const x = sx + data.block_width * bx;
-            const y = sy + data.block_height * by;
-            ctx.rect(x, y, data.block_width, data.block_height);
-            ctx.fill();
-            ctx.stroke();
-            // level text
-            if(block.type === 'rock'){
-                ctx.fillStyle = 'white';
-                ctx.fillText(block.level, x + 5, y + 5);
-            }
-            i += 1;
-        }
+        utils.drawLandSection(sm, ctx, canvas, section, data);
         // buttons
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
@@ -259,13 +230,14 @@ sm.states.land = {
                 button_check_blockmode(data, 'upgrade', x, y);
                 button_check_blockmode(data, 'info', x, y);
                 // grid clicked?
-                if( utils.boundingBox(x, y, 1, 1, data.grid_sx, data.grid_sy, data.gw, data.gh) ){
-                    const bx = Math.floor( ( x - data.grid_sx - 0.01) / data.block_width );
-                    const by = Math.floor( ( y - data.grid_sy - 0.01) / data.block_height );
+                const sx = data.grid_cx - data.gw / 2;
+                const sy = data.grid_cy - data.gh / 2;
+                if( utils.boundingBox(x, y, 1, 1, sx, sy, data.gw, data.gh) ){
+                    const bx = Math.floor( ( x - sx - 0.01) / data.block_width );
+                    const by = Math.floor( ( y - sy - 0.01) / data.block_height );
                     const i = by * sm.game.SLOT_GRID_WIDTH + bx;
                     const slot = section.slots[i];
                     const block = slot.block;
-                    //const block = land.blocks[i];
                     // action will differ based on block mode
                     if(data.block_mode === 'create'){
                         gameMod.createBlock(sm.game, sm.landIndex, i, 1);

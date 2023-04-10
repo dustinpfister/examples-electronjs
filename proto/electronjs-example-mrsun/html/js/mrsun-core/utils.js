@@ -70,3 +70,38 @@ utils.drawButton = (sm, button, ctx, canvas) => {
     ctx.textAlign = 'center';
     ctx.fillText(button.desc || 'foo', button.x, button.y);
 };
+// draw the state of a given LandSection object
+utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
+    opt = opt || {};
+    const sx = opt.grid_cx - opt.gw / 2;
+    const sy = opt.grid_cy - opt.gh /2;
+    let i = 0;
+    ctx.font = '10px arial';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    while(i < sm.game.SLOT_GRID_LEN){
+        const bx = i % sm.game.SLOT_GRID_WIDTH;
+        const by = Math.floor(i / sm.game.SLOT_GRID_WIDTH);
+        const i_slot = by * sm.game.SLOT_GRID_WIDTH + bx;
+        const slot = section.slots[i_slot];
+        const block = slot.block;
+        ctx.fillStyle = 'cyan';
+        if(!slot.locked){
+            ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
+        }
+        // render a block
+        ctx.strokeStyle = 'white';
+        ctx.beginPath();
+        const x = sx + opt.block_width * bx;
+        const y = sy + opt.block_height * by;
+        ctx.rect(x, y, opt.block_width, opt.block_height);
+        ctx.fill();
+        ctx.stroke();
+        // level text
+        if(block.type === 'rock'){
+            ctx.fillStyle = 'white';
+            ctx.fillText(block.level, x + 5, y + 5);
+        }
+        i += 1;
+    }
+};

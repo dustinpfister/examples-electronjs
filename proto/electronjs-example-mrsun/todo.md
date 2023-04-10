@@ -25,7 +25,7 @@
 * () for now you just get back all the mana that was spent
 
 ## (  ) - r18 - Better display of land objects in world state
-* () have a utils.drawSectionBlocks method that does what I am doing in the lands state
+* (done) have a utils.drawLandSection method that does what I am doing in the lands state
 * () I would like to see a small grid for each land object in world state
 
 ## ( done 04/10/2023 ) - r17 - slots unlock bug
