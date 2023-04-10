@@ -96,6 +96,7 @@ sm.states.world = {
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
         ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
+        ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -211,6 +212,7 @@ sm.states.land = {
         ctx.textBaseline = 'top';
         ctx.fillText('temp: ' + section.temp, 15, 45);
         ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 55);
+        ctx.fillText('slot unlock cost: ' + sm.game.lands.slot_unlock_cost, 15, 65);
         // current land index
         ctx.font = '50px arial';
         ctx.textAlign = 'center';

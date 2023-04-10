@@ -9,6 +9,12 @@
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
+## () - Water level, water block type
+* () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
+
+## (  ) - rx - Slot Class, Disabled Slot feature 
+* () a slot object will have a disbaled property which means that it can not be used at all
+
 ## () Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
@@ -17,13 +23,8 @@
 * () I would like to see a small grid for each land object in world state
 * () toggle dev tools menu option
 
-## () - Water level, water block type
-* () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
-
-## (  ) - r18 - Slot Class, Disabled Slot feature 
-* () a slot object will have a disbaled property which means that it can not be used at all
-
-## () - rx - new mana value
+## (  ) - r17 - new mana value
+* () make lands slot unlock cost a decimal and format the output in lands state 
 * () new mana value based on upgrade cost of a block
 * () total mana value should be the cost of the current level + all lower levels
 * () for now you just get back all the mana that was spent
@@ -35,12 +36,12 @@
 * (done) make the fill style of a locked slot be cyan for now
 * (done) check for locked status when creating, absorbing, and upgrading
 * (done) The cost of the first slot should be free
-
-* () check for locked status when updating, a locked slot should not have any effect to beging with
-
-* () I will want a lands total for over all slots
-* () I will want a lands object total for total unlocked slots
-* () have the cost for each slot unlock go up each time one is unlocked going by lands totals
+* (done) check for locked status when updating, a locked slot should not have any effect to beging with
+* (done) I will want a lands total for over all slots
+* (done) I will want a lands object total for total unlocked slots
+* (done) display unlocked/total slots in world state
+* (done) have the cost for each slot unlock go up each time one is unlocked going by lands totals
+* (done) display current slot unlock cost in landsstate
 
 ## ( done 04/09/2023 ) - r15 - Block Type Counts
 * (done) make it so that when buying blocks they will start from the ground up

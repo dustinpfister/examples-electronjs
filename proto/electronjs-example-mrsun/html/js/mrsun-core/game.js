@@ -190,6 +190,8 @@
             this.sections = [];
             this.bt_counts = {}; // block type grand total counts
             this.slot_unlock_cost = 0;
+            this.slot_unlock_count = 0;
+            this.slot_total = constant.SLOT_GRID_LEN * constant.LAND_OBJECT_COUNT;
             let i = 0;
             while(i < constant.LAND_OBJECT_COUNT){
                 const section = new LandSection(i, game.sun.cx, game.sun.cy);
@@ -208,17 +210,25 @@
                 si += 1;
             }
         }
+        // set grand total block type counts, slot unlock counts, and update slot unlock cost
         setBlockTypeCounts() {
             const bt_counts = this.bt_counts = Object.keys(constant.BLOCKS).reduce( (acc, typeKey) => {
                 acc[typeKey] = 0;
                 return acc;
             }, {});
+            let slot_unlock_count = 0;
             this.forEachSection( (section) => {
                 section.setBlockTypeCounts();
                 Object.keys(constant.BLOCKS).forEach((typeKey)=>{
                     bt_counts[typeKey] += section.bt_counts[typeKey];
                 });
+                slot_unlock_count += section.slot_unlock_count;
             });
+            this.slot_unlock_count = slot_unlock_count;
+            // update slot unlock cost
+            const n = this.slot_unlock_count;
+            const d = this.slot_total;
+            this.slot_unlock_cost = Math.ceil( Math.pow(10, 30 * (n / d ) ) ) - 1;
         }
     };
     //-------- ----------
@@ -270,7 +280,7 @@
                 section.forEachSlot( (slot ) => {
                     const a_temp = section.temp / constant.TEMP_MAX;
                     const block = slot.block;
-                    if(block.type != 'blank'){
+                    if(!slot.locked && block.type != 'blank'){
                         game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                     }
                 })
