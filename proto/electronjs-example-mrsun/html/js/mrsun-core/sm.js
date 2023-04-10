@@ -96,7 +96,6 @@ sm.states.world = {
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
         ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
-
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -177,7 +176,11 @@ sm.states.land = {
             const i_slot = by * sm.game.SLOT_GRID_WIDTH + bx;
             const slot = section.slots[i_slot];
             const block = slot.block;
-            ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
+            ctx.fillStyle = 'cyan';
+            if(!slot.locked){
+                ctx.fillStyle = block.type === 'blank' ? 'black' : 'red';
+            }
+            // render a block
             ctx.strokeStyle = 'white';
             ctx.beginPath();
             const x = sx + data.block_width * bx;
@@ -185,6 +188,7 @@ sm.states.land = {
             ctx.rect(x, y, data.block_width, data.block_height);
             ctx.fill();
             ctx.stroke();
+            // level text
             if(block.type === 'rock'){
                 ctx.fillStyle = 'white';
                 ctx.fillText(block.level, x + 5, y + 5);
@@ -262,7 +266,7 @@ sm.states.land = {
                     //const block = land.blocks[i];
                     // action will differ based on block mode
                     if(data.block_mode === 'create'){
-                        gameMod.buyBlock(sm.game, sm.landIndex, i, 1);
+                        gameMod.createBlock(sm.game, sm.landIndex, i, 1);
                     }
                     if(data.block_mode === 'absorb'){
                         gameMod.absorbBlock(sm.game, sm.landIndex, i);

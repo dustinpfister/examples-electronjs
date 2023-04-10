@@ -90,7 +90,8 @@
             this.i = opt.i === undefined ? 0 : opt.i;
             this.x = opt.x === undefined ? 0 : opt.x;
             this.y = opt.y === undefined ? 0 : opt.y;
-            this.block = new Block('blank')
+            this.block = new Block({ type: 'blank'});
+            this.locked = true;
         }
     };
     //-------- ----------
@@ -104,6 +105,8 @@
             this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
             this.r = constant.LAND_RADIUS;
             this.slots = [];
+            this.slot_unlock_count = 0;
+            this.slot_unlock_cost = 0;
             // counts_of_block_types/next_cost_of_somehting.
             this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
             // temp
@@ -148,10 +151,13 @@
                 acc[typeKey] = 0;
                 return acc;
             }, {});
+            let slot_unlock_count = 0;
             this.forEachSlot( (slot) => {
                 const ct = bt_counts[ slot.block.type ];
                 bt_counts[ slot.block.type ] = ct === undefined ? 1 : ct + 1;
+                slot_unlock_count += slot.locked ? 0 : 1;
             });
+            this.slot_unlock_count = slot_unlock_count;
         }
         // create the Slot Grid
         createSlotGrid() {
@@ -327,27 +333,50 @@
         return false;
     };
     // buy a block for the given land section and slot indices
-    gameMod.buyBlock = (game, i_section, i_slot, level) => {
+    gameMod.createBlock = (game, i_section, i_slot, level) => {
         const section = game.lands.sections[i_section];
         const slot_clicked = section.slots[i_slot];
         const x = slot_clicked.x;
         let y = constant.SLOT_GRID_HEIGHT;
         while(y--){
             const slot = section.getSlot(x, y);
+            // is the block locked?
+            if(slot.locked){
+                console.log('we have a locked slot here');
+                if( game.mana.gte( section.slot_unlock_cost ) ){
+                    game.mana = game.mana.sub( section.slot_unlock_cost );
+                    slot.locked = false;
+                }else{
+                    break;
+                }
+            }
+            // check if the unlocked slot is blank
             if(slot.block.type === 'blank'){
                 const block = slot.block;
                 const blockCost = 1 * level;
                 gameMod.updateByTickDelta(game, 0, true);
                 if(section.bt_counts.rock < constant.BLOCK_LAND_MAX){
-                    if(game.mana >= blockCost){
+                    if(game.mana.gte( blockCost )){
                         game.mana = game.mana.sub(blockCost);
                         slot.block.setLevel(level, 'rock');
                         //section.setBlockTypeCounts();
                         game.lands.setBlockTypeCounts();
                     }
                 }
+                console.log(section.slot_unlock_count)
                 break;
             }
+        }
+    };
+    // upgrade block
+    gameMod.upgradeBlock = (game, i_section, i_slot) => {
+        const section = game.lands.sections[i_section];
+        const slot = section.slots[i_slot];
+        const block = slot.block;
+        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
+            game.mana = game.mana.sub(block.upgradeCost);
+            const newLevel = block.level + 1;
+            block.setLevel(newLevel, 'rock');
         }
     };
     // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -362,17 +391,6 @@
             //section.setBlockTypeCounts();
             game.lands.setBlockTypeCounts();
             
-        }
-    };
-    // upgrade block
-    gameMod.upgradeBlock = (game, i_section, i_slot) => {
-        const section = game.lands.sections[i_section];
-        const slot = section.slots[i_slot];
-        const block = slot.block;
-        if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
-            game.mana = game.mana.sub(block.upgradeCost);
-            const newLevel = block.level + 1;
-            block.setLevel(newLevel, 'rock');
         }
     };
 }( this['gameMod'] = {} ));

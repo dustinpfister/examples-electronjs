@@ -31,9 +31,12 @@
 ## (  ) - r16 - Slot Class, Locked slot feature
 * (done) block type total counts in lands object by adding up section counts
 * (done) display totals in world state in sm.js
-* () a slot object should have a locked boolean
-* () make the fill style of a locked slot be cyan for now
+* (done) a slot object should have a locked boolean
+* (done) make the fill style of a locked slot be cyan for now
+
 * () check for locked status when updating, a locked slot should not have any effect to beging with
+* () check for locked status when creating, absorbing, and upgrading
+
 * () The cost of the first slot should be free
 * () I will want a lands total for over all slots
 * () I will want a lands object total for total unlocked slots
