@@ -65,7 +65,7 @@ sm.states.world = {
         ctx.lineWidth = 1;
         ctx.font = '15px arial';
         const sun = sm.game.sun;
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = '#2a2a2a';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // max dist circle
         const md = sm.game.SUNAREA_RADIUS;
@@ -87,7 +87,7 @@ sm.states.world = {
                 block_width: 80 / 10,
                 block_height: 50 / 8,
                 grid_radian: Math.PI * 2 / 12 * i + Math.PI * 0.5});
-            ctx.fillStyle = 'rgba(255,0,0,0.5)';
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.beginPath();
             ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
             ctx.fill();
