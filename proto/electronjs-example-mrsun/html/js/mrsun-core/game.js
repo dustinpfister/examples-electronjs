@@ -28,7 +28,7 @@
     constant.SLOT_GRID_WIDTH = 10;
     constant.SLOT_GRID_HEIGHT = 8;
     constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
-    constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN * 0.5);
+    constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------

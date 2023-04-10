@@ -28,11 +28,11 @@
 * () have a utils.drawSectionBlocks method that does what I am doing in the lands state
 * () I would like to see a small grid for each land object in world state
 
-## (  ) - r17 - slots unlock bug
+## ( done 04/10/2023 ) - r17 - slots unlock bug
 * (done) make lands slot unlock cost a decimal and format the output in lands state 
-* () I might need to do alway with the limit on rock types per section
+* (done) I might need to do alway with the limit on rock types per section
 
-## (  ) - r16 - Slot Class, Locked slot feature
+## ( done 04/10/2023 ) - r16 - Slot Class, Locked slot feature
 * (done) block type total counts in lands object by adding up section counts
 * (done) display totals in world state in sm.js
 * (done) a slot object should have a locked boolean
