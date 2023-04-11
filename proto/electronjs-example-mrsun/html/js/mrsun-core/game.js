@@ -50,14 +50,19 @@
         constructor(opt) {
             opt || opt || {};
             this.type = opt.type || 'blank';
+            this.mana_base = 0;
+            this.mana_temp = 0;
+            this.mana_value = null;
+            this.upgradeCost = 0;
             this.setLevel(opt.level, this.type);
         }
         // set the mana value object for this block
-        setManaValue (block_cost) {
+        setManaValue () {
+            const mv_level = this.level * 1;
             this.mana_value = {
-               mana_block_cost: new Decimal(block_cost),
+               mv_level: new Decimal(mv_level),
                valueOf: function(){
-                   return this.mana_block_cost;
+                   return this.mv_level;
                 }
             };
         }
@@ -70,7 +75,7 @@
             this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
             this.mana_value = null;
             this.upgradeCost = Decimal.pow(10, this.level);
-            this.setManaValue(1);
+            this.setManaValue();
         }
         // copy some other block to this block
         copy (block) {
@@ -228,10 +233,7 @@
             // update slot unlock cost
             const n = this.slot_unlock_count;
             const d = this.slot_total;
-            //this.slot_unlock_cost = Math.ceil( Math.pow(10, 30 * (n / d ) ) ) - 1;
-
-this.slot_unlock_cost = Decimal.pow(10, 30 * ( n / d ) ).ceil().sub(1);
-
+            this.slot_unlock_cost = Decimal.pow(10, 30 * ( n / d ) ).ceil().sub(1);
         }
     };
     //-------- ----------
