@@ -34,6 +34,17 @@ utils.formatDecimal = (function(){
         return n.toExponential(2);
     };
 }());
+// add up pows from start exp down to zero
+utils.addPows = (base, exp_start) => {
+    let e = exp_start;
+    let n = 0;
+    while(e >= 0){
+        const p = Math.pow(base, e);
+        n += p;
+        e -= 1;
+    }
+    return n;
+};
 //-------- ----------
 // RENDER UTILIES
 //-------- ----------

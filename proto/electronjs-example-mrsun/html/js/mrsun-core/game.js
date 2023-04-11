@@ -58,7 +58,7 @@
         }
         // set the mana value object for this block
         setManaValue () {
-            const mv_level = this.level * 1;
+            const mv_level = utils.addPows(10, this.level);
             this.mana_value = {
                mv_level: new Decimal(mv_level),
                valueOf: function(){

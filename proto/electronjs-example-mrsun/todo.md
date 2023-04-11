@@ -21,10 +21,10 @@
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## (  ) - rx - new mana value
-* () new mana value based on upgrade cost of a block
-* () total mana value should be the cost of the current level + all lower levels
-* () for now you just get back all the mana that was spent
+## ( done 04/11/2023 ) - rx - new mana value
+* (done) new mana value based on upgrade cost of a block
+* (done) total mana value should be the cost of the current level + all lower levels
+* (done) for now you just get back all the mana that was spent
 
 ## ( done 04/10/2023 ) - r18 - Better display of land objects in world state
 * (done) have a utils.drawLandSection method that does what I am doing in the lands state
