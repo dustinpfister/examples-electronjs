@@ -21,7 +21,11 @@
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## ( done 04/11/2023 ) - rx - new mana value
+## ( ) - r20 - unlock button
+* () add an unlock button as part of the UI
+* () the function of unlocking the next slot up in a col should be apart from the creation of a new block
+
+## ( done 04/11/2023 ) - r19 - new mana value
 * (done) new mana value based on upgrade cost of a block
 * (done) total mana value should be the cost of the current level + all lower levels
 * (done) for now you just get back all the mana that was spent
