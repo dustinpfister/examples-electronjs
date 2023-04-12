@@ -23,12 +23,18 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r23 - Save and Load state
+## (  ) - r24 - Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## (  ) - r22 - message system
-* () start a message system
+## (  ) - r23 - message system
+* () Start a message system as a whole other file called mess.js
+* () There needs to be a way to define what a condision is for a message
+
+## (  ) - r22 - user events
+* () I will want a way to define custom user events
+* () have a onzeromana event
+* () have a ontotalzeromana event that will happen when mana and mana per tick are zero
 
 ## ( done 04/12/2023 ) - r21 - fix zero mana problem
 * (done) have a start mana const
