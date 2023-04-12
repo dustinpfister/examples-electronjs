@@ -363,6 +363,11 @@
                     game.mana = game.mana.sub( game.lands.slot_unlock_cost );
                     slot.locked = false;
                     game.lands.setBlockTypeCounts();
+                    // test for mana and mana per tick === 0
+                    if( game.mana_per_tick.lte(0) && game.mana.eq(0)){
+                        console.log('mana and mana per tick are 0!');
+                        game.mana = game.mana.add(constant.MANA_START);
+                    }
                     break;
                 }
             }
