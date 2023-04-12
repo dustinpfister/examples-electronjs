@@ -347,8 +347,8 @@
         }
         return false;
     };
-    // buy a block for the given land section and slot indices
-    gameMod.createBlock = (game, i_section, i_slot, level) => {
+    // unlock a slot
+    gameMod.unlockSlot = (game, i_section, i_slot) => {
         const section = game.lands.sections[i_section];
         const slot_clicked = section.slots[i_slot];
         const x = slot_clicked.x;
@@ -361,12 +361,22 @@
                 if( game.mana.gte( game.lands.slot_unlock_cost ) ){
                     game.mana = game.mana.sub( game.lands.slot_unlock_cost );
                     slot.locked = false;
-                }else{
+                    game.lands.setBlockTypeCounts();
                     break;
                 }
             }
+        }
+    };
+    // buy a block for the given land section and slot indices
+    gameMod.createBlock = (game, i_section, i_slot, level) => {
+        const section = game.lands.sections[i_section];
+        const slot_clicked = section.slots[i_slot];
+        const x = slot_clicked.x;
+        let y = constant.SLOT_GRID_HEIGHT;
+        while(y--){
+            const slot = section.getSlot(x, y);
             // check if the unlocked slot is blank
-            if(slot.block.type === 'blank'){
+            if(!slot.locked && slot.block.type === 'blank'){
                 const block = slot.block;
                 const blockCost = 1 * level;
                 gameMod.updateByTickDelta(game, 0, true);
@@ -374,14 +384,13 @@
                     if(game.mana.gte( blockCost )){
                         game.mana = game.mana.sub(blockCost);
                         slot.block.setLevel(level, 'rock');
-                        //section.setBlockTypeCounts();
                         game.lands.setBlockTypeCounts();
                     }
                 }
-                console.log(section.slot_unlock_count)
                 break;
             }
         }
+        console.log('all slots are locked, or there is no blank slots');
     };
     // upgrade block
     gameMod.upgradeBlock = (game, i_section, i_slot) => {

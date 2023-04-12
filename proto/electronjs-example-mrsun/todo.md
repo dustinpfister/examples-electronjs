@@ -1,5 +1,7 @@
 # electionjs-example-mrsun
 
+<!-- SAVE FOR FUTURE UPDATES -->
+
 ## (  ) - Move Sun Method?
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
@@ -15,15 +17,27 @@
 ## (  ) - Slot Class, Disabled Slot feature 
 * () a slot object will have a disbaled property which means that it can not be used at all
 
+## (  ) - objpool.js, objpool.buttons.js
+* () base object pool library
+* () buttons lib that runs on top of base object pool lib. 
+
 <!-- PROTOTYPE -->
 
-## (  ) - rx - Save and Load state
+## (  ) - r23 - Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## ( ) - r20 - unlock button
-* () add an unlock button as part of the UI
-* () the function of unlocking the next slot up in a col should be apart from the creation of a new block
+## (  ) - r22 - message system
+* () start a message system
+
+## (  ) - r21 - fix zero mana problem
+* () If a player unlocks two slots, without creating one rock, there will be no way to make mana
+* () test for this kind of condition where mana and 
+
+## ( done 04/12/2023 ) - r20 - unlock button
+* (done) add a gameMod.unlockSlot method in game.js
+* (done) add an unlock button as part of the UI in world state
+* (done) the function of unlocking the next slot up in a col should be apart from the creation of a new block
 
 ## ( done 04/11/2023 ) - r19 - new mana value
 * (done) new mana value based on upgrade cost of a block
