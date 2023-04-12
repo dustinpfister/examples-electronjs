@@ -31,8 +31,11 @@
 * () start a message system
 
 ## (  ) - r21 - fix zero mana problem
+* (done) have a start mana const
+* (done) a new game will start with start mana const of course
 * () If a player unlocks two slots, without creating one rock, there will be no way to make mana
-* () test for this kind of condition where mana and 
+* () test for this kind of condition where mana and mana\_per\_tick both equal 0
+* () in the event of this kind of condition set mana to start mana const
 
 ## ( done 04/12/2023 ) - r20 - unlock button
 * (done) add a gameMod.unlockSlot method in game.js

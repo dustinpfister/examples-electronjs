@@ -13,9 +13,6 @@
     // CONST
     //-------- ----------
     const constant = {};
-    constant.DEFAULT_CREATE_OPTIONS = {
-        cx: 100, cy: 100, x:100, y: 100, mana: '1', mana_level: 1
-    };
     constant.SUN_RADIUS = 20;
     constant.LAND_RADIUS = 40;
     constant.SUNAREA_RADIUS = 150;
@@ -23,12 +20,16 @@
     constant.LAND_OBJECT_COUNT = 12;
     constant.BLOCK_MAX_LEVEL = 99;
     constant.MANA_MAX = new Decimal('1e100');
+    constant.MANA_START = '5';
     constant.TEMP_MAX = 999;
     constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
     constant.SLOT_GRID_WIDTH = 10;
     constant.SLOT_GRID_HEIGHT = 8;
     constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
     constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
+    constant.DEFAULT_CREATE_OPTIONS = {
+        cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1
+    };
     //-------- ----------
     // BLOCK TYPES
     //-------- ----------
