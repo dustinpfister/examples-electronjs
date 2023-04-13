@@ -34,8 +34,8 @@
 ## (  ) - r23 - user events
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
 * (done) have a mana-total-zero event that will happen when mana and mana per tick are zero
-* () have a debit mana helper
-* () check for mana-total-zero in demit mana helper
+* (done) have a debit mana helper
+* (done) check for mana-total-zero in demit mana helper
 * () use debit mana helper gameMod.unlockSlot
 * () use debit mana helper gameMod.createBlock
 * () use debit mana helper gameMod.upgradeBlock

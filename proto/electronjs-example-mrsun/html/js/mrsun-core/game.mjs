@@ -283,6 +283,23 @@ const manaCredit = (game, mana_delta ) => {
     }
     game.mana = game.mana.gt(game.mana_cap) ?  new Decimal( game.mana_cap ) : game.mana;
 };
+//
+const manaDebit = (game, mana_delta) => {
+    game.mana = game.mana.sub( mana_delta );
+    game.mana = game.mana.lt(0) ? new Decimal(0) : game.mana;
+    // test for mana and mana per tick === 0
+    if( game.mana_per_tick.eq(0) && game.mana.eq(0)){
+        // do an update
+        gameMod.updateByTickDelta(game, 0, true);
+        // if income is still 0, fire a mana_total_zero event
+        if(game.mana_per_tick.eq(0)){
+            GAME_EVENTS.dispatchEvent({
+                type: 'mana_total_zero',
+                game: game, constant: constant
+            });
+        }
+    }
+};
 //-------- ----------
 // PUBLIC API
 //-------- ----------
@@ -374,16 +391,18 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
         // is the block locked?
         if(slot.locked){
             if( game.mana.gte( game.lands.slot_unlock_cost ) ){
-                game.mana = game.mana.sub( game.lands.slot_unlock_cost );
+                //game.mana = game.mana.sub( game.lands.slot_unlock_cost );
+                manaDebit(game, game.lands.slot_unlock_cost);
+
                 slot.locked = false;
                 game.lands.setBlockTypeCounts();
                 // test for mana and mana per tick === 0
-                if( game.mana_per_tick.lte(0) && game.mana.eq(0)){
-                    GAME_EVENTS.dispatchEvent({
-                        type: 'mana_total_zero',
-                        game: game, constant: constant
-                    });
-                }
+                //if( game.mana_per_tick.lte(0) && game.mana.eq(0)){
+                //    GAME_EVENTS.dispatchEvent({
+                //        type: 'mana_total_zero',
+                //        game: game, constant: constant
+                //    });
+                //}
                 break;
             }
         }
