@@ -38,6 +38,8 @@
 * () add lzsting as part of the stack, and make a MJS form of the file
 
 ## () - r26 - block data for Land Sections
+* (done) block info disp can be set on or off.
+* (done) no block info disp for world state
 * () I will want to have a way to define what the start points are for blocks
 
 ## ( done 04/13/2023 ) - r25 - Slot unlock data for Lands

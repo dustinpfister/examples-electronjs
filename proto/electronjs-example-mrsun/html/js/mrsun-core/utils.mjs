@@ -64,8 +64,8 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
          utils.formatDecimal(sm.game.mana_cap, 0) + 
          ' (+' + utils.formatDecimal(sm.game.mana_per_tick, 4) + ') ', 15, 5);
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
-    
 };
+// draw a button
 utils.drawButton = (sm, button, ctx, canvas) => {
     ctx.fillStyle = button.active ? '#004400' : '#444444';
     ctx.strokeStyle = '#ffffff';
@@ -84,6 +84,7 @@ utils.drawButton = (sm, button, ctx, canvas) => {
 // draw the state of a given LandSection object
 utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
     opt = opt || {};
+    opt.block_infodisp = opt.block_infodisp || false;
     ctx.save();
     ctx.translate(opt.grid_cx , opt.grid_cy);
     ctx.rotate(opt.grid_radian);
@@ -112,7 +113,7 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
         ctx.fill();
         ctx.stroke();
         // level text
-        if(block.type === 'rock'){
+        if(block.type === 'rock' && opt.block_infodisp){
             ctx.fillStyle = 'white';
             ctx.fillText(block.level, x + 5, y + 5);
         }

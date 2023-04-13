@@ -92,7 +92,7 @@ sm.states.world = {
             utils.drawLandSection(sm, ctx, canvas, section, {
                 grid_cx: section.x,
                 grid_cy: section.y,
-                grid_w: 80, grid_h:50,
+                grid_w: 80, grid_h: 50,
                 block_width: 80 / 10,
                 block_height: 50 / 8,
                 grid_radian: Math.PI * 2 / 12 * i + Math.PI * 0.5});
@@ -168,7 +168,8 @@ sm.states.land = {
         grid_w: 0, grid_h:0,
         block_width: 50,
         block_height: 35,
-        grid_radian: 0
+        grid_radian: 0,
+        block_infodisp: true
     },
     start: (sm, opt, data) => {
         data.grid_w = data.block_width * sm.game.SLOT_GRID_WIDTH;
