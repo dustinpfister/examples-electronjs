@@ -1,6 +1,12 @@
-// game.js - for electionjs-example-mrsun
+// game.mjs - for electionjs-example-mrsun
 // create and update a game state object
-(function(gameMod){
+
+import Decimal  from "../decimal/10.4.3/decimal.mjs"
+import utils  from "./utils.mjs"
+
+const gameMod = {};
+
+//(function(gameMod){
     //-------- ----------
     // Decimal
     //-------- ----------
@@ -429,4 +435,6 @@
             
         }
     };
-}( this['gameMod'] = {} ));
+//}( this['gameMod'] = {} ));
+
+export default gameMod;

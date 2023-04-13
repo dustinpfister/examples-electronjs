@@ -23,18 +23,24 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r24 - Save and Load state
+## (  ) - r25 - Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## (  ) - r23 - message system
+## (  ) - r24 - message system
 * () Start a message system as a whole other file called mess.js
 * () There needs to be a way to define what a condision is for a message
 
-## (  ) - r22 - user events
-* () I will want a way to define custom user events
+## (  ) - r23 - user events
+* () I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
 * () have a onzeromana event
 * () have a ontotalzeromana event that will happen when mana and mana per tick are zero
+
+## ( done 04/13/2023 ) - r22 - Switch to JSM
+* (done) start switch to JSM over old script tags starting with decimal.mjs
+* (done) have a utils.mjs
+* (done) have a game.mjs
+* (done) have a sm.mjs
 
 ## ( done 04/12/2023 ) - r21 - fix zero mana problem
 * (done) have a start mana const

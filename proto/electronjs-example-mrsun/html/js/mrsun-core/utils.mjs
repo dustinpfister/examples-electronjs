@@ -120,3 +120,5 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
     }
     ctx.restore();
 };
+
+export default utils;
