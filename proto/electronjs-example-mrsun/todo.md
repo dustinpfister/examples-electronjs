@@ -32,7 +32,7 @@
 * () There needs to be a way to define what a condision is for a message
 
 ## (  ) - r23 - user events
-* () I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
+* (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
 * () have a onzeromana event
 * () have a ontotalzeromana event that will happen when mana and mana per tick are zero
 

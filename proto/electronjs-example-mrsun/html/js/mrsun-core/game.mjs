@@ -1,7 +1,23 @@
 // game.mjs - for electionjs-example-mrsun
 // create and update a game state object
-import Decimal  from "../decimal/10.4.3/decimal.mjs"
-import utils  from "./utils.mjs"
+import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
+import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
+import { utils }  from "./utils.mjs"
+
+
+// testing out event dispacther
+
+const events = new EventDispatcher();
+
+
+events.addEventListener('start', (mess) => {
+    console.log('yes this is dog.');
+    console.log(mess)
+});
+
+events.dispatchEvent( { type: 'start', message: 'vroom vroom!' } );
+
+
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
 //-------- ----------
@@ -433,4 +449,4 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
 //-------- ----------
 // EXPORT
 //-------- ----------
-export default gameMod;
+export { gameMod };

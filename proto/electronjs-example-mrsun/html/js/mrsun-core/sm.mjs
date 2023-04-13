@@ -1,7 +1,7 @@
 // sm.mjs - for electionjs-example-mrsun
 // Main state machine
-import gameMod  from "./game.mjs"
-import utils  from "./utils.mjs"
+import { gameMod }  from "./game.mjs"
+import { utils }  from "./utils.mjs"
 //-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------

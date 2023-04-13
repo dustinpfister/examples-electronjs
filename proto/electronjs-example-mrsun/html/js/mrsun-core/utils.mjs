@@ -123,4 +123,4 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
 //-------- ----------
 // EXPORT
 //-------- ----------
-export default utils;
+export { utils };
