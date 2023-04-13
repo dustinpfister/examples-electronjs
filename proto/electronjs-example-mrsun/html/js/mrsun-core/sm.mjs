@@ -3,6 +3,70 @@
 import { gameMod }  from "./game.mjs"
 import { utils }  from "./utils.mjs"
 //-------- ----------
+// HARD CODED START STATE
+//-------- ----------
+const LANDS_START_SECTION_DATA = [
+    // land 0
+    {
+        "cols_unlock_slots":[3,4,4,5,5,4,2,1,1,1],
+        "cols_block_data":["r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,9;r,9;","r,9;r,8;r,8;r,8;r,9;","r,8;r,8;r,8;r,8;r,9;","r,8;r,8;r,8;r,8;","r,8;r,8;","r,8;","r,8;","r,8;"]},
+    // land 1
+    {
+        "cols_unlock_slots":[3,3,3,4,4,3,0,0,0,0],
+        "cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,8;r,7;","r,8;r,7;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","","","",""]
+    },
+    // land 2
+    {
+        "cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],
+        "cols_block_data":["","","","","","","","r,8;","r,8;","r,8;"]
+    },
+    // land 3
+    {
+        "cols_unlock_slots":[1,1,2,2,2,3,3,4,1,1],
+        "cols_block_data":["r,7;","r,8;","r,8;r,8;","r,7;r,7;","r,7;r,8;","r,7;r,8;r,7;","r,8;r,7;r,8;","r,7;r,8;r,7;r,7;","r,7;","r,7;"]
+    },
+    // land 4
+    {
+        "cols_unlock_slots":[1,1,1,0,0,0,0,0,0,0],
+        "cols_block_data":["r,8;","r,8;","r,8;","","","","","","",""]
+    },
+    // land 5
+    {
+        "cols_unlock_slots":[0,0,0,0,1,1,2,3,3,3],
+        "cols_block_data":["","","","","r,8;","r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;"]
+    },
+    // land 6
+    {
+        "cols_unlock_slots":[3,3,4,5,5,4,3,1,1,1],
+        "cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,7;r,7;r,7;","r,7;r,8;r,7;r,8;r,7;","r,8;r,7;r,8;r,7;r,8;","r,7;r,7;r,8;r,7;","r,7;r,7;r,7;","r,8;","r,8;","r,8;"]
+    },
+    // land 7
+    {
+        "cols_unlock_slots":[1,1,0,0,0,1,2,1,0,0],
+        "cols_block_data":["r,7;","r,7;","","","","r,7;","r,8;r,7;","r,7;","",""]
+    },
+    // land 8
+    {
+        "cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],
+        "cols_block_data":["","","","","","","","r,9;","r,9;","r,9;"]
+    },
+    // land 9
+    {
+        "cols_unlock_slots":[1,2,3,4,5,5,6,6,5,5],
+        "cols_block_data":["r,6;","r,6;r,6;","r,6;r,6;r,6;","r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,5;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;r,7;","r,6;r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;"]
+    },
+    // land 10
+    {
+        "cols_unlock_slots":[5,5,5,0,0,0,1,2,1,0],
+        "cols_block_data":["r,5;r,6;r,5;r,5;r,6;","r,5;r,5;r,5;r,5;r,6;","r,6;r,5;r,6;r,6;r,6;","","","","r,5;","r,6;r,5;","r,5;",""]
+    },
+    // land 11
+    {
+        "cols_unlock_slots":[0,0,0,0,0,1,1,2,2,3],
+        "cols_block_data":["","","","","","r,8;","r,8;","r,8;r,8;","r,9;r,8;","r,8;r,8;r,8;"]
+    }
+];
+//-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
 const canvas = document.createElement('canvas');
@@ -51,7 +115,8 @@ console.log('init of mr sun.');
           cx: cx, 
           cy: cy, 
           x: cx, 
-          y: cy
+          y: cy,
+          sectionData: LANDS_START_SECTION_DATA
        });
        sm.setState('world', {});
     },

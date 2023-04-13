@@ -33,70 +33,10 @@ constant.SLOT_GRID_WIDTH = 10;
 constant.SLOT_GRID_HEIGHT = 8;
 constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
+constant.LANDS_START_SECTION_DATA = [];
 constant.DEFAULT_CREATE_OPTIONS = {
-    cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1
+    cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1, sectionData: constant.LANDS_START_SECTION_DATA
 };
-constant.LANDS_START_SECTION_DATA = [
-    // land 0
-    {
-        "cols_unlock_slots":[3,4,4,5,5,4,2,1,1,1],
-        "cols_block_data":["r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,9;r,9;","r,9;r,8;r,8;r,8;r,9;","r,8;r,8;r,8;r,8;r,9;","r,8;r,8;r,8;r,8;","r,8;r,8;","r,8;","r,8;","r,8;"]},
-    // land 1
-    {
-        "cols_unlock_slots":[3,3,3,4,4,3,0,0,0,0],
-        "cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,8;r,7;","r,8;r,7;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","","","",""]
-    },
-    // land 2
-    {
-        "cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],
-        "cols_block_data":["","","","","","","","r,8;","r,8;","r,8;"]
-    },
-    // land 3
-    {
-        "cols_unlock_slots":[1,1,2,2,2,3,3,4,1,1],
-        "cols_block_data":["r,7;","r,8;","r,8;r,8;","r,7;r,7;","r,7;r,8;","r,7;r,8;r,7;","r,8;r,7;r,8;","r,7;r,8;r,7;r,7;","r,7;","r,7;"]
-    },
-    // land 4
-    {
-        "cols_unlock_slots":[1,1,1,0,0,0,0,0,0,0],
-        "cols_block_data":["r,8;","r,8;","r,8;","","","","","","",""]
-    },
-    // land 5
-    {
-        "cols_unlock_slots":[0,0,0,0,1,1,2,3,3,3],
-        "cols_block_data":["","","","","r,8;","r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;"]
-    },
-    // land 6
-    {
-        "cols_unlock_slots":[3,3,4,5,5,4,3,1,1,1],
-        "cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,7;r,7;r,7;","r,7;r,8;r,7;r,8;r,7;","r,8;r,7;r,8;r,7;r,8;","r,7;r,7;r,8;r,7;","r,7;r,7;r,7;","r,8;","r,8;","r,8;"]
-    },
-    // land 7
-    {
-        "cols_unlock_slots":[1,1,0,0,0,1,2,1,0,0],
-        "cols_block_data":["r,7;","r,7;","","","","r,7;","r,8;r,7;","r,7;","",""]
-    },
-    // land 8
-    {
-        "cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],
-        "cols_block_data":["","","","","","","","r,9;","r,9;","r,9;"]
-    },
-    // land 9
-    {
-        "cols_unlock_slots":[1,2,3,4,5,5,6,6,5,5],
-        "cols_block_data":["r,6;","r,6;r,6;","r,6;r,6;r,6;","r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,5;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;r,7;","r,6;r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;"]
-    },
-    // land 10
-    {
-        "cols_unlock_slots":[5,5,5,0,0,0,1,2,1,0],
-        "cols_block_data":["r,5;r,6;r,5;r,5;r,6;","r,5;r,5;r,5;r,5;r,6;","r,6;r,5;r,6;r,6;r,6;","","","","r,5;","r,6;r,5;","r,5;",""]
-    },
-    // land 11
-    {
-        "cols_unlock_slots":[0,0,0,0,0,1,1,2,2,3],
-        "cols_block_data":["","","","","","r,8;","r,8;","r,8;r,8;","r,9;r,8;","r,8;r,8;r,8;"]
-    }
-];
 //-------- ----------
 // BLOCK TYPES
 //-------- ----------
@@ -338,7 +278,7 @@ class LandSection {
 class Lands {
     constructor(opt) {
         opt = opt || {};
-        opt = Object.assign({}, {cx: 0, cy: 0, sectionData: constant.LANDS_START_SECTION_DATA }, opt);
+        opt = Object.assign({}, {cx: 0, cy: 0, sectionData: [] }, opt);
         this.sections = [];
         this.bt_counts = {}; // block type grand total counts
         this.slot_unlock_cost = 0;
@@ -480,7 +420,7 @@ gameMod.create = (opt) => {
     };
     // land objects
     game.lands = new Lands({
-        cx: opt.cx, cy: opt.cy
+        cx: opt.cx, cy: opt.cy, sectionData: opt.sectionData
     });
     // const
     Object.assign(game, constant);
