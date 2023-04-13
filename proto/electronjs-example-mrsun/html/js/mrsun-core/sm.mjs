@@ -43,7 +43,7 @@ sm.states.init = {
     start: (sm, opt) => {
 
 console.log('init of mr sun.');
-console.log(MS.autoload());
+// MS.autoload();
 
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;

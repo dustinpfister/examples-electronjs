@@ -17,19 +17,32 @@
 ## (  ) - Slot Class, Disabled Slot feature 
 * () a slot object will have a disbaled property which means that it can not be used at all
 
-## (  ) - objpool.js, objpool.buttons.js
+<!-- PROTOTYPE -->
+
+## (  ) - r31 - canvas module
+* () start a new canvas MJS file based on R2 of canvasMod
+
+## (  ) - r30 - start a message system
+* () start a message system as a whole other file called mess.js
+* () use the standard objects in objpool for message dialogs
+
+## (  ) - r29 - objpool.js, objpool.buttons.js
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
 
-<!-- PROTOTYPE -->
-
-## (  ) - r26 - Save and Load state
+## (  ) - r28 - Save and Load games
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## (  ) - r25 - start a message system
-* () Start a message system as a whole other file called mess.js
-* () There needs to be a way to define what a condition is for a message
+## () - r27 - game.stringify
+* () add lzsting as part of the stack, and make a MJS form of the file
+
+## () - r26 - block data for Land Sections
+* () I will want to have a way to define what the start points are for blocks
+
+## ( done 04/13/2023 ) - r25 - Slot unlock data for Lands
+* (done) started a constant.LANDS\_START\_SECTION\_DATA array
+* (done) use the data in LANDS\_START\_SECTION\_DATA to find out slots that are unlocked for starters
 
 ## ( done 04/13/2023 ) - r24 - Full Screen and toggle dev tools menu options
 * (done) full screen mode

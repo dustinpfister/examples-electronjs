@@ -36,6 +36,20 @@ constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do awa
 constant.DEFAULT_CREATE_OPTIONS = {
     cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1
 };
+constant.LANDS_START_SECTION_DATA = [
+    { cols_unlock_slots: [ 3,4,4,5,5,4,2,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,1,1,1,1,1,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,1,0,0,0,0,1,2,2 ] },
+    { cols_unlock_slots: [ 2,2,1,2,2,3,4,5,0,0 ] },
+    { cols_unlock_slots: [ 0,0,0,0,0,6,5,5,4,5 ] },
+    { cols_unlock_slots: [ 5,5,6,7,4,3,2,2,1,2 ] },
+    { cols_unlock_slots: [ 2,3,3,2,1,1,0,0,0,0 ] },
+    { cols_unlock_slots: [ 0,0,0,0,1,2,1,0,0,0 ] },
+    { cols_unlock_slots: [ 0,0,1,2,3,3,2,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,1,2,3,4,5,5,5,5 ] },
+    { cols_unlock_slots: [ 5,5,4,3,2,1,1,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,1,1,1,1,1,2,3,3 ] }
+];
 //-------- ----------
 // BLOCK TYPES
 //-------- ----------
@@ -119,7 +133,11 @@ class Slot {
 // Land Section
 //-------- ----------
 class LandSection {
-    constructor(i, cx, cy) {
+    constructor(i, cx, cy, sectionData) {
+
+sectionData = sectionData || {};
+
+
         this.i = i;
         this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
         this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
@@ -133,6 +151,22 @@ class LandSection {
         this.d_alpha = 0;
         this.temp = 0;
         this.createSlotGrid();
+        // starting unlock slots
+        const unlock = sectionData.cols_unlock_slots;
+        if(unlock){
+            let x = 0;
+            while(x < constant.SLOT_GRID_WIDTH){
+                let y = constant.SLOT_GRID_HEIGHT - 1;
+                let ct = unlock[x];
+                while(ct > 0){
+                    const slot = this.getSlot(x, y);
+                    slot.locked = false;
+                    y -= 1;
+                    ct -= 1;
+                }
+                x += 1;
+            }
+        }
         this.setBlockTypeCounts();
     }
     // get a slot object by index or grid position
@@ -207,7 +241,9 @@ class LandSection {
 // Lands Class
 //-------- ----------
 class Lands {
-    constructor(game) {
+    constructor(opt) {
+        opt = opt || {};
+        opt = Object.assign({}, {cx: 0, cy: 0, sectionData: constant.LANDS_START_SECTION_DATA }, opt);
         this.sections = [];
         this.bt_counts = {}; // block type grand total counts
         this.slot_unlock_cost = 0;
@@ -215,7 +251,8 @@ class Lands {
         this.slot_total = constant.SLOT_GRID_LEN * constant.LAND_OBJECT_COUNT;
         let i = 0;
         while(i < constant.LAND_OBJECT_COUNT){
-            const section = new LandSection(i, game.sun.cx, game.sun.cy);
+            const sectionData = opt.sectionData[i] || {};
+            const section = new LandSection(i, opt.cx, opt.cy, sectionData);
             this.sections.push(section);
             i += 1;
         }
@@ -347,7 +384,9 @@ gameMod.create = (opt) => {
         r: constant.SUN_RADIUS
     };
     // land objects
-    game.lands = new Lands(game);
+    game.lands = new Lands({
+        cx: opt.cx, cy: opt.cy
+    });
     // const
     Object.assign(game, constant);
     game.mana_cap = getManaCap(game);
