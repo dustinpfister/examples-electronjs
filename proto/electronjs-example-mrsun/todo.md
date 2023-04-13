@@ -23,13 +23,17 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r25 - Save and Load state
+## (  ) - r26 - Save and Load state
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## (  ) - r24 - message system
+## (  ) - r25 - start a message system
 * () Start a message system as a whole other file called mess.js
-* () There needs to be a way to define what a condision is for a message
+* () There needs to be a way to define what a condition is for a message
+
+## (  ) - r24 - Full Screen and toggle dev tools menu options
+* () full screen mode
+* () toggle dev tools
 
 ## ( done 04/13/2023 ) - r23 - user events started for gameMod
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
