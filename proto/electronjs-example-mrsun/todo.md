@@ -19,26 +19,29 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r31 - canvas module
+## (  ) - r32 - canvas module
 * () start a new canvas MJS file based on R2 of canvasMod
 
-## (  ) - r30 - start a message system
+## (  ) - r31 - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
 * () not enough mana to create block message
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - r29 - objpool.js, objpool.buttons.js
+## (  ) - r30 - objpool.js, objpool.buttons.js
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
 
-## (  ) - r28 - Save and Load games
+## (  ) - r29 - Save and Load games
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## () - r27 - game.stringify
+## () - r28 - lzstring
 * () add lzsting as part of the stack, and make a MJS form of the file
+
+## () - r27 - game.stringify
+* () start a save file format with land section data and a mana value
 
 ## ( done 04/13/2023 ) - r26 - block data for Land Sections
 * (done) block info disp can be set on or off.
