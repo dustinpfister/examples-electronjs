@@ -41,6 +41,7 @@
 * () add lzsting as part of the stack, and make a MJS form of the file
 
 ## () - r27 - game.stringify
+* (done) fixed a debit mana bug when upgrading a block
 * () start a save file format with land section data
 * () a mana value will need to be stored
 * () sun pos should be stored

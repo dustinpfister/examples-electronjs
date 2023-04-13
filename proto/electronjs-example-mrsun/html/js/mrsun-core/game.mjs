@@ -360,10 +360,10 @@ const manaCredit = (game, mana_delta ) => {
     }
     game.mana = game.mana.gt(game.mana_cap) ?  new Decimal( game.mana_cap ) : game.mana;
 };
-//
+// debit game.mana
 const manaDebit = (game, mana_delta) => {
     game.mana = game.mana.sub( mana_delta );
-    game.mana = game.mana.lt(0) ? new Decimal(0) : game.mana;
+    //game.mana = game.mana.lt(0) ? new Decimal(0) : game.mana;
     // test for mana and mana per tick === 0
     if( game.mana_per_tick.eq(0) && game.mana.eq(0)){
         // do an update
@@ -509,12 +509,20 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
     const slot = section.slots[i_slot];
     const block = slot.block;
     if(slot.locked){
+        console.log('slot is locked can not upgrade.');
         return;
     }
+    if( game.mana.lt( block.upgradeCost ) ){
+        console.log( 'Not Enough mana to upgrade.' );
+        console.log( 'mana: ' + game.mana.toNumber() );
+        console.log( 'upgrade cost: ' + block.upgradeCost.toNumber() );
+        return;
+    }
+
     if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
+        manaDebit(game, block.upgradeCost);
         const newLevel = block.level + 1;
         block.setLevel(newLevel, 'rock');
-        manaDebit(game, block.upgradeCost);
     }
 };
 // set the given land and block index back to blank, and absorb the mana value to game.mana
