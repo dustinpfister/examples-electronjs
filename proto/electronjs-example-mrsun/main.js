@@ -34,6 +34,14 @@ const MainMenuTemplate = [
         submenu: [
             isMac ? { role: 'close' }: { role: 'quit' }
         ]
+    },
+    {
+        label: 'View',
+        submenu: [
+            { role: 'reload' },
+            { role: 'toggleDevTools' },
+            { role: 'togglefullscreen' }
+        ]
     }
 ];
 //-------- ----------

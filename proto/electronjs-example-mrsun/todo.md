@@ -32,8 +32,8 @@
 * () There needs to be a way to define what a condition is for a message
 
 ## (  ) - r24 - Full Screen and toggle dev tools menu options
-* () full screen mode
-* () toggle dev tools
+* (done) full screen mode
+* (done) toggle dev tools
 
 ## ( done 04/13/2023 ) - r23 - user events started for gameMod
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
