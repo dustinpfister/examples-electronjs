@@ -3,21 +3,6 @@
 import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { utils }  from "./utils.mjs"
-
-
-// testing out event dispacther
-
-const events = new EventDispatcher();
-
-
-events.addEventListener('start', (mess) => {
-    console.log('yes this is dog.');
-    console.log(mess)
-});
-
-events.dispatchEvent( { type: 'start', message: 'vroom vroom!' } );
-
-
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
 //-------- ----------
@@ -65,6 +50,15 @@ constant.BLOCKS.rock = {
     mana_base: 1,
     mana_temp: 4
 };
+//-------- ----------
+// GAME EVENTS
+//-------- ----------
+const GAME_EVENTS = new EventDispatcher();
+// The mana_total_zero event will fire if a player has 0 mana and 0 mana per tick income
+GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
+    console.log('Mana Total Zero Event! adding ' + constant.MANA_START + ' mana for ya.');
+    evnt.game.mana = evnt.game.mana.add(evnt.constant.MANA_START);
+});
 //-------- ----------
 // BLOCK CLASS
 //-------- ----------
@@ -385,7 +379,10 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
                 game.lands.setBlockTypeCounts();
                 // test for mana and mana per tick === 0
                 if( game.mana_per_tick.lte(0) && game.mana.eq(0)){
-                    game.mana = game.mana.add(constant.MANA_START);
+                    GAME_EVENTS.dispatchEvent({
+                        type: 'mana_total_zero',
+                        game: game, constant: constant
+                    });
                 }
                 break;
             }
@@ -415,7 +412,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
             break;
         }
     }
-    console.log('all slots are locked, or there is no blank slots');
+    console.log('all slots are locked, there is no blank slots, or there is no mana.');
 };
 // upgrade block
 gameMod.upgradeBlock = (game, i_section, i_slot) => {
