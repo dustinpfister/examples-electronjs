@@ -38,14 +38,14 @@ constant.DEFAULT_CREATE_OPTIONS = {
 };
 constant.LANDS_START_SECTION_DATA = [
     {"cols_unlock_slots":[3,4,4,5,5,4,2,1,1,1],"cols_block_data":["r,5;r,5;r,4;","r,2;r,4;r,4;r,4;","r,4;r,2;r,4;r,5;","r,5;r,4;r,3;r,2;r,5;","r,4;r,2;r,3;r,4;r,5;","r,5;r,4;r,4;r,4;","r,5;r,5;","r,5;","r,5;","r,4;"]},
-    { cols_unlock_slots: [ 0,0,0,0,0,0,0,0,0,0 ] },
-    { cols_unlock_slots: [ 0,0,0,0,0,0,0,1,1,1 ] },
-    { cols_unlock_slots: [ 1,1,2,2,2,3,3,4,1,1 ] },
-    { cols_unlock_slots: [ 1,1,1,0,0,0,0,0,0,0 ] },
-    { cols_unlock_slots: [ 0,0,0,0,1,1,2,3,3,3 ] },
-    { cols_unlock_slots: [ 3,3,4,5,5,4,3,1,1,1 ] },
-    { cols_unlock_slots: [ 1,1,0,0,0,1,2,1,0,0 ] },
-    {"cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],"cols_block_data":["","","","","","","","r,7;","r,7;","r,7;"]},
+    {"cols_unlock_slots":[3,3,3,4,4,3,0,0,0,0],"cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,8;r,7;","r,8;r,7;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","","","",""]},
+    {"cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],"cols_block_data":["","","","","","","","r,8;","r,8;","r,8;"]},
+    {"cols_unlock_slots":[1,1,2,2,2,3,3,4,1,1],"cols_block_data":["r,7;","r,8;","r,8;r,8;","r,7;r,7;","r,7;r,8;","r,7;r,8;r,7;","r,8;r,7;r,8;","r,7;r,8;r,7;r,7;","r,7;","r,7;"]},
+    {"cols_unlock_slots":[1,1,1,0,0,0,0,0,0,0],"cols_block_data":["r,8;","r,8;","r,8;","","","","","","",""]},
+    {"cols_unlock_slots":[0,0,0,0,1,1,2,3,3,3],"cols_block_data":["","","","","r,8;","r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;"]},
+    {"cols_unlock_slots":[3,3,4,5,5,4,3,1,1,1],"cols_block_data":["r,7;r,7;r,7;","r,7;r,7;r,7;","r,7;r,7;r,7;r,7;","r,7;r,8;r,7;r,8;r,7;","r,8;r,7;r,8;r,7;r,8;","r,7;r,7;r,8;r,7;","r,7;r,7;r,7;","r,8;","r,8;","r,8;"]},
+    {"cols_unlock_slots":[1,1,0,0,0,1,2,1,0,0],"cols_block_data":["r,7;","r,7;","","","","r,7;","r,8;r,7;","r,7;","",""]},
+    {"cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],"cols_block_data":["","","","","","","","r,9;","r,9;","r,9;"]},
     {"cols_unlock_slots":[1,2,3,4,5,5,6,6,5,5],"cols_block_data":["r,6;","r,6;r,6;","r,6;r,6;r,6;","r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,5;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;r,7;","r,6;r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;"]},
     {"cols_unlock_slots":[5,5,5,0,0,0,1,2,1,0],"cols_block_data":["r,5;r,6;r,5;r,5;r,6;","r,5;r,5;r,5;r,5;r,6;","r,6;r,5;r,6;r,6;r,6;","","","","r,5;","r,6;r,5;","r,5;",""]},
     {"cols_unlock_slots":[0,0,0,0,0,1,1,2,2,3],"cols_block_data":["","","","","","r,5;","r,5;","r,5;r,5;","r,5;r,5;","r,5;r,5;r,5;"]}
