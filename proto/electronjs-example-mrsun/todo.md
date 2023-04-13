@@ -33,7 +33,13 @@
 
 ## (  ) - r23 - user events
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
-* () have a mana-total-zero event that will happen when mana and mana per tick are zero
+* (done) have a mana-total-zero event that will happen when mana and mana per tick are zero
+* () have a debit mana helper
+* () check for mana-total-zero in demit mana helper
+* () use debit mana helper gameMod.unlockSlot
+* () use debit mana helper gameMod.createBlock
+* () use debit mana helper gameMod.upgradeBlock
+
 
 ## ( done 04/13/2023 ) - r22 - Switch to JSM
 * (done) start switch to JSM over old script tags starting with decimal.mjs
