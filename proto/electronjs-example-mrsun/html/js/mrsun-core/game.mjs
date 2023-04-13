@@ -37,7 +37,21 @@ constant.DEFAULT_CREATE_OPTIONS = {
     cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1
 };
 constant.LANDS_START_SECTION_DATA = [
-    { cols_unlock_slots: [ 3,4,4,5,5,4,2,1,1,1 ] },
+    {
+        cols_unlock_slots: [ 3,4,4,5,5,4,2,1,1,1 ],
+        cols_block_data: [
+            'r,1;r,1;r,1',
+            'r,2;r,1;r,1;r,1',
+            'r,1;r,2;r,1;r,1',
+            'r,5;r,4;r,3;r,2;r,1',
+            'r,1;r,2;r,3;r,4;r,5',
+            'r,1;r,1;r,1;r,1',
+            'r,1;r,1',
+            'r,1',
+            'r,1',
+            'r,1'
+        ]
+    },
     { cols_unlock_slots: [ 1,1,1,1,1,1,1,1,1,1 ] },
     { cols_unlock_slots: [ 1,1,1,0,0,0,0,1,2,2 ] },
     { cols_unlock_slots: [ 2,2,1,2,2,3,4,5,0,0 ] },
@@ -134,10 +148,7 @@ class Slot {
 //-------- ----------
 class LandSection {
     constructor(i, cx, cy, sectionData) {
-
-sectionData = sectionData || {};
-
-
+        sectionData = sectionData || {};
         this.i = i;
         this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
         this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
@@ -153,20 +164,35 @@ sectionData = sectionData || {};
         this.createSlotGrid();
         // starting unlock slots
         const unlock = sectionData.cols_unlock_slots;
+        const blockdata = sectionData.cols_block_data || [];
         if(unlock){
             let x = 0;
             while(x < constant.SLOT_GRID_WIDTH){
                 let y = constant.SLOT_GRID_HEIGHT - 1;
                 let ct = unlock[x];
+                let bd = [];
+                if(blockdata[x]){
+                    console.log('block data');
+                    bd = blockdata[x].split(';');
+                }
                 while(ct > 0){
                     const slot = this.getSlot(x, y);
                     slot.locked = false;
+                    const i_bd = unlock[x] - ct;
+                    if( bd[ i_bd] ){
+                        const str = bd[ i_bd];
+                        const arr = str.split(',');
+                        if(arr[0] === 'r'){
+                            slot.block.setLevel(arr[1], 'rock');
+                        }
+                    }
                     y -= 1;
                     ct -= 1;
                 }
                 x += 1;
             }
         }
+        // update the counts
         this.setBlockTypeCounts();
     }
     // get a slot object by index or grid position
