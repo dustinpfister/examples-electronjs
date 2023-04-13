@@ -177,6 +177,12 @@ class LandSection {
         this.temp = 0;
         this.createSlotGrid();
         // starting unlock slots
+        this.applySectionData(sectionData)
+        // update the counts
+        this.setBlockTypeCounts();
+    }
+    // apply section data
+    applySectionData(sectionData){
         const unlock = sectionData.cols_unlock_slots;
         const blockdata = sectionData.cols_block_data || [];
         if(unlock){
@@ -186,7 +192,6 @@ class LandSection {
                 let ct = unlock[x];
                 let bd = [];
                 if(blockdata[x]){
-                    console.log('block data');
                     bd = blockdata[x].split(';');
                 }
                 while(ct > 0){
@@ -206,8 +211,6 @@ class LandSection {
                 x += 1;
             }
         }
-        // update the counts
-        this.setBlockTypeCounts();
     }
     // get a slot object by index or grid position
     getSlot(xi, y){
