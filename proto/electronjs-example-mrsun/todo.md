@@ -25,6 +25,9 @@
 ## (  ) - r30 - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
+* () not enough mana to create block message
+* () not enough mana to upgrade block message
+* () no blank blocks to create message
 
 ## (  ) - r29 - objpool.js, objpool.buttons.js
 * () base object pool library
