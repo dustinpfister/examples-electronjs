@@ -458,7 +458,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
                     manaDebit(game, blockCost);
                 }
             }
-            break;
+            return;
         }
     }
     console.log('all slots are locked, there is no blank slots, or there is no mana.');
