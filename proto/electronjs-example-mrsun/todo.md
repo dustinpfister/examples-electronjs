@@ -45,10 +45,10 @@
 * () a mana value will need to be stored
 * () sun pos should be stored
 
-## () - r27 - LandSection.getSectionData
+## ( done 04/13/2023 ) - r27 - LandSection.getSectionData
 * (done) fixed a debit mana bug when upgrading a block
 * (done) create an LandSection.applySectionData method
-* () start a LandSection.getSectionData method that will return an sectionData object
+* (done) start a LandSection.getSectionData method that will return an sectionData object
 
 ## ( done 04/13/2023 ) - r26 - block data for Land Sections
 * (done) block info disp can be set on or off.
