@@ -391,18 +391,9 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
         // is the block locked?
         if(slot.locked){
             if( game.mana.gte( game.lands.slot_unlock_cost ) ){
-                //game.mana = game.mana.sub( game.lands.slot_unlock_cost );
                 manaDebit(game, game.lands.slot_unlock_cost);
-
                 slot.locked = false;
                 game.lands.setBlockTypeCounts();
-                // test for mana and mana per tick === 0
-                //if( game.mana_per_tick.lte(0) && game.mana.eq(0)){
-                //    GAME_EVENTS.dispatchEvent({
-                //        type: 'mana_total_zero',
-                //        game: game, constant: constant
-                //    });
-                //}
                 break;
             }
         }
@@ -423,9 +414,9 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
             gameMod.updateByTickDelta(game, 0, true);
             if(section.bt_counts.rock < constant.BLOCK_LAND_MAX){
                 if(game.mana.gte( blockCost )){
-                    game.mana = game.mana.sub(blockCost);
                     slot.block.setLevel(level, 'rock');
                     game.lands.setBlockTypeCounts();
+                    manaDebit(game, blockCost);
                 }
             }
             break;
@@ -442,9 +433,9 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
         return;
     }
     if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
-        game.mana = game.mana.sub(block.upgradeCost);
         const newLevel = block.level + 1;
         block.setLevel(newLevel, 'rock');
+        manaDebit(game, block.upgradeCost);
     }
 };
 // set the given land and block index back to blank, and absorb the mana value to game.mana

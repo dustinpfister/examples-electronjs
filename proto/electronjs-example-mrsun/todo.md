@@ -31,15 +31,14 @@
 * () Start a message system as a whole other file called mess.js
 * () There needs to be a way to define what a condision is for a message
 
-## (  ) - r23 - user events
+## ( done 04/13/2023 ) - r23 - user events started for gameMod
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
 * (done) have a mana-total-zero event that will happen when mana and mana per tick are zero
 * (done) have a debit mana helper
 * (done) check for mana-total-zero in demit mana helper
-* () use debit mana helper gameMod.unlockSlot
-* () use debit mana helper gameMod.createBlock
-* () use debit mana helper gameMod.upgradeBlock
-
+* (done) use debit mana helper gameMod.unlockSlot
+* (done) use debit mana helper gameMod.createBlock
+* (done) use debit mana helper gameMod.upgradeBlock
 
 ## ( done 04/13/2023 ) - r22 - Switch to JSM
 * (done) start switch to JSM over old script tags starting with decimal.mjs
