@@ -9,7 +9,7 @@ const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 const container = document.getElementById('wrap_main') || document.body;
 container.appendChild(canvas);
-canvas.width =  640;
+canvas.width = 640;
 canvas.height = 480;
 const sm = {
    canvas: canvas,
@@ -41,10 +41,17 @@ sm.setState = function(key, opt) {
 sm.states.init = {
     data: {},
     start: (sm, opt) => {
+
+console.log('init of mr sun.');
+console.log(MS.autoload());
+
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;
        sm.game = gameMod.create({
-          cx: cx, cy: cy, x: cx, y: cy
+          cx: cx, 
+          cy: cy, 
+          x: cx, 
+          y: cy
        });
        sm.setState('world', {});
     },

@@ -31,9 +31,10 @@
 * () Start a message system as a whole other file called mess.js
 * () There needs to be a way to define what a condition is for a message
 
-## (  ) - r24 - Full Screen and toggle dev tools menu options
+## ( done 04/13/2023 ) - r24 - Full Screen and toggle dev tools menu options
 * (done) full screen mode
 * (done) toggle dev tools
+* (done) have a MS.autoload method in preload.js
 
 ## ( done 04/13/2023 ) - r23 - user events started for gameMod
 * (done) I think I should use maybe EventDispatcher ( https://threejs.org/docs/index.html#api/en/core/EventDispatcher )
