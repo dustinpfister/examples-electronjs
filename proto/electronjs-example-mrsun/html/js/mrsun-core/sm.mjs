@@ -273,6 +273,9 @@ sm.states.land = {
                         gameMod.upgradeBlock(sm.game, sm.landIndex, i);
                     }
                     if(data.block_mode === 'info'){
+
+console.log( JSON.stringify( section.getSectionData() ) );
+
                         //console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
                         //console.log(block);
                         data.block_info_disp = true;

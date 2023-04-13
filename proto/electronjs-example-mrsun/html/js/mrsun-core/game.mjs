@@ -37,21 +37,7 @@ constant.DEFAULT_CREATE_OPTIONS = {
     cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1
 };
 constant.LANDS_START_SECTION_DATA = [
-    {
-        cols_unlock_slots: [ 3,4,4,5,5,4,2,1,1,1 ],
-        cols_block_data: [
-            'r,1;r,1;r,1',
-            'r,2;r,1;r,1;r,1',
-            'r,1;r,2;r,1;r,1',
-            'r,5;r,4;r,3;r,2;r,1',
-            'r,1;r,2;r,3;r,4;r,5',
-            'r,1;r,1;r,1;r,1',
-            'r,1;r,1',
-            'r,1',
-            'r,1',
-            'r,1'
-        ]
-    },
+    {"cols_unlock_slots":[3,4,4,5,5,4,2,1,1,1],"cols_block_data":["r,5;r,5;r,4;","r,2;r,4;r,4;r,4;","r,4;r,2;r,4;r,5;","r,5;r,4;r,3;r,2;r,5;","r,4;r,2;r,3;r,4;r,5;","r,5;r,4;r,4;r,4;","r,5;r,5;","r,5;","r,5;","r,4;"]},
     { cols_unlock_slots: [ 0,0,0,0,0,0,0,0,0,0 ] },
     { cols_unlock_slots: [ 0,0,0,0,0,0,0,1,1,1 ] },
     { cols_unlock_slots: [ 1,1,2,2,2,3,3,4,1,1 ] },
@@ -59,24 +45,10 @@ constant.LANDS_START_SECTION_DATA = [
     { cols_unlock_slots: [ 0,0,0,0,1,1,2,3,3,3 ] },
     { cols_unlock_slots: [ 3,3,4,5,5,4,3,1,1,1 ] },
     { cols_unlock_slots: [ 1,1,0,0,0,1,2,1,0,0 ] },
-    { cols_unlock_slots: [ 0,0,0,0,0,0,0,1,1,1 ] },
-    { cols_unlock_slots: [ 1,2,3,4,5,5,6,6,5,5 ] },
-    { cols_unlock_slots: [ 5,5,5,0,0,0,1,2,1,0 ] },
-    {
-        cols_unlock_slots: [ 0,0,0,0,0,1,1,2,2,3 ],
-        cols_block_data: [
-            '',
-            '',
-            '',
-            '',
-            '',
-            'r,1',
-            'r,1',
-            'r,1;r,1',
-            'r,1;r,1',
-            'r,1;r,1;r,1'
-        ]
-    }
+    {"cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],"cols_block_data":["","","","","","","","r,7;","r,7;","r,7;"]},
+    {"cols_unlock_slots":[1,2,3,4,5,5,6,6,5,5],"cols_block_data":["r,6;","r,6;r,6;","r,6;r,6;r,6;","r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,5;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;r,7;","r,6;r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;","r,6;r,6;r,6;r,6;r,6;"]},
+    {"cols_unlock_slots":[5,5,5,0,0,0,1,2,1,0],"cols_block_data":["r,5;r,6;r,5;r,5;r,6;","r,5;r,5;r,5;r,5;r,6;","r,6;r,5;r,6;r,6;r,6;","","","","r,5;","r,6;r,5;","r,5;",""]},
+    {"cols_unlock_slots":[0,0,0,0,0,1,1,2,2,3],"cols_block_data":["","","","","","r,5;","r,5;","r,5;r,5;","r,5;r,5;","r,5;r,5;r,5;"]}
 ];
 //-------- ----------
 // BLOCK TYPES
@@ -201,6 +173,9 @@ class LandSection {
                     if( bd[ i_bd] ){
                         const str = bd[ i_bd];
                         const arr = str.split(',');
+                        if(arr[0] === 'b'){
+                            slot.block.clear();
+                        }
                         if(arr[0] === 'r'){
                             slot.block.setLevel(arr[1], 'rock');
                         }
@@ -211,6 +186,36 @@ class LandSection {
                 x += 1;
             }
         }
+    }
+    // get a section data object used for save states
+    getSectionData(){
+        const sectionData = {
+            cols_unlock_slots: [],
+            cols_block_data: []
+        };
+        let x = 0;
+        while(x < constant.SLOT_GRID_WIDTH){
+            let y = constant.SLOT_GRID_HEIGHT -  1;
+            let unlock_ct = 0;
+            let bd_str = '';
+            while(y >= 0){
+                const slot = this.getSlot(x, y);
+                unlock_ct = slot.locked ? unlock_ct : unlock_ct + 1;
+                if(!slot.locked){
+                   if(slot.block.type === 'rock'){
+                       bd_str += 'r,' + slot.block.level + ';'
+                   }
+                   if(slot.block.type === 'blank'){
+                       bd_str += 'b,1;'
+                   }
+                }
+                y -= 1;
+            }
+            sectionData.cols_block_data.push( bd_str );
+            sectionData.cols_unlock_slots.push( unlock_ct );
+            x += 1;
+        }
+        return sectionData;
     }
     // get a slot object by index or grid position
     getSlot(xi, y){
