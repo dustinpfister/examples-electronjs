@@ -41,7 +41,9 @@
 * () add lzsting as part of the stack, and make a MJS form of the file
 
 ## () - r27 - game.stringify
-* () start a save file format with land section data and a mana value
+* () start a save file format with land section data
+* () a mana value will need to be stored
+* () sun pos should be stored
 
 ## ( done 04/13/2023 ) - r26 - block data for Land Sections
 * (done) block info disp can be set on or off.

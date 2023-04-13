@@ -52,17 +52,31 @@ constant.LANDS_START_SECTION_DATA = [
             'r,1'
         ]
     },
-    { cols_unlock_slots: [ 1,1,1,1,1,1,1,1,1,1 ] },
-    { cols_unlock_slots: [ 1,1,1,0,0,0,0,1,2,2 ] },
-    { cols_unlock_slots: [ 2,2,1,2,2,3,4,5,0,0 ] },
-    { cols_unlock_slots: [ 0,0,0,0,0,6,5,5,4,5 ] },
-    { cols_unlock_slots: [ 5,5,6,7,4,3,2,2,1,2 ] },
-    { cols_unlock_slots: [ 2,3,3,2,1,1,0,0,0,0 ] },
-    { cols_unlock_slots: [ 0,0,0,0,1,2,1,0,0,0 ] },
-    { cols_unlock_slots: [ 0,0,1,2,3,3,2,1,1,1 ] },
-    { cols_unlock_slots: [ 1,1,1,2,3,4,5,5,5,5 ] },
-    { cols_unlock_slots: [ 5,5,4,3,2,1,1,1,1,1 ] },
-    { cols_unlock_slots: [ 1,1,1,1,1,1,1,2,3,3 ] }
+    { cols_unlock_slots: [ 0,0,0,0,0,0,0,0,0,0 ] },
+    { cols_unlock_slots: [ 0,0,0,0,0,0,0,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,2,2,2,3,3,4,1,1 ] },
+    { cols_unlock_slots: [ 1,1,1,0,0,0,0,0,0,0 ] },
+    { cols_unlock_slots: [ 0,0,0,0,1,1,2,3,3,3 ] },
+    { cols_unlock_slots: [ 3,3,4,5,5,4,3,1,1,1 ] },
+    { cols_unlock_slots: [ 1,1,0,0,0,1,2,1,0,0 ] },
+    { cols_unlock_slots: [ 0,0,0,0,0,0,0,1,1,1 ] },
+    { cols_unlock_slots: [ 1,2,3,4,5,5,6,6,5,5 ] },
+    { cols_unlock_slots: [ 5,5,5,0,0,0,1,2,1,0 ] },
+    {
+        cols_unlock_slots: [ 0,0,0,0,0,1,1,2,2,3 ],
+        cols_block_data: [
+            '',
+            '',
+            '',
+            '',
+            '',
+            'r,1',
+            'r,1',
+            'r,1;r,1',
+            'r,1;r,1',
+            'r,1;r,1;r,1'
+        ]
+    }
 ];
 //-------- ----------
 // BLOCK TYPES
