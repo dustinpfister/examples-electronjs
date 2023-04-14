@@ -7,14 +7,15 @@ const writeFile = promisfy(fs.readFile);
 const os = require('os');
 const path = require('path');
 
+const dir_home = os.homedir();
+const file_name = 'mr_sun_autosave.txt';
+const uri_filesave = path.join(dir_home, file_name);
+
 const MS = {};
 
 // get a save file at a standard location
 // if it is not there, create a new one
 MS.auto_load = () => {
-    const dir_home = os.homedir();
-    const file_name = 'mr_sun_autosave.txt';
-    const uri_filesave = path.join(dir_home, file_name);
     return readFile(uri_filesave, 'utf8')
     .then(((text) => {
        return Promise.resolve(text);
