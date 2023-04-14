@@ -35,7 +35,7 @@
 
 ## (  ) - r30 - Save and Load games
 * () I will need a preload.js solution for saving and loading game saves
-* () just save and load a json file in the home folder
+* () just save and load a text file in the home folder
 
 ## ( done 04/14/2023 ) - r29 - lzstring
 * (done) add lzsting as part of the stack, and make a MJS form of the file

@@ -53,7 +53,7 @@ sm.states.init = {
     start: (sm, opt) => {
 
        console.log('init of mr sun.');
-       // MS.autoload();
+       MS.auto_load();
 
        const opt_game = gameMod.parseSaveString(SAVE_STRING);
        const cx = sm.canvas.width / 2;
