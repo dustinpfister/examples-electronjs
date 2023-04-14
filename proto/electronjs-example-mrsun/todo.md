@@ -34,7 +34,7 @@
 * () buttons lib that runs on top of base object pool lib. 
 
 ## (  ) - r30 - Save and Load games
-* () I will need a preload.js solution for saving and loading
+* () I will need a preload.js solution for saving and loading game saves
 * () just save and load a json file in the home folder
 
 ## ( done 04/14/2023 ) - r29 - lzstring
