@@ -542,6 +542,16 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
         game.lands.setBlockTypeCounts();
     }
 };
+// create a save string
+gameMod.createSaveString = (game) => {
+    const save = {};
+    save.mana = game.mana.toString();
+    save.mana_level = game.mana_level;
+    save.x = game.sun.x;
+    save.y = game.sun.y;
+    save.sectionData = game.lands.getSectionDataArray();
+    return JSON.stringify(save);
+};
 //-------- ----------
 // EXPORT
 //-------- ----------

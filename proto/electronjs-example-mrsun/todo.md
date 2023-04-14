@@ -40,12 +40,13 @@
 ## () - r29 - lzstring
 * () add lzsting as part of the stack, and make a MJS form of the file
 
-## () - r28 - game.stringify
+## () - r28 - gameMod.createSaveString
 * (done) Lands.getSectionDataArray that will create the array of data objects that I need
-* () start a save file format with land section data
-* () a mana value will need to be stored
-* () mana level will need to be stored
-* () sun pos should be stored
+* (done) start gameMod.createSaveString method
+* (done) a mana value will need to be stored
+* (done) mana level will need to be stored
+* (done) sun pos should be stored
+* () have a gameMod.parseSaveString method that converts a save string to gameMod.create options
 
 ## ( done 04/13/2023 ) - r27 - LandSection.getSectionData
 * (done) fixed a debit mana bug when upgrading a block
