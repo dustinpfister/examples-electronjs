@@ -303,6 +303,13 @@ class Lands {
             si += 1;
         }
     }
+    getSectionDataArray(){
+        const array = [];
+        this.forEachSection( (section) => {
+           array.push(section.getSectionData());
+        });
+        return array;
+    }
     // set grand total block type counts, slot unlock counts, and update slot unlock cost
     setBlockTypeCounts() {
         const bt_counts = this.bt_counts = Object.keys(constant.BLOCKS).reduce( (acc, typeKey) => {

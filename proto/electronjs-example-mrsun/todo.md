@@ -41,8 +41,10 @@
 * () add lzsting as part of the stack, and make a MJS form of the file
 
 ## () - r28 - game.stringify
+* (done) Lands.getSectionDataArray that will create the array of data objects that I need
 * () start a save file format with land section data
 * () a mana value will need to be stored
+* () mana level will need to be stored
 * () sun pos should be stored
 
 ## ( done 04/13/2023 ) - r27 - LandSection.getSectionData
