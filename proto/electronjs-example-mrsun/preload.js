@@ -3,7 +3,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 const promisfy = require('util').promisify;
 const readFile = promisfy(fs.readFile);
-const writeFile = promisfy(fs.readFile);
+const writeFile = promisfy(fs.writeFile);
 const os = require('os');
 const path = require('path');
 
@@ -29,8 +29,8 @@ MS.auto_load = () => {
 };
 
 MS.auto_save = (text_lz) => {
-    console.log('autosave!');
-    console.log(text_lz);
+    console.log('autosave.');
+    return writeFile(uri_filesave, text_lz, 'utf8');
 };
 
 // create an api for window objects in web pages

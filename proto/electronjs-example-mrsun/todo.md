@@ -33,11 +33,11 @@
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
 
-## (  ) - r30 - Save and Load games
+## ( done 04/14/2023 ) - r30 - Save and Load games
 * (done) I will need a preload.js audoload method for loading game saves
-* () have an MS.auto_save method
-* () auto_save on every game tick
-* () just save and load a text file in the home folder
+* (done) have an MS.auto_save method
+* (done) auto_save on every game tick
+* (done) just save and load a text file in the home folder
 
 ## ( done 04/14/2023 ) - r29 - lzstring
 * (done) add lzsting as part of the stack, and make a MJS form of the file
