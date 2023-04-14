@@ -1,6 +1,7 @@
 // game.mjs - for electionjs-example-mrsun
 // create and update a game state object
 import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
+import { LZString }  from "../lz-string/1.4.4/lz-string.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { utils }  from "./utils.mjs"
 //-------- ----------
@@ -550,11 +551,14 @@ gameMod.createSaveString = (game) => {
     save.x = game.sun.x;
     save.y = game.sun.y;
     save.sectionData = game.lands.getSectionDataArray();
-    return JSON.stringify(save);
+    const text_json = JSON.stringify(save);
+    const text_lz = LZString.compressToBase64(text_json);
+    return text_lz
 };
 // parse a save string into an options object
-gameMod.parseSaveString = (string) => {
-    const opt = JSON.parse(string);
+gameMod.parseSaveString = (text_lz) => {
+    const text_json = LZString.decompressFromBase64(text_lz);
+    const opt = JSON.parse(text_json);
     return opt;
 };
 //-------- ----------

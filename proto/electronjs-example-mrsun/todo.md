@@ -37,10 +37,10 @@
 * () I will need a preload.js solution for saving and loading
 * () just save and load a json file in the home folder
 
-## () - r29 - lzstring
-* () add lzsting as part of the stack, and make a MJS form of the file
-* () use lzsrting to make a compressed save string when calling gameMod.createSaveString
-* () update gameMod.parseSaveString to use lzstring to decompress the save string
+## ( done 04/14/2023 ) - r29 - lzstring
+* (done) add lzsting as part of the stack, and make a MJS form of the file
+* (done) use lzsrting to make a compressed save string when calling gameMod.createSaveString
+* (done) update gameMod.parseSaveString to use lzstring to decompress the save string
 
 ## ( done 04/13/2023 ) - r28 - gameMod.createSaveString
 * (done) Lands.getSectionDataArray that will create the array of data objects that I need
