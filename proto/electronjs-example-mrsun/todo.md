@@ -39,14 +39,16 @@
 
 ## () - r29 - lzstring
 * () add lzsting as part of the stack, and make a MJS form of the file
+* () use lzsrting to make a compressed save string when calling gameMod.createSaveString
+* () update gameMod.parseSaveString to use lzstring to decompress the save string
 
-## () - r28 - gameMod.createSaveString
+## ( done 04/13/2023 ) - r28 - gameMod.createSaveString
 * (done) Lands.getSectionDataArray that will create the array of data objects that I need
 * (done) start gameMod.createSaveString method
 * (done) a mana value will need to be stored
 * (done) mana level will need to be stored
 * (done) sun pos should be stored
-* () have a gameMod.parseSaveString method that converts a save string to gameMod.create options
+* (done) have a gameMod.parseSaveString method that converts a save string to gameMod.create options
 
 ## ( done 04/13/2023 ) - r27 - LandSection.getSectionData
 * (done) fixed a debit mana bug when upgrading a block

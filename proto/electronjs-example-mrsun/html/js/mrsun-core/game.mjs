@@ -552,6 +552,11 @@ gameMod.createSaveString = (game) => {
     save.sectionData = game.lands.getSectionDataArray();
     return JSON.stringify(save);
 };
+// parse a save string into an options object
+gameMod.parseSaveString = (string) => {
+    const opt = JSON.parse(string);
+    return opt;
+};
 //-------- ----------
 // EXPORT
 //-------- ----------

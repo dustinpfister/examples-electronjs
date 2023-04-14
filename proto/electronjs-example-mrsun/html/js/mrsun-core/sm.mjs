@@ -3,9 +3,13 @@
 import { gameMod }  from "./game.mjs"
 import { utils }  from "./utils.mjs"
 //-------- ----------
-// HARD CODED START STATE
+// HARD CODED SAVE
 //-------- ----------
+
+const SAVE_STRING = "{\"mana\":\"4439174210\",\"mana_level\":8,\"x\":410,\"y\":208,\"sectionData\":[{\"cols_unlock_slots\":[3,4,4,5,5,5,5,3,3,3],\"cols_block_data\":[\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;\"]},{\"cols_unlock_slots\":[3,3,3,4,4,3,0,0,0,0],\"cols_block_data\":[\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;r,9;\",\"r,9;r,9;r,9;\",\"\",\"\",\"\",\"\"]},{\"cols_unlock_slots\":[0,0,0,0,0,0,2,4,3,1],\"cols_block_data\":[\"\",\"\",\"\",\"\",\"\",\"\",\"r,8;r,8;\",\"r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;\"]},{\"cols_unlock_slots\":[1,1,2,2,2,3,3,4,1,1],\"cols_block_data\":[\"r,8;\",\"r,8;\",\"r,8;r,8;\",\"r,8;r,8;\",\"r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;\",\"r,8;\",\"r,8;\"]},{\"cols_unlock_slots\":[1,1,1,0,0,0,0,0,0,0],\"cols_block_data\":[\"r,8;\",\"r,8;\",\"r,8;\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]},{\"cols_unlock_slots\":[0,0,0,0,1,1,2,3,3,3],\"cols_block_data\":[\"\",\"\",\"\",\"\",\"r,8;\",\"r,8;\",\"r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;\"]},{\"cols_unlock_slots\":[3,3,4,5,5,4,3,1,1,1],\"cols_block_data\":[\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;\",\"r,8;\",\"r,8;\"]},{\"cols_unlock_slots\":[1,1,0,0,0,1,2,1,0,0],\"cols_block_data\":[\"r,8;\",\"r,8;\",\"\",\"\",\"\",\"r,8;\",\"r,8;r,8;\",\"r,8;\",\"\",\"\"]},{\"cols_unlock_slots\":[0,0,0,0,0,0,0,1,1,1],\"cols_block_data\":[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"r,9;\",\"r,9;\",\"r,9;\"]},{\"cols_unlock_slots\":[1,2,3,4,5,5,6,6,5,5],\"cols_block_data\":[\"r,8;\",\"r,8;r,8;\",\"r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\"]},{\"cols_unlock_slots\":[5,5,5,0,0,0,1,2,1,0],\"cols_block_data\":[\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"r,8;r,8;r,8;r,8;r,8;\",\"\",\"\",\"\",\"r,9;\",\"r,9;r,9;\",\"r,9;\",\"\"]},{\"cols_unlock_slots\":[0,0,0,0,0,1,1,2,2,3],\"cols_block_data\":[\"\",\"\",\"\",\"\",\"\",\"r,9;\",\"r,9;\",\"r,9;r,9;\",\"r,9;r,9;\",\"r,9;r,9;r,9;\"]}]}";
+/*
 const LANDS_START_SECTION_DATA = [{"cols_unlock_slots":[3,4,4,5,5,4,2,1,1,1],"cols_block_data":["r,8;r,8;r,9;","r,8;r,8;r,8;r,9;","r,8;r,8;r,9;r,9;","r,9;r,8;r,8;r,9;r,9;","r,8;r,8;r,8;r,9;r,9;","r,8;r,8;r,8;r,9;","r,8;r,8;","r,8;","r,8;","r,8;"]},{"cols_unlock_slots":[3,3,3,4,4,3,0,0,0,0],"cols_block_data":["r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","","","",""]},{"cols_unlock_slots":[0,0,0,0,0,0,2,4,3,1],"cols_block_data":["","","","","","","r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;"]},{"cols_unlock_slots":[1,1,2,2,2,3,3,4,1,1],"cols_block_data":["r,8;","r,8;","r,8;r,8;","r,8;r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;","r,8;"]},{"cols_unlock_slots":[1,1,1,0,0,0,0,0,0,0],"cols_block_data":["r,8;","r,8;","r,8;","","","","","","",""]},{"cols_unlock_slots":[0,0,0,0,1,1,2,3,3,3],"cols_block_data":["","","","","r,8;","r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;"]},{"cols_unlock_slots":[3,3,4,5,5,4,3,1,1,1],"cols_block_data":["r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;","r,8;","r,8;","r,8;"]},{"cols_unlock_slots":[1,1,0,0,0,1,2,1,0,0],"cols_block_data":["r,8;","r,8;","","","","r,8;","r,8;r,8;","r,8;","",""]},{"cols_unlock_slots":[0,0,0,0,0,0,0,1,1,1],"cols_block_data":["","","","","","","","r,9;","r,9;","r,9;"]},{"cols_unlock_slots":[1,2,3,4,5,5,6,6,5,5],"cols_block_data":["r,8;","r,8;r,8;","r,8;r,8;r,8;","r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;"]},{"cols_unlock_slots":[5,5,5,0,0,0,1,2,1,0],"cols_block_data":["r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","r,8;r,8;r,8;r,8;r,8;","","","","r,8;","r,8;r,8;","r,8;",""]},{"cols_unlock_slots":[0,0,0,0,0,1,1,2,2,3],"cols_block_data":["","","","","","r,8;","r,8;","r,8;r,8;","r,9;r,8;","r,8;r,8;r,8;"]}];
+*/
 //-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
@@ -49,8 +53,16 @@ sm.states.init = {
 console.log('init of mr sun.');
 // MS.autoload();
 
+
+const opt_game = gameMod.parseSaveString(SAVE_STRING);
+
+console.log(opt_game)
+
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;
+
+       sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+/*
        sm.game = gameMod.create({
           cx: cx, 
           cy: cy, 
@@ -60,6 +72,7 @@ console.log('init of mr sun.');
           mana: '1',
           sectionData: LANDS_START_SECTION_DATA
        });
+*/
        sm.setState('world', {});
     },
     update: (sm, secs) => {},
@@ -286,7 +299,7 @@ sm.states.land = {
 //console.log( JSON.stringify(sm.game.lands.getSectionDataArray()) );
 
 const string = gameMod.createSaveString(sm.game);
-console.log(string)
+console.log(string.replace(/"/g, '\\\"'));
 
                         //console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
                         //console.log(block);
