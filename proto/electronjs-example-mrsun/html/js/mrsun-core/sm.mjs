@@ -116,6 +116,8 @@ console.log('init of mr sun.');
           cy: cy, 
           x: cx, 
           y: cy,
+          mana_level: 5,
+          mana: '12000000',
           sectionData: LANDS_START_SECTION_DATA
        });
        sm.setState('world', {});
