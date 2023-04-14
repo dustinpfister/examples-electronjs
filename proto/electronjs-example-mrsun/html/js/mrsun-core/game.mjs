@@ -36,7 +36,7 @@ constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];
 constant.DEFAULT_CREATE_OPTIONS = {
-    cx: 100, cy: 100, x:100, y: 100, mana: constant.MANA_START, mana_level: 1, sectionData: constant.LANDS_START_SECTION_DATA
+    cx: 100, cy: 100, mana: constant.MANA_START, mana_level: 1, sectionData: constant.LANDS_START_SECTION_DATA
 };
 //-------- ----------
 // BLOCK TYPES
@@ -426,6 +426,8 @@ gameMod.create = (opt) => {
         x: opt.x, y: opt.y,
         r: constant.SUN_RADIUS
     };
+    game.sun.x = opt.x === undefined ? game.sun.cx : opt.x;
+    game.sun.y = opt.y === undefined ? game.sun.cy : opt.y;
     // land objects
     game.lands = new Lands({
         cx: opt.cx, cy: opt.cy, sectionData: opt.sectionData
@@ -557,6 +559,9 @@ gameMod.createSaveString = (game) => {
 };
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
+    if(!text_lz){
+        return {};
+    }
     const text_json = LZString.decompressFromBase64(text_lz);
     const opt = JSON.parse(text_json);
     return opt;
