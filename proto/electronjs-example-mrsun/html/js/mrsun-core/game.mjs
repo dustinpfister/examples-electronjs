@@ -405,6 +405,9 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         });
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
+
+        MS.auto_save( gameMod.createSaveString( game ) );
+
     }
 };
 // create a new game state object

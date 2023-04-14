@@ -12,22 +12,24 @@ const MS = {};
 // get a save file at a standard location
 // if it is not there, create a new one
 MS.auto_load = () => {
-    console.log('MS.auto_load of preload.js');
     const dir_home = os.homedir();
     const file_name = 'mr_sun_autosave.txt';
     const uri_filesave = path.join(dir_home, file_name);
-    readFile(uri_filesave, 'utf8')
+    return readFile(uri_filesave, 'utf8')
     .then(((text) => {
-       console.log('have some text')
+       return Promise.resolve(text);
     }))
     .catch((e) => {
-        console.warn('Error loading autosave:');
-        console.warn('code: ' + e.code);
-        console.warn('message: ' + e.message);
         if(e.code === 'ENOENT'){
-            console.log('looks like I do not have a file.');
+            // no file
         }
+        return Promise.reject(e);
     });
+};
+
+MS.auto_save = (text_lz) => {
+    console.log('autosave!');
+    console.log(text_lz);
 };
 
 // create an api for window objects in web pages

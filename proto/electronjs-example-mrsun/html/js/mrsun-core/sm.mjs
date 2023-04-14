@@ -51,15 +51,24 @@ sm.setState = function(key, opt) {
 sm.states.init = {
     data: {},
     start: (sm, opt) => {
-
-       console.log('init of mr sun.');
-       MS.auto_load();
-
-       const opt_game = gameMod.parseSaveString(SAVE_STRING);
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;
-       sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
-       sm.setState('world', {});
+       console.log('init of mr sun.');
+       MS.auto_load()
+       .then( (text_lz) => {
+           console.log('Autoload worked!');
+           const opt_game = gameMod.parseSaveString(text_lz);
+           sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+           sm.setState('world', {});
+       })
+       .catch((e) => {
+           console.log('Error with autoload. Starting new game.');
+           console.log('message: ' + e.message);
+           const opt_game = gameMod.parseSaveString(SAVE_STRING);
+           sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+           sm.setState('world', {});
+       });
+
     },
     update: (sm, secs) => {},
     render: (sm, ctx, canvas) => {

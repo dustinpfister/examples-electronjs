@@ -34,7 +34,9 @@
 * () buttons lib that runs on top of base object pool lib. 
 
 ## (  ) - r30 - Save and Load games
-* () I will need a preload.js solution for saving and loading game saves
+* (done) I will need a preload.js audoload method for loading game saves
+* () have an MS.auto_save method
+* () auto_save on every game tick
 * () just save and load a text file in the home folder
 
 ## ( done 04/14/2023 ) - r29 - lzstring
