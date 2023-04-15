@@ -101,7 +101,7 @@ sm.states.world = {
         // sun
         ctx.fillStyle = 'yellow';
         ctx.beginPath();
-        ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
+        ctx.arc(sun.position.x, sun.position.y, sun.r, 0, Math.PI * 2);
         ctx.fill();
         // land section objects
         sm.game.lands.sections.forEach((section, i) => {

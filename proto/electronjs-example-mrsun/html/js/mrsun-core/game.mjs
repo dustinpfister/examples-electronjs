@@ -392,7 +392,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
-            const d_sun = utils.distance(section.x, section.y, game.sun.x, game.sun.y);
+            const d_sun = utils.distance(section.x, section.y, game.sun.position.x, game.sun.position.y);
             const d_adjusted = d_sun - section.r - game.sun.r;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
             section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
@@ -428,8 +428,8 @@ gameMod.create = (opt) => {
         position: new Vector2(opt.x, opt.y),
         r: constant.SUN_RADIUS
     };
-    game.sun.x = opt.x === undefined ? game.sun.cx : opt.x;
-    game.sun.y = opt.y === undefined ? game.sun.cy : opt.y;
+    game.sun.position.x = opt.x === undefined ? game.sun.cx : opt.x;
+    game.sun.position.y = opt.y === undefined ? game.sun.cy : opt.y;
     // land objects
     game.lands = new Lands({
         cx: opt.cx, cy: opt.cy, sectionData: opt.sectionData
@@ -443,14 +443,14 @@ gameMod.create = (opt) => {
 // set the sun position
 gameMod.setSunPos = (game, x, y) => {
     const sun = game.sun;
-    sun.x = x;
-    sun.y = y;
+    sun.position.x = x;
+    sun.position.y = y;
     const d = utils.distance(x, y, sun.cx, sun.cy);
     const md = constant.SUNAREA_RADIUS - sun.r;
     if(d >= md){
-        const a = Math.atan2(sun.y - sun.cy, sun.x - sun.cx);
-        sun.x = sun.cx + Math.cos(a) * md;
-        sun.y = sun.cy + Math.sin(a) * md;
+        const a = Math.atan2(sun.position.y - sun.cy, sun.position.x - sun.cx);
+        sun.position.x = sun.cx + Math.cos(a) * md;
+        sun.position.y = sun.cy + Math.sin(a) * md;
     }
     //!!! for some weird reason saving here takes a few seconds in Windows
     //!!! if i reload while it is going on that will clear the autosave file
@@ -558,8 +558,8 @@ gameMod.createSaveString = (game) => {
     const save = {};
     save.mana = game.mana.toString();
     save.mana_level = game.mana_level;
-    save.x = game.sun.x;
-    save.y = game.sun.y;
+    save.x = game.sun.position.x;
+    save.y = game.sun.position.y;
     save.sectionData = game.lands.getSectionDataArray();
     const text_json = JSON.stringify(save);
     const text_lz = LZString.compressToBase64(text_json);
