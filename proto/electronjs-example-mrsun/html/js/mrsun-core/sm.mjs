@@ -54,6 +54,7 @@ sm.states.init = {
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;
        console.log('init of mr sun.');
+
        MS.auto_load()
        .then( (text_lz) => {
            console.log('Autoload worked!');

@@ -19,6 +19,11 @@
 
 <!-- PROTOTYPE -->
 
+## (  ) - r36 - Manual save, safer save
+* () I should be able to do a crtl+s to save at any time
+* () see about a proper fix for the autosave clear issue if saving takes too long 
+* () autosave clear issue seems to be a problem when moving the sun and then saving
+
 ## (  ) - r35 - canvas module
 * () start a new canvas MJS file based on R2 of canvasMod
 
@@ -36,10 +41,10 @@
 * () buttons lib that runs on top of base object pool lib. 
 
 ## (  ) - r31 - vector2 folder
-* () I would like to have a Vector2 js folder 
+* (done) I would like to have a Vector2 js folder 
+* (done) see about fixing problem with reloading clearing the autosave file
 * () use vector2 for the sun position
 * () see about using vector2 for the center pos
-* () see about fixing problem with reloading clearing the autosave file
 
 ## ( done 04/14/2023 ) - r30 - Save and Load games
 * (done) I will need a preload.js auto load method for loading game saves

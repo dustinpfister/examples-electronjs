@@ -1,5 +1,8 @@
 // preload with contextIsolation enabled
-const { contextBridge, ipcRenderer } = require('electron');
+const {
+    contextBridge,
+    ipcRenderer
+} = require('electron');
 const fs = require('fs');
 const promisfy = require('util').promisify;
 const readFile = promisfy(fs.readFile);
@@ -18,10 +21,10 @@ const MS = {};
 MS.auto_load = () => {
     return readFile(uri_filesave, 'utf8')
     .then(((text) => {
-       return Promise.resolve(text);
-    }))
+            return Promise.resolve(text);
+        }))
     .catch((e) => {
-        if(e.code === 'ENOENT'){
+        if (e.code === 'ENOENT') {
             // no file
         }
         return Promise.reject(e);
@@ -29,7 +32,17 @@ MS.auto_load = () => {
 };
 // save to the autosave file
 MS.auto_save = (text_lz) => {
-    return writeFile(uri_filesave, text_lz, 'utf8');
+    console.log('saving...');
+    return writeFile(uri_filesave, text_lz, 'utf8')
+    .then((() => {
+            console.log('save done');
+            return Promise.resolve();
+        }))
+    .catch((e) => {
+        console.log('Error saving autosave file');
+        console.log(e.message);
+        return Promise.reject();
+    })
 };
 
 // create an api for window objects in web pages

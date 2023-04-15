@@ -406,9 +406,6 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         });
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
-
-        MS.auto_save( gameMod.createSaveString( game ) );
-
     }
 };
 // create a new game state object
@@ -454,6 +451,9 @@ gameMod.setSunPos = (game, x, y) => {
         sun.x = sun.cx + Math.cos(a) * md;
         sun.y = sun.cy + Math.sin(a) * md;
     }
+    //!!! for some weird reason saving here takes a few seconds in Windows
+    //!!! if i reload while it is going on that will clear the autosave file
+    // MS.auto_save( gameMod.createSaveString( game ) );
 };
 // get land object by x, y pos or false if nothing there
 gameMod.getSectionByPos = (game, x, y) => {
@@ -486,6 +486,7 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
             }
         }
     }
+    MS.auto_save( gameMod.createSaveString( game ) );
 };
 // buy a block for the given land section and slot indices
 gameMod.createBlock = (game, i_section, i_slot, level) => {
@@ -505,6 +506,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
                     slot.block.setLevel(level, 'rock');
                     game.lands.setBlockTypeCounts();
                     manaDebit(game, blockCost);
+                    MS.auto_save( gameMod.createSaveString( game ) );
                 }
             }
             return;
@@ -527,11 +529,11 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
         console.log( 'upgrade cost: ' + block.upgradeCost.toNumber() );
         return;
     }
-
     if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
         manaDebit(game, block.upgradeCost);
         const newLevel = block.level + 1;
         block.setLevel(newLevel, 'rock');
+        MS.auto_save( gameMod.createSaveString( game ) );
     }
 };
 // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -548,6 +550,7 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
         section.dropDownBlocks(slot);
         game.lands.setBlockTypeCounts();
     }
+    MS.auto_save( gameMod.createSaveString( game ) );
 };
 // create a save string
 gameMod.createSaveString = (game) => {
