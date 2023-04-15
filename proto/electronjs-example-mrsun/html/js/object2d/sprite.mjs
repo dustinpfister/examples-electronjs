@@ -1,3 +1,4 @@
+import { Vector2 } from '../vector2/vector2.mjs';
 import { Object2D } from './object2d.mjs';
 
 class Sprite extends Object2D {

@@ -48,6 +48,16 @@ utils.addPows = (base, exp_start) => {
 //-------- ----------
 // RENDER UTILIES
 //-------- ----------
+utils.drawSprite = (sprite, ctx, canvas) => {
+    ctx.strokeStyle = '#00ff00';
+    ctx.save();
+    ctx.translate( sprite.position.x, sprite.position.y );
+    ctx.beginPath();
+    ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);
+    ctx.stroke();
+    ctx.restore();
+    
+};
 // draw a common display that you would want to have over all states
 utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillStyle = '#888888';

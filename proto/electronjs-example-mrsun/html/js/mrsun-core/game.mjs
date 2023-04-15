@@ -4,8 +4,17 @@ import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
 import { LZString }  from "../lz-string/1.4.4/lz-string.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
-import { Object2D } from '../object2d/object2d.mjs'
+import { Sprite } from '../object2d/sprite.mjs'
 import { utils }  from "./utils.mjs"
+
+//-------- ----------
+// Testing out Sprite
+//-------- ----------
+const sun2 = new Sprite();
+sun2.size.set(32, 32);
+sun2.position.set(100, 100);
+
+
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
 //-------- ----------
@@ -414,6 +423,7 @@ gameMod.create = (opt) => {
     opt = opt || {};
     opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
     const game = {
+       sun2: sun2,
        mana: new Decimal(opt.mana),
        mana_level: opt.mana_level,
        mana_cap: 0,      // set by calling getManaCap Helper

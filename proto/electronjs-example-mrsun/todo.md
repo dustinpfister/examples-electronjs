@@ -46,6 +46,7 @@
 
 ## () - r33 - Sprite and Sun object2d based class
 * (done) start a Sprite class that extends Object2d
+* (done) have a utils.drawSprite method
 * () make a sun.mjs file that extends the object2d class
 * () import sun.mjs into game.mjs
 
