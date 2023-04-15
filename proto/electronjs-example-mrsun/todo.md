@@ -20,6 +20,9 @@
 <!-- PROTOTYPE -->
 
 ## (  ) - r36 - Manual save, safer save
+     For some reason when I move the sun it takes a good 8 to 11 seconds for a game to save after doing so
+     if I reload while this is going on it will clear the autosave file. I might want to have some kind of
+     journal system. That is check if the latest save is valid or not, and if not fall back to an older one.
 * () I should be able to do a crtl+s to save at any time
 * () see about a proper fix for the autosave clear issue if saving takes too long 
 * () autosave clear issue seems to be a problem when moving the sun and then saving
