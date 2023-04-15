@@ -1,6 +1,6 @@
 // Object2d class based on the Object3d class of threejs
 // https://raw.githubusercontent.com/mrdoob/three.js/r151/src/core/Object3D.js
-import { Vector2 } from '../vector2/Vector2.js';
+import { Vector2 } from '../vector2/vector2.mjs';
 import { EventDispatcher } from '../event-dispatcher/EventDispatcher.mjs';
 
 class Object2D extends EventDispatcher {
@@ -18,7 +18,7 @@ class Object2D extends EventDispatcher {
             configurable: true,
                 enumerable: true,
                 value: position
-            }
+            },
             size: {
             configurable: true,
                 enumerable: true,
@@ -28,3 +28,5 @@ class Object2D extends EventDispatcher {
         this.userData = {};
     }
 };
+
+export { Object2D };
