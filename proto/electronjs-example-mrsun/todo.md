@@ -41,10 +41,13 @@
 * () no blank blocks to create message
 
 ## (  ) - r33 - object2d-buttons.js
+* () that a buttons lib that extends Object2D
 
 ## (  ) - r32 - object2d.js
-* () base object pool library
-* () buttons lib that runs on top of base object pool lib. 
+* (done) start a base object2d lib based on the Object3d lib of threejs
+* (done) have a constructor worked out
+* (done) just position and size values for now
+* () see about making a sun class in game.mjs that extends Object2d 
 
 ## ( done 04/15/2023 ) - r31 - vector2 folder
 * (done) I would like to have a Vector2 js folder 
