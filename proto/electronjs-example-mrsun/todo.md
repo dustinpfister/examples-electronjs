@@ -19,21 +19,26 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r33 - canvas module
+## (  ) - r35 - canvas module
 * () start a new canvas MJS file based on R2 of canvasMod
 
-## (  ) - r32 - start a message system
+## (  ) - r34 - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
 * () not enough mana to create block message
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - r32 - objpool.buttons.js
+## (  ) - r33 - object2d-buttons.js
 
-## (  ) - r31 - objpool.js
+## (  ) - r32 - object2d.js
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
+
+## (  ) - r31 - vector2 folder
+* () I would like to have a Vector2 js folder 
+* () use vector2 for the sun position
+* () see about using vector2 for the center pos
 
 ## ( done 04/14/2023 ) - r30 - Save and Load games
 * (done) I will need a preload.js auto load method for loading game saves
