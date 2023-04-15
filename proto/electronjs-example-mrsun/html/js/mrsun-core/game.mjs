@@ -4,7 +4,7 @@ import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
 import { LZString }  from "../lz-string/1.4.4/lz-string.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
-import { Sprite } from '../object2d-sprite/sprite.mjs'
+import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "./utils.mjs"
 
 //-------- ----------
@@ -13,7 +13,7 @@ import { utils }  from "./utils.mjs"
 const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
-
+console.log(SpriteSheet)
 
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
