@@ -45,7 +45,7 @@
 * () start a Sun class in game.mjs
 
 ## () - r34 - Sprite sheet class
-* () start a SpriteSheet class
+* (done) start a SpriteSheet class
 * () a sprite can contains a canvas as one of the properties
 * () a cell data array should be one of the properties that is used to define where all the cells are in the sheet
 * () import the sprite sheet class into the Sprite class
