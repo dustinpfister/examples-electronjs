@@ -19,7 +19,7 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r36 - Manual save, safer save
+## (  ) - r37 - Manual save, safer save
      For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
      in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
      I might want to have some kind of journal system then to help with this. 
@@ -31,24 +31,27 @@
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
-## (  ) - r35 - canvas module
+## (  ) - r36 - canvas module
 * () start a new canvas MJS file based on R2 of canvasMod
 
-## (  ) - r34 - object2d-dialog - start a message system
+## (  ) - r35 - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
 * () not enough mana to create block message
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - r33 - object2d-buttons.js
+## (  ) - r34 - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## (  ) - r32 - object2d.js
+## () - r33 - Sun object2d based class
+* () make a sun.mjs file that extends the object2d class
+* () import sun.mjs into game.mjs
+
+## ( done ) - r32 - start object2d class
 * (done) start a base object2d lib based on the Object3d lib of threejs
 * (done) have a constructor worked out
 * (done) just position and size values for now
-* () see about making a sun class in game.mjs that extends Object2d 
 
 ## ( done 04/15/2023 ) - r31 - vector2 folder
 * (done) I would like to have a Vector2 js folder 
