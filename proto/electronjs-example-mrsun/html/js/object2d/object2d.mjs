@@ -18,11 +18,6 @@ class Object2D extends EventDispatcher {
             configurable: true,
                 enumerable: true,
                 value: position
-            },
-            size: {
-            configurable: true,
-                enumerable: true,
-                size: position
             }
         } );
         this.userData = {};

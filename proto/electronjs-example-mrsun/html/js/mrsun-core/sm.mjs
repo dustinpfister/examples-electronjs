@@ -5,13 +5,7 @@ import { utils }  from "./utils.mjs"
 //-------- ----------
 // HARD CODED SAVE
 //-------- ----------
-
 const SAVE_STRING = '';
-
-/*
-const SAVE_STRING = "N4IgtghgdhIFwgKyIJwCYDsKCMAWAzPiADTjQQD6ANgKYBuNV822pAHvLrgGwB0LADkRpEABmwCBKfHlIBPeGlEDeuDKPzcBGXMIzcMaUgGcaAYwAuASwD2UACIQLsOAG1QZm1WMUArlCobMwBrCmNAi2N4V25iWIxiBNjk4gFE1IBdUk9vCgAjQJCKABMnF1cQACdiFgBuarqG7Hqa5qaWupIq1o62nvaBnq7Bxv6x0Ynm4fG+yd759um5kdnV2qW1lYWh0i29mfXdg/3lg43t08upo6uLzbOMgF9iDy8ff0LQ8JtI6Pxif7/XDEYH/UTEcGQrIgHI+ApBUKlZzRbq3c5bdFnG73OaYtHYu6HEBdEmkEBPF4wt5+AIIsIRKJuSEQlnMoygmrQ2H5T4lMoo0nEsnCoWotZ4nHXMWE87k56vXIfOnfX5uVisIyagHa4HqrnU+FFJHlaWygmLc07aUW61Y224y3400EuWU7lKooqxmuDXa/6sZmB/W5Q2I/luZ32qUnaPHK02wWJikK960z0M6LM9XEIxAv0A4Nw3nGgUim3lu0xolVitOqsS+aulM03lev464iITsg7XZ7CFnl0ksR+uO8VjmUT0dRwm1yWNqfxpedF3JqmKtNfDNqmq77NagMQgehvnIkc1UTVi9X7CXpZ3m4P1GXhpP18dN/XpPy9ep1vb1xA1ZPccz9Y9i3DCpExFe8b0/W8PzgxD31g98ULXd1N3pH5vUBHsu3iOIiK7RBwKHSDn2Qr9HyohDUOvNDqMoxiEJY+CXwYzjWK49jaI47iBP43i2L4xD6ME0SUMXOs4zRDDqQ9LccOiAju33UDcwLbIDQgs8KhrStZPnOdZ0MldIwxCcGwbEyMXkjd/2Utw8OBEju2BDytN/QcjQo6d/KMhcZwC25LOCwKbLM4zl2i8z6yeJ4gA=";
-*/
-
 //-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
@@ -32,7 +26,7 @@ const sm = {
    now: null,
    x:0, y:0,
    landIndex: 0,
-   ticksPerSec: 1,    // game speed is soemthing that I think should be set here
+   ticksPerSec: 1,    // game speed is something that I think should be set here
    secs: 0,           // secs and lt are just used as a way to update game.tick count
    lt: new Date()
 };

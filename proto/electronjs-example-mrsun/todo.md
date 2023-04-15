@@ -44,14 +44,15 @@
 ## (  ) - r34 - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r33 - Sun object2d based class
+## () - r33 - Sprite and Sun object2d based class
+* (done) start a Sprite class that extends Object2d
 * () make a sun.mjs file that extends the object2d class
 * () import sun.mjs into game.mjs
 
 ## ( done ) - r32 - start object2d class
 * (done) start a base object2d lib based on the Object3d lib of threejs
 * (done) have a constructor worked out
-* (done) just position and size values for now
+* (done) just position value for now
 
 ## ( done 04/15/2023 ) - r31 - vector2 folder
 * (done) I would like to have a Vector2 js folder 
