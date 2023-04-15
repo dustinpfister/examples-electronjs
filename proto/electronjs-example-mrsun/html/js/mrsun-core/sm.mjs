@@ -9,7 +9,7 @@ import { utils }  from "./utils.mjs"
 const SAVE_STRING = '';
 
 /*
-const SAVE_STRING = "N4IgtghgdhIFwgIwCYCcBWRAOLA2RuAzCADTjQQD6ANgKYBut18iADGQB7yFYAsZATxZZ2IAM60AxgBcAlgHsoAEQjTYcANqhJ86mMoBXKNXmSA1pTEnpY+BsIl+6ErhdvXr54QC6ZHXsoAIxNzSgATVXUNEAAnEjYAbjjE5NYE0lj4tNSkrNzEjJyivOKCslLskqqU+MR08urKmuamusLG/Kau/LaGls6B0t7M/orBvPbRjpzJ7pnvAF8SbV19IxCLK3kbOwc9xwOHdmOSVl8Qf31g0wsItTsRuYm+p7LH8bexsdmP7p/vsgZIGAxbLC6rQzGG6Way2TQnBGnEjIQ7xc6XIIbcKRB7AkB4vEA95fZ7Ejo/ECglYBdbQrY7TSIeLIlko/b8JmIdEQ66hO5Rd4Ul4Df6kokkz7TMVS/pCwVU8E0qGhelwjRMtkkBxMxHHbkBXm3HGaQXCmZm8kW2XCgmAu34hUY2kq2F2E6clkOfj7Hx+HlY/m4+3m01kyVTcOvP5W6Nh2MStKUpbUtbKzauzTskjOZze5mc/VXAPG6IJ+pxkUx37lsvimVRmv1ysVkOt6UFR0Q53p7Zqj391nMvV+g3F+4mtuRxtT0VTyeJ+1JsFOtMw3tupGIj2a32KovQwMm2344PthcV2fxptLlOQrGq3Zag7OVwAdnc2ezhcxB5LLbP1aXoBVZlkBtYAeBEbnpBDZgU287VnWUGAZ2Sr3hmGgvp+26Dns36Gti46lvBlr/shCEwdO0EQTRc60VeyE3nud50hhWY5p+/BcVq+FjgKoEgfRwFka8wyUckYkkc0knkUJSENhR5KLIsQA===";
+const SAVE_STRING = "N4IgtghgdhIFwgKwBYBsAGFAmAHDgzCADTjQQD6ANgKYBu1l8AjOiQB7z47IkCezOViADO1AMYAXAJYB7KABEIE2HADaoMTMrDyAVyiUZYgNblhhicPir8RHoiKpHzp04f4AuiU3byAI0MTcgATJRVVEAAnIhYAbmi4hPRY4iiY5KT49Ky41Mz87ILckiKMwvLEmKYUkoqyyobqhOq8upz6+qaqmrSGjvacrqYW2r6BoqGR3v7SwZ7ZzJAPAF8iDS0dfUDTcxlLa1tDu2PbVjOidC8QHx0Ao1NQ5Wtp8ezWscXRmbev17H377/X6zVKgkiglZra4bPQGe5mCxWNTnFEXIhYE4xK43fzbEJhZ5gkBEokg4FtT4vMkvJarda+Lbw3b7NRMGLojkYo48NlMbEwu5BR7hGm/AEDcWU6kLH5UtqSimyqVvSH0zZwoLMpGqNlcoi2Nmos783yCh4EtSiuXFa39BVAq0k8Hg1XQhkanaI6znXkc2w8I6ebwCvHCwnOq3Kh0ym0xu3k6OK2NJ5K0qE4xmar1qblEBwOAPs3km26hi0ROPzFNVj7yhOA+O2v6NytRhs11NisWujMehF7bW+oec9nG4OmstPS1tjuz8X2ztN+cRtNq2F4rXetGo316oNu0vwsOWp3EiMzhez6XV1cH9dM7M2fXHBxOADsLjzeZLuKP5abM7XrWibAe2l6tkq1YQcmoHNhK9ZwUB7ZIYh8o9jCmaegO1ivl+u4jocP5mviU4VlBdYAeRMHIRRF4IZeDEIYBaF0nemH9iyT7+l++bHDwAZEZOIqVuBkGwcx4ndKJwFTNBnRXjeTG0VRi4iSsKxAA";
 */
 
 //-------- ----------
@@ -294,14 +294,15 @@ sm.states.land = {
 
 //console.log( JSON.stringify(sm.game.lands.getSectionDataArray()) );
 
-const string = gameMod.createSaveString(sm.game);
-console.log(string);
+//const string = gameMod.createSaveString(sm.game);
+//console.log(string);
 //console.log(string.replace(/"/g, '\\\"'));
 
                         //console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
                         //console.log(block);
                         data.block_info_disp = true;
                         data.block = block;
+                        MS.auto_save( gameMod.createSaveString( sm.game ) );
                     }
                 }
             }
