@@ -425,6 +425,7 @@ gameMod.create = (opt) => {
     game.sun = {
         cx: opt.cx, cy: opt.cy,
         x: opt.x, y: opt.y,
+        position: new Vector2(opt.x, opt.y),
         r: constant.SUN_RADIUS
     };
     game.sun.x = opt.x === undefined ? game.sun.cx : opt.x;
@@ -566,7 +567,10 @@ gameMod.createSaveString = (game) => {
 };
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
+    console.log('parsing the save string: ');
+    console.log(test_lz);
     if(!text_lz){
+        console.log('looks like the save string is not valid!');
         return {};
     }
     const text_json = LZString.decompressFromBase64(text_lz);
