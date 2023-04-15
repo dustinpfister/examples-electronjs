@@ -3,6 +3,7 @@
 import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
 import { LZString }  from "../lz-string/1.4.4/lz-string.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
+import { Vector2 } from '../vector2/vector2.mjs'
 import { utils }  from "./utils.mjs"
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT

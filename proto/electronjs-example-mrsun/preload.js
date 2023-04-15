@@ -27,9 +27,8 @@ MS.auto_load = () => {
         return Promise.reject(e);
     });
 };
-
+// save to the autosave file
 MS.auto_save = (text_lz) => {
-    console.log('autosave.');
     return writeFile(uri_filesave, text_lz, 'utf8');
 };
 

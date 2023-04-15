@@ -39,6 +39,7 @@
 * () I would like to have a Vector2 js folder 
 * () use vector2 for the sun position
 * () see about using vector2 for the center pos
+* () see about fixing problem with reloading clearing the autosave file
 
 ## ( done 04/14/2023 ) - r30 - Save and Load games
 * (done) I will need a preload.js auto load method for loading game saves
