@@ -9,7 +9,7 @@ import { utils }  from "./utils.mjs"
 const SAVE_STRING = '';
 
 /*
-const SAVE_STRING = "N4IgtghgdhIFwgKwBYBsAGFAmAHDgzCADTjQQD6ANgKYBu1l8AjOiQB7z47IkCezOViADO1AMYAXAJYB7KABEIE2HADaoMTMrDyAVyiUZYgNblhhicPir8RHoiKpHzp04f4AuiU3byAI0MTcgATJRVVEAAnIhYAbmi4hPRY4iiY5KT49Ky41Mz87ILckiKMwvLEmKYUkoqyyobqhOq8upz6+qaqmrSGjvacrqYW2r6BoqGR3v7SwZ7ZzJAPAF8iDS0dfUDTcxlLa1tDu2PbVjOidC8QHx0Ao1NQ5Wtp8ezWscXRmbev17H377/X6zVKgkiglZra4bPQGe5mCxWNTnFEXIhYE4xK43fzbEJhZ5gkBEokg4FtT4vMkvJarda+Lbw3b7NRMGLojkYo48NlMbEwu5BR7hGm/AEDcWU6kLH5UtqSimyqVvSH0zZwoLMpGqNlcoi2Nmos783yCh4EtSiuXFa39BVAq0k8Hg1XQhkanaI6znXkc2w8I6ebwCvHCwnOq3Kh0ym0xu3k6OK2NJ5K0qE4xmar1qblEBwOAPs3km26hi0ROPzFNVj7yhOA+O2v6NytRhs11NisWujMehF7bW+oec9nG4OmstPS1tjuz8X2ztN+cRtNq2F4rXetGo316oNu0vwsOWp3EiMzhez6XV1cH9dM7M2fXHBxOADsLjzeZLuKP5abM7XrWibAe2l6tkq1YQcmoHNhK9ZwUB7ZIYh8o9jCmaegO1ivl+u4jocP5mviU4VlBdYAeRMHIRRF4IZeDEIYBaF0nemH9iyT7+l++bHDwAZEZOIqVuBkGwcx4ndKJwFTNBnRXjeTG0VRi4iSsKxAA";
+const SAVE_STRING = "N4IgtghgdhIFwgOwGZkA5FoKw4CwgBpxoIB9AGwFMA3S8+ARgAYiAPeXXNAOgCZkGvZkwCcaBpkREAnvCE8AbL3ECFWJsg1ZcRAM6UAxgBcAlgHsoAEQhHYcANqgDZ8rtIBXKOTMGA1qV1vI114ewUCHSwCcJjouKjkAF0iZ1dSACNvP1IAExs7exAAJwJmAG4S8sqmCtKGWoZ6yvrCYtKa6oaOurLWzv72roaWogGqwbGmnr6J2fH5qcbe0bnu+bXFkbb1ocnh5e21o/3m/ZmdvdPz486QRIBfAicXN08s/0CzYNDkAl/fnQ6X4sEEEJjJECpNyZHz+PK2UKHXaDa7I8qosY1DGrIbYi4olb49FEVqkkkPJ6Ql4eLywgJBEIOUHMsEEXgRP6lCFQjLvXL5RFkkBCoWYg5isV446ou6PZ5pN50z7fBwMUpsjXs/4ctUMbnUmHZeEFJEywnS824y23a04qVWpESgmmy2yyk8xXZZWM+xqrWctUskH6tKGuEChwux3Op3E6M7M3CknJpPCiny160r0M0Kg3UagGc/4h6F842ClM2qOS20J2s3GM4quxrH13HpqkKrMfHMObWRAhRIHq3Ul3l08uRlvipuNokW+MNuuLtEL6fN2dxjdblEdj3d+lfH35k+a9XBlIGssRwrb1vVuf3msrxOkvfUz09o+51ks/P+pJL1Da8EUjEUU0TO8HWne1bnfLs+W9H5OQHcIpFiKIsDHMN+VA29NyfAiZ3naCiOfdciNgsi7TbCidxImDaMopiSLdDMaUQ3t7CicIon/M9iyA0sJxvFdGLE6j6KXaTiMIqTSOXcjmIk9F4MzTjvz7FDBx0ocOSBbCQJNcSTMkuSZL2KiiS2OiNlk1cFIsx8HKgyUHgeIA===";
 */
 
 //-------- ----------
@@ -96,7 +96,7 @@ sm.states.world = {
         const md = sm.game.SUNAREA_RADIUS;
         ctx.fillStyle = 'cyan';
         ctx.beginPath();
-        ctx.arc(sun.cx, sun.cy, md, 0, Math.PI * 2);
+        ctx.arc(sun.center.x, sun.center.y, md, 0, Math.PI * 2);
         ctx.fill();
         // sun
         ctx.fillStyle = 'yellow';
@@ -133,7 +133,7 @@ sm.states.world = {
     events: {
         pointerdown : (sm, x, y, e) => {
             const sun = sm.game.sun;
-            const d = utils.distance(x, y, sun.cx, sun.cy);
+            const d = utils.distance(x, y, sun.center.x, sun.center.y);
             // clicked in the sun area?
             if(d < sm.game.SUNAREA_RADIUS){
                 gameMod.setSunPos(sm.game, x, y);

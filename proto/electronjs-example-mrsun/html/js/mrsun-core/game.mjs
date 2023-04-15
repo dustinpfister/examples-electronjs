@@ -424,12 +424,12 @@ gameMod.create = (opt) => {
     // create sun object
     game.sun = {
         cx: opt.cx, cy: opt.cy,
-        x: opt.x, y: opt.y,
+        center: new Vector2(opt.cx, opt.cy),
         position: new Vector2(opt.x, opt.y),
         r: constant.SUN_RADIUS
     };
-    game.sun.position.x = opt.x === undefined ? game.sun.cx : opt.x;
-    game.sun.position.y = opt.y === undefined ? game.sun.cy : opt.y;
+    game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
+    game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
     // land objects
     game.lands = new Lands({
         cx: opt.cx, cy: opt.cy, sectionData: opt.sectionData
@@ -445,12 +445,12 @@ gameMod.setSunPos = (game, x, y) => {
     const sun = game.sun;
     sun.position.x = x;
     sun.position.y = y;
-    const d = utils.distance(x, y, sun.cx, sun.cy);
+    const d = utils.distance(x, y, sun.center.x, sun.center.y);
     const md = constant.SUNAREA_RADIUS - sun.r;
     if(d >= md){
-        const a = Math.atan2(sun.position.y - sun.cy, sun.position.x - sun.cx);
-        sun.position.x = sun.cx + Math.cos(a) * md;
-        sun.position.y = sun.cy + Math.sin(a) * md;
+        const a = Math.atan2(sun.position.y - sun.center.y, sun.position.x - sun.center.x);
+        sun.position.x = sun.center.x + Math.cos(a) * md;
+        sun.position.y = sun.center.y + Math.sin(a) * md;
     }
     //!!! for some weird reason saving here takes a few seconds in Windows
     //!!! if i reload while it is going on that will clear the autosave file

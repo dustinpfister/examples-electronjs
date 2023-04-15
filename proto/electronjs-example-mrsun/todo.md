@@ -46,11 +46,11 @@
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
 
-## (  ) - r31 - vector2 folder
+## ( done 04/15/2023 ) - r31 - vector2 folder
 * (done) I would like to have a Vector2 js folder 
 * (done) see about fixing problem with reloading clearing the autosave file
-* () use vector2 for the sun position
-* () see about using vector2 for the center pos
+* (done) use vector2 for the sun position
+* (done) see about using vector2 for the center pos
 
 ## ( done 04/14/2023 ) - r30 - Save and Load games
 * (done) I will need a preload.js auto load method for loading game saves
