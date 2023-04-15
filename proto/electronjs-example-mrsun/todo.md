@@ -12,10 +12,10 @@
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
 ## (  ) - Water level, water block type
-* () can set a water level such as 1 block so that any collum that is 0 rocks will have a water block
+* () can set a water level such as 1 block so that any column that is 0 rocks will have a water block
 
 ## (  ) - Slot Class, Disabled Slot feature 
-* () a slot object will have a disbaled property which means that it can not be used at all
+* () a slot object will have a disabled property which means that it can not be used at all
 
 <!-- PROTOTYPE -->
 
@@ -29,12 +29,14 @@
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - r31 - objpool.js, objpool.buttons.js
+## (  ) - r32 - objpool.buttons.js
+
+## (  ) - r31 - objpool.js
 * () base object pool library
 * () buttons lib that runs on top of base object pool lib. 
 
 ## ( done 04/14/2023 ) - r30 - Save and Load games
-* (done) I will need a preload.js audoload method for loading game saves
+* (done) I will need a preload.js auto load method for loading game saves
 * (done) have an MS.auto_save method
 * (done) auto_save on every game tick
 * (done) just save and load a text file in the home folder
