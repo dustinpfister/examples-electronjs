@@ -24,8 +24,11 @@
      if I reload while this is going on it will clear the autosave file. I might want to have some kind of
      journal system. That is check if the latest save is valid or not, and if not fall back to an older one.
 * () I should be able to do a crtl+s to save at any time
-* () see about a proper fix for the autosave clear issue if saving takes too long 
-* () autosave clear issue seems to be a problem when moving the sun and then saving
+* () see about a proper fix for the auto save clear issue if saving takes too long 
+* () auto save clear issue seems to be a problem when moving the sun and then saving
+* () I think I will need an autosave_0.txt and a autosave_1.txt
+* () each auto save event will save to 0 or 1 but never both at the same time
+* () always start by loading auto save 0, of that is not valid try 1
 
 ## (  ) - r35 - canvas module
 * () start a new canvas MJS file based on R2 of canvasMod

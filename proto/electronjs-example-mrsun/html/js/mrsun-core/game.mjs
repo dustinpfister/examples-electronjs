@@ -568,7 +568,7 @@ gameMod.createSaveString = (game) => {
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
     console.log('parsing the save string: ');
-    console.log(test_lz);
+    console.log(text_lz);
     if(!text_lz){
         console.log('looks like the save string is not valid!');
         return {};
