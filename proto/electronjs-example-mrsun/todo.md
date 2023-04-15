@@ -19,7 +19,7 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - r37 - Manual save, safer save
+## (  ) - rx - Manual save, safer save
      For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
      in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
      I might want to have some kind of journal system then to help with this. 
@@ -31,26 +31,33 @@
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
-## (  ) - r36 - canvas module
-* () start a new canvas MJS file based on R2 of canvasMod
-
-## (  ) - r35 - object2d-dialog - start a message system
+## (  ) - rx - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
 * () not enough mana to create block message
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - r34 - object2d-buttons.js
+## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r33 - Sprite and Sun object2d based class
+## () - rx - Sun class
+* () start a Sun class in game.mjs
+
+## () - r34 - Sprite sheet class
+* () start a SpriteSheet class
+* () a sprite can contains a canvas as one of the properties
+* () a cell data array should be one of the properties that is used to define where all the cells are in the sheet
+* () import the sprite sheet class into the Sprite class
+* () the Sprite class can contain a ref to a SpriteSheet
+* () a Sprite should have a current cell index value
+* () update the utils.drawSprite method to use a sheet if there is one
+
+## ( done 04/15/2023 ) - r33 - Sprite class started
 * (done) start a Sprite class that extends Object2d
 * (done) have a utils.drawSprite method
-* () make a sun.mjs file that extends the object2d class
-* () import sun.mjs into game.mjs
 
-## ( done ) - r32 - start object2d class
+## ( done 04/15/2023 ) - r32 - start object2d class
 * (done) start a base object2d lib based on the Object3d lib of threejs
 * (done) have a constructor worked out
 * (done) just position value for now
