@@ -50,6 +50,9 @@ class Sprite extends Object2D {
         this.cellIndex = 0;
         this.userData = {};
     }
+    getCell(){
+        return this.spriteSheet.getCell(this.cellIndex);
+    }
 };
 
 export { Sprite, SpriteSheet };

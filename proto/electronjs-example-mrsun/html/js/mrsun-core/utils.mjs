@@ -52,11 +52,18 @@ utils.drawSprite = (sprite, ctx, canvas) => {
     ctx.strokeStyle = '#00ff00';
     ctx.save();
     ctx.translate( sprite.position.x, sprite.position.y );
-    ctx.beginPath();
-    ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);
-    ctx.stroke();
+    if(sprite.spriteSheet){
+        const source = sprite.getCell();
+        ctx.drawImage(sprite.spriteSheet.image, 
+            source.sx, source.sy, source.sw, source.sh,
+            sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y 
+        );
+    }else{
+        ctx.beginPath();
+        ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);
+        ctx.stroke();
+    }
     ctx.restore();
-    
 };
 // draw a common display that you would want to have over all states
 utils.drawCommonDisp = (sm, ctx, canvas) => {

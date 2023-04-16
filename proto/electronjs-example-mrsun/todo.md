@@ -44,18 +44,16 @@
 ## () - rx - Sun class
 * () start a Sun class in game.mjs
 
-## () - r34 - Sprite sheet class
+## ( done 04/16/2023 ) - r34 - Sprite sheet class
 * (done) start a SpriteSheet class
 * (done) a sprite sheet can an image that is an Image or Canvas
 * (done) a cell data array should be one of the properties that is used to define where all the cells are in the sheet
 * (done) the Sprite class can contain a ref to a SpriteSheet
 * (done) a Sprite should have a current cell index value
 * (done) have a SpriteSheet.setCellDataToGrid method that will just set the cell data to a given grid
-
 * (done) SpriteSheet.getCell method
-
-* () update the test sprite in game.mjs to see that this is working by using a simple test canvas
-* () update the utils.drawSprite method to use a sheet if there is one uisng cellData and Sprite methods
+* (done) create and add a simple test sprite shet
+* (done) update the utils.drawSprite method to use a sheet if there is one uisng cellData and Sprite methods
 
 ## ( done 04/15/2023 ) - r33 - Sprite class started
 * (done) start a Sprite class that extends Object2d

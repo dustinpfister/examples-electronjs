@@ -24,6 +24,10 @@ ctx.fillStyle = 'green';
 ctx.fillRect(32,0,32,32);
 ctx.fillStyle = 'blue';
 ctx.fillRect(64,0,32,32);
+ctx.fillStyle = 'cyan';
+ctx.fillRect(96,0,32,32);
+ctx.fillStyle = 'yellow';
+ctx.fillRect(0,32,32,32);
 
 //document.body.appendChild(canvas);
 
@@ -33,11 +37,10 @@ const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
 sun2.spriteSheet = sheet;
+sun2.cellIndex = 4;
 console.log(sheet);
 console.log(sun2);
 
-const a = sheet.getCell(3);
-console.log(a)
 
 
 //-------- ----------
