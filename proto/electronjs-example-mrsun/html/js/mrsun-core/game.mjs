@@ -4,12 +4,16 @@ import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
 import { LZString }  from "../lz-string/1.4.4/lz-string.mjs"
 import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
+import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "./utils.mjs"
 
 //-------- ----------
 // Testing out Sprite
 //-------- ----------
+const can1 = canvasMod.create();
+
+/*
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d')
 canvas.width = 128;
@@ -28,10 +32,11 @@ ctx.fillStyle = 'cyan';
 ctx.fillRect(96,0,32,32);
 ctx.fillStyle = 'yellow';
 ctx.fillRect(0,32,32,32);
+*/
 
 //document.body.appendChild(canvas);
 
-const sheet = new SpriteSheet(canvas);
+const sheet = new SpriteSheet(can1.canvas);
 sheet.setCellDataToGrid();
 const sun2 = new Sprite();
 sun2.size.set(32, 32);

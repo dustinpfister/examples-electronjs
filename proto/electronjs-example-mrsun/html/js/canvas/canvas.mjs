@@ -9,7 +9,7 @@ const canvasMod = {};
 const parseDrawOption = (opt) => {
     // if opt.draw is false for any reason return DRAW.square
     if(!opt.draw){
-        return DRAW.square;
+        return DRAW.rnd;
     }
     // if a string is given assume it is a key for a built in draw method
     if(typeof opt.draw === 'string'){
@@ -64,8 +64,7 @@ const draw_grid_fill = (ctx, canvas, iw, ih, getColor) => {
     while(i < len){
         const x = i % iw;
         const y = Math.floor(i / iw);
-        const color = getColor( new THREE.Color(), x, y, i);
-        ctx.fillStyle = color.getStyle();
+        ctx.fillStyle = getColor(x, y, i);
         const px = x * pxW;
         const py = y * pxH;
         ctx.fillRect(px, py, pxW, pxH);
@@ -84,9 +83,9 @@ DRAW.grid_palette = (canObj, ctx, canvas, state) => {
     const len = w * h;
     const pxW = canObj.size / w;
     const pxH = canObj.size / h;
-    draw_grid_fill(ctx, canvas, w, h, function(color, x, y, i){
+    draw_grid_fill(ctx, canvas, w, h, function(x, y, i){
         const ci = data[i];
-        return color.setStyle( canObj.palette[ci] );
+        return canObj.palette[ci];
     });
 };
 // random using palette colors
@@ -95,43 +94,14 @@ DRAW.rnd = (canObj, ctx, canvas, state) => {
     const gSize =  state.gSize === undefined ? 5 : state.gSize;
     const len = gSize * gSize;
     const pxSize = canObj.size / gSize;
-    draw_grid_fill(ctx, canvas, gSize, gSize, function(color, x, y, i){
+    draw_grid_fill(ctx, canvas, gSize, gSize, function(x, y, i){
         const ci = Math.floor( canObj.palette.length * Math.random() );
-        return color.setStyle(canObj.palette[ci]);
+        return canObj.palette[ci];
     });
-};
-// square draw method
-DRAW.square = (canObj, ctx, canvas, state) => {
-    const squares = state.squares || [ {
-        lw: 1,
-        fi: 0,
-        si: 1,
-        rect: [ 0.5, 0.5, canvas.width - 1, canvas.height - 1 ] } ];
-    let i = 0;
-    const len = squares.length;
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    while(i < len){
-        const sq = squares[i];
-        ctx.lineWidth = sq.lw === undefined ? 1 : sq.lw;
-        ctx.fillStyle = canObj.palette[ sq.fi === undefined ? 0 : sq.fi];
-        ctx.strokeStyle = canObj.palette[ sq.si === undefined ? 1 : sq.si ];
-        ctx.beginPath();
-        ctx.rect.apply(ctx, sq.rect);
-        ctx.fill();
-        ctx.stroke();
-        i += 1;
-    }
 };
 //-------- ----------
 // PUBLIC API
 //-------- ----------
-// to data texture method
-canvasMod.toDataTexture = (canObj) => {
-    const canvasData = canObj.ctx.getImageData(0, 0, canObj.size, canObj.size);
-    const texture_data = new THREE.DataTexture(canvasData.data, canObj.size, canObj.size );
-    texture_data.needsUpdate = true;
-    return texture_data;
-};
 // create and return a canvas texture
 canvasMod.create = function (opt) {
     opt = opt || {};
@@ -146,7 +116,7 @@ canvasMod.create = function (opt) {
     const canObj = {
         texture: null,
         texture_data: null,
-        update_mode: opt.update_mode || 'dual',
+        update_mode: opt.update_mode || 'canvas',
         size: opt.size,
         canvas: canvas, 
         ctx: ctx,
@@ -156,9 +126,6 @@ canvasMod.create = function (opt) {
     };
     // parse data strings into arrays
     parseStateData(canObj, opt);
-    // create texture object
-    canObj.texture = new THREE.CanvasTexture(canvas);
-    canObj.texture_data = canvasMod.toDataTexture(canObj);
     // update for first time
     canvasMod.update(canObj);
     return canObj;
@@ -169,26 +136,8 @@ const UPDATE = {};
 UPDATE.canvas = (canObj) => {
     // update canvas texture
     canObj.draw.call(canObj, canObj, canObj.ctx, canObj.canvas, canObj.state);
-    canObj.texture.needsUpdate = true;
-};
-// update canvas AND data texture AKA 'dual' mode ( default for r1 )
-UPDATE.dual = (canObj) => {
-    UPDATE.canvas(canObj);
-    // update data texture
-    const canvasData = canObj.ctx.getImageData(0, 0, canObj.size, canObj.size);
-    const data = canObj.texture_data.image.data;
-    const len = data.length;
-    let i = 0;
-    while(i < len){
-        data[i] = canvasData.data[i];
-        i += 1;
-    }
-    canObj.texture_data.flipY = true; // need to do this even though it should be the default in r140
-    canObj.texture_data.center = new THREE.Vector2(0.5, 0.5);
-    canObj.texture_data.needsUpdate = true;
 };
 canvasMod.update = (canObj) => {
     UPDATE[canObj.update_mode](canObj);
 };
-
 export { canvasMod };
