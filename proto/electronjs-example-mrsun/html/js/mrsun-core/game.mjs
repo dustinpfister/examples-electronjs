@@ -10,10 +10,31 @@ import { utils }  from "./utils.mjs"
 //-------- ----------
 // Testing out Sprite
 //-------- ----------
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d')
+canvas.width = 128;
+canvas.height = 64;
+
+ctx.fillStyle = 'black';
+ctx.fillRect(0,0, canvas.width, canvas.height);
+
+ctx.fillStyle = 'red';
+ctx.fillRect(0,0,32,32);
+ctx.fillStyle = 'green';
+ctx.fillRect(32,0,32,32);
+ctx.fillStyle = 'blue';
+ctx.fillRect(64,0,32,32);
+
+//document.body.appendChild(canvas);
+
+const sheet = new SpriteSheet(canvas);
+sheet.setCellDataToGrid();
 const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
-console.log(SpriteSheet)
+sun2.spriteSheet = sheet;
+console.log(sheet);
+console.log(sun2);
 
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT

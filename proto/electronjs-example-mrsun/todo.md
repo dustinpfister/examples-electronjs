@@ -50,7 +50,7 @@
 * (done) a cell data array should be one of the properties that is used to define where all the cells are in the sheet
 * (done) the Sprite class can contain a ref to a SpriteSheet
 * (done) a Sprite should have a current cell index value
-* () have a SpriteSheet.setGrid method that will just set the cell data to a given grid
+* (done) have a SpriteSheet.setCellDataToGrid method that will just set the cell data to a given grid
 
 * () update the test sprite in game.mjs to see that this is working by using a simple test canvas
 * () update the utils.drawSprite method to use a sheet if there is one uisng cellData and Sprite methods

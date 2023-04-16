@@ -6,8 +6,21 @@ class SpriteSheet {
         this.image = image || null;
         this.cell_data = [];
     }
-    setToGrid(){
-
+    // set the cell data to a grid using the current image, and a given cellSize Vector2
+    setCellDataToGrid( cellSize = new Vector2(32, 32) ){
+        this.cell_data = [];
+        let i = 0;
+        const grid_w = Math.floor( this.image.width / cellSize.x );
+        const grid_h = Math.floor( this.image.height / cellSize.y );
+        const len = grid_w * grid_h;
+        while(i < len){
+            const gx = i % grid_w;
+            const gy = Math.floor(i / grid_h );
+            const x = gx * cellSize.x;
+            const y = gy * cellSize.y;
+            this.cell_data.push(x, y, cellSize.x, cellSize.y);
+            i += 1;
+        }
     }
 };
 
