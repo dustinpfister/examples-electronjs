@@ -11,30 +11,16 @@ import { utils }  from "./utils.mjs"
 //-------- ----------
 // Testing out Sprite
 //-------- ----------
-const can1 = canvasMod.create();
+const can1 = canvasMod.create({
+    size: 128,
+    palette: ['black', 'white', 'lime', 'cyan'],
+    state: {
+        gSize: 16,
+    },
+    draw: 'rnd'
+});
 
-/*
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d')
-canvas.width = 128;
-canvas.height = 64;
-
-ctx.fillStyle = 'black';
-ctx.fillRect(0,0, canvas.width, canvas.height);
-
-ctx.fillStyle = 'red';
-ctx.fillRect(0,0,32,32);
-ctx.fillStyle = 'green';
-ctx.fillRect(32,0,32,32);
-ctx.fillStyle = 'blue';
-ctx.fillRect(64,0,32,32);
-ctx.fillStyle = 'cyan';
-ctx.fillRect(96,0,32,32);
-ctx.fillStyle = 'yellow';
-ctx.fillRect(0,32,32,32);
-*/
-
-//document.body.appendChild(canvas);
+//document.body.appendChild(can1.canvas);
 
 const sheet = new SpriteSheet(can1.canvas);
 sheet.setCellDataToGrid();

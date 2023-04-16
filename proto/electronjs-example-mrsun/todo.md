@@ -41,14 +41,21 @@
 ## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r36 - Sun class
+## () - r38 - Sun class
 * () start a Sun class in game.mjs that extends the Sprite class
 * () replace the current sun object with an instance of the Sun class
 
-## () - r35 - canvas module
+## () - r37 - Sun Animaiton Sheet
+* () use new canvas mdoule to create an animated sun sheet
+* () use DRAW.grid_palette method to create one or more sun faces
+* () use custom draw method to draw an animated background for the sun
+* () use grid_palette canvas to draw a current face to the sheet
+
+## ( done 04/16/2023 ) - r35 - canvas module
 * (done) start a js folder for a canvas module
-* () start with r2 of the canvas mod that I use, but turn it into a JSM
-* () use the new canvas module to create a sprite sheet for the sun.
+* (done) start with r2 of the canvas mod that I use, but turn it into a JSM
+* (done) remove threejs features that are not being used in this project
+* (done) use the new canvas module to create a sprite sheet for the sun in game.mjs.
 
 ## ( done 04/16/2023 ) - r34 - Sprite sheet class
 * (done) start a SpriteSheet class
