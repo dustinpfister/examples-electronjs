@@ -36,6 +36,10 @@ sun2.spriteSheet = sheet;
 console.log(sheet);
 console.log(sun2);
 
+const a = sheet.getCell(3);
+console.log(a)
+
+
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
 //-------- ----------

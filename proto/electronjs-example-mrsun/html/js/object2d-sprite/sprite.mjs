@@ -15,12 +15,21 @@ class SpriteSheet {
         const len = grid_w * grid_h;
         while(i < len){
             const gx = i % grid_w;
-            const gy = Math.floor(i / grid_h );
+            const gy = Math.floor(i / grid_w );
             const x = gx * cellSize.x;
             const y = gy * cellSize.y;
             this.cell_data.push(x, y, cellSize.x, cellSize.y);
             i += 1;
         }
+    }
+    getCell( index = 0 ){
+        const cd = this.cell_data;
+        return {
+           sx: cd[ index * 4 + 0 ],
+           sy: cd[ index * 4 + 1 ],
+           sw: cd[ index * 4 + 2 ],
+           sh: cd[ index * 4 + 3 ]
+        };
     }
 };
 
