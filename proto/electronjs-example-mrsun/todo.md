@@ -41,14 +41,14 @@
 ## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r36 - canvas module
-* () start a js folder for a canvas module
-* () start with r2 of the canvas mod that I use, but turn it into a JSM
-* () use the new canvas module to create a sprite sheet for the sun.
-
-## () - r35 - Sun class
+## () - r36 - Sun class
 * () start a Sun class in game.mjs that extends the Sprite class
 * () replace the current sun object with an instance of the Sun class
+
+## () - r35 - canvas module
+* (done) start a js folder for a canvas module
+* () start with r2 of the canvas mod that I use, but turn it into a JSM
+* () use the new canvas module to create a sprite sheet for the sun.
 
 ## ( done 04/16/2023 ) - r34 - Sprite sheet class
 * (done) start a SpriteSheet class
