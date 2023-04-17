@@ -173,6 +173,16 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
     evnt.game.mana = evnt.game.mana.add(evnt.constant.MANA_START);
 });
 //-------- ----------
+// SpriteLandSectonWorld Class
+//-------- ----------
+//const SpriteLandSectonWorld
+class SpriteLandSectonWorld extends Sprite {
+    constructor() {
+        this.type = 'SpriteLandSectonWorld';
+        this.size.set(64, 64);
+    }
+};
+//-------- ----------
 // BLOCK CLASS
 //-------- ----------
 class Block {
