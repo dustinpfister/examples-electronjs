@@ -49,7 +49,8 @@
 * () have a SpriteLandSectonWorld class that extends the Sprite class
 * () I will need a LandSection.sprite\_world property that is an instance of SpriteLandSectonWorld
 * () for SpriteLandSectonWorld class I think I will need a sheet for each landSection object
-* () have a rock shape for each radius from the inner circle outward in each sheet
+* () I am going to need a rock cell for each x, and y location for each Land Section
+* () I will also need the same cell deal for locked slots, and blank blocks
 
 ## ( done 04/17/2023 ) - r37 - Sun Animaiton Sheet
 * (done) can1 layer: should be the base sun texture
