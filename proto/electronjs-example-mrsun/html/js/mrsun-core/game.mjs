@@ -178,6 +178,7 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //const SpriteLandSectonWorld
 class SpriteLandSectonWorld extends Sprite {
     constructor() {
+        super();
         this.type = 'SpriteLandSectonWorld';
         this.size.set(64, 64);
     }
@@ -251,6 +252,12 @@ class LandSection {
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;
+
+
+
+this.sprite_world = new SpriteLandSectonWorld();
+this.sprite_world.position.set(this.x, this.y);
+
         // counts_of_block_types/next_cost_of_somehting.
         this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
         // temp

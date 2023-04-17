@@ -63,7 +63,7 @@ utils.drawSprite = (sprite, ctx, canvas) => {
             i_sheet += 1;
         }
     }
-    if(!sprite.sheets){
+    if(sprite.sheets.length === 0){
         ctx.beginPath();
         ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);
         ctx.stroke();

@@ -100,6 +100,7 @@ sm.states.world = {
         utils.drawSprite(sun, ctx, canvas)
         // land section objects
         sm.game.lands.sections.forEach((section, i) => {
+/*
             utils.drawLandSection(sm, ctx, canvas, section, {
                 grid_cx: section.x,
                 grid_cy: section.y,
@@ -107,6 +108,10 @@ sm.states.world = {
                 block_width: 80 / 10,
                 block_height: 50 / 8,
                 grid_radian: Math.PI * 2 / 12 * i + Math.PI * 0.5});
+*/
+
+            utils.drawSprite(section.sprite_world, ctx, canvas)
+
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.beginPath();
             ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
