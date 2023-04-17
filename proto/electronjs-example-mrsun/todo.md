@@ -41,15 +41,19 @@
 ## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r38 - Sun class
+## () - r36 - Sun class
 * () start a Sun class in game.mjs that extends the Sprite class
 * () replace the current sun object with an instance of the Sun class
 
 ## () - r37 - Sun Animaiton Sheet
-* () use new canvas mdoule to create an animated sun sheet
-* () use DRAW.grid_palette method to create one or more sun faces
-* () use custom draw method to draw an animated background for the sun
-* () use grid_palette canvas to draw a current face to the sheet
+* () make a nice sun animation using new Sprite class layer features
+
+## () - r36 - Layers for Sprite class
+* () make it so that I can have an array of SpriteSheet objects rather than just one for a Sprite
+* () in the event that there is an array of sprite sheets the sheet of index 0 will be rendered first
+* () if I have an array of sprite sheets I will also need an array of Cell index values
+* () update utils draw sprite method to work with new Sprite class changes
+* () just have a simple proof of concept in game.mjs for now.
 
 ## ( done 04/16/2023 ) - r35 - canvas module
 * (done) start a js folder for a canvas module

@@ -484,7 +484,7 @@ gameMod.setSunPos = (game, x, y) => {
     }
     //!!! for some weird reason saving here takes a few seconds in Windows
     //!!! if i reload while it is going on that will clear the autosave file
-    // MS.auto_save( gameMod.createSaveString( game ) );
+    MS.auto_save( gameMod.createSaveString( game ) );
 };
 // get land object by x, y pos or false if nothing there
 gameMod.getSectionByPos = (game, x, y) => {
