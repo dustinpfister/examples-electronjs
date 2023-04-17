@@ -5,6 +5,7 @@ class SpriteSheet {
     constructor(image) {
         this.image = image || null;
         this.cell_data = [];
+        this.cell_count = 0;
     }
     // set the cell data to a grid using the current image, and a given cellSize Vector2
     setCellDataToGrid( cellSize = new Vector2(32, 32) ){
@@ -12,7 +13,7 @@ class SpriteSheet {
         let i = 0;
         const grid_w = Math.floor( this.image.width / cellSize.x );
         const grid_h = Math.floor( this.image.height / cellSize.y );
-        const len = grid_w * grid_h;
+        const len = this.cell_count = grid_w * grid_h;
         while(i < len){
             const gx = i % grid_w;
             const gy = Math.floor(i / grid_w );

@@ -93,10 +93,10 @@ sm.states.world = {
         ctx.arc(sun.center.x, sun.center.y, md, 0, Math.PI * 2);
         ctx.fill();
         // sun
-        //ctx.fillStyle = 'yellow';
-        //ctx.beginPath();
-        //ctx.arc(sun.position.x, sun.position.y, sun.radius, 0, Math.PI * 2);
-        //ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,0,0.5)';
+        ctx.beginPath();
+        ctx.arc(sun.position.x, sun.position.y, sun.radius, 0, Math.PI * 2);
+        ctx.fill();
         utils.drawSprite(sun, ctx, canvas)
         // land section objects
         sm.game.lands.sections.forEach((section, i) => {

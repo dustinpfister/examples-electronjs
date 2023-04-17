@@ -8,52 +8,58 @@ import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "./utils.mjs"
 //-------- ----------
-// Testing out Sprite
+// Canvas Objects for Sun Class
 //-------- ----------
 const can1 = canvasMod.create({
     size: 128,
-    palette: ['black', 'white', 'lime', 'cyan'],
-    state: {
-        gSize: 16,
-    },
-    draw: 'rnd'
-});
-const can2 = canvasMod.create({
-    size: 128,
-    palette: ['black', 'white', 'yellow', 'red', 'blue', 'green'],
+    palette: ['yellow', 'red', 'white'],
     state: {},
     draw: (canObj, ctx, canvas, state) => {
         ctx.clearRect(0,0, canvas.width, canvas.height);
         ctx.strokeStyle = 'black';
         let i = 0;
         const len = 16;
+        const tri_count = 8;
+        const radian_step = Math.PI * 2 / tri_count;
         while(i < len){
             const x = i % 4;
             const y = Math.floor(i / 4);
+            const cx = 16 + 32 * x;
+            const cy = 16 + 32 * y;
+            // draw triangles
+            let i_tri = 0;
+            while(i_tri < tri_count){
+               const radian = radian_step * i_tri + radian_step * (i / len);
+               const x = cx + Math.cos(radian) * 13;
+               const y = cy + Math.sin(radian) * 13;
+               ctx.fillStyle = canObj.palette[1];
+               //if(i_tri === 0){
+               //    ctx.fillStyle = canObj.palette[2];
+               //}
+               ctx.beginPath();
+               ctx.arc(x, y, 2, 0, Math.PI * 2);
+               ctx.fill();
+               i_tri += 1;
+            }
+            // draw base yellow circle
             ctx.beginPath();
-            ctx.arc(16 + 32 * x, 16 + 32 * y, 10, 0, Math.PI * 2);
-            ctx.fillStyle = canObj.palette[i % canObj.palette.length];
+            ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+            ctx.fillStyle = canObj.palette[0];
             ctx.fill();
             ctx.stroke();
-            
             i += 1;
         }
     }
 });
-//document.body.appendChild(can2.canvas);
-/*
-const sun2 = new Sprite();
-sun2.size.set(32, 32);
-sun2.position.set(100, 100);
-const sheet1 = new SpriteSheet(can1.canvas);
-sheet1.setCellDataToGrid();
-const sheet2 = new SpriteSheet(can2.canvas);
-sheet2.setCellDataToGrid();
-sun2.sheets.push(sheet1);
-sun2.sheets.push(sheet2);
-sun2.cellIndices[0] = 4;
-sun2.cellIndices[1] = 2;
-*/
+const can2 = canvasMod.create({
+    size: 128,
+    palette: ['black', 'white', 'yellow', 'red', 'blue', 'green'],
+    state: {},
+    draw: (canObj, ctx, canvas, state) => {
+    
+    }
+});
+//document.body.appendChild(can1.canvas);
 //-------- ----------
 // Sun Class
 //-------- ----------
@@ -77,8 +83,15 @@ class Sun extends Sprite {
         sheet2.setCellDataToGrid();
         this.sheets.push(sheet1);
         this.sheets.push(sheet2);
-        this.cellIndices[0] = 4;
+        this.cellIndices[0] = 0;
         this.cellIndices[1] = 2;
+    }
+    // step the base animation forward one cell
+    stepBaseAnimation(){
+        let i_cell = this.cellIndices[0];
+        i_cell += 1;
+        i_cell = i_cell >= this.sheets[0].cell_count ? 0 : i_cell;
+        this.cellIndices[0] = i_cell;
     }
 };
 //-------- ----------
@@ -478,11 +491,12 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
                 if(!slot.locked && block.type != 'blank'){
                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                 }
-            })
+            });
         });
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
     }
+    game.sun.stepBaseAnimation();
 };
 // create a new game state object
 gameMod.create = (opt) => {
