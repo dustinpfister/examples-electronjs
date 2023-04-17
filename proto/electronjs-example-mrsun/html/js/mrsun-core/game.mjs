@@ -7,7 +7,6 @@ import { Vector2 } from '../vector2/vector2.mjs'
 import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "./utils.mjs"
-
 //-------- ----------
 // Testing out Sprite
 //-------- ----------
@@ -41,27 +40,34 @@ const can2 = canvasMod.create({
         }
     }
 });
-
 //document.body.appendChild(can2.canvas);
-
-
 const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
-
 const sheet1 = new SpriteSheet(can1.canvas);
 sheet1.setCellDataToGrid();
 const sheet2 = new SpriteSheet(can2.canvas);
 sheet2.setCellDataToGrid();
 sun2.sheets.push(sheet1);
 sun2.sheets.push(sheet2);
-
 sun2.cellIndices[0] = 4;
 sun2.cellIndices[1] = 2;
-console.log(sheet1);
-console.log(sun2);
-
-
+//-------- ----------
+// Sun Class
+//-------- ----------
+class Sun extends Sprite {
+    constructor(cx, cy) {
+        this.type = 'Sun';
+        const center = new Vector2(cx, cy);
+        Object.defineProperties( this, {
+            center: {
+                configurable: true,
+                enumerable: true,
+                value: center
+            }
+        });
+    }
+};
 
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
@@ -451,7 +457,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
             const d_sun = utils.distance(section.x, section.y, game.sun.position.x, game.sun.position.y);
-            const d_adjusted = d_sun - section.r - game.sun.r;
+            const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
             section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
             section.forEachSlot( (slot ) => {
@@ -482,10 +488,9 @@ gameMod.create = (opt) => {
     };
     // create sun object
     game.sun = {
-        cx: opt.cx, cy: opt.cy,
         center: new Vector2(opt.cx, opt.cy),
         position: new Vector2(opt.x, opt.y),
-        r: constant.SUN_RADIUS
+        radius: constant.SUN_RADIUS
     };
     game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
     game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
@@ -505,7 +510,7 @@ gameMod.setSunPos = (game, x, y) => {
     sun.position.x = x;
     sun.position.y = y;
     const d = utils.distance(x, y, sun.center.x, sun.center.y);
-    const md = constant.SUNAREA_RADIUS - sun.r;
+    const md = constant.SUNAREA_RADIUS - sun.radius;
     if(d >= md){
         const a = Math.atan2(sun.position.y - sun.center.y, sun.position.x - sun.center.x);
         sun.position.x = sun.center.x + Math.cos(a) * md;

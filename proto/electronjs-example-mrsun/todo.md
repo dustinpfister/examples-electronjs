@@ -41,12 +41,12 @@
 ## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
+## () - r37 - Sun Animaiton Sheet
+* () make a nice sun animation using new Sprite class layer features
+
 ## () - r36 - Sun class
 * () start a Sun class in game.mjs that extends the Sprite class
 * () replace the current sun object with an instance of the Sun class
-
-## () - r37 - Sun Animaiton Sheet
-* () make a nice sun animation using new Sprite class layer features
 
 ## ( done 04/17/2023 ) - r36 - Layers for Sprite class
 * (done) make it so that I can have an array of SpriteSheet objects rather than just one for a Sprite
