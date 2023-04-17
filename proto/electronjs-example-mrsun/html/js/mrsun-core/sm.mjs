@@ -22,7 +22,7 @@ const sm = {
    currentStateKey: '',
    currentState: null,
    states: {},
-   fps_target: 30,
+   fps_target: 12,
    now: null,
    x:0, y:0,
    landIndex: 0,

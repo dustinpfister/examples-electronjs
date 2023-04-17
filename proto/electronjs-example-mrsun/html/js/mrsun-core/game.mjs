@@ -97,7 +97,7 @@ class Sun extends Sprite {
             }
         });
         this.radius = radius;
-        this.size.set(32, 32);
+        this.size.set(64, 64);
         const sheet1 = new SpriteSheet(can1.canvas);
         sheet1.setCellDataToGrid();
         const sheet2 = new SpriteSheet(can2.canvas);
@@ -131,7 +131,7 @@ Decimal.set({
 // CONST
 //-------- ----------
 const constant = {};
-constant.SUN_RADIUS = 20;
+constant.SUN_RADIUS = 40;
 constant.LAND_RADIUS = 40;
 constant.SUNAREA_RADIUS = 150;
 constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;

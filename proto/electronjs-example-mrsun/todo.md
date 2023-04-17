@@ -41,6 +41,10 @@
 ## (  ) - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
+## () - r38 - Sprirtes for Land Sections
+* (done) adjusted sun size and sun radius
+
+
 ## ( done 04/17/2023 ) - r37 - Sun Animaiton Sheet
 * (done) can1 layer: should be the base sun texture
 * (done) update can1 layer over time by just stepping and wraping the cell index value
