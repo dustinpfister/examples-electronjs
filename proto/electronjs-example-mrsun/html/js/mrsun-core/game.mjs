@@ -57,6 +57,7 @@ sun2.sheets.push(sheet1);
 sun2.sheets.push(sheet2);
 
 sun2.cellIndices[0] = 4;
+sun2.cellIndices[1] = 2;
 console.log(sheet1);
 console.log(sun2);
 

@@ -48,13 +48,12 @@
 ## () - r37 - Sun Animaiton Sheet
 * () make a nice sun animation using new Sprite class layer features
 
-## () - r36 - Layers for Sprite class
+## ( done 04/17/2023 ) - r36 - Layers for Sprite class
 * (done) make it so that I can have an array of SpriteSheet objects rather than just one for a Sprite
 * (done) if I have an array of sprite sheets I will also need an array of Cell index values
-
-* () in the event that there is an array of sprite sheets the sheet of index 0 will be rendered first
-* () update utils draw sprite method to work with new Sprite class changes
-* () just have a simple proof of concept in game.mjs for now.
+* (done) in the event that there is an array of sprite sheets the sheet of index 0 will be rendered first
+* (done) update utils draw sprite method to work with new Sprite class changes
+* (done) just have a simple proof of concept in game.mjs for now.
 
 ## ( done 04/16/2023 ) - r35 - canvas module
 * (done) start a js folder for a canvas module

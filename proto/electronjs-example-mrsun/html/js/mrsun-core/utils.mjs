@@ -54,13 +54,15 @@ utils.drawSprite = (sprite, ctx, canvas) => {
     ctx.translate( sprite.position.x, sprite.position.y );
 
     if(sprite.sheets){
-        let i_sheet = 0;
-        const source = sprite.getCell(i_sheet);
-        ctx.drawImage(sprite.sheets[i_sheet].image, 
-            source.sx, source.sy, source.sw, source.sh,
-            sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y 
-        );
-
+        let i_sheet = 0, len = sprite.sheets.length;
+        while(i_sheet < len){
+            const source = sprite.getCell(i_sheet);
+            ctx.drawImage(sprite.sheets[i_sheet].image, 
+                source.sx, source.sy, source.sw, source.sh,
+                sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y 
+            );
+            i_sheet += 1;
+        }
     }
 
     if(!sprite.sheets){
