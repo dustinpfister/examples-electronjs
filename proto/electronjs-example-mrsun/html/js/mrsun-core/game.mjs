@@ -175,12 +175,28 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
+const can_lsw_rock = canvasMod.create({
+    size: 256,
+    palette: ['black', 'white'],
+    state: {},
+    draw: (canObj, ctx, canvas, state) => {
+        ctx.fillStyle = canObj.palette[0];
+        ctx.strokeStyle = canObj.palette[0];
+        ctx.beginPath();
+    }
+});
 //const SpriteLandSectonWorld
 class SpriteLandSectonWorld extends Sprite {
-    constructor() {
+    constructor(i_land_section) {
         super();
+        this.i = i_land_section;
         this.type = 'SpriteLandSectonWorld';
-        this.size.set(64, 64);
+        this.size.set(116, 116);
+
+        const sheet1 = new SpriteSheet(can_lsw_rock.canvas);
+        sheet1.setCellDataToGrid();
+        //this.sheets.push(sheet1);
+
     }
 };
 //-------- ----------
@@ -255,7 +271,7 @@ class LandSection {
 
 
 
-this.sprite_world = new SpriteLandSectonWorld();
+this.sprite_world = new SpriteLandSectonWorld(this.i);
 this.sprite_world.position.set(this.x, this.y);
 
         // counts_of_block_types/next_cost_of_somehting.

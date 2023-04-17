@@ -52,7 +52,9 @@
 * (done) adjusted sun size and sun radius
 * (done) have a SpriteLandSectonWorld class that extends the Sprite class
 * (done) I will need a LandSection.sprite\_world property that is an instance of SpriteLandSectonWorld
-* () for SpriteLandSectonWorld class I think I will need a sheet for each landSection object
+* (done) for SpriteLandSectonWorld class I think I will need a sheet for each landSection object
+* ()
+
 * () I am going to need a rock cell for each x, and y location for each Land Section
 
 ## ( done 04/17/2023 ) - r37 - Sun Animaiton Sheet
