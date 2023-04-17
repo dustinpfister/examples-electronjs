@@ -44,9 +44,11 @@
 ## () - r37 - Sun Animaiton Sheet
 * () make a nice sun animation using new Sprite class layer features
 
-## () - r36 - Sun class
-* () start a Sun class in game.mjs that extends the Sprite class
-* () replace the current sun object with an instance of the Sun class
+## ( done 04/17/2023 ) - r36 - Sun class
+* (done) start a Sun class in game.mjs that extends the Sprite class
+* (done) replace the current sun object with an instance of the Sun class
+* (done) becuase Sun is an extension of Sprite see about using what I set up with the test sprite with game.sun
+* (done) if all goes well remove the old test sprite as it is no longer needed at this point
 
 ## ( done 04/17/2023 ) - r36 - Layers for Sprite class
 * (done) make it so that I can have an array of SpriteSheet objects rather than just one for a Sprite

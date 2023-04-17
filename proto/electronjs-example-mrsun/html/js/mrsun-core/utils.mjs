@@ -52,7 +52,6 @@ utils.drawSprite = (sprite, ctx, canvas) => {
     ctx.strokeStyle = '#00ff00';
     ctx.save();
     ctx.translate( sprite.position.x, sprite.position.y );
-
     if(sprite.sheets){
         let i_sheet = 0, len = sprite.sheets.length;
         while(i_sheet < len){
@@ -64,7 +63,6 @@ utils.drawSprite = (sprite, ctx, canvas) => {
             i_sheet += 1;
         }
     }
-
     if(!sprite.sheets){
         ctx.beginPath();
         ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);

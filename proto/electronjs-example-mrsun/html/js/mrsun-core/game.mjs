@@ -41,6 +41,7 @@ const can2 = canvasMod.create({
     }
 });
 //document.body.appendChild(can2.canvas);
+/*
 const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
@@ -52,11 +53,13 @@ sun2.sheets.push(sheet1);
 sun2.sheets.push(sheet2);
 sun2.cellIndices[0] = 4;
 sun2.cellIndices[1] = 2;
+*/
 //-------- ----------
 // Sun Class
 //-------- ----------
 class Sun extends Sprite {
-    constructor(cx, cy) {
+    constructor(cx, cy, radius) {
+        super();
         this.type = 'Sun';
         const center = new Vector2(cx, cy);
         Object.defineProperties( this, {
@@ -66,9 +69,18 @@ class Sun extends Sprite {
                 value: center
             }
         });
+        this.radius = radius;
+        this.size.set(32, 32);
+        const sheet1 = new SpriteSheet(can1.canvas);
+        sheet1.setCellDataToGrid();
+        const sheet2 = new SpriteSheet(can2.canvas);
+        sheet2.setCellDataToGrid();
+        this.sheets.push(sheet1);
+        this.sheets.push(sheet2);
+        this.cellIndices[0] = 4;
+        this.cellIndices[1] = 2;
     }
 };
-
 //-------- ----------
 // MAIN GAME MOD OBJECT TO EXPORT
 //-------- ----------
@@ -477,7 +489,7 @@ gameMod.create = (opt) => {
     opt = opt || {};
     opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
     const game = {
-       sun2: sun2,
+       //sun2: sun2,
        mana: new Decimal(opt.mana),
        mana_level: opt.mana_level,
        mana_cap: 0,      // set by calling getManaCap Helper
@@ -487,11 +499,15 @@ gameMod.create = (opt) => {
        tick_last: 0      // last tick can be subtracted from tick to get a tick delta
     };
     // create sun object
+/*
     game.sun = {
         center: new Vector2(opt.cx, opt.cy),
         position: new Vector2(opt.x, opt.y),
         radius: constant.SUN_RADIUS
     };
+*/
+    game.sun = new Sun(opt.cx, opt.cy, constant.SUN_RADIUS);
+
     game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
     game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
     // land objects
