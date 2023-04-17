@@ -62,10 +62,22 @@ const can1 = canvasMod.create({
 });
 const can2 = canvasMod.create({
     size: 128,
-    palette: ['black', 'white', 'yellow', 'red', 'blue', 'green'],
+    palette: ['black', 'white'],
     state: {},
     draw: (canObj, ctx, canvas, state) => {
-    
+        ctx.fillStyle = canObj.palette[0];
+        ctx.strokeStyle = canObj.palette[0];
+        ctx.beginPath();
+        ctx.arc(13, 16, 2, 0, Math.PI * 2);
+        ctx.arc(19, 16, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(12, 20);
+        ctx.lineTo(14, 22);
+        ctx.lineTo(18, 22);
+        ctx.lineTo(20, 20);
+        ctx.stroke();
     }
 });
 //document.body.appendChild(can1.canvas);
@@ -93,7 +105,7 @@ class Sun extends Sprite {
         this.sheets.push(sheet1);
         this.sheets.push(sheet2);
         this.cellIndices[0] = 0;
-        this.cellIndices[1] = 2;
+        this.cellIndices[1] = 0;
     }
     // step the base animation forward one cell
     stepBaseAnimation(){
