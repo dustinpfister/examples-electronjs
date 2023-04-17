@@ -19,7 +19,7 @@
 
 <!-- PROTOTYPE -->
 
-## (  ) - rx - Manual save, safer save
+## () - r42 - Manual save, safer save
      For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
      in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
      I might want to have some kind of journal system then to help with this. 
@@ -31,19 +31,25 @@
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
-## (  ) - rx - object2d-dialog - start a message system
+## () - r41 - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
 * () not enough mana to create block message
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-## (  ) - rx - object2d-buttons.js
+## () - r40 - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r38 - Sprirtes for Land Sections
-* (done) adjusted sun size and sun radius
+## () - r39 - Sprites for Land State Land Sections
+* () I will need a LandSection.sprite\_land property
 
+## () - r38 - Sprites for World state Land Sections
+* (done) adjusted sun size and sun radius
+* () have a SpriteLandSectonWorld class that extends the Sprite class
+* () I will need a LandSection.sprite\_world property that is an instance of SpriteLandSectonWorld
+* () for SpriteLandSectonWorld class I think I will need a sheet for each landSection object
+* () have a rock shape for each radius from the inner circle outward in each sheet
 
 ## ( done 04/17/2023 ) - r37 - Sun Animaiton Sheet
 * (done) can1 layer: should be the base sun texture
