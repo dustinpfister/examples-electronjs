@@ -46,12 +46,12 @@ class Sprite extends Object2D {
                 value: size
             }
         } );
-        this.spriteSheet = null;
-        this.cellIndex = 0;
+        this.sheets = [];
+        this.cellIndices = [];
         this.userData = {};
     }
-    getCell(){
-        return this.spriteSheet.getCell(this.cellIndex);
+    getCell(sheetIndex){
+        return this.sheets[ sheetIndex ].getCell( this.cellIndices[ sheetIndex] );
     }
 };
 

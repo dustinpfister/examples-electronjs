@@ -52,13 +52,18 @@ utils.drawSprite = (sprite, ctx, canvas) => {
     ctx.strokeStyle = '#00ff00';
     ctx.save();
     ctx.translate( sprite.position.x, sprite.position.y );
-    if(sprite.spriteSheet){
-        const source = sprite.getCell();
-        ctx.drawImage(sprite.spriteSheet.image, 
+
+    if(sprite.sheets){
+        let i_sheet = 0;
+        const source = sprite.getCell(i_sheet);
+        ctx.drawImage(sprite.sheets[i_sheet].image, 
             source.sx, source.sy, source.sw, source.sh,
             sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y 
         );
-    }else{
+
+    }
+
+    if(!sprite.sheets){
         ctx.beginPath();
         ctx.rect(sprite.size.x / 2 * -1, sprite.size.y / 2 * -1, sprite.size.x, sprite.size.y);
         ctx.stroke();

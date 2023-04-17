@@ -19,17 +19,45 @@ const can1 = canvasMod.create({
     },
     draw: 'rnd'
 });
+const can2 = canvasMod.create({
+    size: 128,
+    palette: ['black', 'white', 'yellow', 'red', 'blue', 'green'],
+    state: {},
+    draw: (canObj, ctx, canvas, state) => {
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.strokeStyle = 'black';
+        let i = 0;
+        const len = 16;
+        while(i < len){
+            const x = i % 4;
+            const y = Math.floor(i / 4);
+            ctx.beginPath();
+            ctx.arc(16 + 32 * x, 16 + 32 * y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = canObj.palette[i % canObj.palette.length];
+            ctx.fill();
+            ctx.stroke();
+            
+            i += 1;
+        }
+    }
+});
 
-//document.body.appendChild(can1.canvas);
+//document.body.appendChild(can2.canvas);
 
-const sheet = new SpriteSheet(can1.canvas);
-sheet.setCellDataToGrid();
+
 const sun2 = new Sprite();
 sun2.size.set(32, 32);
 sun2.position.set(100, 100);
-sun2.spriteSheet = sheet;
-sun2.cellIndex = 4;
-console.log(sheet);
+
+const sheet1 = new SpriteSheet(can1.canvas);
+sheet1.setCellDataToGrid();
+const sheet2 = new SpriteSheet(can2.canvas);
+sheet2.setCellDataToGrid();
+sun2.sheets.push(sheet1);
+sun2.sheets.push(sheet2);
+
+sun2.cellIndices[0] = 4;
+console.log(sheet1);
 console.log(sun2);
 
 
