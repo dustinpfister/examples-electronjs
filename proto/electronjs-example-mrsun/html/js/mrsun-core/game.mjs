@@ -12,14 +12,14 @@ import { utils }  from "./utils.mjs"
 //-------- ----------
 const can1 = canvasMod.create({
     size: 128,
-    palette: ['yellow', 'red', 'white'],
+    palette: ['yellow', '#ff0000', '#880000'],
     state: {},
     draw: (canObj, ctx, canvas, state) => {
         ctx.clearRect(0,0, canvas.width, canvas.height);
         ctx.strokeStyle = 'black';
         let i = 0;
         const len = 16;
-        const tri_count = 8;
+        const tri_count = 16;
         const radian_step = Math.PI * 2 / tri_count;
         while(i < len){
             const x = i % 4;
@@ -30,14 +30,23 @@ const can1 = canvasMod.create({
             let i_tri = 0;
             while(i_tri < tri_count){
                const radian = radian_step * i_tri + radian_step * (i / len);
-               const x = cx + Math.cos(radian) * 13;
-               const y = cy + Math.sin(radian) * 13;
+               const x = cx + Math.cos(radian) * 16;
+               const y = cy + Math.sin(radian) * 16;
                ctx.fillStyle = canObj.palette[1];
                //if(i_tri === 0){
                //    ctx.fillStyle = canObj.palette[2];
                //}
                ctx.beginPath();
-               ctx.arc(x, y, 2, 0, Math.PI * 2);
+               //ctx.arc(x, y, 2, 0, Math.PI * 2);
+               ctx.moveTo(x, y);
+               ctx.lineTo(
+                   cx + Math.cos(radian - Math.PI / 180 * 12) * 10,
+                   cy + Math.sin(radian - Math.PI / 180 * 12) * 10
+               );
+               ctx.lineTo(
+                   cx + Math.cos(radian + Math.PI / 180 * 12) * 10,
+                   cy + Math.sin(radian + Math.PI / 180 * 12) * 10
+               );
                ctx.fill();
                i_tri += 1;
             }
