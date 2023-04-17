@@ -45,7 +45,7 @@
 * (done) can1 layer: should be the base sun texture
 * (done) update can1 layer over time by just stepping and wraping the cell index value
 * (done) can1 layer: have these triangles rotate over the course of the cells
-* () can1 layer: have a bunch of trangles drawn around the base circle
+* (done) can1 layer: have a bunch of trangles drawn around the base circle
 * () can2 layer: should be the face on top of the base, just have one expression at cell 0 \( for now \)
 
 ## ( done 04/17/2023 ) - r36 - Sun class

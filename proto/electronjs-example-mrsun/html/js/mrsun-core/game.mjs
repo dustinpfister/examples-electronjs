@@ -12,7 +12,7 @@ import { utils }  from "./utils.mjs"
 //-------- ----------
 const can1 = canvasMod.create({
     size: 128,
-    palette: ['yellow', '#ff0000', '#880000'],
+    palette: ['yellow', '#ff0000', '#880000', '#440000'],
     state: {},
     draw: (canObj, ctx, canvas, state) => {
         ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -29,10 +29,10 @@ const can1 = canvasMod.create({
             // draw triangles
             let i_tri = 0;
             while(i_tri < tri_count){
-               const radian = radian_step * i_tri + radian_step * (i / len);
+               const radian = radian_step * i_tri + radian_step * 3 * (i / len);
                const x = cx + Math.cos(radian) * 16;
                const y = cy + Math.sin(radian) * 16;
-               ctx.fillStyle = canObj.palette[1];
+               ctx.fillStyle = canObj.palette[1 + i_tri % 3];
                //if(i_tri === 0){
                //    ctx.fillStyle = canObj.palette[2];
                //}
