@@ -179,13 +179,48 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 const createRenderSheet = (section) => {
     const can = canvasMod.create({
         size: 128,
-        palette: ['rgba(0,0,0, 0.2)', 'white'],
-        state: {},
+        palette: ['rgba(0,0,0, 0.2)', 'red'],
+        state: {
+            section: section
+        },
         draw: (canObj, ctx, canvas, state) => {
             ctx.clearRect(0,0, canvas.width, canvas.height);
             ctx.fillStyle = canObj.palette[0];
-            ctx.strokeStyle = canObj.palette[0];
+            ctx.strokeStyle = canObj.palette[1];
             ctx.fillRect(0,0,canvas.width, canvas.height);
+
+            const section = state.section;
+            const sprite = section.sprite_world;
+            let i = 0;
+            while(i < constant.SLOT_GRID_LEN){
+                const bx = i % constant.SLOT_GRID_WIDTH;
+                const by = Math.floor(i / constant.SLOT_GRID_WIDTH);
+                const i_slot = by * constant.SLOT_GRID_WIDTH + bx;
+                const slot = section.slots[i_slot];
+                const block = slot.block;
+
+                //const radian = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+
+//console.log(section)
+let radian = 0;
+radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+//if(sprite){
+  //radian = sprite.position.angleTo( new Vector2( -320, -240 ) );
+  //radian = sprite.position.angle();
+//}
+
+const radius_land = constant.LAND_RADIUS;
+// get a vector2 that is on the edge of the sun area
+const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
+
+ctx.beginPath();
+ctx.moveTo(64, 64);
+ctx.lineTo(v1.x, v1.y );
+ctx.stroke();
+
+                i += 1;
+            }
+
         }
     });
     const sheet = new SpriteSheet(can.canvas);
@@ -293,9 +328,7 @@ class LandSection {
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;
-// world sprite objects
-this.sprite_world = new SpriteLandSectonWorld(this.i);
-this.sprite_world.position.set(this.x, this.y);
+
         // counts_of_block_types/next_cost_of_somehting.
         this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
         // temp
@@ -306,6 +339,12 @@ this.sprite_world.position.set(this.x, this.y);
         this.applySectionData(sectionData)
         // update the counts
         this.setBlockTypeCounts();
+
+
+// world sprite objects
+this.sprite_world = new SpriteLandSectonWorld(this);
+this.sprite_world.position.set(this.x, this.y);
+
     }
     // apply section data
     applySectionData(sectionData){

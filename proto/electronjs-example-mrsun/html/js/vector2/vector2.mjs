@@ -5,7 +5,7 @@
 //import * as MathUtils from './MathUtils.js';
 
 const MathUtils = {};
-MathUtils.clmap = function clamp( value, min, max ) {
+MathUtils.clamp = function clamp( value, min, max ) {
     return Math.max( min, Math.min( max, value ) );
 };
 
