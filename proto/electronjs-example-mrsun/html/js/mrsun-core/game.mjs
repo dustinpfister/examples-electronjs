@@ -213,9 +213,12 @@ const radius_land = constant.LAND_RADIUS;
 // get a vector2 that is on the edge of the sun area
 const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
 
+const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
+
 ctx.beginPath();
 ctx.moveTo(64, 64);
-ctx.lineTo(v1.x, v1.y );
+ctx.lineTo(v2.x, v2.y );
 ctx.stroke();
 
                 i += 1;
