@@ -175,6 +175,24 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
+// create a render sheet for the given section object
+const createRenderSheet = (section) => {
+    const can = canvasMod.create({
+        size: 128,
+        palette: ['rgba(0,0,0, 0.5)', 'white'],
+        state: {},
+        draw: (canObj, ctx, canvas, state) => {
+            ctx.fillStyle = canObj.palette[0];
+            ctx.strokeStyle = canObj.palette[0];
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+    });
+    const sheet = new SpriteSheet(can.canvas);
+    sheet.setCellDataToGrid( new Vector2(128, 128) );
+    sheet.can = can;
+    return sheet;
+};
+/*
 const can_lsw_rock = canvasMod.create({
     size: 256,
     palette: ['black', 'white'],
@@ -185,18 +203,21 @@ const can_lsw_rock = canvasMod.create({
         ctx.beginPath();
     }
 });
+*/
 //const SpriteLandSectonWorld
 class SpriteLandSectonWorld extends Sprite {
-    constructor(i_land_section) {
+    constructor(section) {
         super();
-        this.i = i_land_section;
+        this.section = section;
         this.type = 'SpriteLandSectonWorld';
-        this.size.set(116, 116);
+        this.size.set(128, 128);
 
-        const sheet1 = new SpriteSheet(can_lsw_rock.canvas);
-        sheet1.setCellDataToGrid();
-        //this.sheets.push(sheet1);
+        this.sheets[0] = createRenderSheet(this.section);
+        this.cellIndices[0] = 0;
 
+        //const sheet2 = new SpriteSheet(can_lsw_rock.canvas);
+        //sheet2.setCellDataToGrid();
+        //this.sheets.push(sheet2);
     }
 };
 //-------- ----------
