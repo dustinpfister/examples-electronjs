@@ -189,8 +189,8 @@ const drawSectionArc = (ctx, section, bx, by) => {
     let rad_edge = rad_center - rad_delta;
     let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * bx);
     let rad_end = rad_start + Math.PI / 180 * (30 / 10);
-    const radius_delta = 100 / 8;
-    const radius_low = radius_tocenter - radius_land;
+    const radius_delta = 70 / 8;
+    const radius_low = radius_tocenter - radius_land + radius_delta * (8 - (by + 1));
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_low + radius_delta, rad_end, rad_start, true  );
     ctx.closePath();
@@ -221,7 +221,7 @@ const createRenderSheet = (section) => {
                 const block = slot.block;
 
 
-drawSectionArc(ctx, section, 0)
+drawSectionArc(ctx, section, 0, 0)
 
 /*
 const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
