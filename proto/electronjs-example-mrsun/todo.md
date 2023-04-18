@@ -48,14 +48,23 @@
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 * () I will also need the same cell deal for locked slots, and blank blocks
 
-## () - r40 - Rock sheet
+## () - rx - Rock sheet
 * () I am going to need a rock cell for each x, and y location for each Land Section
 
-## () - r39 - Single Render Sheet
+
+## () - r40 - draw section arc helper
+* (done) I want a draw section arc helper function
+* (done) use this draw section arc helper when drawing the section canvas
+* () have arguments for draw secton helper
+
+* () what I am really going to need here is a method that I can use to get any point of interset with this as well
+* () start another helper that can be used to draw a single slot.
+
+## ( done 04/18/2023 ) - r39 - Single Render Sheet
 * (done) I am going to need a single final render sheet that will be what is used for the final draw with SpriteLandSectonWorld
 * (done) The SpriteLandSectonWorld class will need to have the canvas updated over time, so this class will need an update method
 * (done) have just a basic starting point for what I want with this
-* () see about drawing curved block sections
+* (done) see about having a crude start at least for arcs
 
 ## ( done 04/17/2023 ) - r38 - start Sprites for World state Land Sections
 * (done) adjusted sun size and sun radius

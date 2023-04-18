@@ -175,6 +175,27 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
+const drawSectionArc = (ctx, section, bx, by) => {
+    const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+    const radius_land = constant.LAND_RADIUS;
+    // get a vector2 that is on the edge of the sun area
+    const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
+    // get a vector2 that is the center location
+    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+    const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
+    ctx.beginPath();
+    let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+    let rad_delta = Math.PI / 180 * 15;
+    let rad_edge = rad_center - rad_delta;
+    let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * bx);
+    let rad_end = rad_start + Math.PI / 180 * (30 / 10);
+    const radius_delta = 100 / 8;
+    const radius_low = radius_tocenter - radius_land;
+    ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
+    ctx.arc(v2.x, v2.y, radius_low + radius_delta, rad_end, rad_start, true  );
+    ctx.closePath();
+    ctx.stroke();
+};
 // create a render sheet for the given section object
 const createRenderSheet = (section) => {
     const can = canvasMod.create({
@@ -199,16 +220,11 @@ const createRenderSheet = (section) => {
                 const slot = section.slots[i_slot];
                 const block = slot.block;
 
-                //const radian = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
 
-//console.log(section)
-let radian = 0;
-radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-//if(sprite){
-  //radian = sprite.position.angleTo( new Vector2( -320, -240 ) );
-  //radian = sprite.position.angle();
-//}
+drawSectionArc(ctx, section, 0)
 
+/*
+const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
 const radius_land = constant.LAND_RADIUS;
 // get a vector2 that is on the edge of the sun area
 const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
@@ -217,16 +233,13 @@ const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
 const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
 
 ctx.beginPath();
-//ctx.moveTo(64, 64);
-//ctx.lineTo(v2.x, v2.y );
-
-// crude start thus far
-radian = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-let rad2 = Math.PI / 180 * 12;
-ctx.arc(v2.x, v2.y, radius_tocenter - radius_land, radian -rad2, radian + rad2  )
-
+let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+let rad_delta = Math.PI / 180 * 15;
+let rad_start = rad_center - rad_delta;
+let rad_end = rad_start + Math.PI / 180 * (30 / 10);
+ctx.arc(v2.x, v2.y, radius_tocenter - radius_land, rad_start, rad_end  )
 ctx.stroke();
-
+*/
                 i += 1;
             }
 
