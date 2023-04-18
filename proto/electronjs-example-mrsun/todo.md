@@ -53,8 +53,9 @@
 
 ## () - r39 - Single Render Sheet
 * (done) I am going to need a single final render sheet that will be what is used for the final draw with SpriteLandSectonWorld
-* () The SpriteLandSectonWorld class will need to have the canvas updated over time, so this class will need an update method
-* () have just a basic starting point for what I want with this
+* (done) The SpriteLandSectonWorld class will need to have the canvas updated over time, so this class will need an update method
+* (done) have just a basic starting point for what I want with this
+* () see about drawing curved block sections
 
 ## ( done 04/17/2023 ) - r38 - start Sprites for World state Land Sections
 * (done) adjusted sun size and sun radius

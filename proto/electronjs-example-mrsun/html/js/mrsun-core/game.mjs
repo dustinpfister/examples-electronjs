@@ -212,13 +212,19 @@ radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
 const radius_land = constant.LAND_RADIUS;
 // get a vector2 that is on the edge of the sun area
 const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
-
+// get a vector2 that is the center location
 const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
 const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
 
 ctx.beginPath();
-ctx.moveTo(64, 64);
-ctx.lineTo(v2.x, v2.y );
+//ctx.moveTo(64, 64);
+//ctx.lineTo(v2.x, v2.y );
+
+// crude start thus far
+radian = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+let rad2 = Math.PI / 180 * 12;
+ctx.arc(v2.x, v2.y, radius_tocenter - radius_land, radian -rad2, radian + rad2  )
+
 ctx.stroke();
 
                 i += 1;
