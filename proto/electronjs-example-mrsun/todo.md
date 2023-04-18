@@ -52,13 +52,11 @@
 * () I am going to need a rock cell for each x, and y location for each Land Section
 
 
-## () - r40 - draw section arc helper
+## ( done 04/18/2023 ) - r40 - draw section arc helper
 * (done) I want a draw section arc helper function
 * (done) use this draw section arc helper when drawing the section canvas
-* () have arguments for draw secton helper
-
-* () what I am really going to need here is a method that I can use to get any point of interset with this as well
-* () start another helper that can be used to draw a single slot.
+* (done) have arguments for draw secton helper
+* (done) see about using this to draw all slots of all sections
 
 ## ( done 04/18/2023 ) - r39 - Single Render Sheet
 * (done) I am going to need a single final render sheet that will be what is used for the final draw with SpriteLandSectonWorld

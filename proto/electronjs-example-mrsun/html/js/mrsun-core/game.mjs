@@ -175,7 +175,8 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
-const drawSectionArc = (ctx, section, bx, by) => {
+const drawSectionArc = (ctx, section, slot) => {
+    const block = slot.block;
     const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     const radius_land = constant.LAND_RADIUS;
     // get a vector2 that is on the edge of the sun area
@@ -187,14 +188,24 @@ const drawSectionArc = (ctx, section, bx, by) => {
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     let rad_delta = Math.PI / 180 * 15;
     let rad_edge = rad_center - rad_delta;
-    let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * bx);
+    let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * slot.x);
     let rad_end = rad_start + Math.PI / 180 * (30 / 10);
     const radius_delta = 70 / 8;
-    const radius_low = radius_tocenter - radius_land + radius_delta * (8 - (by + 1));
+    const radius_low = radius_tocenter - radius_land + radius_delta * (8 - (slot.y + 1));
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_low + radius_delta, rad_end, rad_start, true  );
     ctx.closePath();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 3;
     ctx.stroke();
+    ctx.fillStyle= 'cyan';
+    if(!slot.locked){
+        ctx.fillStyle= 'black';
+        if(block.type === 'rock'){
+            ctx.fillStyle= 'red';
+        }
+    }
+    ctx.fill();
 };
 // create a render sheet for the given section object
 const createRenderSheet = (section) => {
@@ -206,9 +217,9 @@ const createRenderSheet = (section) => {
         },
         draw: (canObj, ctx, canvas, state) => {
             ctx.clearRect(0,0, canvas.width, canvas.height);
-            ctx.fillStyle = canObj.palette[0];
-            ctx.strokeStyle = canObj.palette[1];
-            ctx.fillRect(0,0,canvas.width, canvas.height);
+            //ctx.fillStyle = canObj.palette[0];
+            //ctx.strokeStyle = canObj.palette[1];
+            //ctx.fillRect(0,0,canvas.width, canvas.height);
 
             const section = state.section;
             const sprite = section.sprite_world;
@@ -218,10 +229,10 @@ const createRenderSheet = (section) => {
                 const by = Math.floor(i / constant.SLOT_GRID_WIDTH);
                 const i_slot = by * constant.SLOT_GRID_WIDTH + bx;
                 const slot = section.slots[i_slot];
-                const block = slot.block;
+                //const block = slot.block;
 
 
-drawSectionArc(ctx, section, 0, 0)
+drawSectionArc(ctx, section, slot)
 
 /*
 const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
