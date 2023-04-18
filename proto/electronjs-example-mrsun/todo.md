@@ -48,10 +48,13 @@
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 * () I will also need the same cell deal for locked slots, and blank blocks
 
-# () - r39 - Single render sheet for Land Sections World Sprites
+## () - r40 - Rock sheet
 * () I am going to need a rock cell for each x, and y location for each Land Section
-* () I am going to need a single final render sheet that will be what is used for the final draw
-* () The Sprite class will need to use canvas elemets to draw from source sheets to the render sheet
+
+## () - r39 - Single Render Sheet
+* () I am going to need a single final render sheet that will be what is used for the final draw with SpriteLandSectonWorld
+* () The SpriteLandSectonWorld class will need to have the canvas updated over time, so this class will need an update method
+* () have just a basic starting point for what I want with this
 
 ## ( done 04/17/2023 ) - r38 - start Sprites for World state Land Sections
 * (done) adjusted sun size and sun radius
