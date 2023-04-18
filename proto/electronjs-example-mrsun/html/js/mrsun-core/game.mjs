@@ -179,9 +179,10 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 const createRenderSheet = (section) => {
     const can = canvasMod.create({
         size: 128,
-        palette: ['rgba(0,0,0, 0.5)', 'white'],
+        palette: ['rgba(0,0,0, 0.2)', 'white'],
         state: {},
         draw: (canObj, ctx, canvas, state) => {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
             ctx.fillStyle = canObj.palette[0];
             ctx.strokeStyle = canObj.palette[0];
             ctx.fillRect(0,0,canvas.width, canvas.height);
@@ -218,6 +219,9 @@ class SpriteLandSectonWorld extends Sprite {
         //const sheet2 = new SpriteSheet(can_lsw_rock.canvas);
         //sheet2.setCellDataToGrid();
         //this.sheets.push(sheet2);
+    }
+    update(){
+        canvasMod.update(this.sheets[0].can);
     }
 };
 //-------- ----------
@@ -289,12 +293,9 @@ class LandSection {
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;
-
-
-
+// world sprite objects
 this.sprite_world = new SpriteLandSectonWorld(this.i);
 this.sprite_world.position.set(this.x, this.y);
-
         // counts_of_block_types/next_cost_of_somehting.
         this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
         // temp
