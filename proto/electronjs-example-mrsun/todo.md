@@ -54,8 +54,8 @@
 ## () - rx - fix block absorbe bug
 * () mana value of blocks is way to high.
 
-## () - r41 - invert block display
-* () invert the block display
+## ( done 04/19/2023 ) - r41 - invert block display
+* (done) invert the block display
 
 ## ( done 04/18/2023 ) - r40 - draw section arc helper
 * (done) I want a draw section arc helper function
