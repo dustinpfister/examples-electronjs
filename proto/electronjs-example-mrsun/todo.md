@@ -38,21 +38,23 @@
 
 <!-- PROTOTYPE -->
 
-## () - rx - object2d-buttons.js
+## () - r46 - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - rx - Sprites for Land State Land Sections
-* () I will need a LandSection.sprite\_land property
-
-## () - rx - blank and locked cells for Sprites for World state Land Sections
+## () - r45 - blank and locked cells for Sprites for World state Land Sections
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 * () I will also need the same cell deal for locked slots, and blank blocks
 
-## () - rx - Rock sheet
-* () I am going to need a rock cell for each x, and y location for each Land Section
+## () - r44 - Sprites for Land State Land Sections
+* () have a new sprite object like what I am using in the world state only for the land state
+* () I will need a LandSection.sprite\_land property
+* () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
-## () - rx - fix block absorb bug
-* () mana value of blocks is way to high.
+## () - r43 - texture for slots in world state
+* () see about adding texture for the slots in world state
+
+## ( done 04/20/2023 ) - r42 - fix block absorb bug
+* (done) mana value of blocks is way to high.
 
 ## ( done 04/19/2023 ) - r41 - invert block display
 * (done) invert the block display
