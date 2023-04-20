@@ -51,10 +51,9 @@
 * () I will also need the same cell deal for locked slots, and blank blocks
 
 ## () - r43 - texture for slots in world state
+* (done) I will want another canvas for creation of textures that will be used for a fill style
+* (done) use create pattern 2d context method to get fill styles for blocks
 * () rename createRenderSheet helper to createSectionRenderSheet in game.mjs
-* () I will want another canvas for creation of textures that will be used for a fill style
-* () use create pattern 2d context method to get fill styles for blocks
-* () see about adding texture for the slots in world state
 
 ## ( done 04/20/2023 ) - r42 - fix block absorb bug
 * (done) mana value of blocks is way to high.

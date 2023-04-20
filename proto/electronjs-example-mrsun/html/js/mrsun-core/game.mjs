@@ -171,6 +171,16 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
+// rock texture used for drawing blocks in drawSectionArc helper
+const can_rock_texture = canvasMod.create({
+        size: 32,
+        palette: ['lime', 'red'],
+        state: {
+           gSize: 32
+        },
+        draw: 'rnd'
+});
+// draw a section arc for a single slot object
 const drawSectionArc = (ctx, section, slot) => {
     const block = slot.block;
     const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
@@ -196,6 +206,8 @@ const drawSectionArc = (ctx, section, slot) => {
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
             ctx.fillStyle= 'red';
+            const pattern = ctx.createPattern(can_rock_texture.canvas, 'repeat');
+            ctx.fillStyle= pattern;
         }
     }
     ctx.fill();
