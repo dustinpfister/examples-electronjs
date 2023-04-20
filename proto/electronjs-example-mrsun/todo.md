@@ -17,8 +17,6 @@
 ## (  ) - Slot Class, Disabled Slot feature 
 * () a slot object will have a disabled property which means that it can not be used at all
 
-<!-- PROTOTYPE -->
-
 ## () - rx - Manual save, safer save
      For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
      in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
@@ -38,6 +36,8 @@
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
+<!-- PROTOTYPE -->
+
 ## () - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
@@ -51,7 +51,7 @@
 ## () - rx - Rock sheet
 * () I am going to need a rock cell for each x, and y location for each Land Section
 
-## () - rx - fix block absorbe bug
+## () - rx - fix block absorb bug
 * () mana value of blocks is way to high.
 
 ## ( done 04/19/2023 ) - r41 - invert block display
