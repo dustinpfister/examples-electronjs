@@ -41,16 +41,19 @@
 ## () - r46 - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r45 - blank and locked cells for Sprites for World state Land Sections
-* () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
-* () I will also need the same cell deal for locked slots, and blank blocks
-
-## () - r44 - Sprites for Land State Land Sections
+## () - r45 - Sprites for Land State Land Sections
 * () have a new sprite object like what I am using in the world state only for the land state
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
+## () - r44 - blank and locked cells for Sprites for World state Land Sections
+* () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
+* () I will also need the same cell deal for locked slots, and blank blocks
+
 ## () - r43 - texture for slots in world state
+* () rename createRenderSheet helper to createSectionRenderSheet in game.mjs
+* () I will want another canvas for creation of textures that will be used for a fill style
+* () use create pattern 2d context method to get fill styles for blocks
 * () see about adding texture for the slots in world state
 
 ## ( done 04/20/2023 ) - r42 - fix block absorb bug
