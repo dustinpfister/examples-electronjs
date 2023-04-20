@@ -48,7 +48,6 @@ sm.states.init = {
        const cx = sm.canvas.width / 2;
        const cy = sm.canvas.height / 2;
        console.log('init of mr sun.');
-
        MS.auto_load()
        .then( (text_lz) => {
            console.log('Autoload worked!');
@@ -63,7 +62,6 @@ sm.states.init = {
            sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
            sm.setState('world', {});
        });
-
     },
     update: (sm, secs) => {},
     render: (sm, ctx, canvas) => {
@@ -100,18 +98,8 @@ sm.states.world = {
         utils.drawSprite(sun, ctx, canvas)
         // land section objects
         sm.game.lands.sections.forEach((section, i) => {
-/*
-            utils.drawLandSection(sm, ctx, canvas, section, {
-                grid_cx: section.x,
-                grid_cy: section.y,
-                grid_w: 80, grid_h: 50,
-                block_width: 80 / 10,
-                block_height: 50 / 8,
-                grid_radian: Math.PI * 2 / 12 * i + Math.PI * 0.5});
-*/
-section.sprite_world.update();
+            section.sprite_world.update();
             utils.drawSprite(section.sprite_world, ctx, canvas);
-
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.beginPath();
             ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
@@ -129,10 +117,6 @@ section.sprite_world.update();
         ctx.textBaseline = 'top';
         ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
         ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
-
-
-//utils.drawSprite(sm.game.sun2, ctx, canvas)
-
     },
     events: {
         pointerdown : (sm, x, y, e) => {
@@ -248,7 +232,6 @@ sm.states.land = {
     },
     events: {
         pointerdown : (sm, x, y, e, data) => {
-            //const land = sm.game.lands[sm.landIndex];
             const section = sm.game.lands.sections[sm.landIndex];
             if(data.block_info_disp){
                 data.block_info_disp = false;
@@ -293,17 +276,6 @@ sm.states.land = {
                         gameMod.upgradeBlock(sm.game, sm.landIndex, i);
                     }
                     if(data.block_mode === 'info'){
-
-//console.log( JSON.stringify( section.getSectionData() ) );
-
-//console.log( JSON.stringify(sm.game.lands.getSectionDataArray()) );
-
-//const string = gameMod.createSaveString(sm.game);
-//console.log(string);
-//console.log(string.replace(/"/g, '\\\"'));
-
-                        //console.log('mana_value: ' + block.mana_value.valueOf().toNumber());
-                        //console.log(block);
                         data.block_info_disp = true;
                         data.block = block;
                         MS.auto_save( gameMod.createSaveString( sm.game ) );

@@ -33,11 +33,7 @@ const can1 = canvasMod.create({
                const x = cx + Math.cos(radian) * 16;
                const y = cy + Math.sin(radian) * 16;
                ctx.fillStyle = canObj.palette[1 + i_tri % 3];
-               //if(i_tri === 0){
-               //    ctx.fillStyle = canObj.palette[2];
-               //}
                ctx.beginPath();
-               //ctx.arc(x, y, 2, 0, Math.PI * 2);
                ctx.moveTo(x, y);
                ctx.lineTo(
                    cx + Math.cos(radian - Math.PI / 180 * 12) * 10,
@@ -217,10 +213,6 @@ const createRenderSheet = (section) => {
         },
         draw: (canObj, ctx, canvas, state) => {
             ctx.clearRect(0,0, canvas.width, canvas.height);
-            //ctx.fillStyle = canObj.palette[0];
-            //ctx.strokeStyle = canObj.palette[1];
-            //ctx.fillRect(0,0,canvas.width, canvas.height);
-
             const section = state.section;
             const sprite = section.sprite_world;
             let i = 0;
@@ -229,31 +221,9 @@ const createRenderSheet = (section) => {
                 const by = Math.floor(i / constant.SLOT_GRID_WIDTH);
                 const i_slot = by * constant.SLOT_GRID_WIDTH + bx;
                 const slot = section.slots[i_slot];
-                //const block = slot.block;
-
-
-drawSectionArc(ctx, section, slot)
-
-/*
-const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-const radius_land = constant.LAND_RADIUS;
-// get a vector2 that is on the edge of the sun area
-const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
-// get a vector2 that is the center location
-const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
-const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
-
-ctx.beginPath();
-let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-let rad_delta = Math.PI / 180 * 15;
-let rad_start = rad_center - rad_delta;
-let rad_end = rad_start + Math.PI / 180 * (30 / 10);
-ctx.arc(v2.x, v2.y, radius_tocenter - radius_land, rad_start, rad_end  )
-ctx.stroke();
-*/
+                drawSectionArc(ctx, section, slot)
                 i += 1;
             }
-
         }
     });
     const sheet = new SpriteSheet(can.canvas);
@@ -261,32 +231,14 @@ ctx.stroke();
     sheet.can = can;
     return sheet;
 };
-/*
-const can_lsw_rock = canvasMod.create({
-    size: 256,
-    palette: ['black', 'white'],
-    state: {},
-    draw: (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = canObj.palette[0];
-        ctx.strokeStyle = canObj.palette[0];
-        ctx.beginPath();
-    }
-});
-*/
-//const SpriteLandSectonWorld
 class SpriteLandSectonWorld extends Sprite {
     constructor(section) {
         super();
         this.section = section;
         this.type = 'SpriteLandSectonWorld';
         this.size.set(128, 128);
-
         this.sheets[0] = createRenderSheet(this.section);
         this.cellIndices[0] = 0;
-
-        //const sheet2 = new SpriteSheet(can_lsw_rock.canvas);
-        //sheet2.setCellDataToGrid();
-        //this.sheets.push(sheet2);
     }
     update(){
         canvasMod.update(this.sheets[0].can);
@@ -361,7 +313,6 @@ class LandSection {
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;
-
         // counts_of_block_types/next_cost_of_somehting.
         this.bt_counts = {};  // counts for all block types for all slots 'blank, rock, ect'
         // temp
@@ -372,12 +323,9 @@ class LandSection {
         this.applySectionData(sectionData)
         // update the counts
         this.setBlockTypeCounts();
-
-
-// world sprite objects
-this.sprite_world = new SpriteLandSectonWorld(this);
-this.sprite_world.position.set(this.x, this.y);
-
+        // world sprite objects
+        this.sprite_world = new SpriteLandSectonWorld(this);
+        this.sprite_world.position.set(this.x, this.y);
     }
     // apply section data
     applySectionData(sectionData){
@@ -661,15 +609,7 @@ gameMod.create = (opt) => {
        tick_last: 0      // last tick can be subtracted from tick to get a tick delta
     };
     // create sun object
-/*
-    game.sun = {
-        center: new Vector2(opt.cx, opt.cy),
-        position: new Vector2(opt.x, opt.y),
-        radius: constant.SUN_RADIUS
-    };
-*/
     game.sun = new Sun(opt.cx, opt.cy, constant.SUN_RADIUS);
-
     game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
     game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
     // land objects
