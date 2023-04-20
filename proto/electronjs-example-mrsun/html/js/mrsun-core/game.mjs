@@ -187,13 +187,10 @@ const drawSectionArc = (ctx, section, slot) => {
     let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * slot.x);
     let rad_end = rad_start + Math.PI / 180 * (30 / 10);
     const radius_delta = 70 / 8;
-    const radius_low = radius_tocenter - radius_land + radius_delta * slot.y; //(8 - (slot.y + 1));
+    const radius_low = radius_tocenter - radius_land + radius_delta * slot.y;
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_low + radius_delta, rad_end, rad_start, true  );
     ctx.closePath();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 3;
-    ctx.stroke();
     ctx.fillStyle= 'cyan';
     if(!slot.locked){
         ctx.fillStyle= 'black';
@@ -202,6 +199,9 @@ const drawSectionArc = (ctx, section, slot) => {
         }
     }
     ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 1;
+    ctx.stroke();
 };
 // create a render sheet for the given section object
 const createRenderSheet = (section) => {
