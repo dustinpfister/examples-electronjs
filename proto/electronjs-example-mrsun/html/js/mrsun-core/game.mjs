@@ -216,7 +216,7 @@ const drawSectionArc = (ctx, section, slot) => {
     ctx.stroke();
 };
 // create a render sheet for the given section object
-const createRenderSheet = (section) => {
+const createSectionRenderSheet = (section) => {
     const can = canvasMod.create({
         size: 128,
         palette: ['rgba(0,0,0, 0.2)', 'red'],
@@ -249,7 +249,7 @@ class SpriteLandSectonWorld extends Sprite {
         this.section = section;
         this.type = 'SpriteLandSectonWorld';
         this.size.set(128, 128);
-        this.sheets[0] = createRenderSheet(this.section);
+        this.sheets[0] = createSectionRenderSheet(this.section);
         this.cellIndices[0] = 0;
     }
     update(){
