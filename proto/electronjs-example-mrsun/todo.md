@@ -44,19 +44,23 @@
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
-## () - rx - blank and locked cells for Sprites for World state Land Sections
-* () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
-* () I will also need the same cell deal for locked slots, and blank blocks
+
 
 <!-- PROTOTYPE -->
 
-## () - r44 - create pattern and rotation
+## () - r46 - Sprite sheets for Land Section Sprites
+    If I work out a solution that works good for detail textures of slots I will now want to see about creating sprite sheets. In other words if thinks look good I now need to think in terms of making things run smotther by not doing real timer rendering of graphics on each frame tick for each slot.
+* () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
+* () 
+
+## () - r45 - improved draw section arc method
+   It might be possible to use the create pattern method still, but now I am thinking that it might be better to just work out an improved draw section arc method. That all ready does work well I just need to find a way to make the method a little more fine grain to draw a grid of sorts inside the slot with differing colors.
+
+## (done 04/21/2023) - r44 - create pattern and rotation
     I still want to work out how to go about using the create pattern 2d context method to create fill style textures when drawing slots
-    This will need to be done before I move on to anything more that has to do with graphics including more efficient rendering.
+    This will need to be done before I move on to anything more that has to do with graphics including more efficient rendering. it would look like this is might not work out so well, so I am thinking I might want to find another solution.
 * (done) I will want to start out with some kind of texture where rotation matters, like a triangle.
-* () one goal then would be to get the center of this triangle to be in the center of each slot
-* () another goal is to get the main point of this triangle to also point to the center of the canvas as well.
-* () there is also setting the size of the canvas , or size of the trangle to work well with the slots
+* (done) one goal then would be to get the center of this triangle to be in the center of each slot
 
 ## ( done 04/21/2023 ) - r43 - texture for slots in world state
 * (done) I will want another canvas for creation of textures that will be used for a fill style

@@ -176,7 +176,8 @@ const can_rock_texture = canvasMod.create({
     size: 32,
     palette: ['#aa6600', 'red'],
     state: {
-        deg: 0,
+        radian: 0,
+        s: 14,
         cx: 16,
         cy: 16
     },
@@ -184,14 +185,14 @@ const can_rock_texture = canvasMod.create({
         ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.fillStyle = canObj.palette[1];
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2;
         ctx.save();
         ctx.translate(state.cx, state.cy);
-        ctx.rotate(Math.PI / 180 * state.deg);
+        ctx.rotate(state.radian + Math.PI * 0.5);
         ctx.beginPath();
-        ctx.moveTo(0, -14);
-        ctx.lineTo(14, 14);
-        ctx.lineTo(-14, 14);
+        ctx.moveTo(0, state.s * -1);
+        ctx.lineTo(state.s * 0.25, state.s * 0.25);
+        ctx.lineTo(state.s * 0.25 * -1, state.s * 0.25);
         ctx.closePath();
         ctx.stroke();
         ctx.restore();
@@ -223,6 +224,8 @@ const drawSectionArc = (ctx, section, slot) => {
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
             ctx.fillStyle= 'red';
+            //can_rock_texture.state.radian = rad_center;
+            //canvasMod.update(can_rock_texture);
             const pattern = ctx.createPattern(can_rock_texture.canvas, 'repeat');
             ctx.fillStyle= pattern;
         }
