@@ -175,18 +175,26 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 const can_rock_texture = canvasMod.create({
     size: 32,
     palette: ['#aa6600', 'red'],
-    state: {},
+    state: {
+        deg: 0,
+        cx: 16,
+        cy: 16
+    },
     draw: (canObj, ctx, canvas, state) => {
         ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.fillStyle = canObj.palette[1];
         ctx.lineWidth = 3;
+        ctx.save();
+        ctx.translate(state.cx, state.cy);
+        ctx.rotate(Math.PI / 180 * state.deg);
         ctx.beginPath();
-        ctx.moveTo(16, 2);
-        ctx.lineTo(30, 30);
-        ctx.lineTo(2, 30);
+        ctx.moveTo(0, -14);
+        ctx.lineTo(14, 14);
+        ctx.lineTo(-14, 14);
         ctx.closePath();
         ctx.stroke();
+        ctx.restore();
     }
 });
 // draw a section arc for a single slot object
