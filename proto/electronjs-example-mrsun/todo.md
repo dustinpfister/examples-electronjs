@@ -2,19 +2,19 @@
 
 <!-- SAVE FOR FUTURE UPDATES -->
 
-## (  ) - Move Sun Method?
+## () - rx - Move Sun Method?
 * () have a gameMod.moveSun method that will be used in state objects such as 'world'
 * () gameMod.moveSun will take an angle and distance from center
 
-## (  ) - Always state objects, State object priority
+## () - rx - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
-## (  ) - Water level, water block type
+## () - rx - Water level, water block type
 * () can set a water level such as 1 block so that any column that is 0 rocks will have a water block
 
-## (  ) - Slot Class, Disabled Slot feature 
+## () - rx - Slot Class, Disabled Slot feature 
 * () a slot object will have a disabled property which means that it can not be used at all
 
 ## () - rx - Manual save, safer save
@@ -36,25 +36,25 @@
 * () not enough mana to upgrade block message
 * () no blank blocks to create message
 
-<!-- PROTOTYPE -->
-
-## () - r46 - object2d-buttons.js
+## () - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - r45 - Sprites for Land State Land Sections
+## () - rx - Sprites for Land State Land Sections
 * () have a new sprite object like what I am using in the world state only for the land state
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
-## () - r44 - blank and locked cells for Sprites for World state Land Sections
+## () - rx - blank and locked cells for Sprites for World state Land Sections
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 * () I will also need the same cell deal for locked slots, and blank blocks
 
-## () - r43 - texture for slots in world state
+<!-- PROTOTYPE -->
+
+## ( done 04/21/2023 ) - r43 - texture for slots in world state
 * (done) I will want another canvas for creation of textures that will be used for a fill style
 * (done) use create pattern 2d context method to get fill styles for blocks
 * (done) rename createRenderSheet helper to createSectionRenderSheet in game.mjs
-* () I will need to see about setting the rotation of these new textures as needed.
+* (done) I will need to see about setting the rotation of these new textures as needed by having a texture that will help me get an idea about this at least.
 
 ## ( done 04/20/2023 ) - r42 - fix block absorb bug
 * (done) mana value of blocks is way to high.
