@@ -173,15 +173,19 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // rock texture used for drawing blocks in drawSectionArc helper
 const can_rock_texture = canvasMod.create({
-    size: 16,
+    size: 32,
     palette: ['#aa6600', 'red'],
     state: {},
     draw: (canObj, ctx, canvas, state) => {
         ctx.fillStyle = canObj.palette[0];
         ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.fillStyle = canObj.palette[1];
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.arc(8, 8, 2, 0, Math.PI * 2);
+        ctx.moveTo(16, 2);
+        ctx.lineTo(30, 30);
+        ctx.lineTo(2, 30);
+        ctx.closePath();
         ctx.stroke();
     }
 });
