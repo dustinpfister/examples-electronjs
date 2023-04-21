@@ -50,6 +50,13 @@
 
 <!-- PROTOTYPE -->
 
+## () - r44 - create pattern and rotation
+    I still want to work out how to go about using the create pattern 2d context method to create fill style textures when drawing slots
+    This will need to be done before I move on to anything more that has to do with graphics including more efficient rendering.
+* () I will want to start out with some kind of texture where rotation matters, like a triangle.
+* () one goal then would be to get the center of this triangle to be in the center of each slot
+* () another goal is to get the main point of this triangle to also point to the center of the canvas as well.
+
 ## ( done 04/21/2023 ) - r43 - texture for slots in world state
 * (done) I will want another canvas for creation of textures that will be used for a fill style
 * (done) use create pattern 2d context method to get fill styles for blocks
