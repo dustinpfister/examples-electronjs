@@ -55,6 +55,9 @@
 
 ## () - r45 - improved draw section arc method
    It might be possible to use the create pattern method still, but now I am thinking that it might be better to just work out an improved draw section arc method. That all ready does work well I just need to find a way to make the method a little more fine grain to draw a grid of sorts inside the slot with differing colors.
+* (done) rename drawSectionArc to drawSectionSlot method
+* () start a new drawSectionSlotTexel method that will be used to draw each texel in one of these slots
+* () start out with a very simple 2 by 2 texture for the rock blocks
 
 ## (done 04/21/2023) - r44 - create pattern and rotation
     I still want to work out how to go about using the create pattern 2d context method to create fill style textures when drawing slots

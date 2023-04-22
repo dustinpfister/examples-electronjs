@@ -171,7 +171,8 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
-// rock texture used for drawing blocks in drawSectionArc helper
+// rock texture used for drawing blocks in drawSectionSlot helper
+/*
 const can_rock_texture = canvasMod.create({
     size: 32,
     palette: ['#aa6600', 'red'],
@@ -198,8 +199,9 @@ const can_rock_texture = canvasMod.create({
         ctx.restore();
     }
 });
+*/
 // draw a section arc for a single slot object
-const drawSectionArc = (ctx, section, slot) => {
+const drawSectionSlot = (ctx, section, slot) => {
     const block = slot.block;
     const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     const radius_land = constant.LAND_RADIUS;
@@ -226,8 +228,8 @@ const drawSectionArc = (ctx, section, slot) => {
             ctx.fillStyle= 'red';
             //can_rock_texture.state.radian = rad_center;
             //canvasMod.update(can_rock_texture);
-            const pattern = ctx.createPattern(can_rock_texture.canvas, 'repeat');
-            ctx.fillStyle= pattern;
+            //const pattern = ctx.createPattern(can_rock_texture.canvas, 'repeat');
+            //ctx.fillStyle= pattern;
         }
     }
     ctx.fill();
@@ -253,7 +255,7 @@ const createSectionRenderSheet = (section) => {
                 const by = Math.floor(i / constant.SLOT_GRID_WIDTH);
                 const i_slot = by * constant.SLOT_GRID_WIDTH + bx;
                 const slot = section.slots[i_slot];
-                drawSectionArc(ctx, section, slot)
+                drawSectionSlot(ctx, section, slot)
                 i += 1;
             }
         }
