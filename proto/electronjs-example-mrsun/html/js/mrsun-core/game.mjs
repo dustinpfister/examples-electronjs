@@ -200,10 +200,39 @@ const can_rock_texture = canvasMod.create({
     }
 });
 */
+
+const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
+    const block = slot.block;
+    let rad_delta = Math.PI / 180 * 15;
+    let rad_edge = rad_center - rad_delta;
+    // this is what I need to change to set the start and end radius
+    let rad_start = rad_edge + Math.PI / 180 * (30 / 20 * ( slot.x  * 2 ) );
+    let rad_end = rad_start + Math.PI / 180 * ( 30 / 20 * 1);
+    const radius_land = constant.LAND_RADIUS;
+    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+    const radius_delta = 70 / 8;
+    const radius_low = radius_tocenter - radius_land + radius_delta * slot.y;
+    const radius_high = radius_low + (radius_delta / 2);
+    ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
+    ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
+    ctx.closePath();
+    ctx.fillStyle= 'cyan';
+    if(!slot.locked){
+        ctx.fillStyle= 'black';
+        if(block.type === 'rock'){
+            ctx.fillStyle= 'red';
+        }
+    }
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 1;
+    //ctx.stroke();
+};
+
 // draw a section arc for a single slot object
 const drawSectionSlot = (ctx, section, slot) => {
     const block = slot.block;
-    const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+    const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT  * section.i;
     const radius_land = constant.LAND_RADIUS;
     // get a vector2 that is on the edge of the sun area
     const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
@@ -212,30 +241,7 @@ const drawSectionSlot = (ctx, section, slot) => {
     const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
     ctx.beginPath();
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-    let rad_delta = Math.PI / 180 * 15;
-    let rad_edge = rad_center - rad_delta;
-    let rad_start = rad_edge + Math.PI / 180 * (30 / 10 * slot.x);
-    let rad_end = rad_start + Math.PI / 180 * (30 / 10);
-    const radius_delta = 70 / 8;
-    const radius_low = radius_tocenter - radius_land + radius_delta * slot.y;
-    ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
-    ctx.arc(v2.x, v2.y, radius_low + radius_delta, rad_end, rad_start, true  );
-    ctx.closePath();
-    ctx.fillStyle= 'cyan';
-    if(!slot.locked){
-        ctx.fillStyle= 'black';
-        if(block.type === 'rock'){
-            ctx.fillStyle= 'red';
-            //can_rock_texture.state.radian = rad_center;
-            //canvasMod.update(can_rock_texture);
-            //const pattern = ctx.createPattern(can_rock_texture.canvas, 'repeat');
-            //ctx.fillStyle= pattern;
-        }
-    }
-    ctx.fill();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {
