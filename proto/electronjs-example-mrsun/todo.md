@@ -48,16 +48,19 @@
 
 <!-- PROTOTYPE -->
 
-## () - r46 - Sprite sheets for Land Section Sprites
+## () - r47 - Sprite sheets for Land Section Sprites
     If I work out a solution that works good for detail textures of slots I will now want to see about creating sprite sheets. In other words if thinks look good I now need to think in terms of making things run smotther by not doing real timer rendering of graphics on each frame tick for each slot.
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 * () 
 
-## () - r45 - improved draw section arc method
+## () - r46 - texelY, and texelX for drawSectionSlotTexel helper
+* () start out by getting the texelY value to adjust the radius range value as needed
+* () do the same with texelX
+
+## (done 04/22/2023 ) - r45 - improved draw section arc method
    It might be possible to use the create pattern method still, but now I am thinking that it might be better to just work out an improved draw section arc method. That all ready does work well I just need to find a way to make the method a little more fine grain to draw a grid of sorts inside the slot with differing colors.
 * (done) rename drawSectionArc to drawSectionSlot method
-* () start a new drawSectionSlotTexel method that will be used to draw each texel in one of these slots
-* () start out with a very simple 2 by 2 texture for the rock blocks
+* (done) start a new drawSectionSlotTexel method that will be used to draw each texel in one of these slots
 
 ## (done 04/21/2023) - r44 - create pattern and rotation
     I still want to work out how to go about using the create pattern 2d context method to create fill style textures when drawing slots
