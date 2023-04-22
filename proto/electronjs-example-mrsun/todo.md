@@ -54,8 +54,9 @@
 * () 
 
 ## () - r46 - texelY, and texelX for drawSectionSlotTexel helper
-* () start out by getting the texelY value to adjust the radius range value as needed
-* () do the same with texelX
+* (done) start out by getting the texelY value to adjust the radius range value as needed
+* (done) crude image data for now
+* () see about getting the texelX value to work
 
 ## (done 04/22/2023 ) - r45 - improved draw section arc method
    It might be possible to use the create pattern method still, but now I am thinking that it might be better to just work out an improved draw section arc method. That all ready does work well I just need to find a way to make the method a little more fine grain to draw a grid of sorts inside the slot with differing colors.

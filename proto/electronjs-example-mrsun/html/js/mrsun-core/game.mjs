@@ -211,8 +211,14 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const radius_land = constant.LAND_RADIUS;
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const radius_slot_delta = 70 / 8;
-    const radius_low = radius_tocenter - radius_land + radius_slot_delta * slot.y;
-    const radius_high = radius_low + radius_slot_delta;
+    const radius_slot_low = radius_tocenter - radius_land + radius_slot_delta * slot.y;
+    const radius_slot_high = radius_slot_low + radius_slot_delta;
+	
+	const radius_texel_delta = radius_slot_delta / 2;
+	const radius_low = radius_slot_low + radius_texel_delta * texelY;
+	const radius_high = radius_low + radius_texel_delta;
+
+    ctx.beginPath();
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
     ctx.closePath();
@@ -220,7 +226,13 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     if(!slot.locked){
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
-            ctx.fillStyle= 'red';
+			//!!! Crude image data for now
+			const data_img = [
+			   0, 1,
+			   1, 0
+			];
+			const i_imgdata = texelY * 2 + texelX;
+            ctx.fillStyle = data_img[i_imgdata] === 0 ? 'red' : 'lime';
         }
     }
     ctx.fill();
@@ -239,9 +251,10 @@ const drawSectionSlot = (ctx, section, slot) => {
     // get a vector2 that is the center location
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
-    ctx.beginPath();
+    //ctx.beginPath();
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
+    drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {
