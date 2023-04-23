@@ -18,16 +18,7 @@
 * () a slot object will have a disabled property which means that it can not be used at all
 
 ## () - rx - Manual save, safer save
-     For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
-     in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
-     I might want to have some kind of journal system then to help with this. 
-     That is check if the latest save is valid or not, and if not fall back to an older one.
-* () I should be able to do a crtl+s to save at any time
-* () see about a proper fix for the auto save clear issue if saving takes too long 
-* () auto save clear issue seems to be a problem when moving the sun and then saving
-* () I think I will need an autosave_0.txt and a autosave_1.txt
-* () each auto save event will save to 0 or 1 but never both at the same time
-* () always start by loading auto save 0, of that is not valid try 1
+
 
 ## () - rx - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
@@ -51,7 +42,19 @@
 
 <!-- PROTOTYPE -->
 
-## () - rx - use img data objects to render land state blocks
+## () r50 - safer saving
+     For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
+     in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
+     I might want to have some kind of journal system then to help with this. 
+     That is check if the latest save is valid or not, and if not fall back to an older one.
+* () I should be able to do a crtl+s to save at any time
+* () see about a proper fix for the auto save clear issue if saving takes too long 
+* () auto save clear issue seems to be a problem when moving the sun and then saving
+* () I think I will need an autosave_0.txt and a autosave_1.txt
+* () each auto save event will save to 0 or 1 but never both at the same time
+* () always start by loading auto save 0, of that is not valid try 1
+
+## () - r49 - use img data objects to render land state blocks
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
 ## ( done 04/23/2023 ) - r48 - width and height values for img data objects
