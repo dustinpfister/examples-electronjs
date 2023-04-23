@@ -165,6 +165,7 @@ constant.BLOCKS.rock = {
 const IMG = constant.IMG = {};
 IMG.locked = {
     palette: ['blue', 'cyan'],
+    w: 2, h: 2,
     color_indices: [
         0, 1,
         1, 0
@@ -172,6 +173,7 @@ IMG.locked = {
 };
 IMG.blank = {
     palette: ['black'],
+    w: 2, h: 2,
     color_indices: [
         0, 0,
         0, 0
@@ -179,6 +181,7 @@ IMG.blank = {
 };
 IMG.rock = {
     palette: ['lime','green','#888800','#444400'],
+    w: 2, h: 2,
     color_indices: [
         0, 1,
         2, 3
@@ -198,27 +201,23 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // draw a singel texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
+    //!!! these should maybe be constants
+    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+    const radius_slot_delta = 70 / 8;
+    const rad_delta = Math.PI / 180 * 15;
+    // get block and image
     const block = slot.block;
     let img = IMG.locked;
     if(!slot.locked){
         img = IMG[block.type];
     }
-    const rad_delta = Math.PI / 180 * 15;
     const rad_edge = rad_center - rad_delta;
-    // this is what I need to change to set the start and end radius
     const rad_slot_start = rad_edge + Math.PI / 180 * ( 30 / 10 * slot.x );
-    const rad_slot_end = rad_slot_start + Math.PI / 180 * ( 30 / 10 );
-    const rad_delta_texel = rad_delta * 2 / 10 / 2;
+    const rad_delta_texel = rad_delta * 2 / 10 / img.w;
     const rad_start = rad_slot_start + rad_delta_texel * texelX;
     const rad_end = rad_start + rad_delta_texel;
-    //!!! these should maybe be constants
-    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
-    const radius_slot_delta = 70 / 8;
-    // get the low and high radius for the slot as a whole
     const radius_slot_low = radius_tocenter - constant.LAND_RADIUS + radius_slot_delta * slot.y;
-    const radius_slot_high = radius_slot_low + radius_slot_delta;
-    // texel radius low and high
-    const radius_texel_delta = radius_slot_delta / 2;
+    const radius_texel_delta = radius_slot_delta / img.h;
     const radius_low = radius_slot_low + radius_texel_delta * texelY;
     const radius_high = radius_low + radius_texel_delta;
     // draw arcs
@@ -242,13 +241,11 @@ const drawSectionSlot = (ctx, section, slot) => {
     // get a vector2 that is the center location
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
-    //ctx.beginPath();
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 0);
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 1);
-    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {
