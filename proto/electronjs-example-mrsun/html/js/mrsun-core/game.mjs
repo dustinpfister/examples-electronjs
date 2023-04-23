@@ -233,7 +233,6 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
     ctx.fill();
 };
-
 // draw a section arc for a single slot object
 const drawSectionSlot = (ctx, section, slot) => {
     const block = slot.block;
@@ -249,7 +248,7 @@ const drawSectionSlot = (ctx, section, slot) => {
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-
+    // draw texels
     const len = img.w * img.h;
     let i_texel = 0;
     while(i_texel < len){
@@ -258,11 +257,6 @@ const drawSectionSlot = (ctx, section, slot) => {
         drawSectionSlotTexel(ctx, slot, v2, rad_center, x, y);
         i_texel += 1;
     }
-
-    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
-    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 0);
-    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
-    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 1);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {
