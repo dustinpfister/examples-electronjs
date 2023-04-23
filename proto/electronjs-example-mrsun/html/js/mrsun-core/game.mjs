@@ -165,6 +165,7 @@ constant.BLOCKS.rock = {
 const IMG = constant.IMG = {};
 IMG.locked = {
     palette: ['blue', 'cyan'],
+    //w: 1, h: 1,
     w: 2, h: 2,
     color_indices: [
         0, 1,
@@ -176,20 +177,35 @@ IMG.blank = {
     w: 1, h: 1,
     color_indices: [0]
 };
-// 4 by 4 rock
+// 2 by 2 rock
+IMG.rock = {
+    palette: [
+        '#00ff00','#888800', '#444400',
+    ],
+    w: 2, h: 2,
+    color_indices: [
+        0, 0,
+        1, 2
+   ]
+};
+// 8 by 4 rock
+/*
 IMG.rock = {
     palette: [
         '#00ff00','#008800', '#004400',
         '#aaaa00','#888800', '#444400',
+        '#ff0000'
     ],
-    w: 4, h: 4,
+    //w: 1, h: 1,
+    w: 8, h: 4,
     color_indices: [
-        0, 1, 0, 1,
-        2, 2, 2, 2,
-        4, 5, 4, 5,
-        5, 4, 5, 4
+        0, 1, 0, 1, 0, 1, 0, 1,
+        2, 2, 2, 2, 2, 2, 2, 2,
+        4, 3, 4, 3, 4, 3, 4, 3,
+        5, 4, 5, 4, 5, 4, 5, 4,
     ]
 };
+*/
 //-------- ----------
 // GAME EVENTS
 //-------- ----------
