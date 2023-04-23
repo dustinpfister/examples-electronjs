@@ -203,11 +203,14 @@ const can_rock_texture = canvasMod.create({
 
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const block = slot.block;
-    let rad_delta = Math.PI / 180 * 15;
-    let rad_edge = rad_center - rad_delta;
+    const rad_delta = Math.PI / 180 * 15;
+    const rad_edge = rad_center - rad_delta;
     // this is what I need to change to set the start and end radius
-    let rad_start = rad_edge + Math.PI / 180 * (30 / 20 * ( slot.x  * 2 ) );
-    let rad_end = rad_start + Math.PI / 180 * ( 30 / 20 * 1);
+    const rad_slot_start = rad_edge + Math.PI / 180 * ( 30 / 10 * slot.x );
+    const rad_slot_end = rad_slot_start + Math.PI / 180 * ( 30 / 10 );
+    const rad_delta_texel = rad_delta * 2 / 10 / 2;
+    const rad_start = rad_slot_start + rad_delta_texel * texelX;
+    const rad_end = rad_start + rad_delta_texel;
     //!!! these should maybe be constants
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const radius_slot_delta = 70 / 8;
@@ -224,17 +227,19 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
     ctx.closePath();
     // fill style
-    ctx.fillStyle= 'cyan';
+    ctx.fillStyle= 'blue';
     if(!slot.locked){
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
             //!!! Crude image data for now
-            const data_img = [
+            const img = {};
+            img.palette = ['lime','green','#888800','#444400'];
+            img.color_indices = [
                 0, 1,
-                1, 0
+                2, 3
             ];
-            const i_imgdata = texelY * 2 + texelX;
-            ctx.fillStyle = data_img[i_imgdata] === 0 ? 'red' : 'lime';
+            const i_ci = texelY * 2 + texelX;
+            ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
         }
     }
     ctx.fill();
@@ -256,7 +261,10 @@ const drawSectionSlot = (ctx, section, slot) => {
     //ctx.beginPath();
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
+    drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 0);
     drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
+    drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 1);
+    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {

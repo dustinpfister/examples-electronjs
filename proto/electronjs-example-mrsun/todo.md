@@ -58,11 +58,11 @@
 * () the image data that is used should be passed as an argument when calling the drawSectionSlotTexel method
 * () I should be able to adjust the width and hight used for the image data that is used when calling drawSectionSlotTexel
 
-## () - r46 - texelY, and texelX for drawSectionSlotTexel helper
+## ( done 04/23/2023 ) - r46 - texelY, and texelX for drawSectionSlotTexel helper
 * (done) start out by getting the texelY value to adjust the radius range value as needed
 * (done) crude image data for now
-* () I will then want to have rad slot start and rad slot end vars in the drawSectionSlotTexel method
-* () new expressions for rad start and rad end that take into account the texelX value
+* (done) I will then want to have rad slot start and rad slot end vars in the drawSectionSlotTexel method
+* (done) new expressions for rad start and rad end that take into account the texelX value
 
 ## (done 04/22/2023 ) - r45 - improved draw section arc method
    It might be possible to use the create pattern method still, but now I am thinking that it might be better to just work out an improved draw section arc method. That all ready does work well I just need to find a way to make the method a little more fine grain to draw a grid of sorts inside the slot with differing colors.
