@@ -173,18 +173,21 @@ IMG.locked = {
 };
 IMG.blank = {
     palette: ['black'],
-    w: 2, h: 2,
-    color_indices: [
-        0, 0,
-        0, 0
-    ]
+    w: 1, h: 1,
+    color_indices: [0]
 };
+// 4 by 4 rock
 IMG.rock = {
-    palette: ['lime','green','#888800','#444400'],
-    w: 2, h: 2,
+    palette: [
+        '#00ff00','#008800', '#004400',
+        '#aaaa00','#888800', '#444400',
+    ],
+    w: 4, h: 4,
     color_indices: [
-        0, 1,
-        2, 3
+        0, 1, 0, 1,
+        2, 2, 2, 2,
+        4, 5, 4, 5,
+        5, 4, 5, 4
     ]
 };
 //-------- ----------
@@ -226,7 +229,7 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
     ctx.closePath();
     // get fill style, and fill
-    const i_ci = texelY * 2 + texelX;
+    const i_ci = texelY * img.w + texelX;
     ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
     ctx.fill();
 };
@@ -234,6 +237,10 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
 // draw a section arc for a single slot object
 const drawSectionSlot = (ctx, section, slot) => {
     const block = slot.block;
+    let img = IMG.locked;
+    if(!slot.locked){
+        img = IMG[block.type];
+    }
     const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT  * section.i;
     const radius_land = constant.LAND_RADIUS;
     // get a vector2 that is on the edge of the sun area
@@ -242,10 +249,20 @@ const drawSectionSlot = (ctx, section, slot) => {
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
     let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-    drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
-    drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 0);
-    drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
-    drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 1);
+
+    const len = img.w * img.h;
+    let i_texel = 0;
+    while(i_texel < len){
+        const x = i_texel % img.w;
+        const y = Math.floor(i_texel / img.w);
+        drawSectionSlotTexel(ctx, slot, v2, rad_center, x, y);
+        i_texel += 1;
+    }
+
+    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 0);
+    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 0);
+    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 0, 1);
+    //drawSectionSlotTexel(ctx, slot, v2, rad_center, 1, 1);
 };
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section) => {

@@ -55,7 +55,7 @@
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
 ## () - r48 - width and height values for img data objects
-* () I should have width and height values for these img objects
+* (done) I should have width and height values for these img objects
 * () I will want to get an image object in the drawSectionSlot method
 * () use the image data object to find the number of times I need to call drawSectionSlotTexel, and also pass proper args
 * () see about using the width and height to adjust what the res will be when rendering
