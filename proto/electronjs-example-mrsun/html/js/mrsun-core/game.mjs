@@ -208,36 +208,38 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     // this is what I need to change to set the start and end radius
     let rad_start = rad_edge + Math.PI / 180 * (30 / 20 * ( slot.x  * 2 ) );
     let rad_end = rad_start + Math.PI / 180 * ( 30 / 20 * 1);
-    const radius_land = constant.LAND_RADIUS;
+    //!!! these should maybe be constants
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const radius_slot_delta = 70 / 8;
-    const radius_slot_low = radius_tocenter - radius_land + radius_slot_delta * slot.y;
+    // get the low and high radius for the slot as a whole
+    const radius_slot_low = radius_tocenter - constant.LAND_RADIUS + radius_slot_delta * slot.y;
     const radius_slot_high = radius_slot_low + radius_slot_delta;
-	
-	const radius_texel_delta = radius_slot_delta / 2;
-	const radius_low = radius_slot_low + radius_texel_delta * texelY;
-	const radius_high = radius_low + radius_texel_delta;
-
+    // texel radius low and high
+    const radius_texel_delta = radius_slot_delta / 2;
+    const radius_low = radius_slot_low + radius_texel_delta * texelY;
+    const radius_high = radius_low + radius_texel_delta;
+    // draw arcs
     ctx.beginPath();
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
     ctx.closePath();
+    // fill style
     ctx.fillStyle= 'cyan';
     if(!slot.locked){
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
-			//!!! Crude image data for now
-			const data_img = [
-			   0, 1,
-			   1, 0
-			];
-			const i_imgdata = texelY * 2 + texelX;
+            //!!! Crude image data for now
+            const data_img = [
+                0, 1,
+                1, 0
+            ];
+            const i_imgdata = texelY * 2 + texelX;
             ctx.fillStyle = data_img[i_imgdata] === 0 ? 'red' : 'lime';
         }
     }
     ctx.fill();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 1;
+    //ctx.strokeStyle = 'white';
+    //ctx.lineWidth = 1;
     //ctx.stroke();
 };
 
