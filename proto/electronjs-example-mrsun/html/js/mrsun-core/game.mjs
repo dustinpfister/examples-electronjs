@@ -232,20 +232,19 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
         ctx.fillStyle= 'black';
         if(block.type === 'rock'){
             //!!! Crude image data for now
+
             const img = {};
             img.palette = ['lime','green','#888800','#444400'];
             img.color_indices = [
                 0, 1,
                 2, 3
             ];
+
             const i_ci = texelY * 2 + texelX;
             ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
         }
     }
     ctx.fill();
-    //ctx.strokeStyle = 'white';
-    //ctx.lineWidth = 1;
-    //ctx.stroke();
 };
 
 // draw a section arc for a single slot object

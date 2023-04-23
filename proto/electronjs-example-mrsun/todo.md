@@ -48,15 +48,19 @@
 
 <!-- PROTOTYPE -->
 
-## () - r48 - Sprite sheets for Land Section Sprites
+## () - rx - Sprite sheets for Land Section Sprites
     If I work out a solution that works good for detail textures of slots I will now want to see about creating sprite sheets. In other words if thinks look good I now need to think in terms of making things run smotther by not doing real timer rendering of graphics on each frame tick for each slot.
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
-* () 
 
-## () - r47 - drawSectionSlot image data
-* () image data is somehting that should be processed in the drawSectionSlot method
-* () the image data that is used should be passed as an argument when calling the drawSectionSlotTexel method
-* () I should be able to adjust the width and hight used for the image data that is used when calling drawSectionSlotTexel
+## () - r48 - width and height values for img data objects
+* () I should have width and height values for these img objects
+* () see about using the width and height to adjust what the deal will be for rendering
+
+## () - r47 - image data objects for drawSectionSlotTexel
+* () the image data objects used for the drawSectionSlotTexel method should be outside of the method
+* () I should have an object that is a database of sorts for these
+* () have a default one that will be used in the event that the one can not be found for the current slot
+* () have an image objects for locked, blank, and rock
 
 ## ( done 04/23/2023 ) - r46 - texelY, and texelX for drawSectionSlotTexel helper
 * (done) start out by getting the texelY value to adjust the radius range value as needed
