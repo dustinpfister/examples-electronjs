@@ -196,36 +196,7 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class
 //-------- ----------
-// rock texture used for drawing blocks in drawSectionSlot helper
-/*
-const can_rock_texture = canvasMod.create({
-    size: 32,
-    palette: ['#aa6600', 'red'],
-    state: {
-        radian: 0,
-        s: 14,
-        cx: 16,
-        cy: 16
-    },
-    draw: (canObj, ctx, canvas, state) => {
-        ctx.fillStyle = canObj.palette[0];
-        ctx.fillRect(0,0, canvas.width, canvas.height);
-        ctx.fillStyle = canObj.palette[1];
-        ctx.lineWidth = 2;
-        ctx.save();
-        ctx.translate(state.cx, state.cy);
-        ctx.rotate(state.radian + Math.PI * 0.5);
-        ctx.beginPath();
-        ctx.moveTo(0, state.s * -1);
-        ctx.lineTo(state.s * 0.25, state.s * 0.25);
-        ctx.lineTo(state.s * 0.25 * -1, state.s * 0.25);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.restore();
-    }
-});
-*/
-
+// draw a singel texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const block = slot.block;
     let img = IMG.locked;
