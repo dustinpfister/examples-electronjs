@@ -160,6 +160,31 @@ constant.BLOCKS.rock = {
     mana_temp: 4
 };
 //-------- ----------
+// IMG DATA OBJECTS ( used to render slots / blocks )
+//-------- ----------
+const IMG = constant.IMG = {};
+IMG.locked = {
+    palette: ['blue', 'cyan'],
+    color_indices: [
+        0, 1,
+        1, 0
+    ]
+};
+IMG.blank = {
+    palette: ['black'],
+    color_indices: [
+        0, 0,
+        0, 0
+    ]
+};
+IMG.rock = {
+    palette: ['lime','green','#888800','#444400'],
+    color_indices: [
+        0, 1,
+        2, 3
+    ]
+};
+//-------- ----------
 // GAME EVENTS
 //-------- ----------
 const GAME_EVENTS = new EventDispatcher();
@@ -203,6 +228,10 @@ const can_rock_texture = canvasMod.create({
 
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const block = slot.block;
+    let img = IMG.locked;
+    if(!slot.locked){
+        img = IMG[block.type];
+    }
     const rad_delta = Math.PI / 180 * 15;
     const rad_edge = rad_center - rad_delta;
     // this is what I need to change to set the start and end radius
@@ -226,24 +255,9 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     ctx.arc(v2.x, v2.y, radius_low, rad_start, rad_end  );
     ctx.arc(v2.x, v2.y, radius_high, rad_end, rad_start, true  );
     ctx.closePath();
-    // fill style
-    ctx.fillStyle= 'blue';
-    if(!slot.locked){
-        ctx.fillStyle= 'black';
-        if(block.type === 'rock'){
-            //!!! Crude image data for now
-
-            const img = {};
-            img.palette = ['lime','green','#888800','#444400'];
-            img.color_indices = [
-                0, 1,
-                2, 3
-            ];
-
-            const i_ci = texelY * 2 + texelX;
-            ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
-        }
-    }
+    // get fill style, and fill
+    const i_ci = texelY * 2 + texelX;
+    ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
     ctx.fill();
 };
 
