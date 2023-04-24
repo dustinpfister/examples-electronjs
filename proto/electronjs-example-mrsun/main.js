@@ -19,7 +19,12 @@ const createMainWindow = () => {
     // Open the DevTools for debugging
     mainWindow.webContents.openDevTools();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
-    mainWindow.setMenu(menu)
+    mainWindow.setMenu(menu);
+    mainWindow.on('close', ()=> {
+
+        console.log('window closed.');
+
+    });
     return mainWindow;
 };
 //-------- ----------

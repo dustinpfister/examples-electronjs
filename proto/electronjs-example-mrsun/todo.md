@@ -61,6 +61,8 @@
 
 ## () - r52 - updated save features for preload.js
 * (done) gameMod.saveGame method
+* () try a visibilitychange event first in the client
+* () try something with the on close event if visibilitychange events do not work
 * () I think I will need an autosave\_0.txt and a autosave\_1.txt
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
