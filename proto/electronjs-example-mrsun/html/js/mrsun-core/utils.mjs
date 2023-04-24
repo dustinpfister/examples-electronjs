@@ -102,7 +102,7 @@ utils.drawButton = (sm, button, ctx, canvas) => {
     ctx.strokeStyle = '#ffffff';
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.arc(button.x, button.y, button.r, 0, Math.PI * 2);
+    ctx.arc(button.position.x, button.position.y, button.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     // desc
@@ -110,7 +110,7 @@ utils.drawButton = (sm, button, ctx, canvas) => {
     ctx.font = '12px arial';
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
-    ctx.fillText(button.desc || 'foo', button.x, button.y);
+    ctx.fillText(button.desc || 'foo', button.position.x, button.position.y);
 };
 // draw the state of a given LandSection object
 utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {

@@ -120,7 +120,8 @@ sm.states.world = {
         ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
     },
     events: {
-        pointerdown : (sm, x, y, e) => {
+        pointerdown : (sm, pos, e) => {
+            const x = pos.x, y = pos.y;
             const sun = sm.game.sun;
             const d = utils.distance(x, y, sun.center.x, sun.center.y);
             // clicked in the sun area?
@@ -141,15 +142,15 @@ sm.states.world = {
 //-------- ----------
 // land state
 //-------- ----------
-const button_check = (data, key, x, y, onClick) => {
+const button_check = (data, key, pos, onClick) => {
     const button = data[key];
-    if( utils.distance(button.x, button.y, x, y) <= button.r ){
-        onClick(button, data, key, x, y);
+    if( button.position.distanceTo( pos ) <= button.r ){
+        onClick(button, data, key, pos);
     }
 };
-const button_check_blockmode = (data, new_block_mode, x, y) => {
+const button_check_blockmode = (data, new_block_mode, pos) => {
     const key = 'button_bm_' + new_block_mode;
-    button_check(data, key, x, y, (button) => {
+    button_check(data, key, pos, (button) => {
         data['button_bm_' + data.block_mode].active = false;
         button.active = true;
         data.block_mode = new_block_mode;
@@ -160,7 +161,6 @@ sm.states.land = {
         block_mode: 'unlock',    // 'unlock', 'create', 'absorb', 'upgrade', and 'info' modes
         block_info_disp: false,  // display block info or not?
         block: null,
-/*
         button_back : {  desc: 'Back', position: new Vector2(600, 38), r: 32 },
         button_next : {  desc: 'Next', position: new Vector2(640 - 60, 430), r: 30 },
         button_last : {  desc: 'Last', position: new Vector2(60, 430), r: 30 },
@@ -169,18 +169,6 @@ sm.states.land = {
         button_bm_absorb :  {  active: false, desc: 'Absorb', position: new Vector2(35, 225), r: 25 },
         button_bm_upgrade : {  active: false, desc: 'Upgrade', position: new Vector2(35, 275), r: 25 },
         button_bm_info :    {  active: false, desc: 'Info', position: new Vector2(35, 325), r: 25 },
-*/
-
-
-        button_back : {  desc: 'Back', x: 600, y: 38, r: 32 },
-        button_next : {  desc: 'Next', x: 640 - 60, y: 430, r: 30 },
-        button_last : {  desc: 'Last', x: 60, y: 430, r: 30 },
-        button_bm_unlock :  {  active: true, desc: 'Unlock', x: 35, y: 125, r: 25 },
-        button_bm_create :  {  active: false, desc: 'Create', x: 35, y: 175, r: 25 },
-        button_bm_absorb :  {  active: false, desc: 'Absorb', x: 35, y: 225, r: 25 },
-        button_bm_upgrade : {  active: false, desc: 'Upgrade', x: 35, y: 275, r: 25 },
-        button_bm_info :    {  active: false, desc: 'Info', x: 35, y: 325, r: 25 },
-
         grid_cx: 320,
         grid_cy: 240,
         grid_w: 0, grid_h:0,
@@ -245,28 +233,29 @@ sm.states.land = {
         }
     },
     events: {
-        pointerdown : (sm, x, y, e, data) => {
+        pointerdown: (sm, pos, e, data) => {
+            const x = pos.x, y = pos.y;
             const section = sm.game.lands.sections[sm.landIndex];
             if(data.block_info_disp){
                 data.block_info_disp = false;
             }else{
                 // check buttons
-                button_check(data, 'button_back', x, y, () => {
+                button_check(data, 'button_back', pos, () => {
                     sm.setState('world', {});
                 });
-                button_check(data, 'button_next', x, y, () => {
+                button_check(data, 'button_next', pos, () => {
                     sm.landIndex = (sm.landIndex + 1) % 12;
                 });
-                button_check(data, 'button_last', x, y, () => {
+                button_check(data, 'button_last', pos, () => {
                     let n = sm.landIndex - 1;
                     n = n < 0 ? 11 : n;
                     sm.landIndex = n;
                 });
-                button_check_blockmode(data, 'unlock', x, y);
-                button_check_blockmode(data, 'create', x, y);
-                button_check_blockmode(data, 'absorb', x, y);
-                button_check_blockmode(data, 'upgrade', x, y);
-                button_check_blockmode(data, 'info', x, y);
+                button_check_blockmode(data, 'unlock', pos);
+                button_check_blockmode(data, 'create', pos);
+                button_check_blockmode(data, 'absorb', pos);
+                button_check_blockmode(data, 'upgrade', pos);
+                button_check_blockmode(data, 'info', pos);
                 // grid clicked?
                 const sx = data.grid_cx - data.grid_w / 2;
                 const sy = data.grid_cy - data.grid_h / 2;
@@ -305,10 +294,7 @@ sm.states.land = {
 const getPointerPos = (e) => {
     const canvas = e.target;
     const bx = canvas.getBoundingClientRect();
-    const pos = {
-        x: e.clientX - bx.left,
-        y: e.clientY - bx.top
-    };
+    const pos = new Vector2(e.clientX - bx.left, e.clientY - bx.top);
     pos.x = Math.floor((pos.x / canvas.scrollWidth) * canvas.width);
     pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
     return pos
@@ -320,7 +306,7 @@ const commonPointerAction = (sm, type, e) => {
     const events = sm.currentState.events;
     if(events){
         if(events[type]){
-            events[type](sm, sm.x, sm.y, e, sm.currentState.data);
+            events[type](sm, pos, e, sm.currentState.data);
         }
     }
 }
