@@ -701,11 +701,10 @@ gameMod.create = (opt) => {
     return game;
 };
 // set the sun position
-gameMod.setSunPos = (game, x, y) => {
+gameMod.setSunPos = (game, pos) => {
     const sun = game.sun;
-    sun.position.x = x;
-    sun.position.y = y;
-    const d = utils.distance(x, y, sun.center.x, sun.center.y);
+    sun.position.copy(pos);
+    const d = sun.position.distanceTo(sun.center);
     const md = constant.SUNAREA_RADIUS - sun.radius;
     if(d >= md){
         const a = Math.atan2(sun.position.y - sun.center.y, sun.position.x - sun.center.x);

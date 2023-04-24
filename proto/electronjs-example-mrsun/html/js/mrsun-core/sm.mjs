@@ -125,7 +125,8 @@ sm.states.world = {
             const d = pos.distanceTo(sun.center);
             // clicked in the sun area?
             if(d < sm.game.SUNAREA_RADIUS){
-                gameMod.setSunPos(sm.game, pos.x, pos.y);
+                //gameMod.setSunPos(sm.game, pos.x, pos.y);
+                gameMod.setSunPos(sm.game, pos);
                 return;
             }
             // clicked land object?
