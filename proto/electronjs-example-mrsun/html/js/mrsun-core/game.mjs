@@ -379,8 +379,10 @@ class LandSection {
         sectionData = sectionData || {};
         this.i = i;
         this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
-        this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
-        this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS ),
+
+        this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+        this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;

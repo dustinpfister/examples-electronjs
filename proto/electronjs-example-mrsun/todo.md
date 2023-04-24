@@ -42,7 +42,7 @@
 
 <!-- PROTOTYPE -->
 
-## () r50 - safer saving
+## () r51 - safer saving
      For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
      in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
      I might want to have some kind of journal system then to help with this. 
@@ -54,8 +54,19 @@
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
-## () - r49 - use img data objects to render land state blocks
+## () - r50 - use img data objects to render land state blocks
 * () see about using the IMG Objects in the process of drawing land state blocks also
+
+## () - r49 - use Vector2 distance over utils.distance
+* () vector2 objects for all buttons used in land state in sm.js
+* () update button check helper to use vector2 distnaceTo in sm.js
+* () update pointer down events to use vector2 objects and use distnaceTo method in pointerdown event for world state in sm.js
+
+* () I will need to replace section.x, y with section.position.x, y
+* () use vector2.dostnaceTo in gameMod.updateByTickDelta
+* () use vector2.dostnaceTo in gameMod.setSunPos
+* () gameMod.getSectionByPos
+* () remove utils.distance if it is no longer used
 
 ## ( done 04/23/2023 ) - r48 - width and height values for img data objects
 * (done) I should have width and height values for these img objects
