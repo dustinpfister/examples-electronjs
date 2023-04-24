@@ -1,8 +1,5 @@
 // preload with contextIsolation enabled
-const {
-    contextBridge,
-    ipcRenderer
-} = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 const promisfy = require('util').promisify;
 const readFile = promisfy(fs.readFile);
@@ -14,6 +11,7 @@ const dir_home = os.homedir();
 const file_name = 'mr_sun_autosave.txt';
 const uri_filesave = path.join(dir_home, file_name);
 
+// Mr Sun (MS) global API toolkit
 const MS = {};
 
 // get a save file at a standard location

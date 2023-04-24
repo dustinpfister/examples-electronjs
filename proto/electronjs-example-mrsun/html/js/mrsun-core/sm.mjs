@@ -3,6 +3,8 @@
 import { gameMod }  from "./game.mjs"
 import { utils }  from "./utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
+// MS api check
+const MS = utils.MSCheck();
 //-------- ----------
 // HARD CODED SAVE
 //-------- ----------

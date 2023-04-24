@@ -7,6 +7,8 @@ import { Vector2 } from '../vector2/vector2.mjs'
 import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "./utils.mjs"
+// MS api check
+const MS = utils.MSCheck();
 //-------- ----------
 // Canvas Objects for Sun Class
 //-------- ----------

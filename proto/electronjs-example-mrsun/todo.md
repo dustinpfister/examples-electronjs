@@ -17,9 +17,6 @@
 ## () - rx - Slot Class, Disabled Slot feature 
 * () a slot object will have a disabled property which means that it can not be used at all
 
-## () - rx - Manual save, safer save
-
-
 ## () - rx - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
 * () use the standard objects in objpool for message dialogs
@@ -39,30 +36,43 @@
     If I work out a solution that works good for detail textures of slots I will now want to see about creating sprite sheets. In other words if thinks look good I now need to think in terms of making things run smotther by not doing real timer rendering of graphics on each frame tick for each slot.
 * () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
 
+## () rx - local storage autosave
+* () I will need a local storage autosave feature
+
+## () rx - server script
+* () I would like to have a script that will run a simple static server
+* () have it so that I can call npm run server to start the server
+* () with the server script I am hosting the game over the network on a given port
+
+## () rx - file save
+* () I should be able to do a crtl+s to save at any time
+
+## () - rx - use img data objects to render land state blocks
+* () see about using the IMG Objects in the process of drawing land state blocks also
 
 <!-- PROTOTYPE -->
 
-## () r52 - safer saving
-     For some reason when I move the sun it takes a good 8 to 11 seconds, and some times over 30 seconds to save a text file
-     in windows. After starting a save and reloading while this is going on it will clear the autosave file. 
-     I might want to have some kind of journal system then to help with this. 
-     That is check if the latest save is valid or not, and if not fall back to an older one.
-* () I should be able to do a crtl+s to save at any time
-* () see about a proper fix for the auto save clear issue if saving takes too long 
-* () auto save clear issue seems to be a problem when moving the sun and then saving
-* () I think I will need an autosave_0.txt and a autosave_1.txt
+## () - r53 - better world state rendering
+* () I would like to work out a process for rendering the world state a few slots at a time
+* () start by checking out a way to render 1 slot per frame tick.
+
+## () - r52 - updated save features for preload.js
+* () I think I will need an autosave\_0.txt and a autosave\_1.txt
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
-## () - r51 - use img data objects to render land state blocks
-* () see about using the IMG Objects in the process of drawing land state blocks also
+## ( done 04/24/2023 ) - r51 - utils.MSCheck method
+* (done) I want a utils.MSCheck method that will check for a global MS Api object
+* (done) if the MS Object is there, then it will just return that
+* (done) if the MS Object is not there it will return a default api to use
+* (done) for now the default API can just be dummy methods (no save / advanced features)
 
-## () - r50 - use Vector2 distance to over utils.distance in game.mjs
+## ( done 04/24/2023 ) - r50 - use Vector2 distance to over utils.distance in game.mjs
 * (done) I will need to replace section.x, y with section.position.x, y
 * (done) use vector2.dostnaceTo in gameMod.updateByTickDelta
 * (done) use vector2.distanceTo in gameMod.setSunPos
 * (done) use vector2.distanceTo in gameMod.getSectionByPos
-* () remove utils.distance if it is no longer used
+* (done) remove utils.distance if it is no longer used
 
 ## ( done 04/24/2023) - 49 - use Vector2 distance over utils.distance in sm.js
 * (done) vector2 objects for all buttons used in land state in sm.js
