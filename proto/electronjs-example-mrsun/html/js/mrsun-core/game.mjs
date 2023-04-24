@@ -654,7 +654,8 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
-            const d_sun = utils.distance(section.position.x, section.position.y, game.sun.position.x, game.sun.position.y);
+          //const d_sun = utils.distance(section.position.x, section.position.y, game.sun.position.x, game.sun.position.y);
+            const d_sun = section.position.distanceTo(game.sun.position);
             const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
             section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );

@@ -59,7 +59,7 @@
 
 ## () - r50 - use Vector2 distance to over utils.distance in game.mjs
 * (done) I will need to replace section.x, y with section.position.x, y
-* () use vector2.dostnaceTo in gameMod.updateByTickDelta
+* (done) use vector2.dostnaceTo in gameMod.updateByTickDelta
 * () use vector2.dostnaceTo in gameMod.setSunPos
 * () gameMod.getSectionByPos
 * () remove utils.distance if it is no longer used
