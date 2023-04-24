@@ -719,7 +719,6 @@ gameMod.getSectionByPos = (game, pos) => {
     let i = 0;
     while(i < constant.LAND_OBJECT_COUNT){
         const section = game.lands.sections[i];
-        //const d = utils.distance(x, y, section.position.x, section.position.y);
         const d = section.position.distanceTo(pos);
         if(d < section.r){
             return section;

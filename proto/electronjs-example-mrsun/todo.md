@@ -61,7 +61,7 @@
 * (done) I will need to replace section.x, y with section.position.x, y
 * (done) use vector2.dostnaceTo in gameMod.updateByTickDelta
 * (done) use vector2.distanceTo in gameMod.setSunPos
-* () use vector2.distanceTo in gameMod.getSectionByPos
+* (done) use vector2.distanceTo in gameMod.getSectionByPos
 * () remove utils.distance if it is no longer used
 
 ## ( done 04/24/2023) - 49 - use Vector2 distance over utils.distance in sm.js
