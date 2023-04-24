@@ -60,11 +60,11 @@
 ## () - r50 - use Vector2 distance to over utils.distance in game.mjs
 * (done) I will need to replace section.x, y with section.position.x, y
 * (done) use vector2.dostnaceTo in gameMod.updateByTickDelta
-* () use vector2.dostnaceTo in gameMod.setSunPos
-* () gameMod.getSectionByPos
+* () use vector2.distnaceTo in gameMod.setSunPos
+* () use vector2.distnaceTo in gameMod.getSectionByPos
 * () remove utils.distance if it is no longer used
 
-## ( done 04/24/2023) - r49 - use Vector2 distance over utils.distance in sm.js
+## ( done 04/24/2023) - 49 - use Vector2 distance over utils.distance in sm.js
 * (done) vector2 objects for all buttons used in land state in sm.js
 * (done) have getPointerPos method return a vector2 object
 * (done) update button check helper to use vector2 distnaceTo in sm.js

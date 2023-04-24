@@ -121,16 +121,15 @@ sm.states.world = {
     },
     events: {
         pointerdown : (sm, pos, e) => {
-            const x = pos.x, y = pos.y;
             const sun = sm.game.sun;
-            const d = utils.distance(x, y, sun.center.x, sun.center.y);
+            const d = pos.distanceTo(sun.center);
             // clicked in the sun area?
             if(d < sm.game.SUNAREA_RADIUS){
-                gameMod.setSunPos(sm.game, x, y);
+                gameMod.setSunPos(sm.game, pos.x, pos.y);
                 return;
             }
             // clicked land object?
-            const land = gameMod.getSectionByPos(sm.game, x, y);
+            const land = gameMod.getSectionByPos(sm.game, pos.x, pos.y);
             if(land){
                 sm.landIndex = land.i;
                 sm.setState('land', {});
