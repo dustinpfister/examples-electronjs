@@ -714,7 +714,7 @@ gameMod.setSunPos = (game, pos) => {
     }
     //!!! for some weird reason saving here takes a few seconds in Windows
     //!!! if i reload while it is going on that will clear the autosave file
-    MS.auto_save( gameMod.createSaveString( game ) );
+    gameMod.saveGame(game);
 };
 // get land object by x, y pos or false if nothing there
 gameMod.getSectionByPos = (game, pos) => {
@@ -747,7 +747,7 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
             }
         }
     }
-    MS.auto_save( gameMod.createSaveString( game ) );
+    gameMod.saveGame(game);
 };
 // buy a block for the given land section and slot indices
 gameMod.createBlock = (game, i_section, i_slot, level) => {
@@ -767,7 +767,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
                     slot.block.setLevel(level, 'rock');
                     game.lands.setBlockTypeCounts();
                     manaDebit(game, blockCost);
-                    MS.auto_save( gameMod.createSaveString( game ) );
+                    gameMod.saveGame(game);
                 }
             }
             return;
@@ -794,7 +794,7 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
         manaDebit(game, block.upgradeCost);
         const newLevel = block.level + 1;
         block.setLevel(newLevel, 'rock');
-        MS.auto_save( gameMod.createSaveString( game ) );
+        gameMod.saveGame(game);
     }
 };
 // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -811,7 +811,7 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
         section.dropDownBlocks(slot);
         game.lands.setBlockTypeCounts();
     }
-    MS.auto_save( gameMod.createSaveString( game ) );
+    gameMod.saveGame(game);
 };
 // create a save string
 gameMod.createSaveString = (game) => {
@@ -824,6 +824,10 @@ gameMod.createSaveString = (game) => {
     const text_json = JSON.stringify(save);
     const text_lz = LZString.compressToBase64(text_json);
     return text_lz
+};
+// save game method using whatever MS.auto_save is...
+gameMod.saveGame = (game) => {
+    return MS.auto_save( gameMod.createSaveString( game ) );
 };
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {

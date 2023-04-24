@@ -284,7 +284,7 @@ sm.states.land = {
                     if(data.block_mode === 'info'){
                         data.block_info_disp = true;
                         data.block = block;
-                        MS.auto_save( gameMod.createSaveString( sm.game ) );
+                        gameMod.saveGame(sm.game);
                     }
                 }
             }
