@@ -380,8 +380,12 @@ class LandSection {
         this.i = i;
         this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
 
-        this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
-        this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+        // use the vector2 class
+        this.position = new Vector2();
+        this.position.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+        this.position.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+        //this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
+        //this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
 
         this.r = constant.LAND_RADIUS;
         this.slots = [];
@@ -398,7 +402,7 @@ class LandSection {
         this.setBlockTypeCounts();
         // world sprite objects
         this.sprite_world = new SpriteLandSectonWorld(this);
-        this.sprite_world.position.set(this.x, this.y);
+        this.sprite_world.position.set(this.position.x, this.position.y);
     }
     // apply section data
     applySectionData(sectionData){
@@ -650,7 +654,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
-            const d_sun = utils.distance(section.x, section.y, game.sun.position.x, game.sun.position.y);
+            const d_sun = utils.distance(section.position.x, section.position.y, game.sun.position.x, game.sun.position.y);
             const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
             section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
@@ -716,7 +720,7 @@ gameMod.getSectionByPos = (game, x, y) => {
     let i = 0;
     while(i < constant.LAND_OBJECT_COUNT){
         const section = game.lands.sections[i];
-        const d = utils.distance(x, y, section.x, section.y);
+        const d = utils.distance(x, y, section.position.x, section.position.y);
         if(d < section.r){
             return section;
         }

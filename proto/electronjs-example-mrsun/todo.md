@@ -57,8 +57,8 @@
 ## () - r51 - use img data objects to render land state blocks
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
-## () - r50 - use Vector2 distance to iver utils.distance in game.mjs
-* () I will need to replace section.x, y with section.position.x, y
+## () - r50 - use Vector2 distance to over utils.distance in game.mjs
+* (done) I will need to replace section.x, y with section.position.x, y
 * () use vector2.dostnaceTo in gameMod.updateByTickDelta
 * () use vector2.dostnaceTo in gameMod.setSunPos
 * () gameMod.getSectionByPos

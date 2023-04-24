@@ -103,12 +103,12 @@ sm.states.world = {
             utils.drawSprite(section.sprite_world, ctx, canvas);
             ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.beginPath();
-            ctx.arc(section.x, section.y, section.r, 0, Math.PI * 2);
+            ctx.arc(section.position.x, section.position.y, section.r, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = 'white';
             ctx.textBaseline = 'middle';
             ctx.textAlign = 'center';
-            ctx.fillText(section.temp, section.x, section.y);
+            ctx.fillText(section.temp, section.position.x, section.position.y);
         });
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
