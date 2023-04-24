@@ -45,28 +45,45 @@ sm.setState = function(key, opt) {
 //-------- ----------
 // init state
 //-------- ----------
+const load_game = () => {
+    const cx = sm.canvas.width / 2;
+    const cy = sm.canvas.height / 2;
+    return MS.auto_load()
+    .then( (text_lz) => {
+        console.log('Autoload worked!');
+        const opt_game = gameMod.parseSaveString(text_lz);
+        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+        sm.setState('world', {});
+    })
+    .catch((e) => {
+        console.log('Error with autoload. Starting new game.');
+        console.log('message: ' + e.message);
+        const opt_game = gameMod.parseSaveString(SAVE_STRING);
+        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+        sm.setState('world', {});
+    });
+}
 sm.states.init = {
-    data: {},
-    start: (sm, opt) => {
-       const cx = sm.canvas.width / 2;
-       const cy = sm.canvas.height / 2;
-       console.log('init of mr sun.');
-       MS.auto_load()
-       .then( (text_lz) => {
-           console.log('Autoload worked!');
-           const opt_game = gameMod.parseSaveString(text_lz);
-           sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
-           sm.setState('world', {});
-       })
-       .catch((e) => {
-           console.log('Error with autoload. Starting new game.');
-           console.log('message: ' + e.message);
-           const opt_game = gameMod.parseSaveString(SAVE_STRING);
-           sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
-           sm.setState('world', {});
-       });
+    data: {
+        stuck_ct: 0
     },
-    update: (sm, secs) => {},
+    start: (sm, opt) => {
+       console.log('init of mr sun.');
+       load_game();
+    },
+    update: (sm, secs) => {
+        const data = sm.states.init.data;
+        //console.log('why we still here?');
+        if(!sm.game){
+            data.stuck_ct += 1;
+            if(data.stuck_ct >= 20){
+               console.log('stuck in init state for some reason...');
+               data.stuck_ct = 0;
+            }else{
+                //console.log(data.stuck_ct);
+            }
+        }
+    },
     render: (sm, ctx, canvas) => {
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);

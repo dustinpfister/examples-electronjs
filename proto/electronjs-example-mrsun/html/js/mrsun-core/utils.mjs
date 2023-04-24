@@ -6,6 +6,7 @@ const utils = {};
 utils.MSCheck = () => {
     try{
         if(MS){
+            console.log('MS api found, so lets use that..');
             return MS;
         }
     }catch(e){

@@ -18,9 +18,9 @@ const MS = {};
 // if it is not there, create a new one
 MS.auto_load = () => {
     return readFile(uri_filesave, 'utf8')
-    .then(((text) => {
-            return Promise.resolve(text);
-        }))
+    .then((text) => {
+        return Promise.resolve(text);
+    })
     .catch((e) => {
         if (e.code === 'ENOENT') {
             // no file

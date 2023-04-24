@@ -50,6 +50,9 @@
 ## () - rx - use img data objects to render land state blocks
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
+## () - See about fixing init state stuck bug
+    With electionjs there seems to be a bug where I can end up getting stuck in init state. In windows I can trigger this by reloading a whole bunch of times real fast.
+
 <!-- PROTOTYPE -->
 
 ## () - r53 - better world state rendering
