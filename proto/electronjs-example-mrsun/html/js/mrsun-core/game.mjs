@@ -654,7 +654,6 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
-          //const d_sun = utils.distance(section.position.x, section.position.y, game.sun.position.x, game.sun.position.y);
             const d_sun = section.position.distanceTo(game.sun.position);
             const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
@@ -716,11 +715,12 @@ gameMod.setSunPos = (game, pos) => {
     MS.auto_save( gameMod.createSaveString( game ) );
 };
 // get land object by x, y pos or false if nothing there
-gameMod.getSectionByPos = (game, x, y) => {
+gameMod.getSectionByPos = (game, pos) => {
     let i = 0;
     while(i < constant.LAND_OBJECT_COUNT){
         const section = game.lands.sections[i];
-        const d = utils.distance(x, y, section.position.x, section.position.y);
+        //const d = utils.distance(x, y, section.position.x, section.position.y);
+        const d = section.position.distanceTo(pos);
         if(d < section.r){
             return section;
         }

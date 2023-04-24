@@ -125,12 +125,11 @@ sm.states.world = {
             const d = pos.distanceTo(sun.center);
             // clicked in the sun area?
             if(d < sm.game.SUNAREA_RADIUS){
-                //gameMod.setSunPos(sm.game, pos.x, pos.y);
                 gameMod.setSunPos(sm.game, pos);
                 return;
             }
             // clicked land object?
-            const land = gameMod.getSectionByPos(sm.game, pos.x, pos.y);
+            const land = gameMod.getSectionByPos(sm.game, pos);
             if(land){
                 sm.landIndex = land.i;
                 sm.setState('land', {});
@@ -234,7 +233,7 @@ sm.states.land = {
     },
     events: {
         pointerdown: (sm, pos, e, data) => {
-            const x = pos.x, y = pos.y;
+            //const x = pos.x, y = pos.y;
             const section = sm.game.lands.sections[sm.landIndex];
             if(data.block_info_disp){
                 data.block_info_disp = false;
@@ -259,10 +258,12 @@ sm.states.land = {
                 // grid clicked?
                 const sx = data.grid_cx - data.grid_w / 2;
                 const sy = data.grid_cy - data.grid_h / 2;
-                if( utils.boundingBox(x, y, 1, 1, sx, sy, data.grid_w, data.grid_h) ){
-                    const bx = Math.floor( ( x - sx - 0.01) / data.block_width );
-                    const by = Math.floor( ( y - sy - 0.01) / data.block_height );
+                if( utils.boundingBox(pos.x, pos.y, 1, 1, sx, sy, data.grid_w, data.grid_h) ){
+
+                    const bx = Math.floor( ( pos.x - sx - 0.01) / data.block_width );
+                    const by = Math.floor( ( pos.y - sy - 0.01) / data.block_height );
                     const i = by * sm.game.SLOT_GRID_WIDTH + bx;
+
                     const slot = section.slots[i];
                     const block = slot.block;
                     // action will differ based on block mode
