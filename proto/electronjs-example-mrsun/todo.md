@@ -58,7 +58,7 @@
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
 ## () - r49 - use Vector2 distance over utils.distance
-* () vector2 objects for all buttons used in land state in sm.js
+* (done) vector2 objects for all buttons used in land state in sm.js
 * () update button check helper to use vector2 distnaceTo in sm.js
 * () update pointer down events to use vector2 objects and use distnaceTo method in pointerdown event for world state in sm.js
 

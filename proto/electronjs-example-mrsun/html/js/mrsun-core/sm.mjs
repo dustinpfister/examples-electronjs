@@ -2,6 +2,7 @@
 // Main state machine
 import { gameMod }  from "./game.mjs"
 import { utils }  from "./utils.mjs"
+import { Vector2 } from '../vector2/vector2.mjs'
 //-------- ----------
 // HARD CODED SAVE
 //-------- ----------
@@ -159,6 +160,18 @@ sm.states.land = {
         block_mode: 'unlock',    // 'unlock', 'create', 'absorb', 'upgrade', and 'info' modes
         block_info_disp: false,  // display block info or not?
         block: null,
+/*
+        button_back : {  desc: 'Back', position: new Vector2(600, 38), r: 32 },
+        button_next : {  desc: 'Next', position: new Vector2(640 - 60, 430), r: 30 },
+        button_last : {  desc: 'Last', position: new Vector2(60, 430), r: 30 },
+        button_bm_unlock :  {  active: true, desc: 'Unlock', position: new Vector2(35, 125), r: 25 },
+        button_bm_create :  {  active: false, desc: 'Create', position: new Vector2(35, 175), r: 25 },
+        button_bm_absorb :  {  active: false, desc: 'Absorb', position: new Vector2(35, 225), r: 25 },
+        button_bm_upgrade : {  active: false, desc: 'Upgrade', position: new Vector2(35, 275), r: 25 },
+        button_bm_info :    {  active: false, desc: 'Info', position: new Vector2(35, 325), r: 25 },
+*/
+
+
         button_back : {  desc: 'Back', x: 600, y: 38, r: 32 },
         button_next : {  desc: 'Next', x: 640 - 60, y: 430, r: 30 },
         button_last : {  desc: 'Last', x: 60, y: 430, r: 30 },
@@ -167,6 +180,7 @@ sm.states.land = {
         button_bm_absorb :  {  active: false, desc: 'Absorb', x: 35, y: 225, r: 25 },
         button_bm_upgrade : {  active: false, desc: 'Upgrade', x: 35, y: 275, r: 25 },
         button_bm_info :    {  active: false, desc: 'Info', x: 35, y: 325, r: 25 },
+
         grid_cx: 320,
         grid_cy: 240,
         grid_w: 0, grid_h:0,
