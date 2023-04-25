@@ -23,7 +23,7 @@ function getBaseValue(alphabet, character) {
 
 const _compress = function (uncompressed, bitsPerChar, getCharFromInt) {
     if (uncompressed == null) return "";
-    var i, value,
+    let i, value,
         context_dictionary= {},
         context_dictionaryToCreate= {},
         context_c="",
@@ -230,7 +230,7 @@ const _compress = function (uncompressed, bitsPerChar, getCharFromInt) {
   };
 
 const  _decompress = function (length, resetValue, getNextValue) {
-    var dictionary = [],
+    let dictionary = [],
         next,
         enlargeIn = 4,
         dictSize = 4,
@@ -378,13 +378,10 @@ const  _decompress = function (length, resetValue, getNextValue) {
       }
     }
   };
-
-
 const LZString = {
-
   compressToBase64 : function (input) {
     if (input == null) return "";
-    var res = _compress(input, 6, function(a){return keyStrBase64.charAt(a);});
+    let res = _compress(input, 6, function(a){return keyStrBase64.charAt(a);});
     switch (res.length % 4) { // To produce valid Base64
     default: // When could this happen ?
     case 0 : return res;
@@ -393,13 +390,10 @@ const LZString = {
     case 3 : return res+"=";
     }
   },
-
   decompressFromBase64 : function (input) {
     if (input == null) return "";
     if (input == "") return null;
     return _decompress(input.length, 32, function(index) { return getBaseValue(keyStrBase64, input.charAt(index)); });
   }
 };
-
-
 export { LZString };
