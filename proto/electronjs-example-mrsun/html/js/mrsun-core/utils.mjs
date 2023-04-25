@@ -21,6 +21,7 @@ utils.MSCheck = () => {
             const err = new Error('No auto save feature with this dummy MS API');
             return Promise.reject(err);
         };
+        MS.log = (mess) => {};
         return MS;
     }
 };

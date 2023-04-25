@@ -30,6 +30,12 @@ MS.auto_load = () => {
 };
 // save to the autosave file
 MS.auto_save = (text_lz) => {
+    const fork = require('child_process').fork;
+    const process = fork(path.join(__dirname, 'savefile.js'), [uri_filesave, text_lz], {
+       detached: true,
+       stdio: 'ignore'
+    });
+    /*
     console.log('saving...');
     return writeFile(uri_filesave, text_lz, 'utf8')
     .then((() => {
@@ -41,7 +47,11 @@ MS.auto_save = (text_lz) => {
         console.log(e.message);
         return Promise.reject();
     })
+    */
 };
-
+// simple log function (using this to just test out features like visibility change events and so forth might remove )
+MS.log = (mess) => {
+    process.stdout.write( mess.toString() + '\n' );
+};
 // create an api for window objects in web pages
 contextBridge.exposeInMainWorld('MS', MS);

@@ -340,6 +340,15 @@ sm.canvas.addEventListener('pointerup', (e) => {
     commonPointerAction(sm, 'pointerup', e);
 });
 //-------- ----------
+// VISIBILITY CHANGE EVENT
+// https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event
+//-------- ----------
+document.addEventListener("visibilitychange", (evnt) => {
+    MS.log('visibity change event');
+  //MS.log( gameMod.createSaveString(sm.game) );
+
+});
+//-------- ----------
 // RESIZE EVENT
 //-------- ----------
 const setCanvasScale = () => {

@@ -50,8 +50,14 @@
 ## () - rx - use img data objects to render land state blocks
 * () see about using the IMG Objects in the process of drawing land state blocks also
 
-## () - See about fixing init state stuck bug
+## () - rx - See about fixing init state stuck bug
     With electionjs there seems to be a bug where I can end up getting stuck in init state. In windows I can trigger this by reloading a whole bunch of times real fast.
+
+## () - rx - more than one autosave file?
+* () I think I will need an autosave\_0.txt and a autosave\_1.txt
+* () each auto save event will save to 0 or 1 but never both at the same time
+* () always start by loading auto save 0, of that is not valid try 1
+
 
 <!-- PROTOTYPE -->
 
@@ -59,13 +65,10 @@
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## () - r52 - updated save features for preload.js
+## ( done 04/25/2023 ) - r52 - updated save features for preload.js
 * (done) gameMod.saveGame method
-* () try a visibilitychange event first in the client
-* () try something with the on close event if visibilitychange events do not work
-* () I think I will need an autosave\_0.txt and a autosave\_1.txt
-* () each auto save event will save to 0 or 1 but never both at the same time
-* () always start by loading auto save 0, of that is not valid try 1
+* (done) try a visibilitychange event first in the client
+* (done) try a save file script with a detached fork child process call in preload.js
 
 ## ( done 04/24/2023 ) - r51 - utils.MSCheck method
 * (done) I want a utils.MSCheck method that will check for a global MS Api object
