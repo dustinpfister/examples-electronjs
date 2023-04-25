@@ -58,14 +58,17 @@
 * () each auto save event will save to 0 or 1 but never both at the same time
 * () always start by loading auto save 0, of that is not valid try 1
 
+## () - rx - save as and open options
+* () save as option for the current autosave
+* () open menu option to load a save, and thus replace the autosave
 
 <!-- PROTOTYPE -->
 
-## () - r54 - better world state rendering
+## () - rx - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## ( done 04/25/2023 ) r53 - autosave on close
+## ( done 04/25/2023 ) - r53 - autosave on close
 * (done) now that it looks like I have a good solution for autosave I should do one on game close
 
 ## ( done 04/25/2023 ) - r52 - updated save features for preload.js
