@@ -20,11 +20,6 @@ const createMainWindow = () => {
     mainWindow.webContents.openDevTools();
     const menu = Menu.buildFromTemplate(MainMenuTemplate);
     mainWindow.setMenu(menu);
-    mainWindow.on('close', ()=> {
-
-        console.log('window closed.');
-
-    });
     return mainWindow;
 };
 //-------- ----------

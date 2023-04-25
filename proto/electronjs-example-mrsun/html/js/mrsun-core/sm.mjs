@@ -344,9 +344,8 @@ sm.canvas.addEventListener('pointerup', (e) => {
 // https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event
 //-------- ----------
 document.addEventListener("visibilitychange", (evnt) => {
-    MS.log('visibity change event');
-  //MS.log( gameMod.createSaveString(sm.game) );
-
+    // final save on quit, or any visibilitychange event
+    gameMod.saveGame(sm.game);
 });
 //-------- ----------
 // RESIZE EVENT

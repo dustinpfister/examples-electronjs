@@ -61,9 +61,12 @@
 
 <!-- PROTOTYPE -->
 
-## () - r53 - better world state rendering
+## () - r54 - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
+
+## ( done 04/25/2023 ) r53 - autosave on close
+* (done) now that it looks like I have a good solution for autosave I should do one on game close
 
 ## ( done 04/25/2023 ) - r52 - updated save features for preload.js
 * (done) gameMod.saveGame method
