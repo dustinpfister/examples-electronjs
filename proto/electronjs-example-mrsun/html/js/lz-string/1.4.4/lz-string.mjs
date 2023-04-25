@@ -1,16 +1,20 @@
-// Copyright (c) 2013 Pieroxy <pieroxy@pieroxy.net>
+// Copyright (c) 2013 - 2023, Pieroxy <pieroxy@pieroxy.net> Dustin Pfister <dustin.pfister@gmail.com>
+// This is a hacked over version of ls-string.js where I just wanted a module form of the file
+// While I was it it I removed methods I am not using, and also made the _compess and _decompress methods private
+// ----------
 // This work is free. You can redistribute it and/or modify it
 // under the terms of the WTFPL, Version 2
 // For more information see LICENSE.txt or http://www.wtfpl.net/
-//
-// For more information, the home page:
+// ---------
+// For more information :
 // http://pieroxy.net/blog/pages/lz-string/testing.html
+// https://github.com/pieroxy/lz-string
+// 
 //
 // LZ-based compression algorithm, version 1.4.4
 const f = String.fromCharCode;
 const keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 const baseReverseDic = {};
-
 function getBaseValue(alphabet, character) {
   if (!baseReverseDic[alphabet]) {
     baseReverseDic[alphabet] = {};
@@ -20,7 +24,6 @@ function getBaseValue(alphabet, character) {
   }
   return baseReverseDic[alphabet][character];
 };
-
 const _compress = function (uncompressed, bitsPerChar, getCharFromInt) {
     if (uncompressed == null) return "";
     let i, value,
