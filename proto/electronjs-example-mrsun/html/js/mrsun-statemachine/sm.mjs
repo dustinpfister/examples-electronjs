@@ -92,13 +92,21 @@ sm.states.init = {
 //-------- ----------
 // world state
 //-------- ----------
+const button_check = (data, key, pos, onClick) => {
+    const button = data[key];
+    if( button.position.distanceTo( pos ) <= button.r ){
+        onClick(button, data, key, pos);
+    }
+};
 sm.states.world = {
-    data: {},
+    data: {
+        button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
+    },
     start: (sm, opt) => {},
     update: (sm, secs) => {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },
-    render: (sm, ctx, canvas) => {
+    render: (sm, ctx, canvas, data) => {
         ctx.lineWidth = 1;
         ctx.font = '15px arial';
         const sun = sm.game.sun;
@@ -142,9 +150,13 @@ sm.states.world = {
         ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
         ctx.fillText('mana level: ' + sm.game.mana_level, 15, 65);
         ctx.fillText('sunspots_delta: ' + sm.game.sunspots_delta, 15, 75);
+
+
+        utils.drawButton(sm, data.button_supernova, sm.ctx, sm.canvas);
+
     },
     events: {
-        pointerdown : (sm, pos, e) => {
+        pointerdown : (sm, pos, e, data) => {
             const sun = sm.game.sun;
             const d = pos.distanceTo(sun.center);
             // clicked in the sun area?
@@ -159,18 +171,17 @@ sm.states.world = {
                 sm.setState('land', {});
                 return;
             }
+
+                button_check(data, 'button_supernova', pos, () => {
+                    console.log('supernova!');
+                });
+
         }
     }
 };
 //-------- ----------
 // land state
 //-------- ----------
-const button_check = (data, key, pos, onClick) => {
-    const button = data[key];
-    if( button.position.distanceTo( pos ) <= button.r ){
-        onClick(button, data, key, pos);
-    }
-};
 const button_check_blockmode = (data, new_block_mode, pos) => {
     const key = 'button_bm_' + new_block_mode;
     button_check(data, key, pos, (button) => {

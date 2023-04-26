@@ -98,8 +98,7 @@
 * (done) display sunspots value
 * (done) I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
 * (done) sunspot delta value should be effected by mana level
-
-* () for now sunspot coins will effect base mana and temp mana of blocks
+* (done) for now sunspot coins will effect base mana and temp mana of blocks
 
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 * () have a button that will show up in world state when supernova is ready
