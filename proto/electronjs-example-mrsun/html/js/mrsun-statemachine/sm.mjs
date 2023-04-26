@@ -140,6 +140,8 @@ sm.states.world = {
         ctx.textBaseline = 'top';
         ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
         ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
+        ctx.fillText('mana level: ' + sm.game.mana_level, 15, 65);
+        ctx.fillText('sunspots_delta: ' + sm.game.sunspots_delta, 15, 75);
     },
     events: {
         pointerdown : (sm, pos, e) => {

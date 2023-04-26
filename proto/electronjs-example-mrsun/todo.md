@@ -86,15 +86,19 @@
 ## () - r56 - away production
 * () start an away production feature
 
+## () - r57 - sunspot delta effected by block upgrades
+* () sunspot delta value should be effected by total mana spent on upgrades
+
+## () - r56 - sunspot delta effected by unlocked slot count
+* () sunspot delta value should be effected by total number of slots unlocked
+
 ## () - r55 - start supernova feature, and sunspots coin
 * (done) I will need a game.sunspots value that will be a Decimal value like that of mana
 * (done) game.sunspots will need to be part of a game save
-* () display sunspots
+* (done) display sunspots value
+* (done) I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
+* (done) sunspot delta value should be effected by mana level
 
-* () I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
-* () sunspot delta value should be effected by mana level
-* () sunspot delta value should be effected by total number of slots unlocked
-* () sunspot delta value should be effected by total mana spent on upgrades
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 * () have a button that will show up in world state when supernova is ready
 * () for now sunspot coins will effect base mana and temp mana of blocks

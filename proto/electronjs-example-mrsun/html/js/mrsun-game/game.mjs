@@ -657,6 +657,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.tick_frac += tickDelta;
     game.tick = Math.floor(game.tick_frac);
     const tick_delta = game.tick - game.tick_last;
+    // update temp, mana per tick, credit mana
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
@@ -675,7 +676,12 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
     }
+    // step the sun animation
     game.sun.stepBaseAnimation();
+    // sunspots delta
+    const spd_manalevel = Decimal.pow(2, game.mana_level);
+    const spd = new Decimal(0);
+    game.sunspots_delta = spd.add(spd_manalevel);
 };
 // create a new game state object
 gameMod.create = (opt) => {
@@ -687,6 +693,7 @@ gameMod.create = (opt) => {
        mana_cap: 0,      // set by calling getManaCap Helper
        mana_per_tick: new Decimal(0),
        sunspots: new Decimal(opt.sunspots),
+       sunspots_delta: new Decimal(0),
        tick_frac: 0,
        tick: 0,          // game should update by a main tick count
        tick_last: 0      // last tick can be subtracted from tick to get a tick delta
@@ -845,7 +852,8 @@ gameMod.parseSaveString = (text_lz) => {
     const opt = JSON.parse(text_json);
 
 console.log('game options object from save string:');
-console.log(opt)
+console.log(opt);
+//opt.sunspots = new Decimal(0);
 
     return opt;
 };
