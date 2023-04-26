@@ -251,8 +251,8 @@ sm.states.land = {
             ctx.fillStyle = 'black';
             ctx.fillText('type: ' + block.type, 320, sy + 20);
             ctx.fillText('mana_value: ' + utils.formatDecimal(block.mana_value.valueOf(), 4), 320, sy + 40   );
-            ctx.fillText('mana_base: ' + block.mana_base, 320, sy + 60   );
-            ctx.fillText('mana_temp: ' + block.mana_temp, 320, sy + 80   );
+            ctx.fillText('mana_base: ' + block.mana_base.toFixed(2), 320, sy + 60   );
+            ctx.fillText('mana_temp: ' + block.mana_temp.toFixed(2), 320, sy + 80   );
         }
     },
     events: {

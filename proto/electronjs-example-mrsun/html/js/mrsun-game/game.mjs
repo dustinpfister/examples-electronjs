@@ -162,8 +162,8 @@ constant.BLOCKS.blank = {
 };
 constant.BLOCKS.rock = {
     type: 'rock',
-    mana_base: 1,
-    mana_temp: 4
+    mana_base: 0.75,
+    mana_temp: 1.5
 };
 //-------- ----------
 // IMG DATA OBJECTS ( used to render slots / blocks )
@@ -349,8 +349,10 @@ class Block {
         this.level = level === undefined ? 1 : parseInt(level);
         this.type = type || this.type;
         const TYPE_DEF = constant.BLOCKS[this.type];
+
         this.mana_base = TYPE_DEF.mana_base * this.level;
         this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
+
         this.mana_value = null;
         this.upgradeCost = Decimal.pow(10, this.level);
         this.setManaValue();
@@ -853,7 +855,7 @@ gameMod.parseSaveString = (text_lz) => {
 
 console.log('game options object from save string:');
 console.log(opt);
-//opt.sunspots = new Decimal(0);
+opt.sunspots = new Decimal(1000);
 
     return opt;
 };
