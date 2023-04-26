@@ -858,7 +858,7 @@ gameMod.parseSaveString = (text_lz) => {
 
 console.log('game options object from save string:');
 console.log(opt);
-opt.sunspots = new Decimal(20);
+//opt.sunspots = new Decimal(0);
 
     return opt;
 };

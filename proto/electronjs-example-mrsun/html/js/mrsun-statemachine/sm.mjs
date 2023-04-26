@@ -174,6 +174,12 @@ sm.states.world = {
 
                 button_check(data, 'button_supernova', pos, () => {
                     console.log('supernova!');
+
+    const cx = sm.canvas.width / 2;
+    const cy = sm.canvas.height / 2;
+const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
+sm.game = gameMod.create({cx: cx, cy: cy, sunspots: sp.toString() });
+
                 });
 
         }

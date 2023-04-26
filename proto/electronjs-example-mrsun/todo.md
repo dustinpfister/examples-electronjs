@@ -64,27 +64,30 @@
 
 <!-- PROTOTYPE -->
 
-## () - r60 - better world state rendering
+## () - r63 - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## () - r59 - mrsun-lands lib folder
+## () - r62 - mrsun-lands lib folder
 * () pull all code that has to do with the Lands class into its own mjs file
 * () update game.mjs to make use of new lands.mjs file
 * () create and update readme files
 
-## () - r58 - main.js file
+## () - r61 - main.js file
 * () have a main.js file
 * () update sm.mjs to export a create method
 
-## () - r57 - mrsun-constants
+## () - r60 - mrsun-constants
 * () the constants in game.mjs should be in there own module folder
 * () update game.mjs to use new constants module
 * () update sm.mjs to use the new constants module
 * () update utils.mjs to use the new constants module
 
-## () - r56 - away production
+## () - r59 - away production
 * () start an away production feature
+
+## () - r58 - min sunspot delta for supernove
+* () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
 ## () - r57 - sunspot delta effected by block upgrades
 * () sunspot delta value should be effected by total mana spent on upgrades
@@ -92,17 +95,14 @@
 ## () - r56 - sunspot delta effected by unlocked slot count
 * () sunspot delta value should be effected by total number of slots unlocked
 
-## () - r55 - start supernova feature, and sunspots coin
+## ( done 04/26/2023 ) - r55 - start supernova feature, and sunspots coin
 * (done) I will need a game.sunspots value that will be a Decimal value like that of mana
 * (done) game.sunspots will need to be part of a game save
 * (done) display sunspots value
 * (done) I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
 * (done) sunspot delta value should be effected by mana level
 * (done) for now sunspot coins will effect base mana and temp mana of blocks
-
-* () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
-* () have a button that will show up in world state when supernova is ready
-
+* (done) have a super nove button
 
 ## ( done 04/26/2023 ) - r54 - mrsun-statemachine, mrsun-utils, mrsun-game
 * (done) pull sm.mjs into its own lib folder
