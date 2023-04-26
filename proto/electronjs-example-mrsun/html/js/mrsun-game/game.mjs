@@ -162,8 +162,8 @@ constant.BLOCKS.blank = {
 };
 constant.BLOCKS.rock = {
     type: 'rock',
-    mana_base: 0.75,
-    mana_temp: 1.5
+    mana_base: 1.00,
+    mana_temp: 0.75
 };
 //-------- ----------
 // IMG DATA OBJECTS ( used to render slots / blocks )
@@ -332,7 +332,7 @@ class Block {
         this.mana_temp = 0;
         this.mana_value = null;
         this.upgradeCost = 0;
-        this.setLevel(opt.level, this.type);
+        this.setLevel(opt.level, this.type, 1);
     }
     // set the mana value object for this block
     setManaValue () {
@@ -345,13 +345,13 @@ class Block {
         };
     }
     // set the current level of the block, can also change type
-    setLevel (level, type) {
+    setLevel (level, type, sunspot_multi = 1 ) {
         this.level = level === undefined ? 1 : parseInt(level);
         this.type = type || this.type;
         const TYPE_DEF = constant.BLOCKS[this.type];
 
-        this.mana_base = TYPE_DEF.mana_base * this.level;
-        this.mana_temp = Math.pow(TYPE_DEF.mana_temp, this.level);
+        this.mana_base = TYPE_DEF.mana_base * sunspot_multi * this.level;
+        this.mana_temp = Math.pow(TYPE_DEF.mana_temp * sunspot_multi, this.level);
 
         this.mana_value = null;
         this.upgradeCost = Decimal.pow(10, this.level);
@@ -359,11 +359,11 @@ class Block {
     }
     // copy some other block to this block
     copy (block) {
-        this.setLevel(block.level, block.type);
+        this.setLevel(block.level, block.type, 1);
     }
     // clear a block to blank type
     clear () {
-        this.setLevel(1, 'blank');
+        this.setLevel(1, 'blank', 1);
     }
 };
 //-------- ----------
@@ -436,7 +436,7 @@ class LandSection {
                             slot.block.clear();
                         }
                         if(arr[0] === 'r'){
-                            slot.block.setLevel(arr[1], 'rock');
+                            slot.block.setLevel(arr[1], 'rock', 1);
                         }
                     }
                     y -= 1;
@@ -659,7 +659,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.tick_frac += tickDelta;
     game.tick = Math.floor(game.tick_frac);
     const tick_delta = game.tick - game.tick_last;
-    // update temp, mana per tick, credit mana
+    // update temp, block data, mana per tick, credit mana,
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         game.lands.forEachSection( (section) => {
@@ -671,6 +671,9 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
                 const a_temp = section.temp / constant.TEMP_MAX;
                 const block = slot.block;
                 if(!slot.locked && block.type != 'blank'){
+                    // update block here
+                    const sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
+                    block.setLevel(block.level, block.type, sunspot_multi);
                     game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
                 }
             });
@@ -777,7 +780,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
             gameMod.updateByTickDelta(game, 0, true);
             if(section.bt_counts.rock < constant.BLOCK_LAND_MAX){
                 if(game.mana.gte( blockCost )){
-                    slot.block.setLevel(level, 'rock');
+                    slot.block.setLevel(level, 'rock', 1);
                     game.lands.setBlockTypeCounts();
                     manaDebit(game, blockCost);
                     gameMod.saveGame(game);
@@ -806,7 +809,7 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
     if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
         manaDebit(game, block.upgradeCost);
         const newLevel = block.level + 1;
-        block.setLevel(newLevel, 'rock');
+        block.setLevel(newLevel, 'rock', 1);
         gameMod.saveGame(game);
     }
 };
@@ -855,7 +858,7 @@ gameMod.parseSaveString = (text_lz) => {
 
 console.log('game options object from save string:');
 console.log(opt);
-opt.sunspots = new Decimal(1000);
+opt.sunspots = new Decimal(20);
 
     return opt;
 };
