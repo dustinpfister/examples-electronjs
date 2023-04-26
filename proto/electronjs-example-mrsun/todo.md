@@ -64,18 +64,29 @@
 
 <!-- PROTOTYPE -->
 
-## () - r59 - better world state rendering
+## () - r60 - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
+
+## () - r59 - mrsun-lands lib folder
+* () pull all code that has to do with the Lands class into its own mjs file
+* () update game.mjs to make use of new lands.mjs file
+* () create and update readme files
 
 ## () - r58 - main.js file
 * () have a main.js file
 * () update sm.mjs to export a create method
 
-## () - r57 - away production
+## () - r57 - mrsun-constants
+* () the constants in game.mjs should be in there own module folder
+* () update game.mjs to use new constants module
+* () update sm.mjs to use the new constants module
+* () update utils.mjs to use the new constants module
+
+## () - r56 - away production
 * () start an away production feature
 
-## () - r56 - start supernova feature, and sunspots coin
+## () - r55 - start supernova feature, and sunspots coin
 * () start a supernova feature where the sun explods, and we start over but with 'sunspot' coins
 * () I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
 * () sunspot delta value should be effected by mana level
@@ -85,17 +96,12 @@
 * () have a button that will show up in world state when supernova is ready
 * () for now sunspot coins will effect base mana and temp mana of blocks
 
-## () - r55 - mrsun-lands lib folder
-* () pull all code that has to do with the Lands class into its own mjs file
-* () update game.mjs to make use of new lands.mjs file
-* () create and update readme files
-
-## () - r54 - mrsun-statemachine, mrsun-utils, mrsun-game
+## ( done 04/26/2023 ) - r54 - mrsun-statemachine, mrsun-utils, mrsun-game
 * (done) pull sm.mjs into its own lib folder
 * (done) update all file locations that are needed
 * (done) pull utils into its own lib folder
 * (done) rename mrsun-core to mrsun-game
-* () create and update readme files
+* (done) create and update readme files
 
 ## ( done 04/25/2023 ) - r53 - autosave on close
 * (done) now that it looks like I have a good solution for autosave I should do one on game close
