@@ -102,19 +102,24 @@ utils.drawSprite = (sprite, ctx, canvas) => {
 };
 // draw a common display that you would want to have over all states
 utils.drawCommonDisp = (sm, ctx, canvas) => {
-    ctx.fillStyle = '#888888';
-    ctx.fillRect(10, 4, 250, 17);
-    ctx.fillStyle = '#0000aa';
-    const a_mana = sm.game.mana.div(sm.game.mana_cap);
-    ctx.fillRect(10, 4, 250 * a_mana, 17);
-    // text
     ctx.fillStyle = 'white';
     ctx.font = '15px arial';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
+    // mana bar
+    ctx.fillStyle = '#2a2a2a';
+    ctx.fillRect(10, 4, 250, 17);
+    ctx.fillStyle = '#0044dd';
+    const a_mana = sm.game.mana.div(sm.game.mana_cap);
+    ctx.fillRect(10, 4, 250 * a_mana, 17);
+    ctx.fillStyle = '#ffffff';
     ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' / ' +
          utils.formatDecimal(sm.game.mana_cap, 0) + 
          ' (+' + utils.formatDecimal(sm.game.mana_per_tick, 4) + ') ', 15, 5);
+    // sunspots count
+    ctx.fillStyle = '#888888';
+    ctx.fillText('sunspots: ' + sm.game.sunspots, 275, 5);
+    // tick count
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
 };
 // draw a button

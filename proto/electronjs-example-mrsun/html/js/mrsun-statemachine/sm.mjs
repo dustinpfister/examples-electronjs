@@ -102,7 +102,7 @@ sm.states.world = {
         ctx.lineWidth = 1;
         ctx.font = '15px arial';
         const sun = sm.game.sun;
-        ctx.fillStyle = '#2a2a2a';
+        ctx.fillStyle = '#000000';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // max dist circle
         const md = sm.game.SUNAREA_RADIUS;
@@ -120,14 +120,17 @@ sm.states.world = {
         sm.game.lands.sections.forEach((section, i) => {
             section.sprite_world.update();
             utils.drawSprite(section.sprite_world, ctx, canvas);
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.beginPath();
-            ctx.arc(section.position.x, section.position.y, section.r, 0, Math.PI * 2);
-            ctx.fill();
+            //ctx.fillStyle = 'rgba(64,64,64,0.6)';
+            //ctx.beginPath();
+            //ctx.arc(section.position.x, section.position.y, section.r, 0, Math.PI * 2);
+            //ctx.fill();
+            ctx.font = 'bold 30px arial';
             ctx.fillStyle = 'white';
+            ctx.strokeStyle = 'black';
             ctx.textBaseline = 'middle';
             ctx.textAlign = 'center';
             ctx.fillText(section.temp, section.position.x, section.position.y);
+            ctx.strokeText(section.temp, section.position.x, section.position.y);
         });
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
