@@ -145,7 +145,11 @@ constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];
 constant.DEFAULT_CREATE_OPTIONS = {
-    cx: 100, cy: 100, mana: constant.MANA_START, mana_level: 1, sectionData: constant.LANDS_START_SECTION_DATA
+    cx: 100, cy: 100, 
+    mana: constant.MANA_START, 
+    mana_level: 1,
+    sunspots: '0', 
+    sectionData: constant.LANDS_START_SECTION_DATA
 };
 //-------- ----------
 // BLOCK TYPES
@@ -678,11 +682,11 @@ gameMod.create = (opt) => {
     opt = opt || {};
     opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
     const game = {
-       //sun2: sun2,
        mana: new Decimal(opt.mana),
        mana_level: opt.mana_level,
        mana_cap: 0,      // set by calling getManaCap Helper
        mana_per_tick: new Decimal(0),
+       sunspots: new Decimal(opt.sunspots),
        tick_frac: 0,
        tick: 0,          // game should update by a main tick count
        tick_last: 0      // last tick can be subtracted from tick to get a tick delta
@@ -818,6 +822,7 @@ gameMod.createSaveString = (game) => {
     const save = {};
     save.mana = game.mana.toString();
     save.mana_level = game.mana_level;
+    save.sunspots = game.sunspots.toString();
     save.x = game.sun.position.x;
     save.y = game.sun.position.y;
     save.sectionData = game.lands.getSectionDataArray();
@@ -832,13 +837,16 @@ gameMod.saveGame = (game) => {
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
     console.log('parsing the save string: ');
-    console.log(text_lz);
     if(!text_lz){
         console.log('looks like the save string is not valid!');
         return {};
     }
     const text_json = LZString.decompressFromBase64(text_lz);
     const opt = JSON.parse(text_json);
+
+console.log('game options object from save string:');
+console.log(opt)
+
     return opt;
 };
 //-------- ----------

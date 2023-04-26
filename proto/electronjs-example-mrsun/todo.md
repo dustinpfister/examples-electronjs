@@ -87,7 +87,9 @@
 * () start an away production feature
 
 ## () - r55 - start supernova feature, and sunspots coin
-* () start a supernova feature where the sun explods, and we start over but with 'sunspot' coins
+* () I will need a game.sunspots value that will be a Decimal value like that of mana
+* () game.sunspots will need to be part of a game save
+
 * () I need an expression that will evaluate to the number of sunspot coins that will be given if super nova is done
 * () sunspot delta value should be effected by mana level
 * () sunspot delta value should be effected by total number of slots unlocked
