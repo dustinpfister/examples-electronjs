@@ -1,7 +1,7 @@
 // sm.mjs - for electionjs-example-mrsun
 // Main state machine
-import { gameMod }  from "./game.mjs"
-import { utils }  from "./utils.mjs"
+import { gameMod }  from "../mrsun-game/game.mjs"
+import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 // MS api check
 const MS = utils.MSCheck();

@@ -6,7 +6,7 @@ import { EventDispatcher } from "../event-dispatcher/EventDispatcher.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
-import { utils }  from "./utils.mjs"
+import { utils }  from "../mrsun-utils/utils.mjs"
 // MS api check
 const MS = utils.MSCheck();
 //-------- ----------
