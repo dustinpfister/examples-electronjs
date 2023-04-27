@@ -682,7 +682,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.sun.stepBaseAnimation();
     // sunspots delta
     game.sunspots_delta_mana_level = Decimal.pow(2, game.mana_level);
-    game.sunspots_delta_world_value = Decimal.log(game.lands.mana_total).toFixed(4);
+    game.sunspots_delta_world_value = Decimal.log(game.lands.mana_total.add(1)).toFixed(4);
     const spd = new Decimal(0);
     game.sunspots_delta = spd.add(game.sunspots_delta_mana_level).add(game.sunspots_delta_world_value).round();
 };

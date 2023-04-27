@@ -97,12 +97,12 @@
 ## () - r57 - min sunspot delta for supernove
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r56 - sunspot delta effected by world mana value
+## ( done 04/27/2023 ) - r56 - sunspot delta effected by world mana value
 * (done) have a block.getUpgradeCost method
 * (done) mana total value for section objects
 * (done) mana total value for lands object
 * (done) display mana totals for each section, and also the lands total in world state
-* () use lands total mana value in expression for sunspot delta
+* (done) use lands total mana value in expression for sunspot delta
 
 ## ( done 04/26/2023 ) - r55 - start supernova feature, and sunspots coin
 * (done) I will need a game.sunspots value that will be a Decimal value like that of mana
