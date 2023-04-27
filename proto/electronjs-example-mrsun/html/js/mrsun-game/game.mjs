@@ -307,7 +307,7 @@ class SpriteLandSectonWorld extends Sprite {
 //-------- ----------
 class Block {
     constructor(opt) {
-        opt || opt || {};
+        opt = opt || {};
         this.type = opt.type || 'blank';
         this.mana_base = 0;
         this.mana_temp = 0;
@@ -325,7 +325,7 @@ class Block {
             }
         };
     }
-    // get the upgrade cost for the given level
+    // get the upgrade cost AT the given CURRENT block level
     getUpgradeCost (level) {
         return Decimal.pow(10, level === undefined ? this.level : level);
     }
@@ -351,6 +351,17 @@ class Block {
         this.setLevel(1, 'blank', 1);
     }
 };
+
+
+const tb = new Block();
+console.log('test block');
+console.log(tb);
+console.log('level 0 upgrade cost: ' + tb.getUpgradeCost(0) );
+console.log('level 1 upgrade cost: ' + tb.getUpgradeCost(1) );
+console.log('level 2 upgrade cost: ' + tb.getUpgradeCost(2) );
+console.log('level 3 upgrade cost: ' + tb.getUpgradeCost(3) );
+
+
 //-------- ----------
 // SLOT CLASS
 //-------- ----------
@@ -760,7 +771,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
         // check if the unlocked slot is blank
         if(!slot.locked && slot.block.type === 'blank'){
             const block = slot.block;
-            const blockCost = 1 * level;
+            const blockCost = 1;
             gameMod.updateByTickDelta(game, 0, true);
             if(section.bt_counts.rock < constant.BLOCK_LAND_MAX){
                 if(game.mana.gte( blockCost )){

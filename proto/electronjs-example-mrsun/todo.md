@@ -91,6 +91,7 @@
 
 ## () - r56 - sunspot delta effected by unlocked slot count
 * (done) have a block.getUpgradeCost method
+* () have a block.getCreateCost method
 * () sunspot delta value should be effected by total mana spent on upgrades
 
 
