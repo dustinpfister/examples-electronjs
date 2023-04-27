@@ -171,7 +171,6 @@ constant.BLOCKS.rock = {
 const IMG = constant.IMG = {};
 IMG.locked = {
     palette: ['blue', 'cyan'],
-    //w: 1, h: 1,
     w: 2, h: 2,
     color_indices: [
         0, 1,
@@ -194,24 +193,6 @@ IMG.rock = {
         1, 2
    ]
 };
-// 8 by 4 rock
-/*
-IMG.rock = {
-    palette: [
-        '#00ff00','#008800', '#004400',
-        '#aaaa00','#888800', '#444400',
-        '#ff0000'
-    ],
-    //w: 1, h: 1,
-    w: 8, h: 4,
-    color_indices: [
-        0, 1, 0, 1, 0, 1, 0, 1,
-        2, 2, 2, 2, 2, 2, 2, 2,
-        4, 3, 4, 3, 4, 3, 4, 3,
-        5, 4, 5, 4, 5, 4, 5, 4,
-    ]
-};
-*/
 //-------- ----------
 // GAME EVENTS
 //-------- ----------
@@ -392,8 +373,6 @@ class LandSection {
         this.position = new Vector2();
         this.position.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
         this.position.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
-        //this.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
-        //this.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
 
         this.r = constant.LAND_RADIUS;
         this.slots = [];
@@ -728,8 +707,6 @@ gameMod.setSunPos = (game, pos) => {
         sun.position.x = sun.center.x + Math.cos(a) * md;
         sun.position.y = sun.center.y + Math.sin(a) * md;
     }
-    //!!! for some weird reason saving here takes a few seconds in Windows
-    //!!! if i reload while it is going on that will clear the autosave file
     gameMod.saveGame(game);
 };
 // get land object by x, y pos or false if nothing there
@@ -855,11 +832,6 @@ gameMod.parseSaveString = (text_lz) => {
     }
     const text_json = LZString.decompressFromBase64(text_lz);
     const opt = JSON.parse(text_json);
-
-console.log('game options object from save string:');
-console.log(opt);
-//opt.sunspots = new Decimal(0);
-
     return opt;
 };
 //-------- ----------
