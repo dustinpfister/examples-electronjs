@@ -351,17 +351,6 @@ class Block {
         this.setLevel(1, 'blank', 1);
     }
 };
-
-
-const tb = new Block();
-console.log('test block');
-console.log(tb);
-console.log('level 0: ' + tb.getUpgradeCost(0) );
-console.log('level 1: ' + tb.getUpgradeCost(1) );
-console.log('level 2: ' + tb.getUpgradeCost(2) );
-console.log('level 3: ' + tb.getUpgradeCost(3) );
-
-
 //-------- ----------
 // SLOT CLASS
 //-------- ----------
@@ -383,12 +372,10 @@ class LandSection {
         sectionData = sectionData || {};
         this.i = i;
         this.a = Math.PI * 2 * ( i / constant.LAND_OBJECT_COUNT);
-
         // use the vector2 class
         this.position = new Vector2();
         this.position.x = cx + Math.cos(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
         this.position.y = cy + Math.sin(this.a) * ( constant.SUNAREA_RADIUS + constant.LAND_RADIUS );
-
         this.r = constant.LAND_RADIUS;
         this.slots = [];
         this.slot_unlock_count = 0;
@@ -405,6 +392,8 @@ class LandSection {
         // world sprite objects
         this.sprite_world = new SpriteLandSectonWorld(this);
         this.sprite_world.position.set(this.position.x, this.position.y);
+        // total mana value
+        this.mana_total = new Decimal(0);
     }
     // apply section data
     applySectionData(sectionData){
@@ -661,19 +650,20 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
             const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
             section.temp = Math.round( constant.TEMP_MAX * section.d_alpha );
+            let mana_total = new Decimal(0);
             section.forEachSlot( (slot ) => {
                 const a_temp = section.temp / constant.TEMP_MAX;
                 const block = slot.block;
                 if(!slot.locked && block.type != 'blank'){
                     // update block here
                     const sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
-
                     block.setLevel(block.level, block.type, sunspot_multi);
                     const mana_delta = Math.round(block.mana_base + block.mana_temp * a_temp);
-
                     game.mana_per_tick = game.mana_per_tick.add( mana_delta );
+                    mana_total = mana_total.add( block.mana_value.valueOf() );
                 }
             });
+            section.mana_total = mana_total;
         });
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);

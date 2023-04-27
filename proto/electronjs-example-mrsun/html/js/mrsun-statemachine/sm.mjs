@@ -250,6 +250,7 @@ sm.states.land = {
         ctx.fillText('temp: ' + section.temp, 15, 45);
         ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 55);
         ctx.fillText('slot unlock cost: ' + utils.formatDecimal(sm.game.lands.slot_unlock_cost, 4), 15, 65);
+        ctx.fillText('mana value: ' + section.mana_total, 15, 75);
         // current land index
         ctx.font = '50px arial';
         ctx.textAlign = 'center';
