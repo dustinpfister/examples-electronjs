@@ -144,6 +144,9 @@ constant.SLOT_GRID_HEIGHT = 8;
 constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];
+constant.SUNSPOTS_WORLDVALUE_BASE_MAX = 10;
+constant.SUNSPOTS_WORLDVALUE_BASE_MIN = 1.0005;
+constant.SUNSPOTS_WORLDVALUE_MAXMANA = Math.pow(10, 10);
 constant.DEFAULT_CREATE_OPTIONS = {
     cx: 100, cy: 100, 
     mana: constant.MANA_START, 
@@ -637,20 +640,24 @@ const manaDebit = (game, mana_delta) => {
     }
 };
 
-constant.SUNSPOTS_WORLDVALUE_BASE_MAX = 100;
-constant.SUNSPOTS_WORLDVALUE_BASE_MIN = 1.005;
 
 // get the base that is used to figure sunspot world value base
 const getSunspotWorldValueBase = (world_mana_value) => {
     world_mana_value = world_mana_value <= 0 ? 1 : world_mana_value;
     const base_min = constant.SUNSPOTS_WORLDVALUE_BASE_MIN;
     const base_max = constant.SUNSPOTS_WORLDVALUE_BASE_MAX;
-    return base_max - (base_max - base_min) * Math.log( world_mana_value ) / Math.log( Math.pow(base_max, 5));
-    //return 10;
+    let alpha = Math.log( world_mana_value ) / Math.log( constant.SUNSPOTS_WORLDVALUE_MAXMANA);
+    alpha = alpha > 1 ? 1 : alpha;
+    return base_max - (base_max - base_min) * alpha;
 };
 
 console.log('sunspot world value base: ');
+console.log( 'max mana : ' + constant.SUNSPOTS_WORLDVALUE_MAXMANA );
 console.log( getSunspotWorldValueBase(0) );
+console.log( getSunspotWorldValueBase(9999) );
+console.log( getSunspotWorldValueBase(9999999) );
+console.log( getSunspotWorldValueBase(99999999) );
+console.log( getSunspotWorldValueBase(999999999) );
 
 //-------- ----------
 // PUBLIC API
@@ -700,7 +707,6 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.sunspots_delta_mana_level = Decimal.pow(2, game.mana_level);
     //!!! sunspot world value base (1.005 to 10 maybe? )
     //const sunspot_world_value_base = 10;
-    //const sunspot_world_value_base = 100 - (100 - 1.005) * Math.log( game.lands.mana_total.add(1) ) / Math.log( Math.pow(100, 5));
     const sunspot_world_value_base = getSunspotWorldValueBase(game.lands.mana_total.add(1));
     game.sunspots_delta_world_value = Decimal.log(game.lands.mana_total.add(1), sunspot_world_value_base).toFixed(4);
     const spd = new Decimal(0);

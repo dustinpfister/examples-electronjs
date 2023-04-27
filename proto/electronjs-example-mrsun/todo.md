@@ -101,12 +101,12 @@
 ## () - rx - away production
 * () start an away production feature
 
-## () - r57 - Expression for setting sunspots delta world value
+## ( done 04/27/2023 ) - r57 - Expression for setting sunspots delta world value
 * (done) I want to have an expression that will adjust the base that is used to figure sunspots world delta
 * (done) started a getSunspotWorldValueBase helper function for this in game.mjs
 * (done) I will want a constant.SUNSPOTS-WORLDVALUE-BASE-MAX
 * (done) I will want a constant.SUNSPOTS-WORLDVALUE-BASE-MIN
-* () I will want a constant.SUNSPOTS-WORLDVALUE-MAXMANA that will be the point at which the min base is reached
+* (done) I will want a constant.SUNSPOTS-WORLDVALUE-MAXMANA that will be the point at which the min base is reached
 
 ## ( done 04/27/2023 ) - r56 - sunspot delta effected by world mana value
 * (done) have a block.getUpgradeCost method
