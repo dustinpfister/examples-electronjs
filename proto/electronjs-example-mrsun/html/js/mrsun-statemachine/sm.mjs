@@ -143,14 +143,18 @@ sm.states.world = {
         // disp
         utils.drawCommonDisp(sm, ctx, canvas);
         // world disp
-        ctx.font = '10px arial';
+        ctx.font = '9px monospace';
+        const sx = 10, sy = 45, yd = 9;
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
-        ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
-        ctx.fillText('mana level: ' + sm.game.mana_level, 15, 65);
-        ctx.fillText('world mana total: ' + utils.formatDecimal(sm.game.lands.mana_total), 15, 75);
-        ctx.fillText('sunspots_delta: ' + sm.game.sunspots_delta, 15, 85);
+        ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, sx, sy);
+        ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total,sx, sy + yd * 1);
+        ctx.fillText('mana level: ' + sm.game.mana_level, sx, sy + yd * 2);
+        ctx.fillText('world mana total: ' + utils.formatDecimal(sm.game.lands.mana_total), sx, sy + yd * 3);
+
+        ctx.fillText('ss mana  : ' + sm.game.sunspots_delta_mana_level, sx, sy + yd * 4);
+        ctx.fillText('ss value : ' + sm.game.sunspots_delta_world_value, sx, sy + yd * 5);
+        ctx.fillText('ss delta : ' + sm.game.sunspots_delta, sx, sy + yd * 6);
 
         utils.drawButton(sm, data.button_supernova, sm.ctx, sm.canvas);
 

@@ -681,9 +681,10 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     // step the sun animation
     game.sun.stepBaseAnimation();
     // sunspots delta
-    const spd_manalevel = Decimal.pow(2, game.mana_level);
+    game.sunspots_delta_mana_level = Decimal.pow(2, game.mana_level);
+    game.sunspots_delta_world_value = new Decimal(0);
     const spd = new Decimal(0);
-    game.sunspots_delta = spd.add(spd_manalevel);
+    game.sunspots_delta = spd.add(game.sunspots_delta_mana_level).add(game.sunspots_delta_world_value);
 };
 // create a new game state object
 gameMod.create = (opt) => {
@@ -696,6 +697,8 @@ gameMod.create = (opt) => {
        mana_per_tick: new Decimal(0),
        sunspots: new Decimal(opt.sunspots),
        sunspots_delta: new Decimal(0),
+       sunspots_delta_mana_level: new Decimal(0),
+       sunspots_delta_world_value: new Decimal(0),
        tick_frac: 0,
        tick: 0,          // game should update by a main tick count
        tick_last: 0      // last tick can be subtracted from tick to get a tick delta
