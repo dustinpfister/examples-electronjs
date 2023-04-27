@@ -356,10 +356,10 @@ class Block {
 const tb = new Block();
 console.log('test block');
 console.log(tb);
-console.log('level 0 upgrade cost: ' + tb.getUpgradeCost(0) );
-console.log('level 1 upgrade cost: ' + tb.getUpgradeCost(1) );
-console.log('level 2 upgrade cost: ' + tb.getUpgradeCost(2) );
-console.log('level 3 upgrade cost: ' + tb.getUpgradeCost(3) );
+console.log('level 0: ' + tb.getUpgradeCost(0) );
+console.log('level 1: ' + tb.getUpgradeCost(1) );
+console.log('level 2: ' + tb.getUpgradeCost(2) );
+console.log('level 3: ' + tb.getUpgradeCost(3) );
 
 
 //-------- ----------

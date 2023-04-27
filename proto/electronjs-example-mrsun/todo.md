@@ -91,8 +91,8 @@
 
 ## () - r56 - sunspot delta effected by unlocked slot count
 * (done) have a block.getUpgradeCost method
-* () have a block.getCreateCost method
-* () sunspot delta value should be effected by total mana spent on upgrades
+* () use the mana value prop of all blocks to get a grand total world mana value
+* () use grand total mana value in expression for sunspot delta
 
 
 * () have a block.setManaStats method that will be used to set the various mana values
