@@ -251,7 +251,8 @@ sm.states.land = {
         ctx.fillText('temp: ' + section.temp, 15, 45);
         ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 55);
         ctx.fillText('slot unlock cost: ' + utils.formatDecimal(sm.game.lands.slot_unlock_cost, 4), 15, 65);
-        ctx.fillText('mana value: ' + utils.formatDecimal(section.mana_total), 15, 75);
+        ctx.fillText('section mana value: ' +  utils.formatDecimal(section.mana_total) +
+                     ', sunspots delta world value: ' + sm.game.sunspots_delta_world_value + '', 15, 75);
         // current land index
         ctx.font = '50px arial';
         ctx.textAlign = 'center';
@@ -269,7 +270,7 @@ sm.states.land = {
             ctx.textBaseline = 'middle';
             ctx.fillStyle = 'black';
             ctx.fillText('type: ' + block.type, 320, sy + 20);
-            ctx.fillText('mana_value: ' + utils.formatDecimal(block.mana_value.valueOf(), 4), 320, sy + 40   );
+            ctx.fillText('mana_value: ' + utils.formatDecimal(block.mana_value.valueOf(), 4),320, sy + 40   );
             ctx.fillText('mana_base: ' + block.mana_base.toFixed(2), 320, sy + 60   );
             ctx.fillText('mana_temp: ' + block.mana_temp.toFixed(2), 320, sy + 80   );
         }
