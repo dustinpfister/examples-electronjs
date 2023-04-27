@@ -53,6 +53,7 @@ const load_game = () => {
         console.log('Autoload worked!');
         const opt_game = gameMod.parseSaveString(text_lz);
         sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+        gameMod.awayCheck(sm.game, sm.ticksPerSec);
         sm.setState('world', {});
     })
     .catch((e) => {
@@ -102,12 +103,9 @@ sm.states.world = {
     data: {
         button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
     },
-    start: (sm, opt) => {
-        console.log('World state start');
-        console.log(sm.game)
-    },
+    start: (sm, opt) => {},
     update: (sm, secs) => {
-       gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
+       gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
     },
     render: (sm, ctx, canvas, data) => {
         ctx.lineWidth = 1;
@@ -226,7 +224,7 @@ sm.states.land = {
         data.grid_h = data.block_height * sm.game.SLOT_GRID_HEIGHT;
     },
     update: (sm, secs, data) => {
-        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
+        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
     },
     render: (sm, ctx, canvas, data) => {
         ctx.lineWidth = 1;

@@ -662,12 +662,30 @@ console.log( getSunspotWorldValueBase(999999999) );
 //-------- ----------
 // PUBLIC API
 //-------- ----------
+// check how much time has passed and credit any away production
+gameMod.awayCheck = (game, ticks_per_sec = 1) => {
+    const now = new Date();
+    const secs = ( now - game.last_update ) / 1000;
+    const ticks = Math.ceil(ticks_per_sec * secs);
+    const mana_delta = Decimal.mul(game.mana_per_tick, ticks);
+    manaCredit(game, mana_delta);
+
+    console.log('********** Alway Check **********');
+    console.log('now: ' + now);
+    console.log('game.last_update: ' + game.last_update );
+    console.log('secs: ' + secs);
+    console.log('ticks_per_sec: ' + ticks_per_sec);
+    console.log('ticks: ' + ticks);
+    console.log('mana_delta: ' + utils.formatDecimal( mana_delta, 4) );
+    console.log('********** *********** **********');
+};
+
+// update the game by a given tick delta
 gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.tick_last = game.tick;
     game.tick_frac += tickDelta;
     game.tick = Math.floor(game.tick_frac);
     const tick_delta = game.tick - game.tick_last;
-
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
         // update temp, block data, mana per tick, credit mana,
@@ -711,6 +729,10 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.sunspots_delta_world_value = Decimal.log(game.lands.mana_total.add(1), sunspot_world_value_base).toFixed(4);
     const spd = new Decimal(0);
     game.sunspots_delta = spd.add(game.sunspots_delta_mana_level).add(game.sunspots_delta_world_value).round();
+    // set last update prop used for away production
+    if(!force){
+        game.last_update = new Date();
+    }
 };
 // create a new game state object
 gameMod.create = (opt) => {

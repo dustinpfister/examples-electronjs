@@ -99,7 +99,7 @@
 * () update utils.mjs to use the new constants module
 
 ## () - r58 - away production
-* () have a game.last_update property that is set to a new date on each update
+* (done) have a game.last_update property that is set to a new date on each update
 * () have a gameMod.awayCheck method that will be called once in the init state
 * () have gameMod.awayCheck compute a tick delta based on the current time less the value stored
 
