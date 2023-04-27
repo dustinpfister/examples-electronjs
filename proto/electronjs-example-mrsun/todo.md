@@ -90,8 +90,17 @@
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
 ## () - r56 - sunspot delta effected by unlocked slot count
-* () sunspot delta value should be effected by total number of slots unlocked
+* (done) have a block.getUpgradeCost method
 * () sunspot delta value should be effected by total mana spent on upgrades
+
+
+* () have a block.setManaStats method that will be used to set the various mana values
+* () have a mana delta value for each block
+* () display mana delta in block info
+
+
+* () sunspot delta value should be effected by total number of slots unlocked
+
 
 ## ( done 04/26/2023 ) - r55 - start supernova feature, and sunspots coin
 * (done) I will need a game.sunspots value that will be a Decimal value like that of mana

@@ -325,6 +325,10 @@ class Block {
             }
         };
     }
+    // get the upgrade cost for the given level
+    getUpgradeCost (level) {
+        return Decimal.pow(10, level === undefined ? this.level : level);
+    }
     // set the current level of the block, can also change type
     setLevel (level, type, sunspot_multi = 1 ) {
         this.level = level === undefined ? 1 : parseInt(level);
@@ -335,7 +339,7 @@ class Block {
         this.mana_temp = Math.pow(TYPE_DEF.mana_temp * sunspot_multi, this.level);
 
         this.mana_value = null;
-        this.upgradeCost = Decimal.pow(10, this.level);
+        this.upgradeCost = this.getUpgradeCost(this.level);
         this.setManaValue();
     }
     // copy some other block to this block
@@ -652,8 +656,11 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
                 if(!slot.locked && block.type != 'blank'){
                     // update block here
                     const sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
+
                     block.setLevel(block.level, block.type, sunspot_multi);
-                    game.mana_per_tick = game.mana_per_tick.add(Math.round(block.mana_base + block.mana_temp * a_temp));
+                    const mana_delta = Math.round(block.mana_base + block.mana_temp * a_temp);
+
+                    game.mana_per_tick = game.mana_per_tick.add( mana_delta );
                 }
             });
         });
