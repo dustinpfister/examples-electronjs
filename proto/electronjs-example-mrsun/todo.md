@@ -91,9 +91,9 @@
 
 ## () - r56 - sunspot delta effected by unlocked slot count
 * (done) have a block.getUpgradeCost method
-* () mana total value for section objects
-* () mana total value for lands object
-* () display mana totals for each section, and also the lands total in world state
+* (done) mana total value for section objects
+* (done) mana total value for lands object
+* (done) display mana totals for each section, and also the lands total in world state
 * () use lands total mana value in expression for sunspot delta
 
 

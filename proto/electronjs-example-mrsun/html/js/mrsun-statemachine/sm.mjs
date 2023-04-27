@@ -149,8 +149,8 @@ sm.states.world = {
         ctx.fillText('rocks: ' + sm.game.lands.bt_counts.rock, 15, 45);
         ctx.fillText('slots unlocked: ' + sm.game.lands.slot_unlock_count + '/' + sm.game.lands.slot_total, 15, 55);
         ctx.fillText('mana level: ' + sm.game.mana_level, 15, 65);
-        ctx.fillText('sunspots_delta: ' + sm.game.sunspots_delta, 15, 75);
-
+        ctx.fillText('world mana total: ' + utils.formatDecimal(sm.game.lands.mana_total), 15, 75);
+        ctx.fillText('sunspots_delta: ' + sm.game.sunspots_delta, 15, 85);
 
         utils.drawButton(sm, data.button_supernova, sm.ctx, sm.canvas);
 
@@ -171,17 +171,14 @@ sm.states.world = {
                 sm.setState('land', {});
                 return;
             }
-
-                button_check(data, 'button_supernova', pos, () => {
-                    console.log('supernova!');
-
-    const cx = sm.canvas.width / 2;
-    const cy = sm.canvas.height / 2;
-const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
-sm.game = gameMod.create({cx: cx, cy: cy, sunspots: sp.toString() });
-
-                });
-
+            // was supernova button clicked?
+            button_check(data, 'button_supernova', pos, () => {
+                console.log('supernova!');
+                const cx = sm.canvas.width / 2;
+                const cy = sm.canvas.height / 2;
+                const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
+                sm.game = gameMod.create({cx: cx, cy: cy, sunspots: sp.toString() });
+            });
         }
     }
 };
@@ -250,7 +247,7 @@ sm.states.land = {
         ctx.fillText('temp: ' + section.temp, 15, 45);
         ctx.fillText('rocks: ' + section.bt_counts.rock, 15, 55);
         ctx.fillText('slot unlock cost: ' + utils.formatDecimal(sm.game.lands.slot_unlock_cost, 4), 15, 65);
-        ctx.fillText('mana value: ' + section.mana_total, 15, 75);
+        ctx.fillText('mana value: ' + utils.formatDecimal(section.mana_total), 15, 75);
         // current land index
         ctx.font = '50px arial';
         ctx.textAlign = 'center';
@@ -301,11 +298,9 @@ sm.states.land = {
                 const sx = data.grid_cx - data.grid_w / 2;
                 const sy = data.grid_cy - data.grid_h / 2;
                 if( utils.boundingBox(pos.x, pos.y, 1, 1, sx, sy, data.grid_w, data.grid_h) ){
-
                     const bx = Math.floor( ( pos.x - sx - 0.01) / data.block_width );
                     const by = Math.floor( ( pos.y - sy - 0.01) / data.block_height );
                     const i = by * sm.game.SLOT_GRID_WIDTH + bx;
-
                     const slot = section.slots[i];
                     const block = slot.block;
                     // action will differ based on block mode

@@ -539,6 +539,8 @@ class Lands {
         this.slot_unlock_cost = 0;
         this.slot_unlock_count = 0;
         this.slot_total = constant.SLOT_GRID_LEN * constant.LAND_OBJECT_COUNT;
+        // total mana value
+        this.mana_total = new Decimal(0);
         let i = 0;
         while(i < constant.LAND_OBJECT_COUNT){
             const sectionData = opt.sectionData[i] || {};
@@ -642,9 +644,10 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
     game.tick_frac += tickDelta;
     game.tick = Math.floor(game.tick_frac);
     const tick_delta = game.tick - game.tick_last;
-    // update temp, block data, mana per tick, credit mana,
+
     if(tick_delta >= 1 || force){
         game.mana_per_tick = new Decimal(0);
+        // update temp, block data, mana per tick, credit mana,
         game.lands.forEachSection( (section) => {
             const d_sun = section.position.distanceTo(game.sun.position);
             const d_adjusted = d_sun - section.r - game.sun.radius;
@@ -665,6 +668,13 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
             });
             section.mana_total = mana_total;
         });
+        // lands mana total
+        let mtl = new Decimal(0);
+        game.lands.forEachSection( (section) => {
+            mtl =  mtl.add(section.mana_total);
+        });
+        game.lands.mana_total = mtl;
+        // credit current mana per tick
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
     }
