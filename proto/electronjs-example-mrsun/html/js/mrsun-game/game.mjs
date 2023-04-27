@@ -726,9 +726,14 @@ gameMod.create = (opt) => {
        sunspots_delta_mana_level: new Decimal(0),
        sunspots_delta_world_value: new Decimal(0),
        tick_frac: 0,
-       tick: 0,          // game should update by a main tick count
-       tick_last: 0      // last tick can be subtracted from tick to get a tick delta
+       tick: 0,           // game should update by a main tick count
+       tick_last: 0,      // last tick can be subtracted from tick to get a tick delta
+       last_update: opt.last_update || new Date()
     };
+    // parse last_update if string
+    if(typeof game.last_update === 'string'){
+         game.last_update = new Date(game.last_update);
+    }
     // create sun object
     game.sun = new Sun(opt.cx, opt.cy, constant.SUN_RADIUS);
     game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
@@ -862,6 +867,7 @@ gameMod.createSaveString = (game) => {
     save.x = game.sun.position.x;
     save.y = game.sun.position.y;
     save.sectionData = game.lands.getSectionDataArray();
+    save.last_update = game.last_update;
     const text_json = JSON.stringify(save);
     const text_lz = LZString.compressToBase64(text_json);
     return text_lz
@@ -879,6 +885,8 @@ gameMod.parseSaveString = (text_lz) => {
     }
     const text_json = LZString.decompressFromBase64(text_lz);
     const opt = JSON.parse(text_json);
+    console.log('save state object parsed:');
+    console.log(opt);
     return opt;
 };
 //-------- ----------

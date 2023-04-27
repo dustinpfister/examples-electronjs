@@ -102,7 +102,10 @@ sm.states.world = {
     data: {
         button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
     },
-    start: (sm, opt) => {},
+    start: (sm, opt) => {
+        console.log('World state start');
+        console.log(sm.game)
+    },
     update: (sm, secs) => {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs);
     },

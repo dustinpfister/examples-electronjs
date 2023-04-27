@@ -99,7 +99,9 @@
 * () update utils.mjs to use the new constants module
 
 ## () - r58 - away production
-* () start an away production feature
+* () have a game.last_update property that is set to a new date on each update
+* () have a gameMod.awayCheck method that will be called once in the init state
+* () have gameMod.awayCheck compute a tick delta based on the current time less the value stored
 
 ## ( done 04/27/2023 ) - r57 - Expression for setting sunspots delta world value
 * (done) I want to have an expression that will adjust the base that is used to figure sunspots world delta
