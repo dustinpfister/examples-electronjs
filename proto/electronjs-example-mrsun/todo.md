@@ -85,20 +85,20 @@
 * () update game.mjs to make use of new lands.mjs file
 * () create and update readme files
 
-## () - rx - main.js file
+## () - rx - min sunspot delta for supernove
+* () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
+
+## () - r60 - main.js file
 * () have a main.js file
 * () update sm.mjs to export a create method
 
-## () - rx - mrsun-constants
+## () - r59 - mrsun-constants
 * () the constants in game.mjs should be in there own module folder
 * () update game.mjs to use new constants module
 * () update sm.mjs to use the new constants module
 * () update utils.mjs to use the new constants module
 
-## () - rx - min sunspot delta for supernove
-* () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
-
-## () - rx - away production
+## () - r58 - away production
 * () start an away production feature
 
 ## ( done 04/27/2023 ) - r57 - Expression for setting sunspots delta world value
