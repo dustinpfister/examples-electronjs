@@ -65,6 +65,10 @@
 ## () - rx - sunspots value effected by unlock slot count?
 * () sunspot delta value should be effected by total number of slots unlocked
 
+## () - rx - sunspot upgrades
+* () start a sunspot upgrades menu
+* () the first upgrade can be something that lowers the base use to figure sunspots delta world value
+
 <!-- PROTOTYPE -->
 
 ## () - rx - set mana stats Block class method
@@ -72,30 +76,30 @@
 * () have a mana delta value for each block
 * () display mana delta in block info
 
-## () - r62 - better world state rendering
+## () - rx - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## () - r61 - mrsun-lands lib folder
+## () - rx - mrsun-lands lib folder
 * () pull all code that has to do with the Lands class into its own mjs file
 * () update game.mjs to make use of new lands.mjs file
 * () create and update readme files
 
-## () - r60 - main.js file
+## () - rx - main.js file
 * () have a main.js file
 * () update sm.mjs to export a create method
 
-## () - r59 - mrsun-constants
+## () - rx - mrsun-constants
 * () the constants in game.mjs should be in there own module folder
 * () update game.mjs to use new constants module
 * () update sm.mjs to use the new constants module
 * () update utils.mjs to use the new constants module
 
-## () - r58 - away production
-* () start an away production feature
-
 ## () - r57 - min sunspot delta for supernove
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
+
+## () - r58 - away production
+* () start an away production feature
 
 ## ( done 04/27/2023 ) - r56 - sunspot delta effected by world mana value
 * (done) have a block.getUpgradeCost method
