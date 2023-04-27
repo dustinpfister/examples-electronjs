@@ -95,11 +95,18 @@
 * () update sm.mjs to use the new constants module
 * () update utils.mjs to use the new constants module
 
-## () - r57 - min sunspot delta for supernove
+## () - rx - min sunspot delta for supernove
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r58 - away production
+## () - rx - away production
 * () start an away production feature
+
+## () - r57 - Expression for setting sunspots delta world value
+* (done) I want to have an expression that will adjust the base that is used to figure sunspots world delta
+* (done) started a getSunspotWorldValueBase helper function for this in game.mjs
+* (done) I will want a constant.SUNSPOTS-WORLDVALUE-BASE-MAX
+* (done) I will want a constant.SUNSPOTS-WORLDVALUE-BASE-MIN
+* () I will want a constant.SUNSPOTS-WORLDVALUE-MAXMANA that will be the point at which the min base is reached
 
 ## ( done 04/27/2023 ) - r56 - sunspot delta effected by world mana value
 * (done) have a block.getUpgradeCost method
