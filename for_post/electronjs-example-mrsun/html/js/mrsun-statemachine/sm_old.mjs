@@ -4,10 +4,9 @@ import { gameMod }  from "../mrsun-game/game.mjs"
 import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 import { constant } from "../mrsun-constant/constant.mjs"
-// MS api check
-//const MS = utils.MSCheck();
-
-
+//-------- ----------
+// DEFAULT "NOOP" PLATFORM OBJECT
+//-------- ----------
 const PLATFORM_NOOP = {};
 // dummy auto load
 PLATFORM_NOOP.auto_load = () => {
@@ -19,7 +18,6 @@ PLATFORM_NOOP.auto_save = () => {
     return Promise.reject(err);
 };
 PLATFORM_NOOP.log = (mess) => {};
-
 //-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
@@ -57,50 +55,8 @@ sm.setState = function(key, opt) {
 //-------- ----------
 // init state
 //-------- ----------
-const load_game = () => {
-    const cx = sm.canvas.width / 2;
-    const cy = sm.canvas.height / 2;
-    return sm.platform.auto_load()
-    .then( (text_lz) => {
-        console.log('Autoload worked!');
-        const opt_game = gameMod.parseSaveString(text_lz);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
-        gameMod.awayCheck(sm.game, sm.ticksPerSec);
-        sm.setState('world', {});
-    })
-    .catch((e) => {
-        console.log('Error with autoload. Starting new game.');
-        console.log('message: ' + e.message);
-        const opt_game = gameMod.parseSaveString(constant.SAVE_STRING);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
-        sm.setState('world', {});
-    });
-}
-sm.states.init = {
-    data: {
-        stuck_ct: 0
-    },
-    start: (sm, opt) => {
-       console.log('init of mr sun.');
-       load_game();
-    },
-    update: (sm, secs) => {
-        const data = sm.states.init.data;
-        if(!sm.game){
-            data.stuck_ct += 1;
-            if(data.stuck_ct >= 20){
-               console.log('stuck in init state for some reason...');
-               data.stuck_ct = 0;
-            }else{
-                //console.log(data.stuck_ct);
-            }
-        }
-    },
-    render: (sm, ctx, canvas) => {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(0,0, canvas.width, canvas.height);
-    }
-};
+import { state_init } from "./state_init.mjs";
+sm.states.init = state_init;
 //-------- ----------
 // world state
 //-------- ----------

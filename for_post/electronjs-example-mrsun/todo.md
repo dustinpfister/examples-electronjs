@@ -4,17 +4,22 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - r65 - better world state rendering
+## () - rx - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## () - r64 - min sunspot delta for supernova
+## () - rx - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r63 - Sprites for Land State Land Sections
+## () - rx - Sprites for Land State Land Sections
 * () have a new sprite object like what I am using in the world state only for the land state
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
+
+## () - r63 - state-init.mjs, state-world.mjs, state-land.mjs
+* (done) pull the init state into its own mjs file as state\_init.mjs in the state machine folder
+* () have a mjs file for the world state
+* () have a mjs file for the land state
 
 ## ( done 04/28/2023 ) - r62 - set mana stats Block class method in game.mjs
 * (done) have a block.setManaStats method that will be used to set the various mana values
