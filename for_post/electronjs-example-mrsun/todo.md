@@ -18,7 +18,8 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 ## () - r63 - state-init.mjs, state-world.mjs, state-land.mjs
 * (done) pull the init state into its own mjs file as state\_init.mjs in the state machine folder
-* () have a mjs file for the world state
+* (done) have a mjs file for the world state
+* () add button helpers to the utils module so that I do not have to replate code in each state file that uses them
 * () have a mjs file for the land state
 
 ## ( done 04/28/2023 ) - r62 - set mana stats Block class method in game.mjs
