@@ -13,6 +13,7 @@ This prototype features many modules, some of which I made from the ground up, o
 * [An Object2d class](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/object2d) that is based on the Object3d class of threejs
 * An [Object2d Sprite](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/object2d-sprite) class that is an extension of Object2d
 * My [Canvas Module](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/canvas) that I will be hacking over as needed
+* [MrSun constants](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-constant) module
 * [MrSun state machine](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-statemachine) module
 * [MrSun utilities](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-utils) module
 * [MrSun game](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-game) module
