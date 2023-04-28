@@ -1,4 +1,8 @@
 // utils.js - for electionjs-example-mrsun
+import { constant } from "../mrsun-constant/constant.mjs"
+//-------- ----------
+// MAIN UTILS PUBLIC OBJECT
+//-------- ----------
 const utils = {};
 //-------- ----------
 // Mr Sun (MS) API
@@ -151,10 +155,10 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
     ctx.font = '10px arial';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    while(i < sm.game.SLOT_GRID_LEN){
-        const bx = i % sm.game.SLOT_GRID_WIDTH;
-        const by = Math.floor(i / sm.game.SLOT_GRID_WIDTH);
-        const i_slot = by * sm.game.SLOT_GRID_WIDTH + bx;
+    while(i < constant.SLOT_GRID_LEN){
+        const bx = i % constant.SLOT_GRID_WIDTH;
+        const by = Math.floor(i / constant.SLOT_GRID_WIDTH);
+        const i_slot = by * constant.SLOT_GRID_WIDTH + bx;
         const slot = section.slots[i_slot];
         const block = slot.block;
         ctx.fillStyle = 'cyan';

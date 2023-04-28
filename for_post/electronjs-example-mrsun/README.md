@@ -8,10 +8,8 @@ This prototype features many modules, some of which I made from the ground up, o
 
 * A [Vector2 class](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/vector2) that is a custom hack job of the threejs module
 * The [event-dispatcher](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/event-dispatcher) module from threejs
-
 * [decimal.js](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/decimal) for high precision math
 * [ls-string.js](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/lz-string) for compressing strings for save states
-
 * [An Object2d class](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/object2d) that is based on the Object3d class of threejs
 * An [Object2d Sprite](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/object2d-sprite) class that is an extension of Object2d
 * My [Canvas Module](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/canvas) that I will be hacking over as needed

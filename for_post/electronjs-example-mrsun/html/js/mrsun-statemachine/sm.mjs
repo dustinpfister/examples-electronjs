@@ -3,6 +3,7 @@
 import { gameMod }  from "../mrsun-game/game.mjs"
 import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
+import { constant } from "../mrsun-constant/constant.mjs"
 // MS api check
 const MS = utils.MSCheck();
 //-------- ----------
@@ -114,7 +115,7 @@ sm.states.world = {
         ctx.fillStyle = '#000000';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // max dist circle
-        const md = sm.game.SUNAREA_RADIUS;
+        const md = constant.SUNAREA_RADIUS;
         ctx.fillStyle = 'cyan';
         ctx.beginPath();
         ctx.arc(sun.center.x, sun.center.y, md, 0, Math.PI * 2);
@@ -165,7 +166,7 @@ sm.states.world = {
             const sun = sm.game.sun;
             const d = pos.distanceTo(sun.center);
             // clicked in the sun area?
-            if(d < sm.game.SUNAREA_RADIUS){
+            if(d < constant.SUNAREA_RADIUS){
                 gameMod.setSunPos(sm.game, pos);
                 return;
             }
@@ -220,8 +221,8 @@ sm.states.land = {
         block_infodisp: true
     },
     start: (sm, opt, data) => {
-        data.grid_w = data.block_width * sm.game.SLOT_GRID_WIDTH;
-        data.grid_h = data.block_height * sm.game.SLOT_GRID_HEIGHT;
+        data.grid_w = data.block_width * constant.SLOT_GRID_WIDTH;
+        data.grid_h = data.block_height * constant.SLOT_GRID_HEIGHT;
     },
     update: (sm, secs, data) => {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
@@ -306,7 +307,7 @@ sm.states.land = {
                 if( utils.boundingBox(pos.x, pos.y, 1, 1, sx, sy, data.grid_w, data.grid_h) ){
                     const bx = Math.floor( ( pos.x - sx - 0.01) / data.block_width );
                     const by = Math.floor( ( pos.y - sy - 0.01) / data.block_height );
-                    const i = by * sm.game.SLOT_GRID_WIDTH + bx;
+                    const i = by * constant.SLOT_GRID_WIDTH + bx;
                     const slot = section.slots[i];
                     const block = slot.block;
                     // action will differ based on block mode
