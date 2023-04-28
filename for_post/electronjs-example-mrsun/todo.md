@@ -88,10 +88,13 @@
 ## () - rx - min sunspot delta for supernove
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r60 - main.js file
+## () - r60 - main.mjs file
 * (done) see about fixing a formtaing problem with decimals
-* () have a main.js file
-* () update sm.mjs to export a create method that will be used in main.js
+* (done) have an sm\_old.mjs file that will still be the old main start file for now
+* (done) just append sm to window in sm\_old.mjs as a way to get my public sm object back
+* (done) update sm.mjs to export a main object
+* (done) start a have a main.js file that will use the new sm.mjs file
+
 
 ## ( done 04/28/2023 ) - r59 - mrsun-constants
 * (done) the constant object in game.mjs should be in a seperate module folder

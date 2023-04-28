@@ -15,7 +15,7 @@ const container = document.getElementById('wrap_main') || document.body;
 container.appendChild(canvas);
 canvas.width = 640;
 canvas.height = 480;
-const sm = {
+const sm = window.sm = {
    canvas: canvas,
    ctx: ctx,
    game: null,
@@ -394,17 +394,4 @@ sm.loop = () => {
        sm.lt = sm.now;
     }
 };
-//sm.loop();
-
-//-------- ---------
-// PUBLIC API
-//-------- ---------
-
-const StateMachine = {};
-
-//-------- ----------
-// EXPORT
-//-------- ----------
-export { StateMachine };
-
-
+sm.loop();
