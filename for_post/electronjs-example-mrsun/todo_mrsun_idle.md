@@ -43,9 +43,3 @@
 * () start a sunspot upgrades menu
 * () the first upgrade can be something that lowers the base use to figure sunspots delta world value
 
-## () - rx - StateMachine.create, StateMachine.start
-* () start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
-* () when calling StateMachine.create I should be able to pass a platfrom object to use
-* () have a StateMachine.start method that will take an sm object as an argument and start the main loop
-* () rename main.mjs to main-electron.mjs
-* () create an sm object with StateMachine.create in main-election.js

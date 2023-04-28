@@ -16,11 +16,18 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
-## () - r63 - state-init.mjs, state-world.mjs, state-land.mjs
+## () - r64 - StateMachine.create, StateMachine.start
+* () start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
+* () when calling StateMachine.create I should be able to pass a platfrom object to use
+* () have a StateMachine.start method that will take an sm object as an argument and start the main loop
+* () rename main.mjs to main-electron.mjs
+* () create an sm object with StateMachine.create in main-election.js
+
+## ( done 04/28/2023 ) - r63 - state-init.mjs, state-world.mjs, state-land.mjs
 * (done) pull the init state into its own mjs file as state\_init.mjs in the state machine folder
 * (done) have a mjs file for the world state
 * (done) add button helpers to the utils module so that I do not have to replate code in each state file that uses them
-* () have a mjs file for the land state
+* (done) have a mjs file for the land state
 
 ## ( done 04/28/2023 ) - r62 - set mana stats Block class method in game.mjs
 * (done) have a block.setManaStats method that will be used to set the various mana values
