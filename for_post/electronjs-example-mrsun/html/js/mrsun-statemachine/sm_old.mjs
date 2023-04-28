@@ -60,26 +60,11 @@ sm.states.init = state_init;
 //-------- ----------
 // world state
 //-------- ----------
-const button_check = (data, key, pos, onClick) => {
-    const button = data[key];
-    if( button.position.distanceTo( pos ) <= button.r ){
-        onClick(button, data, key, pos);
-    }
-};
-
 import { state_world } from "./state_world.mjs";
 sm.states.world = state_world;
 //-------- ----------
 // land state
 //-------- ----------
-const button_check_blockmode = (data, new_block_mode, pos) => {
-    const key = 'button_bm_' + new_block_mode;
-    button_check(data, key, pos, (button) => {
-        data['button_bm_' + data.block_mode].active = false;
-        button.active = true;
-        data.block_mode = new_block_mode;
-    });
-};
 sm.states.land = {
     data: {
         block_mode: 'unlock',    // 'unlock', 'create', 'absorb', 'upgrade', and 'info' modes
@@ -165,22 +150,22 @@ sm.states.land = {
                 data.block_info_disp = false;
             }else{
                 // check buttons
-                button_check(data, 'button_back', pos, () => {
+                utils.button_check(data, 'button_back', pos, () => {
                     sm.setState('world', {});
                 });
-                button_check(data, 'button_next', pos, () => {
+                utils.button_check(data, 'button_next', pos, () => {
                     sm.landIndex = (sm.landIndex + 1) % 12;
                 });
-                button_check(data, 'button_last', pos, () => {
+                utils.button_check(data, 'button_last', pos, () => {
                     let n = sm.landIndex - 1;
                     n = n < 0 ? 11 : n;
                     sm.landIndex = n;
                 });
-                button_check_blockmode(data, 'unlock', pos);
-                button_check_blockmode(data, 'create', pos);
-                button_check_blockmode(data, 'absorb', pos);
-                button_check_blockmode(data, 'upgrade', pos);
-                button_check_blockmode(data, 'info', pos);
+                utils.button_check_blockmode(data, 'unlock', pos);
+                utils.button_check_blockmode(data, 'create', pos);
+                utils.button_check_blockmode(data, 'absorb', pos);
+                utils.button_check_blockmode(data, 'upgrade', pos);
+                utils.button_check_blockmode(data, 'info', pos);
                 // grid clicked?
                 const sx = data.grid_cx - data.grid_w / 2;
                 const sy = data.grid_cy - data.grid_h / 2;

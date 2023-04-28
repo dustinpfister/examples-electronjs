@@ -6,6 +6,23 @@ import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
 const utils = {};
 //-------- ----------
+// BUTTON METHODS
+//-------- ----------
+utils.button_check = (data, key, pos, onClick) => {
+    const button = data[key];
+    if( button.position.distanceTo( pos ) <= button.r ){
+        onClick(button, data, key, pos);
+    }
+};
+utils.button_check_blockmode = (data, new_block_mode, pos) => {
+    const key = 'button_bm_' + new_block_mode;
+    utils.button_check(data, key, pos, (button) => {
+        data['button_bm_' + data.block_mode].active = false;
+        button.active = true;
+        data.block_mode = new_block_mode;
+    });
+};
+//-------- ----------
 // MATH UTILIES
 //-------- ----------
 utils.logOnce = (function(){

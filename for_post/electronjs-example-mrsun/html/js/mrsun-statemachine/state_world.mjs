@@ -5,15 +5,6 @@ import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
-// HELPER FUNCITONS
-//-------- ----------
-const button_check = (data, key, pos, onClick) => {
-    const button = data[key];
-    if( button.position.distanceTo( pos ) <= button.r ){
-        onClick(button, data, key, pos);
-    }
-};
-//-------- ----------
 // STATE OBJECT FOR WORLD 
 //-------- ----------
 const state_world = {
@@ -87,7 +78,7 @@ const state_world = {
                 return;
             }
             // was supernova button clicked?
-            button_check(data, 'button_supernova', pos, () => {
+            utils.button_check(data, 'button_supernova', pos, () => {
                 console.log('supernova!');
                 const cx = sm.canvas.width / 2;
                 const cy = sm.canvas.height / 2;
