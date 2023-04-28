@@ -35,19 +35,6 @@ PLATFORM.auto_save = (text_lz) => {
        detached: true,
        stdio: 'ignore'
     });
-    /*
-    console.log('saving...');
-    return writeFile(uri_filesave, text_lz, 'utf8')
-    .then((() => {
-            console.log('save done');
-            return Promise.resolve();
-        }))
-    .catch((e) => {
-        console.log('Error saving autosave file');
-        console.log(e.message);
-        return Promise.reject();
-    })
-    */
 };
 // simple log function (using this to just test out features like visibility change events and so forth might remove )
 PLATFORM.log = (mess) => {

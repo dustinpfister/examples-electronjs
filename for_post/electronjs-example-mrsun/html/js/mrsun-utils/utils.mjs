@@ -6,33 +6,6 @@ import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
 const utils = {};
 //-------- ----------
-// Mr Sun (MS) API
-//-------- ----------
-/*
-utils.MSCheck = () => {
-    try{
-        if(MS){
-            console.log('MS api found, so lets use that..');
-            return MS;
-        }
-    }catch(e){
-        console.warn('No MS API found, returning a dummy API...')
-        const MS = {};
-        // dummy auto load
-        MS.auto_load = () => {
-            const err = new Error('No auto load feature with this dummy MS API');
-            return Promise.reject(err)
-        };
-        MS.auto_save = () => {
-            const err = new Error('No auto save feature with this dummy MS API');
-            return Promise.reject(err);
-        };
-        MS.log = (mess) => {};
-        return MS;
-    }
-};
-*/
-//-------- ----------
 // MATH UTILIES
 //-------- ----------
 utils.logOnce = (function(){
