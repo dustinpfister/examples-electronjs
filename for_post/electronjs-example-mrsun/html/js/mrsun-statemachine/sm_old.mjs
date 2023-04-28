@@ -5,6 +5,12 @@ import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
+// STATE OBJECTS
+//-------- ----------
+import { state_init } from "./state_init.mjs";
+import { state_world } from "./state_world.mjs";
+import { state_land } from "./state_land.mjs";
+//-------- ----------
 // DEFAULT "NOOP" PLATFORM OBJECT
 //-------- ----------
 const PLATFORM_NOOP = {};
@@ -53,19 +59,10 @@ sm.setState = function(key, opt) {
     state.start(sm, opt, state.data);
 };
 //-------- ----------
-// init state
+// APPEND STATE OBJECTS
 //-------- ----------
-import { state_init } from "./state_init.mjs";
 sm.states.init = state_init;
-//-------- ----------
-// world state
-//-------- ----------
-import { state_world } from "./state_world.mjs";
 sm.states.world = state_world;
-//-------- ----------
-// land state
-//-------- ----------
-import { state_land } from "./state_land.mjs";
 sm.states.land = state_land;
 //-------- ----------
 // POINTER EVENTS
@@ -113,12 +110,12 @@ const setCanvasScale = () => {
    const w = window.innerWidth;
    const h = window.innerHeight;
    if(w / 4 < h / 3){
-      canvas.style.width = w + 'px';
-      canvas.style.height = Math.floor(3 * w / 4) + 'px';
+      sm.canvas.style.width = w + 'px';
+      sm.canvas.style.height = Math.floor(3 * w / 4) + 'px';
    }
    if(w / 4 > h / 3){
-      canvas.style.width = Math.floor(h / 3 * 4) + 'px';
-      canvas.style.height = h + 'px';
+      sm.canvas.style.width = Math.floor(h / 3 * 4) + 'px';
+      sm.canvas.style.height = h + 'px';
    }
 };
 setCanvasScale();
