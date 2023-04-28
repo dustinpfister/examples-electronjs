@@ -11,6 +11,18 @@ import { constant } from "../mrsun-constant/constant.mjs"
 // MS api check
 const MS = utils.MSCheck();
 //-------- ----------
+// FORMAT DECIMAL TEST
+//-------- ----------
+//const n = Decimal.pow(10, 6);
+const total = 960;
+
+let unlock_count = 190;
+while(unlock_count < 195){
+    const n = Decimal.pow(10, 30 * ( unlock_count / total ) ).ceil().sub(1);
+    console.log( unlock_count, utils.formatDecimal(n, 2), n.toExponential(8) );
+    unlock_count += 1;
+}
+//-------- ----------
 // Canvas Objects for Sun Class
 //-------- ----------
 const can1 = canvasMod.create({
@@ -573,8 +585,6 @@ const manaDebit = (game, mana_delta) => {
         }
     }
 };
-
-
 // get the base that is used to figure sunspot world value base
 const getSunspotWorldValueBase = (world_mana_value) => {
     world_mana_value = world_mana_value <= 0 ? 1 : world_mana_value;
@@ -584,15 +594,6 @@ const getSunspotWorldValueBase = (world_mana_value) => {
     alpha = alpha > 1 ? 1 : alpha;
     return base_max - (base_max - base_min) * alpha;
 };
-
-console.log('sunspot world value base: ');
-console.log( 'max mana : ' + constant.SUNSPOTS_WORLDVALUE_MAXMANA );
-console.log( getSunspotWorldValueBase(0) );
-console.log( getSunspotWorldValueBase(9999) );
-console.log( getSunspotWorldValueBase(9999999) );
-console.log( getSunspotWorldValueBase(99999999) );
-console.log( getSunspotWorldValueBase(999999999) );
-
 //-------- ----------
 // PUBLIC API
 //-------- ----------

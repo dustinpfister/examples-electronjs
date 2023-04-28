@@ -1,6 +1,17 @@
 // utils.js - for electionjs-example-mrsun
 import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
+// PRIVATE HELPER FUNCTIONS
+//-------- ----------
+// https://stackoverflow.com/questions/4912788/truncate-not-round-off-decimal-numbers-in-javascript
+const truncateDecimals = function (number, digits) {
+    const multiplier = Math.pow(10, digits),
+        adjustedNum = number * multiplier,
+        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+    return truncatedNum / multiplier;
+};
+
+//-------- ----------
 // MAIN UTILS PUBLIC OBJECT
 //-------- ----------
 const utils = {};
@@ -53,9 +64,9 @@ utils.boundingBox = function (x1, y1, w1, h1, x2, y2, w2, h2) {
 utils.formatDecimal = (function(){
     const NAMES = [ 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc' ];
     return (n, dp) => {
-        dp = dp === undefined ? 2 : dp;
+        dp = dp === undefined ? 4 : dp;
         if(n.e < 3){
-            return n;
+            return n.toString();
         }
         const er = n.e % 3;
         const i_name = Math.floor( n.e / 3 ) - 1;
@@ -63,7 +74,10 @@ utils.formatDecimal = (function(){
         if(i_name < NAMES.length){
             let dp2 = dp - er;
             dp2 = dp2 < 0 ? 0: dp2;
-            return (a * Math.pow( 10, er ) ).toFixed( dp2 ) + ' ' + NAMES[i_name];
+            //return (a * Math.pow( 10, er ) ).toFixed( dp2 ) + ' ' + NAMES[i_name];
+
+return truncateDecimals( a * Math.pow( 10, er ), dp2 ) + ' ' + NAMES[i_name];
+
         }
         return n.toExponential(2);
     };
