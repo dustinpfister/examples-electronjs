@@ -92,13 +92,13 @@
 * () have a main.js file
 * () update sm.mjs to export a create method
 
-## () - r59 - mrsun-constants
+## ( done 04/28/2023 ) - r59 - mrsun-constants
 * (done) the constant object in game.mjs should be in a seperate module folder
 * (done) update game.mjs to use new constants module
-* () update sm.mjs to use the new constants module
-* () update utils.mjs to use the new constants module
-* () remove code that appends constant values to game object, as it should no longer be needed at this point
-* () constant.SAVE_STRING value for sm.mjs
+* (done) update sm.mjs to use the new constants module
+* (done) update utils.mjs to use the new constants module
+* (done) remove code that appends constant values to game object, as it should no longer be needed at this point
+* (done) constant.SAVE_STRING value for sm.mjs
 
 ## ( done 04/27/2023 ) - r58 - away production
 * (done) have a game.last_update property that is set to a new date on each update

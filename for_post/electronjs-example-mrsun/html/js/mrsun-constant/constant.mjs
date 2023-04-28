@@ -72,6 +72,10 @@ IMG.rock = {
    ]
 };
 //-------- ----------
+// HARD CODED SAVE? - add lz-string compessed save, or set as empty string
+//-------- ----------
+constant.SAVE_STRING = '';
+//-------- ----------
 // EXPORT
 //-------- ----------
 export { constant };

@@ -700,8 +700,6 @@ gameMod.create = (opt) => {
     });
     game.mana_cap = getManaCap(game);
     gameMod.updateByTickDelta(game, 0, true);
-    // const
-    //Object.assign(game, constant);
     return game;
 };
 // set the sun position

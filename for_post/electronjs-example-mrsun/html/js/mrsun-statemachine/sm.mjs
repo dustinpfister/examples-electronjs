@@ -7,10 +7,6 @@ import { constant } from "../mrsun-constant/constant.mjs"
 // MS api check
 const MS = utils.MSCheck();
 //-------- ----------
-// HARD CODED SAVE
-//-------- ----------
-const SAVE_STRING = '';
-//-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
 const canvas = document.createElement('canvas');
@@ -60,7 +56,7 @@ const load_game = () => {
     .catch((e) => {
         console.log('Error with autoload. Starting new game.');
         console.log('message: ' + e.message);
-        const opt_game = gameMod.parseSaveString(SAVE_STRING);
+        const opt_game = gameMod.parseSaveString(constant.SAVE_STRING);
         sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
         sm.setState('world', {});
     });
@@ -75,7 +71,6 @@ sm.states.init = {
     },
     update: (sm, secs) => {
         const data = sm.states.init.data;
-        //console.log('why we still here?');
         if(!sm.game){
             data.stuck_ct += 1;
             if(data.stuck_ct >= 20){
@@ -130,10 +125,6 @@ sm.states.world = {
         sm.game.lands.sections.forEach((section, i) => {
             section.sprite_world.update();
             utils.drawSprite(section.sprite_world, ctx, canvas);
-            //ctx.fillStyle = 'rgba(64,64,64,0.6)';
-            //ctx.beginPath();
-            //ctx.arc(section.position.x, section.position.y, section.r, 0, Math.PI * 2);
-            //ctx.fill();
             ctx.font = 'bold 30px arial';
             ctx.fillStyle = 'white';
             ctx.strokeStyle = 'black';
@@ -265,7 +256,7 @@ sm.states.land = {
             const block = data.block;
             ctx.fillStyle = 'rgba(0,0,0, 0.5)';
             ctx.fillRect(0,0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white'; //(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
             ctx.fillRect(sx, sy, 300, 200)
             ctx.font = '20px arial';
             ctx.textAlign = 'center';
@@ -279,7 +270,6 @@ sm.states.land = {
     },
     events: {
         pointerdown: (sm, pos, e, data) => {
-            //const x = pos.x, y = pos.y;
             const section = sm.game.lands.sections[sm.landIndex];
             if(data.block_info_disp){
                 data.block_info_disp = false;
