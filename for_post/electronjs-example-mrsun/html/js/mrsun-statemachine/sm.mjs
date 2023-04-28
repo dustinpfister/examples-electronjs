@@ -28,15 +28,22 @@ PLATFORM_NOOP.log = (mess) => {};
 //-------- ---------
 const StateMachine = {};
 // create and return an sm object
-StateMachine.create = () => {
+StateMachine.create = (opt_create) => {
+    opt_create = opt_create || {};
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    const container = document.getElementById('wrap_main') || document.body;
+    let container = document.body;
+    if(typeof opt_create.el === 'string'){
+        container = document.querySelector(opt_create.el)
+    }
+    if(typeof opt_create.el === 'object'){
+        container = opt_create.el;
+    }
     container.appendChild(canvas);
     canvas.width = 640;
     canvas.height = 480;
     const sm = {
-        platform: window.PLATFORM || PLATFORM_NOOP,
+        platform: opt_create.PLATFORM || PLATFORM_NOOP,
         canvas: canvas,
         ctx: ctx,
         game: null,

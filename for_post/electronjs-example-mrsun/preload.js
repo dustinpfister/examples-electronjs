@@ -41,4 +41,4 @@ PLATFORM.log = (mess) => {
     process.stdout.write( mess.toString() + '\n' );
 };
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('PLATFORM', PLATFORM);
+contextBridge.exposeInMainWorld('PLATFORM_ELECTRON', PLATFORM);
