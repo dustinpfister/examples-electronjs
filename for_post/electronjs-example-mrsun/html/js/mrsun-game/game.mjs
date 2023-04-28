@@ -16,8 +16,8 @@ const MS = utils.MSCheck();
 //const n = Decimal.pow(10, 6);
 const total = 960;
 
-let unlock_count = 190;
-while(unlock_count < 195){
+let unlock_count = 0;
+while(unlock_count < total){
     const n = Decimal.pow(10, 30 * ( unlock_count / total ) ).ceil().sub(1);
     console.log( unlock_count, utils.formatDecimal(n, 2), n.toExponential(8) );
     unlock_count += 1;
