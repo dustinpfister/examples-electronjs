@@ -17,3 +17,7 @@ This prototype features many modules, some of which I made from the ground up, o
 * [MrSun state machine](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-statemachine) module
 * [MrSun utilities](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-utils) module
 * [MrSun game](https://github.com/dustinpfister/examples-electronjs/tree/master/for_post/electronjs-example-mrsun/html/js/mrsun-game) module
+
+## Plans for Future Updates
+
+For now the plan is to just maintain this prototype up to a certain point and then from there continue working on this as a whole other project in a stand alone repo.

@@ -200,7 +200,7 @@ const drawSectionSlot = (ctx, section, slot) => {
 const createSectionRenderSheet = (section) => {
     const can = canvasMod.create({
         size: 128,
-        palette: ['rgba(0,0,0, 0.2)', 'red'],
+        //palette: ['rgba(0,0,0, 0.2)', 'red'],
         state: {
             section: section
         },
@@ -264,15 +264,17 @@ class Block {
     getUpgradeCost (level) {
         return Decimal.pow(10, level === undefined ? this.level : level);
     }
+    // set mana stats without doing anything with level or type
+    setManaStats (sunspot_multi = 1) {
+        const TYPE_DEF = constant.BLOCKS[this.type];
+        this.mana_base = TYPE_DEF.mana_base * sunspot_multi * this.level;
+        this.mana_temp = Math.pow(TYPE_DEF.mana_temp * sunspot_multi, this.level);
+    }
     // set the current level of the block, can also change type
     setLevel (level, type, sunspot_multi = 1 ) {
         this.level = level === undefined ? 1 : parseInt(level);
         this.type = type || this.type;
-        const TYPE_DEF = constant.BLOCKS[this.type];
-
-        this.mana_base = TYPE_DEF.mana_base * sunspot_multi * this.level;
-        this.mana_temp = Math.pow(TYPE_DEF.mana_temp * sunspot_multi, this.level);
-
+        this.setManaStats(sunspot_multi);
         this.mana_value = null;
         this.upgradeCost = this.getUpgradeCost(this.level);
         this.setManaValue();
@@ -622,7 +624,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
                 if(!slot.locked && block.type != 'blank'){
                     // update block here
                     const sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
-                    block.setLevel(block.level, block.type, sunspot_multi);
+                    block.setManaStats(sunspot_multi);
                     const mana_delta = Math.round(block.mana_base + block.mana_temp * a_temp);
                     game.mana_per_tick = game.mana_per_tick.add( mana_delta );
                     mana_total = mana_total.add( block.mana_value.valueOf() );
