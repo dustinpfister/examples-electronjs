@@ -2,10 +2,6 @@
 
 <!-- SAVE FOR FUTURE UPDATES -->
 
-## () - rx - Move Sun Method?
-* () have a gameMod.moveSun method that will be used in state objects such as 'world'
-* () gameMod.moveSun will take an angle and distance from center
-
 ## () - rx - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
@@ -27,66 +23,51 @@
 ## () - rx - object2d-buttons.js
 * () that a buttons lib that extends Object2D
 
-## () - rx - Sprites for Land State Land Sections
-* () have a new sprite object like what I am using in the world state only for the land state
-* () I will need a LandSection.sprite\_land property
-* () if the new solution for land sprites is working remove code for the old solution I was using in utils
-
-## () - rx - Sprite sheets for Land Section Sprites
-    If I work out a solution that works good for detail textures of slots I will now want to see about creating sprite sheets. In other words if thinks look good I now need to think in terms of making things run smotther by not doing real timer rendering of graphics on each frame tick for each slot.
-* () have more than one Sprite sheet for each land section where a set of three will be for each slot/block type
-
-## () rx - local storage autosave
-* () I will need a local storage autosave feature
+## () rx - PLATFORM-BROWSER
+* () start a BROWSER form of the API that I have in preload.js
+* () just use local storage for this and move on
 
 ## () rx - server script
 * () I would like to have a script that will run a simple static server
 * () have it so that I can call npm run server to start the server
 * () with the server script I am hosting the game over the network on a given port
 
-## () rx - file save
-* () I should be able to do a crtl+s to save at any time
-
-## () - rx - use img data objects to render land state blocks
-* () see about using the IMG Objects in the process of drawing land state blocks also
-
 ## () - rx - See about fixing init state stuck bug
     With electionjs there seems to be a bug where I can end up getting stuck in init state. In windows I can trigger this by reloading a whole bunch of times real fast.
-
-## () - rx - more than one autosave file?
-* () I think I will need an autosave\_0.txt and a autosave\_1.txt
-* () each auto save event will save to 0 or 1 but never both at the same time
-* () always start by loading auto save 0, of that is not valid try 1
 
 ## () - rx - save as and open options
 * () save as option for the current autosave
 * () open menu option to load a save, and thus replace the autosave
 
-## () - rx - sunspots value effected by unlock slot count?
-* () sunspot delta value should be effected by total number of slots unlocked
-
 ## () - rx - sunspot upgrades
 * () start a sunspot upgrades menu
 * () the first upgrade can be something that lowers the base use to figure sunspots delta world value
 
+## () - rx - StateMachine.create, StateMachine.start
+* () start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
+* () when calling StateMachine.create I should be able to pass a platfrom object to use
+* () have a StateMachine.start method that will take an sm object as an argument and start the main loop
+* () rename main.mjs to main-electron.mjs
+* () create an sm object with StateMachine.create in main-election.js
+
 <!-- PROTOTYPE -->
 
-## () - rx - set mana stats Block class method
-* () have a block.setManaStats method that will be used to set the various mana values
-* () have a mana delta value for each block
-* () display mana delta in block info
-
-## () - rx - better world state rendering
+## () - r65 - better world state rendering
 * () I would like to work out a process for rendering the world state a few slots at a time
 * () start by checking out a way to render 1 slot per frame tick.
 
-## () - rx - mrsun-lands lib folder
-* () pull all code that has to do with the Lands class into its own mjs file
-* () update game.mjs to make use of new lands.mjs file
-* () create and update readme files
-
-## () - rx - min sunspot delta for supernove
+## () - r64 - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
+
+## () - r63 - Sprites for Land State Land Sections
+* () have a new sprite object like what I am using in the world state only for the land state
+* () I will need a LandSection.sprite\_land property
+* () if the new solution for land sprites is working remove code for the old solution I was using in utils
+
+## () - r62 - set mana stats Block class method
+* () have a block.setManaStats method that will be used to set the various mana values
+* () have a mana delta value for each block
+* () display mana delta in block info
 
 ## ( done 04/28/2023 ) - r61 - rename MS api as Platform
 * (done) have an sm.platform property that will store the value of MS
