@@ -88,13 +88,19 @@
 ## () - rx - min sunspot delta for supernove
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r60 - main.mjs file
+## ( done 04/28/2023 ) - r61 - rename MS api as Platform
+* (done) have an sm.platform property that will store the value of MS
+* (done) have the default value of platform be what I have in the utils MS check method
+* (done) have a game.platform property and use that in place of MS in gameMod.saveGame
+* (done) rename MS as PLATFORM in preload.js
+
+## ( done 04/28/2023 ) - r60 - fix formating, start of a main.mjs file
 * (done) see about fixing a formtaing problem with decimals
 * (done) have an sm\_old.mjs file that will still be the old main start file for now
 * (done) just append sm to window in sm\_old.mjs as a way to get my public sm object back
 * (done) update sm.mjs to export a main object
-* (done) start a have a main.js file that will use the new sm.mjs file
-
+* (done) start a have a main.mjs file that will use the new sm.mjs file
+* (done) still use old sm for now
 
 ## ( done 04/28/2023 ) - r59 - mrsun-constants
 * (done) the constant object in game.mjs should be in a seperate module folder

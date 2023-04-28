@@ -8,8 +8,6 @@ import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
 import { utils }  from "../mrsun-utils/utils.mjs"
 import { constant } from "../mrsun-constant/constant.mjs"
-// MS api check
-const MS = utils.MSCheck();
 //-------- ----------
 // Canvas Objects for Sun Class
 //-------- ----------
@@ -662,6 +660,7 @@ gameMod.create = (opt) => {
     opt = opt || {};
     opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
     const game = {
+       platform: opt.platform || null,  // MUST GIVE A PLATFORM FOR gameMod.saveGame to work
        mana: new Decimal(opt.mana),
        mana_level: opt.mana_level,
        mana_cap: 0,      // set by calling getManaCap Helper
@@ -817,7 +816,10 @@ gameMod.createSaveString = (game) => {
 };
 // save game method using whatever MS.auto_save is...
 gameMod.saveGame = (game) => {
-    return MS.auto_save( gameMod.createSaveString( game ) );
+    if(game.platform){
+        return game.platform.auto_save( gameMod.createSaveString( game ) );
+    }
+    return null;
 };
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
@@ -828,8 +830,6 @@ gameMod.parseSaveString = (text_lz) => {
     }
     const text_json = LZString.decompressFromBase64(text_lz);
     const opt = JSON.parse(text_json);
-    console.log('save state object parsed:');
-    console.log(opt);
     return opt;
 };
 //-------- ----------

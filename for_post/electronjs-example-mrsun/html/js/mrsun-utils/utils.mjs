@@ -8,6 +8,7 @@ const utils = {};
 //-------- ----------
 // Mr Sun (MS) API
 //-------- ----------
+/*
 utils.MSCheck = () => {
     try{
         if(MS){
@@ -30,6 +31,7 @@ utils.MSCheck = () => {
         return MS;
     }
 };
+*/
 //-------- ----------
 // MATH UTILIES
 //-------- ----------

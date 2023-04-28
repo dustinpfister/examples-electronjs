@@ -5,7 +5,21 @@ import { utils }  from "../mrsun-utils/utils.mjs"
 import { Vector2 } from '../vector2/vector2.mjs'
 import { constant } from "../mrsun-constant/constant.mjs"
 // MS api check
-const MS = utils.MSCheck();
+//const MS = utils.MSCheck();
+
+
+const PLATFORM_NOOP = {};
+// dummy auto load
+PLATFORM_NOOP.auto_load = () => {
+  const err = new Error('No auto load feature with this dummy MS API');
+  return Promise.reject(err)
+};
+PLATFORM_NOOP.auto_save = () => {
+    const err = new Error('No auto save feature with this dummy MS API');
+    return Promise.reject(err);
+};
+PLATFORM_NOOP.log = (mess) => {};
+
 //-------- ----------
 // CREATE MAIN sm OBJECT
 //-------- ----------
@@ -16,6 +30,7 @@ container.appendChild(canvas);
 canvas.width = 640;
 canvas.height = 480;
 const sm = window.sm = {
+   platform: window.PLATFORM || PLATFORM_NOOP,
    canvas: canvas,
    ctx: ctx,
    game: null,
@@ -45,11 +60,11 @@ sm.setState = function(key, opt) {
 const load_game = () => {
     const cx = sm.canvas.width / 2;
     const cy = sm.canvas.height / 2;
-    return MS.auto_load()
+    return sm.platform.auto_load()
     .then( (text_lz) => {
         console.log('Autoload worked!');
         const opt_game = gameMod.parseSaveString(text_lz);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
         gameMod.awayCheck(sm.game, sm.ticksPerSec);
         sm.setState('world', {});
     })
@@ -57,7 +72,7 @@ const load_game = () => {
         console.log('Error with autoload. Starting new game.');
         console.log('message: ' + e.message);
         const opt_game = gameMod.parseSaveString(constant.SAVE_STRING);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy}));
+        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
         sm.setState('world', {});
     });
 }

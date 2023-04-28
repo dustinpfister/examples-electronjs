@@ -12,11 +12,11 @@ const file_name = 'mr_sun_autosave.txt';
 const uri_filesave = path.join(dir_home, file_name);
 
 // Mr Sun (MS) global API toolkit
-const MS = {};
+const PLATFORM = {};
 
 // get a save file at a standard location
 // if it is not there, create a new one
-MS.auto_load = () => {
+PLATFORM.auto_load = () => {
     return readFile(uri_filesave, 'utf8')
     .then((text) => {
         return Promise.resolve(text);
@@ -29,7 +29,7 @@ MS.auto_load = () => {
     });
 };
 // save to the autosave file
-MS.auto_save = (text_lz) => {
+PLATFORM.auto_save = (text_lz) => {
     const fork = require('child_process').fork;
     const process = fork(path.join(__dirname, 'savefile.js'), [uri_filesave, text_lz], {
        detached: true,
@@ -50,8 +50,8 @@ MS.auto_save = (text_lz) => {
     */
 };
 // simple log function (using this to just test out features like visibility change events and so forth might remove )
-MS.log = (mess) => {
+PLATFORM.log = (mess) => {
     process.stdout.write( mess.toString() + '\n' );
 };
 // create an api for window objects in web pages
-contextBridge.exposeInMainWorld('MS', MS);
+contextBridge.exposeInMainWorld('PLATFORM', PLATFORM);
