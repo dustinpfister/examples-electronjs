@@ -4,7 +4,7 @@ import { constant } from "../mrsun-constant/constant.mjs"
 //-------- ----------
 // HELPER FUNCTIONS
 //-------- ----------
-const load_game = () => {
+const load_game = (sm) => {
     const cx = sm.canvas.width / 2;
     const cy = sm.canvas.height / 2;
     return sm.platform.auto_load()
@@ -32,7 +32,7 @@ const state_init = {
     },
     start: (sm, opt) => {
        console.log('init of mr sun.');
-       load_game();
+       load_game(sm);
     },
     update: (sm, secs) => {
         const data = sm.states.init.data;

@@ -17,11 +17,12 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
 ## () - r64 - StateMachine.create, StateMachine.start
-* () start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
+* (done) start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
+* (done) have a StateMachine.start method that will take an sm object as an argument and start the main loop
+* (done) rename main.mjs to main-electron.mjs
+* (done) create an sm object with StateMachine.create in main-election.js
 * () when calling StateMachine.create I should be able to pass a platfrom object to use
-* () have a StateMachine.start method that will take an sm object as an argument and start the main loop
-* () rename main.mjs to main-electron.mjs
-* () create an sm object with StateMachine.create in main-election.js
+
 
 ## ( done 04/28/2023 ) - r63 - state-init.mjs, state-world.mjs, state-land.mjs
 * (done) pull the init state into its own mjs file as state\_init.mjs in the state machine folder

@@ -1,4 +1,4 @@
-// sm.mjs - for electionjs-example-mrsun
+// sm_old.mjs - for electionjs-example-mrsun
 // Main state machine
 import { gameMod }  from "../mrsun-game/game.mjs"
 import { utils }  from "../mrsun-utils/utils.mjs"
