@@ -184,6 +184,18 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
     ctx.restore();
 };
 //-------- ----------
+// FORMAT DECIMAL TEST
+//-------- ----------
+/*
+const total = 960;
+let unlock_count = 0;
+while(unlock_count < total){
+    const n = Decimal.pow(10, 30 * ( unlock_count / total ) ).ceil().sub(1);
+    console.log( unlock_count, utils.formatDecimal(n, 2), n.toExponential(8) );
+    unlock_count += 1;
+}
+*/
+//-------- ----------
 // EXPORT
 //-------- ----------
 export { utils };

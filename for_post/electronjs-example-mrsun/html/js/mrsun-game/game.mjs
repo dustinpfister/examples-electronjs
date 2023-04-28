@@ -11,18 +11,6 @@ import { constant } from "../mrsun-constant/constant.mjs"
 // MS api check
 const MS = utils.MSCheck();
 //-------- ----------
-// FORMAT DECIMAL TEST
-//-------- ----------
-//const n = Decimal.pow(10, 6);
-const total = 960;
-
-let unlock_count = 0;
-while(unlock_count < total){
-    const n = Decimal.pow(10, 30 * ( unlock_count / total ) ).ceil().sub(1);
-    console.log( unlock_count, utils.formatDecimal(n, 2), n.toExponential(8) );
-    unlock_count += 1;
-}
-//-------- ----------
 // Canvas Objects for Sun Class
 //-------- ----------
 const can1 = canvasMod.create({

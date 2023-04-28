@@ -89,7 +89,7 @@
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
 ## () - r60 - main.js file
-* () see about fixing a formtaing problem with decimals
+* (done) see about fixing a formtaing problem with decimals
 * () have a main.js file
 * () update sm.mjs to export a create method that will be used in main.js
 
