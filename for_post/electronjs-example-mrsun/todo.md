@@ -12,7 +12,7 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
 ## () - rx - Sprite objects For Land Sections in Land State
-* () have a new sprite object like what I am using in the world state only for the land state
+* () I will then need a sprite-land object for the land state
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
