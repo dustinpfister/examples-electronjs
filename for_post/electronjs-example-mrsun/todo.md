@@ -16,6 +16,10 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
 
+## ( done 04/29/2023 ) - r65 - break down render code in state world
+* (done) break down render code in state world into a render basic and render detail function
+* (done) use render detail
+
 ## ( done 04/28/2023 ) - r64 - StateMachine.create, StateMachine.start
 * (done) start work on new StateMachine module by just having a StateMachine.create method that will create and return a sm object
 * (done) have a StateMachine.start method that will take an sm object as an argument and start the main loop
