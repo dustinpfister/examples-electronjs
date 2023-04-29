@@ -4,17 +4,19 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - rx - better world state rendering
-* () I would like to work out a process for rendering the world state a few slots at a time
-* () start by checking out a way to render 1 slot per frame tick.
-
-## () - rx - min sunspot delta for supernova
+## () - r69 - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - rx - Sprite objects For Land Sections in Land State
-* () I will then need a sprite-land object for the land state
-* () I will need a LandSection.sprite\_land property
-* () if the new solution for land sprites is working remove code for the old solution I was using in utils
+## () - r68 - new sheet renderering for Sprite Land Sections Land State class
+* (done) make it so that a drawSectionSlot method can be passed when calling createSectionRenderSheet
+* (done) make the draw section slot a method of each Sprite class
+* () the draw section slot method for the SpriteLandSectionLand
+
+
+## ( done 04/29/2023 ) - r67 - Sprite objects For Land Sections in Land State
+* (done) I will then need a SpriteLandSectonLand class for the land state in game.mjs
+* (done) use the new SpriteLandSectonLand class to create a sprite object for a section object to use in land state
+* (done) draw the section sprite land object in land state
 
 ## ( done 04/29/2023 ) - r66 - init hooks for state objects
 * (done) when StateMachine.start is called check for and call init methods for each state object

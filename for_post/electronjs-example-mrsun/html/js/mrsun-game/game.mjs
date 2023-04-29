@@ -138,7 +138,7 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
     evnt.game.mana = evnt.game.mana.add(evnt.constant.MANA_START);
 });
 //-------- ----------
-// SpriteLandSectonWorld Class
+// SpriteLandSectonWorld Class ( for world state )
 //-------- ----------
 // draw a singel texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
@@ -171,36 +171,10 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
     ctx.fill();
 };
-// draw a section arc for a single slot object
-const drawSectionSlot = (ctx, section, slot) => {
-    const block = slot.block;
-    let img = constant.IMG.locked;
-    if(!slot.locked){
-        img = constant.IMG[block.type];
-    }
-    const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT  * section.i;
-    const radius_land = constant.LAND_RADIUS;
-    // get a vector2 that is on the edge of the sun area
-    const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
-    // get a vector2 that is the center location
-    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
-    const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
-    let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
-    // draw texels
-    const len = img.w * img.h;
-    let i_texel = 0;
-    while(i_texel < len){
-        const x = i_texel % img.w;
-        const y = Math.floor(i_texel / img.w);
-        drawSectionSlotTexel(ctx, slot, v2, rad_center, x, y);
-        i_texel += 1;
-    }
-};
 // create a render sheet for the given section object
-const createSectionRenderSheet = (section) => {
+const createSectionRenderSheet = (section, drawSectionSlot) => {
     const can = canvasMod.create({
         size: 128,
-        //palette: ['rgba(0,0,0, 0.2)', 'red'],
         state: {
             section: section
         },
@@ -224,14 +198,63 @@ const createSectionRenderSheet = (section) => {
     sheet.can = can;
     return sheet;
 };
-class SpriteLandSectonWorld extends Sprite {
-    constructor(section) {
+class SpriteLandSectionWorld extends Sprite {
+    constructor (section) {
         super();
         this.section = section;
         this.type = 'SpriteLandSectonWorld';
         this.size.set(128, 128);
-        this.sheets[0] = createSectionRenderSheet(this.section);
+        this.sheets[0] = createSectionRenderSheet(this.section, this.drawSectionSlot);
         this.cellIndices[0] = 0;
+    }
+    // draw a section arc for a single slot object to be used in world state
+    drawSectionSlot (ctx, section, slot) {
+        const block = slot.block;
+        let img = constant.IMG.locked;
+        if(!slot.locked){
+            img = constant.IMG[block.type];
+        }
+        const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT  * section.i;
+        const radius_land = constant.LAND_RADIUS;
+        // get a vector2 that is on the edge of the sun area
+        const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
+        // get a vector2 that is the center location
+        const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+        const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
+        let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
+        // draw texels
+        const len = img.w * img.h;
+        let i_texel = 0;
+        while(i_texel < len){
+            const x = i_texel % img.w;
+            const y = Math.floor(i_texel / img.w);
+            drawSectionSlotTexel(ctx, slot, v2, rad_center, x, y);
+            i_texel += 1;
+        }
+    }
+    update(){
+        canvasMod.update(this.sheets[0].can);
+    }
+};
+//-------- ----------
+// SpriteLandSectonLand Class ( for land state )
+//-------- ----------
+class SpriteLandSectionLand extends Sprite {
+    constructor(section) {
+        super();
+        this.section = section;
+        this.type = 'SpriteLandSectonLand';
+        this.size.set(256, 128);
+        this.sheets[0] = createSectionRenderSheet( this.section, this.drawSectionSlot );
+        this.cellIndices[0] = 0;
+    }
+    // draw a single slot for the section object
+    drawSectionSlot(ctx, section, slot){
+        const block = slot.block;
+        let img = constant.IMG.locked;
+        if(!slot.locked){
+            img = constant.IMG[block.type];
+        }
     }
     update(){
         canvasMod.update(this.sheets[0].can);
@@ -326,9 +349,12 @@ class LandSection {
         this.applySectionData(sectionData)
         // update the counts
         this.setBlockTypeCounts();
-        // world sprite objects
-        this.sprite_world = new SpriteLandSectonWorld(this);
+        // world state sprite object
+        this.sprite_world = new SpriteLandSectionWorld(this);
         this.sprite_world.position.set(this.position.x, this.position.y);
+        // land sprite sprite object
+        this.sprite_land = new SpriteLandSectionLand(this);
+        this.sprite_land.position.set(320, 240);
         // total mana value
         this.mana_total = new Decimal(0);
     }

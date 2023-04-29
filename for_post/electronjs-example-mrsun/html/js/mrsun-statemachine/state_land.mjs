@@ -49,6 +49,13 @@ const state_land = {
         ctx.fillRect(0,0, canvas.width, canvas.height);
         // render blocks
         utils.drawLandSection(sm, ctx, canvas, section, data);
+
+        // the sprite object for land state
+        section.sprite_land.update();
+        ctx.globalAlpha = 0.5;
+        utils.drawSprite(section.sprite_land, ctx, canvas);
+        ctx.globalAlpha = 1;
+
         // buttons
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);

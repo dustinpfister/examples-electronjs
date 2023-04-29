@@ -2,6 +2,9 @@
 
 <!-- Plans for 'MrSun idle' -->
 
+## () - rx - Slot by slot real time rendering in world state
+* () I would like to see about slot by slot, or maybe a few slots at a time, rendering in world state
+
 ## () - rx - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
