@@ -164,7 +164,7 @@ utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {
         const x = sx + opt.block_width * bx;
         const y = sy + opt.block_height * by;
         ctx.rect(x, y, opt.block_width, opt.block_height);
-        ctx.fill();
+        //ctx.fill();
         ctx.stroke();
         // level text
         if(block.type === 'rock' && opt.block_infodisp){

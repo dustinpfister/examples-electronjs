@@ -174,7 +174,7 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
 // create a render sheet for the given section object
 const createSectionRenderSheet = (section, drawSectionSlot) => {
     const can = canvasMod.create({
-        size: 128,
+        size: 1024,
         state: {
             section: section
         },
@@ -244,8 +244,12 @@ class SpriteLandSectionLand extends Sprite {
         super();
         this.section = section;
         this.type = 'SpriteLandSectonLand';
-        this.size.set(256, 128);
+        this.size.set(500, 280);
         this.sheets[0] = createSectionRenderSheet( this.section, this.drawSectionSlot );
+
+//this.sheets[0].can.canvas.width = 500;
+//this.sheets[0].can.canvas.height = 280;
+
         this.cellIndices[0] = 0;
     }
     // draw a single slot for the section object
@@ -255,6 +259,50 @@ class SpriteLandSectionLand extends Sprite {
         if(!slot.locked){
             img = constant.IMG[block.type];
         }
+
+
+        // draw texels
+        const len = img.w * img.h;
+        const block_width = 128 / 10;
+        const block_height = 128 / 8;
+        const texel_width = block_width / img.w;
+        const texel_height = block_height / img.h;
+        let i_texel = 0;
+        while(i_texel < len){
+            const texelX = i_texel % img.w;
+            const texelY = Math.floor(i_texel / img.w);
+
+            const i_ci = texelY * img.w + texelX;
+            ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
+
+            //ctx.beginPath();
+            ctx.fillRect(
+                slot.x * block_width + texel_width * texelX, 
+                slot.y * block_height + texel_height * texelY, 
+                texel_width, texel_height);
+            //ctx.fill();
+
+            i_texel += 1;
+        }
+
+        //const x = slot.x * block_width, y = slot.y * block_height;
+        //ctx.strokeStyle = 'white';
+        //ctx.beginPath();
+        //ctx.rect(
+        //    x, 
+        //    y, 
+        //    block_width, block_height);
+        //ctx.stroke();
+
+        // level text
+    //ctx.font = '10px arial';
+    //ctx.textAlign = 'left';
+    //ctx.textBaseline = 'top';
+    //    if(block.type === 'rock'){
+    //        ctx.fillStyle = 'white';
+    //        ctx.fillText(block.level, x + 1, y + 1);
+    //    }
+
     }
     update(){
         canvasMod.update(this.sheets[0].can);

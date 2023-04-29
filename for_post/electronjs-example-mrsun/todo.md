@@ -7,11 +7,10 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 ## () - r69 - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - r68 - new sheet renderering for Sprite Land Sections Land State class
+## ( done 04/29/2023 ) - r68 - new sheet renderering for Sprite Land Sections Land State class
 * (done) make it so that a drawSectionSlot method can be passed when calling createSectionRenderSheet
 * (done) make the draw section slot a method of each Sprite class
-* () the draw section slot method for the SpriteLandSectionLand
-
+* (done) the draw section slot method for the SpriteLandSectionLand
 
 ## ( done 04/29/2023 ) - r67 - Sprite objects For Land Sections in Land State
 * (done) I will then need a SpriteLandSectonLand class for the land state in game.mjs
