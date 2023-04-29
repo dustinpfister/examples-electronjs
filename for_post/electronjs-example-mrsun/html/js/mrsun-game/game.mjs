@@ -127,7 +127,7 @@ Decimal.set({
 //-------- ----------
 // CONST
 //-------- ----------
-const IMG = constant.IMG;
+//const IMG = constant.IMG;
 //-------- ----------
 // GAME EVENTS
 //-------- ----------
@@ -148,9 +148,9 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const rad_delta = Math.PI / 180 * 15;
     // get block and image
     const block = slot.block;
-    let img = IMG.locked;
+    let img = constant.IMG.locked;
     if(!slot.locked){
-        img = IMG[block.type];
+        img = constant.IMG[block.type];
     }
     const rad_edge = rad_center - rad_delta;
     const rad_slot_start = rad_edge + Math.PI / 180 * ( 30 / 10 * slot.x );
@@ -174,9 +174,9 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
 // draw a section arc for a single slot object
 const drawSectionSlot = (ctx, section, slot) => {
     const block = slot.block;
-    let img = IMG.locked;
+    let img = constant.IMG.locked;
     if(!slot.locked){
-        img = IMG[block.type];
+        img = constant.IMG[block.type];
     }
     const radian = Math.PI + Math.PI * 2 / constant.LAND_OBJECT_COUNT  * section.i;
     const radius_land = constant.LAND_RADIUS;

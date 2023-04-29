@@ -34,7 +34,9 @@ const state_land = {
         data.grid_h = data.block_height * constant.SLOT_GRID_HEIGHT;
     },
     // the start hook will be called each time this state is started
-    start: (sm, opt, data) => {},
+    start: (sm, opt, data) => {
+
+    },
     // update called in main app loop function
     update: (sm, secs, data) => {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);

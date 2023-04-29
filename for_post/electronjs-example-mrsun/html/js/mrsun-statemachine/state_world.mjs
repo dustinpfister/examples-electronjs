@@ -70,7 +70,7 @@ const render_detail = (sm, ctx, canvas, data) => {
     render_sunarea(sm, ctx, canvas, data);
     utils.drawSprite(sm.game.sun, ctx, canvas);
     sm.game.lands.sections.forEach((section, i) => {
-        section.sprite_world.update();
+        //section.sprite_world.update();
         utils.drawSprite(section.sprite_world, ctx, canvas);
         render_section_text(ctx, section);
     });
@@ -83,7 +83,13 @@ const state_world = {
     data: {
         button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
     },
-    start: (sm, opt) => {},
+    start: (sm, opt) => {
+        // as long as I do not have to update on a tick by tick basis
+        // I can call the sprite_world update method here in the start hook
+        sm.game.lands.sections.forEach((section, i) => {
+            section.sprite_world.update();
+        });
+    },
     update: (sm, secs) => {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
     },
