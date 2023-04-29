@@ -11,10 +11,14 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 ## () - rx - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
-## () - rx - Sprites for Land State Land Sections
+## () - rx - Sprite objects For Land Sections in Land State
 * () have a new sprite object like what I am using in the world state only for the land state
 * () I will need a LandSection.sprite\_land property
 * () if the new solution for land sprites is working remove code for the old solution I was using in utils
+
+## ( done 04/29/2023 ) - r66 - init hooks for state objects
+* (done) when StateMachine.start is called check for and call init methods for each state object
+* (done) use init hook over start in land state
 
 ## ( done 04/29/2023 ) - r65 - break down render code in state world
 * (done) break down render code in state world into a render basic and render detail function

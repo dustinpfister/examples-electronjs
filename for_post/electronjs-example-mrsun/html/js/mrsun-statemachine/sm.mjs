@@ -142,9 +142,16 @@ StateMachine.create = (opt_create) => {
 };
 // start the state machine
 StateMachine.start = (sm) => {
+    Object.keys(sm.states).forEach( (stateKey) => {
+        const state = sm.states[stateKey];
+        if(state.init){
+             console.log(state);
+             state.init.call(state, sm, state.data, state)
+        }
+    });
     sm.setState('init', {});
     sm.loop();
-}
+};
 //-------- ----------
 // EXPORT
 //-------- ----------

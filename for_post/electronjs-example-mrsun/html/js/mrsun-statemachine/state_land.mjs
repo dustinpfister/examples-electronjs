@@ -27,10 +27,15 @@ const state_land = {
         grid_radian: 0,
         block_infodisp: true
     },
-    start: (sm, opt, data) => {
+    // the init hook will ONLY BE CALLED ONCE when the state machine is started
+    init: (sm, data) => {
+        console.log('init hook for land state');
         data.grid_w = data.block_width * constant.SLOT_GRID_WIDTH;
         data.grid_h = data.block_height * constant.SLOT_GRID_HEIGHT;
     },
+    // the start hook will be called each time this state is started
+    start: (sm, opt, data) => {},
+    // update called in main app loop function
     update: (sm, secs, data) => {
         gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
     },
