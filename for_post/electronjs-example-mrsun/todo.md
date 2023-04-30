@@ -12,9 +12,9 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () still have a 1x option as well
 * () for now have it so that clicking the create button over and over again is what will change modes for this
 
-## () - r71 - autosave timer
-* () have a system where each time I upgrade, create, unlock, ect this will start a timer
-* () have about 1.5 secs preform a save
+## ( done 04/30/2023 ) - r71 - autosave timer
+* (done) have a system where each time I upgrade, create, unlock, ect this will start a timer
+* (done) have about 3 ticks secs preform a save
 
 ## ( done 04/30/2023 ) - r70 - Default start button
 * (done) default start button should be unlock slot

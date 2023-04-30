@@ -125,10 +125,6 @@ Decimal.set({
     minE: -100
 });
 //-------- ----------
-// CONST
-//-------- ----------
-//const IMG = constant.IMG;
-//-------- ----------
 // GAME EVENTS
 //-------- ----------
 const GAME_EVENTS = new EventDispatcher();
@@ -136,6 +132,11 @@ const GAME_EVENTS = new EventDispatcher();
 GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
     console.log('Mana Total Zero Event! adding ' + constant.MANA_START + ' mana for ya.');
     evnt.game.mana = evnt.game.mana.add(evnt.constant.MANA_START);
+});
+GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
+    evnt.game.autosave_ticks = 3;
+    console.log('autosave delya set to: ' + evnt.game.autosave_ticks + ' ticks');
+    
 });
 //-------- ----------
 // SpriteLandSectonWorld Class ( for world state )
@@ -246,10 +247,6 @@ class SpriteLandSectionLand extends Sprite {
         this.type = 'SpriteLandSectonLand';
         this.size.set(500, 280);
         this.sheets[0] = createSectionRenderSheet( this.section, this.drawSectionSlot );
-
-//this.sheets[0].can.canvas.width = 500;
-//this.sheets[0].can.canvas.height = 280;
-
         this.cellIndices[0] = 0;
     }
     // draw a single slot for the section object
@@ -259,8 +256,6 @@ class SpriteLandSectionLand extends Sprite {
         if(!slot.locked){
             img = constant.IMG[block.type];
         }
-
-
         // draw texels
         const len = img.w * img.h;
         const block_width = 128 / 10;
@@ -271,38 +266,14 @@ class SpriteLandSectionLand extends Sprite {
         while(i_texel < len){
             const texelX = i_texel % img.w;
             const texelY = Math.floor(i_texel / img.w);
-
             const i_ci = texelY * img.w + texelX;
             ctx.fillStyle = img.palette[ img.color_indices[ i_ci ] ];
-
-            //ctx.beginPath();
             ctx.fillRect(
                 slot.x * block_width + texel_width * texelX, 
                 slot.y * block_height + texel_height * texelY, 
                 texel_width, texel_height);
-            //ctx.fill();
-
             i_texel += 1;
         }
-
-        //const x = slot.x * block_width, y = slot.y * block_height;
-        //ctx.strokeStyle = 'white';
-        //ctx.beginPath();
-        //ctx.rect(
-        //    x, 
-        //    y, 
-        //    block_width, block_height);
-        //ctx.stroke();
-
-        // level text
-    //ctx.font = '10px arial';
-    //ctx.textAlign = 'left';
-    //ctx.textBaseline = 'top';
-    //    if(block.type === 'rock'){
-    //        ctx.fillStyle = 'white';
-    //        ctx.fillText(block.level, x + 1, y + 1);
-    //    }
-
     }
     update(){
         canvasMod.update(this.sheets[0].can);
@@ -642,7 +613,7 @@ const manaDebit = (game, mana_delta) => {
         if(game.mana_per_tick.eq(0)){
             GAME_EVENTS.dispatchEvent({
                 type: 'mana_total_zero',
-                game: game, constant: constant
+                game: game
             });
         }
     }
@@ -666,7 +637,6 @@ gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     const ticks = Math.ceil(ticks_per_sec * secs);
     const mana_delta = Decimal.mul(game.mana_per_tick, ticks);
     manaCredit(game, mana_delta);
-
     console.log('********** Alway Check **********');
     console.log('now: ' + now);
     console.log('game.last_update: ' + game.last_update );
@@ -715,6 +685,17 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         // credit current mana per tick
         const mana_delta = Decimal.mul(game.mana_per_tick, tick_delta);
         manaCredit(game, mana_delta);
+        // auto save check
+        if(game.autosave_ticks > 0){
+            
+            game.autosave_ticks -= tick_delta;
+            game.autosave_ticks = game.autosave_ticks < 0 ? 0 : game.autosave_ticks;
+            console.log('autosave ticks: ' + game.autosave_ticks);
+            if(game.autosave_ticks === 0){
+                console.log('saving the game.');
+                gameMod.saveGame(game);
+            }
+        }
     }
     // step the sun animation
     game.sun.stepBaseAnimation();
@@ -748,7 +729,8 @@ gameMod.create = (opt) => {
        tick_frac: 0,
        tick: 0,           // game should update by a main tick count
        tick_last: 0,      // last tick can be subtracted from tick to get a tick delta
-       last_update: opt.last_update || new Date()
+       last_update: opt.last_update || new Date(),
+       autosave_ticks: 0 // 1 or more ticks is the number of ticks to the next game save
     };
     // parse last_update if string
     if(typeof game.last_update === 'string'){
@@ -760,8 +742,7 @@ gameMod.create = (opt) => {
     game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
     // land objects
     game.lands = new Lands({
-        //cx: opt.cx, cy: opt.cy, 
-		sectionData: opt.sectionData
+        sectionData: opt.sectionData
     });
     game.mana_cap = getManaCap(game);
     gameMod.updateByTickDelta(game, 0, true);
@@ -778,7 +759,7 @@ gameMod.setSunPos = (game, pos) => {
         sun.position.x = sun.center.x + Math.cos(a) * md;
         sun.position.y = sun.center.y + Math.sin(a) * md;
     }
-    gameMod.saveGame(game);
+    GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };
 // get land object by x, y pos or false if nothing there
 gameMod.getSectionByPos = (game, pos) => {
@@ -811,7 +792,7 @@ gameMod.unlockSlot = (game, i_section, i_slot) => {
             }
         }
     }
-    gameMod.saveGame(game);
+    GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };
 // buy a block for the given land section and slot indices
 gameMod.createBlock = (game, i_section, i_slot, level) => {
@@ -831,7 +812,7 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
                     slot.block.setLevel(level, 'rock', 1);
                     game.lands.setBlockTypeCounts();
                     manaDebit(game, blockCost);
-                    gameMod.saveGame(game);
+                    GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
                 }
             }
             return;
@@ -858,7 +839,7 @@ gameMod.upgradeBlock = (game, i_section, i_slot) => {
         manaDebit(game, block.upgradeCost);
         const newLevel = block.level + 1;
         block.setLevel(newLevel, 'rock', 1);
-        gameMod.saveGame(game);
+        GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
     }
 };
 // set the given land and block index back to blank, and absorb the mana value to game.mana
@@ -875,7 +856,7 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
         section.dropDownBlocks(slot);
         game.lands.setBlockTypeCounts();
     }
-    gameMod.saveGame(game);
+    GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };
 // create a save string
 gameMod.createSaveString = (game) => {
