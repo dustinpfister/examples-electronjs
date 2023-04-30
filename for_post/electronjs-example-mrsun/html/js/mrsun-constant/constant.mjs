@@ -1,5 +1,6 @@
 // constant.mjs - for electionjs-example-mrsun
 import { Decimal }  from "../decimal/10.4.3/decimal.mjs"
+import { Vector2 }  from "../vector2/vector2.mjs"
 //-------- ----------
 // CONSTANT OBJECT
 //-------- ----------
@@ -7,6 +8,7 @@ const constant = {};
 constant.SUN_RADIUS = 40;
 constant.LAND_RADIUS = 40;
 constant.SUNAREA_RADIUS = 150;
+constant.SUN_CENTER = new Vector2(320, 240);
 constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
 constant.LAND_OBJECT_COUNT = 12;
 constant.BLOCK_MAX_LEVEL = 99;

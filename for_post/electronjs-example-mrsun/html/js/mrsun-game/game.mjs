@@ -82,10 +82,10 @@ const can2 = canvasMod.create({
 // Sun Class
 //-------- ----------
 class Sun extends Sprite {
-    constructor(cx, cy, radius) {
+    constructor() {
         super();
         this.type = 'Sun';
-        const center = new Vector2(cx, cy);
+        const center = constant.SUN_CENTER.clone(); //new Vector2(cx, cy);
         Object.defineProperties( this, {
             center: {
                 configurable: true,
@@ -93,7 +93,7 @@ class Sun extends Sprite {
                 value: center
             }
         });
-        this.radius = radius;
+        this.radius = constant.SUN_RADIUS;
         this.size.set(64, 64);
         const sheet1 = new SpriteSheet(can1.canvas);
         sheet1.setCellDataToGrid();
@@ -899,7 +899,6 @@ gameMod.saveGame = (game) => {
 };
 // parse a save string into an options object
 gameMod.parseSaveString = (text_lz) => {
-    console.log('parsing the save string: ');
     if(!text_lz){
         console.log('looks like the save string is not valid!');
         return {};

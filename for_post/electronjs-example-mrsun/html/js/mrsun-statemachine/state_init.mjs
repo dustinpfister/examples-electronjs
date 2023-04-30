@@ -9,7 +9,7 @@ const load_game = (sm) => {
     const cy = sm.canvas.height / 2;
     return sm.platform.auto_load()
     .then( (text_lz) => {
-        console.log('Autoload worked!');
+        console.log('Autoload worked, looks like we have a string to parse...');
         const opt_game = gameMod.parseSaveString(text_lz);
         sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
         gameMod.awayCheck(sm.game, sm.ticksPerSec);

@@ -4,9 +4,15 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - r69 - min sunspot delta for supernova
+## () - r70 - min sunspot delta for supernova
+* () have a min amount of sunspot coin delta that is needed to preform a super nova event
+
+## () - r69 - Save state fix, center x constant
 * (done) fixed a bug where the game was not being saved once a supernova is done
-* () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
+* (done) have a constant for cx and cy used for sun center
+* (done) use this new sun center const for the Sun class
+* () use this new sun center const for the lands class
+* () I should no longer need cx and cy ioptions when calling the create game method
 
 ## ( done 04/29/2023 ) - r68 - new sheet renderering for Sprite Land Sections Land State class
 * (done) make it so that a drawSectionSlot method can be passed when calling createSectionRenderSheet
