@@ -4,17 +4,21 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - r73 - min sunspot delta for supernova
+## () - r75 - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to preform a super nova event
 
-## ( ) - r72 - Auto Max Level when creating blocks
-* (done) changed spacing between buttons
-* (done) updated Block.getUpgradeCost method that will take a current and target level.
-* (done) new Block.getMaxLevel method that will return the max level target that can be aforded with the given mana amount
+## () - r74 - Max Create button
+* () have an option to do a max create when cretaing blocks
 
+## () - r73 - Max Upgrade button
 * () see about having a feature where the max level that can be afforded is what is bought when creating a block
 * () still have a 1x option as well
 * () for now have it so that clicking the create button over and over again is what will change modes for this
+
+## ( done 04/30/2023 ) - r72 - Block.getUpgradeCost method takes target level, new getMaxLevel method
+* (done) changed spacing between buttons
+* (done) updated Block.getUpgradeCost method that will take a current and target level.
+* (done) new Block.getMaxLevel method that will return the max level target that can be aforded with the given mana amount
 
 ## ( done 04/30/2023 ) - r71 - autosave timer
 * (done) have a system where each time I upgrade, create, unlock, ect this will start a timer
