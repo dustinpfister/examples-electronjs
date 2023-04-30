@@ -755,12 +755,13 @@ gameMod.create = (opt) => {
          game.last_update = new Date(game.last_update);
     }
     // create sun object
-    game.sun = new Sun(opt.cx, opt.cy, constant.SUN_RADIUS);
+    game.sun = new Sun();
     game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
     game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
     // land objects
     game.lands = new Lands({
-        cx: opt.cx, cy: opt.cy, sectionData: opt.sectionData
+        //cx: opt.cx, cy: opt.cy, 
+		sectionData: opt.sectionData
     });
     game.mana_cap = getManaCap(game);
     gameMod.updateByTickDelta(game, 0, true);

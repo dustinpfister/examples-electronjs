@@ -5,13 +5,11 @@ import { constant } from "../mrsun-constant/constant.mjs"
 // HELPER FUNCTIONS
 //-------- ----------
 const load_game = (sm) => {
-    const cx = sm.canvas.width / 2;
-    const cy = sm.canvas.height / 2;
     return sm.platform.auto_load()
     .then( (text_lz) => {
         console.log('Autoload worked, looks like we have a string to parse...');
         const opt_game = gameMod.parseSaveString(text_lz);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
+        sm.game = gameMod.create(Object.assign(opt_game, { platform: sm.platform }));
         gameMod.awayCheck(sm.game, sm.ticksPerSec);
         sm.setState('world', {});
     })
@@ -19,7 +17,7 @@ const load_game = (sm) => {
         console.log('Error with autoload. Starting new game.');
         console.log('message: ' + e.message);
         const opt_game = gameMod.parseSaveString(constant.SAVE_STRING);
-        sm.game = gameMod.create(Object.assign(opt_game, {cx: cx, cy: cy, platform: sm.platform}));
+        sm.game = gameMod.create(Object.assign(opt_game, { platform: sm.platform }));
         sm.setState('world', {});
     });
 }
