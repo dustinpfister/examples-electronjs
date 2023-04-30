@@ -140,7 +140,7 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
 //-------- ----------
 // SpriteLandSectonWorld Class ( for world state )
 //-------- ----------
-// draw a singel texel for a single slot ( in world state )
+// draw a single texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     //!!! these should maybe be constants
     const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
@@ -544,7 +544,7 @@ class LandSection {
 class Lands {
     constructor(opt) {
         opt = opt || {};
-        opt = Object.assign({}, {cx: 0, cy: 0, sectionData: [] }, opt);
+        opt = Object.assign({}, { sectionData: [] }, opt);
         this.sections = [];
         this.bt_counts = {}; // block type grand total counts
         this.slot_unlock_cost = 0;
@@ -555,7 +555,7 @@ class Lands {
         let i = 0;
         while(i < constant.LAND_OBJECT_COUNT){
             const sectionData = opt.sectionData[i] || {};
-            const section = new LandSection(i, opt.cx, opt.cy, sectionData);
+            const section = new LandSection(i, constant.SUN_CENTER.x, constant.SUN_CENTER.y, sectionData);
             this.sections.push(section);
             i += 1;
         }

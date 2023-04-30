@@ -11,7 +11,7 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * (done) fixed a bug where the game was not being saved once a supernova is done
 * (done) have a constant for cx and cy used for sun center
 * (done) use this new sun center const for the Sun class
-* () use this new sun center const for the lands class
+* (done) use this new sun center const for the lands class
 * () I should no longer need cx and cy ioptions when calling the create game method
 
 ## ( done 04/29/2023 ) - r68 - new sheet renderering for Sprite Land Sections Land State class
