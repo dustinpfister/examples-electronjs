@@ -70,10 +70,11 @@ utils.formatDecimal = (function(){
     };
 }());
 // add up pows from start exp down to zero
-utils.addPows = (base, exp_start) => {
+utils.addPows = (base, exp_start, exp_end) => {
+    exp_end = exp_end === undefined ? 0 : exp_end;
     let e = exp_start;
     let n = 0;
-    while(e >= 0){
+    while(e >= exp_end){
         const p = Math.pow(base, e);
         n += p;
         e -= 1;

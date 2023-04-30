@@ -303,8 +303,20 @@ class Block {
         };
     }
     // get the upgrade cost AT the given CURRENT block level
-    getUpgradeCost (level) {
-        return Decimal.pow(10, level === undefined ? this.level : level);
+    getUpgradeCost (level_current, level_target) {
+        level_target === undefined ? level_current + 1 : level_target;
+        return new Decimal( utils.addPows(10, level_target - 1, level_current) );
+        //return Decimal.pow(10, level_current === undefined ? this.level : level_current);
+    }
+    getMaxLevel (mana, level_current) {
+        level_current = level_current === undefined ? this.level : level_current;
+        let level_target = level_current;
+        let mana_cost = 0;
+        while(mana_cost <= mana){
+            level_target += 1;
+            mana_cost = this.getUpgradeCost(level_current, level_target).toNumber();
+        }
+        return level_target - 1;
     }
     // set mana stats without doing anything with level or type
     setManaStats (sunspot_multi = 1) {
@@ -318,7 +330,7 @@ class Block {
         this.type = type || this.type;
         this.setManaStats(sunspot_multi);
         this.mana_value = null;
-        this.upgradeCost = this.getUpgradeCost(this.level);
+        this.upgradeCost = this.getUpgradeCost(this.level, this.level + 1);
         this.setManaValue();
     }
     // copy some other block to this block
@@ -330,6 +342,30 @@ class Block {
         this.setLevel(1, 'blank', 1);
     }
 };
+
+//!!! BLOCK UPGRADE COST TESTING
+// testing out Block.getUpgradeCost
+//const b1 = new Block();
+//console.log('testing upgrade cost method');
+//const current_level = 5;
+//const target_level = 6;
+//b1.setLevel(current_level, 'rock');
+//console.log('current level: ' + current_level);
+//console.log('target level: ' + target_level)
+//console.log('upgrade cost: ' + b1.getUpgradeCost(current_level, target_level).toNumber())
+
+const b2 = new Block();
+console.log('Testing Block.getMaxLevel');
+const current_level = 3;
+const mana = 1000;
+b2.setLevel(current_level, 'rock');
+console.log( b2.getUpgradeCost(0, 4).toNumber() );
+console.log('current_level: ' + current_level);
+console.log('Max level: ' + b2.getMaxLevel(mana) );
+console.log('********** **********');
+
+
+
 //-------- ----------
 // SLOT CLASS
 //-------- ----------

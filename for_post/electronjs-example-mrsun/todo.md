@@ -9,6 +9,9 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 ## ( ) - r72 - Auto Max Level when creating blocks
 * (done) changed spacing between buttons
+* (done) updated Block.getUpgradeCost method that will take a current and target level.
+* (done) new Block.getMaxLevel method that will return the max level target that can be aforded with the given mana amount
+
 * () see about having a feature where the max level that can be afforded is what is bought when creating a block
 * () still have a 1x option as well
 * () for now have it so that clicking the create button over and over again is what will change modes for this
