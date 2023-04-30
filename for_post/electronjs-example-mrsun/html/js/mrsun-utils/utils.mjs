@@ -8,6 +8,14 @@ const utils = {};
 //-------- ----------
 // BUTTON METHODS
 //-------- ----------
+// set the current button by mode string
+utils.button_set = (data, mode) => {
+    const key = 'button_bm_' + mode;
+    const button = data[key];
+    data['button_bm_' + data.block_mode].active = false;
+    button.active = true;
+    data.block_mode = mode;
+};
 utils.button_check = (data, key, pos, onClick) => {
     const button = data[key];
     if( button.position.distanceTo( pos ) <= button.r ){

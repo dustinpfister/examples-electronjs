@@ -4,17 +4,31 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - r70 - min sunspot delta for supernova
+## () - r73 - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to preform a super nova event
 
-## () - r69 - Save state fix, center x constant
+## ( ) - r72 - Auto Max Level when creating blocks
+* () see about having a feature where the max level that can be afforded is what is bought when creating a block
+* () still have a 1x option as well
+* () for now have it so that clicking the create button over and over again is what will change modes for this
+
+## () - r71 - autosave timer
+* () have a system where each time I upgrade, create, unlock, ect this will start a timer
+* () have about 1.5 secs preform a save
+
+## ( done 04/30/2023 ) - r70 - Default start button
+* (done) default start button should be unlock slot
+* (done) Use the start hook of land state to check the number of unlocked slots
+* (done) if unlocked slots is greater than zero, set start button to upgrade
+
+## ( done 04/30/2023 ) - r69 - Save state fix, center x constant
 * (done) fixed a bug where the game was not being saved once a supernova is done
 * (done) have a constant for cx and cy used for sun center
 * (done) use this new sun center const for the Sun class
 * (done) use this new sun center const for the lands class
-* () I should no longer need cx and cy ioptions when calling the create game method
+* (done) I should no longer need cx and cy options when calling the create game method
 
-## ( done 04/29/2023 ) - r68 - new sheet renderering for Sprite Land Sections Land State class
+## ( done 04/29/2023 ) - r68 - new sheet rendering for Sprite Land Sections Land State class
 * (done) make it so that a drawSectionSlot method can be passed when calling createSectionRenderSheet
 * (done) make the draw section slot a method of each Sprite class
 * (done) the draw section slot method for the SpriteLandSectionLand

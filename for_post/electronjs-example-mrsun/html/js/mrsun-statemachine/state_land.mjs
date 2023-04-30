@@ -35,7 +35,18 @@ const state_land = {
     },
     // the start hook will be called each time this state is started
     start: (sm, opt, data) => {
-
+        console.log('land state start...');
+        const lands = sm.game.lands;
+        const bt_counts = sm.game.lands.bt_counts;
+        utils.button_set(data, 'unlock');
+        if(lands.slot_unlock_count > 0 && bt_counts.rock === 0 ){
+            console.log('more than zero slots unlocked, but no rocks? So create then yes.');
+            utils.button_set(data, 'create');
+        }
+        if(bt_counts.rock > 0){
+            console.log('more than 1 rock, so upgrade then maybe.');
+            utils.button_set(data, 'upgrade');
+        }
     },
     // update called in main app loop function
     update: (sm, secs, data) => {
@@ -47,17 +58,13 @@ const state_land = {
         const section = sm.game.lands.sections[sm.landIndex];
         ctx.fillStyle = 'black';
         ctx.fillRect(0,0, canvas.width, canvas.height);
-
-
         // the sprite object for land state
         section.sprite_land.update();
         utils.drawSprite(section.sprite_land, ctx, canvas);
-
         // render blocks
         //ctx.globalAlpha = 1;
         utils.drawLandSection(sm, ctx, canvas, section, data);
         //ctx.globalAlpha = 1;
-
         // buttons
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_next, sm.ctx, sm.canvas);
