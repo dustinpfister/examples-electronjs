@@ -8,6 +8,7 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () have a min amount of sunspot coin delta that is needed to preform a super nova event
 
 ## ( ) - r72 - Auto Max Level when creating blocks
+* (done) changed spacing between buttons
 * () see about having a feature where the max level that can be afforded is what is bought when creating a block
 * () still have a 1x option as well
 * () for now have it so that clicking the create button over and over again is what will change modes for this
