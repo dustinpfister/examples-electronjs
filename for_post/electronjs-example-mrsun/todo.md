@@ -5,6 +5,7 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 <!-- PROTOTYPE -->
 
 ## () - r69 - min sunspot delta for supernova
+* (done) fixed a bug where the game was not being saved once a supernova is done
 * () have a min amount of sunspot coin delta that is needed to prefrom a super nova event
 
 ## ( done 04/29/2023 ) - r68 - new sheet renderering for Sprite Land Sections Land State class
