@@ -131,7 +131,7 @@ const GAME_EVENTS = new EventDispatcher();
 // The mana_total_zero event will fire if a player has 0 mana and 0 mana per tick income
 GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
     console.log('Mana Total Zero Event! adding ' + constant.MANA_START + ' mana for ya.');
-    evnt.game.mana = evnt.game.mana.add(evnt.constant.MANA_START);
+    evnt.game.mana = evnt.game.mana.add(constant.MANA_START);
 });
 GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
     evnt.game.autosave_ticks = 3;
