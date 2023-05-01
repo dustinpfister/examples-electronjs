@@ -25,9 +25,21 @@ utils.button_check = (data, key, pos, onClick) => {
 utils.button_check_blockmode = (data, new_block_mode, pos) => {
     const key = 'button_bm_' + new_block_mode;
     utils.button_check(data, key, pos, (button) => {
-        data['button_bm_' + data.block_mode].active = false;
-        button.active = true;
-        data.block_mode = new_block_mode;
+        const button_bm_current = data['button_bm_' + data.block_mode];
+        if(button_bm_current === button){
+            console.log('block mode button all ready selected.');
+            if(button.options){
+                console.log('we have options though. I can step that.');
+                button.i_option += 1;
+                button.i_option %= button.options.length;
+            }
+        }
+        if(button_bm_current != button){
+            console.log('block mode switch');
+            button_bm_current.active = false;
+            button.active = true;
+            data.block_mode = new_block_mode;
+        }
     });
 };
 //-------- ----------
@@ -84,6 +96,28 @@ utils.addPows = (base, exp_start, exp_end) => {
 //-------- ----------
 // RENDER UTILIES
 //-------- ----------
+// draw a button
+utils.drawButton = ( sm, button, ctx, canvas ) => {
+    ctx.fillStyle = button.active ? '#004400' : '#444444';
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(button.position.x, button.position.y, button.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    // desc
+    ctx.fillStyle = 'white';
+    ctx.font = '12px arial';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.fillText(button.desc || 'foo', button.position.x, button.position.y);
+    // if options draw text for current option
+    if(button.options){
+        ctx.font = '10px arial';
+        const str = button.options[button.i_option];
+        ctx.fillText(str, button.position.x, button.position.y + 14);
+    }
+};
 utils.drawSprite = (sprite, ctx, canvas) => {
     ctx.strokeStyle = '#00ff00';
     ctx.save();
@@ -127,22 +161,6 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     ctx.fillText('sunspots: ' + sm.game.sunspots, 275, 5);
     // tick count
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
-};
-// draw a button
-utils.drawButton = (sm, button, ctx, canvas) => {
-    ctx.fillStyle = button.active ? '#004400' : '#444444';
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(button.position.x, button.position.y, button.r, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    // desc
-    ctx.fillStyle = 'white';
-    ctx.font = '12px arial';
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'center';
-    ctx.fillText(button.desc || 'foo', button.position.x, button.position.y);
 };
 // draw the state of a given LandSection object
 utils.drawLandSection = (sm, ctx, canvas, section, opt ) => {

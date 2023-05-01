@@ -14,11 +14,17 @@ const state_land = {
         button_back : {  desc: 'Back', position: new Vector2(600, 38), r: 32 },
         button_next : {  desc: 'Next', position: new Vector2(640 - 60, 430), r: 30 },
         button_last : {  desc: 'Last', position: new Vector2(60, 430), r: 30 },
+        // 'Block Mode' buttons
         button_bm_unlock :  {  active: true, desc: 'Unlock', position: new Vector2(35, 125), r: 25 },
         button_bm_create :  {  active: false, desc: 'Create', position: new Vector2(35, 180), r: 25 },
         button_bm_absorb :  {  active: false, desc: 'Absorb', position: new Vector2(35, 235), r: 25 },
-        button_bm_upgrade : {  active: false, desc: 'Upgrade', position: new Vector2(35, 290), r: 25 },
+        button_bm_upgrade : {  active: false, 
+                               options: ['1x', 'max'],
+                               i_option: 0,
+                               desc: 'Upgrade',
+                               position: new Vector2(35, 290), r: 25 },
         button_bm_info :    {  active: false, desc: 'Info', position: new Vector2(35, 345), r: 25 },
+
         grid_cx: 320,
         grid_cy: 240,
         grid_w: 0, grid_h:0,
