@@ -6,16 +6,27 @@
 ## () - rx - half max button option
 * () have a half max upgrade button option
 
-## () - rx - min sunspot delta for supernova
-* () have a min amount of sunspot coin delta that is needed to preform a super nova event
-
 ## () - rx - Max Create button
 * () have an option to do a max create when cretaing blocks
 
-## () - rx - game sunspots multi property
+## () - rx - min sunspot delta for supernova
+* () have a min amount of sunspot coin delta that is needed to preform a super nova event
+
+## () - r77 - game sunspots multi property
 * () have a sunspots multipler property in the game object
 * () this multipler property can then just be updated once in the gameMod.create method
 * () use this value then for the use of methods like the set mana stats block method
+
+## () - r76 - game ticks, and game.start_date as part of game save
+* () store game.tick as part of the save state
+* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
+* () have a game.start\_date prop and make that part of the game save as well
+* () log start date in alway production log
+* () log total tick count in away production log
+
+## ( done 05/01/2023 ) - r75 - Vector2 radianTo
+* (done) add a Vector2.radianTo method
+* (done) use the radianTo method in the setSunPos method
 
 ## ( done 05/01/2023 ) - r74 - 2x, 5x, mod5
 * (done) have simple 2x, 5x, upgrade button options that are also just fixed level deltas

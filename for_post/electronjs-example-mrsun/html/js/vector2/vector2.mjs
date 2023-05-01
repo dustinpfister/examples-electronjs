@@ -205,6 +205,7 @@ class Vector2 {
     normalize() {
         return this.divideScalar(this.length() || 1);
     }
+    
     angle() {
         // computes the angle in radians with respect to the positive x-axis
         const angle = Math.atan2( - this.y,  - this.x) + Math.PI;
@@ -217,6 +218,11 @@ class Vector2 {
         const theta = this.dot(v) / denominator;
         // clamp, to handle numerical problems
         return Math.acos(MathUtils.clamp(theta,  - 1, 1));
+    }
+    // added a radianTo method becuse the angleTo method is not working a certain way that I need it to.
+    radianTo(v){
+        const r = Math.atan2(this.y - v.y, this.x - v.x);
+        return r < 0 ? Math.PI * 2 + r  : r;
     }
     distanceTo(v) {
         return Math.sqrt(this.distanceToSquared(v));

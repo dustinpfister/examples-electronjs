@@ -342,30 +342,6 @@ class Block {
         this.setLevel(1, 'blank', 1);
     }
 };
-
-//!!! BLOCK UPGRADE COST TESTING
-// testing out Block.getUpgradeCost
-//const b1 = new Block();
-//console.log('testing upgrade cost method');
-//const current_level = 13;
-//const target_level = 16;
-//b1.setLevel(current_level, 'rock');
-//console.log('current level: ' + current_level);
-//console.log('target level: ' + target_level)
-//console.log('upgrade cost: ' + utils.formatDecimal(b1.getUpgradeCost(current_level, target_level), 2) )
-
-//const b2 = new Block();
-//console.log('Testing Block.getMaxLevel');
-//const current_level = 3;
-//const mana = 1000;
-//b2.setLevel(current_level, 'rock');
-//console.log( b2.getUpgradeCost(0, 4).toNumber() );
-//console.log('current_level: ' + current_level);
-//console.log('Max level: ' + b2.getMaxLevel(mana) );
-//console.log('********** **********');
-
-
-
 //-------- ----------
 // SLOT CLASS
 //-------- ----------
@@ -791,9 +767,9 @@ gameMod.setSunPos = (game, pos) => {
     const d = sun.position.distanceTo(sun.center);
     const md = constant.SUNAREA_RADIUS - sun.radius;
     if(d >= md){
-        const a = Math.atan2(sun.position.y - sun.center.y, sun.position.x - sun.center.x);
-        sun.position.x = sun.center.x + Math.cos(a) * md;
-        sun.position.y = sun.center.y + Math.sin(a) * md;
+       const a = sun.position.radianTo(sun.center);
+       sun.position.x = sun.center.x + Math.cos(a) * md;
+       sun.position.y = sun.center.y + Math.sin(a) * md;
     }
     GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };
@@ -862,18 +838,12 @@ gameMod.upgradeBlock = (game, i_section, i_slot, level_delta) => {
     const section = game.lands.sections[i_section];
     const slot = section.slots[i_slot];
     const block = slot.block;
-
     if( level_delta === 'max' ){
-        console.log('max upgrade level_delta requested.')
         level_delta = block.getMaxLevel(game.mana) - block.level;
     }
-
     if( String(level_delta).match(/mod/)){
         const m = parseInt(level_delta.split('mod')[1]);
         level_delta =  Math.round(m - m * ( (block.level / m % m) % 1 ));
-        console.log('so far so good...');
-        console.log('m: ' + m);
-        console.log('level_delta: ' + level_delta)
     }
     // might not need this as long as I use this method as I should
     if(typeof level_delta === 'string'){
@@ -882,11 +852,6 @@ gameMod.upgradeBlock = (game, i_section, i_slot, level_delta) => {
     }
     let level_target = block.level + level_delta;
     const upgrade_cost = block.getUpgradeCost(block.level, level_target);
-    console.log('level_delta   : ' + level_delta);
-    console.log('current level : ' + block.level);
-    console.log('target level  : ' + level_target);
-    console.log('upgrade_cost  : ' + ( utils.formatDecimal( new Decimal(upgrade_cost) ) ));
-
     if(slot.locked){
         console.log('slot is locked can not upgrade.');
         return;
@@ -898,7 +863,6 @@ gameMod.upgradeBlock = (game, i_section, i_slot, level_delta) => {
         return;
     }
     if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte( upgrade_cost ) ){
-        console.log('hold on to your butts...');
         manaDebit(game, upgrade_cost );
         block.setLevel(level_target, 'rock', 1);
         GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
