@@ -4,18 +4,23 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
-## () - r75 - min sunspot delta for supernova
+## () - rx - min sunspot delta for supernova
 * () have a min amount of sunspot coin delta that is needed to preform a super nova event
 
-## () - r74 - Max Create button
+## () - rx - Max Create button
 * () have an option to do a max create when cretaing blocks
 
-## () - rx - game.sunspots_multi
+## () - rx - game sunspots multi property
 * () have a sunspots multipler property in the game object
 * () this multipler property can then just be updated once in the gameMod.create method
 * () use this value then for the use of methods like the set mana stats block method
 
-## () - r73 - Max Upgrade button
+## ( ) - rx - 2x, 5x, 5%, 10% and hmax upgrade options
+* () have simple 2x, 5x, upgrade button options that are also just fixed level deltas
+* () try out a 5% option that will be Math.round(5 - 5 * ( (25 / 5 % 5) % 1 )) as a way to get the leve delta
+* () have a half max option
+
+## ( done 05/01/2023 ) - r73 - Max Upgrade button
 * (done) I will need block mode options for having more than one option for each block mode
 * (done) Clicking the upgrade button over and over again is what will change options
 * (done) have a 1x option for the upgrade button that will be what I all ready have
