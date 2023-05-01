@@ -1,6 +1,5 @@
 # electionjs-example-mrsun
 
-For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 
 <!-- PROTOTYPE -->
 
