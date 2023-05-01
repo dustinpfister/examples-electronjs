@@ -862,9 +862,18 @@ gameMod.upgradeBlock = (game, i_section, i_slot, level_delta) => {
     const section = game.lands.sections[i_section];
     const slot = section.slots[i_slot];
     const block = slot.block;
+
     if( level_delta === 'max' ){
         console.log('max upgrade level_delta requested.')
         level_delta = block.getMaxLevel(game.mana) - block.level;
+    }
+
+    if( String(level_delta).match(/mod/)){
+        const m = parseInt(level_delta.split('mod')[1]);
+        level_delta =  Math.round(m - m * ( (block.level / m % m) % 1 ));
+        console.log('so far so good...');
+        console.log('m: ' + m);
+        console.log('level_delta: ' + level_delta)
     }
     // might not need this as long as I use this method as I should
     if(typeof level_delta === 'string'){
