@@ -10,10 +10,17 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 ## () - r74 - Max Create button
 * () have an option to do a max create when cretaing blocks
 
+## () - rx - game.sunspots_multi
+* () have a sunspots multipler property in the game object
+* () this multipler property can then just be updated once in the gameMod.create method
+* () use this value then for the use of methods like the set mana stats block method
+
 ## () - r73 - Max Upgrade button
-* () see about having a feature where the max level that can be afforded is what is bought when creating a block
-* () still have a 1x option as well
-* () for now have it so that clicking the create button over and over again is what will change modes for this
+* (done) I will need block mode options for having more than one option for each block mode
+* (done) Clicking the upgrade button over and over again is what will change options
+* (done) have a 1x option for the upgrade button that will be what I all ready have
+* (done) have a max option that will be the max that can be upgraded with current mana
+* (done) update gameMod.upgrade block to take a level delta argument
 
 ## ( done 04/30/2023 ) - r72 - Block.getUpgradeCost method takes target level, new getMaxLevel method
 * (done) changed spacing between buttons

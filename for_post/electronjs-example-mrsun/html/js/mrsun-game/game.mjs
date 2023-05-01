@@ -347,22 +347,22 @@ class Block {
 // testing out Block.getUpgradeCost
 //const b1 = new Block();
 //console.log('testing upgrade cost method');
-//const current_level = 5;
-//const target_level = 6;
+//const current_level = 13;
+//const target_level = 16;
 //b1.setLevel(current_level, 'rock');
 //console.log('current level: ' + current_level);
 //console.log('target level: ' + target_level)
-//console.log('upgrade cost: ' + b1.getUpgradeCost(current_level, target_level).toNumber())
+//console.log('upgrade cost: ' + utils.formatDecimal(b1.getUpgradeCost(current_level, target_level), 2) )
 
-const b2 = new Block();
-console.log('Testing Block.getMaxLevel');
-const current_level = 3;
-const mana = 1000;
-b2.setLevel(current_level, 'rock');
-console.log( b2.getUpgradeCost(0, 4).toNumber() );
-console.log('current_level: ' + current_level);
-console.log('Max level: ' + b2.getMaxLevel(mana) );
-console.log('********** **********');
+//const b2 = new Block();
+//console.log('Testing Block.getMaxLevel');
+//const current_level = 3;
+//const mana = 1000;
+//b2.setLevel(current_level, 'rock');
+//console.log( b2.getUpgradeCost(0, 4).toNumber() );
+//console.log('current_level: ' + current_level);
+//console.log('Max level: ' + b2.getMaxLevel(mana) );
+//console.log('********** **********');
 
 
 
@@ -857,24 +857,41 @@ gameMod.createBlock = (game, i_section, i_slot, level) => {
     console.log('all slots are locked, there is no blank slots, or there is no mana.');
 };
 // upgrade block
-gameMod.upgradeBlock = (game, i_section, i_slot) => {
+gameMod.upgradeBlock = (game, i_section, i_slot, level_delta) => {
+    level_delta = level_delta === undefined ? 1 : level_delta;
     const section = game.lands.sections[i_section];
     const slot = section.slots[i_slot];
     const block = slot.block;
+    if( level_delta === 'max' ){
+        console.log('max upgrade level_delta requested.')
+        level_delta = block.getMaxLevel(game.mana) - block.level;
+    }
+    // might not need this as long as I use this method as I should
+    if(typeof level_delta === 'string'){
+        console.log('level delta is still a string!? that is a problem.');
+        return;
+    }
+    let level_target = block.level + level_delta;
+    const upgrade_cost = block.getUpgradeCost(block.level, level_target);
+    console.log('level_delta   : ' + level_delta);
+    console.log('current level : ' + block.level);
+    console.log('target level  : ' + level_target);
+    console.log('upgrade_cost  : ' + ( utils.formatDecimal( new Decimal(upgrade_cost) ) ));
+
     if(slot.locked){
         console.log('slot is locked can not upgrade.');
         return;
     }
-    if( game.mana.lt( block.upgradeCost ) ){
+    if( game.mana.lt( upgrade_cost ) ){
         console.log( 'Not Enough mana to upgrade.' );
         console.log( 'mana: ' + game.mana.toNumber() );
-        console.log( 'upgrade cost: ' + block.upgradeCost.toNumber() );
+        console.log( 'upgrade cost: ' + ( utils.formatDecimal( new Decimal(upgrade_cost) ) ) );
         return;
     }
-    if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte(block.upgradeCost) ){
-        manaDebit(game, block.upgradeCost);
-        const newLevel = block.level + 1;
-        block.setLevel(newLevel, 'rock', 1);
+    if(block.type === 'rock' && block.level < constant.BLOCK_MAX_LEVEL && game.mana.gte( upgrade_cost ) ){
+        console.log('hold on to your butts...');
+        manaDebit(game, upgrade_cost );
+        block.setLevel(level_target, 'rock', 1);
         GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
     }
 };
