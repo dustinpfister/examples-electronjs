@@ -19,8 +19,8 @@ const state_land = {
         button_bm_create :  {  active: false, desc: 'Create', position: new Vector2(35, 180), r: 25 },
         button_bm_absorb :  {  active: false, desc: 'Absorb', position: new Vector2(35, 235), r: 25 },
         button_bm_upgrade : {  active: false, 
-                               options: ['1x', 'max'],
-                               i_option: 1,
+                               options: ['1x', '2x', '5x', 'max'],
+                               i_option: 3,
                                desc: 'Upgrade',
                                position: new Vector2(35, 290), r: 25 },
         button_bm_info :    {  active: false, desc: 'Info', position: new Vector2(35, 345), r: 25 },
@@ -161,6 +161,14 @@ const state_land = {
                             gameMod.upgradeBlock(sm.game, sm.landIndex, i, 1);
                         }
                         if(button.i_option === 1){
+                            console.log('2x upgrade');
+                            gameMod.upgradeBlock(sm.game, sm.landIndex, i, 2);
+                        }
+                        if(button.i_option === 2){
+                            console.log('5x upgrade');
+                            gameMod.upgradeBlock(sm.game, sm.landIndex, i, 5);
+                        }
+                        if(button.i_option === 3){
                             console.log('Max Upgrade!');
                             gameMod.upgradeBlock(sm.game, sm.landIndex, i, 'max');
                         }

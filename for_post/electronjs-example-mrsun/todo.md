@@ -16,7 +16,7 @@ For everything that is planed for 'MrSun idle' soo todo_mrsun_idle
 * () use this value then for the use of methods like the set mana stats block method
 
 ## ( ) - rx - 2x, 5x, 5%, 10% and hmax upgrade options
-* () have simple 2x, 5x, upgrade button options that are also just fixed level deltas
+* (done) have simple 2x, 5x, upgrade button options that are also just fixed level deltas
 * () try out a 5% option that will be Math.round(5 - 5 * ( (25 / 5 % 5) % 1 )) as a way to get the leve delta
 * () have a half max option
 
