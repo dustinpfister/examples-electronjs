@@ -77,7 +77,6 @@ const can2 = canvasMod.create({
         ctx.stroke();
     }
 });
-//document.body.appendChild(can1.canvas);
 //-------- ----------
 // Sun Class
 //-------- ----------
@@ -85,7 +84,7 @@ class Sun extends Sprite {
     constructor() {
         super();
         this.type = 'Sun';
-        const center = constant.SUN_CENTER.clone(); //new Vector2(cx, cy);
+        const center = constant.SUN_CENTER.clone();
         Object.defineProperties( this, {
             center: {
                 configurable: true,
@@ -133,6 +132,7 @@ GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
     console.log('Mana Total Zero Event! adding ' + constant.MANA_START + ' mana for ya.');
     evnt.game.mana = evnt.game.mana.add(constant.MANA_START);
 });
+// autosave delay event
 GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
     evnt.game.autosave_ticks = 3;
     console.log('autosave delya set to: ' + evnt.game.autosave_ticks + ' ticks');
