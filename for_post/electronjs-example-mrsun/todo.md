@@ -3,21 +3,7 @@
 
 <!-- PROTOTYPE -->
 
-## () - r80 - half max button option
-* () have a half max upgrade button option
-
-## () - r79 - Max Create button
-* () have an option to do a max create when cretaing blocks
-
-## () - r78 - min sunspot delta for supernova
-* () have a min amount of sunspot coin delta that is needed to preform a super nova event
-
-## () - r77 - game ticks, and game.start_date as part of game save
-* () store game.tick as part of the save state
-* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
-* () have a game.start\_date prop and make that part of the game save as well
-* () log start date in away production message
-* () log total tick count in away production message
+## () - r77 - 
 
 ## ( done 05/02/2023 ) - r76 - game sunspots multi property
 * (done) have a sunspots multipler property in the game object
