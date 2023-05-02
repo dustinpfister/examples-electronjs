@@ -6,8 +6,8 @@
 ## () - r77 - constants
 * (done) have a LAND-RADIUS-TOCENTER const
 * (done) use LAND-RADIUS-TOCENTER const in draw section slot methods
-* () have a SLOT-RDAIUS-DELTA CONST
-* () use SLOT-RADIUS-DELTA const in drawSectionSlotTexel
+* (done) have a SLOT-RDAIUS-DELTA CONST
+* (done) use SLOT-RADIUS-DELTA const in drawSectionSlotTexel
 * () have a SLOT-RADIAN-DELTA and use that in drawSectionSlotTexel
 * () have a SLOT-UNLOCK-MAXEXP const and use that in setBlockTypeCounts of Lands Class
 

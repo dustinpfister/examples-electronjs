@@ -144,7 +144,7 @@ GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
 // draw a single texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     //!!! these should maybe be constants
-    const radius_slot_delta = 70 / 8;
+    //const radius_slot_delta = 70 / 8;
     const rad_delta = Math.PI / 180 * 15;
     // get block and image
     const block = slot.block;
@@ -157,8 +157,8 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const rad_delta_texel = rad_delta * 2 / 10 / img.w;
     const rad_start = rad_slot_start + rad_delta_texel * texelX;
     const rad_end = rad_start + rad_delta_texel;
-    const radius_slot_low = constant.LAND_RADIUS_TOCENTER - constant.LAND_RADIUS + radius_slot_delta * slot.y;
-    const radius_texel_delta = radius_slot_delta / img.h;
+    const radius_slot_low = constant.LAND_RADIUS_TOCENTER - constant.LAND_RADIUS + constant.SLOT_RADIUS_DELTA  * slot.y;
+    const radius_texel_delta = constant.SLOT_RADIUS_DELTA  / img.h;
     const radius_low = radius_slot_low + radius_texel_delta * texelY;
     const radius_high = radius_low + radius_texel_delta;
     // draw arcs

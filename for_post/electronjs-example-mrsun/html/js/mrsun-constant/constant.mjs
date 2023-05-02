@@ -23,6 +23,9 @@ constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
 constant.SLOT_GRID_WIDTH = 10;
 constant.SLOT_GRID_HEIGHT = 8;
 constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
+
+constant.SLOT_RADIUS_DELTA = 68 / constant.SLOT_GRID_HEIGHT;
+
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];
 constant.SUNSPOTS_WORLDVALUE_BASE_MAX = 10;
