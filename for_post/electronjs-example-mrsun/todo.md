@@ -3,15 +3,11 @@
 
 <!-- PROTOTYPE -->
 
-## (   ) - r79 - 
-* () 
-
 ## ( done 05/02/2023 ) - r78 - break down game.mjs into more files
 * (done) create a lands.mjs file that will contain the Lands class as well as all the other supporting classes
 * (done) constant for default Decimal settings
 * (done) create a sun.mjs file that will contain the Sun class.
 * (done) deleted sm old mjs file
-
 
 ## ( done 05/02/2023 ) - r77 - constants
 * (done) have a LAND-RADIUS-TOCENTER const
