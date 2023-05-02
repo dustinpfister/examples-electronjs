@@ -3,6 +3,9 @@
 
 <!-- PROTOTYPE -->
 
+## ( done 05/02/2023 ) - r79 - Vector2 methods
+* (done) remove all methods that I am not using, and am sure I will not be using any time soon with posible future revisions
+
 ## ( done 05/02/2023 ) - r78 - break down game.mjs into more files
 * (done) create a lands.mjs file that will contain the Lands class as well as all the other supporting classes
 * (done) constant for default Decimal settings

@@ -9,3 +9,10 @@ https://github.com/mrdoob/three.js/blob/r151/src/math/MathUtils.js
 
 There is vector2.angle, and vector2.angleTo that both do not work a certain way, so I added a raduanTo method
 
+```js
+    radianTo(v){
+        const r = Math.atan2(this.y - v.y, this.x - v.x);
+        return r < 0 ? Math.PI * 2 + r  : r;
+    }
+```
+
