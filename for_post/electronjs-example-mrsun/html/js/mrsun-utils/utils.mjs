@@ -76,9 +76,9 @@ utils.formatDecimal = (function(){
         if(i_name < NAMES.length){
             let dp2 = dp - er;
             dp2 = dp2 < 0 ? 0: dp2;
-            return (a * Math.pow( 10, er ) ).toFixed( dp2 ) + ' ' + NAMES[i_name];
+            return (a * Math.pow( 10, er ) ).toFixed( dp2 ) + '' + NAMES[i_name];
         }
-        return n.toExponential(2);
+        return n.toExponential(dp);
     };
 }());
 // add up pows from start exp down to zero
@@ -153,12 +153,12 @@ utils.drawCommonDisp = (sm, ctx, canvas) => {
     const a_mana = sm.game.mana.div(sm.game.mana_cap);
     ctx.fillRect(10, 4, 250 * a_mana, 17);
     ctx.fillStyle = '#ffffff';
-    ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana) + ' / ' +
-         utils.formatDecimal(sm.game.mana_cap, 0) + 
+    ctx.fillText('mana: ' + utils.formatDecimal(sm.game.mana, 2) + ' / ' +
+         utils.formatDecimal(sm.game.mana_cap, 2) + 
          ' (+' + utils.formatDecimal(sm.game.mana_per_tick, 4) + ') ', 15, 5);
     // sunspots count
     ctx.fillStyle = '#888888';
-    ctx.fillText('sunspots: ' + sm.game.sunspots, 275, 5);
+    ctx.fillText('sunspots: ' + utils.formatDecimal( sm.game.sunspots, 2 ) + ' (' + sm.game.sunspot_multi.toFixed(2) + 'X)', 275, 5);
     // tick count
     ctx.fillText('tick: ' + sm.game.tick, 10, 25);
 };

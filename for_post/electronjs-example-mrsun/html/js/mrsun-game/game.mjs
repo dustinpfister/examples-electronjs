@@ -679,8 +679,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
                 const block = slot.block;
                 if(!slot.locked && block.type != 'blank'){
                     // update block here
-                    const sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
-                    block.setManaStats(sunspot_multi);
+                    block.setManaStats(game.sunspot_multi);
                     const mana_delta = Math.round(block.mana_base + block.mana_temp * a_temp);
                     game.mana_per_tick = game.mana_per_tick.add( mana_delta );
                     mana_total = mana_total.add( block.mana_value.valueOf() );
@@ -738,12 +737,15 @@ gameMod.create = (opt) => {
        sunspots_delta: new Decimal(0),
        sunspots_delta_mana_level: new Decimal(0),
        sunspots_delta_world_value: new Decimal(0),
+       sunspots_multi: 1,
        tick_frac: 0,
        tick: 0,           // game should update by a main tick count
        tick_last: 0,      // last tick can be subtracted from tick to get a tick delta
        last_update: opt.last_update || new Date(),
        autosave_ticks: 0 // 1 or more ticks is the number of ticks to the next game save
     };
+    // figure sunspots_multi once here in create
+    game.sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
     // parse last_update if string
     if(typeof game.last_update === 'string'){
          game.last_update = new Date(game.last_update);
