@@ -144,7 +144,6 @@ GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
 // draw a single texel for a single slot ( in world state )
 const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     //!!! these should maybe be constants
-    const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
     const radius_slot_delta = 70 / 8;
     const rad_delta = Math.PI / 180 * 15;
     // get block and image
@@ -158,7 +157,7 @@ const drawSectionSlotTexel = (ctx, slot, v2, rad_center, texelX, texelY) => {
     const rad_delta_texel = rad_delta * 2 / 10 / img.w;
     const rad_start = rad_slot_start + rad_delta_texel * texelX;
     const rad_end = rad_start + rad_delta_texel;
-    const radius_slot_low = radius_tocenter - constant.LAND_RADIUS + radius_slot_delta * slot.y;
+    const radius_slot_low = constant.LAND_RADIUS_TOCENTER - constant.LAND_RADIUS + radius_slot_delta * slot.y;
     const radius_texel_delta = radius_slot_delta / img.h;
     const radius_low = radius_slot_low + radius_texel_delta * texelY;
     const radius_high = radius_low + radius_texel_delta;
@@ -220,8 +219,9 @@ class SpriteLandSectionWorld extends Sprite {
         // get a vector2 that is on the edge of the sun area
         const v1 = new Vector2(64 + Math.cos(radian) * radius_land, 64 + Math.sin(radian) * radius_land );
         // get a vector2 that is the center location
-        const radius_tocenter = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
-        const v2 = new Vector2(64 + Math.cos(radian) * radius_tocenter, 64 + Math.sin(radian) * radius_tocenter );
+        const v2 = new Vector2(
+            64 + Math.cos(radian) * constant.LAND_RADIUS_TOCENTER, 
+            64 + Math.sin(radian) * constant.LAND_RADIUS_TOCENTER);
         let rad_center = Math.PI * 2 / constant.LAND_OBJECT_COUNT * section.i;
         // draw texels
         const len = img.w * img.h;

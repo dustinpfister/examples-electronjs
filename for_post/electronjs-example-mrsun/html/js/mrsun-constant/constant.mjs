@@ -11,6 +11,10 @@ constant.SUNAREA_RADIUS = 150;
 constant.SUN_CENTER = new Vector2(320, 240);
 constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
 constant.LAND_OBJECT_COUNT = 12;
+
+
+constant.LAND_RADIUS_TOCENTER = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
+
 constant.BLOCK_MAX_LEVEL = 99;
 constant.MANA_MAX = new Decimal('1e100');
 constant.MANA_START = '5';

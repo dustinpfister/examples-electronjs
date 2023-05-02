@@ -4,8 +4,8 @@
 <!-- PROTOTYPE -->
 
 ## () - r77 - constants
-* () have a RADIUS-TOCENTER const
-* () use RADIUS-TOCENTER const in draw section slot methods
+* (done) have a LAND-RADIUS-TOCENTER const
+* (done) use LAND-RADIUS-TOCENTER const in draw section slot methods
 * () have a SLOT-RDAIUS-DELTA CONST
 * () use SLOT-RADIUS-DELTA const in drawSectionSlotTexel
 * () have a SLOT-RADIAN-DELTA and use that in drawSectionSlotTexel
