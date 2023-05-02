@@ -34,6 +34,11 @@ constant.DEFAULT_CREATE_OPTIONS = {
     sunspots: '0', 
     sectionData: constant.LANDS_START_SECTION_DATA
 };
+constant.DECIMAL_OPTIONS = { 
+    precision: 40,
+    maxE: 100,
+    minE: -100
+};
 //-------- ----------
 // BLOCK TYPES
 //-------- ----------
