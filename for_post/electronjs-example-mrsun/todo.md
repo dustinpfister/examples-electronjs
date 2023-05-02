@@ -3,6 +3,10 @@
 
 <!-- PROTOTYPE -->
 
+## () - rx - keyboad events started
+* () start support for keyboad events
+* () use keyboard events as a way to set sun position
+
 ## ( done 05/02/2023 ) - r79 - Vector2 methods
 * (done) remove all methods that I am not using, and am sure I will not be using any time soon with posible future revisions
 

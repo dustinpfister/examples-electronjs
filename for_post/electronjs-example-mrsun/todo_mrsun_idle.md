@@ -21,10 +21,15 @@
  UI
 ---------- ---------->
 
+## () - rx - state swicher UI
+* () I would like to have a state switcher UI
+* () I cound have a main button that will show or hide the state switcher UI
+* () The state switcher UI will have a button for world and land state.
+
 ## () - rx - Max Create button
 * () have an option to do a max create when cretaing blocks
 
-## () - half max button option
+## () - rx - half max button option
 * () have a half max upgrade button option
 
 <!-------- ----------
@@ -39,19 +44,22 @@
 ## () - rx - Style change of blocks based on temp
 * () the img objects used to render slots should change based on temp of the section
 
-## () - rx - animated slots
+## () - rx - Animated slots
 * () I would like to have animated slots
 
 <!-------- ----------
  STATE MACHINE
 ---------- ---------->
 
+## () - rx - have a sunspots state
+* () start a sunspots state in place of just the simple sunspots button
+
 ## () - rx - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
 * () have a new system for the state keys where I can add a number after the key name to define what the priority should be
 * () default priority for state objects can be 2, but can be set to 0 to get them to fire before always\_1
 
-## () - rx - transition hooks
+## () - rx - Transition hooks
 * () start transition events that will fire each time the setState method is called
 * () have a onTransitionStart hook
 * () have a onTransitionIn type hook
@@ -61,6 +69,10 @@
 <!-------- ----------
  GAME MODULE
 ---------- ---------->
+
+## () - rx - level up game event
+* () have an event that will fire each time a level up happens
+* () in the event that the player jumps up a whole bunch of levels at once the event should fire for each level
 
 ## () - rx - game ticks, and game.start_date as part of game save
 * () store game.tick as part of the save state
@@ -76,8 +88,11 @@
 * () a slot object will have a disabled property which means that it can not be used at all
 
 <!-------- ----------
- NEW MODULES
+ OBJECT2D class
 ---------- ---------->
+
+## () - rx get children feature of Base Object2d class working
+* () I would like to get the add feature of the object2d class working
 
 ## () - rx - object2d-dialog - start a message system
 * () start a message system as a whole other file called mess.js
@@ -87,15 +102,15 @@
 * () no blank blocks to create message
 
 ## () - rx - object2d-buttons.js
-* () that a buttons lib that extends Object2D
+* () have a buttons lib that extends the Object2D class
 
 <!-------- ----------
  BROWSER BUILD
 ---------- ---------->
 
-## () rx - PLATFORM-BROWSER
-* () start a BROWSER form of the API that I have in preload.js
-* () just use local storage for this and move on
+## () rx - browser platform file
+* () Start a BROWSER form of the API that I have in preload.js
+* () See if using local storage for this will work fine
 
 ## () rx - server script
 * () I would like to have a script that will run a simple static server
@@ -117,3 +132,4 @@
 
 ## () - rx - See about fixing init state stuck bug
     With electionjs there seems to be a bug where I can end up getting stuck in init state. In windows I can trigger this by reloading a whole bunch of times real fast.
+
