@@ -25,6 +25,7 @@ constant.SLOT_GRID_HEIGHT = 8;
 constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
 
 constant.SLOT_RADIUS_DELTA = 68 / constant.SLOT_GRID_HEIGHT;
+constant.SLOT_RADIAN_DELTA = Math.PI / 180 * 15;
 
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];

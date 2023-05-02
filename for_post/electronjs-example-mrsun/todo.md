@@ -8,7 +8,7 @@
 * (done) use LAND-RADIUS-TOCENTER const in draw section slot methods
 * (done) have a SLOT-RDAIUS-DELTA CONST
 * (done) use SLOT-RADIUS-DELTA const in drawSectionSlotTexel
-* () have a SLOT-RADIAN-DELTA and use that in drawSectionSlotTexel
+* (done) have a SLOT-RADIAN-DELTA and use that in drawSectionSlotTexel
 * () have a SLOT-UNLOCK-MAXEXP const and use that in setBlockTypeCounts of Lands Class
 
 ## ( done 05/02/2023 ) - r76 - game sunspots multi property
