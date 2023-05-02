@@ -575,7 +575,7 @@ class Lands {
         // update slot unlock cost
         const n = this.slot_unlock_count;
         const d = this.slot_total;
-        this.slot_unlock_cost = Decimal.pow(10, 30 * ( n / d ) ).ceil().sub(1);
+        this.slot_unlock_cost = Decimal.pow(10, constant.SLOT_UNLOCK_MAXEXP * ( n / d ) ).ceil().sub(1);
     }
 };
 //-------- ----------

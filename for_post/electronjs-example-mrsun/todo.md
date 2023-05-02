@@ -3,13 +3,13 @@
 
 <!-- PROTOTYPE -->
 
-## () - r77 - constants
+## ( done 05/02/2023 ) - r77 - constants
 * (done) have a LAND-RADIUS-TOCENTER const
 * (done) use LAND-RADIUS-TOCENTER const in draw section slot methods
 * (done) have a SLOT-RDAIUS-DELTA CONST
 * (done) use SLOT-RADIUS-DELTA const in drawSectionSlotTexel
 * (done) have a SLOT-RADIAN-DELTA and use that in drawSectionSlotTexel
-* () have a SLOT-UNLOCK-MAXEXP const and use that in setBlockTypeCounts of Lands Class
+* (done) have a SLOT-UNLOCK-MAXEXP const and use that in setBlockTypeCounts of Lands Class
 
 ## ( done 05/02/2023 ) - r76 - game sunspots multi property
 * (done) have a sunspots multipler property in the game object

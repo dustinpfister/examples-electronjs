@@ -11,22 +11,18 @@ constant.SUNAREA_RADIUS = 150;
 constant.SUN_CENTER = new Vector2(320, 240);
 constant.SUN_DMAX = constant.SUNAREA_RADIUS * 2 - constant.SUN_RADIUS * 2;
 constant.LAND_OBJECT_COUNT = 12;
-
-
 constant.LAND_RADIUS_TOCENTER = constant.LAND_RADIUS + constant.SUNAREA_RADIUS;
-
 constant.BLOCK_MAX_LEVEL = 99;
 constant.MANA_MAX = new Decimal('1e100');
 constant.MANA_START = '5';
 constant.TEMP_MAX = 999;
 constant.MAX_BLOCK_POW = Math.log(10000000) / Math.log(2);
+constant.SLOT_UNLOCK_MAXEXP = 30;
 constant.SLOT_GRID_WIDTH = 10;
 constant.SLOT_GRID_HEIGHT = 8;
 constant.SLOT_GRID_LEN = constant.SLOT_GRID_WIDTH * constant.SLOT_GRID_HEIGHT;
-
 constant.SLOT_RADIUS_DELTA = 68 / constant.SLOT_GRID_HEIGHT;
 constant.SLOT_RADIAN_DELTA = Math.PI / 180 * 15;
-
 constant.BLOCK_LAND_MAX = Math.round(constant.SLOT_GRID_LEN); //!!! might do away with this
 constant.LANDS_START_SECTION_DATA = [];
 constant.SUNSPOTS_WORLDVALUE_BASE_MAX = 10;
