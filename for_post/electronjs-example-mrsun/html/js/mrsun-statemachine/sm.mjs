@@ -47,6 +47,31 @@ const commonPointerAction = (sm, type, e) => {
         }
     }
 };
+// what to do for any keyboard action
+const commonKeyboardAction = (sm, type, e) => {
+    sm.keydown = type === 'keydown' ? true : false;
+    let events = null;
+    if(sm.currentState){
+        const obj = sm.currentState.events;
+        if(obj){
+            events = obj;
+        }
+    }
+    if(e.key != sm.key){
+        sm.key = e.key;
+        if(events.onkeyfirst){
+            events.onkeyfirst(sm, sm.key, sm.keydown, e, sm.currentState.data );
+        }
+    }else{
+        if(events.onkeyrepeat){
+            events.onkeyrepeat(sm, sm.key, sm.keydown, e, sm.currentState.data );
+        }
+    }
+    if(events.onkey){
+        events.onkey(sm, sm.key, sm.keydown, e, sm.currentState.data );
+    }
+    
+};
 //-------- ---------
 // PUBLIC API
 //-------- ---------
@@ -77,6 +102,8 @@ StateMachine.create = (opt_create) => {
         fps_target: 12,
         now: null,
         x:0, y:0,
+        keydown: false,
+        key: '',
         landIndex: 0,
         ticksPerSec: 1,    // game speed is something that I think should be set here
         secs: 0,           // secs and lt are just used as a way to update game.tick count
@@ -103,6 +130,7 @@ StateMachine.create = (opt_create) => {
     sm.canvas.addEventListener('pointerup', (e) => {
         commonPointerAction(sm, 'pointerup', e);
     });
+    // document events
     // VISIBILITY CHANGE EVENT
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event
     document.addEventListener("visibilitychange", (evnt) => {
@@ -111,6 +139,7 @@ StateMachine.create = (opt_create) => {
             gameMod.saveGame(sm.game);
         }
     });
+    // WINDOW EVENTS
     // canvas resize
     const setCanvasScale = () => {
         const w = window.innerWidth;
@@ -127,6 +156,12 @@ StateMachine.create = (opt_create) => {
     setCanvasScale();
     window.addEventListener('resize', (e) => {
         setCanvasScale();
+    });
+    window.addEventListener('keydown', (e) => {
+        commonKeyboardAction(sm, 'keydown', e);
+    });
+    window.addEventListener('keyup', (e) => {
+        commonKeyboardAction(sm, 'keyup', e);
     });
     // MAIN APP LOOP
     sm.loop = () => {

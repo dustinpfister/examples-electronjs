@@ -97,6 +97,7 @@ const state_world = {
         render_detail(sm, ctx, canvas, data);
     },
     events: {
+
         pointerdown : (sm, pos, e, data) => {
             const sun = sm.game.sun;
             const d = pos.distanceTo(sun.center);
@@ -118,7 +119,22 @@ const state_world = {
                 const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
                 sm.game = gameMod.create({ platform: sm.platform, sunspots: sp.toString() });
             });
-        }
+        },
+        onkey: (sm, key, down, e, data) => {
+			if(down){
+			    console.log('key :' + key + ' ' + down);
+			}
+		},
+        onkeyfirst: (sm, key, down, e, data) => {
+			if(down){
+			    //console.log('key :' + key + ' ' + down);
+			}
+		},
+        onkeyrepeat: (sm, key, down, e, data) => {
+			if(down){
+			    //console.log('key :' + key + ' ' + down);
+			}
+		}
     }
 };
 //-------- ----------

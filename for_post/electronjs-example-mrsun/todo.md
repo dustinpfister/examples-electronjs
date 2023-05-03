@@ -3,6 +3,11 @@
 
 <!-- PROTOTYPE -->
 
+## () - r84 - Vector2 object in place of sm.x, and sm.y
+* () have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
+* () update all code that makes use of sm.x, y to use sm.pointer
+* () remove sm.x, and sm.y
+
 ## () - r83 - game ticks, and game.start_date as part of game save
 * () store game.tick as part of the save state
 * () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
@@ -24,7 +29,8 @@
 * () have a start over button that will be what is clicked to cause a super nova event
 
 ## () - r80 - keyboard events started
-* () start support for keyboard events
+* (done) start support for keyboard events by making a commonKeyboardAction helper function in sm.mjs
+* () have a sm.keydown prop that will be set to true on keydown and back to false on keyup
 * () use keyboard events as a way to set sun position
 
 ## ( done 05/02/2023 ) - r79 - Vector2 methods
