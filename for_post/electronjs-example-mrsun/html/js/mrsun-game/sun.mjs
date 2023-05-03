@@ -120,17 +120,18 @@ class Sun extends Sprite {
             this.position.y = this.center.y + Math.sin(a) * md;
         }
     }
+    getLength () {
+        return this.position.clone().sub(this.center).length();
+    }
+    getLengthAlpha(){
+        const length_max = constant.SUNAREA_RADIUS - this.radius;
+        return this.getLength() / length_max;
+    }
     // set just the vector unit length of the sun position by way of an alpha value
-    setPosLengthDir (alpha, dir) {
-        dir = dir === undefined ? this.position.radianTo(this.center) : dir;
+    setPosLength (alpha) {
         const length_max = constant.SUNAREA_RADIUS - this.radius;
         const v = this.position.clone().sub(this.center);
-
-        v.applyRadian(dir);
         v.setLength(length_max * alpha);
-
-
-
         this.position.copy(this.center).add(v);
     }
 

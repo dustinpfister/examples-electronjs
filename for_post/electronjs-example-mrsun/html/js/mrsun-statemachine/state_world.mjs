@@ -84,16 +84,16 @@ const state_world = {
         button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
     },
     start: (sm, opt) => {
-
-
         const sun = sm.game.sun;
+/*
+        const len = constant.LAND_OBJECT_COUNT;
+
         const dir = sun.position.radianTo( sun.center );
-
         const a = dir / ( Math.PI * 2 );
+        const section_index = Math.round( a * len ) % len;
+        const radian = Math.PI * 2 / len * section_index;
+*/
 
-        const section_index = Math.round( a * 12 ) % 12;
-
-        sun.setPosLengthDir(1, Math.PI * 2 / 12 * section_index)
 
         // as long as I do not have to update on a tick by tick basis
         // I can call the sprite_world update method here in the start hook
@@ -132,20 +132,29 @@ const state_world = {
             });
         },
         onkey: (sm, key, down, e, data) => {
-			if(down){
-			    console.log('key :' + key + ' ' + down);
-			}
-		},
-        onkeyfirst: (sm, key, down, e, data) => {
-			if(down){
-			    //console.log('key :' + key + ' ' + down);
-			}
-		},
-        onkeyrepeat: (sm, key, down, e, data) => {
-			if(down){
-			    //console.log('key :' + key + ' ' + down);
-			}
-		}
+            const sun = sm.game.sun;
+            if(down){
+                console.log('key :' + key + ' ' + down);
+                const a_lencurrent = sun.getLengthAlpha();
+                if(key ==='ArrowRight'){
+                    let len_index = Math.round( a_lencurrent * 10 );
+                    len_index = len_index + 1;
+                    len_index = len_index > 10 ? 10 : len_index;
+                    let alpha = len_index / 10;
+                    sun.setPosLength(alpha);
+                }
+                if(key ==='ArrowLeft'){
+                    let len_index = Math.round( a_lencurrent * 10 );
+                    len_index = len_index - 1;
+                    len_index = len_index < 0 ? 0 : len_index;
+                    let alpha = len_index / 10;
+                    sun.setPosLength(0.00001 + 0.99999 * alpha);
+                }
+
+            }
+        },
+        onkeyfirst: (sm, key, down, e, data) => {},
+        onkeyrepeat: (sm, key, down, e, data) => {}
     }
 };
 //-------- ----------
