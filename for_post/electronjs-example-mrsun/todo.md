@@ -28,11 +28,16 @@
 * () display the current sunspot multi, and what it will be after super nova event
 * () have a start over button that will be what is clicked to cause a super nova event
 
+## () - r81 - set sun position with keyboard
+* () use keyboard events as a way to set sun position
+* () I would like to use the up arrow key to set vector direction to align with the nearest lower section index
+* () the inverse would then be nice for the down arrow key
+* () left and right arrow keys can then be done to step vector unti length up and down by max length / 10 steps
+
 ## () - r80 - keyboard events started
 * (done) start support for keyboard events by making a commonKeyboardAction helper function in sm.mjs
 * (done) have a sm.keydown prop that will be set to true on keydown and back to false on keyup
 * (done) have working state object keyboard events in world state
-* () use keyboard events as a way to set sun position
 
 ## ( done 05/02/2023 ) - r79 - Vector2 methods
 * (done) remove all methods that I am not using, and am sure I will not be using any time soon with possible future revisions
