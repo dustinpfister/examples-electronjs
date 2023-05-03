@@ -43,9 +43,9 @@ getSuperNovaCost(0, 0);
 
 ## () - r81 - set sun position with keyboard
 * (done) have a Sun.setPosByVector2 method
+* (done) have a Sun.setPosLengthDir method that can set vector unit length without doing anything to direction
+* (done) Sun.setPosLengthDir method can also be used to set dir as well by way of optional argument
 
-* () have a Sun.setPosDir method that will just set direction and not change vector unit length
-* () have a Sun.setPosLength method that will just set vector unit length without doing anything to direction
 
 * () use keyboard events as a way to set sun position
 * () I would like to use the up arrow key to set vector direction to align with the nearest lower section index

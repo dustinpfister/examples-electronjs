@@ -86,7 +86,13 @@ const state_world = {
     start: (sm, opt) => {
 
 
-        sm.game.sun.setPosLength(1)
+        const sun = sm.game.sun;
+        const dir = sun.position.radianTo( sun.center );
+
+console.log(dir / ( Math.PI * 2 / 12 )  )
+
+
+        sun.setPosLengthDir(0.75, dir + Math.PI / 180 * 10)
 
         // as long as I do not have to update on a tick by tick basis
         // I can call the sprite_world update method here in the start hook

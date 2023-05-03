@@ -32,6 +32,12 @@ class Vector2 {
         this.y += v.y;
         return this;
     }
+    // apply radian method to set direction without mutation of unit length
+    applyRadian(radian){
+       const length = this.length();
+       this.x = Math.cos(radian) * length;
+       this.y = Math.sin(radian) * length;
+    }
     clone() {
         return new this.constructor(this.x, this.y);
     }
