@@ -84,6 +84,10 @@ const state_world = {
         button_supernova : {  desc: 'Supernova', position: new Vector2(580, 420), r: 40 },
     },
     start: (sm, opt) => {
+
+
+        sm.game.sun.setPosLength(1)
+
         // as long as I do not have to update on a tick by tick basis
         // I can call the sprite_world update method here in the start hook
         sm.game.lands.sections.forEach((section, i) => {

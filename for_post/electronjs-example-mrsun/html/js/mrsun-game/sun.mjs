@@ -1,13 +1,8 @@
 // sun.mjs - for electionjs-example-mrsun
-//import { Decimal }  from '../decimal/10.4.3/decimal.mjs'
-//import { LZString }  from '../lz-string/1.4.4/lz-string.mjs'
-//import { EventDispatcher } from '../event-dispatcher/EventDispatcher.mjs'
-//import { Vector2 } from '../vector2/vector2.mjs'
+import { Vector2 } from '../vector2/vector2.mjs'
 import { canvasMod } from '../canvas/canvas.mjs'
 import { Sprite, SpriteSheet } from '../object2d-sprite/sprite.mjs'
-//import { utils }  from '../mrsun-utils/utils.mjs'
 import { constant } from '../mrsun-constant/constant.mjs'
-//import { Lands } from './lands.mjs'
 //-------- ----------
 // Decimal
 //-------- ----------
@@ -85,7 +80,7 @@ const can2 = canvasMod.create({
 // Sun Class
 //-------- ----------
 class Sun extends Sprite {
-    constructor() {
+    constructor () {
         super();
         this.type = 'Sun';
         const center = constant.SUN_CENTER.clone();
@@ -108,12 +103,29 @@ class Sun extends Sprite {
         this.cellIndices[1] = 0;
     }
     // step the base animation forward one cell
-    stepBaseAnimation(){
+    stepBaseAnimation () {
         let i_cell = this.cellIndices[0];
         i_cell += 1;
         i_cell = i_cell >= this.sheets[0].cell_count ? 0 : i_cell;
         this.cellIndices[0] = i_cell;
     }
+    // set sun position by a given vector2 object
+    setPosByVector2 (v) {
+        this.position.copy(v);
+        const d = this.position.distanceTo(this.center);
+        const md = constant.SUNAREA_RADIUS - this.radius;
+        if(d >= md){
+            const a = this.position.radianTo(this.center);
+            this.position.x = this.center.x + Math.cos(a) * md;
+            this.position.y = this.center.y + Math.sin(a) * md;
+        }
+    }
+    // set just the vector unit length of the sun position by way of an alpha value
+    setPosLength (alpha) {
+        const length_max = constant.SUNAREA_RADIUS - this.radius;
+        this.position.setLength(length_max * alpha).add(this.center);
+    }
+
 };
 //-------- ----------
 // EXPORT

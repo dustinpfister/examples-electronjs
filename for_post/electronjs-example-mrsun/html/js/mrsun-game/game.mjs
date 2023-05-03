@@ -215,15 +215,8 @@ gameMod.create = (opt) => {
 };
 // set the sun position
 gameMod.setSunPos = (game, pos) => {
-    const sun = game.sun;
-    sun.position.copy(pos);
-    const d = sun.position.distanceTo(sun.center);
-    const md = constant.SUNAREA_RADIUS - sun.radius;
-    if(d >= md){
-       const a = sun.position.radianTo(sun.center);
-       sun.position.x = sun.center.x + Math.cos(a) * md;
-       sun.position.y = sun.center.y + Math.sin(a) * md;
-    }
+
+    game.sun.setPosByVector2(pos);
     GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };
 // get land object by x, y pos or false if nothing there

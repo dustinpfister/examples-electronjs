@@ -42,6 +42,11 @@ getSuperNovaCost(0, 0);
 * () have a start over button that will be what is clicked to cause a super nova event
 
 ## () - r81 - set sun position with keyboard
+* (done) have a Sun.setPosByVector2 method
+
+* () have a Sun.setPosDir method that will just set direction and not change vector unit length
+* () have a Sun.setPosLength method that will just set vector unit length without doing anything to direction
+
 * () use keyboard events as a way to set sun position
 * () I would like to use the up arrow key to set vector direction to align with the nearest lower section index
 * () the inverse would then be nice for the down arrow key

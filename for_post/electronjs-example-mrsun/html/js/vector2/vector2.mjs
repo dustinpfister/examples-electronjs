@@ -27,12 +27,25 @@ class Vector2 {
         this.y = y;
         return this;
     }
+    add( v ) {
+        this.x += v.x;
+        this.y += v.y;
+        return this;
+    }
     clone() {
         return new this.constructor(this.x, this.y);
     }
     copy(v) {
         this.x = v.x;
         this.y = v.y;
+        return this;
+    }
+    divideScalar( scalar ) {
+        return this.multiplyScalar( 1 / scalar );
+    }
+    multiplyScalar( scalar ) {
+        this.x *= scalar;
+        this.y *= scalar;
         return this;
     }
     normalize() {
@@ -53,6 +66,9 @@ class Vector2 {
     }
     setLength(length) {
         return this.normalize().multiplyScalar(length);
+    }
+    length() {
+        return Math.sqrt( this.x * this.x + this.y * this.y );
     }
     lerp(v, alpha) {
         this.x += (v.x - this.x) * alpha;
