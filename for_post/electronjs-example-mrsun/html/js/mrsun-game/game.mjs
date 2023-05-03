@@ -123,7 +123,8 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
             const d_sun = section.position.distanceTo(game.sun.position);
             const d_adjusted = d_sun - section.r - game.sun.radius;
             section.d_alpha = 1 - d_adjusted / constant.SUN_DMAX;
-            section.temp = Math.ceil( constant.TEMP_MAX * section.d_alpha );
+            section.temp = constant.TEMP_MAX * section.d_alpha;
+            section.temp = game.sun.getLengthAlpha() < 0.1 ? Math.ceil(section.temp): Math.round(section.temp);
             let mana_total = new Decimal(0);
             section.forEachSlot( (slot ) => {
                 const a_temp = section.temp / constant.TEMP_MAX;

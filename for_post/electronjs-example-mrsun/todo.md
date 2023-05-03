@@ -41,16 +41,14 @@ getSuperNovaCost(0, 0);
 * () display the current sunspot multi, and what it will be after super nova event
 * () have a start over button that will be what is clicked to cause a super nova event
 
-## () - r81 - set sun position with keyboard
+## ( done 05/03/2023 ) - r81 - set sun position with keyboard
 * (done) have a Sun.setPosByVector2 method
 * (done) have a Sun.setPosLengthDir method that can set vector unit length without doing anything to direction
 * (done) Sun.setPosLengthDir method can also be used to set dir as well by way of optional argument
-
-
-* () use keyboard events as a way to set sun position
-* () I would like to use the up arrow key to set vector direction to align with the nearest lower section index
-* () the inverse would then be nice for the down arrow key
-* () left and right arrow keys can then be done to step vector unti length up and down by max length / 10 steps
+* (done) use keyboard events as a way to set sun position
+* (done) I would like to use the up arrow key to set vector direction to align with the nearest lower section index
+* (done) the inverse would then be nice for the down arrow key
+* (done) left and right arrow keys can then be done to step vector unti length up and down by max length / 10 steps
 
 ## ( done 05/03/2023 ) - r80 - keyboard events started
 * (done) start support for keyboard events by making a commonKeyboardAction helper function in sm.mjs

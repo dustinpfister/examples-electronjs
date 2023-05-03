@@ -134,6 +134,11 @@ class Sun extends Sprite {
         v.setLength(length_max * alpha);
         this.position.copy(this.center).add(v);
     }
+    setPosDir (radian) {
+        const v = this.position.clone().sub(this.center);
+        v.applyRadian(radian);
+        this.position.copy(this.center).add(v);
+    }
 
 };
 //-------- ----------

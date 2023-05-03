@@ -151,6 +151,29 @@ const state_world = {
                     sun.setPosLength(0.00001 + 0.99999 * alpha);
                 }
 
+
+                if(key ==='ArrowUp'){
+                    const len = constant.LAND_OBJECT_COUNT;
+                    const dir = sun.position.radianTo( sun.center );
+                    const a = dir / ( Math.PI * 2 );
+                    let section_index = Math.round( a * len ) % len;
+                    section_index += 1;
+                    section_index %= len;
+                    const radian = Math.PI * 2 / len * section_index;
+                    sun.setPosDir(radian)
+                }
+
+                if(key ==='ArrowDown'){
+                    const len = constant.LAND_OBJECT_COUNT;
+                    const dir = sun.position.radianTo( sun.center );
+                    const a = dir / ( Math.PI * 2 );
+                    let section_index = Math.round( a * len ) % len;
+                    section_index -= 1;
+                    section_index = section_index < 0 ? len - 1 : section_index;
+                    const radian = Math.PI * 2 / len * section_index;
+                    sun.setPosDir(radian)
+                }
+
             }
         },
         onkeyfirst: (sm, key, down, e, data) => {},
