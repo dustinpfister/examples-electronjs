@@ -67,6 +67,11 @@ class Vector2 {
     setLength(length) {
         return this.normalize().multiplyScalar(length);
     }
+    sub( v ) {
+        this.x -= v.x;
+        this.y -= v.y;
+        return this;
+    }
     length() {
         return Math.sqrt( this.x * this.x + this.y * this.y );
     }
@@ -75,6 +80,7 @@ class Vector2 {
         this.y += (v.y - this.y) * alpha;
         return this;
     }
+
      * [Symbol.iterator]() {
         yield this.x;
         yield this.y;
