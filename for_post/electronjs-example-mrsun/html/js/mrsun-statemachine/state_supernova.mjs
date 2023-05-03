@@ -40,7 +40,7 @@ const state_supernova = {
         const dec = sm.game.sunspots.add( sm.game.sunspots_delta );
         const m = gameMod.getSunSpotMulti(dec.toNumber() );
         ctx.fillText('new sunspots   : ' + utils.formatDecimal(dec, 4), sx, sy + yd * 4 );
-        ctx.fillText('new multiplier   : ' + m.toFixed(2) + 'x', sx, sy + yd * 5 );
+        ctx.fillText('new multiplier   : ' + m.toFixed(4) + 'x', sx, sy + yd * 5 );
     },
     events: {
         pointerdown : (sm, pos, e, data) => {
