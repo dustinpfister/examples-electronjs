@@ -6,30 +6,23 @@
  SUNSPOTS
 ---------- ---------->
 
-## () - rx - super nova state
-* () start a whole new state for super nova
-* () display the current sunspot multi, and what it will be after super nova event
-
 ## () - rx - sunspot upgrades
 * () start a sunspot upgrades menu
 * () the first upgrade can be something that lowers the base use to figure sunspots delta world value
-
-## () - rx - sunspot delta min amount for super nova
-* () have a min amount of sunspot coin delta that is needed to preform a super nova event
 
 <!-------- ----------
  UI
 ---------- ---------->
 
-## () - rx - state swicher UI
+## () - rx - State switcher UI
 * () I would like to have a state switcher UI
-* () I cound have a main button that will show or hide the state switcher UI
+* () I could have a main button that will show or hide the state switcher UI
 * () The state switcher UI will have a button for world and land state.
 
 ## () - rx - Max Create button
 * () have an option to do a max create when cretaing blocks
 
-## () - rx - half max button option
+## () - rx - Half max button option
 * () have a half max upgrade button option
 
 <!-------- ----------
@@ -38,8 +31,8 @@
 
 ## () - rx - Slot by slot real time rendering in world state
 * () I would like to see about slot by slot, or maybe a few slots at a time, rendering in world state
-* () I could have a whole other canvas element for rendering the slots
-* () I coult have another canvas element that I use to render outlines for the current slots that are being rendered
+* () Have a whole other canvas element for rendering the slots
+* () Have another canvas element that I use to render outlines for the current slots that are being rendered
 
 ## () - rx - Style change of blocks based on temp
 * () the img objects used to render slots should change based on temp of the section
@@ -50,9 +43,6 @@
 <!-------- ----------
  STATE MACHINE
 ---------- ---------->
-
-## () - rx - have a sunspots state
-* () start a sunspots state in place of just the simple sunspots button
 
 ## () - rx - Always state objects, State object priority
 * () have always state objects that will always fire each time regardless of what the current state object is
@@ -74,13 +64,6 @@
 * () have an event that will fire each time a level up happens
 * () in the event that the player jumps up a whole bunch of levels at once the event should fire for each level
 
-## () - rx - game ticks, and game.start_date as part of game save
-* () store game.tick as part of the save state
-* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
-* () have a game.start\_date prop and make that part of the game save as well
-* () log start date in away production message
-* () log total tick count in away production message
-
 ## () - rx - Water level, water block type
 * () can set a water level such as 1 block so that any column that is 0 rocks will have a water block
 
@@ -95,11 +78,9 @@
 * () I would like to get the add feature of the object2d class working
 
 ## () - rx - object2d-dialog - start a message system
-* () start a message system as a whole other file called mess.js
-* () use the standard objects in objpool for message dialogs
-* () not enough mana to create block message
-* () not enough mana to upgrade block message
-* () no blank blocks to create message
+* () start a dialog system as a whole other file called dialog.js
+* () pop up dialog window types with okay, cancel, ect.
+* () message window type objects that are used to display status messages
 
 ## () - rx - object2d-buttons.js
 * () have a buttons lib that extends the Object2D class

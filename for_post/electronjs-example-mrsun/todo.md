@@ -3,12 +3,32 @@
 
 <!-- PROTOTYPE -->
 
-## () - rx - keyboad events started
-* () start support for keyboad events
+## () - r83 - game ticks, and game.start_date as part of game save
+* () store game.tick as part of the save state
+* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
+* () have a game.start\_date prop and make that part of the game save as well
+* () log start date in away production message
+* () log total tick count in away production message
+
+## () - r82 - sunspot delta min amount for super nova
+* () have a min amount of sunspot coin delta that is needed to preform a super nova event
+* () try an expression that starts at a min of say 100, then after that at least half of what remains after subtracting 100
+* () I will want some constants for this such as the min sunspot value, and the half value for the difference
+* () I would like to have a bar wrapped around the start over button that will show the progress until a super nova event can be done
+
+## () - r81 - super nova state
+* () start a whole new state for super nova
+* () use the supernova button to switch to this state
+* () have a back button to go back to world state just like with the land state
+* () display the current sunspot multi, and what it will be after super nova event
+* () have a start over button that will be what is clicked to cause a super nova event
+
+## () - r80 - keyboard events started
+* () start support for keyboard events
 * () use keyboard events as a way to set sun position
 
 ## ( done 05/02/2023 ) - r79 - Vector2 methods
-* (done) remove all methods that I am not using, and am sure I will not be using any time soon with posible future revisions
+* (done) remove all methods that I am not using, and am sure I will not be using any time soon with possible future revisions
 
 ## ( done 05/02/2023 ) - r78 - break down game.mjs into more files
 * (done) create a lands.mjs file that will contain the Lands class as well as all the other supporting classes
