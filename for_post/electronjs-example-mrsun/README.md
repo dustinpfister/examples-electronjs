@@ -4,7 +4,7 @@ With this prototype I would like to make an idle game about a little world that 
 
 ## Plans for Future Updates
 
-I put a lot of time into this example so like some of my other electionjs project examples I will be continung to wotk on this as a whole other project. As such I might not work on this any more after a certain point. At this time though I am not what that point will be
+I put a lot of time into this example so like some of my other electionjs project examples I will be continuing to work on this as a whole other project. As such I might not work on this any more after a certain point. At this time though I am not what that point will be
 
 
 ## Core features of this prototype

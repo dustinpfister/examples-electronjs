@@ -34,7 +34,7 @@
 * () the inverse would then be nice for the down arrow key
 * () left and right arrow keys can then be done to step vector unti length up and down by max length / 10 steps
 
-## () - r80 - keyboard events started
+## ( done 05/03/2023 ) - r80 - keyboard events started
 * (done) start support for keyboard events by making a commonKeyboardAction helper function in sm.mjs
 * (done) have a sm.keydown prop that will be set to true on keydown and back to false on keyup
 * (done) have working state object keyboard events in world state
