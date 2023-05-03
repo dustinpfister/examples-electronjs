@@ -9,6 +9,7 @@ import { constant } from "../mrsun-constant/constant.mjs"
 import { state_init } from "./state_init.mjs";
 import { state_world } from "./state_world.mjs";
 import { state_land } from "./state_land.mjs";
+import { state_supernova } from "./state_supernova.mjs";
 //-------- ----------
 // DEFAULT "NOOP" PLATFORM OBJECT
 //-------- ----------
@@ -120,6 +121,7 @@ StateMachine.create = (opt_create) => {
     sm.states.init = state_init;
     sm.states.world = state_world;
     sm.states.land = state_land;
+    sm.states.supernova = state_supernova;
     // POINTER EVENTS
     sm.canvas.addEventListener('pointerdown', (e) => {
         commonPointerAction(sm, 'pointerdown', e);

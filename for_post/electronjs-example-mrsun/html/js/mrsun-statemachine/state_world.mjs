@@ -117,8 +117,9 @@ const state_world = {
             // was supernova button clicked?
             utils.button_check(data, 'button_supernova', pos, () => {
                 console.log('supernova!');
-                const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
-                sm.game = gameMod.create({ platform: sm.platform, sunspots: sp.toString() });
+                sm.setState('supernova', {});
+                //const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
+                //sm.game = gameMod.create({ platform: sm.platform, sunspots: sp.toString() });
             });
         },
         onkey: (sm, key, down, e, data) => {

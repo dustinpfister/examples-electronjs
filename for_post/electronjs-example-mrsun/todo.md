@@ -35,11 +35,11 @@ getSuperNovaCost(0, 0);
 ```
 
 ## () - r81 - super nova state
-* () start a whole new state for super nova
-* () use the supernova button to switch to this state
-* () have a back button to go back to world state just like with the land state
+* (done) start a whole new state for super nova
+* (done) use the supernova button in world state to switch to this state
+* (done) have a back button to go back to world state just like with the land state
+* (done) have a start over button that will be what is clicked to cause a super nova event
 * () display the current sunspot multi, and what it will be after super nova event
-* () have a start over button that will be what is clicked to cause a super nova event
 
 ## ( done 05/03/2023 ) - r81 - set sun position with keyboard
 * (done) have a Sun.setPosByVector2 method
