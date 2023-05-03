@@ -30,7 +30,8 @@
 
 ## () - r80 - keyboard events started
 * (done) start support for keyboard events by making a commonKeyboardAction helper function in sm.mjs
-* () have a sm.keydown prop that will be set to true on keydown and back to false on keyup
+* (done) have a sm.keydown prop that will be set to true on keydown and back to false on keyup
+* (done) have working state object keyboard events in world state
 * () use keyboard events as a way to set sun position
 
 ## ( done 05/02/2023 ) - r79 - Vector2 methods
