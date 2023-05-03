@@ -175,6 +175,10 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         game.last_update = new Date();
     }
 };
+// get sunspot multi method
+gameMod.getSunSpotMulti = (sunspots) => {
+    return 1 + Math.log( 1 + sunspots ) / Math.log(10);
+};
 // create a new game state object
 gameMod.create = (opt) => {
     opt = opt || {};
@@ -196,8 +200,11 @@ gameMod.create = (opt) => {
        last_update: opt.last_update || new Date(),
        autosave_ticks: 0 // 1 or more ticks is the number of ticks to the next game save
     };
+
+console.log(utils.formatDecimal( game.sunspots ));
+
     // figure sunspots_multi once here in create
-    game.sunspot_multi = 1 + Math.log( 1 + game.sunspots.toNumber() ) / Math.log(10);
+    game.sunspot_multi = gameMod.getSunSpotMulti( game.sunspots.toNumber() );
     // parse last_update if string
     if(typeof game.last_update === 'string'){
          game.last_update = new Date(game.last_update);
@@ -216,7 +223,6 @@ gameMod.create = (opt) => {
 };
 // set the sun position
 gameMod.setSunPos = (game, pos) => {
-
     game.sun.setPosByVector2(pos);
     GAME_EVENTS.dispatchEvent({ type: 'autosave_delay', game: game });
 };

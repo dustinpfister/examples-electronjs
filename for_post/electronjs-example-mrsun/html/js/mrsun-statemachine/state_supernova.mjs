@@ -29,6 +29,18 @@ const state_supernova = {
         render_background(sm, ctx, canvas, data);
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_newgame, sm.ctx, sm.canvas);
+        // disp
+        utils.drawCommonDisp(sm, ctx, canvas);
+        const sx = 10, sy = 100, yd = 25;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.font = '20px monospace';
+        ctx.fillText('current sunspots : ' + utils.formatDecimal(sm.game.sunspots, 4), sx, sy);
+        ctx.fillText('sunspots delta   : ' + utils.formatDecimal(sm.game.sunspots_delta, 4), sx, sy + yd * 1);
+        const dec = sm.game.sunspots.add( sm.game.sunspots_delta );
+        const m = gameMod.getSunSpotMulti(dec.toNumber() );
+        ctx.fillText('new sunspots   : ' + utils.formatDecimal(dec, 4), sx, sy + yd * 4 );
+        ctx.fillText('new multiplier   : ' + m.toFixed(2) + 'x', sx, sy + yd * 5 );
     },
     events: {
         pointerdown : (sm, pos, e, data) => {
