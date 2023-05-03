@@ -1,4 +1,4 @@
-# electionjs-example-mrsun
+# electronjs-example-mrsun
 
 
 <!-- PROTOTYPE -->

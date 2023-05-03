@@ -24,6 +24,30 @@ PLATFORM_NOOP.auto_save = () => {
 };
 PLATFORM_NOOP.log = (mess) => {};
 //-------- ---------
+// HELPER FUNCTIONS
+//-------- ---------
+const getPointerPos = (e) => {
+    const canvas = e.target;
+    const bx = canvas.getBoundingClientRect();
+    const pos = new Vector2(e.clientX - bx.left, e.clientY - bx.top);
+    pos.x = Math.floor((pos.x / canvas.scrollWidth) * canvas.width);
+    pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
+    return pos
+};
+const commonPointerAction = (sm, type, e) => {
+    const pos = getPointerPos(e);
+    sm.x = pos.x;
+    sm.y = pos.y;
+    if(sm.currentState){
+        const events = sm.currentState.events;
+        if(events){
+            if(events[type]){
+                events[type](sm, pos, e, sm.currentState.data);
+            }
+        }
+    }
+};
+//-------- ---------
 // PUBLIC API
 //-------- ---------
 const StateMachine = {};
@@ -70,27 +94,6 @@ StateMachine.create = (opt_create) => {
     sm.states.world = state_world;
     sm.states.land = state_land;
     // POINTER EVENTS
-    const getPointerPos = (e) => {
-        const canvas = e.target;
-        const bx = canvas.getBoundingClientRect();
-        const pos = new Vector2(e.clientX - bx.left, e.clientY - bx.top);
-        pos.x = Math.floor((pos.x / canvas.scrollWidth) * canvas.width);
-        pos.y = Math.floor((pos.y / canvas.scrollHeight) * canvas.height);
-        return pos
-    };
-    const commonPointerAction = (sm, type, e) => {
-        const pos = getPointerPos(e);
-        sm.x = pos.x;
-        sm.y = pos.y;
-        if(sm.currentState){
-            const events = sm.currentState.events;
-            if(events){
-                if(events[type]){
-                    events[type](sm, pos, e, sm.currentState.data);
-                }
-            }
-        }
-    }
     sm.canvas.addEventListener('pointerdown', (e) => {
         commonPointerAction(sm, 'pointerdown', e);
     });
