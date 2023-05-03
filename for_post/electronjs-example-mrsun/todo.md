@@ -15,11 +15,24 @@
 * () log start date in away production message
 * () log total tick count in away production message
 
-## () - r82 - sunspot delta min amount for super nova
-* () have a min amount of sunspot coin delta that is needed to preform a super nova event
-* () try an expression that starts at a min of say 100, then after that at least half of what remains after subtracting 100
-* () I will want some constants for this such as the min sunspot value, and the half value for the difference
-* () I would like to have a bar wrapped around the start over button that will show the progress until a super nova event can be done
+## () - r82 - supernova start condition
+* () have a super nova unclock condition based on somehting like what I have here:
+```js
+const getSuperNovaCost = (land_value, supernova_count ) => {
+    const max_start_cost = 10000 * Math.pow(2, 30);
+    let startcost = 10000 * Math.pow(2, supernova_count);
+    startcost = startcost > max_start_cost ? max_start_cost : startcost;
+    let a_reduction = land_value / startcost;
+    a_reduction = ( a_reduction > 1 ? 1 : a_reduction);
+    return {
+        startcost: startcost,
+        max_start_cost: max_start_cost,
+        a_reduction: a_reduction,
+        cost : Math.floor(startcost * ( 1  - a_reduction) )
+    };
+};
+getSuperNovaCost(0, 0);
+```
 
 ## () - r81 - super nova state
 * () start a whole new state for super nova
