@@ -139,6 +139,19 @@ class Sun extends Sprite {
         v.applyRadian(radian);
         this.position.copy(this.center).add(v);
     }
+    stepLengthByIndex(index_delta, range){
+        const a_lencurrent = this.getLengthAlpha();
+        let len_index = Math.round( a_lencurrent * range );
+        len_index = len_index + index_delta;
+        len_index = len_index > range ? range : len_index;
+        len_index = len_index < 0 ? 0 : len_index;
+        let alpha = len_index / range;
+        if(alpha === 1){
+            this.setPosLength(1);
+        }else{
+            this.setPosLength(0.00001 + 0.99999 * alpha);
+        }
+    }
 
 };
 //-------- ----------

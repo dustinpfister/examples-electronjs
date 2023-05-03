@@ -85,16 +85,6 @@ const state_world = {
     },
     start: (sm, opt) => {
         const sun = sm.game.sun;
-/*
-        const len = constant.LAND_OBJECT_COUNT;
-
-        const dir = sun.position.radianTo( sun.center );
-        const a = dir / ( Math.PI * 2 );
-        const section_index = Math.round( a * len ) % len;
-        const radian = Math.PI * 2 / len * section_index;
-*/
-
-
         // as long as I do not have to update on a tick by tick basis
         // I can call the sprite_world update method here in the start hook
         sm.game.lands.sections.forEach((section, i) => {
@@ -137,21 +127,11 @@ const state_world = {
                 console.log('key :' + key + ' ' + down);
                 const a_lencurrent = sun.getLengthAlpha();
                 if(key ==='ArrowRight'){
-                    let len_index = Math.round( a_lencurrent * 10 );
-                    len_index = len_index + 1;
-                    len_index = len_index > 10 ? 10 : len_index;
-                    let alpha = len_index / 10;
-                    sun.setPosLength(alpha);
+                    sun.stepLengthByIndex(1, 10);
                 }
                 if(key ==='ArrowLeft'){
-                    let len_index = Math.round( a_lencurrent * 10 );
-                    len_index = len_index - 1;
-                    len_index = len_index < 0 ? 0 : len_index;
-                    let alpha = len_index / 10;
-                    sun.setPosLength(0.00001 + 0.99999 * alpha);
+                    sun.stepLengthByIndex(-1, 10);
                 }
-
-
                 if(key ==='ArrowUp'){
                     const len = constant.LAND_OBJECT_COUNT;
                     const dir = sun.position.radianTo( sun.center );
@@ -162,7 +142,6 @@ const state_world = {
                     const radian = Math.PI * 2 / len * section_index;
                     sun.setPosDir(radian)
                 }
-
                 if(key ==='ArrowDown'){
                     const len = constant.LAND_OBJECT_COUNT;
                     const dir = sun.position.radianTo( sun.center );
@@ -173,7 +152,6 @@ const state_world = {
                     const radian = Math.PI * 2 / len * section_index;
                     sun.setPosDir(radian)
                 }
-
             }
         },
         onkeyfirst: (sm, key, down, e, data) => {},
