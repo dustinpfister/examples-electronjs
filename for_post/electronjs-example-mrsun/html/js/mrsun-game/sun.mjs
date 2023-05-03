@@ -152,7 +152,17 @@ class Sun extends Sprite {
             this.setPosLength(0.00001 + 0.99999 * alpha);
         }
     }
-
+    stepDirByIndex(index_delta = 0, grain = 1){
+        const len = constant.LAND_OBJECT_COUNT * grain;
+        const dir = this.position.radianTo( this.center );
+        const a = dir / ( Math.PI * 2 );
+        let section_index = Math.round( a * len ) % len;
+        section_index += index_delta;
+        section_index %= len;
+        section_index = section_index < 0 ? len - 1 : section_index;
+        const radian = Math.PI * 2 / len * section_index;
+        this.setPosDir(radian);
+    }
 };
 //-------- ----------
 // EXPORT

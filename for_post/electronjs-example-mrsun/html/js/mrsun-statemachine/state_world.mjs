@@ -127,30 +127,16 @@ const state_world = {
                 console.log('key :' + key + ' ' + down);
                 const a_lencurrent = sun.getLengthAlpha();
                 if(key ==='ArrowRight'){
-                    sun.stepLengthByIndex(1, 10);
+                    sun.stepDirByIndex(1, 1);
                 }
                 if(key ==='ArrowLeft'){
-                    sun.stepLengthByIndex(-1, 10);
+                    sun.stepDirByIndex(-1, 1);
                 }
                 if(key ==='ArrowUp'){
-                    const len = constant.LAND_OBJECT_COUNT;
-                    const dir = sun.position.radianTo( sun.center );
-                    const a = dir / ( Math.PI * 2 );
-                    let section_index = Math.round( a * len ) % len;
-                    section_index += 1;
-                    section_index %= len;
-                    const radian = Math.PI * 2 / len * section_index;
-                    sun.setPosDir(radian)
+                    sun.stepLengthByIndex(1, 10);
                 }
                 if(key ==='ArrowDown'){
-                    const len = constant.LAND_OBJECT_COUNT;
-                    const dir = sun.position.radianTo( sun.center );
-                    const a = dir / ( Math.PI * 2 );
-                    let section_index = Math.round( a * len ) % len;
-                    section_index -= 1;
-                    section_index = section_index < 0 ? len - 1 : section_index;
-                    const radian = Math.PI * 2 / len * section_index;
-                    sun.setPosDir(radian)
+                    sun.stepLengthByIndex(-1, 10);
                 }
             }
         },
