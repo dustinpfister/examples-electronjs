@@ -129,9 +129,10 @@ class Sun extends Sprite {
     }
     // set just the vector unit length of the sun position by way of an alpha value
     setPosLength (alpha) {
+        const a2 = 0.00001 + 0.99999 * alpha
         const length_max = constant.SUNAREA_RADIUS - this.radius;
         const v = this.position.clone().sub(this.center);
-        v.setLength(length_max * alpha);
+        v.setLength(length_max * a2);
         this.position.copy(this.center).add(v);
     }
     setPosDir (radian) {
@@ -146,11 +147,14 @@ class Sun extends Sprite {
         len_index = len_index > range ? range : len_index;
         len_index = len_index < 0 ? 0 : len_index;
         let alpha = len_index / range;
-        if(alpha === 1){
-            this.setPosLength(1);
-        }else{
-            this.setPosLength(0.00001 + 0.99999 * alpha);
-        }
+
+        this.setPosLength(alpha);
+
+        //if(alpha === 1){
+        //    this.setPosLength(1);
+        //}else{
+        //    this.setPosLength(0.00001 + 0.99999 * alpha);
+       // }
     }
     stepDirByIndex(index_delta = 0, grain = 1){
         const len = constant.LAND_OBJECT_COUNT * grain;
