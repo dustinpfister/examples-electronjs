@@ -38,9 +38,11 @@ const state_supernova = {
         ctx.fillText('current sunspots : ' + utils.formatDecimal(sm.game.sunspots, 4), sx, sy);
         ctx.fillText('sunspots delta   : ' + utils.formatDecimal(sm.game.sunspots_delta, 4), sx, sy + yd * 1);
         const dec = sm.game.sunspots.add( sm.game.sunspots_delta );
-        const m = gameMod.getSunSpotMulti(dec.toNumber() );
+        const m = gameMod.getSunSpotMulti( dec.toNumber() );
         ctx.fillText('new sunspots   : ' + utils.formatDecimal(dec, 4), sx, sy + yd * 4 );
         ctx.fillText('new multiplier   : ' + m.toFixed(4) + 'x', sx, sy + yd * 5 );
+        const ts = utils.formatDecimal(sm.game.mana_spent, 2)
+        ctx.fillText('total mana spent   : ' + ts, sx, sy + yd * 6 );
     },
     events: {
         pointerdown : (sm, pos, e, data) => {

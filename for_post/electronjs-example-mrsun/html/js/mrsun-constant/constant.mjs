@@ -29,7 +29,8 @@ constant.SUNSPOTS_WORLDVALUE_BASE_MAX = 10;
 constant.SUNSPOTS_WORLDVALUE_BASE_MIN = 1.0005;
 constant.SUNSPOTS_WORLDVALUE_MAXMANA = Math.pow(10, 10);
 constant.DEFAULT_CREATE_OPTIONS = {
-    mana: constant.MANA_START, 
+    mana: constant.MANA_START,
+    mana_spent: '0',
     mana_level: 1,
     sunspots: '0', 
     sectionData: constant.LANDS_START_SECTION_DATA

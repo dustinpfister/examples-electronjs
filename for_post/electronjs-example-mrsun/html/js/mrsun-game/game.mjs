@@ -67,6 +67,7 @@ const manaCredit = (game, mana_delta ) => {
 // debit game.mana
 const manaDebit = (game, mana_delta) => {
     game.mana = game.mana.sub( mana_delta );
+    game.mana_spent = game.mana_spent.add(mana_delta);
     //game.mana = game.mana.lt(0) ? new Decimal(0) : game.mana;
     // test for mana and mana per tick === 0
     if( game.mana_per_tick.eq(0) && game.mana.eq(0)){
@@ -109,6 +110,7 @@ gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     console.log('mana_delta: ' + utils.formatDecimal( mana_delta, 4) );
     console.log('game start date: ' + sm.game.start_date );
     console.log('game tick: ' + sm.game.tick );
+    console.log('mana_spent: ' + utils.formatDecimal( game.mana_spent , 4) );
     console.log('********** *********** **********');
 };
 
@@ -152,7 +154,6 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         manaCredit(game, mana_delta);
         // auto save check
         if(game.autosave_ticks > 0){
-            
             game.autosave_ticks -= tick_delta;
             game.autosave_ticks = game.autosave_ticks < 0 ? 0 : game.autosave_ticks;
             console.log('autosave ticks: ' + game.autosave_ticks);
@@ -192,6 +193,7 @@ gameMod.create = (opt) => {
        mana_level: opt.mana_level,
        mana_cap: 0,      // set by calling getManaCap Helper
        mana_per_tick: new Decimal(0),
+       mana_spent: new Decimal(opt.mana_spent),
        sunspots: new Decimal(opt.sunspots),
        sunspots_delta: new Decimal(0),
        sunspots_delta_mana_level: new Decimal(0),
@@ -346,6 +348,7 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
 gameMod.createSaveString = (game) => {
     const save = {};
     save.mana = game.mana.toString();
+    save.mana_spent = game.mana_spent.toString();
     save.mana_level = game.mana_level;
     save.sunspots = game.sunspots.toString();
     save.x = game.sun.position.x;
