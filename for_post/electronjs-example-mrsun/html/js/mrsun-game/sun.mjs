@@ -119,6 +119,11 @@ class Sun extends Sprite {
             this.position.x = this.center.x + Math.cos(a) * md;
             this.position.y = this.center.y + Math.sin(a) * md;
         }
+
+        if(this.getLengthAlpha() === 0){
+            this.position.x = this.center.x + 0.001;
+            console.log('length: ' + this.getLengthAlpha() );
+        }
     }
     getLength () {
         return this.position.clone().sub(this.center).length();

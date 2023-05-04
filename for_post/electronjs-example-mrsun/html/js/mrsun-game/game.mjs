@@ -213,8 +213,11 @@ gameMod.create = (opt) => {
     }
     // create sun object
     game.sun = new Sun();
-    game.sun.position.x = opt.x === undefined ? game.sun.center.x : opt.x;
-    game.sun.position.y = opt.y === undefined ? game.sun.center.y : opt.y;
+    const x = opt.x === undefined ? game.sun.center.x : opt.x;
+    const y = opt.y === undefined ? game.sun.center.y : opt.y;
+    const v2 = new Vector2(x, y);
+    game.sun.setPosByVector2(game.sun.center);
+
     // land objects
     game.lands = new Lands({
         sectionData: opt.sectionData
