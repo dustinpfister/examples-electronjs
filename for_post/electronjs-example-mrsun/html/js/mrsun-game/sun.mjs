@@ -101,6 +101,7 @@ class Sun extends Sprite {
         this.sheets.push(sheet2);
         this.cellIndices[0] = 0;
         this.cellIndices[1] = 0;
+        this.centerPos();
     }
     // step the base animation forward one cell
     stepBaseAnimation () {
@@ -119,10 +120,17 @@ class Sun extends Sprite {
             this.position.x = this.center.x + Math.cos(a) * md;
             this.position.y = this.center.y + Math.sin(a) * md;
         }
-
+        this.zeroLengthCheck();
+    }
+    // 'center' th sun
+    centerPos () {
+        this.position.copy(this.center);
+        this.zeroLengthCheck();
+    }
+    // check for zero vector unit length and if so set a direction
+    zeroLengthCheck () {
         if(this.getLengthAlpha() === 0){
             this.position.x = this.center.x + 0.001;
-            console.log('length: ' + this.getLengthAlpha() );
         }
     }
     getLength () {
@@ -134,16 +142,18 @@ class Sun extends Sprite {
     }
     // set just the vector unit length of the sun position by way of an alpha value
     setPosLength (alpha) {
-        const a2 = 0.00001 + 0.99999 * alpha
+        //const a2 = 0.00001 + 0.99999 * alpha
         const length_max = constant.SUNAREA_RADIUS - this.radius;
         const v = this.position.clone().sub(this.center);
-        v.setLength(length_max * a2);
+        v.setLength(length_max * alpha);
         this.position.copy(this.center).add(v);
+        this.zeroLengthCheck();
     }
     setPosDir (radian) {
         const v = this.position.clone().sub(this.center);
         v.applyRadian(radian);
         this.position.copy(this.center).add(v);
+        this.zeroLengthCheck();
     }
     stepLengthByIndex(index_delta, range){
         const a_lencurrent = this.getLengthAlpha();
@@ -152,14 +162,7 @@ class Sun extends Sprite {
         len_index = len_index > range ? range : len_index;
         len_index = len_index < 0 ? 0 : len_index;
         let alpha = len_index / range;
-
         this.setPosLength(alpha);
-
-        //if(alpha === 1){
-        //    this.setPosLength(1);
-        //}else{
-        //    this.setPosLength(0.00001 + 0.99999 * alpha);
-       // }
     }
     stepDirByIndex(index_delta = 0, grain = 1){
         const len = constant.LAND_OBJECT_COUNT * grain;

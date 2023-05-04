@@ -216,7 +216,7 @@ gameMod.create = (opt) => {
     const x = opt.x === undefined ? game.sun.center.x : opt.x;
     const y = opt.y === undefined ? game.sun.center.y : opt.y;
     const v2 = new Vector2(x, y);
-    game.sun.setPosByVector2(game.sun.center);
+    game.sun.setPosByVector2(v2);
 
     // land objects
     game.lands = new Lands({
