@@ -3,6 +3,11 @@
 
 <!-- PROTOTYPE -->
 
+## () - rx - total spent mana value
+* () have a total spent mana value as part of a game object
+* () use total spent mana value as the impact value for super nova cost reduction
+* () I will then want to make this total value part of a save state
+
 ## () - r84 - Vector2 object in place of sm.x, and sm.y
 * () have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
 * () update all code that makes use of sm.x, y to use sm.pointer
@@ -16,22 +21,37 @@
 * () log total tick count in away production message
 
 ## () - r82 - supernova start condition
-* () have a super nova unclock condition based on somehting like what I have here:
+* () start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
+* () I will then want to save the number of supernova events as part of the save state
+* () the impact value can then be world mana value for now
+
 ```js
-const getSuperNovaCost = (land_value, supernova_count ) => {
-    const max_start_cost = 10000 * Math.pow(2, 30);
-    let startcost = 10000 * Math.pow(2, supernova_count);
-    startcost = startcost > max_start_cost ? max_start_cost : startcost;
-    let a_reduction = land_value / startcost;
+const constant = {
+    SUPERNOVA_STARTCOST_BASE : 2,
+    SUPERNOVA_STARTCOST_MAXPOW: 40,
+    SUPERNOVA_STARTCOST_NUM: 10000
+};
+// get the start cost of a super nova event
+const get_supernova_startcost = (supernova_count) => {
+    const num = constant.SUPERNOVA_STARTCOST_NUM;
+    const base = constant.SUPERNOVA_STARTCOST_BASE;
+    const mp = constant.SUPERNOVA_STARTCOST_MAXPOW;
+    let pow = supernova_count < mp ? supernova_count : mp;
+    return num * Math.pow(base, pow);
+};
+// get the current supernova mana cost based on the count of supernova events,
+// and an impact mana value that will reduce the current start cost
+const get_supernova_cost = ( supernova_count, impact_value ) => {
+    const startcost = get_supernova_startcost(supernova_count)
+    let a_reduction = impact_value / startcost;
     a_reduction = ( a_reduction > 1 ? 1 : a_reduction);
     return {
         startcost: startcost,
-        max_start_cost: max_start_cost,
         a_reduction: a_reduction,
         cost : Math.floor(startcost * ( 1  - a_reduction) )
     };
 };
-getSuperNovaCost(0, 0);
+get_supernova_cost(0, 0);
 ```
 
 ## ( done 05/03/2023 ) - r81 - super nova state
