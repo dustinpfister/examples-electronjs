@@ -3,17 +3,17 @@
 
 <!-- PROTOTYPE -->
 
-## () - rx - total spent mana value
+## () - r86 - total spent mana value
 * () have a total spent mana value as part of a game object
 * () use total spent mana value as the impact value for super nova cost reduction
 * () I will then want to make this total value part of a save state
 
-## () - r84 - Vector2 object in place of sm.x, and sm.y
+## () - r85 - Vector2 object in place of sm.x, and sm.y
 * () have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
 * () update all code that makes use of sm.x, y to use sm.pointer
 * () remove sm.x, and sm.y
 
-## () - r83 - supernova start condition
+## () - r84 - supernova start condition
 * () start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
 * () I will then want to save the number of supernova events as part of the save state
 * () the impact value can then be world mana value for now
@@ -46,6 +46,10 @@ const get_supernova_cost = ( supernova_count, impact_value ) => {
 };
 get_supernova_cost(0, 0);
 ```
+
+## () - r83 - Center Sun, Non Zero Vector Unit Length
+* () Add a keyboard shortcut to center the sun
+* () Make it so that the sun never has a vector unit length of zero
 
 ## ( done 05/04/2023 ) - r82 - game ticks, and game.start_date as part of game save
 * (done) have a game.start\_date prop and make that part of the game save as well
