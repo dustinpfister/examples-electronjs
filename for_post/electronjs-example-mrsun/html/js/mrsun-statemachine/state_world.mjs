@@ -139,6 +139,9 @@ const state_world = {
                 if(key ==='ArrowDown'){
                     sun.stepLengthByIndex(-1, 10);
                 }
+                if(key.toLowerCase() ==='c'){
+                    sun.centerPos();
+                }
             }
         },
         onkeyfirst: (sm, key, down, e, data) => {},

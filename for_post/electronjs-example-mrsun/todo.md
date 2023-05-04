@@ -47,9 +47,9 @@ const get_supernova_cost = ( supernova_count, impact_value ) => {
 get_supernova_cost(0, 0);
 ```
 
-## () - r83 - Center Sun, Non Zero Vector Unit Length
+## ( done 05/04/2023 ) - r83 - Center Sun, Non Zero Vector Unit Length
 * (done) Make it so that the sun never has a vector unit length of zero
-* () Add a keyboard shortcut to center the sun
+* (done) Add a keyboard shortcut to center the sun
 
 ## ( done 05/04/2023 ) - r82 - game ticks, and game.start_date as part of game save
 * (done) have a game.start\_date prop and make that part of the game save as well
