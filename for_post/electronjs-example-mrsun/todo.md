@@ -47,13 +47,12 @@ const get_supernova_cost = ( supernova_count, impact_value ) => {
 get_supernova_cost(0, 0);
 ```
 
-## () - r82 - game ticks, and game.start_date as part of game save
+## ( done 05/04/2023 ) - r82 - game ticks, and game.start_date as part of game save
 * (done) have a game.start\_date prop and make that part of the game save as well
 * (done) log start date in away production message
-
-* () store game.tick as part of the save state
-* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
-* () log total tick count in away production message
+* (done) store game tick frac as part of the save state
+* (done) be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
+* (done) log total tick count in away production message
 
 ## ( done 05/03/2023 ) - r81 - super nova state
 * (done) start a whole new state for super nova

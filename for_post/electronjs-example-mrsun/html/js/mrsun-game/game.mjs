@@ -108,6 +108,7 @@ gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     console.log('ticks: ' + ticks);
     console.log('mana_delta: ' + utils.formatDecimal( mana_delta, 4) );
     console.log('game start date: ' + sm.game.start_date );
+    console.log('game tick: ' + sm.game.tick );
     console.log('********** *********** **********');
 };
 
@@ -196,14 +197,13 @@ gameMod.create = (opt) => {
        sunspots_delta_mana_level: new Decimal(0),
        sunspots_delta_world_value: new Decimal(0),
        sunspots_multi: 1,
-       tick_frac: 0,
+       tick_frac: opt.tick_frac === undefined ? 0 : opt.tick_frac,
        tick: 0,           // game should update by a main tick count
        tick_last: 0,      // last tick can be subtracted from tick to get a tick delta
        last_update: opt.last_update || new Date(),
        autosave_ticks: 0 // 1 or more ticks is the number of ticks to the next game save
     };
-
-console.log(utils.formatDecimal( game.sunspots ));
+    game.tick = Math.floor(game.tick_frac);
 
     // figure sunspots_multi once here in create
     game.sunspot_multi = gameMod.getSunSpotMulti( game.sunspots.toNumber() );
@@ -350,7 +350,7 @@ gameMod.createSaveString = (game) => {
     save.sectionData = game.lands.getSectionDataArray();
     save.last_update = game.last_update;
     save.start_date = game.start_date.toString();
-
+    save.tick_frac = game.tick_frac;
     const text_json = JSON.stringify(save);
     const text_lz = LZString.compressToBase64(text_json);
     return text_lz
