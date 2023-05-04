@@ -60,6 +60,12 @@
  GAME MODULE
 ---------- ---------->
 
+## () - rx - total game ticks
+* () have a grand total game ticks count that will not reset with a super nova event
+* () this will have to be part of the save
+* () display this total in supernova state
+* () display game start time in supernova state
+
 ## () - rx - level up game event
 * () have an event that will fire each time a level up happens
 * () in the event that the player jumps up a whole bunch of levels at once the event should fire for each level

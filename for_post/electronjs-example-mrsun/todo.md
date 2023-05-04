@@ -3,16 +3,10 @@
 
 <!-- PROTOTYPE -->
 
-## () - r87 - Vector2 object in place of sm.x, and sm.y
+## () - r86 - Vector2 object in place of sm.x, and sm.y
 * () have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
 * () update all code that makes use of sm.x, y to use sm.pointer
 * () remove sm.x, and sm.y
-
-## () - r86 - total game ticks
-* () have a grand total game ticks count that will not reset with a super nova event
-* () this will have to be part of the save
-* () display this total in supernova state
-* () display game start time in supernova state
 
 ## ( done 05/04/2023 ) - r85 - supernova start condition
 * (done) start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
