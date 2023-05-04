@@ -13,14 +13,7 @@
 * () update all code that makes use of sm.x, y to use sm.pointer
 * () remove sm.x, and sm.y
 
-## () - r83 - game ticks, and game.start_date as part of game save
-* () store game.tick as part of the save state
-* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
-* () have a game.start\_date prop and make that part of the game save as well
-* () log start date in away production message
-* () log total tick count in away production message
-
-## () - r82 - supernova start condition
+## () - r83 - supernova start condition
 * () start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
 * () I will then want to save the number of supernova events as part of the save state
 * () the impact value can then be world mana value for now
@@ -53,6 +46,14 @@ const get_supernova_cost = ( supernova_count, impact_value ) => {
 };
 get_supernova_cost(0, 0);
 ```
+
+## () - r82 - game ticks, and game.start_date as part of game save
+* (done) have a game.start\_date prop and make that part of the game save as well
+* (done) log start date in away production message
+
+* () store game.tick as part of the save state
+* () be sure to set both game.tick and game.tick\_frac to opt.tick in gameMod.create
+* () log total tick count in away production message
 
 ## ( done 05/03/2023 ) - r81 - super nova state
 * (done) start a whole new state for super nova

@@ -50,9 +50,16 @@ const state_supernova = {
             });
             // was supernova button clicked?
             utils.button_check(data, 'button_newgame', pos, () => {
-                console.log('supernova!');
                 const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
-                sm.game = gameMod.create({ platform: sm.platform, sunspots: sp.toString() });
+                const start_date = sm.game.start_date;
+                sm.game = gameMod.create({ 
+                    platform: sm.platform, 
+                    sunspots: sp.toString(),
+                    start_date: start_date
+                });
+                console.log('starting a new game with: ');
+                console.log( sm.game.sunspots );
+                console.log( sm.game.start_date );
                 sm.setState('world', {});
             });
         }

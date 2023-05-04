@@ -107,6 +107,7 @@ gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     console.log('ticks_per_sec: ' + ticks_per_sec);
     console.log('ticks: ' + ticks);
     console.log('mana_delta: ' + utils.formatDecimal( mana_delta, 4) );
+    console.log('game start date: ' + sm.game.start_date );
     console.log('********** *********** **********');
 };
 
@@ -184,6 +185,7 @@ gameMod.create = (opt) => {
     opt = opt || {};
     opt = Object.assign({}, constant.DEFAULT_CREATE_OPTIONS, opt);
     const game = {
+       start_date: opt.start_date || new Date(),
        platform: opt.platform || null,  // MUST GIVE A PLATFORM FOR gameMod.saveGame to work
        mana: new Decimal(opt.mana),
        mana_level: opt.mana_level,
@@ -347,6 +349,8 @@ gameMod.createSaveString = (game) => {
     save.y = game.sun.position.y;
     save.sectionData = game.lands.getSectionDataArray();
     save.last_update = game.last_update;
+    save.start_date = game.start_date.toString();
+
     const text_json = JSON.stringify(save);
     const text_lz = LZString.compressToBase64(text_json);
     return text_lz
