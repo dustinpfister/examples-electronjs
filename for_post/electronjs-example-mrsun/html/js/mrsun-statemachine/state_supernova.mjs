@@ -26,6 +26,9 @@ const state_supernova = {
        gameMod.updateByTickDelta(sm.game, sm.ticksPerSec * secs, false);
     },
     render: (sm, ctx, canvas, data) => {
+        // super nova cost object
+        const snc = gameMod.getSupernovaCost(sm.game);
+        // background
         render_background(sm, ctx, canvas, data);
         utils.drawButton(sm, data.button_back, sm.ctx, sm.canvas);
         utils.drawButton(sm, data.button_newgame, sm.ctx, sm.canvas);
@@ -44,6 +47,9 @@ const state_supernova = {
         const ts = utils.formatDecimal(sm.game.mana_spent, 2)
         ctx.fillText('total mana spent   : ' + ts, sx, sy + yd * 6 );
         ctx.fillText('supernova count   : ' + sm.game.supernova_count, sx, sy + yd * 7 );
+        ctx.fillText('supernova cost   : ' + utils.formatDecimal(snc.cost_dec, 2), sx, sy + yd * 8 );
+
+
     },
     events: {
         pointerdown : (sm, pos, e, data) => {
@@ -53,18 +59,23 @@ const state_supernova = {
             });
             // was supernova button clicked?
             utils.button_check(data, 'button_newgame', pos, () => {
-                const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
-                const start_date = sm.game.start_date;
-                sm.game = gameMod.create({ 
-                    platform: sm.platform,
-                    supernova_count: parseInt(sm.game.supernova_count) + 1,
-                    sunspots: sp.toString(),
-                    start_date: start_date
-                });
-                console.log('starting a new game with: ');
-                console.log( sm.game.sunspots );
-                console.log( sm.game.start_date );
-                sm.setState('world', {});
+                const snc = gameMod.getSupernovaCost(sm.game);
+                if( sm.game.mana.gte( snc.cost_dec ) ){
+                    const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
+                    const start_date = sm.game.start_date;
+                    sm.game = gameMod.create({ 
+                        platform: sm.platform,
+                        supernova_count: parseInt(sm.game.supernova_count) + 1,
+                        sunspots: sp.toString(),
+                        start_date: start_date
+                    });
+                    console.log('starting a new game with: ');
+                    console.log( sm.game.sunspots );
+                    console.log( sm.game.start_date );
+                    sm.setState('world', {});
+                }else{
+                    console.log('not enough mana!');
+                }
             });
         }
     }

@@ -106,18 +106,21 @@ const getSupernovaStartcost = (supernova_count) => {
 };
 // get the current supernova mana cost based on the count of supernova events,
 // and an impact mana value that will reduce the current start cost
-gameMod.getSupernovaCost = ( supernova_count, impact_value ) => {
+//gameMod.getSupernovaCost = ( supernova_count, impact_value ) => {
+gameMod.getSupernovaCost = ( game ) => {
+    const supernova_count = game.supernova_count;
+    const impact_value = game.mana_spent.toNumber();
     const startcost = getSupernovaStartcost(supernova_count)
     let a_reduction = impact_value / startcost;
     a_reduction = ( a_reduction > 1 ? 1 : a_reduction);
+    const cost_dec = new Decimal( Math.floor(startcost * ( 1  - a_reduction) ) );
     return {
         startcost: startcost,
         a_reduction: a_reduction,
-        cost : Math.floor(startcost * ( 1  - a_reduction) )
+        cost : cost_dec.toNumber(),
+        cost_dec: cost_dec
     };
 };
-
-
 // check how much time has passed and credit any away production
 gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     const now = new Date();

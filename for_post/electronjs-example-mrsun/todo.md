@@ -14,43 +14,11 @@
 * () display this total in supernova state
 * () display game start time in supernova state
 
-## () - r85 - supernova start condition
+## ( done 05/04/2023 ) - r85 - supernova start condition
 * (done) start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
 * (done) I will then want to save the number of supernova events as part of the save state
 * (done) display this supernova count in the supernova state
-
-* () the impact value can then be world mana value for now
-* () use total spent mana value as the impact value for super nova cost reduction
-
-
-```js
-const constant = {
-    SUPERNOVA_STARTCOST_BASE : 2,
-    SUPERNOVA_STARTCOST_MAXPOW: 40,
-    SUPERNOVA_STARTCOST_NUM: 10000
-};
-// get the start cost of a super nova event
-const get_supernova_startcost = (supernova_count) => {
-    const num = constant.SUPERNOVA_STARTCOST_NUM;
-    const base = constant.SUPERNOVA_STARTCOST_BASE;
-    const mp = constant.SUPERNOVA_STARTCOST_MAXPOW;
-    let pow = supernova_count < mp ? supernova_count : mp;
-    return num * Math.pow(base, pow);
-};
-// get the current supernova mana cost based on the count of supernova events,
-// and an impact mana value that will reduce the current start cost
-const get_supernova_cost = ( supernova_count, impact_value ) => {
-    const startcost = get_supernova_startcost(supernova_count)
-    let a_reduction = impact_value / startcost;
-    a_reduction = ( a_reduction > 1 ? 1 : a_reduction);
-    return {
-        startcost: startcost,
-        a_reduction: a_reduction,
-        cost : Math.floor(startcost * ( 1  - a_reduction) )
-    };
-};
-get_supernova_cost(0, 0);
-```
+* (done) the impact value can then be the mana spent value
 
 ## ( done 05/04/2023 ) - r84 - Total spent mana value
 * (done) have a total spent mana value as part of a game object
