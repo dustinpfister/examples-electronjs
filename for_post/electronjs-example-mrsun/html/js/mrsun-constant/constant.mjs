@@ -32,6 +32,7 @@ constant.DEFAULT_CREATE_OPTIONS = {
     mana: constant.MANA_START,
     mana_spent: '0',
     mana_level: 1,
+    supernova_count: 0,
     sunspots: '0', 
     sectionData: constant.LANDS_START_SECTION_DATA
 };
@@ -40,6 +41,12 @@ constant.DECIMAL_OPTIONS = {
     maxE: 100,
     minE: -100
 };
+//-------- ----------
+// SUPERNOVA
+//-------- ----------
+constant.SUPERNOVA_STARTCOST_BASE = 2;
+constant.SUPERNOVA_STARTCOST_MAXPOW = 40;
+constant.SUPERNOVA_STARTCOST_NUM = 10000;
 //-------- ----------
 // BLOCK TYPES
 //-------- ----------

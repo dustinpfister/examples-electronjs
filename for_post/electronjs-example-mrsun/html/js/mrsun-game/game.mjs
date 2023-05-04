@@ -94,6 +94,30 @@ const getSunspotWorldValueBase = (world_mana_value) => {
 //-------- ----------
 // PUBLIC API
 //-------- ----------
+
+
+// get the start cost of a super nova event
+const getSupernovaStartcost = (supernova_count) => {
+    const num = constant.SUPERNOVA_STARTCOST_NUM;
+    const base = constant.SUPERNOVA_STARTCOST_BASE;
+    const mp = constant.SUPERNOVA_STARTCOST_MAXPOW;
+    let pow = supernova_count < mp ? supernova_count : mp;
+    return num * Math.pow(base, pow);
+};
+// get the current supernova mana cost based on the count of supernova events,
+// and an impact mana value that will reduce the current start cost
+gameMod.getSupernovaCost = ( supernova_count, impact_value ) => {
+    const startcost = getSupernovaStartcost(supernova_count)
+    let a_reduction = impact_value / startcost;
+    a_reduction = ( a_reduction > 1 ? 1 : a_reduction);
+    return {
+        startcost: startcost,
+        a_reduction: a_reduction,
+        cost : Math.floor(startcost * ( 1  - a_reduction) )
+    };
+};
+
+
 // check how much time has passed and credit any away production
 gameMod.awayCheck = (game, ticks_per_sec = 1) => {
     const now = new Date();
@@ -194,6 +218,7 @@ gameMod.create = (opt) => {
        mana_cap: 0,      // set by calling getManaCap Helper
        mana_per_tick: new Decimal(0),
        mana_spent: new Decimal(opt.mana_spent),
+       supernova_count: parseInt( opt.supernova_count ),
        sunspots: new Decimal(opt.sunspots),
        sunspots_delta: new Decimal(0),
        sunspots_delta_mana_level: new Decimal(0),
@@ -350,6 +375,7 @@ gameMod.createSaveString = (game) => {
     save.mana = game.mana.toString();
     save.mana_spent = game.mana_spent.toString();
     save.mana_level = game.mana_level;
+    save.supernova_count = game.supernova_count;
     save.sunspots = game.sunspots.toString();
     save.x = game.sun.position.x;
     save.y = game.sun.position.y;

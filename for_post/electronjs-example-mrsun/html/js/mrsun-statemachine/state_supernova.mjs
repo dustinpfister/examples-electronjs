@@ -43,6 +43,7 @@ const state_supernova = {
         ctx.fillText('new multiplier   : ' + m.toFixed(4) + 'x', sx, sy + yd * 5 );
         const ts = utils.formatDecimal(sm.game.mana_spent, 2)
         ctx.fillText('total mana spent   : ' + ts, sx, sy + yd * 6 );
+        ctx.fillText('supernova count   : ' + sm.game.supernova_count, sx, sy + yd * 7 );
     },
     events: {
         pointerdown : (sm, pos, e, data) => {
@@ -55,7 +56,8 @@ const state_supernova = {
                 const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
                 const start_date = sm.game.start_date;
                 sm.game = gameMod.create({ 
-                    platform: sm.platform, 
+                    platform: sm.platform,
+                    supernova_count: parseInt(sm.game.supernova_count) + 1,
                     sunspots: sp.toString(),
                     start_date: start_date
                 });
