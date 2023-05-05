@@ -3,15 +3,40 @@
 <!-- Plans for 'MrSun idle' -->
 
 <!-------- ----------
- SUNSPOTS
+ MRSUN-GAME
 ---------- ---------->
 
-## () - rx - sunspot upgrades
+## () - rx - sunspot upgrades state object
 * () start a sunspot upgrades menu
 * () the first upgrade can be something that lowers the base use to figure sunspots delta world value
 
+## () - rx - total game ticks
+* () have a grand total game ticks count that will not reset with a super nova event
+* () this will have to be part of the save
+* () display this total in supernova state
+* () display game start time in supernova state
+
+## () - rx - level up game event
+* () have an event that will fire each time a level up happens
+* () in the event that the player jumps up a whole bunch of levels at once the event should fire for each level
+
+## () - rx - Water level, water block type
+* () can set a water level such as 1 block so that any column that is 0 rocks will have a water block
+
+## () - rx - Slot Class, Disabled Slot feature 
+* () a slot object will have a disabled property which means that it can not be used at all
+
 <!-------- ----------
- UI
+ MRSUN-UTILS/utils.js
+---------- ---------->
+
+## () - rx - utils format decimal, percision
+* () it looks like there are still some problems with this method that require further testing
+* () I think that I should have percision and dp arguments for this funciton
+* () the percision value should be used
+
+<!-------- ----------
+ MRSUN-STATEMACHINE
 ---------- ---------->
 
 ## () - rx - State switcher UI
@@ -56,25 +81,7 @@
 * () have a onTransitionOut type hook
 * () have a renderTransition method that will be used in place for render when transitions are active
 
-<!-------- ----------
- GAME MODULE
----------- ---------->
 
-## () - rx - total game ticks
-* () have a grand total game ticks count that will not reset with a super nova event
-* () this will have to be part of the save
-* () display this total in supernova state
-* () display game start time in supernova state
-
-## () - rx - level up game event
-* () have an event that will fire each time a level up happens
-* () in the event that the player jumps up a whole bunch of levels at once the event should fire for each level
-
-## () - rx - Water level, water block type
-* () can set a water level such as 1 block so that any column that is 0 rocks will have a water block
-
-## () - rx - Slot Class, Disabled Slot feature 
-* () a slot object will have a disabled property which means that it can not be used at all
 
 <!-------- ----------
  OBJECT2D class
