@@ -36,14 +36,12 @@ const getPointerPos = (e) => {
     return pos
 };
 const commonPointerAction = (sm, type, e) => {
-    const pos = getPointerPos(e);
-    sm.x = pos.x;
-    sm.y = pos.y;
+    sm.position = getPointerPos(e);
     if(sm.currentState){
         const events = sm.currentState.events;
         if(events){
             if(events[type]){
-                events[type](sm, pos, e, sm.currentState.data);
+                events[type](sm, sm.position, e, sm.currentState.data);
             }
         }
     }
@@ -102,7 +100,7 @@ StateMachine.create = (opt_create) => {
         states: {},
         fps_target: 12,
         now: null,
-        x:0, y:0,
+        pointer: new Vector2(0, 0),
         keydown: false,
         key: '',
         landIndex: 0,

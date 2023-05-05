@@ -24,14 +24,11 @@ const gameMod = {};
 const GAME_EVENTS = new EventDispatcher();
 // The mana_total_zero event will fire if a player has 0 mana and 0 mana per tick income
 GAME_EVENTS.addEventListener('mana_total_zero', (evnt) => {
-    console.log('Mana Total Zero Event! adding ' + constant.MANA_START + ' mana for ya.');
     evnt.game.mana = evnt.game.mana.add(constant.MANA_START);
 });
 // autosave delay event
 GAME_EVENTS.addEventListener('autosave_delay', (evnt) => {
     evnt.game.autosave_ticks = 3;
-    console.log('autosave delya set to: ' + evnt.game.autosave_ticks + ' ticks');
-    
 });
 //-------- ----------
 // HELPERS
@@ -183,9 +180,7 @@ gameMod.updateByTickDelta = (game, tickDelta, force) => {
         if(game.autosave_ticks > 0){
             game.autosave_ticks -= tick_delta;
             game.autosave_ticks = game.autosave_ticks < 0 ? 0 : game.autosave_ticks;
-            console.log('autosave ticks: ' + game.autosave_ticks);
             if(game.autosave_ticks === 0){
-                console.log('saving the game.');
                 gameMod.saveGame(game);
             }
         }

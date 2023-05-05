@@ -116,16 +116,12 @@ const state_world = {
             }
             // was supernova button clicked?
             utils.button_check(data, 'button_supernova', pos, () => {
-                console.log('supernova!');
                 sm.setState('supernova', {});
-                //const sp = sm.game.sunspots.add(sm.game.sunspots_delta);
-                //sm.game = gameMod.create({ platform: sm.platform, sunspots: sp.toString() });
             });
         },
         onkey: (sm, key, down, e, data) => {
             const sun = sm.game.sun;
             if(down){
-                console.log('key :' + key + ' ' + down);
                 const a_lencurrent = sun.getLengthAlpha();
                 if(key ==='ArrowRight'){
                     sun.stepDirByIndex(1, 1);

@@ -3,10 +3,11 @@
 
 <!-- PROTOTYPE -->
 
-## () - r86 - Vector2 object in place of sm.x, and sm.y
-* () have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
-* () update all code that makes use of sm.x, y to use sm.pointer
-* () remove sm.x, and sm.y
+## ( done 05/04/2023 ) - r86 - Vector2 object in place of sm.x, and sm.y
+* (done) have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
+* (done) update all code that makes use of sm.x, y to use sm.pointer
+* (done) remove sm.x, and sm.y
+* (done) remove old console.logs that are not needed
 
 ## ( done 05/04/2023 ) - r85 - supernova start condition
 * (done) start a super nova unclock condition based on a mana impact value and number of times a supernova event happened
