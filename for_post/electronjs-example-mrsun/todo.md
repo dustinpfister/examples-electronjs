@@ -3,6 +3,9 @@
 
 <!-- PROTOTYPE -->
 
+## () - r87 - canvas module revist
+* () I should start to make use of the built in draw feature that uses lzString to compess image data
+
 ## ( done 05/04/2023 ) - r86 - Vector2 object in place of sm.x, and sm.y
 * (done) have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
 * (done) update all code that makes use of sm.x, y to use sm.pointer
