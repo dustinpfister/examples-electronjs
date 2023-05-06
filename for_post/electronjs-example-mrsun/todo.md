@@ -3,8 +3,11 @@
 
 <!-- PROTOTYPE -->
 
-## () - r88 - canvas module revist
+## () - rx - canvas module revist
 * () I should start to make use of the built in draw feature that uses lzString to compess image data
+
+## () - rx - fix high grid click bug 
+* () there is an error when clicking high in the grid
 
 ## ( done 05/06/2023 ) - r87 - block value subtracted from game.mana\_spent
 * (done) subtract block mana value from game.mana\_spent when a block is absorbed
