@@ -9,7 +9,7 @@
 ## ( done 05/06/2023 ) - r87 - block value subtracted from game.mana\_spent
 * (done) subtract block mana value from game.mana\_spent when a block is absorbed
 
-## ( done 05/04/2023 ) - r86 - Vector2 object in place of sm.x, and sm.y
+## ( done 05/05/2023 ) - r86 - Vector2 object in place of sm.x, and sm.y
 * (done) have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
 * (done) update all code that makes use of sm.x, y to use sm.pointer
 * (done) remove sm.x, and sm.y
