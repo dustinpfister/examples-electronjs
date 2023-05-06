@@ -360,7 +360,10 @@ gameMod.absorbBlock = (game, i_section, i_slot) => {
         return;
     }
     if(block.type != 'blank'){
-        manaCredit(game, block.mana_value.valueOf());
+        const value = block.mana_value.valueOf();
+        manaCredit(game, value );
+        // this kind of action will deduct from mana_spent
+        game.mana_spent = game.mana_spent.sub( value );
         block.clear();
         section.dropDownBlocks(slot);
         game.lands.setBlockTypeCounts();

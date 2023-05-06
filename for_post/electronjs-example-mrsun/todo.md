@@ -3,8 +3,11 @@
 
 <!-- PROTOTYPE -->
 
-## () - r87 - canvas module revist
+## () - r88 - canvas module revist
 * () I should start to make use of the built in draw feature that uses lzString to compess image data
+
+## ( done 05/06/2023 ) - r87 - block value subtracted from game.mana\_spent
+* (done) subtract block mana value from game.mana\_spent when a block is absorbed
 
 ## ( done 05/04/2023 ) - r86 - Vector2 object in place of sm.x, and sm.y
 * (done) have a vector2 object as sm.pointer that will have the same values as sm.x, and sm.y
