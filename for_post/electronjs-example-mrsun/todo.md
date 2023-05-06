@@ -10,7 +10,8 @@
 * () One way or another I need to display upgrade costs
 * () I should just display what the cost is on a block by block basis
 
-## () - r88 - fix high grid click bug 
+## () - r88 - fix high grid click bug
+* (done) temp fix in place where I log the position and return out when there is no slot object
 * () there is an error when clicking high in the grid
 
 ## ( done 05/06/2023 ) - r87 - block value subtracted from game.mana\_spent

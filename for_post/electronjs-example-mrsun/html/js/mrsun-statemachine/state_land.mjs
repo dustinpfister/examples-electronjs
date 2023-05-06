@@ -143,6 +143,12 @@ const state_land = {
                     const by = Math.floor( ( pos.y - sy - 0.01) / data.block_height );
                     const i = by * constant.SLOT_GRID_WIDTH + bx;
                     const slot = section.slots[i];
+                    // no slot!?
+                    if(!slot){
+                        console.log('no slot at this location.');
+                        console.log(bx, by);
+                        return;
+                    }
                     const block = slot.block;
                     // action will differ based on block mode
                     if(data.block_mode === 'unlock'){
