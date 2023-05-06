@@ -6,7 +6,11 @@
 ## () - rx - canvas module revist
 * () I should start to make use of the built in draw feature that uses lzString to compess image data
 
-## () - rx - fix high grid click bug 
+## () - r89 - display upgrade costs
+* () One way or another I need to display upgrade costs
+* () I should just display what the cost is on a block by block basis
+
+## () - r88 - fix high grid click bug 
 * () there is an error when clicking high in the grid
 
 ## ( done 05/06/2023 ) - r87 - block value subtracted from game.mana\_spent
