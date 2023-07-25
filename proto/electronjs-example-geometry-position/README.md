@@ -1,0 +1,3 @@
+# electionjs-example-geometry-position
+
+What I want to at least start here is an electionjs project where I can create buffer geometry objects to be used in threejs projects. The first and foremost thing with this is to just work out a position attribute, so then this project will do just that, and that alone as the whole thing will be to involved. If this project does work out okay there is starting to take the next steps with this, but less is very much more, and I do not care at all to create something to complex for this.
