@@ -5,7 +5,9 @@
 * () I would also like to see about getting orbit controls to work with this
 
 ## () - User Input
-* () I am going to want to interface with the iframe so lets see if user input works this way
+* (done) I am going to want to interface with the iframe so lets see if user input works this way
+* (done) use a canvas element
+* () see about loosing the scroll bars
 
 <!-- DONE -->
 
