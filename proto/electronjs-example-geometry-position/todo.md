@@ -1,7 +1,7 @@
 # hello-world todo list
 
 ## () - JSON output text area
-* () I will want textaera that will be the current JSON of the geometry
+* () I will want textarea that will be the current JSON of the geometry
 * () let the JSON be in object form rather than buffer geometry
 
 ## () - cursor position
