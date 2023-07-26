@@ -10,9 +10,10 @@
 * () can use the cursor to get a point in the current geometry
 
 ## () - three.module.js, orbit controls, view scene object
-* () lets start with r152 of threejs as part of the client system
+* (done) lets start with r152 of threejs as part of the client system
+* (done) view will need to store the current state of a scene object
+* () I will then want an update loop for this
 * () I would also like to see about getting orbit controls to work with this
-* () view will need to store the current state of a scene object
 * () I will want a single points object as a child of the scene object
 
 <!-- DONE -->

@@ -23,6 +23,7 @@ renderer.setSize(canvas.width, canvas.height, false);
 // ---------- ----------
 const state = window.state = {
     scene: scene,
+    orbit: new OrbitControls(camera, renderer.domElement),
     x: 0, y: 0
 };
 
@@ -41,8 +42,15 @@ camera.position.set( 5, 5, 5 );
 camera.lookAt( 0, 0, 0 );
 draw();
 
+const loop = function(){
+    requestAnimationFrame(loop);
+state.orbit.update();
+    draw();
+};
+loop();
+
+
 canvas.addEventListener('pointerdown', (e) => {
     state.x = e.clientX;
     state.y = e.clientY;
-    draw();
 })
