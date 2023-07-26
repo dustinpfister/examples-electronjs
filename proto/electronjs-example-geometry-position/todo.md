@@ -4,19 +4,23 @@
 * () I will want textarea that will be the current JSON of the geometry
 * () let the JSON be in object form rather than buffer geometry
 
+## () - Object
+* () I will want a single points object as a child of the scene object
+
 ## () - cursor position
 * () view will need to store a cursor position
 * () I will need ways to more the cursor position
 * () can use the cursor to get a point in the current geometry
 
-## () - three.module.js, orbit controls, view scene object
-* (done) lets start with r152 of threejs as part of the client system
-* (done) view will need to store the current state of a scene object
-* () I will then want an update loop for this
-* () I would also like to see about getting orbit controls to work with this
-* () I will want a single points object as a child of the scene object
+
 
 <!-- DONE -->
+
+## ( done 07/26/2023 ) - three.module.js, orbit controls, view scene object
+* (done) lets start with r152 of threejs as part of the client system
+* (done) view will need to store the current state of a scene object
+* (done) I will then want an update loop for this
+* (done) I would also like to see about getting orbit controls to work with this
 
 ## ( done 07/25/2023 ) - more than one iframe
 * (done) I am going to want more that one iframe

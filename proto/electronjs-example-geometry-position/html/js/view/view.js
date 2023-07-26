@@ -23,7 +23,7 @@ renderer.setSize(canvas.width, canvas.height, false);
 // ---------- ----------
 const state = window.state = {
     scene: scene,
-    orbit: new OrbitControls(camera, renderer.domElement),
+    orbit: new OrbitControls(camera, canvas),
     x: 0, y: 0
 };
 
