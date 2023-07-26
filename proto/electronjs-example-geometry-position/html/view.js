@@ -5,11 +5,11 @@ canvas.height = 240;
 const ctx = canvas.getContext('2d');
 document.body.appendChild(canvas);
 
-const state = {
+const state = window.state = {
     x: -1, y: -1
 };
 
-const draw = () => {
+const draw = state.draw = () => {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'white';

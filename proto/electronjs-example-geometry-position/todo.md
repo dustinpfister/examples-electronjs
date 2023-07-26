@@ -1,14 +1,25 @@
 # hello-world todo list
 
-## () - add three.module.js
+## () - JSON output text area
+* () I will want textaera that will be the current JSON of the geometry
+* () let the JSON be in object form rather than buffer geometry
+
+## () - cursor position
+* () view will need to store a cursor position
+* () I will need ways to more the cursor position
+* () can use the cursor to get a point in the current geometry
+
+## () - three.module.js, orbit controls, view scene object
 * () lets start with r152 of threejs as part of the client system
 * () I would also like to see about getting orbit controls to work with this
-
-## () - more than one iframe
-* () I am going to want more that one iframe
-* () is there a way to have a main module and then share state between states in each iframe
+* () view will need to store the current state of a scene object
+* () I will want a single points object as a child of the scene object
 
 <!-- DONE -->
+
+## ( done 07/25/2023 ) - more than one iframe
+* (done) I am going to want more that one iframe
+* (done) check to make sure content window can be used to get and set states
 
 ## ( done 07/25/2023 ) - User Input
 * (done) I am going to want to interface with the iframe so lets see if user input works this way
