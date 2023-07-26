@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <!-- !!! I have to use 'unsafe-inline', or whatever might be better in order to use importmap scripts... -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
     <title> Geometry View </title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-       <script type="module" src="js/view.js" ></script>
+        <script type="importmap">
+{
+    "imports": {
+        "three": "./js/threejs/three.module.js",
+        "OrbitControls": "./js/threejs/controls/OrbitControls.js"
+    }
+}
+        </script>
+        <script type="module" src="js/view/view.js" ></script>
+
   </body>
 </html>
