@@ -3,38 +3,50 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!-- !!! I have to use 'unsafe-inline', or whatever might be better in order to use importmap scripts... -->
+    <!-- !!! I had to drop kick CSP to the curb with this -->
     <title>Buffer Geometry Position Editor </title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <div id="wrap_main">
+    <div class="wrap_main" >
+
+        <div class="slot" >
+
+            <div draggable="true" class="component" >
+                <iframe id="frame_view"
+                    title="Inline Frame Example"
+                    width="320"
+                    height="240"
+                    scrolling="no"
+                    src="view.html"
+                ></iframe>
+            </div>
+
+        </div>
+
+        <div class="slot" >
+
+            <div draggable="true" class="component" >
+                <textarea id="text_json"
+                    class="text_json"
+                    wrap="off"
+                ></textarea>
+            </div>
+
+        </div>
 
         <script type="importmap">
-{
-    "imports": {
-        "three": "./js/threejs/three.module.js",
-        "OrbitControls": "./js/threejs/controls/OrbitControls.js"
-    }
-}
+            {
+                "imports": {
+                    "three": "./js/threejs/three.module.js",
+                    "OrbitControls": "./js/threejs/controls/OrbitControls.js"
+                }
+            }
         </script>
-
-
-       <iframe id="frame_view"
-           title="Inline Frame Example"
-           width="320"
-           height="240"
-           scrolling="no"
-           src="view.html"
-        ></iframe>
-
-        <textarea id="text_json"
-            class="text_json"
-            wrap="off"
-        ></textarea>
-
         <script type="module" src="js/client/client.js" ></script>
+
     </div>
+
   </body>
 </html>

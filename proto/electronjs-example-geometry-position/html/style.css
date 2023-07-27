@@ -1,12 +1,36 @@
-body{
+body {
   background: #afafaf;
   color: #2a2a2a;
   margin: 0px;
   padding: 0px;
 }
 
-.text_json{
-  width:320px;
-  height:240px;
-  resize: none;
+.wrap_main {
+  position: absolute;
+  width:  100%;
+  height: 100%;
+  background: cyan;
+}
+
+.slot {
+  position: relative;
+  width: 95%;
+  height: 45%;
+}
+
+.component {
+  position: absolute;
+  padding-top: 10px;
+  background:  lime;
+  width:       100%;
+  height:      100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.text_json {
+  width:   100%;
+  height:  100%;
+  resize:  none;
 }
