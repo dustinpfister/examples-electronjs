@@ -80,7 +80,6 @@ const setup = () => {
     state.camera.position.set( 5, 5, 5 );
     state.camera.lookAt( 0, 0, 0 );
     // child objects
-
     const material = new THREE.MeshNormalMaterial({ wireframe: true });
     //const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
     const geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -98,17 +97,12 @@ text_json.addEventListener('input', (e) => {
     state.user_input = true;
 });
 text_json.addEventListener('blur', (e) => {
-    console.log(  );
     const str_json = e.target.value;
     const obj = JSON.parse( str_json );
     const obj3d = new THREE.ObjectLoader().parse(obj);
-
-    // remove all children from state.scene
-
+    //!!! just doing this is not going to work
     state.scene = obj3d;
-
     state.user_input = false;
-
 });
 // ---------- ----------
 // MAIN APP LOOP

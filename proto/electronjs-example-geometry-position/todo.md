@@ -5,11 +5,17 @@
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
-## () drag, drop, resize
-* (done) 'component' and 'slot' class divs
-* (done) added an onload event in view.js as a start for trying to fix a bug with getting the canvas
+## () - better parsing of JSON
+* () remove all children from state.scene
+* () create new grid helper
+* () add children from json object to state.scene
 
 <!-- DONE -->
+
+## ( done 07/27/2023 ) - start drag of elements, state machine
+* (done) 'component' and 'slot' class divs
+* (done) added an onload event in view.js as a start for trying to fix a bug with getting the canvas
+* (done) started a state machine in client.js
 
 ## ( done 07/27/2023 ) - JSON data Edit
 * (done) see about having a way to parse JSON Text edits to update the Object
