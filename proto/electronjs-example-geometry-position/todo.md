@@ -1,14 +1,16 @@
 # hello-world todo list
 
-## () - JSON data Edit
-* () see about having a way to parse JSON Text edits to update the Object
-
 ## () - cursor
 * () view will need to store a cursor position
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
+
+
 <!-- DONE -->
+
+## ( done 07/27/2023 ) - JSON data Edit
+* (done) see about having a way to parse JSON Text edits to update the Object
 
 ## ( done 07/27/2023 ) - JSON output text area
 * (done) main app loop in client.js for now

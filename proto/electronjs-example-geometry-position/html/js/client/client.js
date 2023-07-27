@@ -24,19 +24,20 @@ renderer.setSize(canvas.width, canvas.height, false);
 // SCENE CHILD OBJECTS
 // ---------- ----------
 scene.add( new THREE.GridHelper(10, 10) );
-const material = new THREE.PointsMaterial();
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const points = new THREE.Points( geometry, material );
+const material = new THREE.MeshBasicMaterial();
+const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
+const points = new THREE.Mesh( geometry, material );
 scene.add(points);
 // ---------- ----------
 // MAIN STATE OBJECT
 // ---------- ----------
 const state = window.state = {
     scene: scene,
+    object: points,
+    user_input: false,
     orbit: new OrbitControls(camera, canvas),
     x: 0, y: 0
 };
-
 // ---------- ----------
 // HELPERS
 // ---------- ----------
@@ -59,7 +60,20 @@ const updateJSON = () => {
 canvas.addEventListener('pointerdown', (e) => {
     state.x = e.clientX;
     state.y = e.clientY;
-    updateJSON();
+    if(!state.user_input){
+        updateJSON();
+    }
+});
+text_json.addEventListener('input', (e) => {
+    state.user_input = true;
+});
+text_json.addEventListener('blur', (e) => {
+    console.log(  );
+    const str_json = e.target.value;
+    const obj = JSON.parse( str_json );
+    const obj3d = new THREE.ObjectLoader().parse(obj);
+    state.object.copy(obj3d);
+    state.user_input = false;
 });
 // ---------- ----------
 // MAIN APP LOOP
