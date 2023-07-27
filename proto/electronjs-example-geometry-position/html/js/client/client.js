@@ -36,16 +36,11 @@ const state = window.state = {
     orbit: new OrbitControls(camera, canvas),
     x: 0, y: 0
 };
+
 // ---------- ----------
-// EVENTS
+// HELPERS
 // ---------- ----------
-canvas.addEventListener('pointerdown', (e) => {
-    state.x = e.clientX;
-    state.y = e.clientY;
-});
-// ---------- ----------
-// DRAW
-// ---------- ----------
+// draw to the view canvas
 const draw = state.draw = () => {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -54,12 +49,25 @@ const draw = state.draw = () => {
     ctx.fillStyle = 'white';
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
+// update json text
+const updateJSON = () => {
+    text_json.value = JSON.stringify( points.toJSON(), null, 4 );
+};
+// ---------- ----------
+// EVENTS
+// ---------- ----------
+canvas.addEventListener('pointerdown', (e) => {
+    state.x = e.clientX;
+    state.y = e.clientY;
+    updateJSON();
+});
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
 camera.position.set( 5, 5, 5 );
 camera.lookAt( 0, 0, 0 );
 draw();
+updateJSON();
 const loop = function(){
     requestAnimationFrame(loop);
     state.orbit.update();

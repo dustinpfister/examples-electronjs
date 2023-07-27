@@ -1,21 +1,19 @@
 # hello-world todo list
 
-## () - Object
-* () I will want a single points object as a child of the scene object
+## () - JSON data Edit
+* () see about having a way to parse JSON Text edits to update the Object
 
 ## () - cursor
 * () view will need to store a cursor position
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
-## () - JSON output text area
+<!-- DONE -->
+
+## ( done 07/27/2023 ) - JSON output text area
 * (done) main app loop in client.js for now
 * (done) I will want textarea that will be the current JSON of the geometry
-
-
-* () let the JSON be in object form rather than buffer geometry
-
-<!-- DONE -->
+* (done) let the JSON be in object form rather than buffer geometry
 
 ## ( done 07/26/2023 ) - three.module.js, orbit controls, view scene object
 * (done) lets start with r152 of threejs as part of the client system
