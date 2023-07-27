@@ -1,18 +1,19 @@
 # hello-world todo list
 
-## () - JSON output text area
-* () I will want textarea that will be the current JSON of the geometry
-* () let the JSON be in object form rather than buffer geometry
-
 ## () - Object
 * () I will want a single points object as a child of the scene object
 
-## () - cursor position
+## () - cursor
 * () view will need to store a cursor position
-* () I will need ways to more the cursor position
+* () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
+## () - JSON output text area
+* (done) main app loop in client.js for now
+* (done) I will want textarea that will be the current JSON of the geometry
 
+
+* () let the JSON be in object form rather than buffer geometry
 
 <!-- DONE -->
 
