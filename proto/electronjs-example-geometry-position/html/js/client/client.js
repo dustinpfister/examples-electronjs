@@ -10,10 +10,12 @@ const frame_view = document.getElementById('frame_view');
 const text_json = document.getElementById('text_json');
 
 
+
+
 // ---------- ----------
 // CANVAS FOR view iframe
 // ---------- ----------
-const view = frame_view.contentWindow.state;
+//const view = frame_view.contentWindow.state;
 
 //const canvas = view.canvas;
 //const ctx = canvas.getContext('2d');
@@ -36,6 +38,7 @@ const view = frame_view.contentWindow.state;
 // MAIN STATE OBJECT
 // ---------- ----------
 const state = window.state = {
+    view: frame_view.contentWindow.state,
     canvas: null,
     ctx: null,
     scene: null,
@@ -104,6 +107,37 @@ text_json.addEventListener('blur', (e) => {
     state.scene = obj3d;
     state.user_input = false;
 });
+
+
+
+  document.addEventListener("drag", function( event ) {
+  }, false);
+
+  document.addEventListener("dragstart", function( event ) {
+  }, false);
+
+  document.addEventListener("dragend", function( event ) {
+  }, false);
+
+  document.addEventListener("dragover", function( event ) {
+      event.preventDefault();
+  }, false);
+
+  document.addEventListener("dragenter", function( event ) {
+  }, false);
+
+  document.addEventListener("dragleave", function( event ) {
+  }, false);
+
+/*
+  document.addEventListener("drop", function( event ) {
+      event.preventDefault();
+      
+  }, false);
+*/
+
+console.log( document.querySelectorAll('.slot') );
+
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
@@ -112,10 +146,12 @@ const sm = {
    states: {}
 };
 sm.states.init = () => {
-    if(view.ready){
+
+
+    if(state.view.ready){
         console.log('looks like the view is ready');
-        state.canvas = view.canvas;
-        state.ctx = view.ctx;
+        state.canvas = state.view.canvas;
+        state.ctx = state.view.ctx;
         setup();
         sm.current = 'run';
     }
@@ -128,4 +164,10 @@ const loop = function(){
     requestAnimationFrame(loop);
     sm.states[sm.current]();
 };
-loop();
+
+window.onload = () => {
+    console.log('client.js onload event fired, starting loop');
+    loop();
+};
+
+
