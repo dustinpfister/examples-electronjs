@@ -5,7 +5,9 @@
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
-
+## () json replacer
+* (done) started work on a JSON replacer
+* () copy the matrix when setting up scene in and see about fixing rotaiton of scene
 
 <!-- DONE -->
 

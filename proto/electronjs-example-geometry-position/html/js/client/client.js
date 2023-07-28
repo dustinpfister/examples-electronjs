@@ -27,8 +27,21 @@ const state = window.state = {
 // HELPERS
 // ---------- ----------
 // update json text
+const replacer = function(key, value){
+   if( key === ""){
+       return value;
+   }
+   if( key === "matrix" ){
+       return 'REPLACE_ARR_OPEN' +value.toString() + 'REPLACE_ARR_CLOSE';
+   }
+   return value;
+};
+
 const updateJSON = () => {
-    text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
+    const str_raw = JSON.stringify( state.scene.toJSON(), replacer, 4 );
+    text_json.value = str_raw.replace(/"REPLACE_ARR_OPEN/g, '[').replace(/REPLACE_ARR_CLOSE"/g, ']')
+
+    //text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
 };
 // draw to the view canvas
 const draw = state.draw = () => {
@@ -53,6 +66,7 @@ const updateScene = (state, obj3d) => {
         obj3d.children.forEach( (child) => {
             state.scene.add(child);
         });
+        state.scene.matrix.copy( obj3d.matrix );
     }else{
         // any other kind of object just add it as a child
         state.scene.add(object3d);
@@ -77,10 +91,6 @@ const setup = () => {
     state.orbit = new OrbitControls(state.camera, state.canvas);
     state.camera.position.set( 5, 5, 5 );
     state.camera.lookAt( 0, 0, 0 );
-
-
-
-    
     // child objects
     const scene = new THREE.Scene();
     const material = new THREE.MeshNormalMaterial({ wireframe: true });
@@ -90,10 +100,6 @@ const setup = () => {
     scene.add(mesh);
     //scene.add( new THREE.GridHelper(10, 10) );
     updateScene(state, scene)
-
-    // update and draw for first time
-    //updateJSON();
-    //draw();
 };
 // ---------- ----------
 // EVENTS
