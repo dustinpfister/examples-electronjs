@@ -10,6 +10,10 @@
 * () create new grid helper
 * () add children from json object to state.scene
 
+## () - window load event, delay start of run state
+* (done) see if adding an onload event for window helper with this bug that happens with the iframe not loading fast enough
+* (done) update ini state to check and see if the view state object is there or not
+
 <!-- DONE -->
 
 ## ( done 07/27/2023 ) - start drag of elements, state machine

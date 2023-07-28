@@ -38,7 +38,7 @@ const text_json = document.getElementById('text_json');
 // MAIN STATE OBJECT
 // ---------- ----------
 const state = window.state = {
-    view: frame_view.contentWindow.state,
+    view: null,
     canvas: null,
     ctx: null,
     scene: null,
@@ -136,7 +136,13 @@ text_json.addEventListener('blur', (e) => {
   }, false);
 */
 
-console.log( document.querySelectorAll('.slot') );
+const slots = document.querySelectorAll('.slot');
+
+Array.prototype.forEach.call(slots, ( slot ) => {
+
+    console.log(slot)
+
+});
 
 // ---------- ----------
 // MAIN APP LOOP
@@ -146,14 +152,17 @@ const sm = {
    states: {}
 };
 sm.states.init = () => {
-
-
-    if(state.view.ready){
-        console.log('looks like the view is ready');
-        state.canvas = state.view.canvas;
-        state.ctx = state.view.ctx;
-        setup();
-        sm.current = 'run';
+    if(frame_view.contentWindow.state){
+        state.view = frame_view.contentWindow.state
+        if(state.view.ready){
+            console.log('Looks like the view is ready');
+            state.canvas = state.view.canvas;
+            state.ctx = state.view.ctx;
+            setup();
+            sm.current = 'run';
+        }
+    }else{
+        console.log('OKAY YEAH NOT READY!');
     }
 };
 sm.states.run = () => {
@@ -165,9 +174,12 @@ const loop = function(){
     sm.states[sm.current]();
 };
 
-window.onload = () => {
+window.addEventListener('load', () => {
     console.log('client.js onload event fired, starting loop');
     loop();
-};
+    //!!! so far this seems like the only thing that works to keep
+    // the loop from starting before the iframe is ready
+    //setTimeout(loop, 0)
+});
 
 
