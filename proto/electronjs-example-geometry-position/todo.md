@@ -5,14 +5,13 @@
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
-## () - better parsing of JSON
-* () remove all children from state.scene
-* () create new grid helper
-* () add children from json object to state.scene
-
 
 
 <!-- DONE -->
+
+## ( done 07/28/2023 ) - updateScene helper, better parsing of JSON
+* (done) remove all children from state.scene
+* (done) add children from json object to state.scene
 
 ## ( done 07/28/2023 ) - window load event, delay start of run state
 * (done) see if adding an onload event for window helper with this bug that happens with the iframe not loading fast enough

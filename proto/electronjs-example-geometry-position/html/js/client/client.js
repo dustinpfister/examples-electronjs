@@ -8,32 +8,6 @@ import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
 const frame_view = document.getElementById('frame_view');
 const text_json = document.getElementById('text_json');
-
-
-
-
-// ---------- ----------
-// CANVAS FOR view iframe
-// ---------- ----------
-//const view = frame_view.contentWindow.state;
-
-//const canvas = view.canvas;
-//const ctx = canvas.getContext('2d');
-// ---------- ----------
-// SCENE, CAMERA, RENDERER
-// ---------- ----------
-//const scene = new THREE.Scene();
-//const camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
-//const renderer = new THREE.WebGL1Renderer();
-//renderer.setSize(canvas.width, canvas.height, false);
-// ---------- ----------
-// SCENE CHILD OBJECTS
-// ---------- ----------
-//scene.add( new THREE.GridHelper(10, 10) );
-//const material = new THREE.MeshBasicMaterial();
-//const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
-//const points = new THREE.Mesh( geometry, material );
-//scene.add(points);
 // ---------- ----------
 // MAIN STATE OBJECT
 // ---------- ----------
@@ -46,7 +20,7 @@ const state = window.state = {
     renderer: null,
     object: null,
     user_input: false,
-    orbit: null, //new OrbitControls(camera, canvas),
+    orbit: null,
     x: 0, y: 0
 };
 // ---------- ----------
@@ -66,9 +40,30 @@ const draw = state.draw = () => {
     ctx.fillStyle = 'white';
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
+// setup scene with new/updated object
+const updateScene = (state, obj3d) => {
+    state.scene = !state.scene ? new THREE.Scene(): state.scene;
+    // remove and children
+    let i = state.scene.children.length;
+    while(i--){
+        const child = state.scene.children[i];
+        child.removeFromParent()
+    }
+    if(obj3d.type === 'Scene'){
+        obj3d.children.forEach( (child) => {
+            state.scene.add(child);
+        });
+    }else{
+        // any other kind of object just add it as a child
+        state.scene.add(object3d);
+    }
+    // add a grid helper
+    //state.scene.add( new THREE.GridHelper(10, 10) );
+    updateJSON();
+    draw();
+};
 // setup is to be called when the view is ready
 const setup = () => {
-    const scene = state.scene = new THREE.Scene();
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
@@ -82,16 +77,23 @@ const setup = () => {
     state.orbit = new OrbitControls(state.camera, state.canvas);
     state.camera.position.set( 5, 5, 5 );
     state.camera.lookAt( 0, 0, 0 );
+
+
+
+    
     // child objects
+    const scene = new THREE.Scene();
     const material = new THREE.MeshNormalMaterial({ wireframe: true });
     //const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
     const geometry = new THREE.BoxGeometry( 1, 1, 1 );
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
-    scene.add( new THREE.GridHelper(10, 10) );
+    //scene.add( new THREE.GridHelper(10, 10) );
+    updateScene(state, scene)
+
     // update and draw for first time
-    updateJSON();
-    draw();
+    //updateJSON();
+    //draw();
 };
 // ---------- ----------
 // EVENTS
@@ -103,8 +105,7 @@ text_json.addEventListener('blur', (e) => {
     const str_json = e.target.value;
     const obj = JSON.parse( str_json );
     const obj3d = new THREE.ObjectLoader().parse(obj);
-    //!!! just doing this is not going to work
-    state.scene = obj3d;
+    updateScene(state, obj3d);
     state.user_input = false;
 });
 // ---------- ----------
@@ -135,12 +136,10 @@ text_json.addEventListener('blur', (e) => {
             console.log(el_drag);
         });
         slot.addEventListener('dragenter', ( e ) => {
-            console.log('slot enter');
             const slot = e.currentTarget;
             slot.style.opacity = 0.25;
         });
         slot.addEventListener('dragleave', ( e ) => {
-            console.log('slot enter');
             const slot = e.currentTarget;
             slot.style.opacity = 1;
         });
