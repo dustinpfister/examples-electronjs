@@ -107,43 +107,45 @@ text_json.addEventListener('blur', (e) => {
     state.scene = obj3d;
     state.user_input = false;
 });
-
-
-
-  document.addEventListener("drag", function( event ) {
-  }, false);
-
-  document.addEventListener("dragstart", function( event ) {
-  }, false);
-
-  document.addEventListener("dragend", function( event ) {
-  }, false);
-
-  document.addEventListener("dragover", function( event ) {
-      event.preventDefault();
-  }, false);
-
-  document.addEventListener("dragenter", function( event ) {
-  }, false);
-
-  document.addEventListener("dragleave", function( event ) {
-  }, false);
-
-/*
-  document.addEventListener("drop", function( event ) {
-      event.preventDefault();
-      
-  }, false);
-*/
-
-const slots = document.querySelectorAll('.slot');
-
-Array.prototype.forEach.call(slots, ( slot ) => {
-
-    console.log(slot)
-
-});
-
+// ---------- ----------
+// DRAG AND DROP
+// ---------- ----------
+{
+    const slots = document.querySelectorAll('.slot');
+    let el_drag = null;
+    document.addEventListener("drag", ( e ) => {});
+    document.addEventListener("dragstart", ( e ) => {
+        el_drag = e.target;
+    });
+    document.addEventListener("dragend", ( e ) => {
+        el_drag = null;
+    });
+    document.addEventListener("dragover", ( e ) => {
+        event.preventDefault();
+    });
+    document.addEventListener("dragenter", ( e ) => {
+    });
+    document.addEventListener('dragleave', ( e ) => {});
+    Array.prototype.forEach.call(slots, ( slot ) => {
+        slot.addEventListener('drop', ( e ) => {
+            e.preventDefault();
+            const slot = e.currentTarget;
+            slot.style.opacity = 1;
+            console.log(slot.children);
+            console.log(el_drag);
+        });
+        slot.addEventListener('dragenter', ( e ) => {
+            console.log('slot enter');
+            const slot = e.currentTarget;
+            slot.style.opacity = 0.25;
+        });
+        slot.addEventListener('dragleave', ( e ) => {
+            console.log('slot enter');
+            const slot = e.currentTarget;
+            slot.style.opacity = 1;
+        });
+    });
+}
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
@@ -177,9 +179,8 @@ const loop = function(){
 window.addEventListener('load', () => {
     console.log('client.js onload event fired, starting loop');
     loop();
-    //!!! so far this seems like the only thing that works to keep
-    // the loop from starting before the iframe is ready
-    //setTimeout(loop, 0)
+    //!!! I might have to do this to help with the 'iframe load slow' bug
+    //setTimeout(loop, 2000)
 });
 
 
