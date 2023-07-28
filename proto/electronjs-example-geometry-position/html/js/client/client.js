@@ -67,6 +67,9 @@ const updateScene = (state, obj3d) => {
             state.scene.add(child);
         });
         state.scene.matrix.copy( obj3d.matrix );
+        state.scene.position.setFromMatrixPosition(state.scene.matrix);
+
+        //state.scene.applyMatrix4( obj3d.matrix );
     }else{
         // any other kind of object just add it as a child
         state.scene.add(object3d);
