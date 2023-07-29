@@ -57,8 +57,8 @@ const createScene = () => {
     // child objects
     const scene = new THREE.Scene();
     const material = new THREE.MeshNormalMaterial({ wireframe: true });
-    //const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
+    //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
     return scene;
