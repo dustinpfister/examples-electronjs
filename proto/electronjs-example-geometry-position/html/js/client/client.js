@@ -53,9 +53,19 @@ const draw = state.draw = () => {
     ctx.fillStyle = 'white';
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
+const createScene = () => {
+    // child objects
+    const scene = new THREE.Scene();
+    const material = new THREE.MeshNormalMaterial({ wireframe: true });
+    //const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
+    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const mesh = new THREE.Mesh( geometry, material );
+    scene.add(mesh);
+    return scene;
+};
 // setup scene with new/updated object
 const updateScene = (state, obj3d) => {
-    state.scene = !state.scene ? new THREE.Scene(): state.scene;
+    state.scene = !state.scene ? createScene() : state.scene;
     // remove and children
     let i = state.scene.children.length;
     while(i--){
@@ -74,11 +84,10 @@ const updateScene = (state, obj3d) => {
         // any other kind of object just add it as a child
         state.scene.add(object3d);
     }
-    // add a grid helper
-    //state.scene.add( new THREE.GridHelper(10, 10) );
     updateJSON();
     draw();
 };
+
 // setup is to be called when the view is ready
 const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
@@ -94,15 +103,7 @@ const setup = () => {
     state.orbit = new OrbitControls(state.camera, state.canvas);
     state.camera.position.set( 5, 5, 5 );
     state.camera.lookAt( 0, 0, 0 );
-    // child objects
-    const scene = new THREE.Scene();
-    const material = new THREE.MeshNormalMaterial({ wireframe: true });
-    //const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const mesh = new THREE.Mesh( geometry, material );
-    scene.add(mesh);
-    //scene.add( new THREE.GridHelper(10, 10) );
-    updateScene(state, scene)
+    updateScene(state, createScene() );
 };
 // ---------- ----------
 // EVENTS
