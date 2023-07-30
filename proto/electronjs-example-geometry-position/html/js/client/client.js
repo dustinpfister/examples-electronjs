@@ -32,15 +32,23 @@ const replacer = function(key, value){
        return value;
    }
    if( key === "matrix" ){
-       return 'REPLACE_ARR_OPEN' +value.toString() + 'REPLACE_ARR_CLOSE';
+       return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
+   }
+   // !!! this can be used to do what I would like in terms of spacing
+   if( key === "itemSize" ){
+       //console.log(value);
+   }
+   if( key === "array" ){
+       return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
    }
    return value;
 };
-
+// update the JSON output
 const updateJSON = () => {
     const str_raw = JSON.stringify( state.scene.toJSON(), replacer, 4 );
-    text_json.value = str_raw.replace(/"REPLACE_ARR_OPEN/g, '[').replace(/REPLACE_ARR_CLOSE"/g, ']')
-
+    text_json.value = str_raw
+   .replace(/"REPLACE_ARR_OPEN/g, '[')
+   .replace(/REPLACE_ARR_CLOSE"/g, ']');
     //text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
 };
 // draw to the view canvas

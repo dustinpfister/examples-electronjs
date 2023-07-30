@@ -1,20 +1,24 @@
 # hello-world todo list
 
+## () - parsing scene objects
+* () see about setting scene rotation from matrix data
+* () see about setting scene scale from matix data 
+
+## () - json replacer array format
+* () see about working out spacing with vertexs in custom replacer.
+
 ## () - cursor
 * () view will need to store a cursor position
 * () I will need ways to move the cursor position
 * () can use the cursor to get a point in the current geometry
 
-## () - json replacer array format
+<!-- DONE -->
 
-## () - start json replacer
+## ( done 07/30/2023 ) - start json replacer
 * (done) started work on a JSON replacer
 * (done) copy the matrix when setting up scene in and see about fixing rotaiton of scene
 * (done) see about setting scene position from matrix data
-* () see about setting scene rotation from matrix data
-* () see about setting scene scale from matix data 
-
-<!-- DONE -->
+* (done) flat array format for now
 
 ## ( done 07/28/2023 ) - updateScene helper, better parsing of JSON
 * (done) remove all children from state.scene
