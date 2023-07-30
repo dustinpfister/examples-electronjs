@@ -1,5 +1,7 @@
 # hello-world todo list
 
+
+
 ## () - parsing scene objects
 * () see about setting scene rotation from matrix data
 * () see about setting scene scale from matix data 
@@ -13,6 +15,9 @@
 * () can use the cursor to get a point in the current geometry
 
 <!-- DONE -->
+
+## ( done 07/30/2023 ) - drag and drop fix
+* (done) see about getting drag and drop to work when clicking just the component div and not a child
 
 ## ( done 07/30/2023 ) - start json replacer
 * (done) started work on a JSON replacer

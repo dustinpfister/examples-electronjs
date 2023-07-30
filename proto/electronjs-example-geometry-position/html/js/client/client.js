@@ -136,19 +136,26 @@ text_json.addEventListener('blur', (e) => {
 {
     const slots = document.querySelectorAll('.slot');
     let el_drag = null;
-    document.addEventListener("drag", ( e ) => {});
-    document.addEventListener("dragstart", ( e ) => {
+
+    document.addEventListener('drag', ( e ) => {
+    });
+    document.addEventListener('dragstart', ( e ) => {
         el_drag = e.target;
     });
-    document.addEventListener("dragend", ( e ) => {
+    document.addEventListener('dragend', ( e ) => {
         el_drag = null;
     });
-    document.addEventListener("dragover", ( e ) => {
+    document.addEventListener('dragover', ( e ) => {
         event.preventDefault();
     });
-    document.addEventListener("dragenter", ( e ) => {
+    document.addEventListener('dragenter', ( e ) => {
     });
     document.addEventListener('dragleave', ( e ) => {});
+
+    text_json.addEventListener('dragstart', ( e ) => {
+        e.preventDefault();
+    });
+
     Array.prototype.forEach.call(slots, ( slot ) => {
         slot.addEventListener('drop', ( e ) => {
             e.preventDefault();
