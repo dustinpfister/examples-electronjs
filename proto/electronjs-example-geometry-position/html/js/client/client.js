@@ -45,11 +45,15 @@ const replacer = function(key, value){
 };
 // update the JSON output
 const updateJSON = () => {
+    // CUSTOM REPLACER AND SPACING
     const str_raw = JSON.stringify( state.scene.toJSON(), replacer, 4 );
     text_json.value = str_raw
-   .replace(/"REPLACE_ARR_OPEN/g, '[')
-   .replace(/REPLACE_ARR_CLOSE"/g, ']');
+    .replace(/"REPLACE_ARR_OPEN/g, '[')
+    .replace(/REPLACE_ARR_CLOSE"/g, ']');
+    // NULL REPLACER AND SPACING
     //text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
+    // JUST SERIALIZE
+    //text_json.value = JSON.stringify( state.scene.toJSON());
 };
 // draw to the view canvas
 const draw = state.draw = () => {
