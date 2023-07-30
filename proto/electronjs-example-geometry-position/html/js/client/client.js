@@ -280,6 +280,8 @@ text_json.addEventListener('blur', (e) => {
 // ---------- ----------
 const sm = {
    current: 'init',
+   fps: 20,
+   lt: new Date(),
    states: {}
 };
 sm.states.init = () => {
@@ -300,9 +302,15 @@ sm.states.run = () => {
     state.orbit.update();
     state.draw();
 };
+
 const loop = function(){
+    const now = new Date();
+    const secs = ( now - sm.lt ) / 1000;
     requestAnimationFrame(loop);
-    sm.states[sm.current]();
+    if(secs >= 1 / sm.fps){
+        sm.states[sm.current]();
+        sm.lt = now;
+    }
 };
 
 window.addEventListener('load', () => {
