@@ -3,6 +3,94 @@
 // ---------- ----------
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
+
+const START_SCENE = `
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "geometries": [
+        {
+            "uuid": "030169bb-efe4-43cf-a24e-9b45045a6388",
+            "type": "BufferGeometry",
+            "data": {
+                "attributes": {
+                    "position": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [0,0,0,0,1,0,0,0,1],
+                        "normalized": false
+                    }
+                },
+                "index": {
+                    "type": "Uint16Array",
+                    "array": [0,2,1]
+                },
+                "boundingSphere": {
+                    "center": [
+                        0,
+                        0.5,
+                        0.5
+                    ],
+                    "radius": 0.7071067811865476
+                }
+            }
+        }
+    ],
+    "materials": [
+        {
+            "uuid": "2ffd6b11-b527-4301-8b7c-1635714e5d0c",
+            "type": "MeshBasicMaterial",
+            "color": 16777215,
+            "reflectivity": 1,
+            "refractionRatio": 0.98,
+            "side": 1,
+            "depthFunc": 3,
+            "depthTest": true,
+            "depthWrite": true,
+            "colorWrite": true,
+            "stencilWrite": false,
+            "stencilWriteMask": 255,
+            "stencilFunc": 519,
+            "stencilRef": 0,
+            "stencilFuncMask": 255,
+            "stencilFail": 7680,
+            "stencilZFail": 7680,
+            "stencilZPass": 7680
+        }
+    ],
+    "object": {
+        "uuid": "c0338dfe-9212-43ff-b125-4db913944a4c",
+        "type": "Scene",
+        "layers": 1,
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "up": [
+            0,
+            1,
+            0
+        ],
+        "children": [
+            {
+                "uuid": "ae13731a-12df-4c1b-8022-0121fba89347",
+                "type": "Mesh",
+                "layers": 1,
+                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+                "up": [
+                    0,
+                    1,
+                    0
+                ],
+                "geometry": "030169bb-efe4-43cf-a24e-9b45045a6388",
+                "material": "2ffd6b11-b527-4301-8b7c-1635714e5d0c"
+            }
+        ]
+    }
+}
+`;
+
+
 // ---------- ----------
 // REFS TO VIEW IFRAME, and TEXT JSON
 // ---------- ----------
@@ -66,14 +154,27 @@ const draw = state.draw = () => {
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
 const createScene = () => {
+
+    // strat scene by hard coded JSON
+    return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
+/*
     // child objects
     const scene = new THREE.Scene();
-    const material = new THREE.MeshNormalMaterial({ wireframe: true });
+    const material = new THREE.MeshBasicMaterial({ 
+        side: THREE.DoubleSide
+    });
+    // start geometry
     const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
     //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    //const geometry = new THREE.BufferGeometry();
+    // start points
+    //const data_pos = [0,0,0, 0,1,0, 0,0,1];
+    //geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data_pos), 3 ) );
+
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
     return scene;
+*/
 };
 // setup scene with new/updated object
 const updateScene = (state, obj3d) => {
@@ -113,7 +214,7 @@ const setup = () => {
         }
     });
     state.orbit = new OrbitControls(state.camera, state.canvas);
-    state.camera.position.set( 5, 5, 5 );
+    state.camera.position.set( 2, 2, 2 );
     state.camera.lookAt( 0, 0, 0 );
     updateScene(state, createScene() );
 };
