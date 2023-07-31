@@ -13,7 +13,8 @@
 * () have undefined array value be set to 0 for the input event handler
 
 ## () - cursor push function
-* () I think that first use of this should be to just push a new point into the position attribute
+* () I think that first use of the cursor should be to just push a new point into the position attribute
+* () I will need a way to know what the current geometry is
 * () a new position attribuite should be created in the event that there is not one
 
 <!-- DONE -->

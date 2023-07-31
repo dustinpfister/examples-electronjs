@@ -109,9 +109,11 @@ const state = window.state = {
 
 
     scene: null,
+    current_object: null,  // the current object that is begin worked on
+
     camera: null,
     renderer: null,
-    //object: null,
+
     user_input: false,
     orbit: null,
     x: 0, y: 0
@@ -207,6 +209,9 @@ const updateScene = (state, obj3d) => {
         // any other kind of object just add it as a child
         state.scene.add(object3d);
     }
+    // set current object to first child if there is one, else scene?
+    state.current_object =  state.scene.children[0] || state.scene;
+    // update json and draw for first time
     updateJSON();
     draw();
 };
