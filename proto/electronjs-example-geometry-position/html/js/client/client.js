@@ -100,13 +100,18 @@ const text_json = document.getElementById('text_json');
 // MAIN STATE OBJECT
 // ---------- ----------
 const state = window.state = {
-    view: null,
     canvas: null,
     ctx: null,
+
+    cursor: new THREE.Vector3(1,2,3),
+
+    view: null,
+
+
     scene: null,
     camera: null,
     renderer: null,
-    object: null,
+    //object: null,
     user_input: false,
     orbit: null,
     x: 0, y: 0
@@ -280,6 +285,17 @@ text_json.addEventListener('blur', (e) => {
     });
 }
 // ---------- ----------
+// CURSOR
+// ---------- ----------
+const input_pos = document.getElementById('input_cursor_pos');
+// on input event
+input_pos.addEventListener('input', (e) => {
+   const str_pos = e.target.value;
+   console.log(str_pos);
+});
+
+
+// ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
 const sm = {
@@ -297,6 +313,9 @@ sm.states.init = () => {
             state.ctx = state.view.ctx;
             setup();
             sm.current = 'run';
+
+input_pos.value = state.cursor.toArray();
+
         }
     }else{
         console.log('OKAY YEAH NOT READY!');

@@ -4,24 +4,19 @@ body {
   margin: 0px;
   padding: 0px;
 }
-
 .wrap_main {
-  position: absolute;
   width:  100%;
   height: 100%;
   background: cyan;
 }
-
 .slot {
-  position: relative;
-  width: 95%;
-  height: 45%;
+  display: inline-block;
+  width: auto;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 }
-
 .component {
-  position: absolute;
   padding-top: 10px;
   background:  lime;
   width:       100%;
@@ -30,9 +25,8 @@ body {
   margin-right: auto;
   text-align: center;
 }
-
 .text_json {
-  width:   100%;
-  height:  100%;
+  width:   640px;
+  height:  480px;
   resize:  none;
 }

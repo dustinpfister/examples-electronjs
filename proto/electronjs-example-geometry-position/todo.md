@@ -9,10 +9,11 @@
 ## () - json replacer array format
 * () see about working out spacing with vertexs in custom replacer.
 
-## () - cursor
-* () view will need to store a cursor position
-* () I will need ways to move the cursor position
-* () can use the cursor to get a point in the current geometry
+## () - start the cursor
+* () view will need to store a cursor position as an instance of Vector3 in the state object
+* () I would like to have a ui for this where I can punch in a direct value
+* () I think that first use of this should be to just push a new point into the position attribute
+* () a new position attribuite should be created in the event that there is not one
 
 <!-- DONE -->
 
