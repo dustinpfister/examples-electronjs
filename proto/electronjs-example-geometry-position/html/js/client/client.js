@@ -13,40 +13,35 @@ const START_SCENE = `
     },
     "geometries": [
         {
-            "uuid": "030169bb-efe4-43cf-a24e-9b45045a6388",
+            "uuid": "f1845fd7-267e-4632-ac37-5313c824a645",
             "type": "BufferGeometry",
             "data": {
                 "attributes": {
                     "position": {
                         "itemSize": 3,
                         "type": "Float32Array",
-                        "array": [0,0,0,0,1,0,0,0,1],
+                        "array": [0,0,0,1,0,0,-1,0,0,0,1,0,0,-1,0,0,0,1,0,0,-1],
                         "normalized": false
                     }
-                },
-                "index": {
-                    "type": "Uint16Array",
-                    "array": [0,2,1]
                 },
                 "boundingSphere": {
                     "center": [
                         0,
-                        0.5,
-                        0.5
+                        0,
+                        0
                     ],
-                    "radius": 0.7071067811865476
+                    "radius": -1
                 }
             }
         }
     ],
     "materials": [
         {
-            "uuid": "2ffd6b11-b527-4301-8b7c-1635714e5d0c",
-            "type": "MeshBasicMaterial",
+            "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
+            "type": "PointsMaterial",
             "color": 16777215,
-            "reflectivity": 1,
-            "refractionRatio": 0.98,
-            "side": 1,
+            "size": 1,
+            "sizeAttenuation": true,
             "depthFunc": 3,
             "depthTest": true,
             "depthWrite": true,
@@ -62,7 +57,7 @@ const START_SCENE = `
         }
     ],
     "object": {
-        "uuid": "c0338dfe-9212-43ff-b125-4db913944a4c",
+        "uuid": "822c1d61-1690-4451-82d8-3b717cc3399e",
         "type": "Scene",
         "layers": 1,
         "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -73,8 +68,8 @@ const START_SCENE = `
         ],
         "children": [
             {
-                "uuid": "ae13731a-12df-4c1b-8022-0121fba89347",
-                "type": "Mesh",
+                "uuid": "ef424865-235e-4c69-ad76-e51b93be843b",
+                "type": "Points",
                 "layers": 1,
                 "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
                 "up": [
@@ -82,8 +77,8 @@ const START_SCENE = `
                     1,
                     0
                 ],
-                "geometry": "030169bb-efe4-43cf-a24e-9b45045a6388",
-                "material": "2ffd6b11-b527-4301-8b7c-1635714e5d0c"
+                "geometry": "f1845fd7-267e-4632-ac37-5313c824a645",
+                "material": "63ed02e7-8c5d-4064-98e5-8e0febc6121d"
             }
         ]
     }
@@ -103,7 +98,7 @@ const state = window.state = {
     canvas: null,
     ctx: null,
 
-    cursor: new THREE.Vector3(1,2,3),
+    cursor: new THREE.Vector3(0,0,0),
 
     view: null,
 
@@ -162,15 +157,16 @@ const draw = state.draw = () => {
 };
 const createScene = () => {
     // start scene with blank geometry and Points Material
+/*
     const scene = new THREE.Scene();
     const geometry = new THREE.BufferGeometry();
     const material = new THREE.PointsMaterial();
     const points = new THREE.Points(geometry, material);
     scene.add( points );
     return scene;
-
+*/
     // start scene with hard coded JSON
-    //return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
+    return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
 /*
     // child objects
     const scene = new THREE.Scene();
@@ -301,9 +297,31 @@ input_pos.addEventListener('input', (e) => {
     state.cursor.fromArray(arr);
     console.log(state.cursor);
 });
-// on click event for push
-input_pos.addEventListener('click', (e) => {
-   
+// on click event for push function
+input_push.addEventListener('click', (e) => {
+   if(!state.current_object){
+       return;
+   }
+   // check state.current_object if it has a geometry
+   const geometry = state.current_object.geometry;
+   if(!geometry){
+       return;
+   }
+   // check if the geometry has a pos attribute
+   // if it does not have one create a new one
+   let pos = geometry.getAttribute('position');
+   let data = [];
+   if( pos ){
+       data = Array.from( pos.array );
+   }
+   // push current cursor value
+   const v = state.cursor;
+   data.push(v.x, v.y, v.z);
+
+   console.log(data);
+   geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data) , 3));
+   updateJSON();
+   draw();
 });
 // ---------- ----------
 // MAIN APP LOOP

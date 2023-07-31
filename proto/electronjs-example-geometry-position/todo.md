@@ -12,12 +12,13 @@
 ## () - more work on cursor
 * () have undefined array value be set to 0 for the input event handler
 
-## () - cursor push function
-* () I think that first use of the cursor should be to just push a new point into the position attribute
-* () I will need a way to know what the current geometry is
-* () a new position attribuite should be created in the event that there is not one
+
 
 <!-- DONE -->
+
+## ( done 07/31/2023 ) - cursor push function
+* (done) I will need a way to know what the current geometry is by having a state.current\_object and checking that
+* (done) a new position attribuite should be created in the event that there is not one
 
 ## ( done 07/31/2023 ) - start the cursor
 * (done) view will need to store a cursor position as an instance of Vector3 in the state object
