@@ -9,13 +9,18 @@
 ## () - json replacer array format
 * () see about working out spacing with vertexs in custom replacer.
 
-## () - start the cursor
-* () view will need to store a cursor position as an instance of Vector3 in the state object
-* () I would like to have a ui for this where I can punch in a direct value
+## () - more work on cursor
+* () have undefined array value be set to 0 for the input event handler
+
+## () - cursor push function
 * () I think that first use of this should be to just push a new point into the position attribute
 * () a new position attribuite should be created in the event that there is not one
 
 <!-- DONE -->
+
+## ( done 07/31/2023 ) - start the cursor
+* (done) view will need to store a cursor position as an instance of Vector3 in the state object
+* (done) I would like to have a ui for this where I can punch in a direct value
 
 ## ( done 07/30/2023 ) - drag and drop fix
 * (done) see about getting drag and drop to work when clicking just the component div and not a child

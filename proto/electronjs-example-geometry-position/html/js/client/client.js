@@ -288,13 +288,18 @@ text_json.addEventListener('blur', (e) => {
 // CURSOR
 // ---------- ----------
 const input_pos = document.getElementById('input_cursor_pos');
-// on input event
+const input_push = document.getElementById('input_cursor_push');
+// on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
-   const str_pos = e.target.value;
-   console.log(str_pos);
+    const str_pos = e.target.value;
+    const arr = str_pos.split(',');
+    state.cursor.fromArray(arr);
+    console.log(state.cursor);
 });
-
-
+// on click event for push
+input_pos.addEventListener('click', (e) => {
+   
+});
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
@@ -313,8 +318,8 @@ sm.states.init = () => {
             state.ctx = state.view.ctx;
             setup();
             sm.current = 'run';
-
-input_pos.value = state.cursor.toArray();
+            // set value of input element to array of Vector3 cursor
+            input_pos.value = state.cursor.toArray();
 
         }
     }else{
