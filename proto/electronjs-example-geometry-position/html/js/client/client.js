@@ -154,9 +154,16 @@ const draw = state.draw = () => {
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
 const createScene = () => {
+    // start scene with blank geometry and Points Material
+    const scene = new THREE.Scene();
+    const geometry = new THREE.BufferGeometry();
+    const material = new THREE.PointsMaterial();
+    const points = new THREE.Points(geometry, material);
+    scene.add( points );
+    return scene;
 
-    // strat scene by hard coded JSON
-    return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
+    // start scene with hard coded JSON
+    //return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
 /*
     // child objects
     const scene = new THREE.Scene();
@@ -170,7 +177,6 @@ const createScene = () => {
     // start points
     //const data_pos = [0,0,0, 0,1,0, 0,0,1];
     //geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data_pos), 3 ) );
-
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
     return scene;
@@ -191,7 +197,6 @@ const updateScene = (state, obj3d) => {
         });
         state.scene.matrix.copy( obj3d.matrix );
         state.scene.position.setFromMatrixPosition(state.scene.matrix);
-
         //state.scene.applyMatrix4( obj3d.matrix );
     }else{
         // any other kind of object just add it as a child
@@ -200,7 +205,6 @@ const updateScene = (state, obj3d) => {
     updateJSON();
     draw();
 };
-
 // setup is to be called when the view is ready
 const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
@@ -237,7 +241,7 @@ text_json.addEventListener('blur', (e) => {
 {
     const slots = document.querySelectorAll('.slot');
     let el_drag = null;
-
+    // document wide handlers
     document.addEventListener('drag', ( e ) => {
     });
     document.addEventListener('dragstart', ( e ) => {
@@ -252,11 +256,11 @@ text_json.addEventListener('blur', (e) => {
     document.addEventListener('dragenter', ( e ) => {
     });
     document.addEventListener('dragleave', ( e ) => {});
-
+    // handler for drag start
     text_json.addEventListener('dragstart', ( e ) => {
         e.preventDefault();
     });
-
+    // attach handlers for each slot div
     Array.prototype.forEach.call(slots, ( slot ) => {
         slot.addEventListener('drop', ( e ) => {
             e.preventDefault();
