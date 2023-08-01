@@ -3,6 +3,7 @@
 // ---------- ----------
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
+import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // ---------- ----------
 // REFS TO VIEW IFRAME, and TEXT JSON
 // ---------- ----------
@@ -47,8 +48,14 @@ const replacer = function (key, value) {
 };
 // update the JSON output
 const updateJSON = () => {
+    // clean export scene object
+    const scene_export = new THREE.Scene();
+    //!!! just exporting the current object only for now
+    if(state.current_object){
+        scene_export.add( state.current_object.clone() );
+    }
     // CUSTOM REPLACER AND SPACING
-    const str_raw = JSON.stringify(state.scene.toJSON(), replacer, 4);
+    const str_raw = JSON.stringify(scene_export.toJSON(), replacer, 4);
     text_json.value = str_raw
         .replace(/"REPLACE_ARR_OPEN/g, '[')
         .replace(/REPLACE_ARR_CLOSE"/g, ']');
@@ -125,6 +132,15 @@ const updateScene = (state, obj3d) => {
     }
     // set current object to first child if there is one, else scene?
     state.current_object = state.scene.children[0] || state.scene;
+
+    // add grid helper
+    const grid = new THREE.GridHelper(10, 10);
+    state.scene.add(grid);
+
+    // add normals helper
+    const helper = new VertexNormalsHelper( state.current_object );
+    state.scene.add(helper)
+
     // update json and draw for first time
     updateJSON();
     draw();

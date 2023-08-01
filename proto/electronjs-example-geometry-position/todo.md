@@ -1,9 +1,5 @@
 # hello-world todo list
 
-## () isshue with grid helper
-* () I would like to find a way to have a grid helper but not have it end up being part of the json data
-* () I think this will have to be done by having more than one scene object
-
 ## () - parsing scene objects
 * () see about setting scene rotation from matrix data
 * () see about setting scene scale from matix data 
@@ -32,7 +28,15 @@
 * () selected points should display differently
 * () have a delete function that will remove all selected points from the position attribute
 
+
+
 <!-- DONE -->
+
+## ( done 08/01/2023 ) Export Scene Object
+* (done) one way to solve an issue with a lot of things might involve an 'export scene object'
+* (done) export just the current object of there is one
+* (done) add a grid helper on each udate then
+* (done) vertex normals helper
 
 ## ( done 08/01/2023 ) - create_scene: json folder and create scene from json file
 * (done) see about loading external JSON files as an option for start states in the createScene method
