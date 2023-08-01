@@ -81,7 +81,7 @@ const createScene = () => {
     //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
     return new Promise( (resolve, reject) => {
         const loader = new THREE.ObjectLoader();
-        loader.load('json/scene_0_blank.json', (obj) => {
+        loader.load('json/scene_1_box.json', (obj) => {
             resolve(obj);
         });
     });
@@ -142,7 +142,7 @@ const setup = () => {
         }
     });
     state.orbit = new OrbitControls(state.camera, state.canvas);
-    state.camera.position.set(2, 2, 2);
+    state.camera.position.set(3, 3, 3);
     state.camera.lookAt(0, 0, 0);
     
     return createScene()
