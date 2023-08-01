@@ -2,10 +2,12 @@
 // IMPORT - threejs and any addons I want to use
 // ---------- ----------
 import * as THREE from 'three';
-import { OrbitControls } from 'OrbitControls';
+import {
+    OrbitControls
+}
+from 'OrbitControls';
 
-const START_SCENE = `
-{
+const START_SCENE = `{
     "metadata": {
         "version": 4.5,
         "type": "Object",
@@ -20,7 +22,7 @@ const START_SCENE = `
                     "position": {
                         "itemSize": 3,
                         "type": "Float32Array",
-                        "array": [0,0,0,1,0,0,-1,0,0,0,1,0,0,-1,0,0,0,1,0,0,-1],
+                        "array": [],
                         "normalized": false
                     }
                 },
@@ -85,7 +87,6 @@ const START_SCENE = `
 }
 `;
 
-
 // ---------- ----------
 // REFS TO VIEW IFRAME, and TEXT JSON
 // ---------- ----------
@@ -98,48 +99,48 @@ const state = window.state = {
     canvas: null,
     ctx: null,
 
-    cursor: new THREE.Vector3(0,0,0),
+    cursor: new THREE.Vector3(0, 0, 0),
 
     view: null,
 
-
     scene: null,
-    current_object: null,  // the current object that is begin worked on
+    current_object: null, // the current object that is begin worked on
 
     camera: null,
     renderer: null,
 
     user_input: false,
     orbit: null,
-    x: 0, y: 0
+    x: 0,
+    y: 0
 };
 // ---------- ----------
 // HELPERS
 // ---------- ----------
 // update json text
-const replacer = function(key, value){
-   if( key === ""){
-       return value;
-   }
-   if( key === "matrix" ){
-       return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
-   }
-   // !!! this can be used to do what I would like in terms of spacing
-   if( key === "itemSize" ){
-       //console.log(value);
-   }
-   if( key === "array" ){
-       return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
-   }
-   return value;
+const replacer = function (key, value) {
+    if (key === "") {
+        return value;
+    }
+    if (key === "matrix") {
+        return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
+    }
+    // !!! this can be used to do what I would like in terms of spacing
+    if (key === "itemSize") {
+        //console.log(value);
+    }
+    if (key === "array") {
+        return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
+    }
+    return value;
 };
 // update the JSON output
 const updateJSON = () => {
     // CUSTOM REPLACER AND SPACING
-    const str_raw = JSON.stringify( state.scene.toJSON(), replacer, 4 );
+    const str_raw = JSON.stringify(state.scene.toJSON(), replacer, 4);
     text_json.value = str_raw
-    .replace(/"REPLACE_ARR_OPEN/g, '[')
-    .replace(/REPLACE_ARR_CLOSE"/g, ']');
+        .replace(/"REPLACE_ARR_OPEN/g, '[')
+        .replace(/REPLACE_ARR_CLOSE"/g, ']');
     // NULL REPLACER AND SPACING
     //text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
     // JUST SERIALIZE
@@ -157,21 +158,21 @@ const draw = state.draw = () => {
 };
 const createScene = () => {
     // start scene with blank geometry and Points Material
-/*
+    /*
     const scene = new THREE.Scene();
     const geometry = new THREE.BufferGeometry();
     const material = new THREE.PointsMaterial();
     const points = new THREE.Points(geometry, material);
     scene.add( points );
     return scene;
-*/
+     */
     // start scene with hard coded JSON
-    return new THREE.ObjectLoader().parse( JSON.parse( START_SCENE ) );
-/*
+    return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
+    /*
     // child objects
     const scene = new THREE.Scene();
-    const material = new THREE.MeshBasicMaterial({ 
-        side: THREE.DoubleSide
+    const material = new THREE.MeshBasicMaterial({
+    side: THREE.DoubleSide
     });
     // start geometry
     const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
@@ -183,30 +184,30 @@ const createScene = () => {
     const mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
     return scene;
-*/
+     */
 };
 // setup scene with new/updated object
 const updateScene = (state, obj3d) => {
     state.scene = !state.scene ? createScene() : state.scene;
     // remove and children
     let i = state.scene.children.length;
-    while(i--){
+    while (i--) {
         const child = state.scene.children[i];
         child.removeFromParent()
     }
-    if(obj3d.type === 'Scene'){
-        obj3d.children.forEach( (child) => {
+    if (obj3d.type === 'Scene') {
+        obj3d.children.forEach((child) => {
             state.scene.add(child);
         });
-        state.scene.matrix.copy( obj3d.matrix );
+        state.scene.matrix.copy(obj3d.matrix);
         state.scene.position.setFromMatrixPosition(state.scene.matrix);
         //state.scene.applyMatrix4( obj3d.matrix );
-    }else{
+    } else {
         // any other kind of object just add it as a child
         state.scene.add(object3d);
     }
     // set current object to first child if there is one, else scene?
-    state.current_object =  state.scene.children[0] || state.scene;
+    state.current_object = state.scene.children[0] || state.scene;
     // update json and draw for first time
     updateJSON();
     draw();
@@ -219,14 +220,14 @@ const setup = () => {
     state.canvas.addEventListener('pointerdown', (e) => {
         state.x = e.clientX;
         state.y = e.clientY;
-        if(!state.user_input){
+        if (!state.user_input) {
             updateJSON();
         }
     });
     state.orbit = new OrbitControls(state.camera, state.canvas);
-    state.camera.position.set( 2, 2, 2 );
-    state.camera.lookAt( 0, 0, 0 );
-    updateScene(state, createScene() );
+    state.camera.position.set(2, 2, 2);
+    state.camera.lookAt(0, 0, 0);
+    updateScene(state, createScene());
 };
 // ---------- ----------
 // EVENTS
@@ -236,7 +237,7 @@ text_json.addEventListener('input', (e) => {
 });
 text_json.addEventListener('blur', (e) => {
     const str_json = e.target.value;
-    const obj = JSON.parse( str_json );
+    const obj = JSON.parse(str_json);
     const obj3d = new THREE.ObjectLoader().parse(obj);
     updateScene(state, obj3d);
     state.user_input = false;
@@ -248,38 +249,36 @@ text_json.addEventListener('blur', (e) => {
     const slots = document.querySelectorAll('.slot');
     let el_drag = null;
     // document wide handlers
-    document.addEventListener('drag', ( e ) => {
-    });
-    document.addEventListener('dragstart', ( e ) => {
+    document.addEventListener('drag', (e) => {});
+    document.addEventListener('dragstart', (e) => {
         el_drag = e.target;
     });
-    document.addEventListener('dragend', ( e ) => {
+    document.addEventListener('dragend', (e) => {
         el_drag = null;
     });
-    document.addEventListener('dragover', ( e ) => {
+    document.addEventListener('dragover', (e) => {
         event.preventDefault();
     });
-    document.addEventListener('dragenter', ( e ) => {
-    });
-    document.addEventListener('dragleave', ( e ) => {});
+    document.addEventListener('dragenter', (e) => {});
+    document.addEventListener('dragleave', (e) => {});
     // handler for drag start
-    text_json.addEventListener('dragstart', ( e ) => {
+    text_json.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
     // attach handlers for each slot div
-    Array.prototype.forEach.call(slots, ( slot ) => {
-        slot.addEventListener('drop', ( e ) => {
+    Array.prototype.forEach.call(slots, (slot) => {
+        slot.addEventListener('drop', (e) => {
             e.preventDefault();
             const slot = e.currentTarget;
             slot.style.opacity = 1;
             console.log(slot.children);
             console.log(el_drag);
         });
-        slot.addEventListener('dragenter', ( e ) => {
+        slot.addEventListener('dragenter', (e) => {
             const slot = e.currentTarget;
             slot.style.opacity = 0.25;
         });
-        slot.addEventListener('dragleave', ( e ) => {
+        slot.addEventListener('dragleave', (e) => {
             const slot = e.currentTarget;
             slot.style.opacity = 1;
         });
@@ -288,54 +287,64 @@ text_json.addEventListener('blur', (e) => {
 // ---------- ----------
 // CURSOR
 // ---------- ----------
+const Cursor = {};
+// parse a string value and set the value of the cursor
+Cursor.parseString = (state, string = '0,0,0') => {
+    const arr_str = string.split(',');
+    const arr = [];
+    arr[0] = arr_str[0] || 0;
+    arr[1] = arr_str[1] || 0;
+    arr[2] = arr_str[2] || 0;
+    state.cursor.fromArray(arr);
+};
+// push the cursor state to the position attribute of the current object
+Cursor.pushToPosition = (state) => {
+    if (!state.current_object) {
+        return;
+    }
+    // check state.current_object if it has a geometry
+    const geometry = state.current_object.geometry;
+    if (!geometry) {
+        return;
+    }
+    // check if the geometry has a pos attribute
+    // if it does not have one create a new one
+    let pos = geometry.getAttribute('position');
+    let data = [];
+    if (pos) {
+        data = Array.from(pos.array);
+    }
+    // push current cursor value
+    const v = state.cursor;
+    data.push(v.x, v.y, v.z);
+    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(data), 3));
+    updateJSON();
+    draw();
+};
+
 const input_pos = document.getElementById('input_cursor_pos');
 const input_push = document.getElementById('input_cursor_push');
 // on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
-    const str_pos = e.target.value;
-    const arr = str_pos.split(',');
-    state.cursor.fromArray(arr);
-    console.log(state.cursor);
+    Cursor.parseString(state, e.target.value);
 });
 // on click event for push function
 input_push.addEventListener('click', (e) => {
-   if(!state.current_object){
-       return;
-   }
-   // check state.current_object if it has a geometry
-   const geometry = state.current_object.geometry;
-   if(!geometry){
-       return;
-   }
-   // check if the geometry has a pos attribute
-   // if it does not have one create a new one
-   let pos = geometry.getAttribute('position');
-   let data = [];
-   if( pos ){
-       data = Array.from( pos.array );
-   }
-   // push current cursor value
-   const v = state.cursor;
-   data.push(v.x, v.y, v.z);
-
-   console.log(data);
-   geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data) , 3));
-   updateJSON();
-   draw();
+    Cursor.pushToPosition(state)
 });
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
 const sm = {
-   current: 'init',
-   fps: 20,
-   lt: new Date(),
-   states: {}
+    current: 'init',
+    fps: 20,
+    lt: new Date(),
+    states: {}
 };
 sm.states.init = () => {
-    if(frame_view.contentWindow.state){
-        state.view = frame_view.contentWindow.state
-        if(state.view.ready){
+    if (frame_view.contentWindow.state) {
+        state.view = frame_view.contentWindow.state;
+        if (state.view.ready) {
             console.log('Looks like the view is ready');
             state.canvas = state.view.canvas;
             state.ctx = state.view.ctx;
@@ -343,9 +352,8 @@ sm.states.init = () => {
             sm.current = 'run';
             // set value of input element to array of Vector3 cursor
             input_pos.value = state.cursor.toArray();
-
         }
-    }else{
+    } else {
         console.log('OKAY YEAH NOT READY!');
     }
 };
@@ -353,22 +361,18 @@ sm.states.run = () => {
     state.orbit.update();
     state.draw();
 };
-
-const loop = function(){
+const loop = function () {
     const now = new Date();
-    const secs = ( now - sm.lt ) / 1000;
+    const secs = (now - sm.lt) / 1000;
     requestAnimationFrame(loop);
-    if(secs >= 1 / sm.fps){
+    if (secs >= 1 / sm.fps) {
         sm.states[sm.current]();
         sm.lt = now;
     }
 };
-
 window.addEventListener('load', () => {
     console.log('client.js onload event fired, starting loop');
     loop();
     //!!! I might have to do this to help with the 'iframe load slow' bug
     //setTimeout(loop, 2000)
 });
-
-

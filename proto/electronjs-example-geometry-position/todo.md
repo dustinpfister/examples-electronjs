@@ -1,6 +1,8 @@
 # hello-world todo list
 
-
+## () isshue with grid helper
+* () I would like to find a way to have a grid helper but not have it end up being part of the json data
+* () I think this will have to be done by having more than one scene object
 
 ## () - parsing scene objects
 * () see about setting scene rotation from matrix data
@@ -9,12 +11,22 @@
 ## () - json replacer array format
 * () see about working out spacing with vertexs in custom replacer.
 
-## () - more work on cursor
-* () have undefined array value be set to 0 for the input event handler
+## () - cursor: click to set
+* () have a way to set cursor state by clicking on the view canvas
 
+## () - cursor: display position in view
+* () have a way to display the current cursor position in the view
 
+## () - position selection
+* () have a way to select one or more indices in the position attribute
+* () selected points should display differently
+* () have a delete function that will remove all selected points from the position attribute
 
 <!-- DONE -->
+
+## ( done 08/01/2023 ) - more work on cursor
+* (done) start a cursor object that at some point might need to become a module
+* (done) have undefined array value be set to 0 for the input event handler
 
 ## ( done 07/31/2023 ) - cursor push function
 * (done) I will need a way to know what the current geometry is by having a state.current\_object and checking that
