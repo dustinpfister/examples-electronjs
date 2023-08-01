@@ -139,7 +139,12 @@ const updateScene = (state, obj3d) => {
 
     // add normals helper
     const helper = new VertexNormalsHelper( state.current_object );
-    state.scene.add(helper)
+    state.scene.add(helper);
+
+    // light
+    const dl = new THREE.DirectionalLight( 0xffffff, 1 );
+    dl.position.set(3, 2, 1);
+    state.scene.add(dl);
 
     // update json and draw for first time
     updateJSON();
