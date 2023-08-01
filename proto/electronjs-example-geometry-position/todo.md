@@ -11,6 +11,16 @@
 ## () - json replacer array format
 * () see about working out spacing with vertexs in custom replacer.
 
+## () - Built in Geometry dialog
+* () have a dialog for creating a new geometry from built in geometry functions
+* () be able to choose which function
+* () be able to set parameters for the function
+
+## () - file new option
+* () have a file new option that will create a new start point
+* () have a number of json file options to start from
+* () create from built in geometry options
+
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
@@ -24,13 +34,16 @@
 
 <!-- DONE -->
 
+## ( done 08/01/2023 ) - create_scene: json folder and create scene from json file
+* (done) see about loading external JSON files as an option for start states in the createScene method
+
 ## ( done 08/01/2023 ) - more work on cursor
 * (done) start a cursor object that at some point might need to become a module
 * (done) have undefined array value be set to 0 for the input event handler
 
 ## ( done 07/31/2023 ) - cursor push function
 * (done) I will need a way to know what the current geometry is by having a state.current\_object and checking that
-* (done) a new position attribuite should be created in the event that there is not one
+* (done) a new position attribute should be created in the event that there is not one
 
 ## ( done 07/31/2023 ) - start the cursor
 * (done) view will need to store a cursor position as an instance of Vector3 in the state object

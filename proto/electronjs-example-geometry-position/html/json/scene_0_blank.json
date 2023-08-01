@@ -1,0 +1,70 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "geometries": [
+        {
+            "uuid": "f1845fd7-267e-4632-ac37-5313c824a645",
+            "type": "BufferGeometry",
+            "data": {
+                "attributes": {
+                    "position": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [],
+                        "normalized": false
+                    }
+                }
+            }
+        }
+    ],
+    "materials": [
+        {
+            "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
+            "type": "PointsMaterial",
+            "color": 167772,
+            "size": 1,
+            "sizeAttenuation": true,
+            "depthFunc": 3,
+            "depthTest": true,
+            "depthWrite": true,
+            "colorWrite": true,
+            "stencilWrite": false,
+            "stencilWriteMask": 255,
+            "stencilFunc": 519,
+            "stencilRef": 0,
+            "stencilFuncMask": 255,
+            "stencilFail": 7680,
+            "stencilZFail": 7680,
+            "stencilZPass": 7680
+        }
+    ],
+    "object": {
+        "uuid": "822c1d61-1690-4451-82d8-3b717cc3399e",
+        "type": "Scene",
+        "layers": 1,
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "up": [
+            0,
+            1,
+            0
+        ],
+        "children": [
+            {
+                "uuid": "ef424865-235e-4c69-ad76-e51b93be843b",
+                "type": "Points",
+                "layers": 1,
+                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+                "up": [
+                    0,
+                    1,
+                    0
+                ],
+                "geometry": "f1845fd7-267e-4632-ac37-5313c824a645",
+                "material": "63ed02e7-8c5d-4064-98e5-8e0febc6121d"
+            }
+        ]
+    }
+}

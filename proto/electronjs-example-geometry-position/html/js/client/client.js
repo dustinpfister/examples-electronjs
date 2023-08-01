@@ -2,91 +2,7 @@
 // IMPORT - threejs and any addons I want to use
 // ---------- ----------
 import * as THREE from 'three';
-import {
-    OrbitControls
-}
-from 'OrbitControls';
-
-const START_SCENE = `{
-    "metadata": {
-        "version": 4.5,
-        "type": "Object",
-        "generator": "Object3D.toJSON"
-    },
-    "geometries": [
-        {
-            "uuid": "f1845fd7-267e-4632-ac37-5313c824a645",
-            "type": "BufferGeometry",
-            "data": {
-                "attributes": {
-                    "position": {
-                        "itemSize": 3,
-                        "type": "Float32Array",
-                        "array": [],
-                        "normalized": false
-                    }
-                },
-                "boundingSphere": {
-                    "center": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "radius": -1
-                }
-            }
-        }
-    ],
-    "materials": [
-        {
-            "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
-            "type": "PointsMaterial",
-            "color": 16777215,
-            "size": 1,
-            "sizeAttenuation": true,
-            "depthFunc": 3,
-            "depthTest": true,
-            "depthWrite": true,
-            "colorWrite": true,
-            "stencilWrite": false,
-            "stencilWriteMask": 255,
-            "stencilFunc": 519,
-            "stencilRef": 0,
-            "stencilFuncMask": 255,
-            "stencilFail": 7680,
-            "stencilZFail": 7680,
-            "stencilZPass": 7680
-        }
-    ],
-    "object": {
-        "uuid": "822c1d61-1690-4451-82d8-3b717cc3399e",
-        "type": "Scene",
-        "layers": 1,
-        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-        "up": [
-            0,
-            1,
-            0
-        ],
-        "children": [
-            {
-                "uuid": "ef424865-235e-4c69-ad76-e51b93be843b",
-                "type": "Points",
-                "layers": 1,
-                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
-                "up": [
-                    0,
-                    1,
-                    0
-                ],
-                "geometry": "f1845fd7-267e-4632-ac37-5313c824a645",
-                "material": "63ed02e7-8c5d-4064-98e5-8e0febc6121d"
-            }
-        ]
-    }
-}
-`;
-
+import { OrbitControls } from 'OrbitControls';
 // ---------- ----------
 // REFS TO VIEW IFRAME, and TEXT JSON
 // ---------- ----------
@@ -98,17 +14,12 @@ const text_json = document.getElementById('text_json');
 const state = window.state = {
     canvas: null,
     ctx: null,
-
     cursor: new THREE.Vector3(0, 0, 0),
-
     view: null,
-
     scene: null,
     current_object: null, // the current object that is begin worked on
-
     camera: null,
     renderer: null,
-
     user_input: false,
     orbit: null,
     x: 0,
@@ -167,7 +78,13 @@ const createScene = () => {
     return scene;
      */
     // start scene with hard coded JSON
-    return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
+    //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
+    return new Promise( (resolve, reject) => {
+        const loader = new THREE.ObjectLoader();
+        loader.load('json/scene_0_blank.json', (obj) => {
+            resolve(obj);
+        });
+    });
     /*
     // child objects
     const scene = new THREE.Scene();
@@ -188,7 +105,7 @@ const createScene = () => {
 };
 // setup scene with new/updated object
 const updateScene = (state, obj3d) => {
-    state.scene = !state.scene ? createScene() : state.scene;
+    state.scene = !state.scene ? new THREE.Scene() : state.scene;
     // remove and children
     let i = state.scene.children.length;
     while (i--) {
@@ -227,7 +144,11 @@ const setup = () => {
     state.orbit = new OrbitControls(state.camera, state.canvas);
     state.camera.position.set(2, 2, 2);
     state.camera.lookAt(0, 0, 0);
-    updateScene(state, createScene());
+    
+    return createScene()
+    .then( (scene) => {
+        updateScene(state, scene);
+    });
 };
 // ---------- ----------
 // EVENTS
@@ -348,10 +269,12 @@ sm.states.init = () => {
             console.log('Looks like the view is ready');
             state.canvas = state.view.canvas;
             state.ctx = state.view.ctx;
-            setup();
-            sm.current = 'run';
-            // set value of input element to array of Vector3 cursor
-            input_pos.value = state.cursor.toArray();
+            setup()
+            .then( ()=> {
+                sm.current = 'run';
+                // set value of input element to array of Vector3 cursor
+                input_pos.value = state.cursor.toArray();
+            });
         }
     } else {
         console.log('OKAY YEAH NOT READY!');
