@@ -19,7 +19,7 @@
                     "normal": {
                         "itemSize": 3,
                         "type": "Float32Array",
-                        "array": [1,-1,1,1,1,1,-1,1,1,0,1,0,0,1,0,0,1,0,0,1,0,1,1,1],
+                        "array": [-1,-1,-1,-1,1,-1,1,1,-1,1,-1,-1,-1,-1,1,-1,1,1,1,1,1,1,-1,1],
                         "normalized": false
                     },
                     "color": {
@@ -47,8 +47,7 @@
     "materials": [
         {
             "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
-            "type": "MeshBasicMaterial",
-            "color": 16777215,
+            "type": "MeshNormalMaterial",
             "reflectivity": 1,
             "refractionRatio": 0.98,
             "side": 2,
@@ -68,7 +67,7 @@
         }
     ],
     "object": {
-        "uuid": "725456b2-440e-4eae-89c0-c259128f0c7e",
+        "uuid": "3d842990-d341-460f-bcba-a1c132c9f657",
         "type": "Scene",
         "layers": 1,
         "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -79,7 +78,7 @@
         ],
         "children": [
             {
-                "uuid": "ef424865-235e-4c69-ad76-e51b93be843b",
+                "uuid": "83ccf118-2d43-4085-9a1f-3f70e8ca2e81",
                 "type": "Mesh",
                 "layers": 1,
                 "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],

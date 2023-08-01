@@ -158,7 +158,7 @@ const setup = () => {
         }
     });
     state.orbit = new OrbitControls(state.camera, state.canvas);
-    state.camera.position.set(3, 3, 3);
+    state.camera.position.set(2.7, 1.5, 5);
     state.camera.lookAt(0, 0, 0);
     
     return createScene()
