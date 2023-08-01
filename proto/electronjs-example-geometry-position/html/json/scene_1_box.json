@@ -15,7 +15,23 @@
                         "type": "Float32Array",
                         "array": [-1,-1,-1,-1,1,-1,1,1,-1,1,-1,-1,-1,-1,1,-1,1,1,1,1,1,1,-1,1],
                         "normalized": false
+                    },
+                    "normal": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [1,-1,1,1,1,1,-1,1,1,0,1,0,0,1,0,0,1,0,0,1,0,1,1,1],
+                        "normalized": false
+                    },
+                    "color": {
+                        "itemSize": 3,
+                        "type": "Float32Array",
+                        "array": [1,0,0,1,1,0,0,1,0,1,0,0,1,0,0,0,1,0,0,1,0,1,0,0],
+                        "normalized": false
                     }
+                },
+                "index": {
+                    "type": "Uint16Array",
+                    "array": [0,1,2,0,2,3,0,4,5,0,5,1,4,6,5,4,7,6,2,7,3,2,6,7,0,3,7,4,0,7]
                 },
                 "boundingSphere": {
                     "center": [
@@ -23,7 +39,7 @@
                         0,
                         0
                     ],
-                    "radius": 0
+                    "radius": 1.7320508075688772
                 }
             }
         }
@@ -31,10 +47,12 @@
     "materials": [
         {
             "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
-            "type": "PointsMaterial",
-            "color": 167772,
-            "size": 1,
-            "sizeAttenuation": true,
+            "type": "MeshBasicMaterial",
+            "color": 16777215,
+            "reflectivity": 1,
+            "refractionRatio": 0.98,
+            "side": 2,
+            "vertexColors": true,
             "depthFunc": 3,
             "depthTest": true,
             "depthWrite": true,
@@ -50,7 +68,7 @@
         }
     ],
     "object": {
-        "uuid": "892d4b08-594c-4f44-b08e-c034ee939e87",
+        "uuid": "725456b2-440e-4eae-89c0-c259128f0c7e",
         "type": "Scene",
         "layers": 1,
         "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -62,7 +80,7 @@
         "children": [
             {
                 "uuid": "ef424865-235e-4c69-ad76-e51b93be843b",
-                "type": "Points",
+                "type": "Mesh",
                 "layers": 1,
                 "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
                 "up": [
