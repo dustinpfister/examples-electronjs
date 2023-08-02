@@ -33,7 +33,7 @@
 
 ## () - cursor: display position in view
 * (done) start with a create cursor helper function
-* () 
+* (done) started a updateSceneFromJSON helper
 * () I will want to add a THREE.Sprite to the state.scene object for this
 * () use canvas textures to create the texture for the cross hair
 * () see about having a json file for this.

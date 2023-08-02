@@ -85,7 +85,10 @@ const loadJSON = ( url = 'json/scene_1_box.json' ) => {
 };
 // crate a cursor object
 const createCursor = (state) => {
-    const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 16, 16) );
+    const material = new THREE.MeshBasicMaterial({
+        depthTest: false
+    });
+    const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 16, 16), material );
     mesh.position.copy( state.cursor );
     return mesh;
 };
@@ -166,6 +169,12 @@ const updateScene = (state, obj3d) => {
     updateJSON();
     draw();
 };
+// update scene from JSON
+const updateSceneFromJSON = (state, str_json ) => {
+    const obj = JSON.parse(str_json);
+    const obj3d = new THREE.ObjectLoader().parse( obj );
+    updateScene(state, obj3d);
+};
 // setup is to be called when the view is ready
 const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
@@ -194,11 +203,15 @@ text_json.addEventListener('input', (e) => {
     state.user_input = true;
 });
 text_json.addEventListener('blur', (e) => {
+    updateSceneFromJSON( state, e.target.value );
+    state.user_input = false;
+/*
     const str_json = e.target.value;
     const obj = JSON.parse(str_json);
-    const obj3d = new THREE.ObjectLoader().parse(obj);
+    const obj3d = new THREE.ObjectLoader().parse( obj );
     updateScene(state, obj3d);
     state.user_input = false;
+*/
 });
 // ---------- ----------
 // DRAG AND DROP
@@ -285,13 +298,11 @@ const input_push = document.getElementById('input_cursor_push');
 // on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
     Cursor.parseString(state, e.target.value);
-console.log(state.cursor);
-//updateScene(state, state.scene)
-
+    updateSceneFromJSON( state, text_json.value);
 });
 // on click event for push function
 input_push.addEventListener('click', (e) => {
-    Cursor.pushToPosition(state)
+    Cursor.pushToPosition(state);
 });
 // ---------- ----------
 // MAIN APP LOOP
