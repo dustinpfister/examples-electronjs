@@ -184,27 +184,19 @@ const updateScene = (state, obj3d) => {
     }
     // set current object to first child if there is one, else scene?
     state.current_object = state.scene.children[0] || state.scene;
-
     // add grid helper
     const grid = new THREE.GridHelper(10, 10);
     state.scene.add(grid);
-
     // add normals helper
     if(state.current_object.type === 'Mesh'){
         const helper = new VertexNormalsHelper( state.current_object );
         state.scene.add(helper);
     }
-
     // light
     const dl = new THREE.DirectionalLight( 0xffffff, 1 );
     dl.position.set(3, 2, 1);
     state.scene.add(dl);
-
-/*
-    const cursor = createCursorSprite(state);
-    state.scene.add(cursor);
-*/
-
+    // cursor
     createCursorSprite(state)
     .then( (sprite) => {
         state.scene.add(sprite);
@@ -212,8 +204,6 @@ const updateScene = (state, obj3d) => {
         updateJSON();
         draw()
     });
-
-;
 };
 // update scene from JSON
 const updateSceneFromJSON = (state, str_json ) => {
@@ -356,7 +346,6 @@ sm.states.init = () => {
     if (frame_view.contentWindow.state) {
         state.view = frame_view.contentWindow.state;
         if (state.view.ready) {
-            console.log('Looks like the view is ready');
             state.canvas = state.view.canvas;
             state.ctx = state.view.ctx;
             setup()
