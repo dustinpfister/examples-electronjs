@@ -86,6 +86,7 @@ const loadJSON = ( url = 'json/scene_1_box.json' ) => {
 // crate a cursor object
 const createCursorSprite = (state) => {
     // canvas texture for cross hairs
+/*
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     const w = 32, h = 32;
@@ -118,13 +119,16 @@ const createCursorSprite = (state) => {
         opacity: 1
     });
     const sprite = new THREE.Sprite(  material );
-    const s = 0.07;
-    sprite.scale.set( s, s, s);
+  //console.log( JSON.stringify( sprite.toJSON()) );
+*/
 
-console.log( JSON.stringify( sprite.toJSON()) );
-
-    sprite.position.copy( state.cursor );
-    return sprite;
+    return loadJSON('json/scene_2_cursor.json')
+    .then( (sprite) => {
+        const s = 0.07;
+        sprite.scale.set( s, s, s);
+        sprite.position.copy( state.cursor );
+        return sprite;
+    });
 };
 // create a scene object
 const createScene = () => {
@@ -196,12 +200,20 @@ const updateScene = (state, obj3d) => {
     dl.position.set(3, 2, 1);
     state.scene.add(dl);
 
+/*
     const cursor = createCursorSprite(state);
     state.scene.add(cursor);
+*/
 
-    // update json and draw for first time
-    updateJSON();
-    draw();
+    createCursorSprite(state)
+    .then( (sprite) => {
+        state.scene.add(sprite);
+        // update json and draw for first time
+        updateJSON();
+        draw()
+    });
+
+;
 };
 // update scene from JSON
 const updateSceneFromJSON = (state, str_json ) => {
@@ -239,13 +251,6 @@ text_json.addEventListener('input', (e) => {
 text_json.addEventListener('blur', (e) => {
     updateSceneFromJSON( state, e.target.value );
     state.user_input = false;
-/*
-    const str_json = e.target.value;
-    const obj = JSON.parse(str_json);
-    const obj3d = new THREE.ObjectLoader().parse( obj );
-    updateScene(state, obj3d);
-    state.user_input = false;
-*/
 });
 // ---------- ----------
 // DRAG AND DROP
