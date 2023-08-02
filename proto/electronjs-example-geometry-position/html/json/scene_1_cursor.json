@@ -1,0 +1,97 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "materials": [
+        {
+            "uuid": "001c824c-4d52-4751-b964-fe012cf04f46",
+            "type": "SpriteMaterial",
+            "color": 16777215,
+            "map": "f68bd7f3-0aee-4b7f-b0f9-2634ca3917ae",
+            "sizeAttenuation": false,
+            "transparent": true,
+            "depthFunc": 3,
+            "depthTest": false,
+            "depthWrite": true,
+            "colorWrite": true,
+            "stencilWrite": false,
+            "stencilWriteMask": 255,
+            "stencilFunc": 519,
+            "stencilRef": 0,
+            "stencilFuncMask": 255,
+            "stencilFail": 7680,
+            "stencilZFail": 7680,
+            "stencilZPass": 7680
+        }
+    ],
+    "textures": [
+        {
+            "uuid": "f68bd7f3-0aee-4b7f-b0f9-2634ca3917ae",
+            "name": "",
+            "image": "b364c588-31c7-4c49-a55b-5013c341d7bb",
+            "mapping": 300,
+            "channel": 0,
+            "repeat": [
+                1,
+                1
+            ],
+            "offset": [
+                0,
+                0
+            ],
+            "center": [
+                0,
+                0
+            ],
+            "rotation": 0,
+            "wrap": [
+                1001,
+                1001
+            ],
+            "format": 1023,
+            "internalFormat": null,
+            "type": 1009,
+            "colorSpace": "",
+            "minFilter": 1008,
+            "magFilter": 1006,
+            "anisotropy": 1,
+            "flipY": true,
+            "generateMipmaps": true,
+            "premultiplyAlpha": false,
+            "unpackAlignment": 4
+        }
+    ],
+    "images": [
+        {
+            "uuid": "b364c588-31c7-4c49-a55b-5013c341d7bb",
+            "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABMpJREFUWEfNl29IVWccxz/njaOcgk69XrsTzQTnXtTmrOayfzrLP6RtrGQUIttkU8ZSotY737UgbDDUpRsixbDGKMM/5bR/NleprF7MCc4Ud/Oqcwo6jfnmjN/xHD2ejt4rQ9gDh3N5zvM83+/9Pb8/35+iqqrK/KhUFKVQ/73sS1UJBV4GXEC0vnAAcAN/KAp/ej9DrQA+kXWKicCyJHTQ9wB5dnsBuA18L48dGVVdBDcILLCxWkIHLtWBQ3t7ob8fnj6FyUl49mx+x7p1EBQEGzZATAzExWnTYgkhUmoQsYJrVpeVdh9AuQxUA5s6OuD+fZiaWvzvU1N4JiYYlpngYCICA3EaXwMDYft2SErSZn4HPgL1kGF28x/VCNiTqMTtLqSpCYaHYW6OmZ4efnK78fT2Mjwzw5z5Kvz98YuLI8Llwhkfz1t+fvhHREBGBrhcViMv+tsCATsSnZ2VNDYWMj5Of1MTzQMD/OXNweR7dDQvZWSQHhJCTGZmBYmJmr8ZY4mzWwjwClT06A6qbbh377I7Ofnwt74AW9e0t1/6YMeOQxIthtWBwnhF4TdjxnQFBALNbjdJHs9S1m1tbV2pqamNqyHR2tqamZKS8oaxR6zpdBbictEBpCsKmkeZCZQLvaqq+Tvfu/dK386dObHGAashYQW/e/dq382bB2PFJwoKtBMrFIWiBQJ6uP3a0UFoSws8ecLDCxdoth7kC4nl9hw9SvrGjWxNS9OiQ0L0VQlPPQyRDFheVgYjI0zU1lIzNsbfwnA1JFZaGxbGi3l55IeHE1xSolmhSFGoMAjc6u1ld10dPH7Mj1evave0MHwh4cuanBySNm/m7dxcLVndVhT2KKqKAxhpbITOTrh+nYsPHtBvdbiVAHwBl/O2bSNm/36OJCZCZqaGEC4EEoGH1dXzKbasjC+mp/nHzuPtgGSd2dtX8pOAAF4oKeFzkzNuFQLvAD+cOQNjY4yWlfH1SuFmJWFe64uTlpTwscOB48QJbee7QuAYcK60FIaG+KWmhmve4t2OhC/gcm5+PgciI3lN8IBiIfAZ8KVMDA7SXVtLw1oSyMsjKyqKBJ3AMSFwAKiXKxgdxXPuHFVreQXFxRQ4HDhPntRQsoXA60C3kQHPnuW0tdIZhP6rE0rFPH6cUyYnTBACIrHGjDBsaKC2u5vBtQjDhASisrLIM4Vh2HOJ6NEjWurr+XktElF2Nm9u2ULakkQkQKq6mIrHx5mpq6PGqP2+JhlvaVs0Qm4u+SEh+NulYrmGhWIkAqS8nIurAV/JT6SUFxVxRASKbTHSraCV4/PnweOB1NRLbrOY8DXO7Swhoqa19bBr2XKsExArdLjdbFpjQSIiNclQylZJthsqbpklmYiJXbsOfuctOdl9v3PnyvtmUQOVYuQ9ioL0DtpYUZR2dVXS0FCoCZQbN2g3NII3MlL79+0jWQSIz6L0+d5gqSyfnWWir49uj4fRnh7c1ooplS4+HpfTiSM2loT16wn2WZYv05h8BXwj92XXmExPMzo5Od+YBAURERCg6QptWBoTETcfgvqpbWNi2y7pTaqqakr5tLU1E9Eqrdns7Dygl9bslKGAbbH+D83pattzMXWk3qLLW8aQtObyVhRGvTmp2RL/Aj9e41duCI5PAAAAAElFTkSuQmCC"
+        }
+    ],
+    "object": {
+        "uuid": "0a2871fc-4c76-47cb-a118-dd27727c43d5",
+        "type": "Scene",
+        "layers": 1,
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "up": [
+            0,
+            1,
+            0
+        ],
+        "children": [
+            {
+                "uuid": "3c41306c-902a-4cf1-82a2-5efc35f1d996",
+                "type": "Sprite",
+                "layers": 1,
+                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+                "up": [
+                    0,
+                    1,
+                    0
+                ],
+                "material": "001c824c-4d52-4751-b964-fe012cf04f46"
+            }
+        ]
+    }
+}

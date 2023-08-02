@@ -84,13 +84,47 @@ const loadJSON = ( url = 'json/scene_1_box.json' ) => {
     });
 };
 // crate a cursor object
-const createCursor = (state) => {
-    const material = new THREE.MeshBasicMaterial({
-        depthTest: false
+const createCursorSprite = (state) => {
+    // canvas texture for cross hairs
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const w = 32, h = 32;
+    canvas.width = w; canvas.height = h;
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.strokeStyle = '#ffff00';
+    ctx.lineWidth = 3;
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(w / 2, h / 2, w / 2 - 2, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo( 0, 0);
+    ctx.lineTo( w, h);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo( w, 0);
+    ctx.lineTo( 0, h);
+    ctx.stroke();
+    const texture = new THREE.CanvasTexture( canvas );
+    // the material for the sprite
+    const material = new THREE.SpriteMaterial({
+        map: texture,
+        sizeAttenuation: false,
+        depthTest: false,
+        transparent: true,
+        opacity: 1
     });
-    const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 16, 16), material );
-    mesh.position.copy( state.cursor );
-    return mesh;
+    const sprite = new THREE.Sprite(  material );
+    const s = 0.07;
+    sprite.scale.set( s, s, s);
+
+console.log( JSON.stringify( sprite.toJSON()) );
+
+    sprite.position.copy( state.cursor );
+    return sprite;
 };
 // create a scene object
 const createScene = () => {
@@ -142,7 +176,7 @@ const updateScene = (state, obj3d) => {
         //state.scene.applyMatrix4( obj3d.matrix );
     } else {
         // any other kind of object just add it as a child
-        state.scene.add(object3d);
+        state.scene.add(obj3d);
     }
     // set current object to first child if there is one, else scene?
     state.current_object = state.scene.children[0] || state.scene;
@@ -162,7 +196,7 @@ const updateScene = (state, obj3d) => {
     dl.position.set(3, 2, 1);
     state.scene.add(dl);
 
-    const cursor = createCursor(state);
+    const cursor = createCursorSprite(state);
     state.scene.add(cursor);
 
     // update json and draw for first time
