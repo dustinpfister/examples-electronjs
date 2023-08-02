@@ -29,22 +29,48 @@ const state = window.state = {
 // ---------- ----------
 // HELPERS
 // ---------- ----------
-// update json text
-const replacer = function (key, value) {
-    if (key === "") {
+
+const createReplacer = () => {
+    let item_size = 1;
+    return function (key, value) {
+        if (key === "") {
+            return value;
+        }
+        if (key === "matrix") {
+            return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
+        }
+        // set item size
+        if( key === 'index'){
+            item_size = 3;
+        }
+        if (key === "itemSize") {
+            item_size =  parseInt(value);
+        }
+        // format array
+        if (key === "array") {
+            let i = 0;
+            let str_arr = 'REPLACE_EOL';
+            const len = value.length;
+            while(i < len){
+                let d = 0;
+                if(i % 4 === 0){
+                    str_arr += 'REPLACE_EOL';
+                }
+                while(d < item_size){
+                    const i2 = i + d;
+                    const n = value[ i + d ];
+                    const left = n < 0 ? '' : ' ';
+                    const right =  i2 >= len - 1 ? '' : ',';
+                    str_arr += left + parseFloat( n.toFixed(2) ) + right;
+                    d += 1;
+                }
+                str_arr += ' ';
+                i += item_size;
+            }
+            return 'REPLACE_ARR_OPEN' + str_arr + 'REPLACE_ARR_CLOSE';
+        }
         return value;
-    }
-    if (key === "matrix") {
-        return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
-    }
-    // !!! this can be used to do what I would like in terms of spacing
-    if (key === "itemSize") {
-        //console.log(value);
-    }
-    if (key === "array") {
-        return 'REPLACE_ARR_OPEN' + value.toString() + 'REPLACE_ARR_CLOSE';
-    }
-    return value;
+    };
 };
 // update the JSON output
 const updateJSON = () => {
@@ -55,8 +81,9 @@ const updateJSON = () => {
         scene_export.add( state.current_object.clone() );
     }
     // CUSTOM REPLACER AND SPACING
-    const str_raw = JSON.stringify(scene_export.toJSON(), replacer, 4);
+    const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), 4);
     text_json.value = str_raw
+        .replace(/REPLACE_EOL/g, '\n')
         .replace(/"REPLACE_ARR_OPEN/g, '[')
         .replace(/REPLACE_ARR_CLOSE"/g, ']');
     // NULL REPLACER AND SPACING
@@ -75,7 +102,7 @@ const draw = state.draw = () => {
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
 // load a JOSN file, returns a promise
-const loadJSON = ( url = 'json/scene_0_blank.json' ) => {
+const loadJSON = ( url = 'json/scene_1_box.json' ) => {
     return new Promise( (resolve, reject) => {
         const loader = new THREE.ObjectLoader();
         loader.load(url, (obj) => {

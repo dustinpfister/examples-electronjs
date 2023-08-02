@@ -4,8 +4,7 @@
 * () see about setting scene rotation from matrix data
 * () see about setting scene scale from matix data 
 
-## () - json replacer array format
-* () see about working out spacing with vertexs in custom replacer.
+
 
 ## () - Built in Geometry dialog
 * () have a dialog for creating a new geometry from built in geometry functions
@@ -26,6 +25,9 @@
 * () have a delete function that will remove all selected points from the position attribute
 
 <!-- DONE -->
+
+## ( done 08/02/2023 ) - json replacer array format
+* (done) see about working out spacing with vertexs in custom replacer.
 
 ## ( done 08/02/2023 ) - cursor: display position in view
 * (done) start with a create cursor helper function
