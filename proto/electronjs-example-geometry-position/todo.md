@@ -20,15 +20,21 @@
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
-## () - cursor: display position in view
-* () have a way to display the current cursor position in the view
-
 ## () - position selection
 * () have a way to select one or more indices in the position attribute
 * () selected points should display differently
 * () have a delete function that will remove all selected points from the position attribute
 
+## () - Layers: start layers
+* () start work on some code for having more than one layer
+* () I will want to have WebGlrenderer layers, and plain old 2d canvas layers
+* () I think I will want to hace a cursor layer, and have that on top of the state.scene layer
+* () simple 2d info layer on the top.
 
+## () - cursor: display position in view
+* () I will want to add a THREE.Sprite to the state.scene object for this
+* () use canvas textures to create the texture for the cross hair
+* () see about having a json file for this.
 
 <!-- DONE -->
 

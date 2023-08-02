@@ -74,6 +74,16 @@ const draw = state.draw = () => {
     ctx.fillStyle = 'white';
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
+// load a JOSN file, returns a promise
+const loadJSON = ( url = 'json/scene_1_box.json' ) => {
+    return new Promise( (resolve, reject) => {
+        const loader = new THREE.ObjectLoader();
+        loader.load(url, (obj) => {
+            resolve(obj);
+        });
+    });
+};
+// create a scene object
 const createScene = () => {
     // start scene with blank geometry and Points Material
     /*
@@ -86,12 +96,7 @@ const createScene = () => {
      */
     // start scene with hard coded JSON
     //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
-    return new Promise( (resolve, reject) => {
-        const loader = new THREE.ObjectLoader();
-        loader.load('json/scene_1_box.json', (obj) => {
-            resolve(obj);
-        });
-    });
+    return loadJSON();
     /*
     // child objects
     const scene = new THREE.Scene();
