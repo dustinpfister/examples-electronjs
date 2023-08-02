@@ -75,7 +75,7 @@ const draw = state.draw = () => {
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
 // load a JOSN file, returns a promise
-const loadJSON = ( url = 'json/scene_1_box.json' ) => {
+const loadJSON = ( url = 'json/scene_0_blank.json' ) => {
     return new Promise( (resolve, reject) => {
         const loader = new THREE.ObjectLoader();
         loader.load(url, (obj) => {
@@ -189,8 +189,10 @@ const updateScene = (state, obj3d) => {
     state.scene.add(grid);
     // add normals helper
     if(state.current_object.type === 'Mesh'){
-        const helper = new VertexNormalsHelper( state.current_object );
-        state.scene.add(helper);
+        if(state.current_object.geometry.getAttribute('normal')){
+            const helper = new VertexNormalsHelper( state.current_object );
+            state.scene.add(helper);
+        }
     }
     // light
     const dl = new THREE.DirectionalLight( 0xffffff, 1 );
