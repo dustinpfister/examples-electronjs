@@ -32,6 +32,7 @@ const state = window.state = {
 
 const createReplacer = () => {
     let item_size = 1;
+    let int = false;
     return function (key, value) {
         if (key === "") {
             return value;
@@ -42,14 +43,21 @@ const createReplacer = () => {
         // set item size
         if( key === 'index'){
             item_size = 3;
+            int = true;
         }
         if (key === "itemSize") {
             item_size =  parseInt(value);
         }
+        if( key === 'type'){
+            int = false;
+            if( value === 'Uint16Array' || value === 'Uint8Array'){
+                int = true;
+            }
+        }
         // format array
         if (key === "array") {
             let i = 0;
-            let str_arr = 'REPLACE_EOL';
+            let str_arr = '';
             const len = value.length;
             while(i < len){
                 let d = 0;
@@ -61,7 +69,11 @@ const createReplacer = () => {
                     const n = value[ i + d ];
                     const left = n < 0 ? '' : ' ';
                     const right =  i2 >= len - 1 ? '' : ',';
-                    str_arr += left + parseFloat( n.toFixed(2) ) + right;
+                    let val = n.toFixed(2);
+                    if(int){
+                        val = parseInt(n);
+                    }
+                    str_arr += left + val + right;
                     d += 1;
                 }
                 str_arr += ' ';
