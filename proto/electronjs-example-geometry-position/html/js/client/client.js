@@ -83,6 +83,12 @@ const loadJSON = ( url = 'json/scene_1_box.json' ) => {
         });
     });
 };
+// crate a cursor object
+const createCursor = (state) => {
+    const mesh = new THREE.Mesh( new THREE.SphereGeometry(0.1, 16, 16) );
+    mesh.position.copy( state.cursor );
+    return mesh;
+};
 // create a scene object
 const createScene = () => {
     // start scene with blank geometry and Points Material
@@ -143,13 +149,18 @@ const updateScene = (state, obj3d) => {
     state.scene.add(grid);
 
     // add normals helper
-    const helper = new VertexNormalsHelper( state.current_object );
-    state.scene.add(helper);
+    if(state.current_object.type === 'Mesh'){
+        const helper = new VertexNormalsHelper( state.current_object );
+        state.scene.add(helper);
+    }
 
     // light
     const dl = new THREE.DirectionalLight( 0xffffff, 1 );
     dl.position.set(3, 2, 1);
     state.scene.add(dl);
+
+    const cursor = createCursor(state);
+    state.scene.add(cursor);
 
     // update json and draw for first time
     updateJSON();
@@ -239,9 +250,9 @@ const Cursor = {};
 Cursor.parseString = (state, string = '0,0,0') => {
     const arr_str = string.split(',');
     const arr = [];
-    arr[0] = arr_str[0] || 0;
-    arr[1] = arr_str[1] || 0;
-    arr[2] = arr_str[2] || 0;
+    arr[0] = parseFloat(arr_str[0]) || 0;
+    arr[1] = parseFloat(arr_str[1]) || 0;
+    arr[2] = parseFloat(arr_str[2]) || 0;
     state.cursor.fromArray(arr);
 };
 // push the cursor state to the position attribute of the current object
@@ -274,6 +285,9 @@ const input_push = document.getElementById('input_cursor_push');
 // on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
     Cursor.parseString(state, e.target.value);
+console.log(state.cursor);
+//updateScene(state, state.scene)
+
 });
 // on click event for push function
 input_push.addEventListener('click', (e) => {
