@@ -28,6 +28,8 @@
 * (done) see about using raycaster as a way to select a point
 * (done) find out why setup is being called three times
 
+* () see about using ray methods and distance to method of vector3 class
+
 * () selected points should display differently
 * () have a delete function that will remove all selected points from the position attribute
 
