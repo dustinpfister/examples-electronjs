@@ -246,10 +246,11 @@ const updateScene = (state, obj3d) => {
     // cursor
     createCursorSprite(state)
     .then( (sprite) => {
-        state.scene.add(sprite);
+        sprite.name = 'cursor';
+        state.scene.add( sprite );
         // update json and draw for first time
         updateJSON();
-        draw()
+        draw();
     });
 };
 // update scene from JSON
@@ -263,17 +264,39 @@ const getRayPoint = (state) => {
     state.raycaster.setFromCamera( state.pointer, state.camera );
     const object = state.current_object;
     const v = new THREE.Vector3();
+    // what to do if no object
     if(!object){
         return v;
     }
     // use distance from camera as a way to set threshold
     const d = state.camera.position.distanceTo( object.position );
     state.raycaster.params.Points.threshold = d;
+    // check for intersection and copy point of interset object 0
     const intersects = state.raycaster.intersectObject( object );
     if(intersects.length >= 1){
         v.copy( intersects[0].point );
     }
     return v;
+};
+// loop over points of the position attribute, and return the index that is near the given vector3
+const getPositonIndexNear = ( geometry, v3 ) => {
+    const pos = geometry.getAttribute('position');
+    if(!pos){
+        return null;
+    }
+    let pos_index = 0;
+    let dist_high = Infinity;
+    let i = 0;
+    while(i < pos.count){
+        const v = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
+        const d = v.distanceTo( v3 );
+        if(d < dist_high){
+            dist_high = d;
+            pos_index = i;
+        }
+        i += 1;
+    }
+    return pos_index;
 };
 // setup is to be called when the view is ready
 const setup = () => {
@@ -285,9 +308,20 @@ const setup = () => {
     state.canvas.addEventListener('pointerdown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
 
-const v = getRayPoint(state);
+        const v = getRayPoint(state);
+        console.log(v);
 
-console.log(v)
+        const geometry = state.current_object.geometry;
+        const i = getPositonIndexNear(geometry, v);
+        const pos = geometry.getAttribute('position');
+
+        const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
+        console.log(i, v_pos);
+
+const sprite = state.scene.getObjectByName('cursor');
+state.cursor.copy( v_pos );
+sprite.position.copy( state.cursor );
+draw();
 
         
         if (!state.user_input) {
