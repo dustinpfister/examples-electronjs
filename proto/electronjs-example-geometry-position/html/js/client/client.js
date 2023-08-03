@@ -114,7 +114,7 @@ const draw = state.draw = () => {
     ctx.fillText(state.x + ',' + state.y, 10, 10);
 };
 // load a JOSN file, returns a promise
-const loadJSON = ( url = 'json/scene_1_box.json' ) => {
+const loadJSON = ( url = 'json/scene_3_points.json' ) => {
     return new Promise( (resolve, reject) => {
         const loader = new THREE.ObjectLoader();
         loader.load(url, (obj) => {

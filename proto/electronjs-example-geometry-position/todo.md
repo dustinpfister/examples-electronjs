@@ -1,10 +1,8 @@
 # hello-world todo list
 
-## () - parsing scene objects
+## () - Parsing scene objects
 * () see about setting scene rotation from matrix data
-* () see about setting scene scale from matix data 
-
-
+* () see about setting scene scale from matrix data 
 
 ## () - Built in Geometry dialog
 * () have a dialog for creating a new geometry from built in geometry functions
@@ -16,13 +14,19 @@
 * () have a number of json file options to start from
 * () create from built in geometry options
 
+## () - vertex insert component
+* () the push function of the cursor component show actually be part of a new vertex insert component
+* () add a feature that will allow for adjusting where to insert
+
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
 ## () - position selection
+* () start a new scene\_3\_points.json file
 * () have a way to select one or more indices in the position attribute
 * () selected points should display differently
 * () have a delete function that will remove all selected points from the position attribute
+
 
 <!-- DONE -->
 
