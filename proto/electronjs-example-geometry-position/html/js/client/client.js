@@ -23,8 +23,8 @@ const state = window.state = {
     renderer: null,
     user_input: false,
     orbit: null,
-
     pointer: new THREE.Vector2(),
+    raycaster: new THREE.Raycaster()
 };
 // ---------- ----------
 // HELPERS
@@ -111,7 +111,13 @@ const draw = state.draw = () => {
     state.renderer.render(state.scene, state.camera);
     ctx.drawImage(state.renderer.domElement, 0, 0, state.canvas.width, state.canvas.height);
     ctx.fillStyle = 'white';
-    ctx.fillText(state.pointer.x + ',' + state.pointer.y, 10, 10);
+    ctx.fillText('pointer: ' + state.pointer.x + ',' + state.pointer.y, 10, 10);
+    // raycaster
+    const ray = state.raycaster.ray;
+    const v1 = ray.origin;
+    const v2 = ray.direction;
+    ctx.fillText('ray_origin: ' + v1.x.toFixed(2) + ',' + v1.y.toFixed(2) + ',' + v1.z.toFixed(2), 10, 20);
+    ctx.fillText('ray_dir   : ' + v2.x.toFixed(2) + ',' + v2.y.toFixed(2) + ',' + v2.z.toFixed(2), 10, 30);
 };
 // load a JOSN file, returns a promise
 const loadJSON = ( url = 'json/scene_3_points.json' ) => {
@@ -259,6 +265,7 @@ const setup = () => {
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
     state.canvas.addEventListener('pointerdown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
+        state.raycaster.setFromCamera( state.pointer, state.camera );
         if (!state.user_input) {
             updateJSON();
         }

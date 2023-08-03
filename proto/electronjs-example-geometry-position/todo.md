@@ -24,6 +24,7 @@
 ## () - position selection
 * (done) start a new scene\_3\_points.json file
 * (done) I will want a state.pointer vector2 object in place of state.x, and state.y
+* (done) state.raycaster, updating with point, and displaying ray state into
 * () see about using raycaster as a way to select a point
 * () selected points should display differently
 * () have a delete function that will remove all selected points from the position attribute
