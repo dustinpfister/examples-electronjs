@@ -23,8 +23,8 @@ const state = window.state = {
     renderer: null,
     user_input: false,
     orbit: null,
-    x: 0,
-    y: 0
+
+    pointer: new THREE.Vector2(),
 };
 // ---------- ----------
 // HELPERS
@@ -111,7 +111,7 @@ const draw = state.draw = () => {
     state.renderer.render(state.scene, state.camera);
     ctx.drawImage(state.renderer.domElement, 0, 0, state.canvas.width, state.canvas.height);
     ctx.fillStyle = 'white';
-    ctx.fillText(state.x + ',' + state.y, 10, 10);
+    ctx.fillText(state.pointer.x + ',' + state.pointer.y, 10, 10);
 };
 // load a JOSN file, returns a promise
 const loadJSON = ( url = 'json/scene_3_points.json' ) => {
@@ -258,8 +258,7 @@ const setup = () => {
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
     state.canvas.addEventListener('pointerdown', (e) => {
-        state.x = e.clientX;
-        state.y = e.clientY;
+        state.pointer.set( e.clientX, e.clientY );
         if (!state.user_input) {
             updateJSON();
         }
@@ -267,7 +266,6 @@ const setup = () => {
     state.orbit = new OrbitControls(state.camera, state.canvas);
     state.camera.position.set(2.7, 1.5, 5);
     state.camera.lookAt(0, 0, 0);
-    
     return createScene()
     .then( (scene) => {
         updateScene(state, scene);
