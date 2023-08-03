@@ -260,8 +260,8 @@ const updateSceneFromJSON = (state, str_json ) => {
     updateScene(state, obj3d);
 };
 // get a point using raycaster in state.current_object using state.pointer
+/*
 const getRayPoint = (state) => {
-    state.raycaster.setFromCamera( state.pointer, state.camera );
     const object = state.current_object;
     const v = new THREE.Vector3();
     // what to do if no object
@@ -278,7 +278,9 @@ const getRayPoint = (state) => {
     }
     return v;
 };
+*/
 // loop over points of the position attribute, and return the index that is near the given vector3
+/*
 const getPositonIndexNear = ( geometry, v3 ) => {
     const pos = geometry.getAttribute('position');
     if(!pos){
@@ -298,9 +300,32 @@ const getPositonIndexNear = ( geometry, v3 ) => {
     }
     return pos_index;
 };
+*/
+const getPositionIndexNearRay = ( state, geometry ) => {
+    const pos = geometry.getAttribute('position');
+    if(!pos){
+        return null;
+    }
+    let pos_index = 0;
+    let dist_high = Infinity;
+    let i = 0;
+    while(i < pos.count){
+        const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
+        const v_onray = new THREE.Vector3();
+        state.raycaster.ray.closestPointToPoint( v_pos, v_onray );  //v.distanceTo( v3 );
+        const d = v_onray.distanceTo( v_pos );
+        if(d < dist_high){
+            dist_high = d;
+            pos_index = i;
+        }
+        i += 1;
+    }
+    return pos_index;
+};
+
 // setup is to be called when the view is ready
 const setup = () => {
-    state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
+    state.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
 
@@ -308,20 +333,36 @@ const setup = () => {
     state.canvas.addEventListener('pointerdown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
 
-        const v = getRayPoint(state);
-        console.log(v);
-
         const geometry = state.current_object.geometry;
-        const i = getPositonIndexNear(geometry, v);
         const pos = geometry.getAttribute('position');
 
+        // use distance from camera as a way to set threshold
+        const object = state.current_object;
+        const d = state.camera.position.distanceTo( object.position );
+        state.raycaster.params.Points.threshold = d;
+
+
+        const mouse = new THREE.Vector2( 0, 0 );
+        const canvas = state.canvas;
+        mouse.x = ( state.pointer.x / canvas.scrollWidth ) * 2 - 1;
+        mouse.y = - ( state.pointer.y / canvas.scrollHeight ) * 2 + 1;
+        state.raycaster.setFromCamera( mouse, state.camera );
+
+        //const v = getRayPoint(state);
+        //console.log(v);
+        
+        //const i = getPositonIndexNear(geometry, v);
+
+
+        const i = getPositionIndexNearRay(state, geometry);
+
+        // once we have a position index...
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
         console.log(i, v_pos);
-
-const sprite = state.scene.getObjectByName('cursor');
-state.cursor.copy( v_pos );
-sprite.position.copy( state.cursor );
-draw();
+        const sprite = state.scene.getObjectByName('cursor');
+        state.cursor.copy( v_pos );
+        sprite.position.copy( state.cursor );
+        draw();
 
         
         if (!state.user_input) {

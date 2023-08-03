@@ -21,20 +21,18 @@
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
-## () - position selection
+
+
+
+<!-- DONE -->
+
+## ( done 08/02/2023 ) - vertex selection
 * (done) start a new scene\_3\_points.json file
 * (done) I will want a state.pointer vector2 object in place of state.x, and state.y
 * (done) state.raycaster, updating with point, and displaying ray state into
 * (done) see about using raycaster as a way to select a point
 * (done) find out why setup is being called three times
-
-* () see about using ray methods and distance to method of vector3 class
-
-* () selected points should display differently
-* () have a delete function that will remove all selected points from the position attribute
-
-
-<!-- DONE -->
+* (done) see about using ray methods and distance to method of vector3 class
 
 ## ( done 08/02/2023 ) - json replacer array format
 * (done) see about working out spacing with vertexs in custom replacer.
