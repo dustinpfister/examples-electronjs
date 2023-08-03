@@ -259,48 +259,7 @@ const updateSceneFromJSON = (state, str_json ) => {
     const obj3d = new THREE.ObjectLoader().parse( obj );
     updateScene(state, obj3d);
 };
-// get a point using raycaster in state.current_object using state.pointer
-/*
-const getRayPoint = (state) => {
-    const object = state.current_object;
-    const v = new THREE.Vector3();
-    // what to do if no object
-    if(!object){
-        return v;
-    }
-    // use distance from camera as a way to set threshold
-    const d = state.camera.position.distanceTo( object.position );
-    state.raycaster.params.Points.threshold = d;
-    // check for intersection and copy point of interset object 0
-    const intersects = state.raycaster.intersectObject( object );
-    if(intersects.length >= 1){
-        v.copy( intersects[0].point );
-    }
-    return v;
-};
-*/
-// loop over points of the position attribute, and return the index that is near the given vector3
-/*
-const getPositonIndexNear = ( geometry, v3 ) => {
-    const pos = geometry.getAttribute('position');
-    if(!pos){
-        return null;
-    }
-    let pos_index = 0;
-    let dist_high = Infinity;
-    let i = 0;
-    while(i < pos.count){
-        const v = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
-        const d = v.distanceTo( v3 );
-        if(d < dist_high){
-            dist_high = d;
-            pos_index = i;
-        }
-        i += 1;
-    }
-    return pos_index;
-};
-*/
+// get an index in the position attribute of the given geometry that is the nerset the ray of the raycaster
 const getPositionIndexNearRay = ( state, geometry ) => {
     const pos = geometry.getAttribute('position');
     if(!pos){
@@ -312,7 +271,7 @@ const getPositionIndexNearRay = ( state, geometry ) => {
     while(i < pos.count){
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
         const v_onray = new THREE.Vector3();
-        state.raycaster.ray.closestPointToPoint( v_pos, v_onray );  //v.distanceTo( v3 );
+        state.raycaster.ray.closestPointToPoint( v_pos, v_onray );
         const d = v_onray.distanceTo( v_pos );
         if(d < dist_high){
             dist_high = d;
@@ -322,7 +281,14 @@ const getPositionIndexNearRay = ( state, geometry ) => {
     }
     return pos_index;
 };
-
+// update raycaster
+const updateRaycaster = ( state ) => {
+    const mouse = new THREE.Vector2( 0, 0 );
+    const canvas = state.canvas;
+    mouse.x = ( state.pointer.x / canvas.scrollWidth ) * 2 - 1;
+    mouse.y = - ( state.pointer.y / canvas.scrollHeight ) * 2 + 1;
+    state.raycaster.setFromCamera( mouse, state.camera );
+};
 // setup is to be called when the view is ready
 const setup = () => {
     state.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
@@ -341,17 +307,7 @@ const setup = () => {
         const d = state.camera.position.distanceTo( object.position );
         state.raycaster.params.Points.threshold = d;
 
-
-        const mouse = new THREE.Vector2( 0, 0 );
-        const canvas = state.canvas;
-        mouse.x = ( state.pointer.x / canvas.scrollWidth ) * 2 - 1;
-        mouse.y = - ( state.pointer.y / canvas.scrollHeight ) * 2 + 1;
-        state.raycaster.setFromCamera( mouse, state.camera );
-
-        //const v = getRayPoint(state);
-        //console.log(v);
-        
-        //const i = getPositonIndexNear(geometry, v);
+        updateRaycaster(state);
 
 
         const i = getPositionIndexNearRay(state, geometry);
