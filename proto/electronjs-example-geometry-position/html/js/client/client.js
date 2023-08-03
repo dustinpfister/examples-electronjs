@@ -263,20 +263,20 @@ const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
-	
-	console.log('setup call');
-	
+    
+    console.log('setup call');
+    
     state.canvas.addEventListener('mousedown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
         state.raycaster.setFromCamera( state.pointer, state.camera );
-		
-		state.raycaster.params.Points.threshold = 5;
-		const object = state.scene.children[0];
-		console.log(object.type);
-		const intersects = state.raycaster.intersectObject( object );
-		
-		console.log( intersects );
-		
+        
+        state.raycaster.params.Points.threshold = 4;
+        const object = state.scene.children[0];
+        console.log(object.type);
+        const intersects = state.raycaster.intersectObject( object );
+        
+        console.log( intersects );
+        
         if (!state.user_input) {
             updateJSON();
         }
@@ -397,7 +397,8 @@ const sm = {
     current: 'init',
     fps: 20,
     lt: new Date(),
-    states: {}
+    states: {},
+    setup_call: false
 };
 sm.states.init = () => {
     if (frame_view.contentWindow.state) {
@@ -405,12 +406,15 @@ sm.states.init = () => {
         if (state.view.ready) {
             state.canvas = state.view.canvas;
             state.ctx = state.view.ctx;
-            setup()
-            .then( ()=> {
-                sm.current = 'run';
-                // set value of input element to array of Vector3 cursor
-                input_pos.value = state.cursor.toArray();
-            });
+            if(!sm.setup_call){
+                sm.setup_call = true;
+                setup()
+                .then( ()=> {
+                    sm.current = 'run';
+                    // set value of input element to array of Vector3 cursor
+                    input_pos.value = state.cursor.toArray();
+                });
+            }
         }
     } else {
         console.log('OKAY YEAH NOT READY!');
