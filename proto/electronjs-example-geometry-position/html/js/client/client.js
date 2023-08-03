@@ -263,9 +263,20 @@ const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
-    state.canvas.addEventListener('pointerdown', (e) => {
+	
+	console.log('setup call');
+	
+    state.canvas.addEventListener('mousedown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
         state.raycaster.setFromCamera( state.pointer, state.camera );
+		
+		state.raycaster.params.Points.threshold = 5;
+		const object = state.scene.children[0];
+		console.log(object.type);
+		const intersects = state.raycaster.intersectObject( object );
+		
+		console.log( intersects );
+		
         if (!state.user_input) {
             updateJSON();
         }
