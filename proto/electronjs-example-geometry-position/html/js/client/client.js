@@ -258,26 +258,37 @@ const updateSceneFromJSON = (state, str_json ) => {
     const obj3d = new THREE.ObjectLoader().parse( obj );
     updateScene(state, obj3d);
 };
+// get a point using raycaster in state.current_object using state.pointer
+const getRayPoint = (state) => {
+    state.raycaster.setFromCamera( state.pointer, state.camera );
+    const object = state.current_object;
+    const v = new THREE.Vector3();
+    if(!object){
+        return v;
+    }
+    // use distance from camera as a way to set threshold
+    const d = state.camera.position.distanceTo( object.position );
+    state.raycaster.params.Points.threshold = d;
+    const intersects = state.raycaster.intersectObject( object );
+    if(intersects.length >= 1){
+        v.copy( intersects[0].point );
+    }
+    return v;
+};
 // setup is to be called when the view is ready
 const setup = () => {
     state.camera = new THREE.PerspectiveCamera(50, 32 / 24, 0.1, 1000);
     state.renderer = new THREE.WebGL1Renderer();
     state.renderer.setSize(state.canvas.width, state.canvas.height, false);
+
+
     state.canvas.addEventListener('pointerdown', (e) => {
         state.pointer.set( e.clientX, e.clientY );
-        state.raycaster.setFromCamera( state.pointer, state.camera );
-        
-        state.raycaster.params.Points.threshold = 4.5;
-        const object = state.scene.children[0];
-        const intersects = state.raycaster.intersectObject( object );
-        
-        console.log(object.type);
-		if(intersects.length >= 1){
-		    const v = intersects[0].point;
-            console.log( v );
-		    state.cursor.copy(v);
-		    updateSceneFromJSON( state, text_json.value);
-		}
+
+const v = getRayPoint(state);
+
+console.log(v)
+
         
         if (!state.user_input) {
             updateJSON();
