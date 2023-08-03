@@ -29,7 +29,6 @@ const state = window.state = {
 // ---------- ----------
 // HELPERS
 // ---------- ----------
-
 const createReplacer = () => {
     let item_size = 1;
     let int = false;
@@ -314,13 +313,8 @@ const setup = () => {
 
         // once we have a position index...
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
-        console.log(i, v_pos);
-        const sprite = state.scene.getObjectByName('cursor');
-        state.cursor.copy( v_pos );
-        sprite.position.copy( state.cursor );
-        draw();
+        Cursor.update(state, v_pos );
 
-        
         if (!state.user_input) {
             updateJSON();
         }
@@ -388,15 +382,28 @@ text_json.addEventListener('blur', (e) => {
 // ---------- ----------
 // CURSOR
 // ---------- ----------
+const input_pos = document.getElementById('input_cursor_pos');
+const input_push = document.getElementById('input_cursor_push');
 const Cursor = {};
+// update the cursor
+Cursor.update = (state, v3 = null ) => {
+    if(v3){
+        state.cursor.copy(v3);
+    }
+    const sprite = state.scene.getObjectByName('cursor');
+    sprite.position.copy( state.cursor );
+    input_pos.value = state.cursor.toArray();
+    draw();
+};
 // parse a string value and set the value of the cursor
-Cursor.parseString = (state, string = '0,0,0') => {
+Cursor.setFromString = (state, string = '0,0,0') => {
     const arr_str = string.split(',');
     const arr = [];
     arr[0] = parseFloat(arr_str[0]) || 0;
     arr[1] = parseFloat(arr_str[1]) || 0;
     arr[2] = parseFloat(arr_str[2]) || 0;
     state.cursor.fromArray(arr);
+    Cursor.update(state);
 };
 // push the cursor state to the position attribute of the current object
 Cursor.pushToPosition = (state) => {
@@ -422,13 +429,12 @@ Cursor.pushToPosition = (state) => {
     updateJSON();
     draw();
 };
-
-const input_pos = document.getElementById('input_cursor_pos');
-const input_push = document.getElementById('input_cursor_push');
+// ---------- ----------
+// CURSOR EVENTS
+// ---------- ----------
 // on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
-    Cursor.parseString(state, e.target.value);
-    updateSceneFromJSON( state, text_json.value);
+    Cursor.setFromString(state, e.target.value);
 });
 // on click event for push function
 input_push.addEventListener('click', (e) => {
