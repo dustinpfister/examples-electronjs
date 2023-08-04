@@ -71,35 +71,15 @@ const createCursorSprite = (app) => {
 };
 // create a scene object
 const createScene = () => {
-    // start scene with blank geometry and Points Material
-    /*
-    const scene = new THREE.Scene();
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.PointsMaterial();
-    const points = new THREE.Points(geometry, material);
-    scene.add( points );
-    return scene;
-     */
-    // start scene with hard coded JSON
-    //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
-    return json_tools.loadSceneFromJSON( 'json/scene_3_points.json' );
-    /*
-    // child objects
-    const scene = new THREE.Scene();
-    const material = new THREE.MeshBasicMaterial({
-    side: THREE.DoubleSide
+/*
+   return json_tools.createScene({
+        geoType: 'BoxGeometry',
+        geoArgu: [ 2, 2, 2, 4, 4, 4],
+        matOpt: { size: 0.5, color: 0xff0000 },
+        nonIndexed: true
     });
-    // start geometry
-    const geometry = new THREE.BufferGeometry().copy(new THREE.BoxGeometry( 1, 1, 1 ));
-    //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    //const geometry = new THREE.BufferGeometry();
-    // start points
-    //const data_pos = [0,0,0, 0,1,0, 0,0,1];
-    //geometry.setAttribute('position', new THREE.BufferAttribute( new Float32Array(data_pos), 3 ) );
-    const mesh = new THREE.Mesh( geometry, material );
-    scene.add(mesh);
-    return scene;
-     */
+*/
+    return json_tools.loadSceneFromJSON( 'json/scene_3_points.json' );
 };
 // setup scene with new/updated object
 const updateScene = (app, obj3d) => {
@@ -121,8 +101,8 @@ const updateScene = (app, obj3d) => {
         // any other kind of object just add it as a child
         app.scene.add(obj3d);
     }
-    // set current object to first child if there is one, else scene?
-    app.current_object = app.scene.children[0] || app.scene;
+    // set current object to first child if there is one. if no child create points
+    app.current_object = app.scene.children[0] || new THREE.Points();
     // add grid helper
     const grid = new THREE.GridHelper(10, 10);
     app.scene.add(grid);

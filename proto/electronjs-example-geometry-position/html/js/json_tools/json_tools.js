@@ -92,5 +92,25 @@ json_tools.loadSceneFromJSON = ( url = 'json/scene_0_blank.json' ) => {
         });
     });
 };
+// create a scene from a hard coded javaScript option rather and a JSON file
+// returns as a resolve promise
+json_tools.createScene = ( opt ) => {
+    opt = opt || {};
+    opt.childType = opt.childType || 'Points';
+    opt.geoType = opt.geoType || 'SphereGeometry';
+    opt.geoArgu = opt.geoArgu || [ 2, 5, 5];
+    opt.materialType = opt.materialType || 'PointsMaterial';
+    opt.matOpt = opt.matOpt || {};
+    opt.nonIndexed = opt.nonIndexed === undefined ? true : opt.nonIndexed;
+    let geometry = new THREE[opt.geoType](...opt.geoArgu );
+    if(opt.nonIndexed){
+        geometry = geometry.toNonIndexed()
+    }
+    const material = new THREE[ opt.materialType ]( opt.matOpt );
+    const child = new THREE[opt.childType]( geometry, material );
+    const scene = new THREE.Scene();
+    scene.add(child);
+    return Promise.resolve(scene);
+};
 
 export { json_tools }

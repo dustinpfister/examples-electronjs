@@ -27,13 +27,12 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-## () - more features with json_tools
+<!-- DONE -->
+
+## ( done 08/04/2023 ) - more features with json_tools
 * (done) more options for json tools format scene export method
 * (done) json tools load json method
-* () create methods for json tools
-
-
-<!-- DONE -->
+* (done) start a create scene method for json tools
 
 ## ( done 08/04/2023 ) - more modules
 * (done) start a cursor module
