@@ -37,8 +37,12 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-## () - attach pointer event helper
-* () start an attach pointer events helper in client.js
+## () - more pointer events 
+* (done) client.js: have a getPositionVector3NearRay helper 
+* (done) client.js : start a pointer\_modes
+* (done) client.js : have a createPointerHandler helper
+* (done) client.js : start a select_points pointer mode
+* () press 1 and 2 keys to switch pointer modes
 
 <!-- DONE -->
 

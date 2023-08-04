@@ -24,9 +24,10 @@ const app = window.app = {
     current_object: null, // the current object that is begin worked on
     camera: null,
     renderer: null,
-    user_input: false,
+    //user_input: false,
     orbit: null,
     pointer: new THREE.Vector2(),
+    pointer_mode: 'orbit', // 'select_points'
     raycaster: new THREE.Raycaster()
 };
 // ---------- ----------
@@ -156,14 +157,64 @@ const getPositionIndexNearRay = ( app, geometry ) => {
     }
     return pos_index;
 };
+const getPositionVector3NearRay = ( app, geometry ) => {
+    geometry = geometry || app.current_object.geometry;
+    const pos = geometry.getAttribute('position');
+    const i = getPositionIndexNearRay(app, geometry);
+    return new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
+};
 // update raycaster
 const updateRaycaster = ( app ) => {
+    const object = app.current_object;
+    const d = app.camera.position.distanceTo( object.position );
     const mouse = new THREE.Vector2( 0, 0 );
     const canvas = app.canvas;
     mouse.x = ( app.pointer.x / canvas.scrollWidth ) * 2 - 1;
     mouse.y = - ( app.pointer.y / canvas.scrollHeight ) * 2 + 1;
+    app.raycaster.params.Points.threshold = d;
     app.raycaster.setFromCamera( mouse, app.camera );
 };
+// ---------- ----------
+// POINTER MODES
+// ---------- ----------
+const pointer_modes = {};
+// orbit mode
+pointer_modes.orbit = {
+    over: (app, e ) => {
+        app.orbit.enabled = true;
+    },
+    move: (app, e ) => {
+        app.pointer.set( e.clientX, e.clientY );
+        updateRaycaster(app);
+        app.orbit.enabled = true;
+    },
+    down: (app, e ) => {
+        app.orbit.enabled = true;
+    }
+};
+
+pointer_modes.select_points = {
+    down: (app, e ) => {
+        app.pointer.set( e.clientX, e.clientY );
+        updateRaycaster(app);
+        const v3 = getPositionVector3NearRay(app);
+        console.log(v3)
+    }
+};
+
+const attachPointerHandler = ( app, type ) => {
+   app.canvas.addEventListener('pointer' + type, (e) => {
+       const mode = pointer_modes[app.pointer_mode];
+       if(!mode){
+           return;
+       }
+       const handler = mode[type];
+       if(handler){
+           handler(app, e);
+       }
+   });
+};
+
 // setup is to be called when the view is ready
 const setup = () => {
     app.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
@@ -171,35 +222,41 @@ const setup = () => {
     app.renderer.setSize(app.canvas.width, app.canvas.height, false);
 
     app.orbit = new OrbitControls(app.camera, app.canvas);
+    app.orbit.enabled = false;
+
+    attachPointerHandler(app, 'over');
+    attachPointerHandler(app, 'move');
+    attachPointerHandler(app, 'down');
+    attachPointerHandler(app, 'up');
+/*
+    app.canvas.addEventListener('pointerover', (e) => {
+
+console.log('over');
+
+    });
+
 
     app.canvas.addEventListener('pointerdown', (e) => {
 
-        app.pointer.set( e.clientX, e.clientY );
+        pointer_modes['orbit']['down'](app, e);
 
-        const geometry = app.current_object.geometry;
-        const pos = geometry.getAttribute('position');
+        //app.pointer.set( e.clientX, e.clientY );
+        //updateRaycaster(app);
+        //const v3 = getPositionVector3NearRay(app);
+        //console.log(v3)
 
-        // use distance from camera as a way to set threshold
-        const object = app.current_object;
-        const d = app.camera.position.distanceTo( object.position );
-        app.raycaster.params.Points.threshold = d;
+        //if (!app.user_input) {
+        //    updateJSON();
+        //}
 
-        updateRaycaster(app);
-
-
-        const i = getPositionIndexNearRay(app, geometry);
-
-        // once we have a position index...
-        const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
-
-        console.log(v_pos);
-
-        //Cursor.update(app, v_pos );
-
-        if (!app.user_input) {
-            updateJSON();
-        }
     });
+
+
+    app.canvas.addEventListener('pointerup', (e) => {
+
+    });
+*/
+
     //app.camera.position.set(2.7, 1.5, 5);
     //app.camera.lookAt(0, 0, 0);
     return createScene()
@@ -208,14 +265,14 @@ const setup = () => {
     });
 };
 // ---------- ----------
-// EVENTS
+// JSON TEXT EVENTS
 // ---------- ----------
 app.el_json.addEventListener('input', (e) => {
-    app.user_input = true;
+    //app.user_input = true;
 });
 app.el_json.addEventListener('blur', (e) => {
     updateSceneFromJSON( app, e.target.value );
-    app.user_input = false;
+    //app.user_input = false;
 });
 // ---------- ----------
 // MAIN APP LOOP
