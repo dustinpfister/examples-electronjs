@@ -5,14 +5,11 @@ import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // ---------- ----------
-// REFS TO VIEW IFRAME, and TEXT JSON
-// ---------- ----------
-const frame_view = document.getElementById('frame_view');
-const text_json = document.getElementById('text_json');
-// ---------- ----------
 // MAIN STATE OBJECT
 // ---------- ----------
 const state = window.state = {
+    el_view: document.getElementById('frame_view'),
+    el_json: document.getElementById('text_json'),
     canvas: null,
     ctx: null,
     cursor: new THREE.Vector3(0, 0, 0),
@@ -93,14 +90,14 @@ const updateJSON = () => {
     }
     // CUSTOM REPLACER AND SPACING
     const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), 4);
-    text_json.value = str_raw
+    state.el_json.value = str_raw
         .replace(/REPLACE_EOL/g, '\n')
         .replace(/"REPLACE_ARR_OPEN/g, '[')
         .replace(/REPLACE_ARR_CLOSE"/g, ']');
     // NULL REPLACER AND SPACING
-    //text_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
+    //state.el_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
     // JUST SERIALIZE
-    //text_json.value = JSON.stringify( state.scene.toJSON());
+    //state.el_json.value = JSON.stringify( state.scene.toJSON());
 };
 // draw to the view canvas
 const draw = state.draw = () => {
@@ -330,10 +327,10 @@ const setup = () => {
 // ---------- ----------
 // EVENTS
 // ---------- ----------
-text_json.addEventListener('input', (e) => {
+state.el_json.addEventListener('input', (e) => {
     state.user_input = true;
 });
-text_json.addEventListener('blur', (e) => {
+state.el_json.addEventListener('blur', (e) => {
     updateSceneFromJSON( state, e.target.value );
     state.user_input = false;
 });
@@ -357,7 +354,7 @@ text_json.addEventListener('blur', (e) => {
     document.addEventListener('dragenter', (e) => {});
     document.addEventListener('dragleave', (e) => {});
     // handler for drag start
-    text_json.addEventListener('dragstart', (e) => {
+    state.el_json.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
     // attach handlers for each slot div
@@ -451,8 +448,9 @@ const sm = {
     setup_call: false
 };
 sm.states.init = () => {
-    if (frame_view.contentWindow.state) {
-        state.view = frame_view.contentWindow.state;
+    const el_view = state.el_view;
+    if (el_view.contentWindow.state) {
+        state.view = el_view.contentWindow.state;
         if (state.view.ready) {
             state.canvas = state.view.canvas;
             state.ctx = state.view.ctx;

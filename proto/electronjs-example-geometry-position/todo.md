@@ -27,6 +27,8 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
+## () - code readability and organization of client.js
+* (done) refs to elements for view and json as part of state object
 
 
 <!-- DONE -->

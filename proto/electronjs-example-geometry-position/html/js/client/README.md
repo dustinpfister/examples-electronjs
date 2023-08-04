@@ -1,3 +1,3 @@
 # Client
 
-This is the main javaScript code used in the root index.html file of a Main browser window. This is then where I will want to park code that has to do with everything that needs to be shared across all other parts of the window such as the view iframe, and the JSON display text area element.
+This is the main javaScript code used in the root index.html file of a Main browser window. What this file is used for might change or be replaced completely at some point so for now I do not think I should write that much about it.
