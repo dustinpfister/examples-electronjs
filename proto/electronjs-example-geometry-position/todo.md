@@ -21,6 +21,11 @@
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
+## () - Vertex Status Points
+* () looks like I might need a vertex status points object
+* () vertex status points will have depth write test set to false
+* () vertex status points will be gray when not selected
+* () vertex status points will be lime when selected
 
 
 
