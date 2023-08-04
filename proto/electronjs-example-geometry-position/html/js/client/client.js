@@ -59,55 +59,9 @@ const draw = app.draw = () => {
     ctx.fillText('ray_origin: ' + v1.x.toFixed(2) + ',' + v1.y.toFixed(2) + ',' + v1.z.toFixed(2), 10, 20);
     ctx.fillText('ray_dir   : ' + v2.x.toFixed(2) + ',' + v2.y.toFixed(2) + ',' + v2.z.toFixed(2), 10, 30);
 };
-// load a JOSN file, returns a promise
-const loadJSON = ( url = 'json/scene_3_points.json' ) => {
-    return new Promise( (resolve, reject) => {
-        const loader = new THREE.ObjectLoader();
-        loader.load(url, (obj) => {
-            resolve(obj);
-        });
-    });
-};
 // crate a cursor object
 const createCursorSprite = (app) => {
-    // canvas texture for cross hairs
-/*
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const w = 32, h = 32;
-    canvas.width = w; canvas.height = h;
-    ctx.fillStyle = 'rgba(0,0,0,0.5)';
-    ctx.strokeStyle = '#ffff00';
-    ctx.lineWidth = 3;
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.arc(w / 2, h / 2, w / 2 - 2, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.fill();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo( 0, 0);
-    ctx.lineTo( w, h);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo( w, 0);
-    ctx.lineTo( 0, h);
-    ctx.stroke();
-    const texture = new THREE.CanvasTexture( canvas );
-    // the material for the sprite
-    const material = new THREE.SpriteMaterial({
-        map: texture,
-        sizeAttenuation: false,
-        depthTest: false,
-        transparent: true,
-        opacity: 1
-    });
-    const sprite = new THREE.Sprite(  material );
-  //console.log( JSON.stringify( sprite.toJSON()) );
-*/
-
-    return loadJSON('json/scene_2_cursor.json')
+    return json_tools.loadJSON('json/scene_2_cursor.json')
     .then( (sprite) => {
         const s = 0.07;
         sprite.scale.set( s, s, s);
@@ -128,7 +82,7 @@ const createScene = () => {
      */
     // start scene with hard coded JSON
     //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
-    return loadJSON();
+    return json_tools.loadJSON();
     /*
     // child objects
     const scene = new THREE.Scene();

@@ -29,7 +29,7 @@
 
 ## () - more features with json_tools
 * (done) more options for json tools format scene export method
-* () json tools load json method
+* (done) json tools load json method
 * () create methods for json tools
 
 

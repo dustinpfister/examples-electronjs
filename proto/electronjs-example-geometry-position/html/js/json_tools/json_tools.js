@@ -79,4 +79,13 @@ json_tools.format_scene_export = ( scene_export = new THREE.Scene(), format = 'c
     return JSON.stringify( app.scene.toJSON() );
 };
 
+json_tools.loadJSON = ( url = 'json/scene_0_blank.json' ) => {
+    return new Promise( (resolve, reject) => {
+        const loader = new THREE.ObjectLoader();
+        loader.load(url, (obj) => {
+            resolve(obj);
+        });
+    });
+};
+
 export { json_tools }
