@@ -166,7 +166,11 @@ const getPositionVector3NearRay = ( app, geometry ) => {
 // update raycaster
 const updateRaycaster = ( app ) => {
     const object = app.current_object;
-    const d = app.camera.position.distanceTo( object.position );
+    const camera = app.camera;
+    if(!object || !camera){
+        return;
+    }
+    const d = camera.position.distanceTo( object.position );
     const mouse = new THREE.Vector2( 0, 0 );
     const canvas = app.canvas;
     mouse.x = ( app.pointer.x / canvas.scrollWidth ) * 2 - 1;
@@ -190,6 +194,9 @@ pointer_modes.orbit = {
     },
     down: (app, e ) => {
         app.orbit.enabled = true;
+        //if (!app.user_input) {
+        //    updateJSON();
+        //}
     }
 };
 
@@ -228,37 +235,7 @@ const setup = () => {
     attachPointerHandler(app, 'move');
     attachPointerHandler(app, 'down');
     attachPointerHandler(app, 'up');
-/*
-    app.canvas.addEventListener('pointerover', (e) => {
 
-console.log('over');
-
-    });
-
-
-    app.canvas.addEventListener('pointerdown', (e) => {
-
-        pointer_modes['orbit']['down'](app, e);
-
-        //app.pointer.set( e.clientX, e.clientY );
-        //updateRaycaster(app);
-        //const v3 = getPositionVector3NearRay(app);
-        //console.log(v3)
-
-        //if (!app.user_input) {
-        //    updateJSON();
-        //}
-
-    });
-
-
-    app.canvas.addEventListener('pointerup', (e) => {
-
-    });
-*/
-
-    //app.camera.position.set(2.7, 1.5, 5);
-    //app.camera.lookAt(0, 0, 0);
     return createScene()
     .then( (scene) => {
         updateScene(app, scene);
