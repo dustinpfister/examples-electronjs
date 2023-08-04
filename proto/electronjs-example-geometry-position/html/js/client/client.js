@@ -61,7 +61,7 @@ const draw = app.draw = () => {
 };
 // crate a cursor object
 const createCursorSprite = (app) => {
-    return json_tools.loadJSON('json/scene_2_cursor.json')
+    return json_tools.loadSceneFromJSON('json/scene_2_cursor.json')
     .then( (sprite) => {
         const s = 0.07;
         sprite.scale.set( s, s, s);
@@ -82,7 +82,7 @@ const createScene = () => {
      */
     // start scene with hard coded JSON
     //return new THREE.ObjectLoader().parse(JSON.parse(START_SCENE));
-    return json_tools.loadJSON();
+    return json_tools.loadSceneFromJSON( 'json/scene_3_points.json' );
     /*
     // child objects
     const scene = new THREE.Scene();
