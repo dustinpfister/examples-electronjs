@@ -27,6 +27,9 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
+## () - more modules
+* (done) start a cursor module
+* () start a JSON module
 
 
 <!-- DONE -->
