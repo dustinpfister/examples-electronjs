@@ -21,11 +21,24 @@
 ## () - cursor: click to set
 * () have a way to set cursor state by clicking on the view canvas
 
+## () - init and run state object files
+* () I would like to break down client.js into init and run state files
+
+## () - no window.app
+* () see about doing away with window.app if it is not needed.
+
+## () - vertex selection compoent
+* () start a compoent that will have to do with vertex selection
+* () this compoent can have a text input element that can be a list if indices that are selected
+
 ## () - Vertex Status Points
 * () looks like I might need a vertex status points object
 * () vertex status points will have depth write test set to false
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
+
+## () - attach pointer event helper
+* () start an attach pointer events helper in client.js
 
 <!-- DONE -->
 

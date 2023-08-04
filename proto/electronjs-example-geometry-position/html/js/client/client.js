@@ -170,8 +170,10 @@ const setup = () => {
     app.renderer = new THREE.WebGL1Renderer();
     app.renderer.setSize(app.canvas.width, app.canvas.height, false);
 
+    app.orbit = new OrbitControls(app.camera, app.canvas);
 
     app.canvas.addEventListener('pointerdown', (e) => {
+
         app.pointer.set( e.clientX, e.clientY );
 
         const geometry = app.current_object.geometry;
@@ -198,7 +200,6 @@ const setup = () => {
             updateJSON();
         }
     });
-    app.orbit = new OrbitControls(app.camera, app.canvas);
     //app.camera.position.set(2.7, 1.5, 5);
     //app.camera.lookAt(0, 0, 0);
     return createScene()
@@ -227,7 +228,7 @@ const sm = {
     states: {},
     setup_call: false
 };
-sm.states.init = () => {
+sm.states.init = (sm) => {
     const app = sm.app;
     const el_view = app.el_view;
     if (el_view.contentWindow.state) {
@@ -247,7 +248,7 @@ sm.states.init = () => {
         }
     }
 };
-sm.states.run = () => {
+sm.states.run = (sm) => {
     const app = sm.app;
     app.orbit.update();
     app.draw();
@@ -257,7 +258,7 @@ const loop = function () {
     const secs = (now - sm.lt) / 1000;
     requestAnimationFrame(loop);
     if (secs >= 1 / sm.fps) {
-        sm.states[sm.current]();
+        sm.states[sm.current](sm);
         sm.lt = now;
     }
 };
