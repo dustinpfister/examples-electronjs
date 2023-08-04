@@ -27,13 +27,15 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-## () - code readability and organization of client.js
-* (done) refs to elements for view and json as part of state object
-* (done) rename state object to app to help address confusion with sm.states and each state object in that array
-* (done) ref to app as part of sm object
 
 
 <!-- DONE -->
+
+## ( done 08/04/2023 ) - some code readability and organization of client.js
+* (done) refs to elements for view and json as part of state object
+* (done) rename state object to app to help address confusion with sm.states and each state object in that array
+* (done) ref to app as part of sm object
+* (done) setting start camera position in init state rather than setup helper
 
 ## ( done 08/02/2023 ) - vertex selection
 * (done) start a new scene\_3\_points.json file

@@ -314,15 +314,18 @@ const setup = () => {
 
         // once we have a position index...
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
-        Cursor.update(app, v_pos );
+
+        console.log(v_pos);
+
+        //Cursor.update(app, v_pos );
 
         if (!app.user_input) {
             updateJSON();
         }
     });
     app.orbit = new OrbitControls(app.camera, app.canvas);
-    app.camera.position.set(2.7, 1.5, 5);
-    app.camera.lookAt(0, 0, 0);
+    //app.camera.position.set(2.7, 1.5, 5);
+    //app.camera.lookAt(0, 0, 0);
     return createScene()
     .then( (scene) => {
         updateScene(app, scene);
@@ -464,14 +467,14 @@ sm.states.init = () => {
                 sm.setup_call = true;
                 setup()
                 .then( ()=> {
-                    sm.current = 'run';
+                    app.camera.position.set(5, 5, 5);
+                    app.camera.lookAt(0, 0, 0);
                     // set value of input element to array of Vector3 cursor
                     input_pos.value = app.cursor.toArray();
+                    sm.current = 'run';
                 });
             }
         }
-    } else {
-        console.log('OKAY YEAH NOT READY!');
     }
 };
 sm.states.run = () => {
