@@ -34,28 +34,14 @@ const app = window.app = {
 // ---------- ----------
 // update the JSON output
 const updateJSON = app.updateJSON = () => {
-    // clean export scene object
     const scene_export = new THREE.Scene();
     //!!! just exporting the current object only for now
     if(app.current_object){
         scene_export.add( app.current_object.clone() );
     }
-	
-	const json = json_tools.format_scene_export(scene_export);
-	app.el_json.value = json;
-	
-    // CUSTOM REPLACER AND SPACING
-	/*
-    const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), 4);
-    app.el_json.value = str_raw
-        .replace(/REPLACE_EOL/g, '\n')
-        .replace(/"REPLACE_ARR_OPEN/g, '[')
-        .replace(/REPLACE_ARR_CLOSE"/g, ']');
-		*/
-    // NULL REPLACER AND SPACING
-    //app.el_json.value = JSON.stringify( app.scene.toJSON(), null, 4 );
-    // JUST SERIALIZE
-    //app.el_json.value = JSON.stringify( app.scene.toJSON());
+   const json = json_tools.format_scene_export(scene_export, 'custom', 2);
+   app.el_json.value = json;
+
 };
 // draw to the view canvas
 const draw = app.draw = () => {

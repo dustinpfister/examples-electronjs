@@ -63,12 +63,20 @@ const createReplacer = () => {
 const json_tools = {};
 
 // format an scene_export object
-json_tools.format_scene_export = (scene_export = new THREE.Scene()) => {
-    const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), 4);
-    return str_raw
-        .replace(/REPLACE_EOL/g, '\n')
-        .replace(/"REPLACE_ARR_OPEN/g, '[')
-        .replace(/REPLACE_ARR_CLOSE"/g, ']');
+json_tools.format_scene_export = ( scene_export = new THREE.Scene(), format = 'custom', spacing = 4 ) => {
+    // 'custom' formating
+    if(format === 'custom'){
+        const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), spacing);
+        return str_raw
+            .replace(/REPLACE_EOL/g, '\n')
+            .replace(/"REPLACE_ARR_OPEN/g, '[')
+            .replace(/REPLACE_ARR_CLOSE"/g, ']');
+    }
+    // 'spacing' format and then 'default'
+    if(format === 'spacing'){
+        return JSON.stringify( app.scene.toJSON(), null, spacing );
+    }
+    return JSON.stringify( app.scene.toJSON() );
 };
 
 export { json_tools }
