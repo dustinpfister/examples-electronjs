@@ -37,14 +37,16 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-## () - more pointer events 
+
+
+<!-- DONE -->
+
+## ( done 08/04/2023 ) - more pointer events 
 * (done) client.js: have a getPositionVector3NearRay helper 
 * (done) client.js : start a pointer\_modes
 * (done) client.js : have a createPointerHandler helper
 * (done) client.js : start a select_points pointer mode
-* () press 1 and 2 keys to switch pointer modes
-
-<!-- DONE -->
+* (done) press 1 and 2 keys to switch pointer modes
 
 ## ( done 08/04/2023 ) - more features with json_tools
 * (done) more options for json tools format scene export method

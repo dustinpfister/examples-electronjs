@@ -199,16 +199,15 @@ pointer_modes.orbit = {
         //}
     }
 };
-
 pointer_modes.select_points = {
     down: (app, e ) => {
+        app.orbit.enabled = false;
         app.pointer.set( e.clientX, e.clientY );
         updateRaycaster(app);
         const v3 = getPositionVector3NearRay(app);
         console.log(v3)
     }
 };
-
 const attachPointerHandler = ( app, type ) => {
    app.canvas.addEventListener('pointer' + type, (e) => {
        const mode = pointer_modes[app.pointer_mode];
@@ -221,26 +220,21 @@ const attachPointerHandler = ( app, type ) => {
        }
    });
 };
+window.addEventListener('keydown', (e) => {
+   if(!e.ctrlKey){
+       return;
+   }
+console.log(e.key);
+   if(e.key === '1'){
+      app.pointer_mode = 'orbit';
+      console.log('Pointer mode: orbit');
+   }
+   if(e.key === '2'){
+      app.pointer_mode = 'select_points';
+      console.log('Pointer mode: select_points');
+   }
 
-// setup is to be called when the view is ready
-const setup = () => {
-    app.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
-    app.renderer = new THREE.WebGL1Renderer();
-    app.renderer.setSize(app.canvas.width, app.canvas.height, false);
-
-    app.orbit = new OrbitControls(app.camera, app.canvas);
-    app.orbit.enabled = false;
-
-    attachPointerHandler(app, 'over');
-    attachPointerHandler(app, 'move');
-    attachPointerHandler(app, 'down');
-    attachPointerHandler(app, 'up');
-
-    return createScene()
-    .then( (scene) => {
-        updateScene(app, scene);
-    });
-};
+});
 // ---------- ----------
 // JSON TEXT EVENTS
 // ---------- ----------
@@ -261,6 +255,28 @@ const sm = {
     lt: new Date(),
     states: {},
     setup_call: false
+};
+// ---------- ----------
+// INIT STATE
+// ---------- ----------
+// setup is to be called when the view is ready
+const setup = () => {
+    app.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
+    app.renderer = new THREE.WebGL1Renderer();
+    app.renderer.setSize(app.canvas.width, app.canvas.height, false);
+
+    app.orbit = new OrbitControls(app.camera, app.canvas);
+    app.orbit.enabled = false;
+
+    attachPointerHandler(app, 'over');
+    attachPointerHandler(app, 'move');
+    attachPointerHandler(app, 'down');
+    attachPointerHandler(app, 'up');
+
+    return createScene()
+    .then( (scene) => {
+        updateScene(app, scene);
+    });
 };
 sm.states.init = (sm) => {
     const app = sm.app;
