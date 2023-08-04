@@ -29,6 +29,8 @@
 
 ## () - more modules
 * (done) start a cursor module
+* (done) pull drag and drop code into its own module
+
 * () start a JSON module
 
 

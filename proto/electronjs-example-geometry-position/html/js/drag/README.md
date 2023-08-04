@@ -1,0 +1,3 @@
+# drag
+
+I started working out some code for a drag and drop functions, but as of this writing did not get so far with it. What I had in mind is just some code for moving the various elements of the ui around and being able to drag and drop one component class element into any slot class element. As long as that is all there will be to it I think that this can be developed as a whole other thing outside of the main client.js module.
