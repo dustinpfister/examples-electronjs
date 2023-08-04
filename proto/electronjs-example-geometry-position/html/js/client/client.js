@@ -7,13 +7,17 @@ import { VertexNormalsHelper } from 'VertexNormalsHelper';
 // ---------- ----------
 // MAIN STATE OBJECT
 // ---------- ----------
-const state = window.state = {
+const app = window.app = {
+    // view
     el_view: document.getElementById('frame_view'),
-    el_json: document.getElementById('text_json'),
+    view: null, // the state object attached to the window of the iframe
     canvas: null,
     ctx: null,
+
+    // json
+    el_json: document.getElementById('text_json'),
+
     cursor: new THREE.Vector3(0, 0, 0),
-    view: null,
     scene: null,
     current_object: null, // the current object that is begin worked on
     camera: null,
@@ -85,31 +89,31 @@ const updateJSON = () => {
     // clean export scene object
     const scene_export = new THREE.Scene();
     //!!! just exporting the current object only for now
-    if(state.current_object){
-        scene_export.add( state.current_object.clone() );
+    if(app.current_object){
+        scene_export.add( app.current_object.clone() );
     }
     // CUSTOM REPLACER AND SPACING
     const str_raw = JSON.stringify(scene_export.toJSON(), createReplacer(), 4);
-    state.el_json.value = str_raw
+    app.el_json.value = str_raw
         .replace(/REPLACE_EOL/g, '\n')
         .replace(/"REPLACE_ARR_OPEN/g, '[')
         .replace(/REPLACE_ARR_CLOSE"/g, ']');
     // NULL REPLACER AND SPACING
-    //state.el_json.value = JSON.stringify( state.scene.toJSON(), null, 4 );
+    //app.el_json.value = JSON.stringify( app.scene.toJSON(), null, 4 );
     // JUST SERIALIZE
-    //state.el_json.value = JSON.stringify( state.scene.toJSON());
+    //app.el_json.value = JSON.stringify( app.scene.toJSON());
 };
 // draw to the view canvas
-const draw = state.draw = () => {
-    const ctx = state.ctx;
+const draw = app.draw = () => {
+    const ctx = app.ctx;
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, state.canvas.width, state.canvas.height);
-    state.renderer.render(state.scene, state.camera);
-    ctx.drawImage(state.renderer.domElement, 0, 0, state.canvas.width, state.canvas.height);
+    ctx.fillRect(0, 0, app.canvas.width, app.canvas.height);
+    app.renderer.render(app.scene, app.camera);
+    ctx.drawImage(app.renderer.domElement, 0, 0, app.canvas.width, app.canvas.height);
     ctx.fillStyle = 'white';
-    ctx.fillText('pointer: ' + state.pointer.x + ',' + state.pointer.y, 10, 10);
+    ctx.fillText('pointer: ' + app.pointer.x + ',' + app.pointer.y, 10, 10);
     // raycaster
-    const ray = state.raycaster.ray;
+    const ray = app.raycaster.ray;
     const v1 = ray.origin;
     const v2 = ray.direction;
     ctx.fillText('ray_origin: ' + v1.x.toFixed(2) + ',' + v1.y.toFixed(2) + ',' + v1.z.toFixed(2), 10, 20);
@@ -125,7 +129,7 @@ const loadJSON = ( url = 'json/scene_3_points.json' ) => {
     });
 };
 // crate a cursor object
-const createCursorSprite = (state) => {
+const createCursorSprite = (app) => {
     // canvas texture for cross hairs
 /*
     const canvas = document.createElement('canvas');
@@ -167,7 +171,7 @@ const createCursorSprite = (state) => {
     .then( (sprite) => {
         const s = 0.07;
         sprite.scale.set( s, s, s);
-        sprite.position.copy( state.cursor );
+        sprite.position.copy( app.cursor );
         return sprite;
     });
 };
@@ -204,59 +208,59 @@ const createScene = () => {
      */
 };
 // setup scene with new/updated object
-const updateScene = (state, obj3d) => {
-    state.scene = !state.scene ? new THREE.Scene() : state.scene;
+const updateScene = (app, obj3d) => {
+    app.scene = !app.scene ? new THREE.Scene() : app.scene;
     // remove and children
-    let i = state.scene.children.length;
+    let i = app.scene.children.length;
     while (i--) {
-        const child = state.scene.children[i];
+        const child = app.scene.children[i];
         child.removeFromParent()
     }
     if (obj3d.type === 'Scene') {
         obj3d.children.forEach((child) => {
-            state.scene.add(child);
+            app.scene.add(child);
         });
-        state.scene.matrix.copy(obj3d.matrix);
-        state.scene.position.setFromMatrixPosition(state.scene.matrix);
-        //state.scene.applyMatrix4( obj3d.matrix );
+        app.scene.matrix.copy(obj3d.matrix);
+        app.scene.position.setFromMatrixPosition(app.scene.matrix);
+        //app.scene.applyMatrix4( obj3d.matrix );
     } else {
         // any other kind of object just add it as a child
-        state.scene.add(obj3d);
+        app.scene.add(obj3d);
     }
     // set current object to first child if there is one, else scene?
-    state.current_object = state.scene.children[0] || state.scene;
+    app.current_object = app.scene.children[0] || app.scene;
     // add grid helper
     const grid = new THREE.GridHelper(10, 10);
-    state.scene.add(grid);
+    app.scene.add(grid);
     // add normals helper
-    if(state.current_object.type === 'Mesh'){
-        if(state.current_object.geometry.getAttribute('normal')){
-            const helper = new VertexNormalsHelper( state.current_object );
-            state.scene.add(helper);
+    if(app.current_object.type === 'Mesh'){
+        if(app.current_object.geometry.getAttribute('normal')){
+            const helper = new VertexNormalsHelper( app.current_object );
+            app.scene.add(helper);
         }
     }
     // light
     const dl = new THREE.DirectionalLight( 0xffffff, 1 );
     dl.position.set(3, 2, 1);
-    state.scene.add(dl);
+    app.scene.add(dl);
     // cursor
-    createCursorSprite(state)
+    createCursorSprite(app)
     .then( (sprite) => {
         sprite.name = 'cursor';
-        state.scene.add( sprite );
+        app.scene.add( sprite );
         // update json and draw for first time
         updateJSON();
         draw();
     });
 };
 // update scene from JSON
-const updateSceneFromJSON = (state, str_json ) => {
+const updateSceneFromJSON = (app, str_json ) => {
     const obj = JSON.parse(str_json);
     const obj3d = new THREE.ObjectLoader().parse( obj );
-    updateScene(state, obj3d);
+    updateScene(app, obj3d);
 };
 // get an index in the position attribute of the given geometry that is the nerset the ray of the raycaster
-const getPositionIndexNearRay = ( state, geometry ) => {
+const getPositionIndexNearRay = ( app, geometry ) => {
     const pos = geometry.getAttribute('position');
     if(!pos){
         return null;
@@ -267,7 +271,7 @@ const getPositionIndexNearRay = ( state, geometry ) => {
     while(i < pos.count){
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
         const v_onray = new THREE.Vector3();
-        state.raycaster.ray.closestPointToPoint( v_pos, v_onray );
+        app.raycaster.ray.closestPointToPoint( v_pos, v_onray );
         const d = v_onray.distanceTo( v_pos );
         if(d < dist_high){
             dist_high = d;
@@ -278,61 +282,61 @@ const getPositionIndexNearRay = ( state, geometry ) => {
     return pos_index;
 };
 // update raycaster
-const updateRaycaster = ( state ) => {
+const updateRaycaster = ( app ) => {
     const mouse = new THREE.Vector2( 0, 0 );
-    const canvas = state.canvas;
-    mouse.x = ( state.pointer.x / canvas.scrollWidth ) * 2 - 1;
-    mouse.y = - ( state.pointer.y / canvas.scrollHeight ) * 2 + 1;
-    state.raycaster.setFromCamera( mouse, state.camera );
+    const canvas = app.canvas;
+    mouse.x = ( app.pointer.x / canvas.scrollWidth ) * 2 - 1;
+    mouse.y = - ( app.pointer.y / canvas.scrollHeight ) * 2 + 1;
+    app.raycaster.setFromCamera( mouse, app.camera );
 };
 // setup is to be called when the view is ready
 const setup = () => {
-    state.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
-    state.renderer = new THREE.WebGL1Renderer();
-    state.renderer.setSize(state.canvas.width, state.canvas.height, false);
+    app.camera = new THREE.PerspectiveCamera(45, 320 / 240, 0.1, 1000);
+    app.renderer = new THREE.WebGL1Renderer();
+    app.renderer.setSize(app.canvas.width, app.canvas.height, false);
 
 
-    state.canvas.addEventListener('pointerdown', (e) => {
-        state.pointer.set( e.clientX, e.clientY );
+    app.canvas.addEventListener('pointerdown', (e) => {
+        app.pointer.set( e.clientX, e.clientY );
 
-        const geometry = state.current_object.geometry;
+        const geometry = app.current_object.geometry;
         const pos = geometry.getAttribute('position');
 
         // use distance from camera as a way to set threshold
-        const object = state.current_object;
-        const d = state.camera.position.distanceTo( object.position );
-        state.raycaster.params.Points.threshold = d;
+        const object = app.current_object;
+        const d = app.camera.position.distanceTo( object.position );
+        app.raycaster.params.Points.threshold = d;
 
-        updateRaycaster(state);
+        updateRaycaster(app);
 
 
-        const i = getPositionIndexNearRay(state, geometry);
+        const i = getPositionIndexNearRay(app, geometry);
 
         // once we have a position index...
         const v_pos = new THREE.Vector3( pos.getX(i), pos.getY(i), pos.getZ(i) );
-        Cursor.update(state, v_pos );
+        Cursor.update(app, v_pos );
 
-        if (!state.user_input) {
+        if (!app.user_input) {
             updateJSON();
         }
     });
-    state.orbit = new OrbitControls(state.camera, state.canvas);
-    state.camera.position.set(2.7, 1.5, 5);
-    state.camera.lookAt(0, 0, 0);
+    app.orbit = new OrbitControls(app.camera, app.canvas);
+    app.camera.position.set(2.7, 1.5, 5);
+    app.camera.lookAt(0, 0, 0);
     return createScene()
     .then( (scene) => {
-        updateScene(state, scene);
+        updateScene(app, scene);
     });
 };
 // ---------- ----------
 // EVENTS
 // ---------- ----------
-state.el_json.addEventListener('input', (e) => {
-    state.user_input = true;
+app.el_json.addEventListener('input', (e) => {
+    app.user_input = true;
 });
-state.el_json.addEventListener('blur', (e) => {
-    updateSceneFromJSON( state, e.target.value );
-    state.user_input = false;
+app.el_json.addEventListener('blur', (e) => {
+    updateSceneFromJSON( app, e.target.value );
+    app.user_input = false;
 });
 // ---------- ----------
 // DRAG AND DROP
@@ -354,7 +358,7 @@ state.el_json.addEventListener('blur', (e) => {
     document.addEventListener('dragenter', (e) => {});
     document.addEventListener('dragleave', (e) => {});
     // handler for drag start
-    state.el_json.addEventListener('dragstart', (e) => {
+    app.el_json.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
     // attach handlers for each slot div
@@ -383,32 +387,32 @@ const input_pos = document.getElementById('input_cursor_pos');
 const input_push = document.getElementById('input_cursor_push');
 const Cursor = {};
 // update the cursor
-Cursor.update = (state, v3 = null ) => {
+Cursor.update = (app, v3 = null ) => {
     if(v3){
-        state.cursor.copy(v3);
+        app.cursor.copy(v3);
     }
-    const sprite = state.scene.getObjectByName('cursor');
-    sprite.position.copy( state.cursor );
-    input_pos.value = state.cursor.toArray();
+    const sprite = app.scene.getObjectByName('cursor');
+    sprite.position.copy( app.cursor );
+    input_pos.value = app.cursor.toArray();
     draw();
 };
 // parse a string value and set the value of the cursor
-Cursor.setFromString = (state, string = '0,0,0') => {
+Cursor.setFromString = (app, string = '0,0,0') => {
     const arr_str = string.split(',');
     const arr = [];
     arr[0] = parseFloat(arr_str[0]) || 0;
     arr[1] = parseFloat(arr_str[1]) || 0;
     arr[2] = parseFloat(arr_str[2]) || 0;
-    state.cursor.fromArray(arr);
-    Cursor.update(state);
+    app.cursor.fromArray(arr);
+    Cursor.update(app);
 };
-// push the cursor state to the position attribute of the current object
-Cursor.pushToPosition = (state) => {
-    if (!state.current_object) {
+// push the cursor app to the position attribute of the current object
+Cursor.pushToPosition = (app) => {
+    if (!app.current_object) {
         return;
     }
-    // check state.current_object if it has a geometry
-    const geometry = state.current_object.geometry;
+    // check app.current_object if it has a geometry
+    const geometry = app.current_object.geometry;
     if (!geometry) {
         return;
     }
@@ -420,7 +424,7 @@ Cursor.pushToPosition = (state) => {
         data = Array.from(pos.array);
     }
     // push current cursor value
-    const v = state.cursor;
+    const v = app.cursor;
     data.push(v.x, v.y, v.z);
     geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(data), 3));
     updateJSON();
@@ -431,16 +435,17 @@ Cursor.pushToPosition = (state) => {
 // ---------- ----------
 // on input event for pos text input for cursor string
 input_pos.addEventListener('input', (e) => {
-    Cursor.setFromString(state, e.target.value);
+    Cursor.setFromString(app, e.target.value);
 });
 // on click event for push function
 input_push.addEventListener('click', (e) => {
-    Cursor.pushToPosition(state);
+    Cursor.pushToPosition(app);
 });
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
 const sm = {
+    app: app,
     current: 'init',
     fps: 20,
     lt: new Date(),
@@ -448,19 +453,20 @@ const sm = {
     setup_call: false
 };
 sm.states.init = () => {
-    const el_view = state.el_view;
+    const app = sm.app;
+    const el_view = app.el_view;
     if (el_view.contentWindow.state) {
-        state.view = el_view.contentWindow.state;
-        if (state.view.ready) {
-            state.canvas = state.view.canvas;
-            state.ctx = state.view.ctx;
+        app.view = el_view.contentWindow.state;
+        if (app.view.ready) {
+            app.canvas = app.view.canvas;
+            app.ctx = app.view.ctx;
             if(!sm.setup_call){
                 sm.setup_call = true;
                 setup()
                 .then( ()=> {
                     sm.current = 'run';
                     // set value of input element to array of Vector3 cursor
-                    input_pos.value = state.cursor.toArray();
+                    input_pos.value = app.cursor.toArray();
                 });
             }
         }
@@ -469,8 +475,9 @@ sm.states.init = () => {
     }
 };
 sm.states.run = () => {
-    state.orbit.update();
-    state.draw();
+    const app = sm.app;
+    app.orbit.update();
+    app.draw();
 };
 const loop = function () {
     const now = new Date();

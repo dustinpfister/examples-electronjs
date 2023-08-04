@@ -29,6 +29,8 @@
 
 ## () - code readability and organization of client.js
 * (done) refs to elements for view and json as part of state object
+* (done) rename state object to app to help address confusion with sm.states and each state object in that array
+* (done) ref to app as part of sm object
 
 
 <!-- DONE -->
