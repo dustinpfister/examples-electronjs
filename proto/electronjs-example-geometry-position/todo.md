@@ -27,14 +27,12 @@
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-## () - more modules
+<!-- DONE -->
+
+## ( done 08/04/2023 ) - more modules
 * (done) start a cursor module
 * (done) pull drag and drop code into its own module
-
-* () start a JSON module
-
-
-<!-- DONE -->
+* (done) start a JSON module
 
 ## ( done 08/04/2023 ) - some code readability and organization of client.js
 * (done) refs to elements for view and json as part of state object
