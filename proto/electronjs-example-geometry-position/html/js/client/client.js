@@ -249,6 +249,7 @@ const updateScene = (app, obj3d) => {
     .then( (sprite) => {
         sprite.name = 'cursor';
         app.scene.add( sprite );
+        Cursor.update(app, app.cursor);
         // update json and draw for first time
         updateJSON();
         draw();
@@ -409,8 +410,6 @@ sm.states.init = () => {
                 .then( ()=> {
                     app.camera.position.set(5, 5, 5);
                     app.camera.lookAt(0, 0, 0);
-                    // set value of input element to array of Vector3 cursor
-                    //input_pos.value = app.cursor.toArray();
                     sm.current = 'run';
                 });
             }
