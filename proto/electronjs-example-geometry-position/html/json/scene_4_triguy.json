@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "version": 4.5,
+    "type": "Object",
+    "generator": "Object3D.toJSON"
+  },
+  "geometries": [
+    {
+      "uuid": "f1845fd7-267e-4632-ac37-5313c824a645",
+      "type": "BufferGeometry",
+      "data": {
+        "attributes": {
+          "position": {
+            "itemSize": 3,
+            "type": "Float32Array",
+            "array": [
+ 0.00, 0.00, 0.00,  0.00, 3.00, 0.00, -2.00, 3.00, 0.00,  2.00, 3.00, 0.00, 
+-1.00, 5.00, 0.00,  1.00, 5.00, 0.00, -2.50, 0.00, 0.00, -1.50, 0.00, 0.00, 
+ 1.50, 0.00, 0.00,  2.50, 0.00, 0.00, -2.00,-2.00, 0.00, -1.50,-2.00, 0.00, 
+-0.50,-2.00, 0.00,  0.50,-2.00, 0.00,  1.50,-2.00, 0.00,  2.00,-2.00, 0.00, 
+-1.00,-6.00, 0.00,  1.00,-6.00, 0.00 ],
+            "normalized": false
+          },
+          "normal": {
+            "itemSize": 3,
+            "type": "Float32Array",
+            "array": [
+ 0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00, 
+ 0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00, 
+ 0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00, 
+ 0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00,  0.00, 0.00, 1.00, 
+ 0.00, 0.00, 1.00,  0.00, 0.00, 1.00 ],
+            "normalized": false
+          }
+        },
+        "index": {
+          "type": "Uint16Array",
+          "array": [
+ 0, 3, 1,  0, 1, 2,  1, 5, 4,  6, 7, 2, 
+ 9, 3, 8,  10, 7, 6,  15, 9, 8,  12, 0, 11, 
+ 13, 14, 0,  16, 12, 11,  17, 14, 13 ]
+        },
+        "boundingSphere": {
+          "center": [
+            0,
+            -0.5,
+            0
+          ],
+          "radius": 2.692582403567252
+        }
+      }
+    }
+  ],
+  "materials": [
+    {
+      "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
+      "type": "MeshNormalMaterial",
+      "side": 2,
+      "depthFunc": 3,
+      "depthTest": true,
+      "depthWrite": true,
+      "colorWrite": true,
+      "stencilWrite": false,
+      "stencilWriteMask": 255,
+      "stencilFunc": 519,
+      "stencilRef": 0,
+      "stencilFuncMask": 255,
+      "stencilFail": 7680,
+      "stencilZFail": 7680,
+      "stencilZPass": 7680
+    }
+  ],
+  "object": {
+    "uuid": "fb15e4ca-4787-4809-99b6-3dee7d028ad8",
+    "type": "Scene",
+    "layers": 1,
+    "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "children": [
+      {
+        "uuid": "e6b33995-4136-462d-86fc-c2fbeeb6c7a1",
+        "type": "Mesh",
+        "layers": 1,
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "geometry": "f1845fd7-267e-4632-ac37-5313c824a645",
+        "material": "63ed02e7-8c5d-4064-98e5-8e0febc6121d"
+      }
+    ]
+  }
+}

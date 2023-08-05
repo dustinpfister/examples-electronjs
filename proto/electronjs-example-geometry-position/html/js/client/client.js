@@ -80,7 +80,7 @@ const createScene = () => {
         nonIndexed: true
     });
 */
-    return json_tools.loadSceneFromJSON( 'json/scene_3_points.json' );
+    return json_tools.loadSceneFromJSON( 'json/scene_4_triguy.json' );
 };
 // setup scene with new/updated object
 const updateScene = (app, obj3d) => {
@@ -290,7 +290,7 @@ sm.states.init = (sm) => {
                 sm.setup_call = true;
                 setup()
                 .then( ()=> {
-                    app.camera.position.set(5, 5, 5);
+                    app.camera.position.set(8, 8, 8);
                     app.camera.lookAt(0, 0, 0);
                     sm.current = 'run';
                 });
