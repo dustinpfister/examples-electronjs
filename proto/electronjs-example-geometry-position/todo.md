@@ -31,13 +31,17 @@
 * () start a compoent that will have to do with vertex selection
 * () this compoent can have a text input element that can be a list if indices that are selected
 
+## () - retain uuid
+* () loaded objects should retain there uuids
+
 ## () - Vertex Status Points
 * () looks like I might need a vertex status points object
 * () vertex status points will have depth write test set to false
 * () vertex status points will be gray when not selected
 * () vertex status points will be lime when selected
 
-
+## () -
+* (done) scene4-triguy.json now uses groups and one material for eahc side
 
 <!-- DONE -->
 
