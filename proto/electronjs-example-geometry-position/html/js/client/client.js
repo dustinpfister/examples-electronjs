@@ -248,6 +248,9 @@ app.el_json.addEventListener('blur', (e) => {
 // ---------- ----------
 // MAIN APP LOOP
 // ---------- ----------
+
+console.log( new THREE.Color(0.1, 0.1, 0.1).toJSON() );
+
 const sm = {
     app: app,
     current: 'init',

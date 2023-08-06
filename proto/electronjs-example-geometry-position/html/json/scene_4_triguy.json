@@ -39,10 +39,12 @@
  0.50, 0.00,  0.50, 1.00, 
  0.00, 1.00,  1.00, 1.00, 
  0.25, 0.00,  0.75, 0.00, 
- 0.00, 0.00,  0.00, 0.00, 
- 0.00, 0.00,  0.00, 0.00, 
- 0.00, 0.00,  0.00, 0.00, 
- 0.00, 0.00 ],
+ 0.50, 0.00,  1.00, 1.00, 
+ 0.00, 1.00,  0.50, 0.00, 
+ 0.00, 1.00,  0.00, 1.00, 
+ 1.00, 1.00,  0.00, 1.00, 
+ 1.00, 1.00,  1.00, 1.00, 
+ 0.50, 0.00,  0.50, 0.00 ],
             "normalized": false
           }
         },
@@ -79,8 +81,11 @@
   "materials": [
     {
       "uuid": "63ed02e7-8c5d-4064-98e5-8e0febc6121d",
-      "type": "MeshNormalMaterial",
-      "side": 1,
+      "type": "MeshBasicMaterial",
+      "color": 16777215,
+      "map": "6e281008-fce7-4145-b7e5-afb64421ba51",
+      "reflectivity": 1,
+      "refractionRatio": 0.98,
       "depthFunc": 3,
       "depthTest": true,
       "depthWrite": true,
@@ -97,9 +102,11 @@
     {
       "uuid": "7a0b5612-4885-491f-b844-9e3148f6950a",
       "type": "MeshBasicMaterial",
-      "color": 16777215,
+      "color": 5855577,
+      "map": "6e281008-fce7-4145-b7e5-afb64421ba51",
       "reflectivity": 1,
       "refractionRatio": 0.98,
+      "side": 1,
       "depthFunc": 3,
       "depthTest": true,
       "depthWrite": true,
@@ -114,8 +121,51 @@
       "stencilZPass": 7680
     }
   ],
+  "textures": [
+    {
+      "uuid": "6e281008-fce7-4145-b7e5-afb64421ba51",
+      "name": "",
+      "image": "fa38bf67-70ed-4250-bbf0-0a4a0b4b619c",
+      "mapping": 300,
+      "channel": 0,
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "center": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "wrap": [
+        1001,
+        1001
+      ],
+      "format": 1023,
+      "internalFormat": null,
+      "type": 1009,
+      "colorSpace": "",
+      "minFilter": 1008,
+      "magFilter": 1006,
+      "anisotropy": 1,
+      "flipY": true,
+      "generateMipmaps": true,
+      "premultiplyAlpha": false,
+      "unpackAlignment": 4
+    }
+  ],
+  "images": [
+    {
+      "uuid": "fa38bf67-70ed-4250-bbf0-0a4a0b4b619c",
+      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAWpJREFUWEftl0tLAlEYhud4ydJJR7xMSmAjJkFJE7QookUtolXb/mV0+QFCqy4Y0aqblViipWmMqJSXtj7+gbM5s3v4ZuDlfd/5OEecpqyRNvZsTpvjqHXNGtj7zbl79h7zpscAd0ZzYLPfBAslQLoDrbV5dKD0+4OMLCcD/pp5AQfdWXDR1QIn6kmwZ4GdEkqAdAeOt8LowEF5EZlpbYy1h+gU5gOjAi77huA9kQIfNf64B5QA6Q6cW9sIORBsI6OLdy/YDvvAoXiBnRmyI/nOMub7+kQHlADpDjTEBjpwFSgis2osAd6Nv4EvNRu8XuL3ujeNueE8cg8oAdIdeM6Y6EA6GkRGNw7PeNXex8QZkLv/sBLFvG67wPmnATugBEh34DobQQdWEl1kdFLPgXeMHvizy/d1wQ4k3TwvvJZ4rxBKgHQHzpa4B2IR7v5ao89d7ufdLnfL9+9W+d9bft4Tqk6Ie0AJkO3APz5+fQwL8GRoAAAAAElFTkSuQmCC"
+    }
+  ],
   "object": {
-    "uuid": "29429a2a-7c08-49ed-b076-57bf01b119d3",
+    "uuid": "729d784b-5a13-43d5-a4b5-2e0cc63884ba",
     "type": "Scene",
     "layers": 1,
     "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -126,7 +176,7 @@
     ],
     "children": [
       {
-        "uuid": "03b43755-efe1-4f80-bfce-f89587ef2dd1",
+        "uuid": "b29cef1a-eca3-460c-9be2-201b50990dbf",
         "type": "Mesh",
         "layers": 1,
         "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
