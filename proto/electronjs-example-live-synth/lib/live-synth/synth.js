@@ -57,7 +57,7 @@ const loop = () => {
 
     let ms = 0;
     if(bbs < 8000){
-       ms = 800;
+       ms = 750;
     }
     if(bbs >= 8000){
        ms = 900;
