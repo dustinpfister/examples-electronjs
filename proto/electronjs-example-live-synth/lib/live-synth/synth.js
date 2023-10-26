@@ -15,16 +15,24 @@ let i_frame = 0;
 const count_sample = 8000;
 let to_high = false;
 let last_time = new Date();
-const ms_fast = 999;
+const ms_fast = 990;
 const ms_slow = 5000;
 const loop = () => {
+
     const t = setTimeout(loop, to_high ? ms_slow: ms_fast);
+
+    const a_framecount = (i_frame / frame_count);
+
+    let i_sample = 0;
     while( i_sample < count_sample){
-        // alphas
+
+
         const a_sample = i_sample / count_sample;
-        const a_framecount = (i_frame / frame_count);
+
+
         const a3 = a_framecount;
         const a_wavecount = Math.sin( Math.PI * a3 );
+
         // write sample to buffer
         const wave_count = Math.floor(75 + 25 * a_wavecount);
         writeSample(buff, a_sample, wave_count, 0.6);
@@ -34,7 +42,7 @@ const loop = () => {
         }
         i_sample += 1;
     }
-    i_sample %= count_sample;
+
     i_frame += 1;
     i_frame %= frame_count;
 };
