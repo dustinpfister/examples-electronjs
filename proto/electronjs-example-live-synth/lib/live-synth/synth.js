@@ -2,7 +2,7 @@
 // TRYING TO WORK OUT SOME CONST VALUES FOR THIS
 //-------- ----------
 
-const ap_buffersize = 100000;
+const ap_buffersize = 64000;
 
 // write a single sample to the given buffer
 const writeSample = (buff, a_sample = 0.5, wave_count = 1, amplitude = 0.3) => {
@@ -15,7 +15,11 @@ const writeSample = (buff, a_sample = 0.5, wave_count = 1, amplitude = 0.3) => {
 // WRITE
 //-------- ----------
 const { spawn } = require('node:child_process');
-const args = ['--buffer-size', ap_buffersize, '-F', 0];
+
+const args = ['--buffer-size', ap_buffersize, '--period-size', 1000, '-F', 0, '-T', 0, '-R', 0, '-B', 0];
+
+//const args = [];
+
 const aplay = spawn('aplay', args, { stdio: 'pipe' } );
 aplay.stdin._writableState.highWaterMark = 32000;
 aplay.stdout._readableState.highWaterMark = 32000;
@@ -57,13 +61,19 @@ const loop = () => {
 
     let ms = 0;
     if(bbs < 8000){
-       ms = 750;
+       ms = 200;
+    }
+    if(bbs >= 7900){
+       ms = 800;
     }
     if(bbs >= 8000){
+       ms = 850;
+    }
+    if(bbs >= 8100){
        ms = 900;
     }
     if(bbs >= 16000){
-       ms = 3000;
+       ms = 1200;
     }
 
     const t = setTimeout(loop, ms);
