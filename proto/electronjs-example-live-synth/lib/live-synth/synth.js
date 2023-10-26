@@ -21,8 +21,8 @@ const args = ['--buffer-size', ap_buffersize, '--period-size', 1000, '-F', 0, '-
 //const args = [];
 
 const aplay = spawn('aplay', args, { stdio: 'pipe' } );
-aplay.stdin._writableState.highWaterMark = 32000;
-aplay.stdout._readableState.highWaterMark = 32000;
+aplay.stdin._writableState.highWaterMark = 64000;
+aplay.stdout._readableState.highWaterMark = 64000;
 
 const write = (data) => {
     return aplay.stdin.write(data);
@@ -64,16 +64,16 @@ const loop = () => {
        ms = 200;
     }
     if(bbs >= 7900){
-       ms = 800;
+       ms = 600;
     }
     if(bbs >= 8000){
-       ms = 850;
+       ms = 700;
     }
     if(bbs >= 8100){
-       ms = 900;
+       ms = 800;
     }
     if(bbs >= 16000){
-       ms = 1200;
+       ms = 1000;
     }
 
     const t = setTimeout(loop, ms);
