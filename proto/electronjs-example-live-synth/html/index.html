@@ -9,6 +9,47 @@
 
     <div class="wrap_main" >
         <h1>Hello World</h1>
+<script type="module">
+
+const blob = new Blob(
+    [`
+        class MyProcessor extends AudioWorkletProcessor {
+            process(_, outputs) {
+                for (const output of outputs) {
+                    for (const channelData of output) {
+                        const len = channelData.length;
+                        for (let i = 0; i < len; i += 1) {
+                            const a = i / len;
+                            channelData[i] = Math.sin(Math.PI * 2 * a) * 2 - 1;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        registerProcessor('my-processor', MyProcessor);
+    `],
+    { type: 'application/javascript' }
+);
+const url = URL.createObjectURL(blob);
+
+const audioContext = new AudioContext();
+
+await audioContext.audioWorklet.addModule(url);
+
+//audioContext.audioWorklet.addModule(url);
+
+const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'my-processor');
+
+myAudioWorkletNode.connect(audioContext.destination);
+
+
+console.log(myAudioWorkletNode);
+
+
+</script>
+
+
     </div>
 
   </body>
