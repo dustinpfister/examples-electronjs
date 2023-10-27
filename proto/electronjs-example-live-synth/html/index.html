@@ -11,19 +11,41 @@
         <h1>Hello World</h1>
 <script type="module">
 
+// started working with this:
+// https://stackoverflow.com/questions/67342004/how-to-continuously-generate-raw-audio-samples-in-javascript-using-the-web-audio
 const blob = new Blob(
     [`
         class MyProcessor extends AudioWorkletProcessor {
-            process(_, outputs) {
+
+            constructor(){
+                super();
+                this.amp = 1;
+                this.count = 0;
+                this.st = new Date();
+            }
+
+            process(inputList, outputs, parameters) {
                 for (const output of outputs) {
                     for (const channelData of output) {
                         const len = channelData.length;
                         for (let i = 0; i < len; i += 1) {
                             const a = i / len;
-                            channelData[i] = Math.sin(Math.PI * 2 * a) * 2 - 1;
+
+
+                            const amp = this.amp;
+
+                            channelData[i] = Math.sin(Math.PI * 2 * a) * amp - amp / 2;
                         }
                     }
                 }
+                this.count += 1;
+
+                if(this.count % 256 === 0){
+
+
+
+                }
+
                 return true;
             }
         }
@@ -44,7 +66,9 @@ const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'my-processor');
 myAudioWorkletNode.connect(audioContext.destination);
 
 
-console.log(myAudioWorkletNode);
+//console.log(audioContext);
+//console.log(myAudioWorkletNode);
+
 
 
 </script>
