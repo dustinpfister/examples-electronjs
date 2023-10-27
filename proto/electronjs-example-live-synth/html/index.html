@@ -19,6 +19,7 @@ const blob = new Blob(
 
             constructor(){
                 super();
+                this.i_sample = 0;
                 this.amp = 1;
                 this.count = 0;
                 this.st = new Date();
@@ -26,16 +27,24 @@ const blob = new Blob(
 
             process(inputList, outputs, parameters) {
 
-                this.a_sec = this.count % 344.53125 / 344.53125;
-                this.a_pitch = 80 * this.a_sec % 1;
+                //this.a_sec = this.count % 344.53125 / 344.53125;
+                //this.a_pitch = 80 * this.a_sec % 1;
 
 
                 for (const output of outputs) {
                     for (const channelData of output) {
                         const len = channelData.length;
                         for (let i = 0; i < len; i += 1) {
-                            const a = this.a_pitch;
-                            const amp = this.amp;
+
+this.i_sample += 1;
+
+const a_sec = this.i_sample % 44100 / 44100;
+
+const a = a_sec * 80 % 1;
+
+
+                            //const a = this.a_pitch;
+                            //const amp = this.amp;
                             channelData[i] = Math.sin(Math.PI * 2 * a) * 1;
                         }
                     }
