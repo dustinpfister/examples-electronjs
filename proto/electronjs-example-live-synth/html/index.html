@@ -53,6 +53,9 @@ const a = a_sec * 80 % 1;
 
                 if(this.count % 345 === 0){
 
+
+console.log(this);
+
 //const now = new Date();
 //const secs = (now - this.st) / 1000;
 //console.log( secs, (this.count / 344.53125).toFixed(3) );
@@ -66,21 +69,14 @@ const a = a_sec * 80 % 1;
     `],
     { type: 'application/javascript' }
 );
+
+
 const url = URL.createObjectURL(blob);
-
 const audioContext = new AudioContext();
-
 await audioContext.audioWorklet.addModule(url);
-
-//audioContext.audioWorklet.addModule(url);
-
 const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'my-processor');
-
 myAudioWorkletNode.connect(audioContext.destination);
 
-
-//console.log(audioContext);
-//console.log(myAudioWorkletNode);
 
 
 
