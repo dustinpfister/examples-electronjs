@@ -8,7 +8,9 @@
   <body>
 
     <div class="wrap_main" >
-        <h1>Hello World</h1>
+        <h1>Live Synth </h1>
+
+
 <script type="module">
 
 // started working with this:
@@ -20,15 +22,12 @@ const blob = new Blob(
             constructor(){
                 super();
                 this.i_sample = 0;
-                this.amp = 1;
+                this.amp = 0.75;
                 this.count = 0;
                 this.st = new Date();
             }
 
             process(inputList, outputs, parameters) {
-
-                //this.a_sec = this.count % 344.53125 / 344.53125;
-                //this.a_pitch = 80 * this.a_sec % 1;
 
 
                 for (const output of outputs) {
@@ -45,7 +44,7 @@ const a = a_sec * 80 % 1;
 
                             //const a = this.a_pitch;
                             //const amp = this.amp;
-                            channelData[i] = Math.sin(Math.PI * 2 * a) * 1;
+                            channelData[i] = Math.sin(Math.PI * 2 * a) * this.amp;
                         }
                     }
                 }
@@ -53,9 +52,8 @@ const a = a_sec * 80 % 1;
 
                 if(this.count % 345 === 0){
 
-
-console.log(this);
-
+//console.log(parameters)
+//console.log(this);
 //const now = new Date();
 //const secs = (now - this.st) / 1000;
 //console.log( secs, (this.count / 344.53125).toFixed(3) );
@@ -65,7 +63,7 @@ console.log(this);
                 return true;
             }
         }
-        registerProcessor('my-processor', MyProcessor);
+        registerProcessor('myprocessor', MyProcessor);
     `],
     { type: 'application/javascript' }
 );
@@ -74,10 +72,113 @@ console.log(this);
 const url = URL.createObjectURL(blob);
 const audioContext = new AudioContext();
 await audioContext.audioWorklet.addModule(url);
-const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'my-processor');
-myAudioWorkletNode.connect(audioContext.destination);
+const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'myprocessor');
+//myAudioWorkletNode.connect(audioContext.destination);
 
 
+
+// create Oscillator node
+
+const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
+
+// https://pages.mtu.edu/~suits/notefreqs.html
+const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
+
+const oscillator = {};
+
+keys.forEach( (key) => {
+
+    const osc = oscillator[key] = audioContext.createOscillator();
+    osc.type = "myprocessor";
+    osc.frequency.setValueAtTime(0, audioContext.currentTime);
+    osc.connect(audioContext.destination);
+    osc.start();
+});
+
+/*
+const oscillator = audioContext.createOscillator();
+oscillator.type = "my-processor";
+oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+oscillator.connect(audioContext.destination);
+oscillator.start();
+*/
+
+window.addEventListener('keydown', (e)=>{
+
+    const key = e.key.toLowerCase();
+
+    if(key === 'q'){
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }else{
+            audioContext.suspend()
+        }
+    }
+
+    const osc = oscillator[key];
+    if(osc){
+        let i = 0;
+        let f = 0;
+        while(i < keys.length){
+            if(keys[i] === key){
+               f = freq[i];
+               break;
+            }
+            i += 1;
+        }
+
+console.log(key);
+
+        osc.frequency.setValueAtTime(f, audioContext.currentTime);
+    }
+
+/*
+    if(key === 'a'){
+        oscillator.frequency.setValueAtTime(80, audioContext.currentTime);
+    }
+
+    if(key === 's'){
+        oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+    }
+
+    if(key === 'd'){
+        oscillator.frequency.setValueAtTime(120, audioContext.currentTime);
+    }
+
+    if(key === 'f'){
+        oscillator.frequency.setValueAtTime(140, audioContext.currentTime);
+    }
+
+    if(key === 'g'){
+        oscillator.frequency.setValueAtTime(160, audioContext.currentTime);
+    }
+
+    if(key === 'h'){
+        oscillator.frequency.setValueAtTime(180, audioContext.currentTime);
+    }
+
+    if(key === 'j'){
+        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+    }
+
+    if(key === 'k'){
+        oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+    }
+*/
+
+});
+
+window.addEventListener('keyup', (e)=>{
+    const key = e.key.toLowerCase();
+    const osc = oscillator[key];
+    if(osc){
+        osc.frequency.setValueAtTime(0, audioContext.currentTime);
+    }
+
+/*
+        oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+*/
+});
 
 
 </script>
