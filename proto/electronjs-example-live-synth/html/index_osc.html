@@ -38,8 +38,8 @@ const audioContext = new AudioContext();
 // create Oscillator node
 const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
 // https://pages.mtu.edu/~suits/notefreqs.html
-//const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
-const freq = [1, 2, 3, 4, 5, 6, 7, 8 ];
+const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
+//const freq = [1, 2, 3, 4, 5, 6, 7, 8 ];
 const oscillator = {};
 const gains = {};
 
@@ -49,14 +49,28 @@ const gains = {};
     //var imag= new Float32Array([0,1,0.2,0,1]);   // sine
 
     //https://stackoverflow.com/questions/20156888/what-are-the-parameters-for-createperiodicwave-in-google-chrome
-    var numCoeffs = 40; // The more coefficients you use, the better the approximation
+    var numCoeffs = 64; // The more coefficients you use, the better the approximation
     var real = new Float32Array(numCoeffs);
     var imag = new Float32Array(numCoeffs);
 
-    //real[0] = 1;
+const rands = [];
+let ir = 0;
+while(ir < 20){
+ rands.push(seededRandom(i));
+ir += 1;
+
+}
+
+    //real[0] = 0.5;
     for (var i = 1; i < numCoeffs; i++) { // note i starts at 1
-        const r = seededRandom(i);
-        imag[i] = r;
+
+
+        imag[i] = rands[ Math.floor( rands.length * (i / numCoeffs) ) ];
+
+        //const r = seededRandom(i);
+        //imag[i] = r;
+
+        // saw
         //imag[i] = 1 / (i * Math.PI);
         
     }
