@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> Live Synth </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="wrap_main" >
+        <h1>Live Synth OSC </h1>
+
+
+<script type="module">
+
+//https://github.com/mrdoob/three.js/blob/dev/src/math/MathUtils.js
+let _seed = 1234567;
+function seededRandom( s ) {
+
+	if ( s !== undefined ) _seed = s;
+
+	// Mulberry32 generator
+
+	let t = _seed += 0x6D2B79F5;
+
+	t = Math.imul( t ^ t >>> 15, t | 1 );
+
+	t ^= t + Math.imul( t ^ t >>> 7, t | 61 );
+
+	return ( ( t ^ t >>> 14 ) >>> 0 ) / 4294967296;
+
+}
+
+
+const audioContext = new AudioContext();
+
+
+// create Oscillator node
+const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
+// https://pages.mtu.edu/~suits/notefreqs.html
+//const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
+const freq = [1, 2, 3, 4, 5, 6, 7, 8 ];
+const oscillator = {};
+const gains = {};
+
+
+
+    //var real = new Float32Array(imag.length);  // cos
+    //var imag= new Float32Array([0,1,0.2,0,1]);   // sine
+
+    //https://stackoverflow.com/questions/20156888/what-are-the-parameters-for-createperiodicwave-in-google-chrome
+    var numCoeffs = 40; // The more coefficients you use, the better the approximation
+    var real = new Float32Array(numCoeffs);
+    var imag = new Float32Array(numCoeffs);
+
+    //real[0] = 1;
+    for (var i = 1; i < numCoeffs; i++) { // note i starts at 1
+        const r = seededRandom(i);
+        imag[i] = r;
+        //imag[i] = 1 / (i * Math.PI);
+        
+    }
+
+    var customWave = audioContext.createPeriodicWave(real, imag);  // cos,sine
+    
+
+keys.forEach( (key, i) => {
+    const osc = oscillator[key] = audioContext.createOscillator();
+    osc.setPeriodicWave(customWave);
+    osc.frequency.setValueAtTime(freq[i], 0);
+    osc.start();
+    const gain = gains[key] = audioContext.createGain();
+    gain.gain.value = 0;
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+});
+
+window.addEventListener('keydown', (e)=>{
+    const key = e.key.toLowerCase();
+    if(key === 'q'){
+        if (audioContext.state === "suspended") {
+          audioContext.resume();
+        }else{
+            audioContext.suspend()
+        }
+    }
+    const gain = gains[key];
+    if(gain){
+        gain.gain.value = 0.25;
+    }
+});
+
+window.addEventListener('keyup', (e)=>{
+    const key = e.key.toLowerCase();
+    const gain = gains[key];
+    if(gain){
+        gain.gain.value = 0;
+    }
+});
+</script>
+
+
+    </div>
+
+  </body>
+</html>

@@ -30,7 +30,7 @@ function createWindow () {
     height: 600,
     webPreferences: {}
   })
-  mainWindow.loadFile('html/index.html')
+  mainWindow.loadFile('html/index_osc.html')
   mainWindow.webContents.openDevTools()
 }
 //-------- ----------
