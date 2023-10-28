@@ -13,8 +13,15 @@
 
 <script type="module">
 
+
+const audioContext = new AudioContext();
+
+
+
+
 // started working with this:
 // https://stackoverflow.com/questions/67342004/how-to-continuously-generate-raw-audio-samples-in-javascript-using-the-web-audio
+/*
 const blob = new Blob(
     [`
         class MyProcessor extends AudioWorkletProcessor {
@@ -68,42 +75,44 @@ const a = a_sec * 80 % 1;
     { type: 'application/javascript' }
 );
 
+*/
 
-const url = URL.createObjectURL(blob);
-const audioContext = new AudioContext();
-await audioContext.audioWorklet.addModule(url);
-const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'myprocessor');
+//const url = URL.createObjectURL(blob);
+
+
+//await audioContext.audioWorklet.addModule(url);
+//const myAudioWorkletNode = new AudioWorkletNode(audioContext, 'myprocessor');
 //myAudioWorkletNode.connect(audioContext.destination);
 
 
 
 // create Oscillator node
-
 const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
-
 // https://pages.mtu.edu/~suits/notefreqs.html
 const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
-
 const oscillator = {};
-
-keys.forEach( (key) => {
-
+const gains = {};
+keys.forEach( (key, i) => {
     const osc = oscillator[key] = audioContext.createOscillator();
-    osc.type = "myprocessor";
-    osc.frequency.setValueAtTime(0, audioContext.currentTime);
-    osc.connect(audioContext.destination);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(freq[i], 0);
+    //osc.connect(audioContext.destination);
     osc.start();
+
+    const gain = gains[key] = audioContext.createGain(); // Create gain node
+    gain.gain.value = 0;
+
+    osc.connect(gain); // Connect oscillator to gain
+    gain.connect(audioContext.destination); // Connect gain to output
+
 });
 
-/*
-const oscillator = audioContext.createOscillator();
-oscillator.type = "my-processor";
-oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
-oscillator.connect(audioContext.destination);
-oscillator.start();
-*/
 
 window.addEventListener('keydown', (e)=>{
+
+  if (event.isComposing || event.keyCode === 229) {
+    return;
+  }
 
     const key = e.key.toLowerCase();
 
@@ -115,69 +124,23 @@ window.addEventListener('keydown', (e)=>{
         }
     }
 
-    const osc = oscillator[key];
-    if(osc){
-        let i = 0;
-        let f = 0;
-        while(i < keys.length){
-            if(keys[i] === key){
-               f = freq[i];
-               break;
-            }
-            i += 1;
-        }
-
-console.log(key);
-
-        osc.frequency.setValueAtTime(f, audioContext.currentTime);
+    const gain = gains[key];
+    if(gain){
+        gain.gain.value = 1;
     }
 
-/*
-    if(key === 'a'){
-        oscillator.frequency.setValueAtTime(80, audioContext.currentTime);
-    }
 
-    if(key === 's'){
-        oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-    }
-
-    if(key === 'd'){
-        oscillator.frequency.setValueAtTime(120, audioContext.currentTime);
-    }
-
-    if(key === 'f'){
-        oscillator.frequency.setValueAtTime(140, audioContext.currentTime);
-    }
-
-    if(key === 'g'){
-        oscillator.frequency.setValueAtTime(160, audioContext.currentTime);
-    }
-
-    if(key === 'h'){
-        oscillator.frequency.setValueAtTime(180, audioContext.currentTime);
-    }
-
-    if(key === 'j'){
-        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-    }
-
-    if(key === 'k'){
-        oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
-    }
-*/
 
 });
 
 window.addEventListener('keyup', (e)=>{
     const key = e.key.toLowerCase();
-    const osc = oscillator[key];
-    if(osc){
-        osc.frequency.setValueAtTime(0, audioContext.currentTime);
+
+    const gain = gains[key];
+    if(gain){
+        gain.gain.value = 0;
     }
 
-/*
-        oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
-*/
 });
 
 
