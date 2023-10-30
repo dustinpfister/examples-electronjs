@@ -35,8 +35,17 @@ function seededRandom( s ) {
 const audioContext = new AudioContext();
 
 
-// create Oscillator node
-const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
+// works okay for any 2 keys at once
+//const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k' ];
+
+//const keys = ['q', 'w', 'e', 'r', 'a', 's', 'd', 'f' ];
+
+// !!! same problem as a,s,d,f,...
+//const keys = ['1','2','3','4','5','6','7','8']
+
+// !!! works with 3+ keys on my onn keyboard, but this is weird to say the least
+const keys = ['w', 'r', 'y', 'i', 'a', 'd', 'g', 'j' ];
+
 // https://pages.mtu.edu/~suits/notefreqs.html
 const freq = [65, 73, 82, 87, 98, 110, 123, 130 ];
 //const freq = [1, 2, 3, 4, 5, 6, 7, 8 ];
@@ -91,6 +100,7 @@ keys.forEach( (key, i) => {
 
 window.addEventListener('keydown', (e)=>{
     const key = e.key.toLowerCase();
+/*
     if(key === 'q'){
         if (audioContext.state === "suspended") {
           audioContext.resume();
@@ -98,6 +108,7 @@ window.addEventListener('keydown', (e)=>{
             audioContext.suspend()
         }
     }
+*/
     const gain = gains[key];
     if(gain){
         gain.gain.value = 0.25;
